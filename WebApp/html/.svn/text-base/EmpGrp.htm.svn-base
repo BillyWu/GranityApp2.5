@@ -1,0 +1,386 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>公司员工</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+     <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+    <script type="text/javascript">
+        function initWin()
+        {
+            var ob=$band("单位树");
+            var sband=$band('公司员工');
+           
+            ob.Asyn = true;
+            sband.Asyn = true;
+            sband.gridtype = 0; sband.freecols = "DEPARTMENT";sband.minwidth = "100px";
+            new XGrid("GridDiv",sband,"in",null,1);
+            sband.isPrint=true;            
+            ob.AfterXQuery = function()
+            {
+                ue_treeline("单位树",true);
+                ue_expand('单位树',true);
+                $loading("none");
+                var xml= sband.XmlLandData.XMLDocument;
+            }
+            ob.XQuery();
+            sband.AfterNewRecord=addRow;
+        }
+               function upload()
+                {debugger;
+                
+                    var oband=$band("公司员工");
+                    var valueRtn=window.showModalDialog("UploadPIC.htm",null,"dialogWidth:600px;dialogHeight:300px;center: yes;help:no; resizable:yes;status:no;");
+                    if(!valueRtn){alert("未上传成功！");return;}
+                    oband.setFldStrValue(null,"pic",base_name(valueRtn));
+                    updatefields(oband);
+                    alert(valueRtn);
+                }
+                function base_name(pFilePath){
+                    var temp_win = pFilePath.lastIndexOf("\\");
+                    var temp_unix = pFilePath.lastIndexOf("/");
+                    if (temp_win>0)
+                    {
+                        temp = temp_win;
+                    }
+                    else if (temp_unix>0)
+                    {
+                        temp = temp_unix;
+                    }
+                    else
+                    {
+                        temp = -1;    
+                    }
+                    file_name = pFilePath.substr(temp+1);
+                    return(file_name);
+                }  	            
+                function updatefields(oband)
+                {
+		            var colList=oband.XmlSchema.XMLDocument.selectNodes("//xs:element");
+		            for(var i=0;i<colList.length;i++)
+		            {
+			            var columnName=colList[i].getAttribute("name");
+			            var inputCtrlID=oband.key+":"+columnName;
+			            var oinput=document.getElementById(inputCtrlID);
+			            if(!oinput || !oinput.className)	continue;
+			            var strvalue=oband.getFldStrValue(columnName);
+			            //上传文件及图片的字段;id=bandName+":"+columnName
+			            if( !oinput.dataSrc || !oinput.dataFld || ""==oinput.dataSrc || ""==oinput.dataFld)
+			            {
+				            if(oinput.className.toLowerCase()=="xlandfile")
+				            {
+					            if(oinput.tagName=="DIV")
+						            setfile(inputCtrlID,strvalue);
+					            if(oinput.type=="file")
+					            {
+						            var parentCtrl=oinput.parentElement;
+						            setfile(parentCtrl.id,strvalue);
+					            }
+					            continue;
+				            }
+				            if(oinput.className.toLowerCase()=="xlandimg" && oinput.tagName=="IMG")
+				            {
+		                        if(strvalue!="")
+		                        {
+		                            var _src = "../wfimg.aspx?img="+strvalue+"&size="+oinput.tag;
+		                            var s = (new   Date()).toString();
+			                        oinput.src=_src + "?"+ s;
+			                    }
+			                    else 
+			                    {
+			                        oinput.resized=true;
+			                        oinput.style.width=25;
+			                        oinput.style.height=25;
+			                        oinput.src="images//Floppy.gif";
+			                    }
+					            continue;
+				            }
+			            }
+		            }                
+                }    
+                
+                function reaptNo()
+                {
+                  var weak= $band("公司员工");
+                  var xml= weak.XmlLandData.XMLDocument;
+                  var nodes =xml.selectNodes("/餐厅维护/消费时段/星期");
+                  var nodeValue="";
+                  var index=0;
+                  for(m=0;m<nodes.length;m++)
+                  {
+                      nodeValue=nodes[m].childNodes[0].nodeValue;
+                      index=m;
+                      for (i=m+1;i<nodes.length;i++)
+                      {
+                          if(nodeValue==nodes[i].childNodes[0].nodeValue)
+                          {
+                              i++;
+                              index++;
+                              alert("星期第"+i+"行与第"+index+"行存在相同的值，请重新选择其他的值！");
+                              return false;
+                          }      
+                      }
+                  }
+          return true;
+                }		    
+	            function changesex(obj)
+	            {
+		            if(obj.value=="男") obj.value="女"
+		            else 
+			            if(obj.value=="女") obj.value="男";		
+			            else
+			                obj.value="男"
+	            }
+			    function _loadimg(obj)
+			    {
+			        if(obj.clientWidth>160 || obj.clientHeight>160)
+			        {
+			            obj.resized=true;
+			            var scale = obj.clientWidth/obj.clientHeight;
+			            if(scale>1) 
+			            {
+			                obj.style.width=160;
+			                obj.style.height = 160/scale;
+			            }
+			            else
+			            {
+			                obj.style.height=160;
+			                obj.style.width = 160/scale;
+			            }			            
+			        }
+			        if(obj.clientWidth==25 && obj.clientHeight==25 && obj.src.indexOf("Floppy")<0)
+			        {
+			            obj.resized=true;
+		                obj.style.width=154;
+		                obj.style.height = 160;
+			            
+			        }
+			    }
+    		    
+
+                function openPro(winid)
+                {
+                    if(!winid) winid="1";
+                    var owin = dwobj(winid);
+                    var str=strfind(winid);
+                    if(!owin)
+                    {
+                        var owin = new Object;
+                        owin.id     = winid;
+                        owin.width  = 590;
+                        owin.height = 400;
+                        owin.top    = 200;
+                        owin.left   = 200;
+                        owin.title  = "员工详细资料";
+                        owin.text   = str;
+                        owin.hovercolor = "orange";
+                        owin.color = "black";
+                        var a = new xWin(owin);
+                    }
+                    else
+                    {
+                        dwmsg(winid).innerHTML=str;
+                        ShowHide(winid,"");
+                    }
+                    center(winid);
+                    var oband=document.UnitItem.getBandByItemName("公司员工");
+                    updatefields(oband);
+           	    }
+               
+                function _btnOK()
+                {
+                    var oband=document.UnitItem.getBandByItemName("公司员工");
+                    var _state = oband.getStateRecord();
+                    if('new'==_state || 'modify'==_state) 
+                    {
+                         var result = confirm("数据已改变,现在保存吗?");
+                         if(!result) return;
+                         ue_save();
+                    }
+                    ShowHide("1","none");
+                }
+                function strfind(winid,gridname,bandname)
+                {
+                    if(!bandname) bandname="";
+                    var s= '<fieldset style="padding: 5px;;width:98%"><legend>主要信息：</legend>'
+                    +'<table border="0" width="90%" cellpadding="0" style="border-collapse: collapse" align=center ><tr>'
+		            +'        <td width="60" align="right">姓名:</td><td width="100">'
+		            +'        <input datasrc="#公司员工集团Tab" datafld="NAME"   class=\"xlandinput\" style=\"WIDTH: 100;\" /></td>'
+		            +'        <td width="60" align="right">工号:</td><td width="100">'
+		            +'        <input datasrc="#公司员工集团Tab" datafld="EMPCODE" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+		            +'        <td width="100" align="right">操作员标志:</td><td width="40">'
+		            +'        <input datasrc="#公司员工集团Tab" datafld="ISOPERATE" class="xlandradio" type="checkbox" /></td>'
+		            +'        <td width="60" align="center">离职:</td><td width="40">'
+		            +'        <input datasrc="#公司员工集团Tab" datafld="UPFLAG" class="xlandradio" type="checkbox" /></td>'
+		            +'        <td width="100" align="center">【<a href="#" onclick="_btnOK()">确定</a>】</td>'   
+	                +'    </tr></table></fieldset>';
+                    var s=s+ '<fieldset style="padding: 5px;width:98%"><legend>基本资料：</legend>'
+                    +'<table border="0" width="90%" cellpadding="0" style="border-collapse: collapse" align=center >'
+	                +'<tr><td width="90">出生日期：</td><td>'
+	                +'<INPUT datasrc="#公司员工集团Tab" datafld="BIRTHDAY" class="xlanddate" style="width:100%; " type="text" size="11" name="姓名2" /></td>'
+		            +'    <td id="tdimg" width="164" rowspan="8" align="center"><IMG src="images//Floppy.gif" id="公司员工:pic" class="xlandImg" tag="150X160" onload="_loadimg(this)"  alt="个人照片,点击看原图..." /></td></tr><tr>'
+		            +'    <td width="90">部　　门：</td><td><input datasrc="#公司员工集团Tab" datafld="DEPARTMENT" class=\"xlandinput\"  style="width:100%;" type="text" size="11" /><input title="要选择吗，点我一下..." class="txtbtn" type=button value="..."  style="margin-left:-24px;margin-top:2px;width:22px;height:16; position:absolute" onclick="Xcbo(公司员工集团Tab)"/></td>'
+	                +'</tr><tr><td width="90">员工类别：</td>'
+		            +'    <td><input type="text" datasrc="#公司员工集团Tab" datafld="EMPTYPEID" class="xlandinput"  size="1" style="WIDTH:100%" name="D7" /><input title="要选择吗，点我一下..." class="txtbtn" type=button value="..."  style="margin-left:-24px;margin-top:2px;width:22px;height:16; position:absolute" onclick="Xcbo(公司员工集团Tab)"/></td>'
+	                +'</tr><tr><td width="90">性　　别：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab"  datafld="SEX" title="双击更改" class="xlandinput"  ondblclick="changesex(this)" style="width:100%;" type="text" size="11"  /></td>'
+	                +'</tr><tr><td width="90">入职日期：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="POSTDATE" class="xlanddate" style="width:100%;" type="text" size="11"  /></td>'
+	                +'</tr><tr><td width="90">学　　历：</td>'
+		            +'    <td><select datasrc="#公司员工集团Tab" datafld="CULTURE" class="xlandinput" style="width:100%;" type="text" size="1"  />'
+                    +'        <option value=""></option>'
+                    +'        <option value="小学">小学</option>'
+                    +'        <option value="中学">中学</option>'
+                    +'        <option value="中专">中专</option>'
+                    +'        <option value="大专">大专</option>'
+                    +'        <option value="本科">本科</option>'                                     
+                    +'        <option value="硕士">硕士</option>'
+                    +'        <option value="博士">博士</option></select>'
+		            +'</td>'
+	                +'</tr><tr><td width="90">身份证号：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="IDCARD" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+	                +'</tr><tr><td width="90">工资核算方式：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="核算方式" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+	                +'</tr><tr><td width="90">藉　　贯：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="FOREFATHER" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+		            +'    <td width="164" align="center"><INPUT id="Button1" title="上传照片" style="WIDTH: 100px;" onclick="upload()" type="button" value="上传" name="btnOK1"></td>'
+	                +'    </tr></table></fieldset>';
+                    var s=s+ '<fieldset style="padding: 5px;;width:98%"><legend>详细资料：</legend>'
+                    +'<table border="0" width="90%" cellpadding="0" style="border-collapse: collapse" align=center >'
+	                +'<tr><td width="90">邮　　编：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="POSTCODE" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+		            +'    <td width="90"  align=center>家庭电话：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="HOMEPHONE" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+	                +'</tr><tr><td width="90">住　　址：</td>'
+		            +'    <td colspan="3"><input datasrc="#公司员工集团Tab" datafld="ADDRESS" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+	                +'</tr><tr><td width="90">职　　务：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="DUTY" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+		            +'    <td width="90" align=center>工作电话：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="TELEPHONE" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+	                +'</tr><tr><td width="90">EMAIL地址</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="EMAIL" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+		            +'    <td width="90" align=center>手　　机：</td>'
+		            +'    <td><input datasrc="#公司员工集团Tab" datafld="HOMEPHONE" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+	                +'</tr><tr><td width="90">备注：</td>'
+		            +'    <td colspan="3"><input datasrc="#公司员工集团Tab" datafld="MEMORY" class="xlandinput" style="width:100%;" type="text" size="11"  /></td>'
+	                +'    </tr></table></fieldset>';
+	                return s;
+                }
+                
+        function addRow()
+        {
+           var ob=$band("单位树");
+           var emp= $band("公司员工");
+           var empNo=$band("用户编号");
+           var deptName = ob.getFldStrValue("名称");
+           var deptNo=ob.getFldStrValue("部门代码");           
+           var No=empNo.getFldStrValue("Sn");    
+           emp.setFldStrValue(null,"EMPCODE",No);
+           emp.setFldStrValue(null,"DEPARTMENT",deptName);
+           emp.setFldStrValue(null,"DEPTCODE",deptNo);  
+           empNo.XQuery(true);         
+        }
+                
+        function ux_print()
+        {
+            var ob=$band("单位树");
+            var deptID = ob.getFldStrValue("部门ID");
+            var ob = $band("公司员工");
+            var sum = ob.getFldStrValue("RecordCount", 0, "sum");
+            var prn = "employGroup.xml";
+            var ps  = "@部门ID="+deptID+ ",@$LastRow=" + sum;
+            var src = "resources.公司员工集团";
+            url=ue_path() + "/frmprintc.aspx?datasrc="+escape(src)+"&prn="+prn+"&pms="+ps;
+            window.open(url,"","height=100,width=100,left=0,top=0,menu=yes,status=yes,resizable=no,scrollbars=no");
+        }
+    </script>
+  </head>
+  <body style="overflow:hidden; margin: 0px;"scroll="no" >
+  <div style="height: 20; width:100%;background-image: url('images/bg-shd.png');"></div>
+  <div style="height: 95%; width:24%;float:left">
+    <p style="margin:5px"><img border="0" src="Images/reply.gif" />
+       <input class="xlandinput" style="WIDTH: 60; height:20" size="15" name="" id="findtext" onfocus="this.nextSibling.value='查找'" /><input class="txtbtn" id="gridfind7" style="width:44; height:22" onclick="ue_bandTreeSearch(findtext.value,'下一个'==this.value,'单位树人员数Tab');this.value='下一个';" type="button" value="查找" name="B15" />
+       【<a href="#" class="linkbtn_0" onclick="ue_expand('单位树',true)">展开</a>】【<a href="#" class="linkbtn_0" onclick="ue_expand('单位树',false)">收缩</a>】
+       </p>               <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+                          <script type="text/javascript">
+                            //<![CDATA[
+                                /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_单位树人员数Tab_trvLand ***/
+                                window.ComponentArt_Storage_etpTemplate_单位树人员数Tab_trvLand = null;
+                                //]]>
+                          </script>
+                          <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                            <img src="images/exp.gif" width="0" height="0" alt="" />
+                            <img src="images/col.gif" width="0" height="0" alt="" />
+                          </div>
+                          <div id="etpTemplate_单位树人员数Tab_trvLand" class="TreeView" style="height:92%;width:98%;overflow:auto;" onclick="if(window.etpTemplate_单位树人员数Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_单位树人员数Tab_trvLand);" onmouseover="if(window.etpTemplate_单位树人员数Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_单位树人员数Tab_trvLand);"></div>
+                          <input id="etpTemplate_单位树人员数Tab_trvLand_Data" name="etpTemplate_单位树人员数Tab_trvLand_Data" type="hidden" />
+                          <input id="etpTemplate_单位树人员数Tab_trvLand_Properties" name="etpTemplate_单位树人员数Tab_trvLand_Properties" type="hidden" />
+                          <input id="etpTemplate_单位树人员数Tab_trvLand_SelectedNode" name="etpTemplate_单位树人员数Tab_trvLand_SelectedNode" type="hidden" value="" />
+                          <input id="etpTemplate_单位树人员数Tab_trvLand_ScrollData" name="etpTemplate_单位树人员数Tab_trvLand_ScrollData" type="hidden" value="0,0" />
+                          <script type="text/javascript">
+                            //<![CDATA[
+                                  window.ComponentArt_Init_etpTemplate_单位树人员数Tab_trvLand = function() 
+                                  {
+                                      if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_单位树人员数Tab_trvLand'))
+	                                      {setTimeout('ComponentArt_Init_etpTemplate_单位树人员数Tab_trvLand()', 100); return; }
+                                       
+                                      window.etpTemplate_单位树人员数Tab_trvLand = new ComponentArt_TreeView('etpTemplate_单位树人员数Tab_trvLand', ComponentArt_Storage_etpTemplate_单位树人员数Tab_trvLand);
+                                      etpTemplate_单位树人员数Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$单位树人员数Tab$trvLand','') };
+                                      if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_单位树人员数Tab_trvLand; etpTemplate_单位树人员数Tab_trvLand.GlobalAlias = 'trvLand'; }
+                                      etpTemplate_单位树人员数Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick,'NodeBeforeMove':TreeUtil.onNodeBeforeMove}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:单位树人员数Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['ExpandSinglePath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                                      etpTemplate_单位树人员数Tab_trvLand.Initialize('etpTemplate_单位树人员数Tab_trvLand');
+                                      window.etpTemplate_单位树人员数Tab_trvLand_loaded = true;
+                                  }
+                                  ComponentArt_Init_etpTemplate_单位树人员数Tab_trvLand();
+                                  var myTree = new Tree(etpTemplate_单位树人员数Tab_trvLand,'单位树人员数Tab');
+                                  //]]>
+                          </script>
+  </div>
+  <div style="height: 95%; width:75%;float:right">
+  <table id="mainTable" border="0" cellpadding="0" style="border-collapse: collapse;width:100%;height:100%">
+<tbody>
+	<tr>
+		<td style="height:80px"><fieldset style="padding: 2px;;width:98%;height:80px"><legend>员工详细信息：</legend>
+            <span class="span50fn">姓名:</span><INPUT datasrc="#公司员工集团Tab" datafld="NAME" class="xlandinput" style="WIDTH:110px" type="text" size="11"  />&nbsp;&nbsp;
+            <span class="span40fn">编号:</span><INPUT datasrc="#公司员工集团Tab" datafld="EMPCODE" class="xlandinput" style="WIDTH:80px" type="text" size="11" /><font color="#FF0000">*</font>
+            <span class="span40fn">职务:</span><INPUT datasrc="#公司员工集团Tab" datafld="DUTY" class="xlandinput" style="WIDTH:16%" type="text" size="11"  /><br />
+            <span class="span50fn">部门:</span><INPUT datasrc="#公司员工集团Tab" datafld="DEPARTMENT" class="xlandinput" style="WIDTH:110px" type="text" size="11" readonly="true" />
+            <input title="要选择吗，点我一下..." class="txtbtn" type=button value="..."  style="margin-left:-30px;margin-top:2px;width:22px;height:16; position:absolute" onclick="Xcbo(公司员工集团Tab)"/><font color="#FF0000">*</font>
+            <span class="span40fn">电话:</span><INPUT datasrc="#公司员工集团Tab" datafld="TELEPHONE" class="xlandinput" style="WIDTH:80px" type="text" size="11"  />
+            &nbsp<span class="span40fn">邮箱:</span><INPUT datasrc="#公司员工集团Tab" datafld="EMAIL" class="xlandinput" style="WIDTH:16%" type="text" size="11"  />
+            </fieldset></td>
+	</tr>
+	<tr>
+		<td><fieldset style="padding: 5px;width:98%;height:99%"><legend>用户列表： <a class="linkbtn_0" href="#" onclick="ux_print()">导出用户信息</a></legend>
+		<div id="GridDiv" style="width:100%;height:97%"></div>
+			</fieldset></td>
+	</tr>			
+</tbody>
+				</table>
+  </div>
+  <script type="text/javascript" charset="gb2312">ue_initsetup("公司员工集团")</script>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+<HTML>
+	<HEAD>
+		<title>替换表中数据</title>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<base target="_self">
+		<script src="hmjs/sysjs/ToolUtil.js"  type="text/javascript" charset="gb2312"></script>
+		<script src="hmjs/sysjs/usBandBase.js"  type="text/javascript" charset="gb2312"></script>
+		<script language="javascript">
+		
+			var swType;
+			var colnames = new Array();
+			var coltypes = new Array();
+			
+			var band=window.dialogArguments;			
+			function cmdCancel()
+			{
+				window.close();
+			}							
+			function ue_initColumns()
+			{
+				for(var i=0;i<band.XmlLandData.recordset.Fields.Count;i++)
+				{
+					var fld = band.XmlLandData.recordset.Fields(i).Name;
+					if(document.getElementById(fld))
+						document.getElementById(fld).value=band.getFldStrValue(fld);
+				}
+			}	
+			function cmdOK()
+			{
+				for(var i=0;i<band.XmlLandData.recordset.Fields.Count;i++)
+				{
+					var fld = band.XmlLandData.recordset.Fields(i).Name;
+					if(document.getElementById(fld))
+						band.setFldStrValue(null,fld,document.getElementById(fld).value);
+				}
+				window.close();;
+			}	
+		</script>
+	</HEAD>
+	<body bottomMargin="0" bgColor="activeborder" leftMargin="8" topMargin="8" onload="ue_initColumns()" rightMargin="1">
+			<TABLE id="Table2" style="BORDER-RIGHT: thin groove; BORDER-TOP: thin groove; FONT-SIZE: 12px; BORDER-LEFT: thin groove; BORDER-BOTTOM: thin groove; FONT-FAMILY: 宋体"
+				cellSpacing="0" cellPadding="0" width="100%" bgColor="activeborder" border="0">
+				<TR>
+					<TD style="BORDER-BOTTOM: thin groove; BORDER-Right: thin groove;  HEIGHT: 20px"
+						align="center" bgColor="activeborder">属性</TD>
+					<TD style="BORDER-BOTTOM: thin groove;  HEIGHT: 20px"
+						align="center" bgColor="activeborder" colspan="3">值</TD>
+				</TR>
+				<TR>
+					<TD vAlign="middle" noWrap align="left" bgColor="activeborder" colSpan="1" rowSpan="1" style="BORDER-Right: thin groove;BORDER-BOTTOM: thin groove;  "><FONT face="宋体">&nbsp;名称：</FONT></TD>
+					<TD style=" BORDER-BOTTOM: thin groove" colspan="3"><INPUT id="name" class="xlandinput" style="width:98%" type="text" size="11" name="姓名" /></TD>
+				</TR>
+				<TR>
+					<TD style=" BORDER-Right: thin groove;BORDER-BOTTOM: thin groove" noWrap><FONT face="宋体">
+					&nbsp;计算表达式：</FONT></TD>
+					<TD style=" BORDER-BOTTOM: thin groove" colspan="3" align="left">
+					<INPUT id="expression" class="xlandinput" style="width:98%" type="text" size="11" name="姓名5" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;校验表达式：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left" colspan="3">
+					<INPUT id="validity" class="xlandinput" style="width:98%" type="text" size="11" name="姓名6" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;警示表达式：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left" colspan="3">
+					<INPUT id="alertexpr" class="xlandinput" style="width:98%" type="text" size="11" name="姓名7" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;红字警示表达式</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left" colspan="3">
+					<INPUT id="redword" class="xlandinput" style="width:98%" type="text" size="11" name="姓名19" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;数据风格：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left" colspan="3">
+					<select size="1" style="WIDTH: 96%" id="datastyle" class="xlandinput" name="D1" >
+					<option value=""></option>
+					<option value="alink">超链接类型(alink)</option>
+					<option value="blink">超链接类型(blink)</option>
+					<option value="textarea">文本区(textarea)</option>
+					<option value="boolradio">唯一性选择(boolradio)</option>
+					<option value="strcenter">字符居中(strcenter)</option>
+					<option value="strredcenter">红字居中(strredcenter)</option>
+					<option value="img">图片(img)</option>
+					<option value="blinkimglt">图片超链接(blinkimglt)</option>
+					<option value="time">时间(time)</option>
+					<option value="label">标签(Label)</option>
+					<option value="txtbox">大文本(txtbox)</option>
+					</select></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;列选择数据源：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left" colspan="3">
+					<INPUT id="dataitem" class="xlandinput" style="width:98%" type="text" size="11" name="姓名9" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;列选择标题</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left">
+					<INPUT id="textcol" class="xlandinput" style="width:98%" type="text" size="11" name="姓名10" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="right">
+					列选择值：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left">
+					<INPUT id="valuecol" class="xlandinput" style="width:96%" type="text" size="11" name="姓名11" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;脚注内容：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left" colspan="3">
+					<INPUT id="footer" class="xlandinput" style="width:98%" type="text" size="11" name="姓名12" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;取值字段：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left" colspan="3">
+					<INPUT id="valuefld" class="xlandinput" style="width:98%" type="text" size="11" name="姓名13" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;列宽：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left" colspan="3">
+					<INPUT id="width" class="xlandinput" style="width:98%" type="text" size="11"/></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;编号规则：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left">
+					<INPUT id="bhrule" class="xlandinput" style="width:98%" type="text" size="11" title="[YYYY]指四位年号,[YY]指二位年号,[MM]指月号,[分类]指业务类别；[部门]指处室编号,[单位]指单位编号,
+[0000]、[000]为四位或三位编码序号,[00]二位编码序号,[0]自然编码序号(不补零)，[审批事项]为审批许可事项" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="right">
+					归零标志：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left">
+					<select size="1" style="WIDTH: 96%" id="zeroflag" name="D1" >
+					<option value=""></option>
+					<option value="年">年</option>
+					<option value="月">月</option>
+					<option value="日">日</option>
+					</select></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;链接源：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left">
+					<select size="1" style="WIDTH: 96%" id="href" class="xlandinput" name="D1" >
+					<option value=""></option>
+					<option value="#">#</option>
+					</select>
+					</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="right">
+					链接目标：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="left">
+					<INPUT id="target" class="xlandinput" style="width:96%" type="text" size="11" name="姓名15" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;点击事件：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" colspan="3">
+					<INPUT id="onclick" class="xlandinput" style="width:98%" type="text" size="11" name="姓名16" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;过滤项：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" colspan="3">
+					<INPUT id="filteritem" class="xlandinput" style="width:98%" type="text" size="11" name="姓名17" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;过滤数据源：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" colspan="3">
+					<INPUT id="filterdata" class="xlandinput" style="width:98%" type="text" size="11" name="姓名18" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove"> &nbsp;初始化过滤内容</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" width="65%" colspan="3"><INPUT id="filter" class="xlandinput" style="width:98%" type="text" size="11" name="姓名20" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;地图中Bar高度：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="right" width="21%">
+					<INPUT id="barheight" class="xlandinput" style="width:98%; " type="text" size="11" name="姓名2" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="right" width="16%">
+					宽度：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove"  width="29%"><INPUT id="barwidth" class="xlandinput" style="width:96%; " type="text" size="11" name="姓名1" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 34%;BORDER-Right: thin groove;BORDER-BOTTOM: thin groove">&nbsp;Bar颜色</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="right" width="21%">
+					<INPUT id="barcolor" class="xlandinput" style="width:98%; " type="text" size="11" name="姓名4" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove" align="right" width="16%">标题：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove" width="29%">
+					<INPUT id="bartitle" class="xlandinput" style="width:96%; " type="text" size="11" name="姓名3" /></TD>
+				</TR>
+				<TR>
+					<TD style="BORDER-Right: thin groove" colspan="4" align="right"><INPUT id="hlb_gridname" style="WIDTH: 88px; HEIGHT: 22px" type="hidden" size="9">
+					<FONT face="宋体"><INPUT id="Button1" title="确定" style="WIDTH: 64px; HEIGHT: 24px" onclick="cmdOK()" type="button"
+								value="确定" name="btnOK" runat="server">&nbsp;<INPUT id="Button2" style="WIDTH: 66px; HEIGHT: 24px" onclick="cmdCancel()" type="button"
+								value="返回" name="btnCancel" runat="server">&nbsp; </FONT>
+					</TD>
+				</TR>
+			</TABLE>
+	</body>
+</HTML>

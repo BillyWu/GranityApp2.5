@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+<script language="javascript" type="text/javascript">
+	window.onload=WinLoadUtil.MDTPLoad;
+</script>
+<script language="javascript">
+<!--
+function timefilter(item)
+{
+ 	var topFrame=usGetTopFrame();
+    var startdate=document.getElementById('SD').value;
+    if(startdate!=null && startdate!='')
+	topFrame.SetTransParam("startdate",startdate);
+    startdate=document.getElementById('ED').value;
+    if(startdate!=null && startdate!='')
+	topFrame.SetTransParam("enddate",startdate);
+	ue_tfilter(item);
+}
+-->
+</script>
+
+</head>
+<body>
+		  <p style="margin: 1"></p>
+		<table border="1" width="763" class="tabflat_head" id="table122" cellspacing="0" cellpadding="0" height="30" align="center">
+	<tbody>
+	<tr>
+		<td width="64" align="right" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA">
+		名称：</td>
+		<td width="143" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA">
+<input class="txtline" style="WIDTH: 99%;" size="10" value="" onkeydown="GridUtil.usOnCtrlEnterTab();" name="流程" /></td>
+		<td width="45" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA" align="right">
+类别：</td>
+		<td width="64" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA"><input class="txtline" style="WIDTH: 99%;" filter="and" size="10" value="" onkeydown="GridUtil.usOnCtrlEnterTab();"  name="类别" /></td>
+		<td width="45" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA" align="right">节点：</td>
+		<td width="60" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA" align="right"><input class="txtline" style="WIDTH: 99%;" filter="and" size="10" value="" onkeydown="GridUtil.usOnCtrlEnterTab();"  name="节点" /></td>
+		<td width="70" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA" align="right">进阶状态：</td>
+		<td width="55" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA" align="right"><input class="txtline" style="WIDTH: 99%;" filter="and" size="10" value="" onkeydown="GridUtil.usOnCtrlEnterTab();"  name="进阶状态" /></td>
+		<td width="41" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA" align="right">前驱：</td>
+		<td width="63" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA"><input class="txtline" style="WIDTH: 99%;" filter="and" size="10" value="" onkeydown="GridUtil.usOnCtrlEnterTab();"  name="前驱" /></td>
+		<td width="36" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA">
+		<button class="gridbtn" style="width: 32; height: 30" onclick="ue_tfilter('字典信息')"><img border="0" src="Images/tb16.gif" width="22" height="22"  onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" /></button>
+		</td>
+		<td width="78" align="center" style="font-family: 宋体; font-size: 9pt; border: 0 solid #FCFBFA; background: #FCFBFA">【<a href="#" onclick="ue_save();">保存</a>】</td>
+	</tr>
+	</tbody>
+	</table>
+	<p style="margin: 2"></p>
+		<div align="center">
+		<Control class="" catalog="GridLand.ascx" itemname="字典信息" id="MasterTab" name="">MasterTab
+		<Property name="tpfile" value="ControlTemplate/GridDefault.htm" />
+			<Property name="width" value="759px" /><Property name="height" value="367px" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+		</Control>
+	</div>
+		</body>
+</html>
+

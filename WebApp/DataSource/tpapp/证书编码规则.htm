@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+<script language="javascript" src="hmjs/sysjs/usCommonAdv.js" type="text/javascript" charset="gb2312"></script>
+
+<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+<script language="javascript" type="text/javascript">
+	window.onload=WinLoadUtil.MDTPLoad;
+</script>
+</head>
+<body>
+	<table align="center" border="2" width="799" bordercolorlight="#000000" bordercolordark="#000000" style="border-collapse: collapse" id="table10" height="162">
+			<tbody>
+			<tr>
+				<td colspan="6" align="center" style="font-family: 宋体; font-size: 10pt; font-weight: bold" bgcolor="#FBFAFA" height="24">
+				编码规则设置</td>
+			</tr>
+			<tr>
+				<td width="11%" align="right" height="28">证书：</td>
+				<td width="31%" height="28">
+		                 		<SELECT class="xlandselect" dataFld="证书" dataSrc="#MasterTab" size="1" style="WIDTH: 98%" name="" DataValueField="名称" DataTextField="名称" DataSource="dict_certificate">
+					</SELECT></td>
+				<td width="12%" height="28" align="right">审批事项：</td>
+				<td width="44%" height="28" colspan="3">
+				<SELECT class="xlandselect" dataFld="审批事项" dataSrc="#MasterTab" size="1" style="WIDTH: 99%" name="" DataValueField="名称" DataTextField="名称" DataSource="dict_workflow">
+					</SELECT></td>
+			</tr>
+			<tr>
+				<td width="11%" align="right" height="28">日期：</td>
+				<td width="31%" height="28">
+				<input dataFld="日期" class="xlanddate" style="WIDTH: 99%;" dataSrc="#MasterTab" size="15" name="经办人25" /></td>
+				<td width="12%" height="28" align="right">归零标志：</td>
+				<td width="12%" height="28" align="right">
+		        <select class="xlandselect" dataFld="归零标志" dataSrc="#MasterTab" size="1" style="WIDTH: 98%" name="zeroflag" >
+					<option value=""></option>
+					<option value="年">年</option>
+					<option value="月">月</option>
+					<option value="日">日</option>
+					</select></td>
+				<td width="11%" height="28" align="right">
+		初始序号：</td>
+				<td width="21%" height="28">
+				<input dataFld="初始序号" class="xlandinput" style="WIDTH: 99%;" dataSrc="#MasterTab" size="15" name="经办人24" /></td>
+			</tr>
+			<tr>
+				<td width="11%" align="right" height="27">编码规则：</td>
+				<td width="55%" colspan="3" height="27">
+		<input dataFld="编码规则" class="xlandinput" style="WIDTH: 99%; color:#FF0000" dataSrc="#MasterTab" size="15" name="经办人23" /></td>
+				<td width="11%" height="27" align="right">
+		序号类别：</td>
+				<td width="21%" height="27">
+		                 		<SELECT class="xlandselect" dataFld="序号类别" dataSrc="#MasterTab" size="1" style="WIDTH: 98%" name="" DataValueField="名称" DataTextField="名称" DataSource="dict_certificate">
+					</SELECT></td>
+			</tr>
+			<tr>
+				<td width="11%" align="right">说明：</td>
+				<td width="88%" colspan="5" style="font-family: 宋体; color: #800000">
+		<font size="2">[YYYY]指四位年号,[YY]指二位年号,[MM]指月号,[分类]指业务类别；[部门]指处室编号,[单位]指单位编号,<br />
+		[0000]、[000]为四位或三位编码序号,[00]二位编码序号,[0]自然编码序号(不补零)，[审批事项]为审批许可事项</font></td>
+				</tr>
+		</tbody>
+		</table>
+    	<div align="center">		
+		<Control class="" catalog="GridLand.ascx" itemname="字典信息" id="MasterTab" name="">MasterTab
+		<Property name="tpfile" value="ControlTemplate/GridDefault.htm" />
+			<Property name="width" value="795px" /><Property name="height" value="300px" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+		</Control>
+	</div>
+</body>
+</html>
+

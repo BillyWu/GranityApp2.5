@@ -1,0 +1,433 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title></title>
+    <base target="_self" />
+    <script language="javascript" src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />    
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>    
+    <script language="javascript" src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>    
+      <script language="javascript" type="text/javascript">
+    		    function initWin()
+    		    {
+        		      var band	=	document.UnitItem.getBandByItemName("itemtree");
+        		      ue_treeline("itemtree",true);
+			          document.getElementById("frtitle").innerText="正在加载数据，请稍等...";
+			          band.XQuery();
+   			          document.getElementById("frtitle").innerText="　功能单元设置 ";  			    
+   			          
+   			          document.body.style.cursor="default";
+		                band.AfterCellEditChanged=function()
+		                {
+		                    if(this.Event.colName=="ntype")
+		                    {
+		                        changepro(band.getFldStrValue("ntype"));        
+		                    }
+		                }   			          
+    	            $loading("none"); 
+    		    }
+    		    function us_htmldict(item,objname)
+    		    {
+    		        var band	=	document.UnitItem.getBandByItemName(item);
+    		        var obj=document.getElementById(objname);
+		            var xmlhttp = QueryDict(obj.DataSource);
+		            var xmldict = xmlhttp.responseXML.xml;
+		            band.XmlDict.XMLDocument.loadXML(xmldict);
+                    var texts = band.XmlDict.XMLDocument.selectNodes("//"+ obj.DataSource +"//" + obj.DataTextField);
+                    var vals  = band.XmlDict.XMLDocument.selectNodes("//"+ obj.DataSource +"//" + obj.DataValueField);
+		            var ops = obj.options;
+		            if(ops.options.length>0) return;                                        
+                    ops.add(new Option("",""));
+                    for(var m=0;m<vals.length;m++)
+                        ops.add(new Option(texts[m].text,vals[m].text));
+    		    }
+    		    
+                function msInitGridOps()
+                {
+                    obj=event.srcElement;
+                    if(!obj.colname || ""==obj.colname || obj.tagName!="SELECT") return;
+                    var ops = obj.options;
+                    if(!ops) return;
+                    if(ops.options.length>1) ops.length=0;
+                    //数据所在表格,及对应数据岛数据结构,列节点
+                    var trcur=ToolUtil.getCtrlByTagU(true,obj,"TR","rowType","detail");
+                    var tabDetail=ToolUtil.getCtrlByTagU(true,obj,"TABLE","tabType","detail");
+                    var myUnitItem=document.UnitItem;
+                    var band = myUnitItem.getBandByItemName(tabDetail.Grid.ItemName);
+                    //if(band.XmlDict.xml=="") 
+                    //{
+                        var xmlhttp = band.querydict();
+                        var xmldict = xmlhttp.responseXML.xml;
+                        if(xmldict=="") return;
+                        band.XmlDict.XMLDocument.loadXML(xmldict);
+                    //}
+                    var texts = band.XmlDict.XMLDocument.selectNodes("//"+ obj.DataSource +"//" + obj.DataTextField);
+                    var vals  = band.XmlDict.XMLDocument.selectNodes("//"+ obj.DataSource +"//" + obj.DataValueField);
+                    ops.add(new Option("",""));
+                    for(var m=0;m<vals.length;m++)
+                        ops.add(new Option(texts[m].text,vals[m].text));
+                    obj.value=band.getFldStrValue(obj.colname);
+                }    		    
+　　                
+		      function Tree_onNodeSelectionChange(node)
+		      {
+		            if(document.locktree==1) return;
+                    var band	=	node.ParentTreeView.Tree.Band;
+                    if(node.Text.indexOf("...")>-1) 
+                    {
+                        if(node.ParentTreeView.Tree.NoExpand)
+                        {
+                            var nodes = node.ParentTreeView.Tree.Band.XmlLandData.XMLDocument.documentElement.selectNodes('*['+node.ParentTreeView.Tree.PIDField+'/text()[.="'+node.ID+'"]]');
+                            node.set_text(node.Text.replace("...",""));
+                            var nodeFirst = node;    
+                            for(var i=0;i<nodes.length;i++)
+                            {
+                                if(!nodeFirst)
+                                    nodeFirst = node.ParentTreeView.Tree.bindTree(nodes[i]);
+                                else
+                                    node.ParentTreeView.Tree.bindTree(nodes[i]);
+                            }
+                            node.ParentTreeView.Tree.WebTree.Render();
+                            node.ParentTreeView.Tree.WebTree.ExpandAll();	
+                        }
+                    }				  
+			      var ntype 	= 	band.getFldStrValue("ntype");
+			      changepro(ntype);
+		      }
+			  function changepro(type)
+			  {
+				  switch(type)
+				  {
+					  case "SQLText":
+                        document.getElementById("tabSql").style.display="";
+                        document.getElementById("trSay").style.display="none";
+						document.getElementById("slname").style.display="";
+						document.getElementById("txtname").style.display="none";	                        
+                        var oband=document.UnitItem.getBandByItemName('Parameters');
+                        oband.minwidth = "80px";
+                        oband.gridtype = 1;
+                        oband.freecols = "name";
+                        var Grid = new XGrid("dvParameters",oband,"in");
+                        oband.XQuery()
+                        us_htmldict("itemtree","tablename");
+					    break;
+					  default:
+                        document.getElementById("tabSql").style.display="none";
+                        document.getElementById("trSay").style.display="";
+                        document.getElementById("slname").style.display="none";
+                        document.getElementById("txtname").style.display="";						  
+				  }
+			  }
+  			
+			  function ts_importDate(srcitem,destitem)
+			  {
+				  if(document.getElementById("tablename").value=="") {alert("请选择一个数据库表名称！");return}
+				  var band=document.UnitItem.getBandByItemName(destitem);	
+				  var xmldoc=document.UnitItem.ParamXmldoc;
+				  var tablename = document.getElementById("tablename").value;
+				  ToolUtil.setParamValue(xmldoc, "tablename", tablename, "", "s", band.ItemName, "D",""); 
+				  document.UnitItem.getBandByItemName(destitem).setModalContent(srcitem);
+			  }
+
+			  function ts_genSQL()
+			  {
+				   mband=getband("itemtree");
+				   if(mband.getFldStrValue("ntype")!="SQLText") {alert("只能对脚本属性进行操作！");return}
+				  if(document.getElementById("tablename").value=="") {alert("请选择一个数据库表名称！");return}
+				  var xmldoc=document.UnitItem.ParamXmldoc;
+				  var tablename = document.getElementById("tablename").value;
+				  ToolUtil.setParamValue(xmldoc, "tablename", tablename, "s", "P", "", "Ts","");
+				  oband=getband("useTableStructs");
+				  oband.XQuery();
+  				
+				  var str = "";var strp = "";var stru = "";
+				  var rc = oband.RecordCount();
+				  if(rc==0) return;
+				  for(var i=0;i<rc;i++)
+				  {
+					  str = str +","+oband.getFldStrValue("name",i);
+					  strp = strp +",@"+oband.getFldStrValue("name",i);
+					  if(oband.getFldStrValue("name",i)=="ID") continue;
+					  stru =stru+","+ oband.getFldStrValue("name",i)+"=@"+oband.getFldStrValue("name",i);
+				  }
+				  str = str.substring(1,str.length);
+				  strp = strp.substring(1,strp.length);
+				  stru = stru.substring(1,stru.length);
+				  switch(mband.getFldStrValue("name"))
+				  {
+					  case "select":
+						  mband.setFldStrValue(null,"sqltext", "select "+str+" from "+ tablename+" where (1>0) and (2>0)");
+						  break;
+					  case "insert":
+					      var sql="insert into "+tablename+"("+str+")values("+strp+")";
+					      mband.setFldStrValue(null,"sqltext",sql);
+						  break;
+					  case "update":
+					      var sql="update "+tablename+" set "+stru+ " where ID=@ID";
+					      mband.setFldStrValue(null,"sqltext",sql);
+						  break;
+					  case "delete":
+					      mband.setFldStrValue(null,"sqltext","delete from "+tablename+" where ID=@ID");
+						  break;
+				  }
+			  }
+
+            function ws_locktree(obj)
+            {
+                if(obj.nameProp=="lock_open.gif")
+                {
+                    document.locktree=1;
+                    obj.src="images/lock.gif";
+                }
+                else
+                {
+                    document.locktree=0;
+                    obj.src="images/lock_open.gif";
+                }
+            }
+            
+            function _copy(item)
+            {
+   				oband=document.UnitItem.getBandByItemName(item);
+                if(oband.getFldStrValue("ntype")!="DataItem") {alert("请选择数据单元!");return;}
+            	document.getElementById("btncopy").style.color="#FF0000";
+            	document.getElementById("btnpaste").disabled=null;
+            	copyNode=oband.Tree.WebTree.SelectedNode;
+            }
+            //ajax方法复制UnitItem集合
+            function _paste(item)
+            {
+                var oband=document.UnitItem.getBandByItemName("itemtree");
+			    if(confirm("您将复制当前的DataItem ["+copyNode.Text+"]，确定吗？"))	
+			    {
+			        var xmldoc=document.UnitItem.ParamXmldoc;
+            	    ToolUtil.setParamValue(xmldoc, "ID", copyNode.ID, "", "s", oband.ItemName, "D",""); 
+            	    ToolUtil.setParamValue(xmldoc, "PID",copyNode.ParentNode.ID, "", "s", oband.ItemName, "D",""); 
+			        ue_cmd("copy","itemtree",true,true);	
+			        var rowIndex=oband.XmlLandData.recordset.recordCount-1;
+			        var nid = oband.getFldStrValue(oband.Tree.PIDField,rowIndex)
+			        oband.Tree.WebTree.Render();
+			        oband.Tree.WebTree.SelectNodeById(nid);            	
+			        oband.Tree.WebTree.expandAll()
+			    }
+            }            
+	        
+      </script>
+    
+  </head>
+  <body style="overflow:hidden; margin: 0px;" scroll="no">    
+          <table align="center" style="WIDTH: 100%; BORDER-COLLAPSE: collapse; HEIGHT: 100%" bgcolor="buttonface" id="table10" cellSpacing="0" cellPadding="0" border="1">
+            <tbody>
+              <tr>
+                <td style="color: #333333; ; height: 23px" vAlign="middle" bgColor="gray" colSpan="3" rowSpan="1">
+                  <font color="white">
+                    <strong id="frtitle">　　正在加载数据，请稍等...</strong>
+                  </font>
+                  <img src="images/Search_ico_8.gif" style="height:12px" border="0" />
+                  <input class="xlandinput" style="WIDTH: 150; " size="15" name="" id="findtext" />
+                  <a href="#" class="linkbtn_0" onclick="ue_bandTreeSearch(findtext.value,'下一个'==this.value,'treeland');this.value='下一个';"><font color="#F6F4F3">查询</font></a>                  
+                </td>
+              </tr>
+              <tr>
+                <td style="color: #333333; " vAlign="top" align="left" width="18%">
+                  <table style="BORDER-COLLAPSE: collapse; HEIGHT: 100%;width:100%" id="table11" cellSpacing="0" cellPadding="0" border="0">
+                    <tbody>
+                      <tr>
+                        <td style="width: 20px; color: #333333; ; height: 24px" vAlign="middle" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+                            <img onmouseup="this.src='images/treeadd-over.gif'" onmouseover="this.src='images/treeadd-over.gif'" onmouseout="this.src='images/treeadd.gif'" onmousedown="this.src='images/treeadd-down.gif'" onclick="TreeUtil.addNode('treeland',false)" height="24" alt="增加同级节点" src="images/treeadd.gif" border="0" />
+                        </td>
+                        <td style="width: 20px; color: #333333; ; height: 24px" vAlign="middle" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+                            <img onmouseup="this.src='images/treeadds-over.gif'" onmouseover="this.src='images/treeadds-over.gif'" onmouseout="this.src='images/treeadds.gif'" onmousedown="this.src='images/treeadds-down.gif'" onclick="TreeUtil.addNode('treeland',true)" height="24" alt="增加下级节点" src="images/treeadds.gif" border="0" />
+                        </td>
+                        <td style="width: 20px; color: #333333; ; height: 24px" vAlign="middle" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+                            <img onmouseup="this.src='images/del-over.gif'" onmouseover="this.src='images/del-over.gif'" onmouseout="this.src='images/del.gif'" onmousedown="this.src='images/del-down.gif'" onclick="TreeUtil.deleteNode('treeland')" height="24" alt="删除当前节点" src="images/del.gif" border="0" />
+                        </td>
+                        <td style="width: 20px; color: #333333; ; height: 24px" vAlign="middle" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+                            <img onclick="ws_locktree(this)" alt="锁定，禁止展开" src="images/lock_open.gif" />
+                        </td>
+                        <td style="color: #333333; ; height: 24px" vAlign="middle" align="left" width="60" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+                            <img id="downnode" onmouseup="this.src='images/down-over.gif'" onmouseover="this.src='images/down-over.gif'" onmouseout="this.src='images/down.gif'" onmousedown="this.src='images/down-down.gif'" onclick="TreeUtil.moveDown('treeland')" height="24" src="images/down.gif" border="0" />
+                            <img id="upnode" onmouseup="this.src='images/up-over.gif'" onmouseover="this.src='images/up-over.gif'" onmouseout="this.src='images/up.gif'" onmousedown="this.src='images/up-down.gif'" onclick="TreeUtil.moveUp('treeland')" height="24" src="images/up.gif" width="20" border="0" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #333333; ; height: 24px" vAlign="middle" background="images\bkgray-s.gif" bgColor="buttonface" align="center" colspan="5">
+                          <a id="btncopy" class="linkbtn_0" href="#" onclick="_copy('itemtree')">【复制】</a>
+                          <a id="btnpaste" class="linkbtn_0" href="#" onclick="_paste('itemtree')">【粘贴】</a>
+                            <a href="#" class="linkbtn_0" onclick="ue_save();">【保存】</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td vAlign="top" colSpan="5" align="center">
+                          <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+                          <script type="text/javascript">
+                            //<![CDATA[
+                                window.ComponentArt_Storage_etpTemplate_treeland_trvLand = null;
+                            //]]>
+                          </script>
+                          <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                            <img src="images/exp.gif" width="0" height="0" alt="" />
+                            <img src="images/col.gif" width="0" height="0" alt="" />
+                          </div>
+                          <div id="etpTemplate_treeland_trvLand" class="TreeView" style="height:100%;width:98%;overflow-y:auto;" onclick="if(window.etpTemplate_treeland_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_treeland_trvLand);" onmouseover="if(window.etpTemplate_treeland_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_treeland_trvLand);"></div>
+                          <input id="etpTemplate_treeland_trvLand_Data" name="etpTemplate_treeland_trvLand_Data" type="hidden" />
+                          <input id="etpTemplate_treeland_trvLand_Properties" name="etpTemplate_treeland_trvLand_Properties" type="hidden" />
+                          <input id="etpTemplate_treeland_trvLand_SelectedNode" name="etpTemplate_treeland_trvLand_SelectedNode" type="hidden" value="" />
+                          <input id="etpTemplate_treeland_trvLand_ScrollData" name="etpTemplate_treeland_trvLand_ScrollData" type="hidden" value="0,0" />
+                          <script type="text/javascript">
+                            //<![CDATA[
+                                window.ComponentArt_Init_etpTemplate_treeland_trvLand = function() 
+                                {
+                                if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_treeland_trvLand'))
+	                                {setTimeout('ComponentArt_Init_etpTemplate_treeland_trvLand()', 100); return; }
+
+                                window.etpTemplate_treeland_trvLand = new ComponentArt_TreeView('etpTemplate_treeland_trvLand', ComponentArt_Storage_etpTemplate_treeland_trvLand);
+                                etpTemplate_treeland_trvLand.Postback = function() { __doPostBack('etpTemplate$treeland$trvLand','') };
+                                if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_treeland_trvLand; etpTemplate_treeland_trvLand.GlobalAlias = 'trvLand'; }
+                                etpTemplate_treeland_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:treeland:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                                etpTemplate_treeland_trvLand.Initialize('etpTemplate_treeland_trvLand');
+
+                                window.etpTemplate_treeland_trvLand_loaded = true;
+                                }
+                                ComponentArt_Init_etpTemplate_treeland_trvLand();
+                                var myTree=new Tree(etpTemplate_treeland_trvLand,'treeland');
+                            //]]>
+                          </script>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td bgcolor="buttonface" style="width: 81%;height:100%; color: #333333;" vAlign="top" align="left" colSpan="2">
+                  <table style="WIDTH: 100%;height:100%; BORDER-COLLAPSE: collapse; border:1" id="table13" cellPadding="0" border="0">
+                    <tbody>
+                      <tr>
+                        <td style="color: #333333; ; height: 24px" background="images/bkgray-s.gif" align="center">
+                            属性定义&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td style="color: #333333; " vAlign="top">
+                          <table style="HEIGHT: 100%;width:100%" id="table14" cellSpacing="0" cellPadding="0" align="center" border="0">
+                            <tbody>
+                              <tr>
+                                <td vAlign="top" align="center" style="height:100%">
+                                  <table style="WIDTH: 100%; HEIGHT: 10%; font-family:宋体; font-size:10pt" id="table15" border="1" cellspacing="0" bordercolorlight="#333333" bordercolordark="#EEEEEE">
+                                    <tbody>
+                                      <tr bgcolor="buttonface">
+                                        <td style="width: 8%; height: 23px; color: #333333; " align="right">
+                                            名称：</td>
+                                        <td style="height: 23px; color: #333333; " align="left" width="44%">
+					<INPUT id="txtname" datasrc="#treeland" datafld="name" class="xlandinput" style="width:100%" type="text" size="11" name="姓名" /><select id="slname" dataFld="name" dataSrc="#treeland" class="xlandselect" size="1" style="display:none;WIDTH: 100%;" name="D6">
+                                        <option value=""></option>
+                                        <option value="select">select</option>
+                                        <option value="insert">insert</option>
+                                        <option value="update">update</option>
+                                        <option value="delete">delete</option>
+                                    </select></td>
+                                        <td style="height: 23px; color: #333333; " align="right" width="12%">
+                                            性质：</td>
+                                        <td style="height: 23px; color: #333333; " align="left" width="31%">
+                                          <select dataFld="ntype" dataSrc="#treeland" class="xlandselect" size="1" style="WIDTH: 100%; height:19" name="D6">
+                                            <option value=""></option>
+                                            <option value="DataAccess">数据源</option>
+                                            <option value="DataItem">数据项</option>
+                                            <option value="SQLText">查询设计内容</option>
+                                          </select></td>
+                                      </tr>
+                                      <tr bgcolor="buttonface">
+                                        <td style="width: 8%; height: 23px; color: #333333; " align="right">
+                                            说明：</td>
+                                        <td style="height: 23px; color: #333333; " align="left" colspan="3">
+                                          <INPUT datasrc="#treeland" datafld="memo" class="xlandinput" style="width:100%" type="text" size="11" name="姓名3" /></td>
+                                      </tr>
+                                      <tr id="trSay" bgcolor="buttonface">
+                                        <td style="height: 426px; color: #333333; " colspan="4" valign="top">
+                                          <br /><br />
+                                          <p style="margin:10">　　　请在左侧树形结构定义数据源元素</p>
+                                          <p style="margin:-1"></p>
+                                          <p style="margin:-1"></p>
+                                          <p style="margin:10"></p>　　　　　　　　　　　　　　　　　　　　　　　┗　select：查询数据
+                                          <p style="margin:10"></p>　　　　　　　　　　　　　　　　　　　　　　　　　insert：增加数据
+                                          <p style="margin:10"></p>　　　　　　　　　　　　　　　　　　　　　　　　　update：修改数据
+                                          <p style="margin:10"></p>　　　　　　　　　　　　　　　　　　　　　　　　　delete：删除数据
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <table style="WIDTH: 100%; HEIGHT: 100%;display:none" id="tabSQL" border="1" cellspacing="0" bordercolorlight="#333333" bordercolordark="#EEEEEE">
+                                    <tbody>
+                                      <tr bgcolor="buttonface">
+                                        <td style="height: 22px; color: #333333; " align="right" colspan="2">
+                                          <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table16">
+                                            <tr>
+                                              <td width="100" align="right">选择数据库：</td>
+                                              <td>
+                                                <SELECT style="width:230;" id="tablename" 
+                                                    DataValueField="name" DataTextField="name" DataSource="dict_TableName" name="D7">
+                                                </SELECT>
+                                              </td>
+                                              <td align="center" width="102">
+                                                <a href="#" class="linkbtn_0" onclick="ts_importDate('TableStructs','Parameters')">【提取参数】</a>
+                                              </td>
+                                              <td width="136" align="center">
+                                                <a href="#" class="linkbtn_0" onclick="ts_genSQL()">【产生SQL脚本】</a>
+                                              </td>
+                                              <td width="130" align="center"></td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                      <tr id="trSql" bgcolor="buttonface">
+                                        <td style="color: #333333; " align="center" height="177" width="7%">
+                                          <p>询</p>
+                                          <p>设</p>
+                                          <p>计</p>
+                                        </td>
+                                        <td style="color: #333333; " align="left" height="177" width="92%">
+                                          <TEXTAREA datasrc="#treeland" datafld="sqltext" class="xlandinput" style="width:100%;height:100%;word-break: break-all">　</TEXTAREA>
+                                        </td>
+                                      </tr>
+                                      <tr id="trGrid" bgcolor="buttonface">
+                                        <td align="center" colspan="2" >
+                                          <div id="dvParameters" style="width:100%;height:80%"></div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #333333; "></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+<script type="text/javascript" charset="gb2312">ue_initsetup("sys_dataitems");</script>    
+  </body>
+</html>

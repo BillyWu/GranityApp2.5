@@ -1,0 +1,288 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>科室员工动态</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usMenu.js" type="text/javascript" charset="gb2312"></script>
+
+    <script language="javascript" src="../hmjs/sysjs/usMenu.js" type="text/javascript"
+        charset="gb2312"></script>
+
+    <script type="text/javascript" charset="gb2312">
+
+	    function initWin()
+	    {
+            var ob1=$band("员工动态");
+            ob1.minwidth = "80px";
+            ob1.freecols = "状态";
+            ob1.gridtype = 61;ob1.freecols = "部门";ob1.colnum = 3
+            ob1.Asyn=true;
+            ob1.hasGrid=true;
+            ob1.AfterXQuery = function()
+            {
+                setTimeout("initgrid()", 1000);
+            }
+            new XGrid("divMonitor", ob1, "in");
+            var ob=$band("部门科室");
+            ob.Asyn=true;
+            ob.AfterRowChanged = deptchanged;
+            ob.XQuery();
+            ob.AfterXQuery = function()
+            {
+                ue_treeline("部门科室",true);
+                ue_expand('部门科室',true);
+                $loading("none");
+            }
+            $U().dtStart=new Date();
+            //2s周期执行获取巡检数据
+            setInterval(getrecord, 2000);
+	    }
+	    function initgrid()
+	    {
+	        var band = $band("员工动态");
+            var tab = ToolUtil.getCtrlByTagD(false, $("divMonitor"), "TABLE", "tabType", "detail");
+            for(var i=0,len=band.RecordCount(); i<len; i++)
+            {
+                var ti = ToolUtil.Convert(band.getFldStrValue("进入时间", i), "datetime");
+                var to = ToolUtil.Convert(band.getFldStrValue("出离时间", i), "datetime");
+                var st = to>ti? "出" : ti? "进" : to? "出" : "";
+                var color = "出"==st? "#FFDEAD" : "进"==st? "#7FFFD4" : "";
+                setbgTDColor(band, tab.rows[i], color);
+            }
+	    }
+	    //部门节点更改
+	    function deptchanged()
+	    {
+	        var id=this.getFldStrValue("部门ID");
+	        var trn = myTree.getTrvNodeByID(id);
+	        var nodes = [trn];
+	        var nodes = nodes.concat(getnodes(trn));
+	        var depts = "";
+	        for(var i=0; i<nodes.length; i++)
+	            depts += nodes[i].ID+",";
+	        $U().depts = depts;
+	        $U().dtrecord = ToolUtil.Post(null,"hdlDateNow.ashx");
+	    }
+	    function getnodes(trn)
+	    {
+	        if(!trn)    return [];
+	        var nodes = trn.Nodes();
+	        for(var i=0; i<nodes.length; i++)
+	            nodes.concat(nodes[i].Nodes());
+	        return nodes;
+	    }
+        function getrecord()
+        {
+   	        var depts = $U().depts;
+   	        var dtref = $U().dtrecord;
+   	        var divel = ToolUtil.getCtrlByNameD(true, $("divMonitor"), "tabtype", "detail").parentElement;
+   	        var st = divel.scrollTop;
+   	        if(divel.clientHeight+divel.scrollTop>=divel.scrollHeight)
+   	            divel.scrollTop = 0;
+   	        else
+   	            divel.scrollTop += 20;
+            var d=new Date();
+            var inv = Math.round((d-$U().dtStart)/1000/60/60);
+            if(inv>4) window.location.href=window.location.href;
+            
+            if($U().Running || !depts || !dtref)
+                return;
+            $U().Running = true;
+            var ps ="cmd=getrecord"+"&depts="+depts;
+            ps = ps+"&dtUpdate="+dtref;
+            var xmlhttp = ToolUtil.Post(ps,"hdlWorkerMonitor.ashx", recordCallback);
+            recordCallback.xmlhttp = xmlhttp;
+        }
+        function recordCallback()
+        {
+            if(!$U().Running)
+                return;
+	        if(4!=this.readyState)
+	            return;
+	        var msg = this.responseText;
+            var pos = msg.indexOf("<Row>");
+            if(pos>-1)
+            try
+            {
+                $U().dtrecord = ToolUtil.Post(null,"hdlDateNow.ashx");
+                writerecord(msg);
+            }catch(e){}
+            $U().Running = false;
+        }
+        //写入新记录
+        function writerecord(msg)
+        {
+            var devinfo = $U().devinfo;
+            var pos = msg.indexOf("<Row>");
+            if(pos>-1)
+                $U().dtrecord = ToolUtil.Post(null,"hdlDateNow.ashx");
+            var band = $band("员工动态");
+            var obdev= $band("部门科室");
+            var regionP= obdev.getFldStrValue("部门代码");
+            var col = {"Dept":"部门ID", "Dt":"时间", "Data":"数据"};
+            var info= [ "卡号NUM", "部门ID", "部门代码", "部门", "姓名", "用户编号", "通道", "区域", "进入时间", "重进时间", "出离时间", "重出时间", "进出状态", "状态" ];
+            var rds = [];
+            var arhresp = document.getElementById("arhResponse");
+            //arhresp.value += "记录Row位置：" + pos + "\r\n";
+            while (pos > -1)
+            {
+                var obj = {};
+                for(var c in col)
+                {
+                    var is = msg.indexOf("<"+c+">");
+                    var ie = msg.indexOf("</"+c+">");
+                    obj[c] = msg.substring(is+c.length+2, ie);
+                }
+                var isrefresh = ToolUtil.valueTag(obj.Data ,"isrefreshHTML");
+                if("true"==isrefresh)
+                    window.location.href=window.location.href;
+                pos = msg.indexOf("</Row>");
+                msg = msg.substr(pos+6);
+                pos = msg.indexOf("<Row>");
+                var rd = {};
+                for(var i=0; i<info.length; i++)
+                    rd[info[i]] = ToolUtil.valueTag(obj.Data ,info[i]);
+                if(!rd["卡号NUM"])
+                    continue;
+                if(rd["重进时间"])
+                {
+                    var ti = ToolUtil.Convert(rd["进入时间"], "datetime");
+                    var ri = ToolUtil.Convert(rd["重进时间"], "datetime");
+                    if(ri>ti) rd["进入时间"] = rd["重进时间"];
+                }
+                if(rd["重出时间"])
+                {
+                    var to = ToolUtil.Convert(rd["出离时间"], "datetime");
+                    var ro = ToolUtil.Convert(rd["重出时间"], "datetime");
+                    if(ro>to) rd["出离时间"] = rd["重出时间"];
+                }
+                //arhresp.value += "记录内容：" + "卡号：" + obj["卡号"] + "， 时间：" + obj["刷卡时间"] + "\r\n";
+                rd["门名称"]=rd["通道"];
+                rd["刷卡状态"]=rd["状态"];
+                rd["卡号"] = rd["卡号NUM"];
+                rd["部门代码P"]=regionP;
+                rds.push(rd);
+                //arhresp.value += "记录内容：" + "门—" + rd["门"] + " ## " + "卡号—" + rd["卡号"] + " ## " + "时间—" + rd["时间"] + "\r\n";
+                //arhresp.value += "\r\n记录Row位置：" + pos + "——" + msg + "\r\n";
+            }
+            //arhresp.value += "记录内容：" + "记录行数：" + rds.length + "\r\n";
+            var tab = ToolUtil.getCtrlByTagD(false, $("divMonitor"), "TABLE", "tabType", "detail");
+            for(var i=0; i<rds.length; i++)
+            {
+                var usercode = rds[i]["用户编号"];
+                var index = band.getRowIndex("用户编号", usercode);
+                if(index<0)
+                    band.NewRecord(++index);
+                else
+                    band.setCurrentRow(index);
+                var rd = rds[i];
+                for(var f in rd)
+                    band.setFldStrValue(index, f, rd[f]);
+                var st = rd["进出状态"];
+                var color = "出"==st? "#FFDEAD" : "进"==st? "#7FFFD4" : "";
+                setbgTDColor(band, tab.rows[index], color);
+            }
+//            while(band.RecordCount()>50)
+//                band.DeleteRecord(50);
+            for(var i=0,len=band.RecordCount(); i<len; i++)
+                band.setFldStrValue(i, "RowNum", i+1);
+            return rds.length;
+        }
+        //设置表格颜色
+        function setbgTDColor(band, tr, color)
+        {
+            if(!band || !tr || !tr.cells)
+                return;
+            for(var i=0;i<tr.cells.length;i++)
+            {
+                tr.cells[i].setAttribute("bgState", color);
+                band.Grid.setCtrlStateColor(tr.cells[i], "browse");
+            }
+        }
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');"></div>
+  <div style="height: 95%; width:24%;float:left">
+    <p style="margin:5px"><img border="0" src="Images/reply.gif" />
+       <input class="xlandinput" style="WIDTH: 90; height:20" size="15" name="" id="findtext" />
+       <input class="txtbtn" id="gridfind7" style="width:44; height:22" onclick="ue_bandTreeSearch(findtext.value,'下一个'==this.value,'单位树人员数Tab');this.value='下一个';" type="button" value="查找" name="B15" />
+       【<a href="#" class="linkbtn_0" onclick="ue_expand('部门科室',true)">展开</a>】【<a href="#" class="linkbtn_0" onclick="ue_expand('部门科室',false)">收缩</a>】
+       </p>
+      <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+      <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+      <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+      <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+      <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+      <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+      <script type="text/javascript">
+        //<![CDATA[
+            /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_单位树人员数Tab_trvLand ***/
+            window.ComponentArt_Storage_etpTemplate_单位树人员数Tab_trvLand = null;
+            //]]>
+      </script>
+      <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+        <img src="images/exp.gif" width="0" height="0" alt="" />
+        <img src="images/col.gif" width="0" height="0" alt="" />
+      </div>
+      <div id="etpTemplate_单位树人员数Tab_trvLand" class="TreeView" style="height:92%;width:98%;overflow:auto;" onclick="if(window.etpTemplate_单位树人员数Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_单位树人员数Tab_trvLand);" onmouseover="if(window.etpTemplate_单位树人员数Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_单位树人员数Tab_trvLand);"></div>
+      <input id="etpTemplate_单位树人员数Tab_trvLand_Data" name="etpTemplate_单位树人员数Tab_trvLand_Data" type="hidden" />
+      <input id="etpTemplate_单位树人员数Tab_trvLand_Properties" name="etpTemplate_单位树人员数Tab_trvLand_Properties" type="hidden" />
+      <input id="etpTemplate_单位树人员数Tab_trvLand_SelectedNode" name="etpTemplate_单位树人员数Tab_trvLand_SelectedNode" type="hidden" value="" />
+      <input id="etpTemplate_单位树人员数Tab_trvLand_ScrollData" name="etpTemplate_单位树人员数Tab_trvLand_ScrollData" type="hidden" value="0,0" />
+      <script type="text/javascript">
+            //<![CDATA[
+                  window.ComponentArt_Init_etpTemplate_单位树人员数Tab_trvLand = function() 
+                  {
+                      if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_单位树人员数Tab_trvLand'))
+                          {setTimeout('ComponentArt_Init_etpTemplate_单位树人员数Tab_trvLand()', 100); return; }
+                       
+                      window.etpTemplate_单位树人员数Tab_trvLand = new ComponentArt_TreeView('etpTemplate_单位树人员数Tab_trvLand', ComponentArt_Storage_etpTemplate_单位树人员数Tab_trvLand);
+                      etpTemplate_单位树人员数Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$单位树人员数Tab$trvLand','') };
+                      if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_单位树人员数Tab_trvLand; etpTemplate_单位树人员数Tab_trvLand.GlobalAlias = 'trvLand'; }
+                      etpTemplate_单位树人员数Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick,'NodeBeforeMove':TreeUtil.onNodeBeforeMove}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:单位树人员数Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['ExpandSinglePath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                      etpTemplate_单位树人员数Tab_trvLand.Initialize('etpTemplate_单位树人员数Tab_trvLand');
+                      window.etpTemplate_单位树人员数Tab_trvLand_loaded = true;
+                  }
+                  ComponentArt_Init_etpTemplate_单位树人员数Tab_trvLand();
+                  var myTree = new Tree(etpTemplate_单位树人员数Tab_trvLand,'单位树人员数Tab');
+                  //]]>
+        </script>
+  </div>
+    <fieldset style="margin-left:5px;padding: 5px;text-align: left; width: 98%; height:93%">
+        <legend id="Legend1" style="margin-bottom: 5">巡检信息&nbsp;&nbsp;
+        <font color="#FF0000" id="readinfo"></font></legend>
+        <div id="divMonitor" style="width: 100%; height: 97%"></div>
+    </fieldset>
+    <textarea id="arhResponse" style="width:98%;height:30;display:none;"></textarea>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("科室员工动态")</script>
+
+</body>
+</html>

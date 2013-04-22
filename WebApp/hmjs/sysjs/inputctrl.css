@@ -1,0 +1,831 @@
+BODY { FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: "ËÎÌå", "Arial" }
+TD { FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: "ËÎÌå", "Arial" }
+.dot{border:#000000;border-style:dotted;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px}
+
+#loading {
+padding:10px 0 10px 0;
+margin:0 auto;
+width:200px;
+border:1px solid #5a667b;
+background-color:#FFFFFF;
+z-index:1002;
+text-align:center;
+position:absolute;left:expression(document.body.clientWidth/2-100);top:expression(document.body.clientHeight/2-20);
+}
+
+.conts	{   border-bottom:solid thin 1px #919B9C;
+		    border-left:solid thin 1px #919B9C;
+		    border-right:solid thin 1px #919B9C;
+		}
+.tab	{	border-top:solid thin 1px #919B9C;
+			border-right:solid 1px gray;
+			border-left:solid thin 0px #919B9C;
+			border-bottom:solid thin 1px gray;
+			font-family:ËÎÌå;
+			font-size:10pt;
+			text-align:center;
+			font-weight:normal;
+			FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType='0',startColorstr='#CEDAF0',endColorstr='#F5F5F5');
+			
+			}
+
+.tabtp	{	border-top:solid thin 1px #919B9C;
+			border-right:solid 1px gray;
+			border-left:solid thin 0px #919B9C;
+			border-bottom:solid thin 1px gray;
+			font-family:ËÎÌå;
+			font-size:10pt;
+			text-align:center;
+			font-weight:normal;
+			FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType='1',startColorstr='#5a8ace',endColorstr='#F5F5F5');
+			
+			}
+
+.tabBlank	
+{
+			border-top-style:none;
+			border-right-style:none;
+			border-left:solid thin 1px #919B9C;
+			border-bottom:solid thin 1px #919B9C;
+			font-family:ËÎÌå;
+			font-size:10pt;
+			text-align:center;
+			font-weight:normal;
+			background:white;
+			}
+
+.tabBlankno	
+{
+			border-top-style:none;
+			border-right-style:none;
+			border-left-style:none;
+			border-bottom:solid thin 1px #919B9C;
+			font-family:ËÎÌå;
+			font-size:10pt;
+			text-align:center;
+			font-weight:normal;
+			background:white;
+			}
+			
+.selTab	{	border-left:solid thin 0px #919B9C;
+			border-top:outset thin 2px #FFC83C;
+			border-right:solid thin 1px #919B9C;
+			border-bottom-style:none;
+			font-weight:bold;
+			text-align:center;
+			bordercolorlight=#333333;
+			bordercolordark=#efefef;
+			FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType='0',startColorstr='#CEDAF0',endColorstr='#F5F5F5');
+			}
+
+.tmptable
+{
+	 border:#aca899 solid;border-width:1px 1px 1px 1px;background:white;TABLE-LAYOUT: fixed; WORD-BREAK: break-all;
+}
+
+
+.tabTitle
+{
+	border:#A2A2A3 solid;border-width:0px 0px 0px 0px;
+	background:#ece9d8;
+	TABLE-LAYOUT: fixed; 
+	WORD-BREAK: break-all;
+}
+
+.ctabTitle
+{
+	border:#A2A2A3 solid;border-width:0px 0px 0px 0px;
+	background:#ece9d8;
+	width:100%;
+	WORD-BREAK: break-all;
+}
+
+.ctabWTitle
+{
+	border:#A2A2A3 solid;border-width:0px 0px 0px 0px;
+	width:100%;
+	WORD-BREAK: break-all;
+}
+
+.tabTitleflat
+{
+	border:white solid;border-width:0px 0px 0px 0px;background:white;TABLE-LAYOUT: fixed; WORD-BREAK: break-all;
+}
+
+.tdTitle
+{
+	padding-right: 0px 
+}
+.tabFoot
+{
+	border:#A2A2A3 solid;border-width:1px 0px 0px 1px;background:white;TABLE-LAYOUT: fixed; WORD-BREAK: break-all;
+}
+.tabDetail
+{
+	border:#A2A2A3 solid;border-width:0px 0px 0px 0px;background:white;TABLE-LAYOUT: fixed; WORD-BREAK: break-all;
+}
+.ctabDetail 
+{
+	border:#A2A2A3 solid;border-width:0px 0px 0px 0px;background:white;width:100%; WORD-BREAK: break-all;
+}
+.thTitle
+{
+	border:#aca899 solid;border-width:0px 1px 1px 0px;
+}
+.tdDetail
+{
+	border:#aca899 solid;border-width:0px 1px 1px 0px;
+}
+.tdFoot
+{
+	border:#aca899 solid;border-width:0px 1px 1px 0px;
+}
+.lablectrl
+{
+	behavior:url(../hmjs/sysjs/lablectrl.htc);
+}
+.LableDate
+{
+	behavior:url(../hmjs/sysjs/lablectrl.htc);
+}
+.LableYM
+{
+	behavior:url(../hmjs/sysjs/lablectrl.htc);
+}
+.LableYMCh
+{
+	behavior:url(../hmjs/sysjs/lablectrl.htc);
+}
+.LableYCh
+{
+	behavior:url(../hmjs/sysjs/lablectrl.htc);
+}
+.LableMCh
+{
+	behavior:url(../hmjs/sysjs/lablectrl.htc);
+}
+.LableDateCh
+{
+	behavior:url(../hmjs/sysjs/lablectrl.htc);
+}
+.inputCtrl
+{
+	behavior:url(../hmjs/sysjs/Xinputctrl.htc);
+}
+.inputBtn
+{
+	behavior:url(../hmjs/sysjs/inputctrl.htc);
+}
+.inputDate
+{
+    border-color:#A2A2A3;border-style:solid;border-width:1px;
+	behavior:url(../hmjs/sysjs/inputctrl.htc);
+}
+
+
+.inputYM
+{
+	behavior:url(../hmjs/sysjs/inputctrl.htc);
+}
+
+.inputYY
+{
+	behavior:url(../hmjs/sysjs/inputctrl.htc);
+}
+
+.inputFile
+{
+	border:1px solid #A2A2A3;FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#E3E3EC);
+	behavior:url(../hmjs/sysjs/inputctrl.htc);
+}
+.inputImg
+{
+	cursor:hand;
+	behavior:url(../hmjs/sysjs/inputImg.htc);
+}
+
+.warmbrowser
+{
+	border: 0px;background-color:Transparent;
+}
+
+.warmbrowserRed
+{
+	border: 0px;background-color:Transparent;color:#FF0000;
+}
+.gridbrowse
+{
+   border: 0px;background-color:white;
+}
+
+.gridbrowsenew
+{
+   border: 0px;background-color:#EBEBEB}
+
+.gridinput
+{
+	border: 0px;background-color:white;
+}
+.gridselect
+{
+	border: 0px;background-color:white; margin:-1px;
+}
+.gridselbtn
+{ 
+	margin:-1px; FONT-SIZE: 10px; 
+	CURSOR: hand; COLOR: black;
+}
+.gridselbtnbak
+{ 
+	BORDER: #efeff3 1px solid; margin:-1px; FONT-SIZE: 10px; 
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#E3E3EC); 
+	CURSOR: hand; COLOR: black;
+}
+
+.griddate
+{
+	border: 0px;background-color:white;
+}
+.gridlink
+{
+	border: 0px;vertical-align:bottom;COLOR: #000000;TEXT-DECORATION: none;
+}
+
+.gridlinknew
+{
+	border: 0px;vertical-align:bottom;background-color:#EBEBEB;COLOR: #000000;
+}
+
+.gridbrowseB
+{
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+}
+.gridinputB
+{
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+}
+.gridselectB
+{
+	width:100%;height:22;border-style: solid; border-width: 0px;margin:-2px;
+}
+.griddateB
+{
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+}
+
+.tselect{width:100%;border-style: solid; border-width: 0px;margin:-2px}
+.tinput{border-color:#A2A2A3;border-style:solid;border-width:1px;
+	behavior:url(../hmjs/sysjs/inctrl.htc);
+	}
+.tzinput{border-color:white;BORDER-TOP: 1px solid;}
+
+.xlandass
+{
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+	behavior:url(../hmjs/sysjs/assxland.htc);
+}
+.xlanddisp
+{
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+}
+.xlandinputx1
+{
+	border:1px #A2A2A3 solid;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+.xlandinput
+{
+	WORD-BREAK: break-all;
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+
+.xlandspan
+{
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+	height:19px;line-height:19px;padding-left:3px;text-align:left;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+
+.xlandinputex
+{
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+	behavior:url(../hmjs/sysjs/inputxlandex.htc);
+}
+
+.xlandradio
+{
+	margin:0;padding:0;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+
+.xlandhtc
+{
+    background-image:url(bgimg.jpg);
+    background-repeat:no-repeat;
+    font-size:12px;color:#454545;font-weight:bold;border:1px solid #737373;padding:3px 2px 2px;width:203px;height:22px;background-position:0 -72px;margin-right:-5px;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+.xlandarea
+{
+    font-size:12px;color:#454545;font-weight:bold;border:1px solid #737373;padding:3px 2px 2px;width:203px;height:80px;background-position:0 -72px;margin-right:-5px;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+
+.xlandchk
+{
+	position: absolute;
+	clip: rect(5 19 18 5);
+}
+
+.xlanddate
+{
+	border:1px #A2A2A3 solid;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+.xlandselect
+{
+	border-color:#A2A2A3;border-style:solid;border-width:1px;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+.xlandFile
+{
+	border:0px solid #A2A2A3;
+	behavior:url(../hmjs/sysjs/filexland.htc);
+}
+.xlandImg
+{
+	cursor:hand;
+	behavior:url(../hmjs/sysjs/inputImg.htc);
+}
+.xlanddispproto
+{
+	border: 0px;background-color:white;width: 100%;height: 100%; text-align: left;
+}
+.xlandinputproto
+{
+	border: 0px;background-color:white;width: 100%;height: 100%; text-align: left;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+.xlanddateproto
+{
+	border: 0px;background-color:white;width: 100%;height: 100%; text-align: left;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+.xlandselectproto
+{
+	border:0px;margin:-1;background-color:white;width: 100%;height: 100%; text-align: left;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+.xlandbtcmdproto
+{
+	BORDER:#A2A2A3 1px solid;border-right-width:0;background-color:#E8E8E8; margin:-1px;width:100%;height:100%;text-align:left;
+}
+
+.headerCellStyle {
+	BORDER-RIGHT: #A2A2A3 1px solid; 
+	BORDER-TOP: white 1px solid; 
+	FONT-SIZE: 9pt; 
+	BORDER-LEFT: white 1px solid; 
+	BORDER-BOTTOM: #A2A2A3 1px solid; 
+	BACKGROUND-COLOR: buttonface
+}
+
+.headerCellStyleflat {
+	BORDER-RIGHT: white 0px solid; BORDER-TOP: white 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: white 0px solid; BACKGROUND-COLOR: white
+}
+
+.rowCursorStyle {
+	BORDER-RIGHT: #A2A2A3 1px solid; BORDER-TOP: white 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: #A2A2A3 1px solid; BACKGROUND-COLOR: buttonface
+}
+
+.rowCursorStyleflat {
+	BORDER-RIGHT: white 0px solid; BORDER-TOP: white 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: white 1px solid; BACKGROUND-COLOR: white
+}
+
+.cellStyle 
+{
+	border:#A2A2A3 solid;border-width:0px 1px 1px 0px;
+	FONT-SIZE: 9pt; BACKGROUND-COLOR: white;
+}
+
+.cellStylexxxxx
+{
+    border-color:#A2A2A3;border-style:solid;border-width:1px;
+    border:#A2A2A3 solid;border-width:0px 1px 1px 0px;
+	FONT-SIZE: 9pt; BACKGROUND-COLOR: white;
+}
+
+.cellStylenew
+{
+     border: 0px;
+	FONT-SIZE: 9pt;BACKGROUND-COLOR: #EBEBEB; 
+}
+
+.cellStylenoborder 
+{
+    border:#A2A2A3 solid;border-width:0px 0px 0px 0px;
+	FONT-SIZE: 9pt; BACKGROUND-COLOR: white;
+}
+.smartGridflat {
+	BORDER-RIGHT: white 0px solid; BORDER-TOP: white 0px solid; BORDER-LEFT: white 0px solid; BORDER-BOTTOM: white 0px solid; selectedCellColor: white; activeCellColor: white
+}
+
+.smartGrid {
+BORDER-RIGHT: #aca899 1px solid; 
+BORDER-TOP: #aca899 1px solid; 
+BORDER-LEFT: #aca899 1px solid; 
+BORDER-BOTTOM: #aca899 1px solid; 
+selectedCellColor: #679ACD; 
+activeCellColor: #AFD5FF;
+background-color:white
+}
+.rowStyle {
+	HEIGHT: 20px
+}
+
+.frozenCellStyle {
+	BORDER-RIGHT: #aca899 1px solid; BORDER-TOP: white 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: #aca899 1px solid; BACKGROUND-COLOR: #ece9d8
+}
+
+.buttonCellStyle {
+	BORDER-RIGHT: #A2A2A3 1px solid; BORDER-TOP: white 0px solid; FONT-SIZE: 9pt; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: #A2A2A3 0px solid; BACKGROUND-COLOR: #E8E8E8
+}
+.flatCellStyleK
+{
+	BORDER: white 0px solid; FONT-SIZE: 9pt; BACKGROUND-COLOR: white
+}
+.flatCellStyle
+{
+	BORDER: #aca899 0px solid; FONT-SIZE: 9pt; BACKGROUND-COLOR: #E8E8E8
+}
+.disabledCellStyle {
+	BORDER-RIGHT: #ece9d8 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ece9d8 0px solid; PADDING-LEFT: 2px; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; BORDER-LEFT: #ece9d8 0px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ece9d8 1px solid; BACKGROUND-COLOR: #d4d0c8
+}
+
+.readCellStyle {
+    border:#A2A2A3 solid;border-width:0px 1px 1px 0px;
+	FONT-SIZE: 9pt; BACKGROUND-COLOR: #F2F4B9;
+}
+
+.mouseOverCellStyle {
+	BORDER-RIGHT: #ece9d8 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ece9d8 0px solid; PADDING-LEFT: 2px; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; BORDER-LEFT: #ece9d8 0px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ece9d8 1px solid; BACKGROUND-COLOR: white
+}
+.activeCellStyle {
+	BORDER-RIGHT: #ece9d8 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ece9d8 0px solid; PADDING-LEFT: 2px; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; BORDER-LEFT: #ece9d8 0px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ece9d8 1px solid; BACKGROUND-COLOR: white
+}
+.selectedCellStyle {
+	BORDER-RIGHT: #ece9d8 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ece9d8 0px solid; PADDING-LEFT: 2px; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; BORDER-LEFT: #ece9d8 0px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ece9d8 1px solid; BACKGROUND-COLOR: white
+}
+.selectedCellStyle {
+	BACKGROUND-COLOR: #679acd
+}
+.activeCellStyle {
+	BACKGROUND-COLOR: #8cd9b3
+}
+.mouseOverCellStyle {
+	BACKGROUND-COLOR: beige
+}
+
+A:visited {text-decoration: none;COLOR: #5a5a5a;}
+A:active {COLOR: #333333;}
+A:hover {COLOR: #FF0000; TEXT-DECORATION: underline;position:relative; left:1px; top:1px; clip:rect();}
+A {
+	COLOR: #000000;text-decoration: none;
+}
+
+.normalTextSmall 
+{ 
+    font-size : 11px;
+    color : #000000; 
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+/*
+td.TopDarkNav
+{
+background-image: url(skin/blue/i2.gif);
+}
+td.TopLighNav
+{
+background-image: url(skin/blue/i2.gif);
+}
+td.TopLighNav1
+{
+background-image: url(skin/blue/i2.gif);
+}
+td.TopLighNav2
+{
+background-color: #FFFFFF
+}
+*/
+#TableTitleLink A:link, #TableTitleLink A:visited, #TableTitleLink A:active {
+ COLOR: #ffffff;
+ TEXT-DECORATION: none;
+}
+#TableTitleLink A:hover {
+ COLOR: #ffffff;
+ TEXT-DECORATION: underline;}
+
+input,select,Textarea{
+font-family:Tahoma,Verdana,ËÎÌå; font-size: 12px; line-height: 15px;}
+
+.gridbtn1 {
+BORDER-LEFT: #ece9d8 1px solid;/*×ó±ß¿ò*/
+BORDER-RIGHT: #ece9d8 1px solid;/*ÓÒ±ß¿ò*/
+BORDER-TOP: #ece9d8 1px solid;/*ÉÏ±ß¿ò*/
+BORDER-BOTTOM: #ece9d8 1px solid;/*ÏÂ±ß¿ò*/
+PADDING-LEFT: 2px;/*×ó¼äÏ¶*/
+PADDING-RIGHT: 2px; /*ÓÒ¼äÏ¶*/
+PADDING-TOP: 1px;/*ÉÏ¼äÏ¶*/
+PADDING-BOTTOM: 2px;/*ÏÂ¼äÏ¶*/
+FONT-SIZE: 12px;/*×ÖºÅ*/
+CURSOR: hand;/*¹â±êÀàÐÍ*/
+COLOR: #000000;/*×ÖÉ«*/
+FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#ece9d8);/*ÂË¾µ*/
+}
+
+.gridbtn 
+{   BORDER-RIGHT: #efeff3 1px solid; 
+	PADDING-RIGHT: 0px; BORDER-TOP: #efeff3 1px solid; PADDING-LEFT: 0px; FONT-SIZE: 12px; 
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#E3E3EC); 
+	PADDING-BOTTOM: 0px; BORDER-LEFT: #efeff3 1px solid; 
+	CURSOR: hand; COLOR: black; PADDING-TOP: 3px; BORDER-BOTTOM: #efeff3 1px solid 
+}
+.button 
+{
+	background-color: #634307;	border: 1px solid #634307;		padding-top: 1px;
+	padding-right: 0px;		padding-bottom: 2px;		padding-left: 0px;
+}
+.button1 
+{
+	background-color: #800000;	border: 1px solid #800000;	height: 19px;	padding-top: 1px;
+	padding-right: 0px;		padding-bottom: 2px;		padding-left: 0px;
+}
+.txtbtnex 
+{   
+border: 1px solid #FFFF00;
+PADDING: 1px; 
+CURSOR: hand; COLOR: white; 
+BACKGROUND-COLOR:#003300;
+}
+.txtbtnex1 
+{   
+border: 1px solid white;
+PADDING: 1px; 
+CURSOR: hand; 
+BACKGROUND-COLOR:black;
+COLOR: #ffffff;
+height:20px;
+}
+.txtbtnF 
+{   
+border:black solid;border-width:0px 0px 0px 0px;
+PADDING-RIGHT: 0px; 
+PADDING-LEFT: 0px; FONT-SIZE: 12px; 
+PADDING-BOTTOM: 0px; 
+CURSOR: hand; COLOR: black; 
+PADDING-TOP: 0px;
+BACKGRObUND-COLOR:#FBFAFA;
+}
+
+.txtbtn 
+{   
+border:black solid;border-width:0px 0px 0px 0px;
+PADDING-RIGHT: 0px; 
+PADDING-LEFT: 0px; FONT-SIZE: 12px; 
+PADDING-BOTTOM: 0px; 
+CURSOR: hand; COLOR: black; 
+PADDING-TOP: 0px;
+BACKGROUND-COLOR:white;
+}
+.txtbtn1 
+{   
+border: 1px solid black;
+PADDING-RIGHT: 0px; 
+PADDING-LEFT: 0px; FONT-SIZE: 12px; 
+PADDING-BOTTOM: 0px; 
+CURSOR: hand; COLOR: black; 
+PADDING-TOP: 0px;
+BACKGROUND-COLOR:white;
+}
+.txtbtnx
+{   
+border:black solid;border-width:0px 0px 0px 0px;
+PADDING-RIGHT: 0px; 
+PADDING-LEFT: 0px; FONT-SIZE: 12px; 
+PADDING-BOTTOM: 0px; 
+CURSOR: hand; COLOR: black; 
+PADDING-TOP: 0px;
+BACKGROUND-COLOR:#fff;
+}
+.flatbtn 
+{   
+border:yellow solid;border-width:0px 0px 0px 0px;
+PADDING-RIGHT: 0px; 
+PADDING-LEFT: 0px; FONT-SIZE: 12px; 
+PADDING-BOTTOM: 0px; 
+CURSOR: hand; COLOR: black; 
+PADDING-TOP: 0px;
+BACKGROUND-COLOR:#ffffff;
+}
+
+.linkbtn {
+COLOR: #000000; TEXT-DECORATION: none;font-weight:bold
+}
+
+.linkbtn_0 {COLOR: #000000; TEXT-DECORATION: none;}
+
+.linkbtn_1 {
+COLOR: #000000; TEXT-DECORATION: underline;
+}
+
+.tpspan 
+{
+	font-family:"ËÎÌå";
+	font-size:12pt;
+	font-weight: bold
+}
+
+.span60{width:60;text-align:right}
+.span60fn{width:60;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span30fn{width:30;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span40fn{width:40;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span50fn{width:50;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span50fx{width:48;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span80fn{width:80;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span90fn{width:90;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span75fn{width:75;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span70fn{width:70;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span100fn{width:100;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span110fn{width:100;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span120{width:120;text-align:right;font-family: Î¢ÈíÑÅºÚ}
+.span100{width:100px;height:19px;line-height:19px;padding-left:3px;}
+.span80{text-align:right;width:100px;height:19px;line-height:19px;padding-left:3px;}
+.spanbox 
+{
+    height:19px;
+    padding-left:2;
+    border: 1px solid #A2A2A3; 
+    line-height:19px;
+    vertical-align:middle;
+    background-color:#FFFFFF;
+    white-space: nowrap;
+    word-wrap:break-word; 
+    overflow:hidden;
+}
+
+.tpspantitle
+{
+	font-family:"ºÚÌå";
+	font-size:18pt;
+	text-decoration:underline
+}
+
+.txtline{ 
+	BORDER-LEFT-STYLE: none; 
+	BORDER-RIGHT-STYLE:none;
+	BORDER-TOP-STYLE:none;
+	BACKGROUND-COLOR: #FCFBFA ;
+}
+.xlandinputline
+{
+	BORDER-LEFT-STYLE: none; 
+	BORDER-RIGHT-STYLE:none;
+	BORDER-TOP-STYLE:none;
+	BACKGROUND-COLOR: white;
+	text-align:center;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+.xlanddateline
+{
+	BORDER-LEFT-STYLE: none; 
+	BORDER-RIGHT-STYLE:none;
+	BORDER-TOP-STYLE:none;
+	BACKGROUND-COLOR: white;
+	text-align:center;
+	behavior:url(../hmjs/sysjs/inputxland.htc);
+}
+
+.tablescroll2
+{
+SCROLLBAR-FACE-COLOR: #ffffff; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;SCROLLBAR-SHADOW-COLOR: #ffffff; SCROLLBAR-3DLIGHT-COLOR: white; SCROLLBAR-ARROW-COLOR: black;SCROLLBAR-DARKSHADOW-COLOR: white;
+}
+
+.tablescroll
+{
+SCROLLBAR-FACE-COLOR: #ffffff; 
+SCROLLBAR-HIGHLIGHT-COLOR: #A2A2A3;
+SCROLLBAR-SHADOW-COLOR: #A2A2A3; 
+SCROLLBAR-3DLIGHT-COLOR: white; 
+SCROLLBAR-ARROW-COLOR: black;
+SCROLLBAR-DARKSHADOW-COLOR: white;
+}
+
+.cellwb
+{
+    border:#A2A2A3 solid;border-width:0px 1px 1px 0px;
+	FONT-SIZE: 9pt; BACKGROUND-COLOR: white
+}
+.cellwbb
+{
+    border:#A2A2A3 solid;border-width:0px 1px 1px 0px;
+	FONT-SIZE: 9pt; BACKGROUND-COLOR: white;font-weight:bold;
+}
+
+.cellwb_btn
+{
+    border:#A2A2A3 solid;border-width:0px 1px 1px 0px;
+	FONT-SIZE: 9pt; BACKGROUND-COLOR: #F9F7F7;
+}
+.cellwb_red
+{
+    border:#A2A2A3 solid;border-width:0px 1px 1px 0px;
+	FONT-SIZE: 9pt; BACKGROUND-COLOR: #F9F7F7;color:#CC3300
+}
+
+.GridWB {
+	border:1px black solid;
+	background:white;
+	selectedCellColor: #679ACD; activeCellColor: #AFD5FF
+}
+
+.Gridwbxxx {
+	border:black solid;border-width:2px 2px 2px 2px;
+	border:1px #A2A2A3 solid;
+	background:white;
+	selectedCellColor: #679ACD; activeCellColor: #AFD5FF
+}
+
+.sec1 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+.sec2 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+.sec3 {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+.secx {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid;FONT-SIZE: 12px; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+
+
+.ws{scrollbar-face-color: #FBFAFA; 
+scrollbar-highlight-color: #FBFAFA; 
+scrollbar-shadow-color: #FBFAFA; 
+scrollbar-3dlight-color: #FBFAFA; 
+scrollbar-arrow-color: #FBFAFA; 
+scrollbar-track-color: #FBFAFA; 
+scrollbar-darkshadow-color: #FBFAFA} 
+
+.gridtitle {margin:0 auto;width:100%;}
+.griddv1 {float:left;text-align:left;width:30%;}
+.griddv2 {float:right;text-align:center;width:30%;}
+.griddv3 {float:right;text-align:right;width:38%}
+.node{float:left;width:103;height:74;text-align:center}
+.btnbox{
+    width:154px;
+    height:51px;
+    margin-right:8px;
+    overflow:hidden;
+    cursor:hand;
+    background:url(images/hmbn.png) left top no-repeat;
+}
+
+.btnbox .digg_act{
+    font-family:Î¢ÈíÑÅºÚ;
+    font-size:14px;
+    float:left;
+    line-height:31px;
+    text-indent:32px;
+    height:29px;
+    overflow:hidden;
+}
+.btnSelect
+{
+	border-width:0px 0px 0px 0px;
+	PADDING: 0px; 
+	CURSOR: hand; 
+	BACKGROUND-COLOR:white;
+	POSITION: absolute; MARGIN-TOP: 0px; WIDTH: 22px; HEIGHT: 100%; MARGIN-LEFT: -24px
+}
+.btnSelect0
+{
+	border:#A2A2A3 solid;
+	border-width:0px 0px 0px 1px;
+	PADDING: 0px; 
+	CURSOR: hand; 
+	BACKGROUND-COLOR:#F9F7F7;
+	POSITION: absolute; MARGIN-TOP: 0px; WIDTH: 22px; HEIGHT: 100%; MARGIN-LEFT: 0px
+}
+.minibtn{width:80%;height:30px}
+.standbtn{width:80px;}      
+.xb5 {
+    BORDER-RIGHT: #bfbfbf 1px solid; BORDER-TOP: #bfbfbf 1px solid; BORDER-LEFT: #bfbfbf 1px solid; WIDTH: 100%; LINE-HEIGHT: 95%; BORDER-BOTTOM: #bfbfbf 1px solid; BACKGROUND-COLOR: #FBFAFA
+}
+.xc20 {
+        BORDER-TOP: #c0c0c0 1px solid;BORDER-BOTTOM: #E1E1E1 1px solid; 
+        BACKGROUND-COLOR: #FBFAFA;
+    }
+INPUT.hmbtn {
+	BORDER-BOTTOM: medium none; TEXT-ALIGN: center; BORDER-LEFT: medium none; PADDING-BOTTOM: 2px; LINE-HEIGHT: 20px; WIDTH: 76px; BACKGROUND: none transparent scroll repeat 0% 0%; HEIGHT: 28px; COLOR: #fff; FONT-SIZE: 14px; BORDER-TOP: medium none; CURSOR: pointer; BORDER-RIGHT: medium none; PADDING-TOP: 2px
+}
+INPUT.hmbtn {
+	BACKGROUND: url(images/btn_bg.gif) no-repeat; COLOR: #fff
+}
+INPUT.hmbtn:hover {
+	COLOR: #fff; FONT-SIZE: 14px
+}

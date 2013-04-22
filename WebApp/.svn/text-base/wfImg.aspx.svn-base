@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Estar.WebApp.wfImg" CodeFile="wfImg.aspx.cs" %>

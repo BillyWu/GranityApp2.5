@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<body>
+<script language="javascript">
+<!--
+function initWin()
+{
+	var band=document.UnitItem.getBandByItemName("文件资料");
+	var str=band.getFldStrValue("文件");
+	if(!str || ""==str)	 return;
+	band.Query();
+	document.UnitItem.CheckInParentUnit();
+	window.close();
+}
+-->
+</script>
+
+	<table align="center" border="1" width="580" style="WORD-BREAK: break-all;BORDER-COLLAPSE: collapse" id="table1" cellspacing="1" bordercolorlight="#a2a2a3" bordercolordark="#a2a2a3">
+		<tbody>
+			<tr>
+				<td bgColor="#e8e8e8" colSpan="2" height="25" align="center"><b>附件文件上传</b></td>
+			</tr>
+			<tr>
+				<td align="center" rowspan="2" width="200" bordercolor="#FFFFFF" height="24">
+					
+				<img border="0" src="t1.gif" width="139" height="105" /></td>
+				<td width="380" bordercolor="#FFFFFF" height="64">
+						<div id="文件资料:文件" class="xlandFile">
+							<Control class="xlandFile" catalog="FileUpLoad.ascx" itemname="文件资料" id="FileUploadCtrl" name="">选择附件：
+							<Property name="FileColumn" filenameupload="上传文件" filenameinput="文件" /><Property name="size" value="50" />
+							<Property name="width" value="" /><Property name="filetype" value="CADFilePath" />
+							</Control>
+						</div>
+				</td>
+			</tr>
+			<tr><td bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">
+				<input type="button" class="gridbtn" onclick="ue_Post();" value="上传" style="width:70;" />　　
+				<input type="button" class="gridbtn" onclick="window.close();" style="width:70" value="关闭" />
+				　<div align="center"><Control class="" catalog="GridLand.ascx" itemname="文件资料" id="MasterTab" name="">MasterTab
+					<Property name="tpfile" value="" />
+						<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="true" />
+						<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" /><Property name="enableviewstate" value="false" />
+					</Control>
+				</div>
+			</td></tr>
+	</tbody></table>
+</body>
+</html>

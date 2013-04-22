@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Estar.WebApp.XMLPaths" CodeFile="XMLPaths.aspx.cs" %>

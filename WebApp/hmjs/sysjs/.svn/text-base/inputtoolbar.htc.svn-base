@@ -1,0 +1,43 @@
+<PUBLIC:ATTACH EVENT="onkeydown" ONEVENT="usOnKeydownHandle()" />
+<PUBLIC:ATTACH EVENT="onfocus" ONEVENT="usOnFocusHandle()" />
+<PUBLIC:ATTACH EVENT="onblur" ONEVENT="usOnBlurHandle()" />
+
+<SCRIPT language=javascript>
+
+function usOnKeydownHandle()
+{
+	var inputctrl=event.srcElement;
+	switch(event.keyCode)
+	{
+	    case 13:
+	        if("TEXTAREA"==inputctrl.tagName)
+	            return;
+            event.keyCode=9;
+            break;
+	}
+}
+
+function usOnFocusHandle()
+{
+	var srcEle=event.srcElement;
+    if(srcEle.className.indexOf("date")>=0)
+    {
+	    ToolUtil.sleep(10);
+	    calendar();
+    }
+	return;
+	if("INPUT"==srcEle.tagName && "text"==srcEle.type)
+		srcEle.select();
+}
+
+//离开焦点后,改变单元格风格
+function usOnBlurHandle()
+{
+    if(!event.srcElement.dataFld)
+        return;
+    var ctrlsel=event.srcElement.ownerDocument.getElementById("protolist");
+    var drawingnode=ctrlsel.options[ctrlsel.selectedIndex].Drawingnode;
+    if(!drawingnode)        return;
+    drawingnode.setAttribute(event.srcElement.dataFld,event.srcElement.value);
+}
+</SCRIPT>

@@ -1,0 +1,1 @@
+﻿<%@ Page language="c#" Inherits="Estar.WebApp.frmprintc" CodeFile="frmprintc.aspx.cs" %>

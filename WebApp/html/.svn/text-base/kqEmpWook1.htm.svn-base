@@ -1,0 +1,178 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>消费orgtreegroup</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usMenu.js" type="text/javascript" charset="gb2312"></script>
+
+    <script language="javascript" src="../hmjs/sysjs/usMenu.js" type="text/javascript"
+        charset="gb2312"></script>
+
+    <script type="text/javascript" charset="gb2312">
+	     var elems = ["签到","加班","出差","调休","请假"];
+         var freecols  = ["","","","","",""];
+         var elemsevent = ["_tfilter()","_tfilter()","_tfilter()","_tfilter()","_tfilter()"];  
+         
+	    function initWin()
+	    {
+	       ueToolbar("tbars",elems,elemsevent,"txtbtn",null,"rownames","");
+             var ob=$band("部门信息");
+            ob.Asyn=true;
+            debugger;
+            ob.XQuery();
+
+            ob.AfterXQuery = function()
+            {
+                ue_expand('部门信息',true);
+                  _tfilter();
+                  ue_treeline("部门信息",true);
+                    $loading("none");
+            }  
+	    }
+        function Tree_onNodeSelectionChange(node)
+        {
+            TclickDot(node,false);
+        }	    
+	  function _tfilter()
+      {  
+                    var ob = $band(ueGetTbItem("tbars").outerText);
+            switch(ueGetTbItem("tbars").outerText)
+            {
+                case "签到":
+              ob=$band("员工签到");
+                    ob.freecols = "";
+                    break;
+                case "加班":
+                  ob=$band("员工加班");
+                    ob.freecols = "";break;
+                case "出差":
+                  ob=$band("员工出差");
+                    ob.freecols = "";break;
+                case "调休":
+                    ob=$band("部门员工假期");
+                    ob.freecols = "";break;
+                case "请假":
+                  ob=$band("员工请假");
+                    ob.freecols = "";break;
+                    
+            }
+                    
+     
+        ob.gridtype = 8;ob.minwidth = "60px";ob.editdict=true;
+        if(!ob.Grid) var Grid = new XGrid("dvob",ob,"in",null,1);      
+        ob.XQuery();
+       
+}
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');">
+    </div>
+    <fieldset style="float: left; padding: 5px; width: 30%; height: 95%;" id="fdiv">
+        <legend style="width: 57px">组织机构</legend>
+
+        <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_orgtreegroupTab_trvLand ***/
+                    window.ComponentArt_Storage_etpTemplate_orgtreegroupTab_trvLand = null;
+                    //]]>
+        </script>
+
+        <div style="position: absolute; top: 0px; left: 0px; visibility: hidden;">
+            <img src="images/exp.gif" width="0" height="0" alt="" />
+            <img src="images/col.gif" width="0" height="0" alt="" />
+        </div>
+        <div id="etpTemplate_orgtreegroupTab_trvLand" class="TreeView" style="height: 95%;
+            width: 99%; overflow-y: auto;" onclick="if(window.etpTemplate_orgtreegroupTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_orgtreegroupTab_trvLand);"
+            onmouseover="if(window.etpTemplate_orgtreegroupTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_orgtreegroupTab_trvLand);">
+        </div>
+        <input id="etpTemplate_orgtreegroupTab_trvLand_Data" name="etpTemplate_orgtreegroupTab_trvLand_Data"
+            type="hidden" />
+        <input id="etpTemplate_orgtreegroupTab_trvLand_Properties" name="etpTemplate_orgtreegroupTab_trvLand_Properties"
+            type="hidden" />
+        <input id="etpTemplate_orgtreegroupTab_trvLand_SelectedNode" name="etpTemplate_orgtreegroupTab_trvLand_SelectedNode"
+            type="hidden" value="" />
+        <input id="etpTemplate_orgtreegroupTab_trvLand_ScrollData" name="etpTemplate_orgtreegroupTab_trvLand_ScrollData"
+            type="hidden" value="0,0" />
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    window.ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand = function() {
+                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_orgtreegroupTab_trvLand'))
+                        {setTimeout('ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand()', 100); return; }
+
+                    window.etpTemplate_orgtreegroupTab_trvLand = new ComponentArt_TreeView('etpTemplate_orgtreegroupTab_trvLand', ComponentArt_Storage_etpTemplate_orgtreegroupTab_trvLand);
+                    etpTemplate_orgtreegroupTab_trvLand.Postback = function() { __doPostBack('etpTemplate$orgtreegroupTab$trvLand','') };
+                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_orgtreegroupTab_trvLand; etpTemplate_orgtreegroupTab_trvLand.GlobalAlias = 'trvLand'; }
+                    etpTemplate_orgtreegroupTab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:orgtreegroupTab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                    etpTemplate_orgtreegroupTab_trvLand.Initialize('etpTemplate_orgtreegroupTab_trvLand');
+
+                    window.etpTemplate_orgtreegroupTab_trvLand_loaded = true;
+                }
+                ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand();
+                var myTree = new Tree(etpTemplate_orgtreegroupTab_trvLand,'orgtreegroupTab');
+                //]]>
+        </script>
+
+    </fieldset>
+    <fieldset style="float: right; padding: 8px; width: 69%; height: 95%">
+        <legend>&nbsp; </legend>
+        <fieldset style="padding: 5px; width: 98%; height: 90%">
+            <legend id="tbars" style="margin-bottom: 5"></legend>
+            <div id="dvob" style="width: 100%; height: 99%">
+            </div>
+        </fieldset>
+        &nbsp;
+    </fieldset>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("员工考勤管理")</script>
+
+</body>
+</html>

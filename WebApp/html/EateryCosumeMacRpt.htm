@@ -1,0 +1,148 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <title>消费机收入汇总</title>
+    <base target="_self" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/hmstyle.css" type="text/css" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+
+    <link id="cssGlobe" href="../html/skin/globle.css" type="text/css" rel="stylesheet" />
+    <link href="../html/skin/skin_gold.css" rel="stylesheet" type="text/css" id="lnkSkin" />
+
+    <script type="text/javascript">
+      var mband,tband,hband;
+      function initWin()
+      {
+        mband = $band("消费机收入汇总");if(!mband){alert("项目：消费机收入汇总配置错误！");return;}
+        $loading();
+        mband.gridtype = 61; mband.freecols = "餐厅";mband.title = "";mband.minwidth = "60px";mband.editdict=true;
+        mband.merges="@晨餐=晨餐次数,晨餐金额;@早餐=早餐次数,早餐金额;@午餐=午餐次数,午餐金额;@下午茶=下午茶次数,下午茶金额;@晚餐=晚餐次数,晚餐金额;@夜宵=夜宵次数,夜宵金额;@合计=合计次数,合计金额";
+        if(!mband.Grid) var Grid = new XGrid("dvmband",mband,"in",null,1);
+        mband.XQuery();
+        $loading("none");
+      }
+        //条件时间查询 
+       function ue_Time(isprint)
+        {
+            var xmldoc=document.UnitItem.ParamXmldoc;
+            var dt0=document.getElementById("sdt").value;
+            if(dt0=="") document.getElementById("sdt").value=new Date().formate("yyyy-MM-dd");
+            var dt1=document.getElementById("edt").value;
+            if(dt1=="") document.getElementById("edt").value=new Date().formate("yyyy-MM-dd");
+            dt0 = document.getElementById("sdt").value;
+            dt1 = document.getElementById("edt").value;
+            ToolUtil.setParamValue(xmldoc, "StartTime", dt0, "", "P", null, "C");
+            ToolUtil.setParamValue(xmldoc, "EndTime", dt1, "", "P", null, "C");
+            //$band("消费机收入汇总").XQuery(true);
+        }
+        //打印
+        function tp_print()
+        {	 var ob = $band("消费机收入汇总");
+            var dt0=document.getElementById("sdt").value;
+            if(dt0=="") document.getElementById("sdt").value=new Date().formate("yyyy-MM-dd");
+            var dt1=document.getElementById("edt").value;
+            if(dt1=="") document.getElementById("edt").value=new Date().formate("yyyy-MM-dd");
+            dt0 = document.getElementById("sdt").value;
+            dt1 = document.getElementById("edt").value;
+            var name=$("findtxt").value;   
+            if(name=="")
+            {
+               name="1=1";
+            }
+            else
+            {
+               name =" c.名称 like '%"+name+"%' or a.名称 like '"+name+"'";         
+            }
+            var prn = "";
+            var ps  = "@StartTime="+dt0+",@EndTime="+dt1+",@$filter="+name+",@条件="+dt0+" — "+dt1;
+            var src = "消费机收入汇总.消费机收入汇总";
+            url=ue_path() + "/frmprintc.aspx?datasrc="+escape(src)+"&prn="+prn+"&pms="+ps;
+            window.open(url,"","height=100,width=100,left=0,top=0,menu=yes,status=yes,resizable=no,scrollbars=no");
+	    }
+    </script>
+
+</head>
+<body bgcolor="#edebe8" style="overflow: hidden; margin: 0px;" scroll="no">
+    <table border="0" width="99%" height="100%" cellpadding="0" style="border-collapse: collapse"
+        id="mainTable" align="center">
+        <tbody>
+            <tr style="height: 45px">
+                <td>
+                    <fieldset style="padding: 10; width: 99%; height: 100%; border: 1px inset">
+                        <legend style="padding: 1px;">消费机收入汇总：</legend>
+                        <table align="center" cellspacing="0" bgcolor="#edebe8" bordercolorlight="white"
+                            bordercolordark="#C0C0C0" style="width: 100%; height: 30px; border: 1px inset"
+                            id="table1">
+                            <tr>
+                                <td align="right" width="79">
+                                    选择日期：</td>
+                                <td width="90">
+                                    <input id="sdt" type="text" class="xlanddate" style="width: 90%" /></td>
+                                <td align="center" width="20">
+                                    至</td>
+                                <td align="center" width="90">
+                                    <input id="edt" type="text" class="xlanddate" style="width: 90%" size="20" /></td>
+                                <td align="right" style="width: 50px">
+                                    检索：</td>
+                                <td align="center" width="30">
+                                   <input type="text" style="width: 150px" id="findtxt" name="c.名称;a.名称" /></td>
+                                <td>
+                                    <input type="button" value="查询" name="B4" onclick="ue_Time();ue_tfilter('消费机收入汇总')" style="width: 60px" />
+                                    <input type="button" value="打印" name="B3" class="standbtn" onclick="tp_print();"
+                                        style="width: 60px" />
+                                    <input type="button" value="退出" name="B3" class="standbtn" onclick="ms_close()" style="width: 60px" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <fieldset style="padding: 10; width: 99%; height: 98%; border: 1px inset">
+                        <legend style="padding: 1px;">查询清单</legend>
+                        <div id="dvmband" style="width: 100%; height: 97%">
+                        </div>
+                    </fieldset>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("消费机收入汇总")</script>
+
+</body>
+</html>

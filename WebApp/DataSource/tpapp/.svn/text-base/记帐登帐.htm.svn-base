@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+        <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonAdv.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>    
+    	<script language="javascript" src="hmjs/sysjs/common.js" type="text/javascript" charset="gb2312"></script>
+    	
+        <script src="hmjs/tmpjs/msjs.js" language="JavaScript" type="text/JavaScript" charset="gb2312"></script>
+        <script language="javascript" src="hmjs/tmpjs/jzpz.js" type="text/javascript" charset="gb2312"></script>
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<LINK href="hmjs/sysjs/menu.css" type="text/css" rel="stylesheet" />        	
+    	<script language="javascript" type="text/javascript">
+    	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;
+		    function ms_CellBtnClick(oband,colname,colvalue)
+		    {
+		        if(colname=="科目")
+		            var rtn = oband.setModalContent("科目查询");
+		        if(colname=="摘要")
+		            var rtn = oband.setModalContent("摘要查询");
+                if(!rtn) return;
+		        oband.setFldStrValue(null,colname,rtn);
+		    }
+            function openPro()
+            {
+                var band=document.UnitItem.getBandByItemName("字典信息");
+                if(!band)    return;
+                var rtn = window.showModalDialog("Template\\供应商编辑.htm",band,"dialogHeight: 430px; dialogWidth: 670px; edge: Raised; center: Yes; help: No; resizable: No; status: No;"); 
+                if(rtn=="" || rtn==null) return 1; 
+                if(rtn>0)
+                {
+            	    gshowModalDialogReturn=1;
+        		    band.setCurrentRow(rtn-1);
+        	    }
+       	    }    	
+       	 -->
+    	</script>
+    </head>
+
+<body>
+
+		<Control class="" catalog="GridLand.ascx" itemname="主表" id="MasterTab" name="">MasterTab
+			<Property name="tpfile" value="" />
+			<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="true" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+		</Control>
+<table align="center" id="toobar" border="0" cellpadding="1" cellspacing="2" width="801px" 
+            bgcolor="buttonface" onselectstart="event.returnValue=false" style="cursor:default;font-family: 宋体; font-size: 9pt; color: MenuText;  border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-top: 1px solid #FFFFFF; border-bottom: 1px solid #000000; padding:0px">
+            <tbody>
+              <tr>
+                <td width="4">
+                  <span class="handout"></span>
+                </td>
+                <td nowrap="" class="coolButton" id="btnsave" width="50" onclick="_save()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" cellspacing="0" cellpadding="0" id="table2" style="font-size: 10pt;width:100%">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\SaveHS.gif" />
+                        </td>
+                        <td>保存</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="btnsubmit" width="50" onclick="_submit(0);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table6" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\report_go.gif" width="16" height="16" />
+                        </td>
+                        <td>提交</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td1" width="50" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\reply.gif" width="16" height="16" />
+                        </td>
+                        <td style="color: red">退回</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td2" width="50" onclick="ms_showBoard('contents',1)" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table12" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\printer.ico" width="16" height="16" />
+                        </td>
+                        <td>打印</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="5">
+                  <span class="handin"></span>
+                </td>
+                <td nowrap="" class="coolButton" id="btnexam" width="50" onclick="ms_showBoard('contents',2);CreateOpionTable()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" title="检查序号是否连续、借贷是否平衡等现象" cellspacing="0" cellpadding="0" id="table13" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\spellcheck.gif" />
+                        </td>
+                        <td>校验</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td3" width="50" onclick="window.open('calc.htm','','width=530,height=360,left=0,top=0,menubar=no')
+                    " onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table3" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\calculator.png" width="16" height="16" />
+                        </td>
+                        <td>计算</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td6" width="50" onclick="_showwb();" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" title="显示币种" cellspacing="0" cellpadding="0" id="table7" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\money_dollar.png" width="16" height="16" />
+                        </td>
+                        <td>外币</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td4" width="50" onclick="_balance();" onmouseover="this.className='button1'" 
+                onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" title="将当前会计凭证登记到各相关账簿中。经过登账处理后的凭证将成为历史凭证，不允许进行修改。" cellspacing="0" cellpadding="0" id="table4" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\folder_database.png" width="16" height="16" />
+                        </td>
+                        <td>登帐</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td5" width="80" onclick="_exchange();" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" title="将本期会计凭证中各分录登记到各相关账簿中。经过登账处理后的凭证将成为历史凭证，不允许进行修改。" cellspacing="0" cellpadding="0" id="table5" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\folder_table.png" width="16" height="16" />
+                        </td>
+                        <td>批量登帐</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                
+                <td width="13">
+                  <span class="handin"></span>
+                </td>
+                <td width="43%" align="right">
+                  <table border="0" cellpadding="0" style="width:206px">
+                    <tbody>
+                      <tr>
+                        <td width="16">
+                          <button id="navfirst" onclick="_query('first');">
+                            <img src="images/MoveFirstHS.gif" />
+                          </button>
+                        </td>
+                        <td width="16">
+                          <button id="navprev" onclick="_query('prev');">
+                            <img src="images//MovePrevious.gif" />
+                          </button>
+                        </td>
+                        <td align="center">
+                          <INPUT dataFld="单号" dataSrc="#MasterTab" type="text" size="5" name="姓名2" />
+                        </td>
+                        <td width="16">
+                          <button id="navnext" onclick="_query('next');">
+                            <img src="images//MoveNextHS.gif" />
+                          </button>
+                        </td>
+                        <td width="16">
+                          <button id="navlast" onclick="_query('last');">
+                            <img src="images//MoveLastHS.gif" />
+                          </button>
+                        </td>
+                        <td width="32"></td>
+                        <td width="64" title="从货品清单中查找"></td>
+                        <td width="64" title="从货品清单中查找"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="10">
+                  <span class="handin"></span>
+                </td>
+                <td nowrap="" class="coolButton" id="btnquit" width="52" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" onclick="winclose();">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table14" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\door.gif" width="16" height="16" />
+                        </td>
+                        <td>退出</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="1%">　</td>
+              </tr>
+            </tbody>
+          </table>
+<table align="center" border="1" cellspacing="0" width="800" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt;" height="382"> 
+<tbody id="html">    
+<tr>    
+<th height="97" width="784" style="font-size: 10pt" align="left">
+　</th>    
+</tr>    
+</tbody>    
+<tbody id="xhtml">    
+</tbody>    
+<tfoot>    
+</tfoot>    
+</table>
+</body>
+
+</html>

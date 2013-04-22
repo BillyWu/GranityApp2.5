@@ -1,0 +1,81 @@
+TD {
+	FONT-SIZE: 12px; FONT-FAMILY: "Tahoma"
+}
+.font {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #003366; PADDING-TOP: 8px; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: none
+}
+.font-2 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 12px; PADDING-BOTTOM: 5px; COLOR: #003366; LINE-HEIGHT: 120%; PADDING-TOP: 5px; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: none
+}
+.calendar {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.calendarToday {
+	BORDER-RIGHT: #993300 1px solid; BORDER-TOP: #993300 1px solid; BORDER-LEFT: #993300 1px solid; COLOR: #666666; BORDER-BOTTOM: #993300 1px solid; TEXT-ALIGN: center
+}
+A.calDayLink:link {
+	COLOR: #0000ff
+}
+A.calDayLink:visited {
+	COLOR: #0000ff
+}
+A.calDayLink:hover {
+	FONT-SIZE: 12px; COLOR: #ff0000
+}
+.font-red {
+	PADDING-RIGHT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #990000; FONT-FAMILY: "Tahoma"
+}
+.font-black {
+	PADDING-LEFT: 5px; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 120%; PADDING-TOP: 5px; FONT-FAMILY: "Tahoma"
+}
+.font-black-2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #000000; FONT-FAMILY: "Tahoma"
+}
+.textfield {
+	FONT-SIZE: 12px; WIDTH: 150px; COLOR: #333333; FONT-FAMILY: "Tahoma"; HEIGHT: 20px
+}
+.textarea {
+	FONT-SIZE: 12px; WIDTH: 400px; COLOR: #333333; LINE-HEIGHT: 120%; FONT-FAMILY: "Tahoma"; HEIGHT: 200px
+}
+.textfield2 {
+	FONT-SIZE: 12px; WIDTH: 100px; COLOR: #333333; FONT-FAMILY: "Tahoma"; HEIGHT: 20px
+}
+A:link {
+	FONT-SIZE: 12px; COLOR: #003366; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 12px; COLOR: #003366; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: none
+}
+A:active {
+	FONT-SIZE: 12px; COLOR: #990000; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: none
+}
+A.url:link {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #003366; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: none
+}
+A.url:visited {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #003366; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: none
+}
+A.url:active {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ff0000; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: none
+}
+A.url:hover {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; FONT-FAMILY: "Tahoma"; TEXT-DECORATION: underline
+}
+.font-24 {
+	FONT-WEIGHT: bold; FONT-SIZE: 20px; FILTER: Glow(Color=#dddddd, Strength=2); COLOR: #003366; TEXT-DECORATION: none
+}
+.link {
+	FONT-SIZE: 18px; COLOR: #003366; TEXT-DECORATION: none
+}
+.tahoma {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "Tahoma"
+}
+.hilite1 {
+	BACKGROUND-COLOR: #ff0
+}
+.hilite2 {
+	BACKGROUND-COLOR: #f0f
+}
+.hilite3 {
+	BACKGROUND-COLOR: #0ff
+}

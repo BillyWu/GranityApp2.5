@@ -1,0 +1,206 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <title></title>
+    <base target="_self" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/times.js" type="text/javascript" charset="gb2312"></script>
+
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/hmstyle.css" type="text/css" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+
+    <link id="cssGlobe" href="../html/skin/globle.css" type="text/css" rel="stylesheet" />
+    <link href="../html/skin/skin_gold.css" rel="stylesheet" type="text/css" id="lnkSkin" />
+
+    <script type="text/javascript">
+      var mband,tband,hband;
+      var banzhitype="";
+      function initWin()
+      {
+            mband = $band("班制定义");if(!mband){alert("项目：班制配置错误！");return;}
+            $loading();
+            mband.gridtype = 8; mband.freecols = "名称";mband.title = "";mband.minwidth = "60px";mband.editdict=true;
+            if(!mband.Grid) var Grid = new XGrid("dvmband",mband,"in",null,1);      
+            mband.XQuery();
+            $loading("none");
+            
+            var ob=$band("班制定义");
+            ob.XQuery();
+            ob.minwidth=100;ob.colnum = 3;ob.startpos=0;ob.endpos=5;ob.pwcols="";
+            YPanel("班制定义","divClass",null,1,null,null,60);  
+         
+            var ob=$band("班制明细");
+            ob.minwidth = "80px";
+            ob.freecols = "日期序号";
+            ob.gridtype = 8;
+            ob.Asyn=true;
+            ob.hasGrid=true;
+            ob.merges="@打卡1=上班1,下班1;@打卡2=上班2,下班2;@有效性(分)=上班有效,下班有效;@早退时效(分)=允许早退,早退限制;@迟到时效(分)=允许迟到,迟到限制"
+            var Grid = new XGrid("divClassDetial",ob,"in",null,1);
+            ob.XQuery();
+            //grid行改变事件
+            ob.AfterRowChanged = function()
+            {
+              var bctype=$band("班制定义").getFldStrValue("班次日期类别");
+              banzhitype=bctype;
+              var divMessage=document.getElementById("divMessage")  
+              switch(bctype)
+               {
+                 case "天":
+                    divMessage.innerText="时间格式：1，2，3，4,5.....不允许重复;确保序号的连续性,不得跳过某一天";
+                    break;
+                 case "星期":
+                    divMessage.innerText="时间格式：星期一，星期二，星期三，星期四，星期五，星期六，星期日，星期一......循环添加";
+                    break;
+                 case "月":
+                    divMessage.innerText="时间格式：当前日期，只能添加一条记录，否则无法生成排班";
+                    break;
+               }            
+              divMessage.style.color="red" 
+            }  
+      }
+    
+      function add() { 
+          var state= setTimeNum();
+          if(state==true)
+             ue_bandadd(); 
+      }
+       //添加数据前事件
+      function ts_Afteradd()
+      {
+          var state= setTimeNum();
+          return state;
+      }
+      function setTimeNum()
+      {  
+         var band= $band("班制明细");
+         switch(banzhitype)
+             {
+                 case "天":
+                     band.setFldStrValue(band.RecordCount()-1, "日期序号",band.RecordCount());  
+                     break; 
+                 case "月":
+                      band.setFldStrValue(band.RecordCount()-1, "日期序号",1);  
+                      break; 
+                 case "星期":
+                      var week=$band("班制明细").getFldStrValue("日期序号",band.RecordCount()-2);
+                   
+                      if(band.RecordCount()==1)
+                         {
+                            band.setFldStrValue(0, "日期序号","星期一"); 
+                         } 
+                         else
+                         {
+                            band.setFldStrValue(band.RecordCount()-1, "日期序号",CreateWeek(week)); 
+                         }
+                      break;
+                 default :
+                      band.setFldStrValue(0, "日期序号",1);  
+                      break;
+             }
+          return true;
+      }
+      function CreateWeek(week)
+      { 
+        var returnweek="";
+        switch(week)
+             {
+                 case "星期一":
+                      returnweek="星期二";
+                     break;
+                 case "星期二":
+                     returnweek="星期三";
+                     break;
+                 case "星期三":
+                      returnweek="星期四";
+                     break;
+                 case "星期四":
+                     returnweek="星期五";
+                     break;
+                 case "星期五":
+                     returnweek="星期六";
+                     break;
+                 case "星期六":
+                      returnweek="星期日";
+                      break;
+                 default:
+                      returnweek="星期一";
+                      break;
+              }
+        return returnweek;
+      }
+      
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20; width: 100%; background-image: url('images/bg-shd.png');">
+    </div>
+    <div style="height: 89%; width: 25%; float: left">
+        &nbsp;<div id="dvmband" style="width: 100%; height: 100%">
+        </div>
+    </div>
+    <div style="height: 85%; width: 74%; float: right">
+        <table id="mainTable" border="0" cellpadding="0" style="border-collapse: collapse;
+            width: 100%; height: 50%">
+            <tbody>
+                <tr>
+                    <td style="height: 65px; text-align: center">
+                        <fieldset style="padding: 2px; width: 98%; text-align: left">
+                            <legend>班制定义 </legend>
+                            <div id="divClass" style="height: 40; text-align: center">
+                            </div>
+                        </fieldset>
+                        <div id="divMessage" style="height: 10; text-align: center">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">
+                        <fieldset style="padding: 5px; width: 98%; height: 96%; text-align: left">
+                            <legend>班制明细 </legend>
+                            <div id="divClassDetial" style="height: 390; text-align: center">
+                            </div>
+                        </fieldset>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("班制定义")</script>
+
+</body>
+</html>

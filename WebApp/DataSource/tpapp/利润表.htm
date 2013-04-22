@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/tmpjs/report.js" type="text/javascript" charset="gb2312"></script>
+		<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" />
+	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+		<style type="text/css">
+		.sec1 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.sec2 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.sec3 {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.secx {BORDER-RIGHT: gray 0 solid; BORDER-TOP: #ffffff 0px solid;FONT-SIZE: 12px; BORDER-LEFT: #ffffff 0px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+		</style>
+		<script language="javascript" type="text/javascript">
+		<!--
+			window.onload=WinLoadUtil.MDTPLoad;
+		-->	
+		</script>
+	</head>
+
+	<body>
+	
+				                    <table border="1" cellspacing="0" width="100%" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt">
+										<tr>
+											<td width="99%" height="18">
+											　会计年度:<select id="syear" size="1" class="tselect" style="WIDTH:100;" name="">
+					<option value=""></option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>				
+					</select>　会计期间:<select id="startmonth" size="1" class="tselect"  style="WIDTH:100;" name="">
+					<option value=""></option>
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>																									
+					</select>【<a href="#" class="linkbtn_0" onclick="_build('利润表结构')">确定</a>】
+											</td>
+										</tr>
+										</table>
+										<Control class="" catalog="GridLand.ascx" itemname="利润表结构" id="MTab" name="">MTab
+											<Property name="tpfile" value="" />
+												<Property name="width" value="797px" /><Property name="height" value="440px" /><Property name="hiddenhead" value="false" />
+												<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+											</Control>
+										<Control class="" catalog="GridLand.ascx" itemname="科目月数据" id="DTab" name="">DTab
+											<Property name="tpfile" value="" />
+												<Property name="width" value="0" /><Property name="height" value="0" />
+												<Property name="hiddenhead" value="false" />
+												<Property name="ctrlalert" value="s_code" />
+												<Property name="hiddengrid" value="true" />
+											</Control>											</body>
+</html>

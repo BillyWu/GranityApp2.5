@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+		<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" /><link /><link /><link></link>
+		<link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" /><link /><link /><link></link>
+	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+		<script language="javascript" type="text/javascript">
+			window.onload=WinLoadUtil.MDTPLoad;
+		</script>
+	</head>
+
+	<body>
+	<p style="MARGIN-BOTTOM: -10px"><br />
+	</p>
+	
+	<table align="center" style="WIDTH: 98%; BORDER-COLLAPSE: collapse; HEIGHT: 98%" id="table10" cellSpacing="0" cellPadding="0" border="1">
+	<tbody>
+	<tr>
+		<td style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial; height: 23px" vAlign="middle" bgColor="gray" colSpan="3" rowSpan="1">
+		 <font color="white"><strong>　货品类别管理 </strong></font></td>
+	</tr>
+	<tr>
+		<td style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" vAlign="top" align="left">
+		<table style="BORDER-COLLAPSE: collapse; HEIGHT: 413px" id="table11" height="415" cellSpacing="0" cellPadding="0" width="380" border="0">
+			<tbody>
+			<tr>
+				<td style="width: 74px; height: 24px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" vAlign="top" background="images/bkgray.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体">
+				<input class="xlandinput" style="WIDTH: 71; height:20" size="15" name="" id="findtext" /></font></td>
+				<td style="width: 52px; height: 24px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" background="images/bkgray.gif" bgColor="buttonface" align="left">
+				<font face="宋体" size="2">【<a href="#" onclick="ue_bandTreeSearch(findtext.value,'下一个'==this.value,'treeland');this.value='下一个';">查询</a>】</font></td>
+				<td style="font-size: 10.5pt; width: 25px; color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" background="images\bkgray.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='images/treeadd-over.gif'" onmouseover="this.src='images/treeadd-over.gif'" 
+				onmouseout="this.src='images/treeadd.gif'" onmousedown="this.src='images/treeadd-down.gif'" 
+				onclick="TreeUtil.addNode('treeland',false)" height="24" alt="增加同级节点" src="images/treeadd.gif" width="22" border="0" /> 
+				</font> 
+				</td>
+				<td style="font-size: 10.5pt; width: 29px; color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" background="images\bkgray.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='images/treeadds-over.gif'" onmouseover="this.src='images/treeadds-over.gif'" onmouseout="this.src='images/treeadds.gif'" onmousedown="this.src='images/treeadds-down.gif'" onclick="TreeUtil.addNode('treeland',true)" height="24" alt="增加下级节点" src="images/treeadds.gif" width="22" border="0" /> 
+				</font> 
+				</td>
+				<td style="font-size: 10.5pt; width: 34px; color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" background="images\bkgray.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='images/del-over.gif'" onmouseover="this.src='images/del-over.gif'" onmouseout="this.src='images/del.gif'" onmousedown="this.src='images/del-down.gif'" onclick="TreeUtil.deleteNode('treeland')" height="24" alt="删除当前节点" src="images/del.gif" width="23" border="0" /> 
+				</font> 
+				</td>
+				<td style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" align="left" width="52" background="images\bkgray.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img id="downnode" onmouseup="this.src='images/down-over.gif'" onmouseover="this.src='images/down-over.gif'" onmouseout="this.src='images/down.gif'" onmousedown="this.src='images/down-down.gif'" onclick="TreeUtil.moveDown('treeland')" height="24" src="images/down.gif" width="22" border="0" />
+				<img id="upnode" onmouseup="this.src='images/up-over.gif'" onmouseover="this.src='images/up-over.gif'" onmouseout="this.src='images/up.gif'" onmousedown="this.src='images/up-down.gif'" onclick="TreeUtil.moveUp('treeland')" height="24" src="images/up.gif" width="20" border="0" /> 
+				</font> 
+				</td>
+				<td style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" align="left" width="68" background="images\bkgray.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">【<a href="#" onclick="ue_save()">保存</a>】</font></td>
+			</tr>
+			<tr>
+				<td vAlign="top" colSpan="7" align="center">
+				<Control class="" catalog="TreeLand.ascx" itemname="项目设置" id="treeland" name="">treeland<Property name="tpfile" value="" />
+					                                                <Property name="width" value="98%" /><Property name="height" value="450" />
+					                                                <Property name="ctrlalert" value="s_code" />
+					                                                <Property name="trvfld" idfld="ID" pidfld="PID" txtfld="name" orderfld="序号" />
+				                                                </Control>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+		<td style="font-size: 10.5pt; width: 438px; color: #333333; font-family: 宋体, Arial" vAlign="top" align="left" colSpan="2">
+		<table style="WIDTH: 100%; BORDER-COLLAPSE: collapse; HEIGHT: 413px" id="table13" height="413" cellPadding="0" width="419" border="0">
+			<tbody>
+			<tr>
+				<td style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial; height: 24px" width="393" background="images/bkgray-s.gif">
+				　　　<font size="2">详细信息:</font> </td>
+			</tr>
+			<tr>
+				<td style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" vAlign="top" height="300">
+				 
+				<table style="HEIGHT: 215px" id="table14" class="up" cellSpacing="0" cellPadding="0" align="center" border="0">
+					<tbody>
+					<tr>
+						<td vAlign="middle" align="center" style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial">
+						<div align="center">
+							<center>
+							<table style="WIDTH: 342px; HEIGHT: 159px" id="table15" width="342">
+								<tbody>
+								<tr>
+									<td style="width: 106px; height: 37px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="right" width="106" height="37">
+									名称：</td>
+									<td style="height: 37px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="left" width="312" colSpan="1" height="37">
+					<INPUT datasrc="#treeland" datafld="名称" class="xlandinput" style="BORDER-RIGHT:#eae8e4 1px solid; PADDING-RIGHT:0px; BORDER-TOP:#eae8e4 1px solid; PADDING-LEFT:0px; PADDING-BOTTOM:0px; BORDER-LEFT:#eae8e4 1px solid; WIDTH:90%; PADDING-TOP:0px; BORDER-BOTTOM:#eae8e4 1px solid; HEIGHT:18px" type="text" size="11" name="姓名" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td style="width: 106px; height: 37px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="right" width="106" height="37">
+									代码：</td>
+									<td style="height: 37px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="left" width="312" colSpan="1" height="37">
+					<INPUT datasrc="#treeland" datafld="code" class="xlandinput" style="BORDER-RIGHT:#eae8e4 1px solid; PADDING-RIGHT:0px; BORDER-TOP:#eae8e4 1px solid; PADDING-LEFT:0px; PADDING-BOTTOM:0px; BORDER-LEFT:#eae8e4 1px solid; WIDTH:90%; PADDING-TOP:0px; BORDER-BOTTOM:#eae8e4 1px solid; HEIGHT:18px" type="text" size="11" name="姓名1" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td style="width: 106px; height: 37px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="right" width="106" height="37">
+									上级代码：</td>
+									<td style="height: 37px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="left" width="312" colSpan="1" height="37">
+					<INPUT datasrc="#treeland" datafld="pcode" class="xlandinput" style="BORDER-RIGHT:#eae8e4 1px solid; PADDING-RIGHT:0px; BORDER-TOP:#eae8e4 1px solid; PADDING-LEFT:0px; PADDING-BOTTOM:0px; BORDER-LEFT:#eae8e4 1px solid; WIDTH:90%; PADDING-TOP:0px; BORDER-BOTTOM:#eae8e4 1px solid; HEIGHT:18px" type="text" size="11" name="姓名2" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td style="width: 106px; height: 35px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" vAlign="middle" align="right">
+									编码：</td>
+									<td style="height: 35px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" vAlign="middle" align="left">
+									 <INPUT datasrc="#treeland" datafld="编码" class="xlandinput" style="BORDER-RIGHT:#eae8e4 1px solid; PADDING-RIGHT:0px; BORDER-TOP:#eae8e4 1px solid; PADDING-LEFT:0px; PADDING-BOTTOM:0px; BORDER-LEFT:#eae8e4 1px solid; WIDTH:90%; PADDING-TOP:0px; BORDER-BOTTOM:#eae8e4 1px solid; HEIGHT:18px" type="text" size="11" name="姓名5" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td style="width: 106px; height: 35px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" vAlign="middle" align="right">
+									执行标准：</td>
+									<td style="height: 35px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" vAlign="middle" align="left" colSpan="1">
+									 <INPUT datasrc="#treeland" datafld="执行标准" class="xlandinput" style="BORDER-RIGHT:#eae8e4 1px solid; PADDING-RIGHT:0px; BORDER-TOP:#eae8e4 1px solid; PADDING-LEFT:0px; PADDING-BOTTOM:0px; BORDER-LEFT:#eae8e4 1px solid; WIDTH:90%; PADDING-TOP:0px; BORDER-BOTTOM:#eae8e4 1px solid; HEIGHT:18px" type="text" size="11" name="姓名6" /></td>
+								</tr>
+								<tr>
+									<td style="width: 106px; height: 29px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" width="106" align="right">
+									是否有效：</td>
+									<td style="height: 29px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial">
+					<input type="checkbox" dataSrc="#treeland" dataFld="独立管理" style="border:0" class="xlandinput" name="C1" value="ON" /></td>
+								</tr>
+								<tr>
+									<td style="width: 106px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" width="106" height="21" align="right">摘要：</td>
+									<td height="21" style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial">
+									<INPUT datasrc="#treeland" datafld="摘要" class="xlandinput" style="BORDER-RIGHT:#eae8e4 1px solid; PADDING-RIGHT:0px; BORDER-TOP:#eae8e4 1px solid; PADDING-LEFT:0px; PADDING-BOTTOM:0px; BORDER-LEFT:#eae8e4 1px solid; WIDTH:90%; PADDING-TOP:0px; BORDER-BOTTOM:#eae8e4 1px solid; HEIGHT:18px" type="text" size="11" name="姓名4" /></td>
+								</tr>
+							</tbody>
+							</table>
+							</center></div>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="font-size: 10.5pt; color: #333333; font-family: 宋体, Arial">　</td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+</tbody>
+</table>
+	</body>
+</html>

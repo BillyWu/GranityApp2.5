@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonAdv.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usDate.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/tmpjs/msjs.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/tmpjs/pznav.js" type="text/javascript" charset="gb2312"></script>
+<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+
+</head>
+<body>
+
+		  <p style="MARGIN-BOTTOM: -8px"><br /></p>
+<table border="0" width="800" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align="center" height="70">
+	<tbody>
+	<tr>
+		<td align="left" style="width:14%;height:59px" valign="baseline">
+		<div align="center">
+		<img alt="" style="border:0 none;" src="sx_welcome.gif" /></div>
+		</td>
+		<td align="left" style="width:84%;height:59px; font-size:10pt" valign="baseline">
+		<table width="690" id="table1" border="0" style="border-collapse: collapse; WORD-BREAK: break-all; left:312px; top:19px" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="29">
+			<tbody>
+<tr id="filterperson">
+				<td width="66" align="right">日　期：</td>
+				<td align="right" width="93">
+					<input class="inputdate" id="filterfldlfow" filter="and" exp=">=" style="WIDTH:100%; height:19" size="18" name="收件日期" /></td>
+				<td align="center" width="21">
+					～</td>
+				<td align="right" width="94">
+					<input class="inputdate" id="filterfldlfow" filter="and" exp="&lt;=" style="WIDTH: 100%; height:19" size="18" name="收件日期" /></td>
+				<td align="right" width="87">
+					年：　</td>
+				<td align="right" width="1">
+				<input id="sym" type="text" style="WIDTH: 1;display:none; height:21" name="convert(varchar(8),收件日期,120)" /></td>
+				<td width="61"><select class="tselect" id="syear" size="1" style="border:1px solid #779FD6;WIDTH:100%;" name="">
+					<option value=""></option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>				
+					</select></td>
+				<td align="right" width="32">
+					月：</td>
+				<td align="right" width="114"><select id="smonth" size="1" style="border:1px solid #779FD6;WIDTH:100%;" name="">
+					<option value=""></option>
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>																									
+					</select></td>
+				<td align="center" width="22"><img border="0" src="Images/tb16.gif" width="22" height="22" onclick="_filter()" onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" /></td>
+				<td align="center" >【<a href="#" onclick="_myrefresh()">复位</a>】</td>
+			</tr>			
+<tr id="filterperson">
+				<td width="66" align="right">凭证号：</td>
+				<td colspan="3">
+					<input class="tinput" id="filterfldlfow" filter="and" style="WIDTH: 98%; height:19" size="18" name="编号" /></td>
+				<td align="right">
+					检索字：</td>
+				<td colspan="4" align="center">
+					<input class="tinput" filter="and" style="WIDTH: 96%;" size="18" name="编号;项目名称;当前状态" /></td>
+				<td align="center" width="22"><img border="0" src="Images/printer0.gif" width="22" height="22" onclick="ue_print()" onmouseover="this.src='Images/printer.gif'" onmouseout="this.src='Images/printer0.gif'" /></td>
+				<td align="center" width="64">【<a href="#" onclick="_close()">返回</a>】</td>
+			</tr>			
+			
+			
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" id="unittitle" valign="baseline" style="filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=gray, endColorStr='#FFFFFF', gradientType='1');width:98%;height:10px" colspan="2">
+		</td>
+	</tr>
+</tbody>
+</table><p style="MARGIN-BOTTOM: -22px"><br /></p>
+<div align="center" style="width:793px;height:167px">
+	<Control class="" catalog="GridLand.ascx" itemname="nav" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="ControlTemplate/ctrlnav.htm" />
+							<Property name="width" value="793px" /><Property name="height" value="380px" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+	</Control>
+　		<Control class="" catalog="GridLand.ascx" itemname="role" id="dbrole" name="">
+		role<Property name="tpfile" value="ControlTemplate/GridReadOnlySimA.htm" />
+		<Property name="width" value="0" /><Property name="height" value="0px" /><Property name="hiddenhead" value="false" />
+		<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>	
+　		<Control class="" catalog="GridLand.ascx" itemname="ifstart" id="ifstart" name="">
+		ifstart<Property name="tpfile" value="ControlTemplate/GridReadOnlySimA.htm" />
+		<Property name="width" value="0" /><Property name="height" value="0px" /><Property name="hiddenhead" value="false" />
+		<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>	
+　		<Control class="" catalog="GridLand.ascx" itemname="责任人" id="dbduty" name="">
+		duty<Property name="tpfile" value="ControlTemplate/GridReadOnlySimA.htm" />
+		<Property name="width" value="0" /><Property name="height" value="0px" /><Property name="hiddenhead" value="false" />
+		<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>		
+	<Control class="" catalog="GridLand.ascx" itemname="检测" id="dbtest" name="">
+		检测<Property name="tpfile" value="" />
+		<Property name="width" value="0" /><Property name="height" value="0px" /><Property name="hiddenhead" value="false" />
+		<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>	
+</div>	
+			</body>
+</html>

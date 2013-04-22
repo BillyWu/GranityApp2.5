@@ -1,0 +1,650 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>MaL</Author>
+  <LastAuthor>FtpDown</LastAuthor>
+  <LastPrinted>2011-06-15T06:55:55Z</LastPrinted>
+  <Created>2011-06-09T12:44:30Z</Created>
+  <LastSaved>2011-06-15T05:58:50Z</LastSaved>
+  <Company>ML</Company>
+  <Version>11.9999</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-6.4.0.1855</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>7920</WindowHeight>
+  <WindowWidth>15480</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s21" ss:Name="常规 2">
+   <Font x:Family="Swiss" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m19673902">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000" ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s24" ss:Parent="s21">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s28">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s29" ss:Parent="s21">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#333333" ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s30">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000" ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s31">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#339966"
+    ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s33" ss:Parent="s21">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s34" ss:Parent="s21">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s35">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s36">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#99CCFF"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s37">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s38">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#339966"
+    ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s39" ss:Parent="s21">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s40">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#FF6600"
+    ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s41">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s42">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000" ss:Bold="1"/>
+   <Interior/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="17" ss:ExpandedRowCount="21" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:AutoFitWidth="0" ss:Width="90.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="33.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="42.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="33.75" ss:Span="1"/>
+   <Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="42.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="33.75" ss:Span="1"/>
+   <Column ss:Index="9" ss:AutoFitWidth="0" ss:Width="42.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="33.75" ss:Span="1"/>
+   <Column ss:Index="12" ss:AutoFitWidth="0" ss:Width="42.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="33.75" ss:Span="1"/>
+   <Column ss:Index="15" ss:AutoFitWidth="0" ss:Width="42.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="33.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="69.75"/>
+   <Row ss:AutoFitHeight="0" ss:Height="27.75">
+    <Cell ss:MergeAcross="16" ss:StyleID="s24"><Data ss:Type="String">月/日统计表汇总</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="27" ss:StyleID="s28">
+    <Cell ss:StyleID="s29"><Data ss:Type="String">部门名称</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">晨餐次数</Data><Comment
+      ss:Author="FtpDown" ss:ShowAlways="1"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9"
+         html:Color="#000000">类型=数据&#10;数据表=参数表&#10;别名=p&#10;页范围=A1:Q21&#10;行范围=A1:Q21&#10;输出方式=行&#10;翻页模式=页</Font></B></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">晨餐金额(元)</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">小计(元)</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">早餐次数</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">早餐金额(元)</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">小计(元)</Data><Comment
+      ss:Author="FtpDown" ss:ShowAlways="1"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9"
+         html:Color="#000000">类型=数据&#10;数据表=部门消费汇总&#10;别名=a&#10;页范围=A3:Q21&#10;行范围=A3:Q3&#10;输出方式=行&#10;翻页模式=流</Font></B></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">午餐次数</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">午餐金额(元)</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">小计(元)</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">晚餐次数</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">晚餐金额(元)</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">小计(元)</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">夜餐次数</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">夜宵金额(元)</Data></Cell>
+    <Cell ss:StyleID="s29"><Data ss:Type="String">小计(元)</Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String">总计(元)</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s31">
+    <Cell ss:StyleID="s33"><Data ss:Type="String">{a.部门名称}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.晨餐次数}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.晨餐均额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.晨餐金额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.早餐次数}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.早餐均额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.早餐金额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.午餐次数}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.午餐均额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.午餐金额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.晚餐次数}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.晚餐均额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.晚餐金额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.夜宵次数}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.夜宵均额}</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="String">{a.夜宵金额}</Data></Cell>
+    <Cell ss:StyleID="s35"><Data ss:Type="String">{a.合计金额}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s36">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s37">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s37">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s36">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s37">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s37">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s38">
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s36">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s37">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s37">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s36">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s37">
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s37">
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s38">
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s38">
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s38">
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="22.5" ss:StyleID="s40">
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s34"/>
+    <Cell ss:StyleID="s35"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15.9375" ss:StyleID="s41">
+    <Cell ss:StyleID="s42"><Data ss:Type="String">备注:</Data></Cell>
+    <Cell ss:MergeAcross="15" ss:StyleID="m19673902"><Data ss:Type="String">以总务组为例:总务组=行政保卫部+公关配套部;行政保卫部=行政总务科+安全保卫科;公关配套部=公关科+配套科</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+    <Header x:Margin="0.29930555555555555"/>
+    <Footer x:Margin="0.29930555555555555"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.69930555555555562"
+     x:Right="0.69930555555555562" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <NoSummaryRowsBelowDetail/>
+   <NoSummaryColumnsRightDetail/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>256</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <DoNotDisplayGridlines/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>3</ActiveRow>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="0" ss:ExpandedRowCount="0" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5"/>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.29930555555555555"/>
+    <Footer x:Margin="0.29930555555555555"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.69930555555555562"
+     x:Right="0.69930555555555562" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <NoSummaryRowsBelowDetail/>
+   <NoSummaryColumnsRightDetail/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>256</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+    <NumberofCopies>0</NumberofCopies>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="0" ss:ExpandedRowCount="0" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5"/>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.29930555555555555"/>
+    <Footer x:Margin="0.29930555555555555"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.69930555555555562"
+     x:Right="0.69930555555555562" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <NoSummaryRowsBelowDetail/>
+   <NoSummaryColumnsRightDetail/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>256</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+    <NumberofCopies>0</NumberofCopies>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

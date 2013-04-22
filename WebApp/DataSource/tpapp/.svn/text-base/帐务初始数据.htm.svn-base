@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>    	
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    	<script language="javascript" type="text/javascript">
+    	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;
+		    function ms_CellBtnClick(oband,colname,colvalue)
+		    {
+		        //var xmlRow=oband.XmlLandData.XMLDocument.documentElement.childNodes[oband.XmlLandData.recordset.AbsolutePosition-1];
+		        //var xmlRowData=xmlRow.cloneNode(true);
+                //xmlRowData = window.showModalDialog("Template\\DlgPo.htm",xmlRowData,"dialogHeight: 200px; dialogWidth: 400px; edge: Raised; center: Yes; help: No; resizable: No; status: No;"); 
+                //if(!xmlRowData) return; 
+		        //oband.setFldStrValue(null,"备注",xmlRowData.selectSingleNode("备注").text);
+		        //oband.setFldStrValue(null,"供应商",xmlRowData.selectSingleNode("供应商").text);
+		        //oband.setFldStrValue(null,"发票号",xmlRowData.selectSingleNode("发票号").text);
+		        var rtn = oband.setModalContent("科目查询");
+		        if(!rtn) return;
+		        oband.setFldStrValue(null,colname,rtn);
+		    }
+            -->
+    	</script>
+    </head>
+	<body>
+	<table border="0" width="800" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align="center" height="70">
+	<tbody>
+	<tr>
+		<td align="left" style="width:14%;height:59px" valign="baseline">
+		<div align="center">
+		<img alt="" style="border:0 none;" src="sx_welcome.gif" /></div>
+		</td>
+		<td align="left" style="width:84%;height:59px; font-size:10pt" valign="baseline">
+		<table width="690" id="table1" border="0" style="border-collapse: collapse; WORD-BREAK: break-all; left:312px; top:19px" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="29">
+			<tbody>
+<tr id="filterperson">
+				<td width="548" colspan="2">【<a href="#" onclick="ms_finance(this.innerText,0)">资产类</a>】
+				【<a href="#" onclick="ms_finance(this.innerText,1)">负债类</a>】
+				【<a href="#" onclick="ms_finance(this.innerText,2)">权益类</a>】
+				【<a href="#" onclick="ms_finance(this.innerText,3)">成本类</a>】
+				【<a href="#" onclick="ms_finance(this.innerText,4)">损益类</a>】</td>
+				<td align="center" width="83"><img border="0" src="Images/tb16.gif" width="22" height="22" onclick="_filter()" onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" /><img border="0" src="Images/print.gif" width="22" height="22" onclick="ue_print()" onmouseover="this.src='Images/printover.gif'" onmouseout="this.src='Images/print.gif'" /></td>
+			</tr>			
+<tr id="filterperson">
+				<td width="68" >检索字：</td>
+				<td width="523">
+					<input class="tinput" filter="and" style="WIDTH: 99%;" size="18" name="编号;项目名称;当前状态" /></td>
+				<td align="center" width="83">【<a href="#" onclick="_myrefresh()">复位</a>】</td>
+			</tr>			
+			
+			
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" id="unittitle" valign="baseline" style="filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=gray, endColorStr='#FFFFFF', gradientType='1');width:98%;height:10px" colspan="2">
+		</td>
+	</tr>
+</tbody>
+</table>
+<p style="margin:1"></p>
+		<Control class="" catalog="GridLand.ascx" itemname="edit" id="MasterTab" name="">MasterTab
+		<Property name="tpfile" value="ControlTemplate/GridDefault.htm" />
+			<Property name="width" value="800" /><Property name="height" value="398" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+		</Control>
+</body>
+</html>

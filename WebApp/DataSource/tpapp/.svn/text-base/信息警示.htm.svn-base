@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+<script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/framefun.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" type="text/javascript">
+<!--
+	window.onload=WinLoadUtil.MDTPLoad;
+
+	function initWin()
+	{
+		window.setInterval(testMsg,18000);
+	}
+	function testMsg()
+	{
+		var band=document.UnitItem.getBandByItemName("信息警示");
+		band.Query();		
+	}
+	function showNew()
+	{
+		document.getElementById("dialogCase").style.display="";
+	}
+	
+	function diagclose()
+	{
+		document.getElementById("dialogCase").style.display="none";
+	}
+	
+-->
+</script>
+	<body>
+		<div align="center">
+			<TABLE style="BORDER:0px solid;" cellSpacing="0" cellPadding="0" width="63%" height="100%" border="0"><TBODY>
+			        <TR>
+			        <TD align="middle" width="40" bgColor="">
+					<p><font color="#FF0000">预警</font></p></TD>
+			        <TD align="middle">
+                                <MARQUEE id="today_news" onmouseover="this.stop()" onmouseout="this.start()" scrollAmount="1" scrollDelay="260" direction="up" width="650" height="40">
+			             <Control class="" catalog="GridLand.ascx" itemname="信息警示" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="ControlTemplate/LinkList.htm" />
+							<Property name="width" value="650px" /><Property name="height" value="40px" /><Property name="hiddenhead" value="true" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+						</Control>
+					</MARQUEE>	
+</TD></TR>
+			</TBODY></TABLE>
+		</div>
+		<!--温馨提示代码开始-->
+		<div id="dialogCase" style="display:none">
+<table style="BORDER-RIGHT: #000 1px solid; BORDER-TOP: #000 1px solid; Z-INDEX: 10; LEFT: 353px; BORDER-LEFT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; POSITION: absolute; TOP: 183px" cellSpacing="0" cellPadding="0" width="300" border="0">
+	<tbody>
+	<tr bgColor="#d6e3eb" height="1">
+		<td></td>
+	</tr>
+	<tr bgColor="#6795b4" height="25">
+		<td>
+		<table onselectstart="return false;" style="moz-user-select: none" cellSpacing="0" cellPadding="0" width="100%" border="0" id="table2">
+			<tbody>
+			<tr>
+				<td width="6">　</td>
+				<td id="dialogBoxTitle" style="FONT-WEIGHT: bold; FONT-SIZE: 12px; CURSOR: move; COLOR: #fff">
+				系统提示信息</td>
+				<td id="dialogClose" vAlign="center" align="right" width="27">
+				<IMG id="dialogBoxClose" onmouseout="this.src='Images/dialogClose0.gif';"  onmouseover="this.src='Images/dialogCloseF.gif';" onclick ="diagclose()" alt="关闭提示信息" src="images/dialogClose0.gif" border="0" />
+				</td>
+				<td width="6">　</td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr bgColor="#ededed" height="2">
+		<td></td>
+	</tr>
+	<tr id="dialogHeight" style="HEIGHT: 180px">
+		<td id="dialogBody" style="color: #000; background: #fff">
+		<table id="table3" cellSpacing="0" cellPadding="0" align="center" border="0">
+			<tbody>
+			<tr height="10">
+				<td colSpan="4">　</td>
+			</tr>
+			<tr>
+				<td width="10">　</td>
+				<td vAlign="absmiddle" align="middle" width="80">
+				<img id="dialogBoxFace" src="Images/3.gif" /></td>
+				<td id="dialogMsg" style="FONT-SIZE: 12px; COLOR: #000">
+				　　</td>
+				<td width="10">　</td>
+			</tr>
+			<tr height="10">
+				<td align="middle" colSpan="4">　</td>
+			</tr>
+			<tr>
+				<td id="dialogFunc" align="middle" colSpan="4">
+				<input id="dialogOk" style="width: 62px; line-height: 20px; height: 22px; border: 0px none; background: url('images/smb_btn_bg.gif'); " 
+				onclick="diagclose();" type="button" value="确认" act="void 0" />
+				<input id="dialogCancel" style="display: none; width: 62px; line-height: 20px; height: 22px; border: 0px none; background: url('images/smb_btn_bg.gif'); " onclick="new dialog().reset();" type="button" value="取消" /></td>
+			</tr>
+			<tr height="10">
+				<td align="middle" colSpan="4">　</td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+</tbody>
+</table>
+<div id="dialogBoxShadow" style="z-index: 9; filter: alpha(opacity=20); left: 359px; width: 300px; position: absolute; top: 189px; height: 210px; opacity: 0.2; background: #000">
+　</div>
+</div>
+        <Control class="" catalog="GridLand.ascx" itemname="消息提示" id="TabMsg" name="">TabMsg
+			<Property name="tpfile" value="ControlTemplate/LinkList.htm" />
+			<Property name="width" value="650px" /><Property name="height" value="40px" /><Property name="hiddenhead" value="true" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+		</Control>
+		<div style="display:none;" id="content">
+			<label datasrc="#TabMsg" datafld="消息" color="#FF0000">消息</label>
+		</div>
+	</body>
+</html>

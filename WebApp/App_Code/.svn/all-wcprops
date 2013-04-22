@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code
+END
+Global.asax.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/Global.asax.cs
+END
+WSBits.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/WSBits.cs
+END
+csPrintData.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/csPrintData.cs
+END
+PrintExcel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/PrintExcel.cs
+END
+csExcel2DB.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/csExcel2DB.cs
+END
+hdlDeviceMonitor.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/hdlDeviceMonitor.cs
+END
+hdlDownParam.cs
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/hdlDownParam.cs
+END
+csPrint.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/csPrint.cs
+END
+leofun.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/leofun.cs
+END
+JsonBuild.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/JsonBuild.cs
+END
+hdlWorkerMonitor.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/hdlWorkerMonitor.cs
+END
+srvWeather.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/App_Code/srvWeather.cs
+END

@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Estar.WebApp.XmlDataLand" CodeFile="XmlDataLand.aspx.cs" %>

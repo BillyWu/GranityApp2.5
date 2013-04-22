@@ -1,0 +1,301 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>更衣室监控</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usMenu.js" type="text/javascript" charset="gb2312"></script>
+
+    <script language="javascript" src="../hmjs/sysjs/usMenu.js" type="text/javascript"
+        charset="gb2312"></script>
+
+    <script type="text/javascript" charset="gb2312">
+
+	    function initWin()
+	    {
+            var ob=$band("道闸设备");
+            ob.Asyn=true;
+            ob.XQuery();
+            ob.AfterXQuery = function()
+            {
+	            var devs = "";
+	            for(var i=0,len=ob.RecordCount(); i<len; i++)
+	            {
+	                var dev = ob.getFldStrValue("控制器",i);
+	                if(devs.indexOf(dev)<0)
+	                    devs += ","+ dev;
+	            }
+	            if(!devs)
+	            {
+                    $loading("none");
+	                $U().Running = true;
+	                return;
+	            }
+	            $U().devices = devs.substr(1);
+	            $U().regionID = ob.getFldStrValue("区域ID");
+	            $U().dtrecord = ToolUtil.Post(null,"hdlDateNow.ashx");
+                $loading("none");
+            }
+            $band("巡检信息").XQuery();
+            $U().Running=false;
+            //2s周期执行获取巡检数据
+            setInterval(getrecord, 2000);
+	    }
+        function getrecord()
+        {
+            if($U().Running)
+                return;
+            $U().Running = true;
+            var devs = $U().devices;
+            var dtref = $U().dtrecord;
+            var ps ="cmd=getrecord&datatype=record"+"&devices="+devs;
+            ps = ps+"&dtUpdate="+dtref;
+            var xmlhttp = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx", recordCallback);
+            recordCallback.xmlhttp = xmlhttp;
+        }
+        function recordCallback()
+        {
+            if(!$U().Running)
+                return;
+	        if(4!=this.readyState)
+	            return;
+	        var msg = this.responseText;
+            var pos = msg.indexOf("<Row>");
+            if(pos>-1)
+            {
+                $U().dtrecord = ToolUtil.Post(null,"hdlDateNow.ashx");
+                writerecord(msg);
+            }
+            var ps ="cmd=getregionsum"+"&region="+$U().regionID;
+            var xmlhttp = ToolUtil.Post(ps,"hdlWorkerMonitor.ashx", rgsumCallback);
+            rgsumCallback.xmlhttp = xmlhttp;
+        }
+        function rgsumCallback()
+        {
+            if(!$U().Running)
+                return;
+	        if(4!=this.readyState)
+	            return;
+	        var msg = this.responseText;
+            var pos = msg.indexOf("<Row>");
+            if(pos>-1)
+            {
+                $U().dtrecord = ToolUtil.Post(null,"hdlDateNow.ashx");
+                writeregionsum(msg);
+            }
+            $U().Running = false;
+        }
+        //写入新记录
+        function writerecord(msg)
+        {
+            if(!msg)    return;
+            var pos = msg.indexOf("<Row>");
+            var band = $band("巡检信息");
+            var obdev= $band("道闸设备");
+            var col = {"Device":"控制器", "Dt":"时间", "Data":"数据"};
+            var info= {"{卡号}":"卡号", "{部门}":"部门", "{姓名}":"姓名", "{照片}":"照片", "{用户编号}":"用户编号", "读卡器":"读卡器", "控制器类型":"控制器类型", "{刷卡时间}":"刷卡时间", "区域":"工作区", "{进入时间}":"进入时间" , "状态":"状态"};
+            var rds = [];
+            var arhresp = document.getElementById("arhResponse");
+            //arhresp.value += "记录Row位置：" + pos + "\r\n";
+            while (pos > -1)
+            {
+                var obj = {};
+                for(var c in col)
+                {
+                    var is = msg.indexOf("<"+c+">");
+                    var ie = msg.indexOf("</"+c+">");
+                    obj[c] = msg.substring(is+c.length+2, ie);
+                }
+                pos = msg.indexOf("</Row>");
+                msg = msg.substr(pos+6);
+                pos = msg.indexOf("<Row>");
+                for(var c in info)
+                    obj[info[c]] = ToolUtil.valueTag(obj.Data ,c);
+                if(!obj["卡号"]) continue;
+                //arhresp.value += "记录内容：" + "卡号：" + obj["卡号"] + "， 时间：" + obj["刷卡时间"] + "\r\n";
+                if("进出口"==obj["控制器类型"] && ("2"==obj["读卡器"] || "3"==obj["读卡器"]))
+                    obj["出离时间"] = obj["刷卡时间"];
+                else if("出入口"==obj["控制器类型"] && ("0"==obj["读卡器"] || "1"==obj["读卡器"]))
+                    obj["出离时间"] = obj["刷卡时间"];
+                else
+                    obj["进入时间"] = obj["刷卡时间"];
+                if(!obj["出离时间"])
+                    obj["出离时间"] = null;
+                rds.push(obj);
+                //arhresp.value += "记录内容：" + "门—" + rd["门"] + " ## " + "卡号—" + rd["卡号"] + " ## " + "时间—" + rd["时间"] + "\r\n";
+                //arhresp.value += "\r\n记录Row位置：" + pos + "——" + msg + "\r\n";
+            }
+            //arhresp.value += "记录内容：" + "记录行数：" + rds.length + "\r\n";
+            if(rds.length<1)    return 0;
+            if(band.RecordCount()<1)
+                band.NewRecord(0);
+            var rd = rds[rds.length-1];
+            if(rd["照片"])  rd["照片"] = "../DataSource/resources/images/"+rd["照片"];
+            for(var f in rd)
+                band.setFldStrValue(0, f, rd[f]);
+            return rds.length;
+        }
+        //写入新记录
+        function writeregionsum(msg)
+        {
+            if(!msg)    return;
+            var pos = msg.indexOf("<Row>");
+            var band = $band("巡检信息");
+            var col = {"Dept":"部门ID", "Dt":"时间", "Data":"数据"};
+            var info= {"注册人员":"注册人员", "入内人员":"入内人员"};
+            var rds = [];
+            var arhresp = document.getElementById("arhResponse");
+            //arhresp.value += "记录Row位置：" + pos + "\r\n";
+            while (pos > -1)
+            {
+                var obj = {};
+                for(var c in col)
+                {
+                    var is = msg.indexOf("<"+c+">");
+                    var ie = msg.indexOf("</"+c+">");
+                    obj[c] = msg.substring(is+c.length+2, ie);
+                }
+                pos = msg.indexOf("</Row>");
+                msg = msg.substr(pos+6);
+                pos = msg.indexOf("<Row>");
+                for(var c in info)
+                    obj[info[c]] = ToolUtil.valueTag(obj.Data ,c);
+                if(!obj["注册人员"]) continue;
+                rds.push(obj);
+                //arhresp.value += "记录内容：" + "门—" + rd["门"] + " ## " + "卡号—" + rd["卡号"] + " ## " + "时间—" + rd["时间"] + "\r\n";
+                //arhresp.value += "\r\n记录Row位置：" + pos + "——" + msg + "\r\n";
+            }
+            //arhresp.value += "记录内容：" + "记录行数：" + rds.length + "\r\n";
+            if(rds.length<1)    return 0;
+            if(band.RecordCount()<1)
+                band.NewRecord(0);
+            var rd = rds[rds.length-1];
+            for(var f in rd)
+                band.setFldStrValue(0, f, rd[f]);
+            return rds.length;
+        }
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');">
+    </div>
+    <table border="0" style="width: 100%; height: 100%;">
+        <tr>
+            <td align="center" valign="top">
+                <fieldset style="padding: 5px; width: 400; height: 240">
+                    <legend id="tbars" style="margin-bottom: 5">员工信息</legend>
+                    <table border="0" style="width: 100%; height: 100%;">
+                        <tr>
+                            <td>
+                                <span style="text-align: right; width: 60">员工姓名：</span>
+                                <input style="text-align: left; width: 120px" class="xlandinput" readonly="readonly" dataSrc="#巡检信息Tab" dataFld="姓名"/>
+                            </td>
+                            <td rowspan="6" valign="top" style="padding-top:5;">
+                                <img style="width: 160;height:200;" dataSrc="#巡检信息Tab" dataFld="照片"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="text-align: right; width: 60px">员工编号：</span>
+                                <input style="text-align: left; width: 120px" class="xlandinput" readonly="true" dataSrc="#巡检信息Tab" dataFld="用户编号"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="text-align: right; width: 60px">所属部门：</span>
+                                <input style="text-align: left; width: 120px" class="xlandinput" readonly="true" dataSrc="#巡检信息Tab" dataFld="部门"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr style="width:90%;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="text-align: right; width: 60px">进入时间：</span>
+                                <input style="text-align: left; width: 120px" class="xlandinput" readonly="true" dataSrc="#巡检信息Tab" dataFld="进入时间"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="text-align: right; width: 60px">外出时间：</span>
+                                <input style="text-align: left; width: 120px" class="xlandinput" readonly="true" dataSrc="#巡检信息Tab" dataFld="出离时间"/>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <fieldset style="padding: 5px; width: 240; height: 240">
+                    <legend id="Legend1" style="margin-bottom: 5">区域概况</legend>
+                    <table border="0" style="width: 100%; height: 100%;">
+                        <tr>
+                            <td>
+                                <span style="text-align: right; width: 60">工作区：</span>
+                                <input style="text-align: left; width: 120px" class="xlandinput" readonly="true" dataSrc="#巡检信息Tab" dataFld="工作区" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="text-align: right; width: 60">注册人数：</span>
+                                <input style="text-align: left; width: 120px" class="xlandinput" readonly="true" dataSrc="#巡检信息Tab" dataFld="注册人员" />
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="text-align: right; width: 60px">进入人数：</span>
+                                <input style="text-align: left; width: 120px" class="xlandinput" readonly="true" dataSrc="#巡检信息Tab" dataFld="入内人员"/>
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </table>
+                </fieldset>
+                <textarea id="arhResponse" style="width: 98%; height: 30; display: none;"></textarea>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("更衣室监控")</script>
+
+</body>
+</html>

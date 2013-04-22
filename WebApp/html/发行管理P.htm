@@ -1,0 +1,532 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>用户管理</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+    <script type="text/javascript">
+        function initWin()
+        {
+            var mband=$band("用户选择");
+            mband.freecols = "";
+            mband.gridtype = 61;
+            //mband.title = "系统配置表";
+            mband.Asyn=true;
+            mband.hasGrid=true;
+            var Grid = new XGrid("dvgrid",mband,"in");
+            ueSetPage("卡号=''",mband);
+            mband.XQuery();
+            mband.AfterXQuery = function()
+            {
+                $loading("none");
+                var ob=$band("用户选择");
+                ob.minwidth=90;ob.colnum = 3;ob.startpos=0;ob.endpos=6;ob.pwcols="";
+                YPanel("用户选择","divUses",null,1,"",null,90); 
+            }
+            var ob=$band("发行");
+            ob.AfterXQuery = function()
+            {
+                var ob=$band("发行");
+                ob.minwidth=80;ob.colnum = 3;ob.startpos=0;ob.endpos=5;ob.pwcols="";ob.hr="基本信息：";
+                YPanel("发行","dvinfo",null,1,"",null,80);
+                
+                ob.startpos=5;ob.endpos=8;ob.hr="消费信息";
+                YPanel("发行","dvinfo1",null,1,null,null,80);
+                          
+                ob.minwidth=60;ob.startpos=8;ob.endpos=12;ob.colnum = 4;ob.hr="门禁信息";
+                YPanel("发行","dvinfo2",null,1,"",null,60);
+                ob.minwidth=80;ob.startpos=13;ob.endpos=21;ob.colnum = 3;ob.hr="车辆信息";
+                YPanel("发行","dvinfo3",null,1,null,null,80);
+            }
+            ob.XQuery(true);
+            var obcheck = $band("卡检测");
+            obcheck.Asyn = false;
+            //初始化协议
+            var banpublish = $band("串口发行器");
+            ToolUtil.setParamValue(banpublish.UnitItem.ParamXmldoc, "通讯协议", "RFID发行器", "", "P", null, "C");
+            banpublish.XQuery(true);
+            if( banpublish.RecordCount()<1)
+                alert("请首先维护该电脑串口连接的RFID发行器！");
+            else{
+                var comport = banpublish.getFldStrValue("串口");
+                var station = banpublish.getFldStrValue("站址");
+                var baut = banpublish.getFldStrValue("波特率");
+                var rtn = cardcmd.setRfTarget(comport, baut);
+                if(!rtn)
+                    alert("设置RFID发行器失败！");
+            }
+            ToolUtil.setParamValue(banpublish.UnitItem.ParamXmldoc, "通讯协议", "发行器", "", "P", null, "C");
+            banpublish.XQuery(true);
+            if( banpublish.RecordCount()<1)
+            {
+                alert("请首先维护该电脑串口连接的发行器！");
+                return;
+            }
+            var comport = banpublish.getFldStrValue("串口");
+            var station = banpublish.getFldStrValue("站址");
+            var baut = banpublish.getFldStrValue("波特率");
+            var rtn = setTPL(cardcmd);
+            if(!rtn){ alert("加载协议失败！");return;}
+            var isMakeIC= $("radic").checked;
+            cardcmd.IsCardIC = isMakeIC;
+            var rtn = cardcmd.setTarget(comport, baut, station, isMakeIC);
+            if(!rtn)
+                alert("设置发行器失败！");
+            else{
+                cardcmd.inited = true;
+                cardcmd.Buzz(true);
+            }
+            cardcmd.inthandle = setInterval("readCard()", 800);
+        }
+        
+        //设置协议,做初始化
+        function setTPL(cardcmd)
+        {
+            var tpllist = [ [ "卡务中心", "联机" ], [ "卡务中心", "防冲突" ], [ "卡务中心", "读卡" ], [ "卡务中心", "卡片停机" ],
+                            [ "卡务中心", "脱机" ], [ "卡务中心", "蜂鸣" ], [ "卡务中心", "选择卡" ], ["卡务中心", "防冲突"],
+                            ["一卡通", "写入发行"], ["一卡通", "读取发行"], ["一卡通", "写入消费权限"], ["一卡通", "读取消费权限"],
+                            ["一卡通", "写入大场权限"], ["一卡通", "读取大场权限"], ["一卡通", "读取消费金额"], ["一卡通", "写入消费金额"],
+                            ["卡务中心", "写数据"] ,
+                            ["攀钢一卡通", "写入员工帐号"], ["攀钢一卡通", "写入员工部门"], ["攀钢一卡通", "写入身份证号"],
+                            ["攀钢一卡通", "读取员工帐号"], ["攀钢一卡通", "读取员工部门"], ["攀钢一卡通", "读取身份证号"],
+                            ["攀钢一卡通", "写入人员卡号"], ["攀钢一卡通", "写入人员姓名"], ["攀钢一卡通", "写入人员单位"],
+                            ["攀钢一卡通", "读取人员卡号"], ["攀钢一卡通", "读取人员姓名"], ["攀钢一卡通", "读取人员单位"],
+                            ["攀钢一卡通", "写入车辆信息"], ["攀钢一卡通", "写入RFID信息"],
+                            ["攀钢一卡通", "读取车辆信息"], ["攀钢一卡通", "读取RFID信息"],
+                            ["攀钢一卡通", "读取物流信息"], ["攀钢一卡通", "写入物流状态"], ["攀钢一卡通", "读取物流状态"]];
+            for(var t=0; t<tpllist.length; t++)
+            {
+                var tpl = tpllist[t][0];
+                var cmd = tpllist[t][1];
+                var xmldoc = ue_ajaxdom("execute 通讯参数设置 '" + tpl + "','" + cmd + "'");
+                if(!xmldoc)  return false;
+                var xndevice = xmldoc.selectSingleNode("//table[type='协议']/pms");
+                if(!xndevice || !xndevice.text)
+                    return false;
+                var tagdevice = xndevice.text;
+                var taginput = "";
+                var xns = xmldoc.selectNodes("//table[type='Input']/pms");
+                for(var i=0; i<xns.length; i++)
+                    taginput += xns[i].text + ";";
+                var tagoutput = "";
+                var xns = xmldoc.selectNodes("//table[type='Output']/pms");
+                for(var i=0; i<xns.length; i++)
+                    tagoutput += xns[i].text + ";";
+                var rtn = cardcmd.setTpl(tpl, cmd, tagdevice, taginput, tagoutput);
+                if(!rtn)    return false;
+            }
+            return true;
+        }
+        //心跳并读取卡号
+        function readCard()
+        {
+            cardcmd.Beat();
+            var cardID = cardcmd.getCardSID();
+            var rfID = cardcmd.getRfID();
+            var isChanged = false;
+            if(cardcmd.cardID != cardID && cardID)
+            {
+                cardcmd.cardID = cardID;
+                cardcmd.rfID = rfID;
+                cardcmd.cardNUM = cardcmd.getCardNum();
+                cardcmd.cardSN  = cardcmd.getCardSN();
+                isChanged = true;
+            }
+            if(cardcmd.rfID !=rfID && "没有设置RF通讯设备"!=rfID && rfID)
+            {
+                cardcmd.rfID = rfID;
+                isChanged = true;
+            }
+            if( !isChanged )
+                return;
+            //跳到发卡信息数据记录
+            if($("ckFlowup").checked)
+                nextpublish();
+            else
+                findCardInfo();
+        }
+        function cardread()
+        {
+            var msg ="";
+            var band = $band("发行");
+
+            if (!cardcmd || !cardcmd.inited)
+                msg = "发行器初始化失败，不能发行卡片！";
+            else if (!cardcmd.cardID)
+                msg = "当前没有卡片！";
+            if(msg)
+            {
+                alert(msg);
+                return false;
+            }
+            var msg1 = cardcmd.ReadPUser();
+            var msg2 = cardcmd.ReadPVehicle();
+            alert([msg1,msg2]);
+        }
+        //IC卡写入卡信息
+        function cardmake()
+        {
+            var msg ="";
+            var band = $band("发行");
+            var cardnum = band.getFldStrValue("卡号");
+            var rfIDnum = band.getFldStrValue("RF卡号");
+            var cardorig= $band("用户选择").getFldStrValue("卡号");
+            var isMakeIC= $("radic").checked;
+            var isMakeRF= $("ckRF").checked;
+            var isEatery= $("ckEatery").checked;
+            var isDoor  = $("ckDoors").checked;
+            var isPark  = $("ckPark").checked;
+
+            if (!cardcmd || (isMakeIC && !cardcmd.inited))
+                msg = "发行器初始化失败，不能发行卡片！";
+            else if (isMakeIC && !cardcmd.cardID)
+                msg = "当前没有卡片！";
+            else if (isMakeRF && rfIDnum)
+                msg = "当前没有RF标签！";
+            else if (!cardnum)
+                msg = "请填写发行卡号！";
+            else if (cardorig && cardorig != cardnum)
+                msg = "员工已经发行过卡，重新发行需首先退卡！";
+            else if (!isEatery && !isPark && !isDoor)
+                msg = "请选择卡发行功能类型!";
+            else
+            {
+                ToolUtil.setParamValue($XD(), "卡号", cardnum, "", "P", null, "C");
+                var obcheck = $band("卡检测");
+                obcheck.XQuery(true);
+                if (obcheck.RecordCount() > 0 && cardorig != cardnum)
+                    msg = "此卡员工("+cardnum+"<"+obcheck.getFldStrValue("姓名")+">)已经发行，不能发行给其他员工！";
+            }
+            if(msg)
+            {
+                alert(msg);
+                return false;
+            }
+            band.setStateRecord("new");
+            band.setFldStrValue(null, "消费", isEatery?"消费":"");
+            band.setFldStrValue(null, "门禁", isDoor?  "门禁":"");
+            band.setFldStrValue(null, "停车场", isPark?"停车场":"");
+            if(!isMakeIC)
+            {
+                var cardid = bnad.getFldStrValue("卡片序列号");
+                if(!cardid)
+                {
+                    band.setFldStrValue(null, "卡片序列号", cardnum);
+                    band.setFldStrValue(null, "卡片SN", cardnum);
+                }
+                var success = ue_save("");
+                cardcmd.Buzz(success);
+                if(success && $("ckFlowup").checked)
+                    return true;
+                if(success)
+                {
+                    var band = $band("用户选择");
+                    band.setFldStrValue(null, "卡号", cardnum);
+                    band.setFldStrValue(null, "状态", "发行");
+                    band.setStateRecord("remove");
+                }
+                alert(success?"发卡失败！":"已经成功发行卡片！");
+                return success;
+            }
+            //IC卡发行并保存
+            var cardnum = band.getFldStrValue("卡号");
+            band.setFldStrValue(null, "用户编号", $band("用户选择").getFldStrValue("用户编号"));
+            var buser = $band("用户选择");
+            var name = buser.getFldStrValue("姓名");
+            var isman= buser.getFldStrValue("性别")=="男";
+            var usercode = buser.getFldStrValue("用户编号");
+            var idcardnum = buser.getFldStrValue("身份证");
+            var deptcode = buser.getFldStrValue("部门代码");
+            var orga = buser.getFldStrValue("地址");
+            var msg = cardcmd.WritePUser(cardnum, name, isman, usercode, idcardnum, deptcode, orga);
+            if("true"==ToolUtil.valueTag(msg,"Success"))
+            {
+                var province=band.getFldStrValue("车牌");
+                var carnum = province.substr(1);
+                province=province.substr(0,1);
+                var cartype= band.getFldStrValue("车型号");
+                var isauto = band.getFldStrValue("自卸");
+                isauto = "-1"==isauto || "true"==isauto || "1"==isauto;
+                var weight = band.getFldStrValue("自重");
+                weight = !weight? 0:parseFloat(weight);
+                rfID = band.getFldStrValue("RF卡号");
+                msg = cardcmd.WritePVehicle(province, carnum, cartype, isauto, weight, rfID);
+            }
+            var success = "true"==ToolUtil.valueTag(msg,"Success");
+            if("true"==ToolUtil.valueTag(msg,"Success"))
+                success = ue_save("");
+            if(success)
+            {
+                var band = $band("用户选择");
+                band.setFldStrValue(null, "卡号", cardnum);
+                band.setFldStrValue(null, "状态", "发行");
+                band.setStateRecord("remove");
+            }
+            if(success && $("ckFlowup").checked)
+            {
+                cardcmd.Buzz(true);
+                return true;
+            }
+            if(success)
+            {
+                alert("已经成功发行卡！");
+                return true;
+            }
+            if(!msg)
+                msg = "发卡失败，请重试";
+            else
+                msg = ToolUtil.valueTag(msg,"{状态}");
+            $("ckFlowup").checked = false;
+            alert(msg);
+            return success;
+        }
+        //根据当前卡号,对应发卡记录
+        function findCardInfo()
+        {
+            var rfID = cardcmd.rfID;
+            var cardid = cardcmd.cardID;
+            var cardnum = cardcmd.cardNUM;
+            var cardSN  = cardcmd.cardSN;
+            var bandP =$band("发行");
+            if(bandP.RecordCount()<1)
+                bandP.NewRecord();
+            var isRFID = false; 
+            if(!cardid)
+            {
+                //bandP.setFldStrValue(null, "RF卡号", rfID);
+                //return;
+                cardcmd.cardID = cardcmd.cardNUM = cardcmd.cardSN = cardid = cardnum = cardSN = rfID;
+                isRFID = true;
+            }
+            var band = $band("用户选择");
+            var index = band.getRowIndex("卡号", cardnum);
+            ToolUtil.setParamValue($XD(), "卡号", cardnum, "", "P", null, "C");
+            if(index>-1)
+            {
+                band.setCurrentRow(index);
+                $band("发行").XQuery();
+            }else{
+                //卡号不在列表中
+                var obcheck = $band("卡检测");
+                obcheck.XQuery(true);
+                if(obcheck.RecordCount()>0)
+                {
+                    alert("此卡员工("+cardnum+"<"+obcheck.getFldStrValue("姓名")+">)已经发行，不能发行给其他员工！");
+                    return;
+                }
+            }
+            if (isRFID)
+            {
+                index = band.getRowIndex("卡号", "");
+                if (index < 0)
+                {
+                    index = band.getCurrentRow();
+                    band.NewRecord();
+                    var cols = band.Cols("0");
+                    for (var i = 0; i < cols.length; i++)
+                    {
+                        var fld = cols[i].getAttribute("name");
+                        band.setFldStrValue(null, fld, band.getFldStrValue(fld, index));
+                    }
+                    band.setFldStrValue(null, "ID", ToolUtil.NewGUID());
+                    var val = band.getFldStrValue("姓名");
+                    band.setFldStrValue(null, "姓名", getnextvalue(val));
+                    var val = band.getFldStrValue("用户编号");
+                    band.setFldStrValue(null, "用户编号", getnextvalue(val));
+                }
+            }
+            bandP.setFldStrValue(null, "卡号", index<0?"":cardnum);
+            bandP.setFldStrValue(null, "卡片序列号", cardid);
+            bandP.setFldStrValue(null, "卡片SN", cardSN);
+            bandP.setFldStrValue(null, "RF卡号", rfID);
+        }
+        //计算str后缀的数字,加一个增量
+        function getnextvalue(str, add)
+        {
+            str = str || "Name0000";
+            add = add || 1;
+            var num = str.match(/\d*$/);
+            if(!num[0])
+            {
+                num = "0000";
+                var pos = str.length;
+            }else{
+                num = num[0];
+                var pos = str.lastIndexOf(num);
+            }
+            var len = num.length;
+            num = num.replace(/\d/g, "0") + (ToolUtil.Convert(num, "int")+add);
+            str = str.substr(0, pos) + num.substr(num.length - len);
+            return str;
+        }
+        //连续发行
+        function nextpublish()
+        {
+            var cardid = cardcmd.cardID;//"13813793";//
+            if(!cardid) return;
+            var band = $band("用户选择");
+            var index = band.getCurrentRow();
+            if(index<0)
+            {
+                alert("没有员工，请首先初始化员工！");
+                return;
+            }
+            var band =$band("发行");
+            if(band.RecordCount()<1)
+                band.NewRecord();
+            var cardnum = band.getFldStrValue("卡号");
+            if(!cardnum && cardcmd.IsCardIC)
+            {
+                alert("请填写初始化信息！");
+                return false;
+            }
+            var band = $band("用户选择");
+            if(index+1 ==band.RecordCount())
+            {
+                band.NewRecord();
+                var cols = band.Cols("0");
+                for(var i=0; i<cols.length; i++)
+                {
+                    var fld = cols[i].getAttribute("name");
+                    band.setFldStrValue(null, fld, band.getFldStrValue(fld, index));
+                }
+                band.setFldStrValue(null, "ID", ToolUtil.NewGUID());
+                var val = band.getFldStrValue("姓名");
+                band.setFldStrValue(null, "姓名", getnextvalue(val));
+                var val = band.getFldStrValue("用户编号");
+                band.setFldStrValue(null, "用户编号", getnextvalue(val));
+            }
+            band.setCurrentRow(index+1);
+            var obcheck = $band("卡检测");
+            if(!cardcmd.IsCardIC)
+            {
+                ToolUtil.setParamValue($XD(), "卡号", cardcmd.cardNUM, "", "P", null, "C");
+                obcheck.XQuery(true);
+                var rdcount = obcheck.RecordCount();
+                if(rdcount>0)
+                {
+                    alert("此卡员工("+cardcmd.cardNUM+"<"+obcheck.getFldStrValue("姓名")+">)已经发行，不能发行给其他员工！");
+                    return false;
+                }
+                band.setFldStrValue(null, "卡号", cardcmd.cardNUM);
+                $band("发行").setFldStrValue(null, "卡号", cardcmd.cardNUM);
+            }else{
+                var rdcount=1;
+                var idxcard = ToolUtil.Convert(cardnum, "int");
+                for(var i=1; rdcount>0; i++)
+                {
+                    cardnum = idxcard+i;
+                    ToolUtil.setParamValue($XD(), "卡号", cardnum, "", "P", null, "C");
+                    obcheck.XQuery(true);
+                    rdcount = obcheck.RecordCount();
+                    if(rdcount>0 && i>20)
+                    {
+                        alert("此卡员工("+cardnum+"<"+obcheck.getFldStrValue("姓名")+">)已经发行，不能发行给其他员工！");
+                        return false;
+                    }
+                }
+                cardnum = ToolUtil.Convert(cardnum, "int");
+                band.setFldStrValue(null, "卡号", cardnum);
+                $band("发行").setFldStrValue(null, "卡号", cardnum);
+            }
+            band.setFldStrValue(null, "卡片序列号", cardid);
+            $band("发行").setFldStrValue(null, "卡片序列号", cardid);
+            $band("发行").setFldStrValue(null, "卡片SN", cardcmd.cardSN);
+            //执行发行
+            setTimeout("cardmake();", 400);
+        }
+        function selectuseres()
+        {
+            var mband = $band("用户选择");
+            var filter=ue_tfilter();
+            var ck = $("unpublish").checked;
+            if (true==ck)
+                filter += " and ''=卡号 ";
+            ueSetPage(filter,mband);
+            mband.XQuery(true);
+        }
+        function ms_test()
+        {
+            debugger;
+            findCardInfo();
+        }
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20; width: 100%; background-image: url('images/bg-shd.png');">
+    </div>
+    <object id="cardcmd" classid="clsid:818A30FB-8903-4cd7-BAE1-00BD5C5B52AC" codebase="../SetupCard.msi#version=1,0,0,0" style="display: none;"></object>
+    <div style="height: 79%; width: 32%; float: left">
+            <table>
+                <img border="0" src="Images/reply.gif" />
+                <input class="xlandinput" style="width: 160; height: 20" size="15" name="卡号;用户编号;姓名;部门名称" id="findtext" />
+                <input id="unpublish" class="xlandradio" type="checkbox" checked="true" /><label for="unpublish">未发行</label>
+                <img border="0" src="Images/tb16.gif" width="22" height="22" onclick="selectuseres()" onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" />
+            </table>
+            <div id="dvgrid" style="width: 100%; height: 99%"></div>
+    </div>
+    <div style="height: 95%; width: 67%; float: right">
+        <table id="mainTable" border="0" cellpadding="0" style="border-collapse: collapse;
+            width: 100%; height: 100%">
+            <tbody>
+                <tr>
+                    <td style="height: 70px; text-align: center">
+                        <fieldset style="padding: 2px; width: 100%; text-align: left">
+                            <legend>员工详细信息： </legend>
+                            <div id="divUses">
+                            </div>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">
+                        <fieldset style="padding: 5px; width: 100%; height: 100%; text-align: left">
+                            <legend><input id="ckFlowup" class="xlandradio" type="checkbox" /><label for="ckFlowup">连续发行</label>
+                                <input id="radic" type="checkbox" value="0" checked ><label for="radic">IC发行器</label>
+                                <input id="ckRF" type="checkbox" value="0" checked ><label for="ckRF">RF发行器</label>
+                                <input id="ckEatery" class="xlandradio" type="checkbox" checked="checked" /><label for="ckEatery">消费</label>
+                                <input id="ckDoors" class="xlandradio" type="checkbox" checked="checked" /><label for="ckDoors">门禁</label>
+                                <input id="ckPark" class="xlandradio" type="checkbox" checked="checked" /><label for="ckPark">停车场</label>
+                                <input type="button" value="发行" class="txtbtnex" onclick="cardmake()" />
+                                <input type="button" value="读取" class="txtbtnex" onclick="cardread()" />
+                                <input type="button" value="退出" class="txtbtnex" onclick="ms_close()" />
+                                <input type="button" value="测试" class="txtbtnex" onclick="ms_test()" />
+                            </legend>
+                            <br />
+                            <div id="dvinfo" style="text-align: left; width: 90%">
+                            </div>
+                            <div id="dvinfo1" style="text-align: left; width: 90%">
+                            </div>
+                            <div id="dvinfo2" style="text-align: left; width: 90%">
+                            </div>
+                            <div id="dvinfo3" style="text-align: left; width: 90%">
+                            </div>
+                        </fieldset>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("发行管理")</script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>    	
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<LINK href="hmjs/sysjs/menu.css" type="text/css" rel="stylesheet" />        	
+    	<script language="javascript" type="text/javascript">
+    	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;
+            function openPro()
+            {
+                var band=document.UnitItem.getBandByItemName("字典信息");
+                if(!band)    return;
+                var rtn = window.showModalDialog("Template\\供应商编辑.htm",band,"dialogHeight: 430px; dialogWidth: 670px; edge: Raised; center: Yes; help: No; resizable: No; status: No;"); 
+                if(rtn=="" || rtn==null) return 1; 
+                if(rtn>0)
+                {
+            	    gshowModalDialogReturn=1;
+        		    band.setCurrentRow(rtn-1);
+        	    }
+       	    }    	
+       	    
+			function _getjf()
+			{
+				return 888;
+			}
+            -->
+    	</script>
+    </head>
+
+<body>
+<table  align="center" id="toobar" border="0" cellpadding="1" cellspacing="2" width="800px" height="26" bgcolor="buttonface" onselectstart="event.returnValue=false" style="cursor:default;font-family: 宋体; font-size: 9pt; color: MenuText;  border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-top: 1px solid #FFFFFF; border-bottom: 1px solid #000000; padding:0px"><tbody>
+    <tr><td width="4"><span class="handout"></span></td>
+<td nowrap="" class="coolButton" id="btnsave" width="46" onclick="ue_save()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" cellspacing="0" cellpadding="0" id="table2" style="font-size: 10pt;width:96%">
+	<tbody>
+	<tr>
+		<td><img src="images\SaveHS.gif" /></td>
+		<td>保存</td>
+	</tr>
+</tbody>
+</table>
+ </td>
+<td nowrap="" class="coolButton" id="btnsubmit" width="49" onclick="_submit(0);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table6" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="16"><img src="images\report_go.gif" width="16" height="16" /></td>
+		<td>提交</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td nowrap="" class="coolButton" id="Td1" width="63" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="89%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="23"><img src="images\reply.gif" width="16" height="16" /></td>
+		<td style="color: red">退回</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td nowrap="" class="coolButton" id="Td2" width="47" onclick="ms_showBoard('contents',1)" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table12" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td><img src="images\printer.ico" width="16" height="16" /></td>
+		<td>打印</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td width="5"><span class="handin"></span></td>
+<td nowrap="" class="coolButton" id="btnexam" width="56" onclick="ms_showBoard('contents',2);CreateOpionTable()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+		<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table13" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td><img src="images\sitemap.gif" /></td>
+		<td>分配</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td nowrap="" class="coolButton" id="Td1" width="49" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="89%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="16"><img src="images\calculator.png" width="16" height="16" /></td>
+		<td>计算</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td nowrap="" class="coolButton" id="Td1" width="45" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="16"><img src="images\drink.png" width="16" height="16" /></td>
+		<td>找平</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td nowrap="" class="coolButton" id="Td1" width="45" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="16"><img src="images\arrow_switch.png" width="16" height="16" /></td>
+		<td>切换</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td width="13"></td>
+<td width="43%" align="right"><table border="0" cellpadding="0" style="width:206px">
+			<tbody>
+			<tr>
+				<td width="16"><button id="navfirst" onclick="ue_nstart('goods');"><img src="images/MoveFirstHS.gif" /></button></td>
+				<td width="16"><button id="navprev" onclick="ue_nprev('goods');"><img src="images//MovePrevious.gif" /></button></td>
+				<td align="center"><INPUT dataFld="RowNum" dataSrc="#goods" type="text" size="5" name="姓名2" /></td>
+				<td width="16"><button id="navnext" onclick="ue_nnext('goods');"><img src="images//MoveNextHS.gif" /></button></td>
+				<td width="16"><button id="navlast" onclick="ue_nlast('goods');"><img src="images//MoveLastHS.gif" /></button></td>
+				<td width="16"><button onclick="ns_bandadd('goods');"><img src="images//NewRecordHS.gif" /></button></td>
+				<td width="16"><button onclick="ms_banddel();"><img src="images//EditDelete1.gif" width="16" height="16" /></button></td>
+				<td width="16"><button onclick="ue_save();"><img src="images//saveHS.gif" /></button></td>
+				<td width="32"></td>
+				<td width="64" title="从货品清单中查找"></td>
+				<td width="64" title="从货品清单中查找"></td>
+			</tr>
+		</tbody>
+		</table></td>
+<td width="10"><span class="handin"></span></td>
+<td nowrap="" class="coolButton" id="btnquit" width="52" onmouseover="this.className='button1'" 
+onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" onclick="winclose();">
+<table border="0" width="131%" cellspacing="0" cellpadding="0" id="table14" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td><img src="images\door.gif" width="16" height="16" /></td>
+		<td width="78">退出</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td width="1%"> 　</td></tr>
+</tbody>
+</table>
+<table border="1" cellspacing="0" width="800" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt;" height="382"> 
+<tbody id="html">    
+<tr>    
+<th height="25" width="228" style="font-size: 10pt" colspan="2" align="left">
+<span style="font-weight: 400">　序　　号：</span><INPUT dataFld="序号" dataSrc="#MasterTab" class="xlandinput" style="width:97; " type="text" size="11" name="姓名27" /></th>    
+<th height="50" width="317" colspan="2" rowspan="2">记帐凭证</th>    
+<th height="25" width="239" style="font-size: 10pt" align="left" colspan="2">
+<span style="font-weight: 400">　　凭证字：</span><select dataFld="凭证字" dataSrc="#MasterTab" class="xlandinput" size="1" style="WIDTH: 97;" name="D8">
+                                        <option value=""></option><option value="现收">现收</option><option value="现付">现付</option>
+                                        <option value="银收">银收</option><option value="银付">银付</option><option value="转">转</option>
+                                    </select></th>    
+</tr>    
+<tr>    
+<th height="25" width="228" style="font-size: 10pt" colspan="2" align="left">
+<span style="font-weight: 400">　打印样式：</span><INPUT id="联系人" style="width:97; " type="text" size="11" name="姓名27" /></th>    
+<th height="25" width="239" style="font-size: 10pt" align="left" colspan="2">
+<span style="font-weight: 400">　　凭证号：</span><INPUT dataFld="凭证号" dataSrc="#MasterTab" class="xlandinput" style="width:97; " type="text" size="11" name="姓名27" /></th>    
+</tr>    
+<tr>    
+<th height="24" width="228" colspan="2" style="font-size: 10pt" align="left">
+<span style="font-weight: 400">　引用单号：</span><INPUT dataFld="引用单号" dataSrc="#MasterTab" class="xlandinput" style="width:97; " type="text" size="11" name="姓名27" /></th>    
+<th height="24" width="317" colspan="2"><span style="font-weight: 400;font-size: 10pt">　日期：</span><INPUT dataFld="日期" dataSrc="#MasterTab" class="xlanddate" style="width:120; " type="text" size="11" name="姓名27" /></th>    
+<th height="24" width="239" style="font-size: 10pt" align="left" colspan="2">
+<span style="font-weight: 400">　　附　件：</span><INPUT dataFld="附件" dataSrc="#MasterTab" class="xlandinput" style="width:97; " type="text" size="11" name="姓名27" /></th>    
+</tr>    
+<tr>    
+<th width="685" height="275" colspan="6" style="background-color: #FFFFFF" valign="top">
+		<Control class="" catalog="GridLand.ascx" itemname="从表" id="DetailDB" name="">
+			DetailDB<Property name="tpfile" value="ControlTemplate/GridDefaultNsave.htm" />
+			<Property name="width" value="792" /><Property name="height" value="332" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="" />
+		</Control>
+</th>    
+</tr>    
+</tbody>    
+<tbody id="xhtml">    
+</tbody>    
+<tfoot>    
+<tr>    
+<td width="91" height="23">
+<p style="text-align: right">制单：</p></td>    
+<td width="132" height="23">　</td>    
+<td width="100" height="23">
+<p style="text-align: right">审核：</p></td>    
+<td width="213" height="23">　</td>    
+<td width="53" height="23">
+<p style="text-align: right">登帐：</p></td>    
+<td width="184" height="23">　</td>    
+</tr>    
+</tfoot>    
+</table>
+
+		<Control class="" catalog="GridLand.ascx" itemname="主表" id="MasterTab" name="">MasterTab
+			<Property name="tpfile" value="" />
+			<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="true" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+		</Control>
+</body>
+
+</html>

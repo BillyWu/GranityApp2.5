@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>用户21</Author>
+  <LastAuthor>用户21</LastAuthor>
+  <LastPrinted>2009-10-21T16:20:55Z</LastPrinted>
+  <Created>2009-01-31T18:39:47Z</Created>
+  <LastSaved>2009-01-31T18:52:34Z</LastSaved>
+  <Company>www.ftpdown.com</Company>
+  <Version>11.9999</Version>
+ </DocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>9675</WindowHeight>
+  <WindowWidth>14940</WindowWidth>
+  <WindowTopX>240</WindowTopX>
+  <WindowTopY>15</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s22">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="16"/>
+  </Style>
+  <Style ss:ID="s23">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  </Style>
+  <Style ss:ID="s24">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  </Style>
+  <Style ss:ID="s25">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+   <Interior ss:Color="#FFFFCC" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s26">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+   <Interior ss:Color="#FFFFCC" ss:Pattern="Gray0625" ss:PatternColor="#FFFFCC"/>
+  </Style>
+  <Style ss:ID="s27">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+   <NumberFormat ss:Format="Short Date"/>
+  </Style>
+  <Style ss:ID="s28">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  </Style>
+  <Style ss:ID="s29">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Names>
+   <NamedRange ss:Name="Print_Titles" ss:RefersTo="=Sheet1!R1:R4"/>
+  </Names>
+  <Table ss:ExpandedColumnCount="20" ss:ExpandedRowCount="6" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Column ss:AutoFitWidth="0" ss:Width="3.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="31.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="86.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="51.75" ss:Span="4"/>
+   <Column ss:Index="9" ss:AutoFitWidth="0" ss:Width="33.75" ss:Span="11"/>
+   <Row ss:AutoFitHeight="0" ss:Height="8.25">
+    <Cell><Data ss:Type="String">&lt;明细&gt;5,2,19,20;&lt;区域&gt;A2:M10;&lt;参数&gt;&amp;[日期];&lt;主表&gt;</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="16.5">
+    <Cell ss:MergeAcross="19" ss:StyleID="s22"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40">部门新进人员分析<Font
+       html:Face="Times New Roman" x:Family="Roman">‎</Font></ss:Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="2" ss:StyleID="s23"><Data ss:Type="String">单位:</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s23"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s24"><NamedCell ss:Name="Print_Titles"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="19.5">
+    <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">序号</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s25"><Data ss:Type="String">部门名称</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">人数</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">男性</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">女性</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">管理人员</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">员工</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">1月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">2月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">3月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">4月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">5月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">6月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">7月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">8月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">9月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">10月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">11月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">12月</Data><NamedCell
+      ss:Name="Print_Titles"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="20.25">
+    <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">序号</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">部门</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">人数</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">男性人数</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">女性人数</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">管理人员</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">员工</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">1月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">2月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">3月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">4月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">5月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">6月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">7月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">8月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">9月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">10月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">11月</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">12月</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">制表:</Data></Cell>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+    <Header x:Margin="0.51181102362204722"/>
+    <Footer x:Margin="0.51181102362204722" x:Data="&amp;C&amp;10第 &amp;P 页，共 &amp;N 页"/>
+    <PageMargins x:Bottom="0.59055118110236227" x:Left="0.35433070866141736"
+     x:Right="0.35433070866141736" x:Top="0.59055118110236227"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <BlackAndWhite/>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <DoNotDisplayGridlines/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>9</ActiveRow>
+     <ActiveCol>5</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="0" ss:ExpandedRowCount="0" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"/>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="0" ss:ExpandedRowCount="0" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"/>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

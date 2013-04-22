@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+<script language="javascript" src="hmjs/sysjs/usCommonAdv.js" type="text/javascript" charset="gb2312"></script>
+
+<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+<script language="javascript" type="text/javascript">
+<!--
+	window.onload=WinLoadUtil.MDTPLoad;
+	function initWin()
+	{
+	      var oband = document.UnitItem.getBandByItemName("字典信息");
+	      if(!oband) return;
+	      var img=document.getElementById("myImg");
+	      if(oband.getFldStrValue("离岗标志")=="false")
+	      {
+	      	img.src="http://localhost:8096/hmapp/images/msn1.gif"
+	      	document.getElementById("offlabel").innerText="在　岗";
+	      }
+	      else
+	      {
+	      	img.src="http://localhost:8096/hmapp/images/msn_out.gif"
+	      	document.getElementById("offlabel").innerText="离　岗";
+	      }	      	
+	      
+	}
+	function myChange()
+  	{   
+		  var img=document.getElementById("myImg");
+		  var _obj=document.getElementById("offline");
+	      var oband = document.UnitItem.getBandByItemName("字典信息");
+	      if(!oband) return;
+	      if(oband.RecordCount()==0){alert("缺少资料，请系统管理员检查！");return;};
+	      var appdir = "http://"+location.host+"/hmapp/";
+		  if(img.src==appdir+"images/msn1.gif")   
+		  {   
+			 img.src=appdir+"images/msn_out.gif";   
+			 _obj.checked=true;
+			 oband.setFldStrValue(null,_obj.dataFld,"1");
+ 	      	document.getElementById("offlabel").innerText="离　岗";
+		  }   
+		  else   
+		  {   
+		     img.src=appdir+"images/msn1.gif";   
+			 _obj.checked=false;
+			 oband.setFldStrValue(null,_obj.dataFld,"0");	
+	      	document.getElementById("offlabel").innerText="在　岗";			 		 
+		  }
+		  ue_save('');		  
+  	}   
+  	
+  	
+-->	
+</script>
+</head>
+<body oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'>
+
+		  <p style="MARGIN-BOTTOM: -8px"><br /></p>
+<table border="0" width="793" id="table1" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align="center">
+	<tbody>
+	<tr>
+		<td align="left" style="width:32%" rowspan="3">
+		<img alt="" style="border:0;width:318;" src="welcome.gif" width="318" height="72" /></td>
+		<td align="left" style="width:56%;height:30" valign="baseline">
+		</td>
+	</tr>
+	<tr>
+		<td id="unittitle" align="right" valign="bottom" style="width:56%;height:8"></td>
+	</tr>
+	<tr>
+		<td align="left" valign="baseline" style="filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFFF', endColorStr=gray, gradientType='1');width:56%;height:10">
+		</td>
+	</tr>
+</tbody>
+</table>
+			<p style="MARGIN-BOTTOM: -8px"><br /></p>
+	<Control class="" catalog="GridLand.ascx" itemname="字典信息" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="" />
+							<Property name="width" value="793px" /><Property name="height" value="300px" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>
+<table border="0" width="100%" bgcolor="#FFFFFF" cellpadding="0" style="border-collapse: collapse" id="table2">
+				<tbody>
+				<tr>
+					<td align="center"><br /><br /><br />  <IMG SRC="images/msn1.gif" style="cursor:hand" id="myImg"
+					 onclick="myChange();" /></td>
+				</tr>
+				<tr>
+					<td align="center"><label id="offlabel" >在　岗</label><input id="offline" dataFld="离岗标志" dataSrc="#MasterTab" class="xlandinput" type="checkbox" name="C2" value="ON"  /></td>
+				</tr>
+			</tbody>
+			</table>	
+</body>
+</html>

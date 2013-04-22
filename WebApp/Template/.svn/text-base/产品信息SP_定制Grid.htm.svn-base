@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<body>
+		<p style="MARGIN-BOTTOM: -8px"><br />
+		</p>
+		<table STYLE="width:99%; height:53%" CELLPADDING="0" CELLSPACING="0" bgcolor="white">
+			<tbody>
+				<tr>
+					<td ID="t1" CLASS="selTab" style="border-left:solid 1px #919B9C;" HEIGHT="25" content="tabMasterList" onclick="ControlUtil.ChangeTabs(this.id)"><input type="button" style="border:0px;width:100%;height:100%;" readonly="true" class="selTab" value="商品列表" /></td>
+					<td ID="t2" CLASS="tab" content="tabDetailList" onclick="ControlUtil.ChangeTabs(this.id)"><input type="button" style="border:0px;width:100%;height:100%;" readonly="true" class="tab" value="商品明细信息" /></td>
+					<td ID="t3" CLASS="tabBlank" width="*"><input type="text" readonly="true" style="border:0px;background-color:white;" size="60" onselect="return false;" /></td>
+				</tr>
+				<tr>
+					<td HEIGHT="*" COLSPAN="3" valign="top" class="conts">
+						<p style="MARGIN-BOTTOM: -8px"><br />
+						</p>
+						<div id="tabMasterList">
+							<table align="center" width="980px" id="tabfilter" border="1" style="border-collapse: collapse; WORD-BREAK: break-all;" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="31">
+								<tbody>
+									<tr>
+										<td align="right" width="77" bgColor="#E8E8E8" height="29">季 节：</td>
+										<td width="104" bgColor="#E8E8E8" height="29">
+											<SELECT class="tselect" id="filter1" filter="and" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" size="1" name="季节" DataValueField="季节名称" DataTextField="季节名称" DataSource="字典_季节类型">
+											</SELECT></td>
+										<td width="80" bgColor="#E8E8E8" height="29" align="right">
+											商品类型：</td>
+										<td align="right" bgColor="#E8E8E8" height="29" width="84">
+											<SELECT class="tselect" id="filter2" filter="and" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" DataSource="字典_商品类型" DataTextField="商品类型" DataValueField="商品类型" name="商品类型">
+											</SELECT></td>
+										<td align="right" bgColor="#E8E8E8" height="29" width="77">
+											款式：</td>
+										<td bgColor="#E8E8E8" height="29" width="96">
+											<INPUT id="filter3" filter="and" type="text" size="14" style="padding:0; border:1px solid #C0C0C0;width:98%  " name="款式" /></td>
+										<td align="left" bgColor="#E8E8E8" height="29" width="104">
+											进场时间:</td>
+										<td align="left" bgColor="#E8E8E8" height="29">
+											<input class="inputDate" id="filter4" filter="and" datatype="date" style="padding:0px; border:1px solid #C0C0C0;width:98% " size="18" name="进场时间" /></td>
+										<td align="left" bgColor="#E8E8E8" height="29" width="221">
+											<input class="gridbtn" id="gridfind4" onclick="ue_tfilter()" type="button" value="查找" name="B8" style="width: 60" /></td>
+									</tr>
+								</tbody>
+							</table>
+							<p style="margin: 5"></p>
+							<table align="center" border="1" width="980" style="border-collapse: collapse;WORD-BREAK: break-all;" id="table1" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3">
+								<tbody>
+									<tr>
+										<td bgColor="#E8E8E8" colSpan="9" height="25" align="center">
+											<span lang="zh-cn">
+												<font face="宋体" size="3">产品维护记录 </font>
+											</span><font face="宋体" color="#666666" size="2"> </font><font color="#666666" size="2">
+												登记日期：</font><label dataFld="单据日期" dataSrc="#MasterTab"><font face="宋体" color="#666666" size="2">2005-8-28</font></label></td>
+									</tr>
+									<tr>
+										<td align="right" width="93" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											季 节：</td>
+										<td width="107" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" dataSrc="#MasterTab" datafld="季节" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" size="1" name="季节名称" DataValueField="季节名称" DataTextField="季节名称" DataSource="字典_季节类型">
+											</SELECT></td>
+										<td align="right" width="80" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											进场时间：</td>
+										<td width="98" bordercolor="#F0F0F0" height="24">
+											<input class="xlanddate" dataSrc="#MasterTab" datafld="进场时间" size="14" style="padding:0; border:1px solid #C0C0C0;width:98%  " /></td>
+										<td align="right" width="100" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											商品类型：</td>
+										<td width="111" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="商品类型" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" DataSource="字典_商品类型" DataTextField="商品类型" DataValueField="商品类型">
+											</SELECT></td>
+										<td align="right" width="94" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											商品小类：</td>
+										<td align="right" width="91" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="商品小类" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" DataSource="字典_商品小类" DataTextField="商品小类" DataValueField="商品小类">
+											</SELECT></td>
+										<td align="center" width="182" bordercolor="#F0F0F0" style="border-style:dotted; border-width:1px; font-size: 10pt" height="120" rowspan="7">
+											<IMG src="" id="商品资料主表:商品图片" border="2" STYLE="border-color:red blue yellow green" class="xlandImg" width="165px" height="165px" alt="商品图片" /></td>
+									</tr>
+									<tr>
+										<td align="right" width="93" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">款 
+											号：</td>
+										<td width="107" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="款号" type="text" name="款号" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " /></td>
+										<td align="right" width="80" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											款 式：</td>
+										<td width="98" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<INPUT class="xlandinput" type="text" dataSrc="#MasterTab" datafld="款式" size="14" style="padding:0; border:1px solid #C0C0C0;width:98%  " /></td>
+										<td align="right" width="100" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											商品名称：</td>
+										<td width="111" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="名称" type="text" name="" size="14" style="padding:0; border:1px solid #C0C0C0; width:98%" /></td>
+										<td align="right" width="94" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											商品编号：</td>
+										<td align="right" width="91" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="商品编号" type="text" name="" size="14" style="padding:0; border:1px solid #C0C0C0; width:98%" /></td>
+									</tr>
+									<tr>
+										<td align="right" width="93" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">面 
+											料：</td>
+										<td width="107" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="面料代码" style="border:0px solid #779FD6;width:98%; HEIGHT: 20" name="" DataSource="字典_面料信息" DataTextField="面料名称" DataValueField="面料代码">
+											</SELECT></td>
+										<td align="right" width="80" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											计量单位：</td>
+										<td width="98" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="计量单位" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" DataSource="字典_计量单位" DataTextField="名称" DataValueField="名称">
+											</SELECT></td>
+										<td align="right" width="100" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											商品等级：</td>
+										<td width="111" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="商品等级" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" name="" DataSource="字典_商品等级" DataTextField="名称" DataValueField="名称">
+											</SELECT></td>
+										<td align="right" width="94" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											商品品牌：</td>
+										<td align="right" width="91" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="商品品牌" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" DataSource="字典_商品品牌" DataTextField="名称" DataValueField="名称">
+											</SELECT></td>
+									</tr>
+									<tr>
+										<td align="right" width="93" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											供应商：</td>
+										<td width="107" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="供应商" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" DataSource="字典_供应商" DataTextField="名称" DataValueField="名称">
+											</SELECT></td>
+										<td align="right" width="80" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											状 态：</td>
+										<td width="98" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="供应商" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" name="" DataSource="字典_商品状态" DataTextField="名称" DataValueField="名称">
+											</SELECT></td>
+										<td align="right" width="100" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											零售价格：</td>
+										<td width="111" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="零售价格" type="text" name="" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " /></td>
+										<td align="right" width="94" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											买断价格：</td>
+										<td align="right" width="91" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="零售价格" type="text" name="" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " /></td>
+									</tr>
+									<tr>
+										<td align="right" width="93" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											备 注：</td>
+										<td width="472" bordercolor="#F0F0F0" style="font-size: 10pt" height="24" colspan="5">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="备注" type="text" name="款号1" size="14" style="padding:0; border:1px solid #C0C0C0;width:100% " /></td>
+										<td width="94" bordercolor="#F0F0F0" style="font-size: 10pt" height="24" align="right">换料代码：</td>
+										<td width="94" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="换料代码" type="text" name="" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " /></td>
+									</tr>
+									<tr>
+										<td align="right" width="93" bordercolor="#F0F0F0" style="font-size: 9pt" height="24">
+											<font color="#800000">说明：</font></td>
+										<td width="378" bordercolor="#F0F0F0" style="font-size: 9pt" height="24" colspan="4">
+											<font color="#800000">没有换料代码为 0 ，换料一次代码为 1 ，换料二次代码为 2</font></td>
+										<td width="282" bordercolor="#F0F0F0" style="font-size: 10pt" height="24" colspan="3" align="right">
+											<div id="商品资料主表:文件" class="xlandFile">
+												<Control class="xlandFile" catalog="FileUpLoad.ascx" itemname="" id="FileUploadCtrl" name="">商品图片：
+<Property name="FileColumn" filenameupload="商品图片" filenameinput="文件" />
+<Property name="width" value="70%" /><Property name="filetype" value="img" />
+</Control></div>
+										</td>
+									</tr>
+									<tr>
+										<td align="right" width="93" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+										</td>
+										<td width="95" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+										</td>
+										<td width="95" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+										</td>
+										<td width="470" bordercolor="#F0F0F0" style="font-size: 10pt" height="24" colspan="5">
+											<table id="table9" cellSpacing="0" cellPadding="0" width="445" border="0">
+												<tbody>
+													<tr>
+														<td width="88">
+														</td>
+														<td width="88">
+														</td>
+														<td width="86">
+															<input style="WIDTH: 64px; HEIGHT: 24px" class="gridbtn" id="gridfind0" onclick="ue_bandadd('MasterTab')" type="button" value="增加" name="B4" /></td>
+														<td width="87">
+															<input style="WIDTH: 64px; HEIGHT: 24px" class="gridbtn" id="gridfind2" onclick="ue_banddelete('MasterTab')" type="button" value="删除" name="B7" /></td>
+														<td width="0">
+															<input style="WIDTH: 64px; HEIGHT: 24px" class="gridbtn" id="gridfind3" onclick="ue_save()" type="button" value="保存" name="B6" /></td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td align="right" width="941" colSpan="9">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div align="center">
+							<div id="masterTabDiv" style="width:978px;height:325px;">
+								<table class="smartGrid" cellpadding="0" cellSpacing="0" width="100%">
+									<tbody>
+										<tr>
+											<td divtype="body" colspan="4">
+												<div divtype="title" align="left" style="OVERFLOW:hidden;display:none">
+													<table tabType="title" class="tabTitle" cellpadding="0" cellSpacing="0">
+														<thead>
+															<tr rowType="title">
+																<td class="headerCellStyle" align="center" width="40" height="22" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+																	<span width="100%" height="100%" colname="">序号</span>
+																</td>
+																<td tdType="coltitle" class="headerCellStyle" align="center" colname="" datatype="" width="120" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+																	<span width="100%" height="100%" colname="">技术指标</span>
+																</td>
+																<td class="headerCellStyle" align="center" width="16" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+																	<span width="100%" height="100%" colname="">　</span>
+																</td>
+															</tr>
+														</thead></table>
+												</div>
+												<div divtype="detail" style="OVERFLOW:scroll" onscroll="GridUtil.usOnScrollHori();">
+													<table tabType="detail" datasrc="#MasterTab" class="tabDetail" cellpadding="0" cellSpacing="0" onmousemove="GridUtil.usOnDetailMouseOverHandle();" onmouseout="GridUtil.usOnDetailMouseOutHandle();">
+														<tbody>
+															<tr rowType="detail">
+																<td class="rowCursorStyle" align="center" width="40" onclick="GridUtil.usOnRowcursorClickHandle()">　</td>
+																<td datatype="img" colname="商品缩略图" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="center" width="100">
+																	<img datatype="img" colname="商品缩略图" datafld="商品缩略图" border="2" STYLE="cursor:hand;WIDTH:90%;HEIGHT:100;border-color:red blue yellow green" class="gridbrowse" onclick="GridUtil.usOnCellImgClickHandle();" />
+																</td>
+																<td datatype="string" colname="名称" class="cellStyle" align="left" onclick="GridUtil.usOnCellRFocusHandle();">
+																	<table align="center" border="1" width="720" style="border-collapse: collapse;WORD-BREAK: break-all;" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="38"><tbody>
+																		<tr>
+																			<td align="right" bordercolor="#F0F0F0" style="font-size: 10pt" height="36">款 号：</td>
+																			<td datatype="string" colname="款号" bordercolor="#F0F0F0" style="font-size: 10pt" width="110" height="36">
+																				<INPUT datatype="string" colname="款号" datafld="款号" class="gridbrowseB" type="text" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+																			<td align="right" bordercolor="#F0F0F0" style="font-size: 10pt" height="36">
+																				款 式：</td>
+																			<td width="110" bordercolor="#F0F0F0" style="font-size: 10pt" height="36">
+																				<INPUT datatype="string" colname="款式" datafld="款式" class="gridbrowseB" type="text" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+																			<td align="right" bordercolor="#F0F0F0" style="font-size: 10pt" height="36">
+																				商品名称：</td>
+																			<td width="88" bordercolor="#F0F0F0" style="font-size: 10pt" height="36">
+																				<INPUT datatype="string" colname="名称" datafld="名称" class="gridbrowseB" type="text" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+																			<td align="right" bordercolor="#F0F0F0" style="font-size: 10pt" height="36">
+																				商品编号：</td>
+																			<td datatype="string" colname="商品编号" align="right" width="110" bordercolor="#F0F0F0" style="font-size: 10pt" height="36">
+																				<INPUT datatype="string" colname="商品编号" datafld="商品编号" class="gridbrowseB" type="text" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+																		</tr>
+																	</tbody></table>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+													<table tabType="foot" class="tabDetail" style="display:none;" cellpadding="0" cellSpacing="0">
+														<tbody>
+															<tr rowType="foot">
+																<td class="headerCellStyle" align="center" width="40px" height="22px">
+																	<span width="100%" height="100%">合计</span>
+																</td>
+																<td tdType="coldata" class="headerCellStyle" width="120" align="right"><span width="100%" height="100%" colname="">　</span>
+																	</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+									<tbody>
+									<tr>
+										<td class="buttonCellStyle" width="17%" height="18" align="left" valign="top"><img border="0" onclick="ue_bandadd();" title="增加记录" src="Images/grid/addgrid.gif" onmouseover="this.src='Images/grid/addgrid_down.gif'" onmouseout="this.border='0';this.src='Images/grid/addgrid.gif'" width="22" height="22" />　<img border="0" onclick="ue_banddelete();" title="删除所选择的记录" src="Images/grid/deletegrid.gif" onmouseover="this.src='Images/grid/deletegrid_down.gif'" onmouseout="this.src='Images/grid/deletegrid.gif';border='0'" width="22" height="22" />　<img title="在当前位置插入记录行" border="0" onclick="ue_bandinsert();" src="Images/grid/insertgrid.gif" onmouseover="this.src='Images/grid/insertgrid_down.gif'" onmouseout="this.src='Images/grid/insertgrid.gif'" width="22" height="23" />　<img border="0" title="保存更改的数据" onclick="ue_save()" src="Images/grid/save.gif" onmouseover="this.src='Images/grid/savec.gif'" onmouseout="this.src='Images/grid/save.gif'" width="22" height="23" /></td>
+										<td class="buttonCellStyle" height="18" align="center" valign="middle" width="31%" style="font-size: 10pt; font-family: 宋体"><img border="0" title="查找" src="Images/Monochrome%20Subscriptions.ico" onmouseover="this.src='Images/Monochrome Subscriptions.ico'" onmouseout="this.src='Images/Monochrome Subscriptions.ico'" />
+										<input type="text" name="T1" size="17" onfocus="this.nextSibling.value='查找'" ID="Text11" />
+										<input type="button" class="gridbtn" value="查找" name="B3" onclick="ue_bandsearch(this.previousSibling.value,'下一个'==this.value);this.value='下一个';" style="width: 60" ID="Button1" /></td>
+										
+										<td class="buttonCellStyle" height="18" align="center" width="13%"><div style="font-size: 9pt; font-family: 宋体; color: #FF0000;" name="message" align="center">　</div></td>
+										
+										<td class="buttonCellStyle" divtype="funarea" height="18" align="center" width="39%" style="font-size: 10pt; font-family: 宋体">
+										<DIV align="center" style="width:100%">页次:<input size="1" style="TEXT-ALIGN:right;" class="flatCellStyle" name="lblCurrentPage" value="0" ID="Text12" />/<input style="TEXT-ALIGN:left" class="flatCellStyle" size="1" name="lblTotalPages" value="0" ID="Text13" />总数<input name="lblRecordCount" size="1" style="TEXT-ALIGN:left" class="flatCellStyle" value="0" ID="Text14" />
+										<A title="首页" href="#" onclick="ue_bandcmd_nav('first')"><FONT face="webdings">9</FONT></A>
+										<A title="上一页" href="#" onclick="ue_bandcmd_nav('prev')"><FONT face="webdings">3</FONT></A>
+										<A title="下一页" href="#" onclick="ue_bandcmd_nav('next')"><FONT face="webdings">4</FONT></A>
+										<A title="最后一页" href="#" onclick="ue_bandcmd_nav('last')"><FONT face="webdings">:</FONT></A> 转到:
+										<select name="ddlPageIndex" size="1" onchange="ue_bandcmd_nav('jump',this.value);" style="width: 40" ID="Select2"><option value="1" selected="true">1</option></select></DIV></td>
+									</tr>
+								</tbody>
+								</table>
+							</div></div>
+								<Control class="" catalog="GridLand.ascx" itemname="商品资料主表" id="MasterTab" name="">MasterTab<Property name="tpfile" value="" />
+									<Property name="width" value="978px" /><Property name="height" value="325px" /><Property name="hiddenhead" value="true" />
+									<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+								</Control>
+								<script language="javascript"> var myGrid=new Grid('商品资料主表',document.getElementById('masterTabDiv'),'',true);myGrid.browseBgColor=null;</script>
+						</div>
+						<div id="tabDetailList" style="display:none">
+							<p style="MARGIN-BOTTOM: -25px"><br />
+							</p>
+							<table align="center" border="1" width="980" style="border-collapse: collapse;WORD-BREAK: break-all;" id="table10" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="72">
+								<tbody>
+									<tr>
+										<td bgColor="#E8E8E8" colSpan="10" height="25" align="center">
+											<span lang="zh-cn">
+												<font face="宋体" size="3">商品基本资料 </font>
+											</span><font face="宋体" color="#666666" size="2"> </font><font color="#666666" size="2">
+												登记日期：</font><label dataFld="单据日期" dataSrc="#MasterTab"><font face="宋体" color="#666666" size="2">2005-8-28</font></label></td>
+									</tr>
+									<tr>
+										<td align="right" width="64" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											季 节：</td>
+										<td width="134" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" dataSrc="#MasterTab" datafld="订货季节" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" size="1" name="季节名称" DataValueField="季节名称" DataTextField="季节名称" DataSource="字典_季节类型">
+											</SELECT></td>
+										<td align="right" width="71" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											进场时间：</td>
+										<td width="105" bordercolor="#F0F0F0" height="24">
+											<input class="xlanddate" dataSrc="#MasterTab" datafld="进场时间" size="14" style="padding:0; border:1px solid #C0C0C0;width:98%  " name="T1" /></td>
+										<td align="right" width="78" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											商品类型：</td>
+										<td width="133" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<SELECT class="xlandinput" datasrc="#MasterTab" datafld="商品类型" style="border:1px solid #779FD6;width:98%; HEIGHT: 20" DataSource="字典_商品类型" DataTextField="商品类型" DataValueField="商品类型" name="D1">
+											</SELECT></td>
+										<td align="right" width="69" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											商品名称：</td>
+										<td align="right" width="116" bordercolor="#F0F0F0" style="font-size: 10pt" height="24">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="名称" type="text" name="" size="14" style="padding:0; border:1px solid #C0C0C0; width:98%" /></td>
+										<td align="center" width="61" bordercolor="#F0F0F0" style="border-style:dotted; border-width:1px; font-size: 10pt" height="24">
+											款 号：</td>
+										<td align="center" width="110" bordercolor="#F0F0F0" style="border-style:dotted; border-width:1px; font-size: 10pt" height="24">
+											<INPUT class="xlandinput" datasrc="#MasterTab" datafld="款号" type="text" name="款号" size="14" style="padding:0; border:1px solid #C0C0C0;width:98% " /></td>
+									</tr>
+									<tr>
+										<td align="right" width="64" bordercolor="#F0F0F0" style="font-size: 10pt" height="21">
+										</td>
+										<td width="134" bordercolor="#F0F0F0" style="font-size: 10pt" height="21">
+										</td>
+										<td align="right" width="71" bordercolor="#F0F0F0" style="font-size: 10pt" height="21">
+										</td>
+										<td width="105" bordercolor="#F0F0F0" style="font-size: 10pt" height="21">
+										</td>
+										<td align="right" width="78" bordercolor="#F0F0F0" style="font-size: 10pt" height="21">
+										</td>
+										<td width="133" bordercolor="#F0F0F0" style="font-size: 10pt" height="21">
+										</td>
+										<td align="right" width="69" bordercolor="#F0F0F0" style="font-size: 10pt" height="21">
+										</td>
+										<td align="right" width="116" bordercolor="#F0F0F0" style="font-size: 10pt" height="21">
+											<input style="WIDTH: 64px; HEIGHT: 24px" class="gridbtn" id="btnSaveDetail" onclick="ue_bandadd('xmlGridDetail')" type="button" value="增加" name="B3" /></td>
+										<td align="center" width="61" bordercolor="#F0F0F0" style="border-style:dotted; border-width:1px; font-size: 10pt" height="21">
+											<input class="gridbtn" style="WIDTH: 64px; HEIGHT: 24px" id="gridfind1" onclick="ue_banddelete('xmlGridDetail')" type="button" value="删除" name="B5" /></td>
+										<td align="center" width="110" bordercolor="#F0F0F0" style="border-style:dotted; border-width:1px; font-size: 10pt" height="21">
+											<input style="WIDTH: 64px; HEIGHT: 24px" class="gridbtn" id="gridfind3" onclick="ue_save()" type="button" value="保存" name="B6" /></td>
+									</tr>
+								</tbody>
+							</table>
+							<p style="MARGIN-BOTTOM: -25px"><br />
+							</p>
+							<div align="center">
+								<Control class="" catalog="GridLand.ascx" itemname="商品资料明细" id="xmlGridDetail" name="">xmlGridDetail<Property name="tpfile" value="" />
+								<Property name="width" value="978px" /><Property name="height" value="425px" /><Property name="hiddenhead" value="false" />
+								<Property name="ctrlalert" value="s_code" />
+						</Control>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

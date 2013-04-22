@@ -1,0 +1,147 @@
+10
+
+dir
+4
+https://192.168.4.5/svn/GranityApp/GranityApp2.5
+https://192.168.4.5/svn/GranityApp
+
+
+
+2013-04-12T05:49:58.203125Z
+1
+admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b7a1bd86-2f50-7044-aac2-f90e8b3b5af3
+
+winWatchSrv
+dir
+
+GranityApp.suo
+file
+5
+
+
+
+2013-04-22T08:37:07.187000Z
+ada83903bdbe05e398a74eb5ede802a5
+2013-04-22T08:43:47.453125Z
+5
+WBin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+412672
+
+winZeonGather
+dir
+
+refrenceDLL
+dir
+
+winCard
+dir
+
+Common
+dir
+
+Communications
+dir
+
+winFileSrv
+dir
+
+SetupCard
+dir
+
+Business
+dir
+
+CommiServer
+dir
+
+DataAccess
+dir
+
+CardOneCommi
+dir
+
+PrecompiledWeb
+dir
+
+ComLib
+dir
+
+GranityApp.sln
+file
+
+
+
+
+2013-04-22T08:30:40.625000Z
+02d71f7a53c5a0d25ddf951da497b559
+2013-04-12T05:49:58.203125Z
+1
+admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+23226
+
+winService
+dir
+
+WebApp
+dir
+
+winTools
+dir
+

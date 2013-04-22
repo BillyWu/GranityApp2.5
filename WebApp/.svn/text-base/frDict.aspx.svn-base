@@ -1,0 +1,1 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="frDict.aspx.cs" Inherits="frDict" %>

@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Estar.WebApp.XMLWorkSQL" CodeFile="XMLWorkSQL.aspx.cs" %>

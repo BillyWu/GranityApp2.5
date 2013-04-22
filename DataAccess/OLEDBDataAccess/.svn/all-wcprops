@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess
+END
+AssemblyInfo.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/AssemblyInfo.cs
+END
+OLEDBDataAccess.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/OLEDBDataAccess.csproj
+END
+OleDbQueryDAO.cs
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/OleDbQueryDAO.cs
+END
+Config.exe
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/Config.exe
+END
+OLEDBDataAccess.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/OLEDBDataAccess.csproj.user
+END

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+  <body>
+    <TABLE id="table2" style="border-width:1px; WIDTH: 766px; BORDER-COLLAPSE: collapse; HEIGHT: 149px" cellSpacing="1" border="1" bordercolor="#779FD6">
+      <tbody>
+        <tr>
+          <TD colSpan="7" height="21" bordercolor="#7288AC" valign="bottom">
+            <p align="center">上报报表登记</p>
+          </TD>
+        </tr>
+        <tr>
+          <TD bgColor="#7288AC" colSpan="7" height="5">
+          </TD>
+        </tr>
+        <tr>
+          <TD width="74" style="border-style:solid; border-width:1px; " height="31" align="right">
+            <p align="right">收报单位</p>
+          </TD>
+          <TD width="204" style="border-style:solid; border-width:1px; " height="31" align="left">
+            <SELECT class="inputCtrl" id="报表上传登记:收报单位" style="border:1px solid #779FD6; WIDTH: 189; HEIGHT: 18" name="收报单位" DataValueField="单位名称" DataTextField="单位名称" DataSource="收报单位" size="1">
+            </SELECT>
+          </TD>
+          <TD width="76" style="border-style:solid; border-width:1px; " height="31" align="right">上报主题</TD>
+          <TD width="274" style="border-style:solid; border-width:1px; " height="31" align="right" colspan="3">
+            <p align="left">
+              <SELECT class="inputCtrl" id="报表上传登记:上报主题" style="border:1px solid #779FD6; WIDTH: 269; HEIGHT: 27" name="上报主题" DataValueField="上报主题" DataTextField="上报主题" DataSource="报送主题" size="1">
+              </SELECT>
+            </p>
+          </TD>
+          <TD width="126" style="border-style:solid; border-width:1px; " height="31" align="right">
+            <p align="center">说明</p>
+          </TD>
+        </tr>
+        <tr>
+          <TD width="74" style="border-style:solid; border-width:1px; " height="35" align="right">
+            <p align="right">送报单位</p>
+          </TD>
+          <TD width="204" style="border-left-style:solid; border-left-width:1px; border-right-style:solid; border-right-width:1px; border-bottom-style:solid; border-bottom-width:1px" height="35" align="left">
+            <INPUT class="inputCtrl" id="报表上传登记:送报单位" disabled="true" style="padding:0px; border:1px solid #EAE8E4; " type="text" size="27" name="送报单位" />
+          </TD>
+          <TD width="76" style="border-style:solid; border-width:1px; " height="35" align="right">报表日期</TD>
+          <TD width="97" nowrap="" style="border-style:solid; border-width:1px; " height="35" align="left">
+            <INPUT class="inputDate" id="报表上传登记:报表日期" style="padding:0px; border:1px solid #EAE8E4; " type="text" size="13" name="报表日期" />
+          </TD>
+          <TD width="60" style="border-style:solid; border-width:1px; " height="35" align="right">上报时间</TD>
+          <TD width="110" nowrap="" style="border-style:solid; border-width:1px; " height="35" align="left">
+            <INPUT class="inputDate" id="报表上传登记:上报时间" style="padding:0px; border:1px solid #EAE8E4; " type="text" size="15" name="上报时间" />
+          </TD>
+          <TD width="126" style="border-left-style:solid; border-left-width:1px; border-right-style:solid; border-right-width:1px; border-bottom-style:solid; border-bottom-width:1px" align="left" rowspan="2">　</TD>
+        </tr>
+        <tr>
+          <TD width="74" style="border-style:solid; border-width:1px; " height="25" align="right">上报文件</TD>
+          <TD width="386" valign="center" style="border-left-style:solid; border-left-width:1px; border-right-style:solid; border-right-width:1px; border-bottom-style:solid; border-bottom-width:1px" height="25" align="left" colspan="3">
+            <div id="报表上传登记:文件" class="inputFile">
+              <Control class="" catalog="FileUpLoad.ascx" itemname="报表上传登记" id="FileUploadCtrl" name="">上传文件
+              	<Property name="FileColumn" filenameinput="文件" filenameupload="报表文件" pathupload="" /><Property name="filetype" value="" />
+              </Control>
+            </div>
+          </TD>
+          <TD width="60" valign="center" style="border-left-style:solid; border-left-width:1px; border-right-style:solid; border-right-width:1px; border-bottom-style:solid; border-bottom-width:1px" height="25" align="right">联系电话</TD>
+          <TD width="110" valign="center" style="border-left-style:solid; border-left-width:1px; border-right-style:solid; border-right-width:1px; border-bottom-style:solid; border-bottom-width:1px" height="25" align="left">
+            <INPUT class="inputCtrl" id="报表上传登记:联系电话" style="padding:0px; border:1px solid #EAE8E4; " type="text" size="15" name="联系电话" />
+          </TD>
+        </tr>
+        <tr>
+          <TD width="74" style="border-style:solid; border-width:1px; " height="29" align="right">
+            <p align="right">备注　</p>
+          </TD>
+          <TD width="284" style="border-style:solid; border-width:1px; " align="left" height="29" colspan="2">
+            <INPUT class="inputCtrl" id="报表上传登记:备注" style="padding:0px; border:1px solid #EAE8E4; float:left" size="32" name="备注" />
+          </TD>
+          <TD width="160" style="border-style:solid; border-width:1px; " align="left" height="29" colspan="2">
+            <p align="center"></p>
+          </TD>
+          <TD width="231" style="border-style:solid; border-width:1px; " align="left" height="29" colspan="2">
+            <p align="center"></p>
+          </TD>
+        </tr>
+      </tbody>
+    </TABLE>
+    <div style="Z-INDEX:112; height: 240px;OVERFLOW: auto; width:766px">
+      <Control class="" catalog="GridEdit.ascx" itemname="报表上传登记" id="DetailTab" name="">ControlTest
+			<Property name="width" value="" /><Property name="height" value="240px" /><Property name="visible" value="true" /><Property name="hiddenhead" value="false" /></Control>
+    </div>
+  </body>
+</html>

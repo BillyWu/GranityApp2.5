@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+    <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>    
+    <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+<script language="javascript">
+<!--
+	window.onload=WinLoadUtil.MDTPLoad;
+	function initWin()
+	{
+	    var banddst=window.dialogArguments;	
+		var band = document.UnitItem.getBandByItemName("itemtree");
+		ue_bandTreeSearch(banddst.getFldStrValue("unitname"),null,'treeland')
+	}
+	function setParentSql()
+	{
+		//window.parent.document
+		var band=document.UnitItem.getBandByItemName("tableStructs");
+		var strsql="";
+		var xmlRows=band.XmlLandData.XMLDocument.selectNodes("/*/*[@selected='-1' or @selected='1' or @selected='true']");
+		//xmlRows[0].childNodes[0].text
+		for(var i=0;i<xmlRows.length;i++)
+		{
+			strsql =strsql + xmlRows[i].childNodes[0].text + ",";
+		}
+		window.parent.document.UnitItem.getBandByItemName("itemtree").setFldStrValue(null,"sqltext",strsql );
+		alert(strsql);
+	}
+	function cmdOK()
+	{
+	    var banddst=window.dialogArguments;	
+		var band = document.UnitItem.getBandByItemName("itemtree");
+		var name = band.Tree.WebTree.get_selectedNode().Text;
+		var oldname = banddst.getFldStrValue("unitname");
+		if(oldname!=name)
+		{
+			if(oldname =="")
+				banddst.setFldStrValue(null,"unitname",name);
+			else
+			{
+		 		var result = confirm("您将要把单元名称【"+oldname +"】替换为【"+name+"】,确认吗？");
+				if(!result) return;
+				banddst.setFldStrValue(null,"unitname",name);
+			}
+		}
+		window.close();
+	}	
+-->
+</script>
+</head>
+<body>
+		<TABLE id="Table2" style="BORDER-RIGHT: thin groove; BORDER-TOP: thin groove; FONT-SIZE: 12px; BORDER-LEFT: thin groove; BORDER-BOTTOM: thin groove; FONT-FAMILY: 宋体" cellSpacing="0" cellPadding="0" width="100%" bgColor="activeborder" border="0">
+				<tbody>
+				<TR>
+					<TD style="BORDER-BOTTOM: thin groove; BORDER-Right: thin groove; FONT-FAMILY: 宋体; HEIGHT: 20px" align="center" bgColor="activeborder">
+						<Control class="" catalog="TreeLand.ascx" itemname="itemtree" id="treeland" name="">treeland<Property name="tpfile" value="" />
+					                                                <Property name="width" value="98%" /><Property name="height" value="450" />
+					                                                <Property name="ctrlalert" value="s_code" />
+					                                                <Property name="trvfld" idfld="code" pidfld="pcode" txtfld="name" orderfld="" />
+				                                                </Control>
+						</TD>
+				</TR>
+				<TR>
+					<TD style="BORDER-Right: thin groove" align="right"><INPUT id="hlb_gridname" style="WIDTH: 88px; HEIGHT: 22px" type="hidden" size="9" />
+					<FONT face="宋体"><INPUT id="Button1" title="确定" style="WIDTH: 64px; HEIGHT: 24px" onclick="cmdOK()" type="button" value="确定" name="btnOK" />　<INPUT id="Button2" style="WIDTH: 66px; HEIGHT: 24px" onclick="window.close()" type="button" value="返回" name="btnCancel" /></FONT>
+					</TD>
+				</TR>
+			</tbody>
+			</TABLE>
+</body>
+</html>

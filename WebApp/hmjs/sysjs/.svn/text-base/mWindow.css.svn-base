@@ -1,0 +1,187 @@
+﻿/* CSS Document for mWindow */
+#oc_mWindow {
+	visibility:hidden;
+	position: absolute;
+	overflow: hidden;
+	width: 600px;
+	z-index: 10001;
+}
+#oc_mWindow_bg {
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 0;
+	clear: both;
+	z-index: 10;
+	background-color:#B3B3B3;
+	filter:alpha(opacity=10);
+	-moz-opacity:0.1;
+}
+#oc_mWindow_head_left {
+	background-image:url(../Images/gif/窗口顶部左边背景图.gif);
+	background-position: left;
+	background-repeat: no-repeat;
+	width: 2px;
+	height: 3px;
+	float: left;
+}
+#oc_mWindow_head {
+	background-image:url(../Images/gif/窗口顶部背景.gif);
+	background-position: left;
+	background-repeat: repeat-x;
+	width: 596px;
+	height: 3px;
+	float:left;
+}
+#oc_mWindow_head_right {
+	background-image:url(../Images/gif/窗口顶部右边背景图.gif);
+	background-position: left;
+	background-repeat: no-repeat;
+	width: 2px;
+	height: 3px;
+	float: right;
+}
+#oc_mWindow_title_left {
+	background-image: url(../Images/gif/窗体左边背景图.gif);
+	background-position: left;
+	background-repeat: repeat-y;
+	width: 3px;
+	height: 18px;
+	margin-top: 0;
+	float: left;
+}
+#oc_mWindow_title {
+	background-image: url(../Images/gif/窗口标题栏背景.gif);
+	background-position: left;
+	background-repeat: repeat-x;
+	width: 594px;
+	height: 18px;
+	float: left;
+}
+#oc_mWindow_title_right {
+	background-image: url(../Images/gif/窗体右边背景图.gif);
+	background-position: left;
+	background-repeat: repeat-y;
+	width: 3px;
+	height: 18px;
+	margin-top: 0;
+	float: left;
+}
+#oc_mWindow_title_text {
+	width: 90%;
+	height: 18px;
+	line-height: 18px;
+	text-indent: 4px;
+	font-size: 13px;
+	color: #FFFFFF;
+	float: left;
+}
+#oc_mWindow_title_close {
+	width: 20px;
+	height: 18px;
+	text-align: center;
+	line-height: 18px;
+	float: right;
+}
+#oc_mWindow_title_close img {
+	margin-top: 2px;
+	cursor: pointer;
+}
+#oc_mWindow_body_left {
+	background-image: url(../Images/gif/窗体左边背景图.gif);
+	background-position: left;
+	background-repeat: repeat-y;
+	width: 3px;
+	height: 400px;
+	margin-top: 0;
+	float: left;
+}
+#oc_mWindow_body {
+	background-image: url(../Images/gif/窗口体背景图.gif);
+	background-position: left;
+	width: 594px;
+	height: 400px;
+	margin-top: 0;
+	float:left;
+	text-align: center;
+	overflow: hidden;
+}
+#oc_mWindow_body_right {
+	background-image: url(../Images/gif/窗体右边背景图.gif);
+	background-position: left;
+	background-repeat: repeat-y;
+	width: 3px;
+	height: 400px;
+	margin-top: 0;
+	float: right;
+}
+#oc_mWindow_alert {
+	margin-top: 4px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 98%;
+	font-size: 14px;
+	text-indent: 14px;
+	text-align: left;
+	overflow: hidden;
+}
+#oc_mWindow_confirm_left {
+	background-image: url(../Images/gif/窗体左边背景图.gif);
+	background-position: left;
+	background-repeat: repeat-y;
+	width: 3px;
+	height: 26px;
+	margin-top: 0;
+	float: left;
+}
+#oc_mWindow_confirm {
+	background-image: url(../Images/gif/窗口体背景图.gif);
+	background-position: left;
+	width: 594px;
+	height: 26px;
+	margin-top: 0;
+	float:left;
+	text-align: center;
+}
+#oc_mWindow_confirm img {
+	cursor: pointer;
+}
+#oc_mWindow_confirm_right {
+	background-image: url(../Images/gif/窗体右边背景图.gif);
+	background-position: left;
+	background-repeat: repeat-y;
+	width: 3px;
+	height: 26px;
+	margin-top: 0;
+	float: right;
+}
+#oc_mWindow_foot_left {
+	background-image: url(../Images/gif/窗口底边左边背景图.gif);
+	background-position: left;
+	background-repeat: no-repeat;
+	width: 1px;
+	height: 2px;
+	margin-top: 0;
+	float: left;
+}
+#oc_mWindow_foot {
+	background-image: url(../Images/gif/窗口底边背景图.gif);
+	background-position: left;
+	background-repeat: repeat-x;
+	width: 598px;
+	height: 2px;
+	margin-top: 0;
+	float: left;
+}
+#oc_mWindow_foot_right {
+	background-image: url(../Images/gif/窗口底边右边背景图.gif);
+	background-position: left;
+	background-repeat: no-repeat;
+	width: 1px;
+	height: 2px;
+	margin-top: 0;
+	float: left;
+}

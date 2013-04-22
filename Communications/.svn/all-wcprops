@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications
+END
+CommiServer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/CommiServer.cs
+END
+ResponseEventArgs.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/ResponseEventArgs.cs
+END
+myThread.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/myThread.cs
+END
+CommiManager.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/CommiManager.cs
+END
+Communications.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/Communications.csproj.user
+END
+Protocol.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/Protocol.cs
+END
+ServerBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/ServerBase.cs
+END
+SvrFileTrans.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/SvrFileTrans.cs
+END
+ThreadManager.cs
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/ThreadManager.cs
+END
+Communications.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/Communications.csproj
+END
+CommiParam.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/CommiParam.cs
+END
+myLog.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/myLog.cs
+END
+CommandBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Communications/CommandBase.cs
+END

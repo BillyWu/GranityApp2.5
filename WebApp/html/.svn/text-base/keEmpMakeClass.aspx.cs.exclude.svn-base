@@ -1,0 +1,121 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Collections.Specialized;
+using Microsoft.ApplicationBlocks.ExceptionManagement;
+using Estar.Common.Tools;
+using Estar.Business.DataManager;
+using System.Text.RegularExpressions;
+using Estar.Common.Tools;
+using Granity.winTools;
+
+public partial class html_keEmpMakeClass : System.Web.UI.Page
+{
+    string unitName = "员工排班导入";
+
+    UnitItem unitItem = null;
+    NameObjectList paramwin = null;
+    DataSet dsUnit = null;
+    QueryDataRes Query = null;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //读取业务单元和传递参数
+        this.paramwin = BindManager.getSystemParam();
+        NameObjectList pstrans = BindManager.getTransParam();
+        ParamManager.MergeParam(this.paramwin, pstrans);
+        this.unitItem = new UnitItem(DataAccRes.AppSettings("WorkConfig"), unitName);
+        this.Query = new QueryDataRes("员工排班导入");
+    }
+    /// <summary>
+    /// 从excel 读取数据
+    /// </summary>
+    /// <param name="filenameurl"></param>
+    /// <param name="table"></param>
+    /// <param name="IsXls">excel 版本</param>
+    /// <returns></returns>
+    public DataSet ExcelDs(string filenameurl, string table, string IsXls)
+    {
+        try
+        {
+            string strConn = string.Empty;
+            switch (IsXls)
+            {
+                case ".xls":
+                    strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filenameurl + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
+                    break;
+                case ".xlsx":
+                    strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filenameurl + ";Extended Properties='Excel 12.0;HDR=Yes;IMEX=1;'";
+                    break;
+                default:
+                    strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filenameurl + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
+                    break;
+            }
+            //链接Excel
+            OleDbConnection conn = new OleDbConnection(strConn);
+            conn.Open();
+            DataTable m_tableName = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+            if (m_tableName != null && m_tableName.Rows.Count > 0)
+            {
+                m_tableName.TableName = m_tableName.Rows[0][2].ToString();
+            }
+            OleDbDataAdapter oleAdMaster = new OleDbDataAdapter("select *  FROM [" + m_tableName.TableName + "]", conn);
+            DataSet ds = new DataSet();
+            oleAdMaster.Fill(ds, m_tableName.TableName);
+            conn.Close();
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 导入
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void btGuideData_Click(object sender, EventArgs e)
+    {
+        if (FileUpload1.HasFile == false)
+        {
+            Response.Write("<script>alert('请您选择Excel文件')</script> ");
+            return;//当无文件时,返回     
+        }
+        string IsXls = System.IO.Path.GetExtension(FileUpload1.FileName).ToString().ToLower();
+        if (IsXls != ".xls" && IsXls != ".xlsx")
+        {
+            Response.Write("<script>alert('只可以选择Excel文件')</script>");
+            return;//当选择的不是Excel文件时,返回    
+        }
+        string error = string.Empty;
+        string connstr = DataAccRes.DefaultDataConnInfo.Value;
+        string strPath = FileUpload1.PostedFile.FileName.ToString();   //获取Excel文件路径    
+        string fileName = FileUpload1.FileName;  //获取Excel文件名    
+        string serverPath = Server.MapPath("~/DataSource/upload/" + fileName);
+        FileUpload1.SaveAs(serverPath);//保存到服务器
+        DataSet ds = ExcelDs(serverPath, fileName, IsXls);
+        if (ds == null)
+        {
+            Response.Write("<script>alert('读取Excel文件失败')</script>");
+            return;
+        }
+        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        {
+            DataRow dr = ds.Tables[0].Rows[i];
+            NameObjectList ps1 = ParamManager.createParam(dr);
+            ParamManager.MergeParam(ps1, this.paramwin, false);
+            this.Query.ExecuteNonQuery("员工排班导入", ps1, ps1, ps1);
+        }
+        Response.Write("<script>alert('导入成功')</script>");
+    }
+}

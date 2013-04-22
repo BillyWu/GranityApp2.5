@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer
+END
+DeviceMonitorMgrBak.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/DeviceMonitorMgrBak.cs
+END
+DeviceMonitorMgr.cs
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/DeviceMonitorMgr.cs
+END
+ServiceTool.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/ServiceTool.cs
+END
+DeviceDoor.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/DeviceDoor.cs
+END
+CommiServer.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/CommiServer.csproj
+END
+ChannelWorkerMgr.cs
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/ChannelWorkerMgr.cs
+END
+DeviceChannel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/DeviceChannel.cs
+END
+DeviceEatery.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/DeviceEatery.cs
+END
+DeviceBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/DeviceBase.cs
+END
+SynDeviceParam.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/CommiServer/SynDeviceParam.cs
+END

@@ -1,0 +1,512 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <title>	无标题页</title>
+    <meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR" />
+    <meta content="C#" name="CODE_LANGUAGE" />
+    <meta content="JavaScript" name="vs_defaultClientScript" />
+    <meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema" />
+    <base target="_self" />
+    <script language="javascript" src="hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <link href="hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="mstoolbar_files/css.css" type="text/css" rel="stylesheet" />
+    <style type="text/css">
+      BODY { FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: "宋体", "Arial" }
+      TD { FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: "宋体", "Arial" }
+    </style>    
+  </head>
+  <body style="overflow:hidden; margin: 0px;" >
+    <script language="javascript" src="hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <div style="display:none;">
+      <XML id="xmlparam" typexml="Param">
+        <D>
+          <PL t="P">
+            <L t="Ts">
+              <P n="RecordCount" v="" t="s" pt="M" />
+              <P n="Command" v="TransParam" t="s" />
+              <P n="UnitName" v="公司员工" t="s" />
+            </L>
+          </PL>
+        </D>
+      </XML>
+    </div>
+    <div style="display:none;">
+      <XML name="公司员工" templatetype="SIMPL" id="xmlConf_xmlLandConf" typexml="ConfProperty" confpro="">
+        <UnitItem>
+          <Item name="字典信息" relation="M" dataitem="公司员工" columnkey="ID">
+            <Column name="EMPID" />
+            <Column name="EMPCODE" title="员工编号" />
+            <Column name="NAME" title="姓名" />
+            <Column name="DEPARTMENT" title="部门" />
+            <Column name="DUTY" title="职务" />
+            <Column name="POSTCODE" title=" 邮编" />
+            <Column name="FOREFATHER" title="藉贯" />
+            <Column name="POSTDATE" title="入职日期" />
+            <Column name="ISOPERATE" title="业务员标志" />
+            <Column name="PAY" title="工资" />
+            <Column name="SEX" title="性别" />
+            <Column name="SIGN" />
+            <Column name="COUNTMETH" />
+            <Column name="MEMORY" title="备注" />
+            <Column name="BIRTHDAY" title="生日" />
+            <Column name="IDCARD" title="身份证" />
+            <Column name="ADDRESS" title="地址" />
+            <Column name="EMAIL" />
+            <Column name="CULTURE" title="学历" />
+            <Column name="BP" title="手机号码" />
+            <Column name="TELEPHONE" title="电话" />
+            <Column name="HOMEPHONE" title="家庭电话" />
+            <Column name="UPFLAG" title="在职" />
+            <Column name="查看" />
+            <Column name="pic" />
+            <Column name="文件" />            
+            <Column name="EMPTYPEID" title="员工类别" />
+          </Item>
+          <AppendItem name="上传" unitname="上传图片" funtype="checkin" />
+        </UnitItem>
+      </XML>
+    </div>
+    <div style="display:none" >
+      <input name="hlb_cmd" type="hidden" id="hlb_cmd" />
+      <input name="hlbRequestParams" type="hidden" id="hlbRequestParams" />
+    </div>
+    <div id="etpTemplate" style="border-color:Gray;border-width:1px;border-style:Solid;height:100%;width:100%;">
+      <head>
+        <script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+        <script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+        <script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+        <script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+        <script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+        <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+        <script language="javascript" type="text/javascript">
+          <!--
+                initsysparams();//初始化系统参数
+    		    window.onload=WinLoadUtil.MDTPLoad;
+    		    function initWin()
+    		    {
+    		        var band=document.UnitItem.getBandByItemName("字典信息");
+    		        band.Query();
+    		        //初始化字典列
+    		    }
+   		    
+                function msInitGridOps()
+                {
+                    obj=event.srcElement;
+                    if(!obj.colname || ""==obj.colname) return;
+		            var ops = obj.options;
+		            if(ops.options.length>0) return;
+		            
+                    //数据所在表格,及对应数据岛数据结构,列节点
+                    var trcur=ToolUtil.getCtrlByTagU(true,obj,"TR","rowType","detail");
+                    var tabDetail=ToolUtil.getCtrlByTagU(true,obj,"TABLE","tabType","detail");
+                    var myUnitItem=document.UnitItem;
+                    var band = myUnitItem.getBandByItemName(tabDetail.Grid.ItemName);
+                    if(band.XmlDict.xml=="") 
+                    {
+    		            var xmlhttp = band.querydict();
+    		            var xmldict = xmlhttp.responseXML.xml;
+    		            band.XmlDict.XMLDocument.loadXML(xmldict);
+                    }
+                    var texts = band.XmlDict.XMLDocument.selectNodes("//"+ obj.DataSource +"//" + obj.DataTextField);
+                    var vals  = band.XmlDict.XMLDocument.selectNodes("//"+ obj.DataSource +"//" + obj.DataValueField);
+                    ops.add(new Option("",""));
+                    for(var m=0;m<vals.length;m++)
+                        ops.add(new Option(texts[m].text,vals[m].text));
+                    obj.value=band.getFldStrValue(obj.colname);
+                }    		    
+    		    
+    		    
+                function msInitGridOps1()
+                {
+                    obj=event.srcElement;
+                    if(!obj.colname || ""==obj.colname)
+                    return;
+                    //数据所在表格,及对应数据岛数据结构,列节点
+                    var trcur=ToolUtil.getCtrlByTagU(true,obj,"TR","rowType","detail");
+                    var tabDetail=ToolUtil.getCtrlByTagU(true,obj,"TABLE","tabType","detail");
+                    var myUnitItem=document.UnitItem;
+                    var band=myUnitItem.getBandByItemName(tabDetail.Grid.ItemName);
+		            var ops = obj.options;
+		            if(ops.options.length>0) return;
+		            
+		            
+                    var texts = MasterTab_dict.XMLDocument.selectNodes("//"+ obj.DataSource +"//" + obj.DataTextField);
+                    var vals  = MasterTab_dict.XMLDocument.selectNodes("//"+ obj.DataSource +"//" + obj.DataValueField);
+                    ops.add(new Option("",""));
+                    for(var m=0;m<vals.length;m++)
+                        ops.add(new Option(texts[m].text,vals[m].text));
+                    obj.value=band.getFldStrValue(obj.colname);
+                }    		    
+    		    function initsysparams()
+    		    {
+    		        //取主页系统参数
+    		        var xclone = window.parent.parent.document.getElementById("xmlparam").cloneNode(true);
+    		        if(!window.parent.parent.document.getElementById("xmlparam")) return;
+                    var xmlppm = window.parent.parent.document.getElementById("xmlparam").XMLDocument;
+                    var xmlsys = xmlppm.selectSingleNode("//PL[@t='S']");
+                    if(xmlsys)
+                        document.getElementById("xmlparam").childNodes.item(0).appendChild(xmlsys);
+                    window.parent.parent.document.getElementById("xmlparam").XMLDocument=xclone;
+    		    }
+
+                function openPro()
+                {
+	                var band=document.UnitItem.getBandByItemName("字典信息");
+	                if(!band)    return;
+	                var rtn = window.showModalDialog("EmpEdit.HTM",band,"dialogHeight: 400px; dialogWidth: 655px; edge: Raised; center: Yes; help: No; resizable: No status: No;"); 
+	                if(rtn=="" || rtn==null) return 1; 
+	                if(rtn>0)
+	                {
+  	            	    gshowModalDialogReturn=1;
+            		    band.setCurrentRow(rtn-1);
+            	    }
+           	    }
+           	    
+                function createXml(str){ 
+　　                if(document.all){ 
+　　                var xmlDom=new ActiveXObject("Microsoft.XMLDOM") 
+　　                xmlDom.loadXML(str) 
+　　                return xmlDom 
+　　                } 
+　　                else 
+　　                return new DOMParser().parseFromString(str, "text/xml") 
+　　                }           	    
+		    -->
+        </script>
+      </head>
+      <body>
+        <table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width:100%;height:100%" align="center">
+          <tbody>
+            <tr>
+              <td align="left" style="width:32%">
+                <img alt="" style="border:0;width:318;" src="Images/welcome.gif" width="318" height="72" />
+              </td>
+              <td align="right" style="width:68%;height:30">
+                <table width="470" id="tabQuery" border="0" style="border-collapse: collapse; WORD-BREAK: break-all; left:312px; top:19px" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="29">
+                  <tbody>
+                    <tr>
+                      <td width="83" align="right">
+                        <label id="filtertitle">检索内容：</label>
+                      </td>
+                      <td align="center">
+                        <input class="xlandinput" id="filterfldlfow" filter="and" style="WIDTH: 99%; height:19" size="18" name="a.审批事项;单位;a.项目名称;a.责任人" />
+                      </td>
+                      <td align="left" width="17%">
+                        <img border="0" src="Images/tb16.gif" width="22" height="22" onclick="ue_tfilter('建筑审批导航')" onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" />
+                        <img border="0" src="Images/print.gif" width="22" height="22" onclick="ue_print()" onmouseover="this.src='Images/printover.gif'" onmouseout="this.src='Images/print.gif'" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" colspan="2" valign="top">
+                <div id="etpTemplate_MasterTab_GridDiv" style="height:95%;width:100%;">
+                  <table class="GridWB" cellpadding="0" cellSpacing="0" style="width:100%;height:100%" tabType="grid">
+                    <tbody>
+                      <tr>
+                        <td divtype="body" colspan="4">
+                          <div divtype="title" align="left" style="OVERFLOW:hidden;width:100%" width="">
+                            <table tabType="title" class="tabTitle" cellpadding="0" cellSpacing="0" width="100%">
+                              <thead>
+                                <tr rowType="title">
+                                  <td tdType="rowcursor" class="cellwb_btn" align="center" style="width:40;table-layout:fixed" height="22" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="">序号</span>
+                                  </td>
+                                  <td tdType="coltitle" class="cellwb_btn" align="center" colname="EMPCODE" datatype="xs:string" width="73" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="EMPCODE">员工编号</span>
+                                  </td>
+                                  <td tdType="coltitle" class="cellwb_btn" align="center" colname="NAME" datatype="xs:string" width="82" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="NAME">姓名</span>
+                                  </td>
+                                  <td tdType="coltitle" class="cellwb_btn" align="center" colname="DEPARTMENT" datatype="xs:string" width="97" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="DEPARTMENT">部门</span>
+                                  </td>
+                                  <td tdType="coltitle" class="cellwb_btn" align="center" colname="DUTY" datatype="xs:string" width="106" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="DUTY">职务</span>
+                                  </td>
+                                  <td tdType="coltitle" class="cellwb_btn" align="center" colname="ISOPERATE" datatype="xs:boolean" width="77" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="ISOPERATE">业务员标志</span>
+                                  </td>
+                                  <td tdType="coltitle" class="cellwb_btn" align="center" colname="SEX" datatype="xs:string" width="52" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="SEX">性别</span>
+                                  </td>
+                                  <td tdType="coltitle" class="cellwb_btn" align="center" colname="TELEPHONE" datatype="xs:string" width="120" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="TELEPHONE">电话</span>
+                                  </td>
+                                  <td tdType="coltitle" class="cellwb_btn" align="center" colname="查看" datatype="xs:string" width="53" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <span width="100%" height="100%" colname="查看">查看</span>
+                                  </td>
+                                  <td class="cellwb_btn" style="width:15;table-layout:fixed" align="center" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                    <a href="#" title="保存调整后的表格宽度" class="linkbtn" onclick="ue_savewidth();">=</a>
+                                  </td>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <div divtype="detail" class="tablescroll" style="overflow-x:hidden;overflow-y:scroll;width:100%;height:auto;width:100%" onscroll="GridUtil.usOnScrollHori();" width="">
+                            <table width="100%" tabType="detail" class="tabDetail" cellpadding="0" cellSpacing="0" onmousemove="GridUtil.usOnDetailMouseOverHandle();" onmouseout="GridUtil.usOnDetailMouseOutHandle();" datasrc="#MasterTab">
+                              <tbody>
+                                <tr rowType="detail">
+                                  <td tdType="rowcursor" class="cellwb_btn" align="center" style="width:40;table-layout:fixed" onclick="GridUtil.usOnRowcursorClickHandle()">
+                                    <span width="100%" datafld="RowNum"></span>
+                                  </td>
+                                  <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="73" colname="EMPCODE">
+                                    <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="EMPCODE" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="EMPCODE" />
+                                  </td>
+                                  <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="82" colname="NAME">
+                                    <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="NAME" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="NAME" />
+                                  </td>
+                                  <td datatype="select" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" width="97" colname="DEPARTMENT">
+                                    <input style="WIDTH:100%;HEIGHT:100%" type="text" colname="DEPARTMENT" datatype="select" class="gridbrowse"  optype="disp" 
+                                    onkeydown="GridUtil.usOnCellEnterTab();" onfocus="GridUtil.usOnCellFocusHandle();" datafld="DEPARTMENT" />
+                                    <select style="DISPLAY:none;WIDTH:100%;HEIGHT:100%" colname="DEPARTMENT" datatype="select" 
+                                        DataSource="dict_organize" DataTextField="name" DataValueField="name" class="gridselect" optype="edit" 
+                                        onkeydown="GridUtil.usOnCellEnterTab();"
+                                        onfocus="GridUtil.usOnCellFocusHandle();msInitGridOps();" 
+                                        onblur="GridUtil.usOnCellBlurHandle();" 
+                                        onchange="return GridUtil.usOnCellChangeHandle();" 
+                                        onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                        datafld="DEPARTMENT">
+                                    </select>
+                                  </td>
+                                  <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="106" colname="DUTY">
+                                    <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="DUTY" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="DUTY" />
+                                  </td>
+                                  <td datatype="bool" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="center" width="77" colname="ISOPERATE">
+                                    <input type="checkbox" colname="ISOPERATE" datatype="bool" class="gridcheck" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" datafld="ISOPERATE" />
+                                  </td>
+                                  <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="52" colname="SEX">
+                                    <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="SEX" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="SEX" />
+                                  </td>
+                                  <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="120" colname="TELEPHONE">
+                                    <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="TELEPHONE" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="TELEPHONE" />
+                                  </td>
+                                  <td datatype="blink" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="center" width="53" valign="middle" colname="查看">
+                                    <a href="#" datatype="blink" valuefld="" target="_self" onclick="GridUtil.usOnCellRFocusHandle();openPro()" class="gridlink" datafld="">
+                                      <div datatype="blink" colname="查看" datafld="查看">链接</div>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table tabType="foot" class="tabDetail" cellpadding="0" cellSpacing="0">
+                              <tbody>
+                                <tr rowType="foot">
+                                  <td tdType="rowcursor" class="cellwb" align="center" width="40px" height="22px">
+                                    <span width="100%" height="100%">合计</span>
+                                  </td>
+                                  <td tdType="coldata" class="cellwb" width="73" align="right" colname="EMPCODE" datatype="string">
+                                    <span width="100%" height="100%" colname="EMPCODE" datafld="">　</span>
+                                  </td>
+                                  <td tdType="coldata" class="cellwb" width="82" align="right" colname="NAME" datatype="string">
+                                    <span width="100%" height="100%" colname="NAME" datafld="">　</span>
+                                  </td>
+                                  <td tdType="coldata" class="cellwb" width="97" align="right" colname="DEPARTMENT" datatype="string">
+                                    <span width="100%" height="100%" colname="DEPARTMENT" datafld="">　</span>
+                                  </td>
+                                  <td tdType="coldata" class="cellwb" width="106" align="right" colname="DUTY" datatype="string">
+                                    <span width="100%" height="100%" colname="DUTY" datafld="">　</span>
+                                  </td>
+                                  <td tdType="coldata" class="cellwb" width="77" align="right" colname="ISOPERATE" datatype="bool">
+                                    <span width="100%" height="100%" colname="">　</span>
+                                  </td>
+                                  <td tdType="coldata" class="cellwb" width="52" align="right" colname="SEX" datatype="string">
+                                    <span width="100%" height="100%" colname="SEX" datafld="">　</span>
+                                  </td>
+                                  <td tdType="coldata" class="cellwb" width="120" align="right" colname="TELEPHONE" datatype="string">
+                                    <span width="100%" height="100%" colname="TELEPHONE" datafld="">　</span>
+                                  </td>
+                                  <td tdType="coldata" class="cellwb" width="53" align="right" colname="查看" datatype="string">
+                                    <span width="100%" height="100%" colname="查看" datafld="">　</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table1" divtype="funarea">
+                            <tbody>
+                              <tr>
+                                <td width="100" class="lt0a">
+                                  <table divtype="editarea" border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="tblctrledit" bgcolor="#FBFAFA">
+                                    <tbody>
+                                      <tr>
+                                        <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 0, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 0, 'lt0b')">
+                                          <img border="0" onclick="ue_bandadd();" title="增加记录" src="Images/grid/addgrid.gif" onmouseover="this.src='Images/grid/addgrid_down.gif'" onmouseout="this.border='0';this.src='Images/grid/addgrid.gif'" width="22" height="22" />
+                                        </td>
+                                        <td>
+                                          <span class="ltsep">|</span>
+                                        </td>
+                                        <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 2, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 2, 'lt0b')" width="22">
+                                          <img border="0" onclick="ue_banddelete();" title="删除所选择的记录" src="Images/grid/deletegrid.gif" onmouseover="this.src='Images/grid/deletegrid_down.gif'" onmouseout="this.src='Images/grid/deletegrid.gif';border='0'" width="22" height="22" />
+                                        </td>
+                                        <td width="8">
+                                          <span class="ltsep">|</span>
+                                        </td>
+                                        <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 4, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 4, 'lt0b')" align="center">
+                                          <img title="在当前位置插入记录行" border="0" onclick="ue_bandinsert();" src="Images/grid/insertgrid.gif" onmouseover="this.src='Images/grid/insertgrid_down.gif'" onmouseout="this.src='Images/grid/insertgrid.gif'" width="22" height="23" />
+                                        </td>
+                                        <td>
+                                          <span class="ltsep">|</span>
+                                        </td>
+                                        <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 6, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 6, 'lt0b')" align="center" width="16">
+                                          <img border="0" onclick="ue_replace();" src="./Images/replace.ico" alt="替换记录内容" />
+                                        </td>
+                                        <td width="8">
+                                          <span class="ltsep">|</span>
+                                        </td>
+                                        <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 8, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 8, 'lt0b')" align="center">
+                                          <img border="0" onclick="ue_print();" src="Images/printer.ico" alt="打印" />
+                                        </td>
+                                        <td>
+                                          <span class="ltsep">|</span>
+                                        </td>
+                                        <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 10, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 10, 'lt0b')" align="center" width="26">
+                                          <img border="0" onclick="ue_save();" src="Images/save1.gif" alt="保存" />
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                                <td width="118" class="lt0a">
+                                  <input class="tinput" type="text" name="T1" size="10" onfocus="this.nextSibling.value='查找'" />
+                                  <input type="button" class="txtbtn" value="查找" name="B3" onclick="ue_bandsearch(this.previousSibling.value,'下一个'==this.value);this.value='下一个';" />
+                                </td>
+                                <td class="lt0a" name="message" style="font-size: 9pt; font-family: 宋体; color: #FF0000;"></td>
+                                <td width="296" class="lt0a" divtype="funarea">
+                                  <DIV align="center" style="width:296px; height:20px">
+                                    页次:<input size="1" style="TEXT-ALIGN:right;" class="lt0c" name="lblCurrentPage" value="0" />/<input style="TEXT-ALIGN:left" class="lt0c" size="1" name="lblTotalPages" value="0" />总数<input name="lblRecordCount" size="1" style="TEXT-ALIGN:left" class="lt0c" value="0" /><A class="linkbtn_0" title="首页" href="#" onclick="ue_bandcmd_nav('first')">
+                                      <FONT face="webdings">9</FONT>
+                                    </A><A class="linkbtn_0" title="上一页" href="#" onclick="ue_bandcmd_nav('prev')">
+                                      <FONT face="webdings">3</FONT>
+                                    </A><A class="linkbtn_0" title="下一页" href="#" onclick="ue_bandcmd_nav('next')">
+                                      <FONT face="webdings">4</FONT>
+                                    </A><A class="linkbtn_0" title="最后一页" href="#" onclick="ue_bandcmd_nav('last')">
+                                      <FONT face="webdings">:</FONT>
+                                    </A> 转到:
+                                    <select class="tselect" name="ddlPageIndex" size="1" onchange="ue_bandcmd_nav('jump',this.value);" style="width: 40">
+                                      <option value="1" selected="true">1</option>
+                                    </select>
+                                  </DIV>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div style="display:none;">
+                  <XML id="MasterTab_dict" typexml="Dict" itemname="字典信息"></XML>
+                </div>                
+                <XML id="MasterTab_Schema" typexml="Schema" ctrlAlert="s_code" ctrlchanged="etpTemplate_MasterTab_hlbChanged" ctrlschema="etpTemplate_MasterTab_hlbWidth" ctrlstate="etpTemplate_MasterTab_hlbState" ctrlhlbcmd="etpTemplate_MasterTab_hlb_cmd" ctrlbtcommand="bt_PostBack" name="字典信息" relation="M" columnkey="ID">
+                  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+                    <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" minOccurs="0" />
+                    <xs:element name="EMPID" type="xs:int" minOccurs="0" visible="1" />
+                    <xs:element name="EMPCODE" type="xs:string" minOccurs="0" width="73" title="员工编号" />
+                    <xs:element name="NAME" type="xs:string" minOccurs="0" width="82" title="姓名" />
+                    <xs:element name="EMPTYPEID" type="xs:int" minOccurs="0" visible="1" dataitem="dict_employtype" textcol="name" valuecol="code" title="员工类别" formatfld="EMPTYPEID_显示" />
+                    <xs:element name="DEPARTMENT" type="xs:string" minOccurs="0" width="97" expression="部门[-1]" dataitem="dict_organize" textcol="name" valuecol="name" title="部门" />
+                    <xs:element name="DUTY" type="xs:string" minOccurs="0" width="106" title="职务" />
+                    <xs:element name="POSTCODE" type="xs:string" minOccurs="0" visible="1" title=" 邮编" />
+                    <xs:element name="FOREFATHER" type="xs:string" minOccurs="0" visible="1" title="藉贯" />
+                    <xs:element name="POSTDATE" type="xs:dateTime" minOccurs="0" visible="1" title="入职日期" />
+                    <xs:element name="SIGN" type="xs:string" minOccurs="0" visible="1" />
+                    <xs:element name="PAY" type="xs:double" minOccurs="0" visible="1" title="工资" />
+                    <xs:element name="COUNTMETH" type="xs:string" minOccurs="0" visible="1" />
+                    <xs:element name="MEMORY" type="xs:string" minOccurs="0" visible="1" title="备注" />
+                    <xs:element name="ISOPERATE" type="xs:boolean" minOccurs="0" width="77" title="业务员标志" />
+                    <xs:element name="SEX" type="xs:string" minOccurs="0" width="52" title="性别" />
+                    <xs:element name="BIRTHDAY" type="xs:dateTime" minOccurs="0" visible="1" title="生日" />
+                    <xs:element name="IDCARD" type="xs:string" minOccurs="0" visible="1" title="身份证" />
+                    <xs:element name="ADDRESS" type="xs:string" minOccurs="0" visible="1" title="地址" />
+                    <xs:element name="EMAIL" type="xs:string" minOccurs="0" visible="1" />
+                    <xs:element name="CULTURE" type="xs:string" minOccurs="0" visible="1" title="学历" />
+                    <xs:element name="BP" type="xs:string" minOccurs="0" visible="1" title="手机号码" />
+                    <xs:element name="TELEPHONE" type="xs:string" minOccurs="0" title="电话" />
+                    <xs:element name="HOMEPHONE" type="xs:string" minOccurs="0" visible="1" title="家庭电话" />
+                    <xs:element name="UPFLAG" type="xs:boolean" minOccurs="0" visible="1" title="在职" />
+                    <xs:element name="查看" type="xs:string" minOccurs="0" width="53" expression="'详细'" datastyle="blink" href="#" target="_self" onclick="GridUtil.usOnCellRFocusHandle();openPro()" />
+                    <xs:element name="pic" type="xs:string" minOccurs="0" visible="1" />
+                    <xs:element name="文件" type="xs:string" minOccurs="0" visible="1" />                  
+                    <xs:element name="RowNum" type="xs:int" minOccurs="0" visible="1" />
+                  </xs:schema>
+                </XML>
+                <div style="display:none;">
+                  <XML id="MasterTab" itemname="字典信息" typexml="Data">
+                    <etpTemplate_MasterTab_xmlland>
+                        <公司员工 state="init">
+                          <ID />
+                          <EMPID />
+                          <EMPCODE />
+                          <NAME />
+                          <EMPTYPEID />
+                          <EMPTYPEID_显示 />
+                          <DEPARTMENT />
+                          <DUTY />
+                          <POSTCODE />
+                          <FOREFATHER />
+                          <POSTDATE />
+                          <SIGN />
+                          <PAY />
+                          <COUNTMETH />
+                          <MEMORY />
+                          <ISOPERATE />
+                          <SEX />
+                          <BIRTHDAY />
+                          <IDCARD />
+                          <ADDRESS />
+                          <EMAIL />
+                          <CULTURE />
+                          <BP />
+                          <TELEPHONE />
+                          <HOMEPHONE />
+                          <UPFLAG />
+                          <查看 />
+                          <文件></文件>
+                          <pic />
+                          <RowNum />
+                        </公司员工>
+                    </etpTemplate_MasterTab_xmlland>
+                  </XML>
+                </div>
+                <div style="display:none;">
+                  <XML id="MasterTab_Sum" typexml="Count" itemname="字典信息">
+                    <DataSet>
+                      <DataTableCount>
+                        <TotalPage>1</TotalPage>
+                        <PageIndex>1</PageIndex>
+                        <PageSize>10</PageSize>
+                        <RecordCount>3</RecordCount>
+                      </DataTableCount>
+                    </DataSet>
+                  </XML>
+                </div>
+                <div style="display:none;">
+                  <XML id="MasterTab_Delete" typexml="Delete" itemname="字典信息">
+                    <etpTemplate_MasterTab_xmlland></etpTemplate_MasterTab_xmlland>
+                  </XML>
+                </div>
+                <div id="etpTemplate_MasterTab_DivForm" style="display: none">
+                  <input name="etpTemplate:MasterTab:hlbChanged" type="hidden" id="etpTemplate_MasterTab_hlbChanged" />
+                  <input name="etpTemplate:MasterTab:hlbWidth" type="hidden" id="etpTemplate_MasterTab_hlbWidth" />
+                  <input name="etpTemplate:MasterTab:hlbState" type="hidden" id="etpTemplate_MasterTab_hlbState" />
+                  <input name="etpTemplate:MasterTab:hlb_cmd" type="hidden" id="etpTemplate_MasterTab_hlb_cmd" />
+                </div>
+                <script language="javascript"> var myGrid=new Grid('MasterTab',document.getElementById('etpTemplate_MasterTab_GridDiv'),'',true);</script>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<body>
+		<div align="center">
+			<TABLE style="BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid" cellSpacing="0" cellPadding="0" width="97%" border="0"><TBODY>
+			        <TR>
+			        <TD align="middle" width="60" bgColor="#d9d4bb"><A href="#" target="_blank">最<BR />新<BR />更<BR />新</A></TD>
+			        <TD align="middle">
+			        <MARQUEE id="today_news" onmouseover="this.stop()" onmouseout="this.start()" scrollAmount="1" scrollDelay="30" direction="up" width="90%" height="95%" more="" For="" Author:redriver="">
+			             <Control class="" catalog="GridLand.ascx" itemname="库存警示" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="ControlTemplate/GridSimple.htm" />
+							<Property name="width" value="200px" /><Property name="height" value="100px" /><Property name="hiddenhead" value="false" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+						</Control>
+			        </MARQUEE></TD></TR>
+			</TBODY></TABLE>
+		</div>
+	</body>
+</html>

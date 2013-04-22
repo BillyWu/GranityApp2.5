@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonAdv.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/framefun.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/common.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/tmpjs/msjs.js" type="text/javascript" charset="gb2312"></script>
+		
+		<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" />
+	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+		<style type="text/css">
+		.sec1 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.sec2 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.sec3 {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.secx {BORDER-RIGHT: gray 0 solid; BORDER-TOP: #ffffff 0px solid;FONT-SIZE: 12px; BORDER-LEFT: #ffffff 0px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+    #loader_container {
+    text-align:center;
+    position:absolute;
+    top:40%;
+    width:100%;
+    left: 0;
+    }
+
+    #loader {
+    font-family:Tahoma, Helvetica, sans;
+    font-size:11.5px;
+    color:#000000;
+    background-color:#FFFFFF;
+    padding:10px 0 16px 0;
+    margin:0 auto;
+    display:block;
+    width:300px;
+    border:1px solid #5a667b;
+    text-align:left;
+    z-index:2;
+    }
+    #loader_bg {background-color:#e4e7eb;
+    position:relative;
+    top:8px;
+    left:8px;
+    height:7px;
+    width:280px;
+    font-size:1px}
+    #progress {
+    height:5px;
+    font-size:1px;
+    width:1px;
+    position:relative;
+    top:1px;
+    left:0px;
+    background-color:#77A9E0
+
+
+		</style>
+	    
+		<script language="javascript" type="text/javascript">
+		<!--
+		    parent.parent.mainform.document.all("contents").cols="0,*,0";
+			window.onload=WinLoadUtil.MDTPLoad;
+			var copyNode=null;
+			function initWin()
+			{
+				var mband=document.UnitItem.getBandByItemName("goods");			
+				var oband=document.UnitItem.getBandByItemName("xmldetail");
+				oband.AfterSum=function()
+				{
+					var xsum = document.getElementById("sumprice").value;
+					if(xsum==0) return;
+					mband.setFldStrValue(null,"零售价",xsum);
+					mband.Sum();
+					
+				}
+				remove_loading();
+				ue_treeline("itemtree",true)
+				//window.setTimeout(ue_treeline,600);	
+			}
+
+			
+			function Tree_onNodeSelectionChange(node)
+			{
+				secBoard(0);
+				var mband=document.UnitItem.getBandByItemName("goods");
+				mband.Query();
+								
+			}
+			
+            function openPro()
+            {
+            	document.getElementById("master").style.display="none";
+            	document.getElementById("detail").style.display="block";
+            	return;
+            
+	            var band=document.UnitItem.getBandByItemName("主表");
+	            if(!band)    return;
+	            var rtn = window.showModalDialog("GoodEdit.HTM",band,"dialogHeight: 510px; dialogWidth: 830px; edge: Raised; center: Yes; help: No; resizable: No status: No;"); 
+	            if(rtn=="" || rtn==null) return 1; 
+	            if(rtn>0)
+	            {
+  	            	gshowModalDialogReturn=1;
+            		band.setCurrentRow(rtn-1);
+            	}
+           	}   		
+
+			function opentype()
+			{
+				var oband=document.UnitItem.ActiveBand;
+				if(oband.ItemName=="itemtree")
+				{
+					secBoard(0);
+					var oband = document.UnitItem.getBandByItemName("goods");
+					document.UnitItem.ActiveBand = document.UnitItem.getBandByItemName("goods");
+				}
+				var _destitem = "产品清单";
+				if(oband.ItemName=="goods") 
+				{
+					_destitem = "产品清单"
+				}
+				else 
+				{
+					if(document.UnitItem.getBandByItemName("goods").RecordCount()==0) 
+					{
+						alert("请先录入产品清单！");
+						secBoard(0);
+						document.UnitItem.ActiveBand = document.UnitItem.getBandByItemName("goods");
+						return;
+					};
+					_destitem = "配置清单";
+				}
+				
+				
+			 	var result = confirm("您将对【"+_destitem+"】进行数据添加！确认吗？");
+				if(!result) return;								
+				oband.setModalContent("selectgoods");
+			}           	
+
+			function cmdClose()
+			{
+            	document.getElementById("master").style.display="block";
+            	document.getElementById("detail").style.display="none";			
+			}           	
+			function cmdOK()
+			{
+            	ue_save();
+            	cmdClose();
+			}           	
+			function this_save()
+			{
+				var mband=document.UnitItem.getBandByItemName("goods");			
+				var oband=document.UnitItem.getBandByItemName("xmldetail");
+				if(oband.RecordCount()>0) 
+				{
+					mband.setFldStrValue(null,"hasD","1");
+				}
+				var oband=document.UnitItem.getBandByItemName("bom");
+				if(oband && oband.RecordCount()>0) 
+				{
+					mband.setFldStrValue(null,"hasBom","1");
+				}
+				ue_save();
+			}
+			
+			function secBoard(n) {
+				if(!mainTable.tBodies[n]) return;
+			    for(i=0;i<secTable.cells.length;i++)
+			    {
+			    	if(secTable.cells[i].className!="secx")
+			    	secTable.cells[i].className="sec1";
+			    }
+			    secTable.cells[n].className="sec2";
+			    for(i=0;i<mainTable.tBodies.length;i++)
+			      mainTable.tBodies[i].style.display="none";
+			    mainTable.tBodies[n].style.display="block";
+				if(document.getElementById("rsnum"))
+	        		document.getElementById("rsnum").value="";		
+			    
+			}
+			
+			function ms_showBoard(tablename,n) {
+				var otable = document.getElementById(tablename);
+				if(!otable.tBodies[n]) return;
+			    for(i=0;i<otable.tBodies.length;i++)
+			      otable.tBodies[i].style.display="none";
+			    otable.tBodies[n].style.display="block";
+			}
+
+			function NodeAdd(itemId,addnext,proot)
+			{
+				var mband=document.UnitItem.getBandByItemName("goods");
+				
+				if(mband.RecordCount()==0)
+				{
+					alert("请先增添货品后再定义物料结构！");
+					return;
+				}
+				oband=document.UnitItem.getBandByItemName("bom");
+				if(oband.RecordCount()==0 && proot!=true)
+				{
+				 	var result = confirm("请首先定义货品物料结构名称！确认吗？");
+					if(!result) return;				
+					TreeUtil.addNode('DetailBom',false,true);
+				}
+				else
+					TreeUtil.addNode(itemId,addnext,proot);
+					
+				ms_showBoard('tbbom',1);			
+				var oband=document.UnitItem.getBandByItemName("bom");
+				node=oband.Tree.WebTree.SelectedNode;
+								
+				if(node.ParentNode)
+				{
+					oband.setFldStrValue(null,"编码",node.ParentNode.ID + "-"+(node.GetCurrentIndex()+1));				
+					oband.setFldStrValue(null,"名称","物品"+(node.GetCurrentIndex()+1));
+					ms_showBoard("tbbom",0);
+				}
+				else 
+				{
+					oband.setFldStrValue(null,"属性","结构"); 
+					var nodetext = "结构"+(node.GetCurrentIndex()+1);
+					oband.setFldStrValue(null,"名称","结构"+(node.GetCurrentIndex()+1));	
+					oband.setFldStrValue(null,"编码",mband.getFldStrValue(mband.linkColM) + "-"+(node.GetCurrentIndex()+1));				
+					ms_showBoard("tbbom",1);
+					node.SetProperty('Text', nodetext); 
+				}
+				oband.Tree.WebTree.Render();
+			}
+	        function upload()
+	        {
+	            var oband=document.UnitItem.getBandByItemName("goods");
+		        oband.setModalContent("上传");
+			    var colList=oband.XmlSchema.XMLDocument.selectNodes("//xs:element");
+			    for(var i=0;i<colList.length;i++)
+			    {
+				    var columnName=colList[i].getAttribute("name");
+				    var inputCtrlID=oband.key+":"+columnName;
+				    var oinput=document.getElementById(inputCtrlID);
+				    if(!oinput || !oinput.className)	continue;
+				    var strvalue=oband.getFldStrValue(columnName);
+				    //上传文件及图片的字段;id=bandName+":"+columnName
+				    if( !oinput.dataSrc || !oinput.dataFld || ""==oinput.dataSrc || ""==oinput.dataFld)
+				    {
+					    if(oinput.className.toLowerCase()=="xlandfile")
+					    {
+						    if(oinput.tagName=="DIV")
+							    setfile(inputCtrlID,strvalue);
+						    if(oinput.type=="file")
+						    {
+							    var parentCtrl=oinput.parentElement;
+							    setfile(parentCtrl.id,strvalue);
+						    }
+						    continue;
+					    }
+					    if(oinput.className.toLowerCase()=="xlandimg" && oinput.tagName=="IMG")
+					    {
+						    oinput.src="wfimg.aspx?img="+strvalue;
+						    continue;
+					    }
+				    }
+			    }
+	        }
+			
+            function navrun()
+            {
+                parent.parent.openBusinessNav();
+            }			
+            
+            function _copy()
+            {
+   				oband=document.UnitItem.getBandByItemName("itemtree");
+            	//document.getElementById("btncopy").style.color="#FF0000";
+            	//document.getElementById("btnpaste").disabled=null;
+            	copyNode=oband.Tree.WebTree.SelectedNode;
+            }
+            
+            function _paste()
+            {
+                var oband=document.UnitItem.getBandByItemName("itemtree");
+                if(confirm("您将复制当前的节点 ["+copyNode.Text+"]，确定吗？"))	
+			    {
+			        var xmldoc=document.UnitItem.ParamXmldoc;
+            	    ToolUtil.setParamValue(xmldoc, "code", copyNode.ID, "", "s", oband.ItemName, "D",""); 
+			        ue_cmd("copy","itemtree",false,true);	
+			        oband.Query();
+			        oband.Tree.WebTree.Render();
+			        oband.Tree.WebTree.expandAll()
+			        
+			        if(copyNode.ParentNode)
+				        var xnode= copyNode.ParentNode.Nodes()[copyNode.ParentNode.Nodes().length-1];
+				    else
+				    	var xnode= copyNode.ParentTreeView.Nodes()[copyNode.ParentTreeView.Nodes().length-1];
+			        if(xnode)
+			        	var nid = xnode.ID;
+			        oband.Tree.WebTree.SelectNodeById(nid);            	
+			    }
+            }            
+            
+            function opentable(item,n)
+            {
+				secBoard(n);
+				document.UnitItem.getBandByItemName(item).Query();
+				document.UnitItem.ActiveBand=document.UnitItem.getBandByItemName(item);
+				document.UnitItem.getBandByItemName(item).Grid.setFocus();
+            }
+			            
+			function ts_addNode(xmlID,bChild)
+			{
+			    if(null==xmlID || ""==xmlID)    return;
+			    var xmlland=document.getElementById(xmlID);
+			    if(!xmlland)	return;
+			    var oband=document.UnitItem.getBandByItemName(xmlland.itemname);
+			    if(!oband || !oband.Tree) return;
+			    var trvNode=oband.Tree.WebTree.SelectedNode;
+				TreeUtil.addNode('treeland',false);secBoard(0);
+				if(!trvNode || !trvNode.ParentNode)
+				{
+					//如果不存在父，即要增加父节点,使用弹出对话框强制要求输入客户类型
+					oband.setFldStrValue(null,"属性","销售类别");
+			        var wname=ws_gettpath()+"diagEditTree.htm";
+		            var rtncase = window.showModalDialog(wname,oband,"dialogHeight: 190px; dialogWidth: 500px; edge: Raised; center: Yes; help: No; resizable: No status: No;"); 
+		            return rtncase;				
+				}
+			}
+			
+			
+//读取框
+var t_id = setInterval(animate,20);
+var pos=0;
+var dir=2;
+var len=0;
+
+function animate()
+{
+    var elem = document.getElementById("progress");
+    if(elem != null) {
+        if (pos==0) len += dir;
+        if (len>32 || pos>179) pos += dir;
+        if (pos>179) len -= dir;
+        if (pos>179 && len==0) pos=0;
+        elem.style.left = pos;
+        elem.style.width = len;
+    }
+}
+function remove_loading() 
+{
+    this.clearInterval(t_id);
+    var targelem = document.getElementById("loader_container");
+    targelem.style.display="none";
+    targelem.style.visibility="hidden";
+
+}			
+			
+			-->
+			
+		</script>
+		
+	</head>
+
+	<body style="margin:0" onload="remove_loading()">
+	<div id="loader_container" style="position: absolute; left: 250px; top: 95px; width: 537px">
+	<div id="loader">
+	<div align="center">
+	数据加载中…<br />
+	</div>
+	<div id="loader_bg"><div id="progress"> </div></div>
+	</div>
+	</div>
+
+<table align="center" style="WIDTH: 100%;height:451px; BORDER-COLLAPSE: collapse" bgcolor="buttonface" id="table10" cellSpacing="0" cellPadding="0" border="1">
+	<tbody>
+	
+	<tr>
+		<td style=" color: #333333;HEIGHT: 100%" vAlign="top" align="left" width="220px">
+		<table style="BORDER-COLLAPSE: collapse; " id="table11" cellSpacing="0" cellPadding="0" width="100%" height="100%" border="0">
+			<tbody>
+			<tr>
+				<td style=" width: 22px; color: #333333;; height: 24px" vAlign="middle" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='images/treeadd-over.gif'" onmouseover="this.src='images/treeadd-over.gif'" onmouseout="this.src='images/treeadd.gif'" onmousedown="this.src='images/treeadd-down.gif'" onclick="ts_addNode('treeland',false);" height="24" alt="增加同级节点" src="images/treeadd.gif" width="22" border="0" /> 
+				</font> 
+				</td>
+				<td style=" width: 25px; color: #333333;; height: 24px" vAlign="middle" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='images/treeadds-over.gif'" onmouseover="this.src='images/treeadds-over.gif'" onmouseout="this.src='images/treeadds.gif'" onmousedown="this.src='images/treeadds-down.gif'" onclick="TreeUtil.addNode('treeland',true);secBoard(0)" height="24" alt="增加下级节点" src="images/treeadds.gif" width="22" border="0" /> 
+				</font> 
+				</td>
+				<td style=" width: 23px; color: #333333; height: 24px" vAlign="middle" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='images/del-over.gif'" onmouseover="this.src='images/del-over.gif'" onmouseout="this.src='images/del.gif'" onmousedown="this.src='images/del-down.gif'" onclick="TreeUtil.deleteNode('treeland');secBoard(0)" height="24" alt="删除当前节点" src="images/del.gif" width="23" border="0" /> 
+				</font> 
+				</td>
+				<td style=" color: #333333;; height: 24px" vAlign="middle" align="left" width="53" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img id="downnode" onmouseup="this.src='images/down-over.gif'" onmouseover="this.src='images/down-over.gif'" onmouseout="this.src='images/down.gif'" onmousedown="this.src='images/down-down.gif'" onclick="TreeUtil.moveDown('treeland')" height="24" src="images/down.gif" width="22" border="0" />
+				<img id="upnode" onmouseup="this.src='images/up-over.gif'" onmouseover="this.src='images/up-over.gif'" onmouseout="this.src='images/up.gif'" onmousedown="this.src='images/up-down.gif'" onclick="TreeUtil.moveUp('treeland')" height="24" src="images/up.gif" width="20" border="0" /> 
+				</font> 
+				</td>
+				<td style="color: #333333;; height: 24px" vAlign="middle" align="left" width="113" background="images\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<a href="#" class="linkbtn_1" onclick="_copy()">复制</a>　<a href="#" class="linkbtn_1" onclick="_paste()">粘贴</a></td>
+			</tr>
+			<tr>
+				<td vAlign="top" colSpan="5" align="center">
+				<Control class="" catalog="TreeLand.ascx" itemname="itemtree" id="treeland" name="">treeland<Property name="tpfile" value="" />
+					                                                <Property name="width" value="210px" /><Property name="height" value="410" />
+					                                                <Property name="ctrlalert" value="s_code" />
+					                                                <Property name="trvfld" idfld="ID" pidfld="PID" txtfld="名称" orderfld="serial" />
+				</Control>
+				</td>
+			</tr>
+			<tr>
+				<td vAlign="top" colSpan="5" align="center">
+				<table border="0" width="100%" cellpadding="0" style="border:thin groove; FONT-SIZE: 12px; FONT-FAMILY: 宋体; border-collapse:collapse" id="table14">
+					<tbody>
+					<tr>
+						<td width="81">　名称：</td>
+						<td><INPUT datasrc="#treeland" datafld="名称" class="xlandinput" style="width:90%;" type="text" size="11" name="姓名" /><font color="#FF0000">*</font></td>
+					</tr>
+					<tr>
+						<td width="81">　编码：</td>
+						<td><INPUT datasrc="#treeland" datafld="编码" title="货品分类编码不能为空，应根据企业情况认真编写！" class="xlandinput" style="WIDTH:90%;" type="text" size="11" name="姓名5" /><font color="#FF0000"><b>*</b></font></td>
+					</tr>
+					<tr>
+						<td width="81">　属性：</td>
+						<td>
+						<select datasrc="#treeland" dataFld="属性" class="xlandinput" size="1" style="WIDTH: 90%;" name="D10">
+                                        <option value=""></option>
+                                        <option value="销售类别">销售类别</option>
+                                        <option value="产品系统">产品系统</option>
+                                        <option value="产品子系统">产品子系统</option>
+                                    </select></td>
+					</tr>
+					<tr>
+						<td width="81">　销售类别：</td>
+						<td>
+						<SELECT datasrc="#treeland" dataFld="执行标准" class="xlandinput" DataSource="字典_客户类型" DataTextField="名称" DataValueField="代码" size="1" style="WIDTH: 90%;" name="D11">
+                                    </SELECT></td>
+					</tr>
+				</tbody>
+				</table></td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+		<td bgcolor="buttonface" style=" width: 76%; color: #333333" vAlign="top" align="left" colSpan="2">
+		<table style="WIDTH: 100%; BORDER-COLLAPSE: collapse; border:1" id="table13" cellPadding="0" border="0" height="454">
+			<tbody>
+			<tr>
+				<td style=" color: #333333;" width="100%" height="26">
+				<table border="0" style="width:80%; font-size:10pt" cellspacing="0" cellpadding="3" id="table3">
+	<tbody>
+	<tr>
+		<td align="right" width="50">名称: </td>
+		<td width="192"><INPUT dataFld="名称" dataSrc="#MasterTab" class="xlandinput" id="名称" style="width:98%;" type="text" size="11" name="姓名" /></td>
+		<td width="72" align="right">编码:</td>
+		<td width="175"><INPUT dataFld="编码" dataSrc="#MasterTab" class="xlandinput" style="width:100%" type="text" size="11" name="姓名19" /></td>
+		<td align="right" width="100">
+		<INPUT id="sumprice" dataFld="零售价" dataSrc="#xmldetail_Sum" class="xlandinput" style="width:100%;display:none" type="text" size="11" name="姓名34" /></td>
+		<td width="23" align="right">
+		<input id="unuse" dataFld="失效" dataSrc="#MasterTab" class="xlandinput" type="checkbox" name="C2" value="ON" /></td>
+		<td width="110"><label for="unuse">非使用中</label></td>
+	</tr>
+</tbody>
+</table>
+				</td>
+			</tr>
+			<tr>
+				<td style=" color: #333333;" vAlign="top" height="27"><TABLE id="secTable" cellSpacing="0" cellPadding="0" width="100%" border="0" style="border-bottom-width: 0px;font-size:10pt">
+  <TBODY> 
+    <TR align="middle" height="20px">
+      <TD class="sec2" onclick="secBoard(0)" width="10%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">货品登记</TD>
+      <TD class="sec1" onclick="secBoard(1)" width="10%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">参数</TD>
+      <TD class="sec1" onclick="opentable('xmldetail',2);" width="10%">配置清单</TD>
+      <TD class="sec1" onclick="opentable('清单',3);" width="10%">报价清单</TD>
+      <TD class="sec1" onclick="secBoard(4)" width="10%">存货情况</TD>
+      <TD id="tdfix" align="center" class="secx" style="background-color: #D4D0C8" width="50%">
+      <table border="0" cellpadding="0" style="width:206px" height="18">
+			<tbody>
+			<tr>
+				<td width="16"><button id="navfirst" onclick="ue_mstart();"><img src="images/MoveFirstHS.gif" /></button></td>
+				<td width="16"><button id="navprev" onclick="ue_mprev();"><img src="images//MovePrevious.gif" /></button></td>
+				<td align="center"><INPUT id="rsnum" type="text" size="5" name="姓名2" /></td>
+				<td width="16"><button id="navnext" onclick="ue_mnext();"><img src="images//MoveNextHS.gif" /></button></td>
+				<td width="16"><button id="navlast" onclick="ue_mlast();"><img src="images//MoveLastHS.gif" /></button></td>
+				<td width="16"><button onclick="ms_bandadd();"><img src="images//NewRecordHS.gif" /></button></td>
+				<td width="16"><button onclick="ms_banddel();"><img src="images//EditDelete1.gif" width="16" height="16" /></button></td>
+				<td width="16"><button onclick="ue_save();"><img src="images//saveHS.gif" /></button></td>
+				<td width="32"></td>
+				<td width="64"><button onclick="opentype();" style="width:64px">选择货品</button></td>
+				<td width="64"><button onclick="navrun();" style="width:60px">返回</button></td>
+			</tr>
+		</tbody>
+		</table></TD>
+    </TR>
+  </TBODY>
+</TABLE></td>
+			</tr>
+			<tr>
+				<td style=" color: #333333;" vAlign="top">
+				<TABLE align="center" class="main_tab" id="mainTable" cellSpacing="0" cellPadding="0" border="0" style="border-top-width: 0px;width:100%;height:99%">
+  <!--菜单一内容-->
+<TBODY style="DISPLAY: block">
+    <TR>
+      <TD align="center" height="465px" valign="top"><p style="margin:3">
+		</p>
+<Control class="" catalog="GridLand.ascx" itemname="goods" id="MasterTab" name="">MasterTab
+		<Property name="tpfile" value="ControlTemplate/GridDefault.htm" />
+			<Property name="width" value="790px" /><Property name="height" value="405px" />
+			<Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" />
+			<Property name="hiddengrid" value="false" />
+		</Control>		
+      </TD>
+    </TR>
+  </TBODY>  
+  <TBODY style="DISPLAY: none">
+    <TR>
+      <TD align="center" height="465" valign="top"><p style="margin:3">
+		</p>
+		<TABLE id="Table2" style="BORDER-RIGHT: thin groove; BORDER-TOP: thin groove; BORDER-LEFT: thin groove; BORDER-BOTTOM: thin groove; " cellSpacing="0" cellPadding="0" width="794px" height="457" bgColor="activeborder" border="0">
+				<tbody>
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: medium none" align="right" height="21">
+					型号：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium" align="left" width="165" height="21">
+					<INPUT dataFld="型号" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名30" /></TD>
+					<TD style="border-left-width:medium" align="right" height="21">
+					规格：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium" align="left" width="207" height="21">
+					<INPUT dataFld="规格" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名32" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove;BORDER-LEFT: thin groove;" align="center" rowspan="9" width="200">
+					<table border="0" cellpadding="0" style="table-layout:fixed;width:100%;height:100%;border-collapse: collapse" id="table14">
+						<tbody>
+						<tr>
+							<td align="center"><IMG src="" id="goods:pic" class="xlandImg" onload="javascript:if(this.width&gt;200){this.resized=true;this.style.width=200;this.style.height=200;};" alt="图片" /></td>
+						</tr>
+					</tbody>
+					</table>
+					</TD>
+				</TR>
+				
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" height="21">计量单位：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; 
+					border-top-style:none; border-top-width:medium" align="left" width="165" height="21">
+					<SELECT class="xlandinput" datasrc="#MasterTab" datafld="单位" style="width:100%" DataSource="resources:base_unit" DataTextField="name" DataValueField="name" name="D9">
+											</SELECT></TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; 
+					border-top-style:none; border-top-width:medium" align="right" height="21">
+					类别：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; 
+					border-top-style:none; border-top-width:medium" align="left" width="207" height="21">
+										<INPUT dataFld="类别" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " ondblclick="changesex(this)" type="text" size="11" name="姓名26" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" height="21">货品属性：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="left" width="165" height="21">
+					<INPUT dataFld="属性" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名25" /></TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="right" height="21">
+		核算方法：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="left" width="207" height="21">
+					<select dataFld="核算方法" dataSrc="#MasterTab" class="xlandinput" size="1" style="WIDTH: 100%;" name="D8">
+                                        <option value=""></option>
+                                    </select></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" height="25">
+					基本参数：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="left" colspan="3" rowspan="3"><textarea dataSrc="#MasterTab" dataFld="参数" class="xlandinput" style="width:100%;height:100%"></textarea></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" height="25">　</TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right">　</TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" height="19">加权成本价：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="left" height="19">
+					<INPUT dataFld="成本" dataSrc="#MasterTab" style="width:100%; " class="xlandinput" type="text" size="11" name="姓名22" /></TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="right" height="19">
+					零售价：</TD>
+					<TD style="BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="left" height="19">
+					<INPUT dataFld="零售价" dataSrc="#MasterTab" style="width:100%; " class="xlandinput" type="text" size="11" name="姓名27" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" height="19">
+					品牌：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="left" width="165" height="19">
+					<INPUT dataFld="品牌" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名33" /></TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="right" width="15%" height="19">
+					产地：				</TD>				
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" align="left" width="207" height="19">
+					<INPUT dataFld="产地" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名28" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: thin groove; border-top-style:none; border-top-width:medium" align="right" height="21">
+					库存上限：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove; border-left-style:none; border-left-width:medium" align="left" width="165" height="21">
+					<INPUT dataFld="上限" dataSrc="#MasterTab" class="xlandinput" style="width:98.5%; " type="text" size="11" name="姓名23" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove; border-left-style:none; border-left-width:medium" align="right" height="21">
+					库存下限：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove; border-left-style:none; border-left-width:medium" align="left" width="207" height="21">
+					<INPUT dataFld="下限" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名29" /></TD>
+				</TR>
+				<TR>
+					<TD align="right" style="WIDTH: 115px;BORDER-Right: medium none;BORDER-BOTTOM: thin groove; border-top-style:none; border-top-width:medium">条码规则：</TD>
+					<TD colspan="3" align="right" style=" BORDER-BOTTOM: thin groove; BORDER-LEFT: none;">
+					<INPUT dataFld="条码规则" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名31" /></TD>
+					<TD align="center" style=" BORDER-BOTTOM: thin groove; BORDER-LEFT: none;" height="23">
+					<INPUT id="Button1" title="上传照片" style="WIDTH: 100px;" onclick="upload()" type="button" value="上传" name="btnOK1" /></TD>
+				</TR>
+				<TR>
+					<TD colspan="5" align="center" height="140" style="color: #800000" valign="top">
+					
+					</TD>
+				</TR>
+				</tbody>
+				</TABLE>
+      </TD>
+    </TR>
+  </TBODY>
+  <!--菜单二内容-->
+  <TBODY style="DISPLAY: none">
+    <TR>
+      <TD align="center" style="height:465px" valign="top">
+      <p style="margin:3">
+		</p>
+					<Control class="" catalog="GridLand.ascx" itemname="xmldetail" id="xmldetail" name="">xmldetail
+						<Property name="tpfile" value="ControlTemplate/GridEdit.htm"></Property>
+						<Property name="width" value="790px"></Property>
+						<Property name="height" value="405"></Property>
+						<Property name="hiddenhead" value="false"></Property>
+						<Property name="ctrlalert" value="s_code"></Property>
+						</Control></TD>
+    </TR>
+  </TBODY>
+  <TBODY style="DISPLAY: none">
+    <TR>
+      <TD align="center" style="height:465px" valign="top">
+      <p style="margin:3">
+		</p>
+					<Control class="" catalog="GridLand.ascx" itemname="清单" id="statelist" name="">statelist
+						<Property name="tpfile" value="ControlTemplate/GridBrowser_scroll.htm"></Property>
+						<Property name="width" value="790px"></Property>
+						<Property name="height" value="405"></Property>
+						<Property name="hiddenhead" value="false"></Property>
+						<Property name="ctrlalert" value="s_code"></Property>
+						</Control></TD>
+    </TR>
+  </TBODY>
+</TABLE></td>
+	</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>	
+
+	</body>
+</html>

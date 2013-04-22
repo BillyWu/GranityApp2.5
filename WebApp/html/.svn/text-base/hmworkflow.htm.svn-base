@@ -1,0 +1,268 @@
+<html>
+  <head>
+    <title></title>
+    <base target="_self" />
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/hmstyle.css" type="text/css" rel="stylesheet" />
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/workflowjs/common.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/workflowjs/shape.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/workflowjs/toppanel.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/workflowjs/topflow.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/workflowjs/topflowevent.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/workflowjs/contextmenu.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/workflowjs/xband.js" type="text/javascript" charset="gb2312"></script>
+    <style type="text/css">
+        v\:*         { behavior: url(#default#VML) }
+        o\:*         { behavior: url(#default#VML) }
+        .shape       { behavior: url(#default#VML) }
+        .toolbox{
+	        BACKGROUND: buttonface;
+	        BORDER-BOTTOM: gray 1px solid;
+	        BORDER-LEFT: #eeeeee 1px solid; 
+	        BORDER-RIGHT: gray 1px solid; 
+	        BORDER-TOP: #eeeeee 1px solid; 
+	        MARGIN: 0pt; 
+	        PADDING-BOTTOM: 0pt; 
+	        PADDING-LEFT: 0pt;
+	        PADDING-RIGHT: 0pt;
+	        PADDING-TOP: 0pt;
+	        POSITION:absolute;
+        }
+        .bon1{
+	        border-bottom:1 solid white;
+	        border-right:1 solid white;
+	        border-left:1 solid #555555;
+	        border-top:1 solid #555555;
+	        background-color:#dddddd;
+	        width:24;
+	        height:24;
+        }
+        .bon2{
+	        border-bottom:0 solid;
+	        border-right:0 solid;
+	        border-left:0 solid;
+	        border-top:0 solid;
+	        width:24;
+	        height:24;
+        }
+        .bon3{
+	        border-bottom:1 solid #aaaaaa;
+	        border-right:1 solid #aaaaaa;
+	        border-left:1 solid white;
+	        border-top:1 solid white;
+	        background-color:#f0e5d1;
+	        color:purple;
+	        width:30;
+	        height:30;
+        }
+.normalBtn{
+	BACKGROUND-COLOR: buttonface; 
+	BORDER-BOTTOM:0 SOLID;
+	BORDER-RIGHT:0 SOLID;
+	BORDER-LEFT:0 SOLID;
+	BORDER-TOP:0 SOLID;
+	width:22;
+	height:22;
+}
+.focusBtn{
+	BACKGROUND-COLOR: #ccccff; 
+	BORDER-TOP: #000000 1px solid;
+	BORDER-BOTTOM: #000000 1px solid; 
+	BORDER-RIGHT: #000000 1 solid;
+	BORDER-LEFT: #000000 1 solid;
+	width:22;
+	height:22;
+}
+
+.toolui{
+	position:absolute;
+	z-index:10000;
+}
+
+table.gridstyle{
+	
+	overflow:hidden;
+	border-collapse:separate;
+}
+
+table.gridstyle tr.hdr td,th{
+	font-family:arial;
+	font-size:12px;
+	background-Color:#D4D0C8;
+	border: 1px solid;
+	border-color : white Gray Gray white;
+	text-align: left;
+	margin:0px;
+	padding:3px 0px 3px 0px ;
+	font-weight:normal;
+    -moz-user-select:none;
+    overflow:hidden;
+}
+
+
+table.gridstyle tr.obj td {
+	border: 1px solid;
+	border-color : white Gray Gray white;
+	font-family:Arial;
+	font-size:12px;
+    -moz-user-select:none;
+    overflow:hidden;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+.cButton{
+	background-image:url(/_CommitSys/Images/Icons/button.gif);
+	BORDER-RIGHT: darkgray 1px solid; BORDER-TOP: darkgray 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: darkgray 1px solid; CURSOR: hand; BORDER-BOTTOM: darkgray 1px solid; FONT-FAMILY: verdana; HEIGHT: 22px; BACKGROUND-COLOR: white
+}
+.MainButton{
+	height: 23px;COLOR:Blue;
+}        
+div.tableContainer { 
+clear: both; 
+border: 1px solid; 
+height: 100%; 
+overflow: auto; 
+width: 100%; 
+} 
+
+thead.fixedHeader tr { 
+position: relative; 
+top: expression(document.getElementById("tableContainer").scrollTop) 
+} 
+
+thead.fixedHeader2 tr { 
+position: relative; 
+top: expression(document.getElementById("tableContainer2").scrollTop) 
+} 
+
+thead.fixedHeader th { 
+background: #C96; 
+border-left: 1px solid; 
+border-right: 1px solid; 
+border-top: 1px solid; 
+font-weight: normal; 
+padding: 4px 3px; 
+text-align: center 
+} 
+
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td { 
+	background: #C4D6FC; 
+	border-bottom: 1px solid; 
+	border-left: 1px solid; 
+	border-right: 1px solid; 
+	border-top: 1px solid; 
+	padding: 2px 3px 
+} 
+    </style>    
+    <script type="text/javascript">
+      var mband;
+      function initWin()
+      {
+        mband = $band("流程定义");
+        mband.XQuery();
+        $loading("none");
+      }
+      </script>   
+<script src="../hmjs/workflowjs/win.js" type="text/javascript" charset="gb2312"></script>       
+  </head>
+  <body  scroll="no" margin="0" style="background-image: url(images/canvasbg.gif);"  background="images/canvasbg.gif">
+    <div style='left:0px;top:0px;width:100%;height:100%;position:absolute;z-index:100;background-image: url(images/canvasbg.gif);' id="Canvas"></div>
+    <v:rect class="toolui" style="display:none" id="_rectui">
+      <v:Stroke dashstyle="dashdot"/>
+    </v:rect>
+    <v:rect class="toolui" style="display:none" fillcolor="#CCCCCC" id="_fillrectui">
+      <v:Stroke dashstyle="dashdot"/>
+    </v:rect>
+    <v:roundrect class="toolui" style="display:none;left:0px;top:0px;width:60px;height:50px;" id="_roundrectui">
+      <v:Stroke dashstyle="dashdot"/>
+    </v:roundrect>
+    <v:shape type="#diamond" class="toolui" style="display:none;left:0px;top:0px;width:60px;height:50px;" strokeweight="1px" id="_diamondui">
+      <v:Stroke dashstyle="dashdot"/>
+    </v:shape>
+    <v:oval class="toolui" style="display:none;left:0px;top:0px;width:60px;height:50px;" id="_ovalui">
+      <v:Stroke dashstyle="dashdot"/>
+    </v:oval>
+    <v:line class="toolui" style="display:none" from="0,0" to="100,0" id="_lineui">
+      <v:Stroke dashstyle="dashdot" StartArrow="" EndArrow="Classic"/>
+    </v:line>
+    
+<script type="text/javascript" charset="gb2312">
+      <!--
+function NavBrush_onClick(obj)
+{
+  //清除所有的ButtonClass
+  
+  var objs = document.all("tbxToolbox_btn");
+  for(var i = 0; i < objs.length; i++)
+    objs[i].className="bon2";
+  obj.className = "bon1";
+  _TOOLTYPE = obj.cType;
+}
+
+S = '<table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">' +
+      '<tr>' +
+        '<td valign="top" align="center">'+
+          '<div id="tableContainer2" class="tableContainer">'+ 
+          '<table id="propview" border="0" cellpadding="0" cellspacing="0" width="100%" class="gridstyle"> '+
+          '<thead> '+
+            '<tr height="25" class="hdr">'+
+              '<td width="80">属性</td><td>值</td>'+
+            '</tr>'+
+          '</thead> '+
+          '<tbody > '+
+          '</tbody> '+
+          '</table> '+
+          '</div> '+
+        '</td>'+
+      '</tr>'+
+    '</table>';
+tbxPropbox = new TToolBox("tbxPropbox", "属性", screen.availWidth-470, 1, 250, 530, S, "down", true);
+
+var S = '<table cellspacing="0" cellpadding="0" border="0">' +
+    '<tr height="25"><td width="2"></td>' +
+     '<td width="20" align="center" title="新建流程图 Ctrl+N"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="mnuNewFlow();"><img src="images/new.gif" border="0"></BUTTON></td>' +
+     '<td width="20" align="center" title="打开流程图 Ctrl+O"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="mnuOpenFlow();"><img src="images/open.gif" border="0"></BUTTON></td>' +
+     '<td width="20" align="center" title="保存流程图 Ctrl+S"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="mnuSaveFlow();"><img src="images/save1.gif" border="0"></BUTTON></td>' +      
+     '<td width="20" align="center" title="另存为流程图 Ctrl+S"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="mnuSaveAsFlow();"><img src="images/save1.png" border="0"></BUTTON></td>' +           
+     '<td width="4" style="color: #999999">|</td>'+
+     '<td width="20" align="center" title="编辑流程 Ctrl+E"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="mnuEditFlow();"><img src="images/rep06.png" border="0"></BUTTON></td>' +      
+     '<td width="20" align="center" title="删除流程图 Ctrl+S"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="mnuDelFlow();"><img src="images/delete_16x16.gif" border="0"></BUTTON></td>' +      
+     '<td width="4" style="color: #999999">|</td>'+
+	  //工具箱
+      '<td width="20" align="center" title="校验流程图"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="mnuValidateFlow();"><img src="images/spellcheck.gif" border="0"></BUTTON></td>' +
+      '<td width="23" align="center" title="删除选中对象 Del"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="mnuDelObj();"><img src="images/del_obj.gif" border="0"></BUTTON></td>' +
+	  '<td align="center" title="选择对象\n\n1.单击本按钮\n2.在工作区(画布)上单击[任务]或[路径]的图形"><BUTTON cType="point" class="bon1" name="tbxToolbox_btn" HIDEFOCUS="true" onclick="NavBrush_onClick(this);" style="width:32;height:32"><img src="images/sel.gif" border="0"></BUTTON></td>' +
+      '<td align="center"></td>' +
+	  '<td align="center" title="新增[任务](方形)\n\n1.单击本按钮\n2.在工作区(画布)上空白位置按住左键\n3.拉动鼠标\n4.松开鼠标左键"><BUTTON cType="rect" class="bon2" name="tbxToolbox_btn"  HIDEFOCUS="true" onclick="NavBrush_onClick(this);" style="width:32;height:32"><img src="images/roundrect1.gif" border="0"></BUTTON></td>' +
+   
+      '<td align="center" title="新增[汇聚](方形)\n\n1.单击本按钮\n2.在工作区(画布)上空白位置按住左键\n3.拉动鼠标\n4.松开鼠标左键"><BUTTON cType="fillrect" class="bon2" name="tbxToolbox_btn"  HIDEFOCUS="true" onclick="NavBrush_onClick(this);" style="width:32;height:32"><img src="images/roundedsquare.gif" border="0"></BUTTON></td>' +
+	  '<td align="center" title="新增[路径](折角线)\n\n1.单击本按钮\n2.在[任务]图形(起点)上按住鼠标左键\n3.拉动鼠标至某[任务]图形(终点)中间位置\n4.松开鼠标左键"><BUTTON cType="polyline" class="bon2" name="tbxToolbox_btn"  HIDEFOCUS="true" onclick="NavBrush_onClick(this);" style="width:32;height:32"><v:PolyLine filled="false" Points="0,18 9,5 18,18" style="position:relative;" strokeweight="1"><v:stroke EndArrow="Classic"/></v:PolyLine></BUTTON></td>' +
+
+	  '<td width="4" style="color: #999999">|</td>'+
+      '<td width="20" align="center" title="工作流属性 Ctrl+W"><BUTTON class="normalBtn" onmouseover="this.className=\'focusBtn\'" onmouseout=\"this.className=\'normalBtn\'" HIDEFOCUS="true" onclick="stuffFlowProp();"><img src="images/flow.gif" border="0"></BUTTON></td>'+
+      '<td width="2"></td></tr>' + 
+      '</table>';
+      
+tbxToolbar = new TToolPanel("tbxToolbar", 1, 1, 300, 25, S);
+-->
+    </script>    
+    <script type="text/javascript" charset="gb2312">ue_initsetup("工作流设计")</script>
+</body>	
+</html>

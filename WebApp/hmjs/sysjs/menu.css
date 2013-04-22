@@ -1,0 +1,45 @@
+.button2 
+{ 
+border-right:1px solid buttonhighlight; 
+border-left:1px solid buttonshadow; 
+border-bottom:1px solid buttonhighlight; 
+border-top:1px solid buttonshadow 
+} 
+
+
+.handin 
+{ 
+height:18px; 
+width:2px; 
+border-left:1px solid buttonshadow; 
+border-right:1px solid buttonhighlight 
+} 
+
+.handout 
+{ 
+height:18px; 
+width:2px; 
+border-left:1px solid buttonhighlight; 
+border-right:1px solid buttonshadow; 
+} 
+.into 
+{ 
+width:100%; 
+border-right:1px solid buttonhighlight; 
+border-left:1px solid buttonshadow; 
+border-bottom:1px solid buttonhighlight; 
+border-top:1px solid buttonshadow 
+} 
+
+.outto,.button1 
+{ 
+background-color: buttonface; 
+background-repeat: repeat; 
+background-attachment: scroll; 
+border-left: 1px solid buttonhighlight; 
+border-right: 1px solid buttonshadow; 
+border-top: 1px solid buttonhighlight; 
+border-bottom: 1px solid buttonshadow; 
+background-position: 0%; 
+} 
+

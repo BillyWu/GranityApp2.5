@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+	<script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+	<script language="javascript" type="text/javascript">
+		window.onload=WinLoadUtil.MDTPLoad;
+	</script>
+</head>
+
+<body>
+		<table align="center" width="681" id="tabfind" border="1" style="border-collapse: collapse; WORD-BREAK: break-all;" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="31">
+			<tbody>
+			<tr>
+				<td align="center" width="15%" bgColor="#E8E8E8" height="29">
+					<input class="gridbtn" id="gridfind6" onclick="SelectAllRows();" type="button" value="全选" name="B10" style="width:50" /></td>
+				<td align="center" width="15%" bgColor="#E8E8E8" height="29">
+												
+					<input class="gridbtn" id="gridfind7" onclick="ClearSelAll()" type="button" value="清除选择" name="B11" style="width:70" /></td>
+				<td align="center" width="16%" bgColor="#E8E8E8" height="29">
+				流程：</td>
+				<td align="center" width="31%" bgColor="#E8E8E8" height="29">
+												
+					<SELECT class="tselect" name="流程" filter="and" style="width:99%; height:20" size="1" DataValueField="名称" DataTextField="名称" DataSource="选择流程"></SELECT></td>
+				<td align="center" width="19%" bgColor="#E8E8E8" height="29">
+							
+					<input class="gridbtn" id="gridfind5" onclick="ue_returnok()" type="button" value="导入选择数据" style="width:90" name="B9" /></td>
+			</tr>
+			<tr>
+				<td align="right" width="15%" bgColor="#E8E8E8" height="29">流程名：</td>
+				<td align="center" width="62%" bgColor="#E8E8E8" height="29" colspan="3">
+					<input class="xlandinput" filter="and" style="padding:0px; border:1px solid #C0C0C0;width:98% " name="流程" />
+					</td>
+				<td align="center" width="19%" bgColor="#E8E8E8" height="29">
+					<input class="gridbtn" id="gridfind4" onclick="ue_tfilter('数据导入')" type="button" value="查找" name="B8" style="width: 60; height:21" /></td>
+			</tr>
+		</tbody>
+		</table>
+		<p style="margin: 5"></p>
+						<div align="center">
+						<Control class="" catalog="GridLand.ascx" itemname="数据导入" id="xmlGridDetail" name="">xmlGridDetail<Property name="tpfile" value="ControlTemplate/GridCheck.htm" />
+								<Property name="width" value="680" /><Property name="height" value="300px" /><Property name="hiddenhead" value="false" />
+								<Property name="ctrlalert" value="s_code" />
+						</Control>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<link href="hmjs/userjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<script language="javascript" type="text/javascript">
+			window.onload=WinLoadUtil.MDTPLoad;
+		</script>
+		<link type="text/css" rel="stylesheet" href="inputctrl.css" />
+		<script language="javascript">
+		<!--
+		function usSaveFile()
+		{
+		    var ctrlsrc=event.srcElement;
+		    if(ctrlsrc.disabled || document.isPost)
+		        return;
+		    ctrlsrc.disabled=true;
+		    document.isPost=true;
+			var	 strMsg=document.UnitItem.ValidatityAll(true);
+			if(strMsg && ""!=strMsg)
+			{
+				alert(strMsg);
+				{ctrlsrc.disabled=null;document.isPost=null;return 1;}
+			}
+			document.UnitItem.setViewState();
+			usSetPostParam();
+			var strcmd=ToolUtil.setValueTag("","Cmd","cmd_save");
+			strcmd=ToolUtil.setValueTag(strcmd,"TabID",g_tabid);
+			ExeCtrlPostCmd(null,strcmd);
+			return;
+		}
+		-->
+		</script>
+</head>
+  <body>
+        	<table align="center" border="1" width="785px" style="border-collapse: collapse;WORD-BREAK: break-all;" id="table1" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3">
+        <tbody>
+          <tr>
+    			<td align="center" height="25" colspan="5"  bgColor="#E8E8E8" ><b>远程系统维护 </b></td>
+          </tr>
+          <tr>
+            <td align="right" class="otd1" width="112">文件位置：</td>
+		  	<td class="otd1" width="185">
+				              
+                <SELECT class="xlandinput" dataSrc="#MasterTab" dataFld="路径" style="border:1px solid #779FD6; WIDTH: 99%; HEIGHT: 16" name="路径" DataValueField="路径" DataTextField="类型" DataSource="系统路径" size="1">
+                </SELECT></td>
+			<td align="right" class="otd1" width="67">　</td>
+			<td class="otd1" width="341">
+				　</td>
+			<td align="right" class="otd1" width="57">　　</td>
+          </tr>
+		 <tr>
+            <td align="right" class="otd1" width="112">服务端文件名：</td>
+		  	<td class="otd1" width="185">
+                <INPUT class="xlandinput" dataSrc="#MasterTab" dataFld="服务端文件" style="padding:0px; border:1px solid #EAE8E4;width:99% " type="text" size="24" name="编号" /></td>
+			<td align="right" class="otd1" width="67">选择文件　</td>
+			<td class="otd1" width="341">
+ 				<div id="系统文件维护:控件文件" class="xlandFile">
+	                 <Control class="xlandFile" catalog="FileUpLoad.ascx" itemname="" id="FileUploadCtrl" name="">文件上传
+						<Property name="FileColumn" filenameupload="服务端文件" filenameinput="控件文件" pathupload="路径" />
+						<Property name="width" value="330px" /><Property name="filetype" value="" />
+					</Control>
+            	</div>
+			</td>
+			<td align="center" class="otd1" width="57"><input class="gridbtn" id="gridfind3" style="WIDTH: 56px; HEIGHT: 24px" onclick="usSaveFile()" type="button" value="保存" />
+			</td>
+          </tr>
+        </tbody>
+      </table>
+		<Control class="" catalog="GridLand.ascx" itemname="系统文件维护" id="MasterTab" name="">ControlTest<Property name="tpfile" value="" />
+			<Property name="width" value="782px" /><Property name="height" value="290px" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" />
+		</Control>
+  </body>
+</html>

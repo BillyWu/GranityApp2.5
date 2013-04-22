@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" >
+	<xsl:output method="xml" omit-xml-declaration="yes" />
+	<xsl:template match="/">
+	<div style="display:none;">
+		<xsl:for-each select="*/@*">
+			<xsl:attribute name="{name()}"><xsl:value-of select="current()"/></xsl:attribute>
+		</xsl:for-each>
+		<xsl:for-each select="*">
+			<xsl:element name="{name()}">
+				<xsl:copy-of select="./*"></xsl:copy-of>
+			</xsl:element>
+		</xsl:for-each>
+	</div>
+	</xsl:template>
+</xsl:stylesheet>

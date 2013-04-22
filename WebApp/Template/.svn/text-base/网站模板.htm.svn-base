@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<body>
+		<div align="center">
+			<Control class="" catalog="XSLTLand.ascx" itemname="" id="MasterTab" name="">MasterTab
+			<Property name="tpfile" value="ClientIsland.xslt" />
+				<Property name="width" value="759px" /><Property name="height" value="367px" /><Property name="hiddenhead" value="false" />
+				<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+			</Control>
+		</div>
+	</body>
+</html>

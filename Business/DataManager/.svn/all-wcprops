@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/DataManager
+END
+AssemblyInfo.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/DataManager/AssemblyInfo.cs
+END
+DataManager.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/DataManager/DataManager.csproj
+END
+CodeBuilder.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/DataManager/CodeBuilder.cs
+END
+Query.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/DataManager/Query.cs
+END

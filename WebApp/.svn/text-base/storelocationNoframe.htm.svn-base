@@ -1,0 +1,160 @@
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <base target="_self" />
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/hmstyle.css" type="text/css" rel="stylesheet" />
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usMenu.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/uncode.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/hash.js" type="text/javascript" charset="gb2312"></script>
+    <script type="text/javascript">
+        var hash = new Hash();
+        var pms = ["Top5", "库位", "品牌", "款式", "类别", "季节", "定款年份", "款号", "颜色"];
+        var ap = ["unitcode", "库位", "品牌", "款式", "类别", "季节", "定款年份", "款号", "颜色"];
+    function initWin() {
+        for (var i = 0; i < ap.length; i++)
+            hash.add(ap[i], "");    
+        var r = $U().Rights;
+        switch (r) {
+            case "单位": hash.edit("unitcode", $SP("UnitCode")); break;
+            case "全部": hash.edit("unitcode", ""); break;
+          default:
+              hash.edit("unitcode", $SP("DeptCode")); break;
+      }
+      statset();
+    }
+    function _filter() {
+        if ($("btnfilter") == event.srcElement)
+            hash.edit("款号", $("kh").value);
+        var url = ue_path() + "hmrpt.aspx?store"
+        + "&type=" + hash.items("类别")
+        + "&season=" + hash.items("季节")
+        + "&year=" + hash.items("定款年份")
+        + "&brand=" + hash.items("品牌")
+        + "&styletype=" + hash.items("款式")
+        + "&unitcode=" + hash.items("unitcode")
+        + "&styleno=" + hash.items("款号")
+        + "&color=" + hash.items("颜色")
+        + "&store=" + hash.items("库位");
+        var newwin = window.open(url);
+        if (document.all) {
+            newwin.moveTo(0, 0)//新窗口的坐标
+            newwin.resizeTo(screen.width, screen.height)
+        }
+        
+    }
+    function _SearchPM(pn) {
+        var ev = event.srcElement.parentElement.v;
+        var s = event.srcElement.parentNode.innerHTML;
+        if (pn == "Top5" && ev != "清除...") {
+            var a = ev.split(",");
+            pn = "款号";
+            ev=""; 
+            for(var i=0;i<a.length;i++)
+                ev = ev + "," +a[i].split("(")[0];
+            ev=ev.substring(1,ev.length);
+        };
+        if (pn == "清除") { pn = event.srcElement.tag; ev = ""; event.srcElement.parentNode.innerHTML = event.srcElement.parentNode.vtext }
+        else if (s.indexOf("find16.png") < 0) {
+            event.srcElement.parentNode.innerHTML = s
+            + '&nbsp;&nbsp;<button class="txtbtn" tag="' + pn + '" onclick="_filter()" ><img src="images/find16.png" /></button>'
+            + '&nbsp;<button class="txtbtn" style="color:brown" tag="' + pn + '" onclick="_SearchPM(\'清除\')" >清除...</button>';
+        }
+        hash.edit(pn, ev);
+    }    
+
+    function statset()
+    {
+        var s = strfind();
+        $("dvmband").innerHTML=s;
+        InitItemClass();
+    }
+    
+    function strfind() {
+        var s = "";
+        for (var i = 0; i < pms.length; i++)
+            s += '<div id="lbldiv' + i + '" style="width:90%;text-align:left;margin:0;"></div>';
+        return s;
+    }
+    function setpmdata(m) {
+        var sql = "exec FD_库存查询类目 '" + hash.items("unitcode") + "','','" + pms[m] + "'";
+        var xmlhttp = ue_ajaxdom(sql, null, null, null, null, true);
+        xmlhttp.onreadystatechange = function() { updateitems(xmlhttp, "lbldiv", pms[m], m) };
+    }
+    function InitItemClass() {
+        setpmdata(0); setpmdata(1); setpmdata(2); setpmdata(3); setpmdata(4); setpmdata(5); setpmdata(6); setpmdata(7); setpmdata(8);
+   }
+   function updateitems(xmlhttp, lbl, lbls, m, single)
+    {
+       var _x = xmlhttp.readyState;
+       if (_x == 4 && xmlhttp.status == 200) {
+           $loading("none");
+           var xmldata = xmlhttp.responseXML;
+            if(!xmldata || xmldata.xml=="") return;
+            var s = "";
+            var elems2 = [];
+            var elemsevent2 = []               
+            elems2.length=0;elemsevent2.length=0;
+            var items = xmldata.selectNodes("//table[item='"+lbls+"']");
+            for(var i=0;i<items.length;i++)
+            {
+                var xn = items[i].selectSingleNode("name").text;
+                elems2.push(xn);
+                var itemevent = "_SearchPM('"+lbls+"')";
+                elemsevent2.push(itemevent);
+            }
+            var color="#CC3300";
+            if(lbls!="Top5") color="green"; 
+            str='<span style="color: #FFFFFF;  border-style: solid; border-width: 1px; background-color: '+color+';width:55; font-size:8pt; font-family:微软雅黑;text-align:center;line-height:18px">'+lbls+'</span>';
+            var sn = "<p style='margin:5'></p>"; var fc = 0;
+            var multi = true;
+            if (single) multi = false;
+            ueLabel(lbl + m, elems2, elemsevent2, fc, null, null, true, null, multi);
+            if ($(lbl + m).innerHTML != "") {
+                $(lbl + m).innerHTML = sn + str + $(lbl + m).innerHTML + '<a href="#" onclick="openchart(\''+lbls+'\')" target=_self ><img alt="' + lbls + '分布情况..." src="images/pie.png" style="border:0;vertical-align:middle" vspace=0 hspace=3"/></a>';
+                $(lbl+m).vtext = $(lbl+m).innerHTML;
+            }
+        }
+    }
+    function openchart(o) {
+        switch(o)
+        {
+            case "Top5": window.open(ue_path() + "hmrpt.aspx?rscTop5&unit=" + hash.items("unitcode")); break;
+            case "库位": window.open(ue_path() + "hmrpt.aspx?rscStore&unit=" + hash.items("unitcode")); break;
+            case "颜色": window.open(ue_path() + "hmrpt.aspx?rscColor&unit=" + hash.items("unitcode")); break;
+            default:
+             window.open(ue_path() + "hmrpt.aspx?Items&unit=" + hash.items("unitcode")); break;    
+         }
+    }
+    //欢迎进入HMBi@Report商业智能分析查询系统，请选择查询条件
+      </script>    
+  </head>
+  <body style="overflow:hidden; margin: 0px;text-align:center" scroll="no">
+  <div style="height: 22px; width:100%;background-image: url('images/bg-shd.png');"></div>
+    <fieldset style=" padding: 2px; width:98%;height:88%;text-align:center"><legend>仓库查询：-- 请选择查询条件
+    </legend>
+    <table style="height:20px;width:96%;margin:2px;text-align:right"><tr><td>
+    <span class="span50fn">款号：</span><input id="kh" type=text class="tinput" style="WIDTH: 300px;" size="11" name="款号"/>&nbsp;<button id="btnfilter" class="txtbtn" onclick="_filter()" ><img src="images/find16.png" style="vertical-align:middle" vspace=0 hspace=3"/></button>
+    (如果不选择内容,则查询全部数据)
+    </td></tr></table>
+    <div id="dvmband" style="text-align:left; height:92%;width:900;OVERFLOW-y:auto;margin-left:15px" class="tablescroll"></div></fieldset>
+    <script type="text/javascript" charset="gb2312">ue_initsetup("仓库查询无货架",true)</script>
+</body>	
+</html>

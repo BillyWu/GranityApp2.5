@@ -1,0 +1,469 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>消费监控</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usMenu.js" type="text/javascript" charset="gb2312"></script>
+
+    <script language="javascript" src="../hmjs/sysjs/usMenu.js" type="text/javascript"
+        charset="gb2312"></script>
+
+    <script type="text/javascript" charset="gb2312">
+
+	    function initWin()
+	    {
+	   
+            var ob=$band("消费监控");
+            ob.Asyn=true;
+            ob.XQuery();
+            ob.AfterXQuery = function()
+            {
+                ue_expand('消费监控',true);
+                  ue_treeline("消费监控",true);
+                    $loading("none");
+            }
+            ob.AfterRowChanged=function()
+            {
+                showdoormap();
+                var state = this.getFldStrValue("巡检状态");
+                $("btWatch").value= "巡检"==state?"停止监控":"启动监控";
+                pause.Stop = "巡检"!=state;
+            }
+            
+            var ob1=$band("巡检数据");
+            ob1.minwidth = "80px";
+            ob1.freecols = "状态";
+            ob1.gridtype = 61;ob1.colnum = 3
+            ob1.Asyn=true;
+            ob1.hasGrid=true;
+            var Grid = new XGrid("divMonitor",ob1,"in");
+            ob1.XQuery();
+            ob1.AfterXQuery = function(){$loading("none");}
+            
+            $U().devinfo={};
+            //20s周期执行获取巡检数据
+            setInterval(getrecord, 20000);
+	    }
+        function Tree_onNodeSelectionChange(node)
+        {
+            TclickDot(node,false);
+        }
+	    function monitordevice()
+	    {
+	        var ob = $band("餐厅设备列表");
+	        var devs = "";
+	        for(var i=0,len=ob.RecordCount(); i<len; i++)
+	        {
+	            var dev = ob.getFldStrValue("ID",i);
+	            if(devs.indexOf(dev)<0)
+	                devs += ","+ dev;
+	        }
+	        if(!devs)   return;
+	        devs = devs.substr(1);
+	        var cmd = "停止监控"==$("btWatch").value? "停止巡检":"启动巡检";
+	        var ps = "停止监控"==$("btWatch").value? "halt":"monitor";
+	        ps = "cmd="+ps+"&devices="+devs;
+	        var msg = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx");
+	        if("true"!=ToolUtil.valueTag(msg,"成功"))
+	        {
+	            alert("不能"+cmd+"，请检查通讯参数设置！");
+	            return;
+	        }
+	        var band = $band("消费监控");
+	        band.setFldStrValue(null, "巡检状态", "启动监控"==$("btWatch").value?"巡检":"");
+	        $("btWatch").value = "启动监控"==$("btWatch").value?"停止监控":"启动监控";
+	        ue_save("成功"+cmd);
+	    }
+        //重采记录，重新采集设备所有记录，完成后清空设备记录位置
+	    function collection(isreset)
+	    {
+	        var ob = $band("餐厅设备列表");
+	        var devs = "";
+	        for (var i = 0, len = ob.RecordCount(); i < len; i++)
+	        {
+	            var dev = ob.getFldStrValue("ID", i);
+	            if (devs.indexOf(dev) < 0 && devicesOff.indexOf(dev)<0)
+	                devs += "," + dev;
+	        }
+	        if (!devs) return;
+	        devs = devs.substr(1);
+	        var cmd = "重采记录";
+	        var ps = "readrecord";
+	        ps = "cmd=" + ps + "&devices=" + devs;
+	        if (!globsum && true===isreset)
+	            ps += "&reset=true";
+	        else
+	            ps += "&reset=1";
+	        if(!collection.runIndex)
+	            collection.runIndex=1;
+	        else
+	            collection.runIndex++;
+	        if(!globsum)    $loading();
+	        var xmlhttp = ToolUtil.Post(ps, "hdlDeviceMonitor.ashx", recallback);
+	        recallback.xmlhttp = xmlhttp;
+            pause.Stop=false;
+            $("btPause").value = "暂停";
+	        return;
+	    }
+	    //暂停采集
+	    function pause()
+	    {
+	        var btn=$("btPause").value;
+	        if("继续重采"==btn)
+	        {
+	            $("btPause").value = "暂停";
+	            pause.Stop = false;
+	            collection(false);
+	            return;
+	        }
+            $("btPause").value = "继续重采";
+            pause.Stop = true;
+	    }
+        //重采回调，结束时清空记录位置
+	    function recallback()
+	    {
+	        if (4 != this.readyState)
+	            return;
+	        var msg = this.responseText;
+	        if(collection.runIndex)
+	            collection.runIndex -=1;
+            if(!collection.runIndex && msg && globsum>0 && !pause.Stop)
+                collection();
+	        var sum = writerecord(msg);
+	        globsum += sum;
+	        $loading("none");
+	        $("readinfo").innerText = "提取记录：" + globsum;
+	        if (!msg || sum < 1 || pause.Stop)
+	        {
+	            globsum = 0;
+                $("btPause").value = "继续重采";
+	            if(devicesOff)
+	                alert("已经完成读取数据！\n\r"+devsOff.substr(1)+" 通讯中断！");
+	            else if(pause.Stop)
+	                alert("暂停采集记录！");
+	            else
+	                alert("已经完成读取数据！");
+	            devicesOff = "";
+	            devsOff="";
+	            return;
+	        }
+	        if(!collection.runIndex && globsum>0)
+	            setTimeout("collection()", 400);
+	    }
+	    function readdatadevice()
+	    {
+	   
+	        var ob = $band("餐厅设备列表");
+	        var devs = "";
+	        for(var i=0,len=ob.RecordCount(); i<len; i++)
+	        {
+	            var dev = ob.getFldStrValue("ID",i);
+	            if(devs.indexOf(dev)<0 && devicesOff.indexOf(dev)<0)
+	                devs += ","+ dev;
+	        }
+	        if(!devs)   return;
+	        devs = devs.substr(1);
+	        var cmd = "提取记录";
+	        var ps = "readrecord";
+	        ps = "cmd="+ps+"&devices="+devs;
+	        if(!readdatadevice.runIndex)
+	            readdatadevice.runIndex=1;
+	        else
+	            readdatadevice.runIndex++;
+	        if(!globsum)    $loading();
+	        var xmlhttp = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx",callback);
+	        callback.xmlhttp = xmlhttp;
+            pause.Stop=false;
+            $("btPause").value = "暂停";
+	    }
+	    var globsum=0;
+	    var devicesOff = "";
+	    var devsOff="";
+	    function callback()
+	    {
+	        if(4!=this.readyState)
+	            return;
+	        var msg = this.responseText;
+	        if(readdatadevice.runIndex)
+	            readdatadevice.runIndex -=1;
+	        if(!readdatadevice.runIndex && msg && globsum>0 && !pause.Stop)
+	            readdatadevice();
+            var sum = writerecord(msg);
+            globsum += sum;
+            $loading("none");
+            $("readinfo").innerText = "提取记录：" + globsum;
+            if (!msg || sum < 1 || pause.Stop)
+	        {
+	            globsum = 0;
+                $("btPause").value = "继续重采";
+	            if(devicesOff)
+	                alert("已经完成读取数据！\n\r"+devsOff.substr(1)+" 通讯中断！");
+	            else if(pause.Stop)
+	                alert("暂停采集记录！");
+	            else
+	                alert("已经完成读取数据！");
+	            devicesOff = "";
+	            devsOff="";
+	            return;
+	        }
+	        if(!readdatadevice.runIndex)
+                setTimeout("readdatadevice()", 400);
+	    }
+   	    function showdoormap()
+   	    {
+   	        var devinfo = $U().devinfo;
+   	        var grpID = $band("消费监控").getFldStrValue("ID");
+   	        if(!devinfo[grpID])
+   	            devinfo[grpID]={ devs:"", dtrecord:(new Date()).addDate(-1/(24*12)),dtalarm:(new Date()).addDate(-1/(24*12)) };
+            var ob = $band("餐厅设备列表");
+            var doormaps = "", devs="";
+            for(var i=0,len=ob.RecordCount(); i<len; i++)
+            {
+                var devid = ob.getFldStrValue("ID",i);
+                devid = devid.replace(/-/g, "");
+                var em = '<div style="width:100px;height:60px;text-align:center;float:left">'
+	                    +'<img border="0" src="images/70.png" id='+ devid +' /><br/>'
+	                    +ob.getFldStrValue("名称",i)+'</div>';
+                 doormaps =  doormaps + em;
+                 devs += ","+ ob.getFldStrValue("ID",i);
+            }
+            devs = devs.substr(1);
+            devinfo[grpID].devs= devs;
+            dvob.innerHTML = doormaps;
+   	    }
+        function getrecord()
+        {
+   	        var devinfo = $U().devinfo;
+            var grpID = $band("消费监控").getFldStrValue("ID");
+            if(!devinfo[grpID] || "启动监控"==$("btWatch").value)
+                return;
+            if($U().Running)
+                return;
+            $U().Running = true;
+            var devinfo = devinfo[grpID];
+            var ps ="cmd=getrecord&datatype=alarm"+"&devices="+devinfo.devs;
+            ps = ps+"&dtUpdate="+devinfo.dtalarm.formate("yyyy-MM-dd HH:mm:ss");
+            var msg = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx");
+            var pos = msg.indexOf("<Row>");
+            var col = {"Device":"消费机", "Dt":"时间", "Data":"数据"};
+            var info= ["时间格式错", "工作中", "读头故障", "权限校验错", "时段参数错", "收费参数错", "黑名单错", "系统参数错"];
+            var band = $band("巡检数据");
+            var obdev= $band("餐厅设备列表");
+            while(pos>-1)
+            {
+                var obj = {};
+                for(var c in col)
+                {
+                    var is = msg.indexOf("<"+c+">");
+                    var ie = msg.indexOf("</"+c+">");
+                    obj[c] = msg.substring(is+c.length+2, ie);
+                }
+                var alarm ="";
+                for(var i=0; i<info.length; i++)
+                {
+                    var val = ToolUtil.valueTag(obj.Data ,info[i]);
+                    if("1"==val)
+                        alarm +=" "+ info[i];
+                }
+                //更新消费机状态图标
+                for(var i=0,len=obdev.RecordCount(); i<len; i++)
+                {
+                    var devid = obdev.getFldStrValue("ID", i);
+                    if(obj["Device"]!=devid)
+                        continue;
+                    devid = devid.replace(/-/g,"");
+                    $(devid).src = alarm? "images/72.png":"images/70.png";
+                    break;
+                }
+                pos = msg.indexOf("</Row>");
+                msg = msg.substr(pos+6);
+                pos = msg.indexOf("<Row>");
+            }
+
+            var ps ="cmd=getrecord&datatype=record"+"&devices="+devinfo.devs;
+            ps = ps+"&dtUpdate="+devinfo.dtrecord.formate("yyyy-MM-dd HH:mm:ss");
+            var msg = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx");
+            devinfo.dtalarm = new Date();
+            writerecord(msg);
+            $U().Running = false;
+        }
+        function writerecord(msg)
+        {
+            var pos = msg.indexOf("<Row>");
+            var band = $band("巡检数据");
+            var obdev= $band("餐厅设备列表");
+            var col = {"Device":"消费机", "Dt":"时间", "Data":"数据"};
+            var info= {"{卡号}":"卡号", "{消费金额}":"金额", "{卡余额}":"卡余额", "{累计补助金额}":"补助余额", "{消费时间}":"消费时间", "{消费机号}":"消费机号", "{操作员号}":"操作员号"};
+            var flds= ["卡号", "金额", "卡余额", "补助余额", "消费时间", "消费机", "操作员号"];
+            var rds = [];
+            while(pos>-1)
+            {
+                var obj = {};
+                for(var c in col)
+                {
+                    var is = msg.indexOf("<"+c+">");
+                    var ie = msg.indexOf("</"+c+">");
+                    obj[c] = msg.substring(is+c.length+2, ie);
+                }
+                pos = msg.indexOf("</Row>");
+                msg = msg.substr(pos+6);
+                pos = msg.indexOf("<Row>");
+                for(var c in info)
+                    obj[info[c]] = ToolUtil.valueTag(obj.Data, c);
+                //获取消费机名称
+                for (var i = 0, len = obdev.RecordCount(); i < len; i++)
+                {
+                    var devid = obdev.getFldStrValue("ID", i);
+                    if (obj["Device"] != devid)
+                        continue;
+                    obj["消费机"] = obdev.getFldStrValue("名称", i);
+                    break;
+                }
+                if (!obj.Data)
+                {
+                    devicesOff+= ","+obj["Device"];
+                    devsOff += ","+obj["消费机"];
+                    //alert(obj["消费机"] + "通讯中断");
+                    continue;
+                }
+                if(!obj["卡号"] || "0"==obj["卡号"])
+                    continue;
+                obj["消费时间"]="20"+obj["消费时间"];
+                rds[rds.length] = obj;
+            }
+            for(var i=0; i<rds.length; i++)
+            {
+                band.NewRecord(0);
+                var obj = rds[i];
+                for(var f=0; f<flds.length; f++)
+                    band.setFldStrValue(0, flds[f], obj[flds[f]]);
+            }
+            while(band.RecordCount()>50)
+                band.DeleteRecord(50);
+            for(var i=0,len=band.RecordCount(); i<len; i++)
+                band.setFldStrValue(i, "RowNum", i+1);
+            return rds.length;
+        }
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');">
+    </div>
+    <fieldset style="float: left; padding: 5px; width: 30%; height: 95%;" id="fdiv">
+        <legend>
+            <img border="0" src="Images/savesmall.gif" />餐厅信息</legend>
+
+        <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_消费监控Tab_trvLand ***/
+                    window.ComponentArt_Storage_etpTemplate_消费监控Tab_trvLand = null;
+                    //]]>
+        </script>
+
+        <div style="position: absolute; top: 0px; left: 0px; visibility: hidden;">
+            <img src="images/exp.gif" width="0" height="0" alt="" />
+            <img src="images/col.gif" width="0" height="0" alt="" />
+        </div>
+        <div id="etpTemplate_消费监控Tab_trvLand" class="TreeView" style="height: 96%; width: 99%;
+            overflow-y: auto;" onclick="if(window.etpTemplate_消费监控Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_消费监控Tab_trvLand);"
+            onmouseover="if(window.etpTemplate_消费监控Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_消费监控Tab_trvLand);">
+        </div>
+        <input id="etpTemplate_消费监控Tab_trvLand_Data" name="etpTemplate_消费监控Tab_trvLand_Data"
+            type="hidden" />
+        <input id="etpTemplate_消费监控Tab_trvLand_Properties" name="etpTemplate_消费监控Tab_trvLand_Properties"
+            type="hidden" />
+        <input id="etpTemplate_消费监控Tab_trvLand_SelectedNode" name="etpTemplate_消费监控Tab_trvLand_SelectedNode"
+            type="hidden" value="" />
+        <input id="etpTemplate_消费监控Tab_trvLand_ScrollData" name="etpTemplate_消费监控Tab_trvLand_ScrollData"
+            type="hidden" value="0,0" />
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    window.ComponentArt_Init_etpTemplate_消费监控Tab_trvLand = function() {
+                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_消费监控Tab_trvLand'))
+                        {setTimeout('ComponentArt_Init_etpTemplate_消费监控Tab_trvLand()', 100); return; }
+
+                    window.etpTemplate_消费监控Tab_trvLand = new ComponentArt_TreeView('etpTemplate_消费监控Tab_trvLand', ComponentArt_Storage_etpTemplate_消费监控Tab_trvLand);
+                    etpTemplate_消费监控Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$消费监控Tab$trvLand','') };
+                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_消费监控Tab_trvLand; etpTemplate_消费监控Tab_trvLand.GlobalAlias = 'trvLand'; }
+                    etpTemplate_消费监控Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:消费监控Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                    etpTemplate_消费监控Tab_trvLand.Initialize('etpTemplate_消费监控Tab_trvLand');
+
+                    window.etpTemplate_消费监控Tab_trvLand_loaded = true;
+                }
+                ComponentArt_Init_etpTemplate_消费监控Tab_trvLand();
+                var myTree = new Tree(etpTemplate_消费监控Tab_trvLand,'消费监控Tab');
+                //]]>
+        </script>
+
+    </fieldset>
+    <fieldset style="float: left; padding: 5px; width: 69%; height: 95%;" id="fdiv">
+        <fieldset style="padding: 5px; width: 98%; height: 40%">
+            <input type="button" value="重采记录" id="btCollection" class="txtbtnex" onclick="collection(true)"
+                style="display: none;" />
+            <input type="button" value="继续重采" id="btPause" class="txtbtnex" onclick="pause()" />
+            <input type="button" value="提取记录" id="btRead" class="txtbtnex" onclick="readdatadevice()" />
+            <input type="button" value="启动监控" id="btWatch" class="txtbtnex" onclick="monitordevice()" />
+            <legend id="tbars" style="margin-bottom: 5">消费机</legend>
+            <div id="dvob" style="width: 100%; height: 95%">
+            </div>
+        </fieldset>
+        <fieldset style="padding: 5px; width: 98%; height: 42%">
+            <legend id="Legend1" style="margin-bottom: 5">巡检信息&nbsp;&nbsp; <font color="#FF0000"
+                id="readinfo"></font></legend>
+            <div id="divMonitor" style="width: 100%; height: 86%">
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("消费监控")</script>
+
+</body>
+</html>

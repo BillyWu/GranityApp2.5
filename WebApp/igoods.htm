@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+	<title>上海恒名服装管理系统</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>款号</title>
+<script type="text/javascript" language="javascript">
+    var Ajax=function ()
+    {
+        this.arh=new XMLHttpRequest();
+        this.arh.onreadystatechange=function(me){ return function(){ me.statechange.call(me, me.arh);};}(this);
+        this.options={scope:this,success:function(){},fail:function(){}};
+    };
+    Ajax.prototype={
+        send:function(url,data,success,fail,scope)
+        {
+            //if(!url || ("string"!=url && !url.url))
+            //    return;
+            if(url.url)
+                var cfg=url;
+            else
+                var cfg={url:url,data:data,success:success,fail:fail,scope:scope};
+            data=cfg.data;
+            for(var f in {success:"",fail:""})
+            {
+                if("function"==typeof(cfg[f]))
+                    this.options[f]=cfg[f];
+            }
+            this.options.url=cfg.url;
+            this.options.scope=cfg.scope;
+            this.arh.open("POST",this.options.url, true);
+            this.arh.send(data);
+        },
+        statechange : function(arh)
+        {
+            debugger;
+            if(4!=arh.readyState)
+                return;
+            if(200==arh.status)
+                return this.options.success.call(this.options.scope||this, arh.responseText, arh.status, arh);
+            
+            return this.options.fail.call(this.options.scope||this, "响应失败", arh.status, arh);
+        },
+        parseJson : function(response)
+        {
+            if(!response || "string"!=typeof(response))
+                return response;
+            return (new Function("return "+response))();
+        }
+    };
+    function $type(obj)
+    {
+        if(undefined===obj||null===obj)
+            return "string";
+        var type = Object.prototype.toString.call(obj);
+        var index= type.indexOf(" ");
+        if(index<0)     return type.toLowerCase();
+        return type.substring(type.indexOf(" ")+1, type.length-1).toLowerCase();
+    }
+    function $el(el)
+    {
+        if("string"==$type(el))
+            return document.getElementById(el);
+        return el;
+    }
+	Template = function (html) {
+        var me = this;
+        var args = arguments;
+        var buffer = [];
+        for (var i = 0, len = args.length; i < len; i++) 
+        {
+            var value = args[i];
+            if ("array"==$type(value))
+                buffer.push(value.join(''));
+            else if ('object'!=$type(value))
+                buffer.push(value);
+            else{
+                for(var n in value)
+                    me[n]=value[n];
+            }
+        }
+        me.html = buffer.join('');
+        //编译模板
+        if (me.compiled)
+            me.compile();
+    }
+
+    Template.prototype = function () {
+        var compileRe = /\{([\w\u4E00-\uFA29\-]+)(?:\:([\w\u4E00-\uFA29\.]*)(?:\((.*?)?\))?)?\}/g;
+        var compileARe = /\\/g;
+        var compileBRe = /(\r\n|\n)/g;
+        var compileCRe = /'/g;
+        return {
+            compiled: false,
+            //编译模板
+            compile: function () {
+                function fn(m, name, format, args) {
+                    if (format) {
+                        args = args ? ',' + args : "";
+                        format += '(';
+                    }
+                    else {
+                        args = '';
+                        format = "(values['" + name + "'] == undefined ? '' : ";
+                    }
+                    return "'," + format + "values['" + name + "']" + args + ") ,'";
+                }
+
+                var bodyReturn = this.html.replace(compileARe, '\\\\').replace(compileBRe, '\\n').replace(compileCRe, "\\'").replace(compileRe, fn);
+                bodyReturn = "this.compiled = function(values){ return ['" + bodyReturn + "'].join('');};";
+                delete fn;
+                eval(bodyReturn);
+                return this;
+            },
+            //绑定数据
+            bind: function (values) {
+                var me = this;
+                var tpl = me;
+                if (me.compiled)
+                    return me.compiled(values);
+                function fn(m, name, format, args) {
+                    if (!format)
+                        return values[name] !== undefined ? values[name] : "";
+                    else {
+                        if (args)
+                            args = [values[name]].concat(new Function('return [' + args + '];')());
+                        else
+                            args = [values[name]];
+                        if (format.substr(0, 5) == "this.")
+                            var fun = eval("me." + format.substr(5));
+                        else
+                            var fun = eval(format);
+                        return fun.apply(tpl, args);
+                    }
+                } //function fn(m, name, format, args) {
+                return me.html.replace(compileRe, fn);
+            }
+        }
+    } ();
+    //对指定元素内数据
+    function $buildJson(el)
+    {
+        var el=$el(el);
+        if(!el || !el.tagName)
+            return "";
+        var data="";
+        for(var i=0; i<el.children.length; i++)
+        {
+            var v = $buildJson(el.children[i]);
+            if(!v)  continue;
+            data = data? data+","+v : v;
+        }
+        var k = el.getAttribute("name");
+        if(!k)  return data;
+        var v = el.value;
+        if(!v)  v = el.innerText;
+        v = v.replace("\"","\\\"");
+        v = "\""+k+"\":\""+v+"\"";
+        data = data? data+","+v : v;
+        return data;
+    }
+    function _search()
+    {
+        var arh=new Ajax();
+        var value="[{'颜色':'红色','数量':'10'},{'颜色':'蓝色','数量':'20'}]";
+        value=arh.parseJson(value);
+        for(var i=0;i<value.length;i++)
+            value[i].index=i;
+        var template=$el("mytml").innerHTML;
+        template=new Template(template,{compiled:true});
+        var html=$el("myhead").innerHTML;
+        for(var i=0;i<value.length;i++)
+            html+=template.bind(value[i]);
+        $el("pcontext").innerHTML=html;
+        $el("btsave").style.display="";
+    }
+    function save()
+    {
+        //读取数据形成参数
+        var el = $el("pcontext").getElementsByTagName("DIV");
+        var data = "";
+        for(var i=0; i<el.length; i++)
+            data += ",{"+$buildJson(el[i])+"}";
+        data = "[" + data.substr(1) + "]";
+        alert(data);
+        
+    }
+	
+	
+</script>
+</head>
+
+<body>
+<script type="text/plain" id="myhead">
+    <div row="{index}"><label>颜色</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>数量</label></div>
+</script>
+<script type="text/plain" id="mytml">
+    <div row="{index}"><input type="text" name="颜色" value="{颜色}"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="数量" value="{数量}"/></div>
+</script>
+<div align=center>
+<p><font size="4">请输入款号或条码</font>：</p>
+
+<p><input type="text" name="T1" id="tbKH" value="[{'颜色':'红色','数量':'10'},{'颜色':'蓝色','数量':'20'}]" size="22" style="width:160px; font-size:16pt">
+    <input type="button" value="搜索" name="B3" onclick="_search()" style="font-size: 12pt"></p>
+</div>
+<p id="pcontext"></p>
+<input type="button" id="btsave" onclick="save()" style="display:none;" value="提交"/>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Estar.WebApp.XmlDataLandEx" CodeFile="XmlDataLandEx.aspx.cs" %>

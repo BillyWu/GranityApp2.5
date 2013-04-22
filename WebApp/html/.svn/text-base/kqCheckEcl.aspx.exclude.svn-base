@@ -1,0 +1,59 @@
+﻿<%@ page language="C#" autoeventwireup="true" inherits="html_kqCheckEcl, App_Web_qmjs2o8y" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>无标题页</title>
+</head>
+<body style="overflow: hidden; margin: 0px;">
+    <div />
+    <table style="border-collapse: collapse" id="table1" border="0" cellspacing="0" cellpadding="0"
+        width="100%">
+        <tbody>
+            <tr>
+                <td style="width: 25%" rowspan="3" align="left">
+                    <img style="border-bottom: 0px; border-left: 0px; width: 318px; border-top: 0px;
+                        border-right: 0px" alt="" src="../index/welcome.gif" width="318" height="72"></td>
+                <td style="width: 75%; height: 30px" valign="baseline" align="left">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 75%; height: 15px" valign="baseline" align="left">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 75%; height: 10px" valign="baseline" background="../index/line.gif"
+                    align="left">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="tablescroll" id="Div1" style="width: 98%; height: 456px; margin-top: 10px;
+        margin-right: 10px; margin-bottom: 10px; margin-left: 10px; border-top-width: 0px;
+        border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: none;
+        border-right-style: none; border-bottom-style: none; border-left-style: none;
+        overflow-x: auto; overflow-y: auto;">
+        <div class="body_resize">
+            <form id="form1" runat="server">
+                <div>
+                    <asp:Label ID="Label1" runat="server" BorderStyle="None" Text="考勤信息导入："></asp:Label>
+                    <asp:FileUpload ID="FileUpload1" runat="server" Width="330px" />&nbsp;
+                    <asp:Button ID="btGuideData" runat="server" Text="导入" Width="81px" OnClick="btGuideData_Click" /><br />
+                    <br />
+                    <asp:Panel ID="Panel1" runat="server" Height="395px" ScrollBars="auto" Width="949px">
+                        <asp:GridView ID="gdvFile" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="920px">
+                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" CssClass="DataGridFixedHeader "
+                                Height="26px" Width="500px" />
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <EditRowStyle BackColor="#999999" />
+                        </asp:GridView>
+                    </asp:Panel>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

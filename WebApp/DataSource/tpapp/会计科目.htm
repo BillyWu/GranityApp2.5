@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+		<script src="hmjs/tmpjs/subject.js" language="JavaScript" type="text/JavaScript" charset="gb2312"></script>
+		<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" />
+	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+		<style type="text/css">
+		.sec1 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.sec2 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.sec3 {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.secx {BORDER-RIGHT: gray 0 solid; BORDER-TOP: #ffffff 0px solid;FONT-SIZE: 12px; BORDER-LEFT: #ffffff 0px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+		</style>
+		<script language="javascript" type="text/javascript">
+		<!--
+			window.onload=WinLoadUtil.MDTPLoad;
+		-->	
+		</script>
+	</head>
+
+	<body>
+<table style="WIDTH: 100%; BORDER-COLLAPSE: collapse; border:1" id="table13" cellPadding="0" border="0" height="144">
+			<tbody>
+			<tr>
+				<td style=" color: #333333;" vAlign="top" colspan="2" height="20"><TABLE align="center" id="secTable" cellSpacing="0" cellPadding="0" width="100%" border="0" style="border-bottom-width: 0px;font-size:10pt">
+  <TBODY> 
+    <TR align="middle" height="20px">
+      <TD class="sec2" onclick="ms_finance(this.innerText,0)" width="7%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">资产类</TD>
+      <TD class="sec1" onclick="ms_finance(this.innerText,1)" width="7%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">负债类</TD>
+      <TD class="sec1" onclick="ms_finance(this.innerText,2);" width="7%">权益类</TD>
+      <TD class="sec1" onclick="ms_finance(this.innerText,3)" width="7%">成本类</TD>
+      <TD class="sec1" onclick="ms_finance(this.innerText,4)" width="7%">损益类</TD>
+      <TD id="tdfix" width="49%" style="background-color: #D4D0C8">
+      			      <table border="0" width="97%" cellpadding="0" style="border-collapse: collapse">
+						<tr>
+							<td align="right" width="52">查询：</td>
+							                <td><input style="WIDTH: 100%; height:20" title="可采用拼音码查询，如现金-XJ,银行-YX " onkeydown="usEnterTab();" size="15" name="scode;name;ename;memo;hswbflag" id="textlocation" /></td>
+							                <td width="79" align="left"><button id="btnfind" title="查找..." onclick="ws_location('字典信息');"><img src="images/search0.gif" /></button><button id="Button1" title="刷新数据" onclick="document.getElementById('textlocation').value='';ws_location('字典信息');"><img alt="刷新数据" src="images/clear.ico" /></button></td>
+
+						</tr>
+					</table>				
+      </TD>
+      <TD id="tdfix" style="background-color: #D4D0C8">
+      【<a href="#" class="linkbtn_0" onclick="_print()">打印</a>】【<a href="#" class="linkbtn_0" onclick="ue_navrun();">关闭</a>】
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE></td>
+			</tr>
+			<tr>
+				<td style=" color: #333333;" vAlign="top" align="left">
+				<TABLE class="main_tab" id="mainTable" cellSpacing="0" cellPadding="0" border="0" style="border-top-width: 0px;width:101%;height:100%">
+  <!--菜单一内容-->
+<TBODY style="DISPLAY: block">
+    <TR>
+      <TD align="left" height="400px" valign="top"><Control class="" catalog="TreeLand.ascx" itemname="字典信息" id="treeland" name="">treeland<Property name="tpfile" value="" />
+					                                                <Property name="width" value="340" /><Property name="height" value="498px" />
+					                                                <Property name="ctrlalert" value="s_code" />
+					                                                <Property name="trvfld" idfld="ID" pidfld="PID" txtfld="text" namefld="name" orderfld="scode" />
+				                                                </Control></TD>
+    </TR>
+  </TBODY>  
+  
+  <!--菜单二内容-->
+  
+</TABLE></td><td style=" color: #333333;" vAlign="top" width="60%">
+<table border="1" cellspacing="0" width="100%" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt" height="501">
+								<tbody>
+								<tr>
+									<td align="center" width="24%">
+									属性</td>
+									<td style="height: 27px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="center" width="74%" colspan="3">
+					值</td>
+								</tr>
+								<tr>
+									<td align="right" width="24%" height="29">
+									科目代码：</td>
+									<td align="left" colSpan="3" height="29">
+									 <INPUT id="scode" datasrc="#treeland" datafld="scode" class="xlandinput" style="width:97%" type="text" size="11" name="姓名5" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td align="right" width="24%">
+									科目名称：</td>
+									<td style="height: 29px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="left" colSpan="3">
+					<INPUT datasrc="#treeland" datafld="name" class="xlandinput" style="width:97%" type="text" size="11" name="姓名" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td align="right" width="24%" rowspan="3">
+									核算外币：</td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-right-style:none; border-right-width:medium" height="31" width="4%" align="right">
+					<input type="radio" value="不核算外币" checked="" name="HSWBFLAG" onclick="editchk(this.name,'字典信息');document.getElementById('moneytype').disabled=true" /></td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium; border-right-style:none; border-right-width:medium" height="31" width="29%">
+					不核算外币</td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium" height="31" width="39%">
+					　</td>
+								</tr>
+								<tr>
+									<td style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium; border-right-style:none; border-right-width:medium" height="29" width="4%" align="right">
+									 <input type="radio" value="核算单一外币" name="HSWBFLAG" onclick="editchk(this.name,'字典信息');document.getElementById('moneytype').disabled=null" /></td>
+									<td style="border-style:none; border-width:medium; " height="29" width="29%">
+									 核算单一外币</td>
+									<td style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium" height="29" width="39%">
+									 <SELECT id="moneytype" dataFld="moneyid" DataValueField="code" DataTextField="name" 
+									 	DataSource="execute dbo.proc_dict_币种" dataSrc="#treeland" class="xlandinput" size="1" disabled="" 
+									 	style="WIDTH:100%;height:21" name="D8">
+                                    </SELECT></td>
+								</tr>
+								<tr>
+									<td style="border-top-style: none; border-top-width: medium; border-right-style:none; border-right-width:medium" height="34" width="4%" align="right">
+									 <input type="radio" value="核算所有外币" name="HSWBFLAG" onclick="editchk(this.name,'字典信息');document.getElementById('moneytype').disabled=true" />　　</td>
+									<td style="border-top-style: none; border-top-width: medium; border-left-style:none; border-left-width:medium; border-right-style:none; border-right-width:medium" height="34" width="29%">
+									 核算所有外币 </td>
+									<td style="border-top-style: none; border-top-width: medium; border-left-style:none; border-left-width:medium" height="34" width="39%">
+									 　</td>
+								</tr>
+								<tr>
+									<td align="right">核算现金流量</td>
+									<td colspan="3"><input id="chkcash" type="checkbox" dataSrc="#treeland" dataFld="HSCASH" class="xlandinput" disabled="" name="C1" value="ON" /></td>
+								</tr>
+								<tr>
+									<td align="right" height="33">
+									余额方向：</td>
+									<td height="33" colspan="3">
+					<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table14">
+						<tbody>
+						<tr>
+							<td width="20">
+					<input type="radio" value="借" name="DCFLAG" onclick="editchk(this.name,'字典信息')" checked="" /></td>
+							<td width="62">借方</td>
+							<td width="20">
+							<input type="radio" value="贷" checked="" name="DCFLAG" onclick="editchk(this.name,'字典信息')" /></td>
+							<td>贷方</td>
+						</tr>
+					</tbody>
+					</table>
+									</td>
+								</tr>
+								<tr>
+									<td width="24%" height="225" align="right">
+									摘要：</td>
+									<td height="225" colspan="3"><textarea dataSrc="#treeland" dataFld="memo" class="xlandinput" style="width:100%;height:100%" name="S1" rows="1" cols="20"></textarea></td>
+								</tr>
+								<tr>
+									<td align="center" colspan="4" height="30">
+									<table border="0" cellpadding="0" style="width:100%; font-size:10pt" height="18" cellspacing="0">
+			<tbody>
+			<tr>
+				<td>【<a href="#" class="linkbtn_0" onclick="ue_treeline('字典信息',true)">连线</a>】</td>
+				<td>【<a href="#" class="linkbtn_0" onclick="ue_expand('字典信息',false);">合并</a>】</td>
+				<td>【<a href="#" class="linkbtn_0" onclick="ue_expand('字典信息',true);">展开</a>】</td>
+				<td>【<a href="#" class="linkbtn_0" onclick="TreeUtil.addNode('treeland',false)">增加同级科目</a>】</td>
+				<td>【<a href="#" class="linkbtn_0" onclick="TreeUtil.addNode('treeland',true)">增加下级科目</a>】</td>
+				<td>【<a href="#" class="linkbtn_0" onclick="_deleteNode('treeland')">删除</a>】</td>
+				<td>【<a href="#" class="linkbtn_0" onclick="ue_save()">保存</a>】</td>
+			</tr>
+		</tbody>
+		</table></td>
+								</tr>
+							</tbody>
+							</table></td>
+			</tr>
+</tbody>
+</table>
+	</body>
+</html>

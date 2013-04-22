@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+		<script src="hmjs/tmpjs/subject.js" language="JavaScript" type="text/JavaScript" charset="gb2312"></script>
+		<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" />
+	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+		<style type="text/css">
+		.sec1 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.sec2 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.sec3 {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.secx {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+		</style>
+		<script language="javascript" type="text/javascript">
+		<!--
+			window.onload=WinLoadUtil.MDTPLoad;
+			function cmdOK()
+			{
+				 var oband=document.UnitItem.getBandByItemName("字典信息");
+				 var node=oband.Tree.WebTree.SelectedNode;
+				 if(node.Nodes().length>0){alert("科目“"+node.Text+"”不是一个明细科目！");return}
+				 var str = ToolUtil.valueTag(node.Value,"name");
+				 str = ToolUtil.valueTag(node.Value,"code") + " " + us_treeNodePath(node,str,"name","→");
+				 window.returnValue = str;//document.getElementById("scode").value+":"+document.getElementById("name").value;
+				 window.close();						
+			}	
+			
+			function cmdAdd()
+			{
+				 var srcband = window.dialogArguments;
+				 var oband=document.UnitItem.getBandByItemName("字典信息");
+				 var node=oband.Tree.WebTree.SelectedNode;
+				 if(node.Nodes().length>0){alert("科目“"+node.Text+"”不是一个明细科目！");return}
+				 var str = ToolUtil.valueTag(node.Value,"name");
+				 if(!str){alert("科目有误，请检查！");return};
+				 str = ToolUtil.valueTag(node.Value,"code") + " " + us_treeNodePath(node,str,"name","→");
+				 var im=null;
+                 var x="";
+				 if(srcband.RecordCount()!=0)
+				 {
+                     for(var i=0;i<srcband.RecordCount();i++)
+                     {
+                        if(srcband.getFldStrValue("摘要",i)!="")
+                            x = srcband.getFldStrValue("摘要",i);
+                        if(srcband.getFldStrValue("科目",i)=="") {im=i;break;}
+                     }
+                     if(im!=null)
+                     {
+                        srcband.setFldStrValue(im,"科目",str);
+                        srcband.setFldStrValue(im,"摘要",x);
+                        srcband.setCurrentRow(im);
+                     }
+                     else
+				         srcband.NewRecord();
+				         srcband.setFldStrValue(null,"科目",str);                     
+				         srcband.setFldStrValue(null,"摘要",x);
+                 }
+                 else
+                 {
+				     srcband.NewRecord();
+				     srcband.setFldStrValue(null,"科目",str);
+				 }
+			}	
+          				
+		-->	
+		</script>
+	</head>
+
+	<body>
+<table style="WIDTH: 100%;height:196%; BORDER-COLLAPSE: collapse; border:1 none; " id="table13" cellPadding="0" border="0" bgcolor="#D4D0C8">
+			<tbody>
+			<tr>
+				<td style=" color: #333333;" vAlign="top" colspan="2" height="20">
+<TABLE align="center" id="secTable" cellSpacing="0" cellPadding="0" width="100%" border="0" style="border-bottom-width: 0px;font-size:10pt">
+  <TBODY> 
+    <TR align="middle" height="20px">
+      <TD class="sec2" onclick="ms_finance(this.innerText,0)" width="10%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">资产类</TD>
+      <TD class="sec1" onclick="ms_finance(this.innerText,1)" width="10%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">负债类</TD>
+      <TD class="sec1" onclick="ms_finance(this.innerText,2);" width="10%">权益类</TD>
+      <TD class="sec1" onclick="ms_finance(this.innerText,3)" width="10%">成本类</TD>
+      <TD class="sec1" onclick="ms_finance(this.innerText,4)" width="10%">损益类</TD>
+      <TD id="tdfix" class="secx">【<a href="#" class="linkbtn_0" onclick="cmdAdd()">增加</a>】【<a href="#" class="linkbtn_0" onclick="cmdOK()">确定</a>】【<a href="#" class="linkbtn_0" onclick="window.close();">关闭</a>】</TD>
+    </TR>
+  </TBODY>
+</TABLE></td>
+			</tr>
+			<tr>
+				<td style=" color: #333333;" vAlign="top" align="left" height="411">
+				<TABLE class="main_tab" id="mainTable" cellSpacing="2" cellPadding="2" border="0" style="width:100%;height:100%">
+  <!--菜单一内容-->
+<TBODY style="DISPLAY: block">
+    <TR>
+      <TD align="left" height="100%" valign="top"><Control class="" catalog="TreeLand.ascx" itemname="字典信息" id="treeland" name="">treeland<Property name="tpfile" value="" />
+					                                                <Property name="width" value="100%" /><Property name="height" value="100%" />
+					                                                <Property name="ctrlalert" value="s_code" />
+					                                                <Property name="trvfld" idfld="ID" pidfld="PID" txtfld="text" namefld="name" valuefld="ntag"  orderfld="scode" />
+				                                                </Control></TD>
+    </TR>
+  </TBODY>  
+  
+  <!--菜单二内容-->
+  
+</TABLE></td><td style=" color: #333333;" vAlign="top" width="45%" height="411">
+<p style="margin:3"></p>
+<table border="1" cellspacing="0" width="100%" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt" 
+height="100%">
+								<tbody>
+								<tr>
+									<td align="center" width="97%" colspan="4">
+									<table border="0" width="78%" cellpadding="0" style="border-collapse: collapse">
+						                <tr>
+							                <td align="right" width="52">查询：</td>
+							                <td width="200"><input style="WIDTH: 100%; height:20" title="可采用拼音码查询，如现金-XJ,银行-YX " onkeydown="usEnterTab();" size="15" name="scode;name;ename;memo;hswbflag" id="textlocation" /></td>
+							                <td width="60" align="left"><button id="btnfind" title="查找..." onclick="ws_location('字典信息');"><img src="images/search0.gif" /></button><button id="Button1" title="刷新数据" onclick="document.getElementById('textlocation').value='';ws_location('字典信息');"><img alt="刷新数据" src="images/clear.ico" /></button></td>
+						                </tr>
+					                </table></td>
+								</tr>
+								<tr>
+									<td align="center" width="27%">
+									属性</td>
+									<td style="height: 23px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="center" width="70%" colspan="3">
+					值</td>
+								</tr>
+								<tr>
+									<td align="right" width="27%" height="23">
+									科目代码：</td>
+									<td align="left" colSpan="3" height="23">
+									 <INPUT id="scode" datasrc="#treeland" datafld="scode" class="xlandinput" disabled="" style="width:97%" type="text" size="11" name="姓名5" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td align="right" width="27%">
+									科目名称：</td>
+									<td style="height: 23px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="left" colSpan="3">
+					<INPUT id="name" datasrc="#treeland" datafld="name" class="xlandinput" disabled="" style="width:97%" type="text" size="11" name="姓名" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td align="right" width="27%" rowspan="3">
+									核算外币：</td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-right-style:none; border-right-width:medium" height="23" width="7%" align="right">
+					<input type="radio" value="不核算外币" checked="" name="HSWBFLAG" disabled="" /></td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium; border-right-style:none; border-right-width:medium" height="23" width="28%">
+					不核算外币</td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium" height="23" width="33%">
+					　</td>
+								</tr>
+								<tr>
+									<td style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium; border-right-style:none; border-right-width:medium" height="22" width="7%" align="right">
+									 <input type="radio" value="核算单一外币" name="HSWBFLAG" disabled="" /></td>
+									<td style="border-style:none; border-width:medium; " height="22" width="28%">
+									 核算单一外币</td>
+									<td style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium" height="22" width="33%">
+									 <SELECT id="moneytype" disabled="" dataFld="moneyid" DataValueField="code" DataTextField="name" 
+									 	DataSource="execute dbo.proc_dict_币种" dataSrc="#treeland" class="xlandinput" size="1" 
+									 	style="WIDTH:100%;height:21" name="D8">
+                                    </SELECT></td>
+								</tr>
+								<tr>
+									<td style="border-top-style: none; border-top-width: medium; border-right-style:none; border-right-width:medium" height="23" width="7%" align="right">
+									 <input type="radio" value="核算所有外币" name="HSWBFLAG" disabled="" />　　</td>
+									<td style="border-top-style: none; border-top-width: medium; border-left-style:none; border-left-width:medium; border-right-style:none; border-right-width:medium" height="23" width="28%">
+									 核算所有外币 </td>
+									<td style="border-top-style: none; border-top-width: medium; border-left-style:none; border-left-width:medium" height="23" width="33%">
+									 　</td>
+								</tr>
+								<tr>
+									<td align="right">核算现金流量</td>
+									<td colspan="3"><input id="chkcash" type="checkbox" dataSrc="#treeland" dataFld="HSCASH" class="xlandinput" disabled="" name="C1" value="ON" /></td>
+								</tr>
+								<tr>
+									<td align="right" height="24">
+									余额方向：</td>
+									<td height="24" colspan="3">
+					<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table14">
+						<tbody>
+						<tr>
+							<td width="20">
+					<input type="radio" value="借" name="DCFLAG"  disabled="" checked="" /></td>
+							<td width="62">借方</td>
+							<td width="20">
+							<input type="radio" value="贷" checked="" name="DCFLAG"  disabled="" /></td>
+							<td>贷方</td>
+						</tr>
+					</tbody>
+					</table>
+									</td>
+								</tr>
+								<tr>
+									<td width="27%" height="197" align="right">
+									摘要：</td>
+									<td height="175" colspan="3"><textarea dataSrc="#treeland" dataFld="memo" disabled="" class="xlandinput" style="width:100%;height:100%" name="S1" rows="1" cols="20"></textarea></td>
+								</tr>
+								<tr>
+									<td align="center" colspan="4">
+				【<a href="#" class="linkbtn_0" onclick="ue_treeline('字典信息',true)">连线</a>】
+				【<a href="#" class="linkbtn_0" onclick="ue_expand('字典信息',false);">合并</a>】
+				【<a href="#" class="linkbtn_0" onclick="ue_expand('字典信息',true);">展开</a>】
+			</td>
+								</tr>
+							</tbody>
+							</table></td>
+			</tr>
+</tbody>
+</table>
+	</body>
+</html>

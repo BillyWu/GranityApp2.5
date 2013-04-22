@@ -1,0 +1,375 @@
+﻿<html>
+  <head>
+    <title> </title>
+    <base target="_self" />
+    <script language="javascript" src="hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <link href="hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="mstoolbar_files/css.css" type="text/css" rel="stylesheet" />
+    <style type="text/css">
+      BODY { FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: "宋体", "Arial" }
+      TD { FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: "宋体", "Arial" }
+    </style>
+  </head>
+  <body style="overflow:hidden; margin: 0px;" >
+    <script language="javascript" src="hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <div style="display:none;">
+      <XML id="xmlparam" typexml="Param">
+        <D>
+          <PL t="P">
+            <L t="Ts">
+              <P n="RecordCount" v="" t="s" pt="M" />
+              <P n="Command" v="TransParam" t="s" />
+              <P n="UnitName" v="凭证审核" t="s" />
+            </L>
+          </PL>
+        </D>
+      </XML>
+    </div>
+    <div style="display:none;">
+      <XML name="凭证审核" templatetype="SIMPL" id="xmlConf_xmlLandConf" typexml="ConfProperty" confpro="" tpath="DataSource/resources/Template/凭证审核.htm">
+        <UnitItem>
+          <Item name="nav" relation="M" dataitem="凭证审核">
+            <Column name="sn2" />
+            <Column name="科目" />
+            <Column name="sn" />
+            <Column name="借方" />
+            <Column name="单据编号" />
+            <Column name="sn1" />
+            <Column name="贷方" />
+          </Item>
+          <Item name="检测" relation="G" dataitem="凭证检测" />
+          <CommandItem name="submititem" funtype="sqlcmd" />
+        </UnitItem>
+      </XML>
+    </div>
+      <div style="display:none" >
+        <input name="hlb_cmd" type="hidden" id="hlb_cmd" />
+        <input name="hlbRequestParams" type="hidden" id="hlbRequestParams" />
+      </div>
+        <head>
+          <script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/tmpjs/pzsh.js" type="text/javascript" charset="gb2312"></script>
+          <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+          <LINK href="hmjs/sysjs/menu.css" type="text/css" rel="stylesheet" />
+        </head>
+        <body>
+          <table align="center" id="toobar" border="0" cellpadding="1" cellspacing="2" width="100%" height="29" bgcolor="buttonface" onselectstart="event.returnValue=false" style="cursor:default;font-family: 宋体; font-size: 9pt; color: MenuText;  border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-top: 1px solid #FFFFFF; border-bottom: 1px solid #000000; padding:0px">
+            <tbody>
+              <tr>
+                <td width="4" height="23">
+                  <span class="handout"></span>
+                </td>
+                <td nowrap="" class="coolButton" id="btnsave" width="46" onclick="ue_save()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" height="23">
+                  <table border="0" cellspacing="0" cellpadding="0" id="table2" style="font-size: 10pt;width:96%">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\pzchk.png" />
+                        </td>
+                        <td>审核</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="btnsubmit" width="69" onclick="_submit(0);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" height="23">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table6" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td width="16">
+                          <img src="images\spellcheck.gif" width="16" height="16" />
+                        </td>
+                        <td>批量审核</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td1" width="52" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" height="23">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td width="23">
+                          <img src="images\reply.gif" width="16" height="16" />
+                        </td>
+                        <td style="color: red">退回</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td2" width="52" onclick="ms_showBoard('contents',1)" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" height="23">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table12" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\printer.ico" width="16" height="16" />
+                        </td>
+                        <td>打印</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="5" height="23">
+                  <span class="handin"></span>
+                </td>
+                <td nowrap="" height="23" width="70">
+                  <b>凭证审核</b>
+                </td>
+                <td nowrap="" height="23" width="80" align="right">
+                  <b>会计期间：</b>
+                </td>
+                <td nowrap="" height="23">
+                  <span id="spDur" style="width:120; font-weight:bold" />
+                </td>
+                <td width="10" height="23">
+                  <span class="handin"></span>
+                </td>
+                <td nowrap="" class="coolButton" id="btnquit" width="52" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" onclick="_close();" height="23">
+                  <table border="0" width="131%" cellspacing="0" cellpadding="0" id="table14" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\door.gif" width="16" height="16" />
+                        </td>
+                        <td width="78">退出</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="1%" height="23"> 　</td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="etpTemplate_MasterTab_GridDiv" style="height:440px;width:790px;">
+            <table class="GridWB" cellpadding="0" cellSpacing="0" width="100%" tabType="grid">
+              <tbody>
+                <tr>
+                  <td divtype="body" colspan="4">
+                    <div divtype="title" align="left" style="OVERFLOW:hidden;width:790px" width="">
+                      <table tabType="title" class="tabTitle" cellpadding="0" cellSpacing="0">
+                        <thead>
+                          <tr rowType="title">
+                            <td tdType="rowcursor" class="cellwb_btn" align="center" width="40" height="22" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();" onclick="us_tablepro()">
+                              <span width="100%" height="100%" colname="">序号</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="日期" datatype="xs:dateTime" width="76" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="日期">日期</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="凭证字号" datatype="xs:string" width="55" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="凭证字号">凭证字号</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="附件" datatype="xs:string" width="37" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="附件">附件</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="摘要" datatype="xs:string" width="120" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="摘要">摘要</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="科目" datatype="xs:string" width="183" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="科目">科目</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="借方" datatype="xs:decimal" width="98" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="借方">借方</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="贷方" datatype="xs:decimal" width="95" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="贷方">贷方</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="平衡" datatype="xs:string" width="34" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="平衡">平衡</span>
+                            </td>
+                            <td tdType="coltitle" class="cellwb_btn" align="center" colname="选择" datatype="xs:boolean" width="36" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <span width="100%" height="100%" colname="选择">选择</span>
+                            </td>
+                            <td class="cellwb_btn" align="center" width="16" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                              <a href="#" title="保存调整后的表格宽度" class="linkbtn" onclick="ue_savewidth();">=</a>
+                            </td>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                    <div divtype="detail" class="tablescroll" style="overflow-x:hidden;overflow-y:scroll;width:790px" onscroll="GridUtil.usOnScrollHori();" width="">
+                      <table tabType="detail" class="tabDetail" cellpadding="0" cellSpacing="0" onmousemove="GridUtil.usOnDetailMouseOverHandle();" onmouseout="GridUtil.usOnDetailMouseOutHandle();" datasrc="#MasterTab">
+                        <tbody>
+                          <tr rowType="detail">
+                            <td tdType="rowcursor" class="cellwb_btn" align="center" width="40" onclick="GridUtil.usOnRowcursorClickHandle()">
+                              <span datafld="RowNum"></span>
+                            </td>
+                            <td datatype="date" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="center" width="76" colname="日期">
+                              <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="date" colname="日期" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" datafld="日期" />
+                            </td>
+                            <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="55" colname="凭证字号">
+                              <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="凭证字号" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="凭证字号" />
+                            </td>
+                            <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="37" colname="附件">
+                              <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="附件" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="附件" />
+                            </td>
+                            <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="120" colname="摘要">
+                              <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="摘要" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="摘要" />
+                            </td>
+                            <td datatype="alink" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" width="183" colname="科目">
+                              <a href="#" valuefld="" style="WIDTH:100%;HEIGHT:100%;" class="gridlink" datafld="">
+                                <div datatype="alink" colname="科目" onclick="GridUtil.usOnCellLinkClickHandle();" datafld="科目">链接</div>
+                              </a>
+                            </td>
+                            <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="right" width="98" colname="借方" format="####.00" formatfld="借方_格式">
+                              <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="decimal" colname="借方" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" datafld="借方_格式" formatfld="借方_格式" />
+                            </td>
+                            <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="right" width="95" colname="贷方" format="####.00" formatfld="贷方_格式">
+                              <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="decimal" colname="贷方" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" datafld="贷方_格式" formatfld="贷方_格式" />
+                            </td>
+                            <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="34" colname="平衡">
+                              <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="平衡" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="平衡" />
+                            </td>
+                            <td datatype="bool" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="center" width="36" colname="选择">
+                              <input type="checkbox" colname="选择" datatype="bool" class="gridcheck" 
+                                onkeydown="GridUtil.usOnCellEnterTab();" 
+                                onfocus="GridUtil.usOnCellRFocusHandle();" datafld="选择" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table tabType="foot" class="tabDetail" cellpadding="0" cellSpacing="0">
+                        <tbody>
+                          <tr rowType="foot">
+                            <td tdType="rowcursor" class="cellwb" align="center" width="40px" height="22px">
+                              <span width="100%" height="100%">合计</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="76" align="right" colname="日期" datatype="date">
+                              <span width="100%" height="100%" colname="">　</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="55" align="right" colname="凭证字号" datatype="string">
+                              <span width="100%" height="100%" colname="凭证字号" datafld="">　</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="37" align="right" colname="附件" datatype="string">
+                              <span width="100%" height="100%" colname="附件" datafld="">　</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="120" align="right" colname="摘要" datatype="string">
+                              <span width="100%" height="100%" colname="摘要" datafld="">　</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="183" align="right" colname="科目" datatype="string">
+                              <span width="100%" height="100%" colname="科目" datafld="">　</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="98" align="right" colname="借方" datatype="decimal" formate="####.00" formatfld="借方_格式">
+                              <span width="100%" height="100%" colname="借方" datafld="借方_格式">　</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="95" align="right" colname="贷方" datatype="decimal" formate="####.00" formatfld="贷方_格式">
+                              <span width="100%" height="100%" colname="贷方" datafld="贷方_格式">　</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="34" align="right" colname="平衡" datatype="string">
+                              <span width="100%" height="100%" colname="平衡" datafld="">　</span>
+                            </td>
+                            <td tdType="coldata" class="cellwb" width="36" align="right" colname="选择" datatype="bool">
+                              <span width="100%" height="100%" colname="">　</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table1" divtype="funarea">
+                      <tbody>
+                        <tr>
+                          <td class="lt0a" align="right">
+                            <DIV>
+                              页次:<input size="1" style="TEXT-ALIGN:right;" class="lt0c" name="lblCurrentPage" value="0" />/<input style="TEXT-ALIGN:left" class="lt0c" size="1" name="lblTotalPages" value="0" />总数<input name="lblRecordCount" size="1" style="TEXT-ALIGN:left" class="lt0c" value="0" /><A class="linkbtn_0" title="首页" href="#" onclick="ue_bandcmd_nav('first')">
+                                <FONT face="webdings">9</FONT>
+                              </A><A class="linkbtn_0" title="上一页" href="#" onclick="ue_bandcmd_nav('prev')">
+                                <FONT face="webdings">3</FONT>
+                              </A><A class="linkbtn_0" title="下一页" href="#" onclick="ue_bandcmd_nav('next')">
+                                <FONT face="webdings">4</FONT>
+                              </A><A class="linkbtn_0" title="最后一页" href="#" onclick="ue_bandcmd_nav('last')">
+                                <FONT face="webdings">:</FONT>
+                              </A> 　转到:
+                              <select class="tselect" name="ddlPageIndex" size="1" onchange="ue_bandcmd_nav('jump',this.value);" style="width: 40">
+                                <option value="1" selected="true">1</option>
+                              </select>
+                            </DIV>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="display:none;">
+            <XML id="MasterTab_dict" typexml="Dict" itemname="nav">
+              <Dict></Dict>
+            </XML>
+          </div>
+          <XML id="MasterTab_Schema" typexml="Schema" ctrlAlert="s_code" ctrlchanged="etpTemplate_MasterTab_hlbChanged" ctrlschema="etpTemplate_MasterTab_hlbWidth" ctrlstate="etpTemplate_MasterTab_hlbState" ctrlhlbcmd="etpTemplate_MasterTab_hlb_cmd" ctrlbtcommand="bt_PostBack" name="nav" relation="M">
+            <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+              <xs:element name="单据编号" type="xs:string" minOccurs="0" visible="1" />
+              <xs:element name="日期" type="xs:dateTime" minOccurs="0" width="76" />
+              <xs:element name="凭证字号" type="xs:string" minOccurs="0" width="55" />
+              <xs:element name="附件" type="xs:string" minOccurs="0" width="37" />
+              <xs:element name="摘要" type="xs:string" minOccurs="0" />
+              <xs:element name="科目" type="xs:string" minOccurs="0" width="183" datastyle="alink" />
+              <xs:element name="借方" type="xs:decimal" minOccurs="0" width="98" format="####.00" formatfld="借方_格式" />
+              <xs:element name="贷方" type="xs:decimal" minOccurs="0" width="95" format="####.00" formatfld="贷方_格式" />
+              <xs:element name="平衡" type="xs:string" minOccurs="0" width="34" />
+              <xs:element name="sn" type="xs:int" minOccurs="0" visible="1" />
+              <xs:element name="sn2" type="xs:int" minOccurs="0" visible="1" />
+              <xs:element name="选择" type="xs:boolean" minOccurs="0" width="36" />
+              <xs:element name="RowNum" type="xs:int" minOccurs="0" visible="1" />
+            </xs:schema>
+          </XML>
+          <div style="display:none;">
+            <XML id="MasterTab" itemname="nav" typexml="Data">
+              <etpTemplate_MasterTab_xmlland>
+                <凭证审核>
+                  <单据编号></单据编号>
+                  <日期></日期>
+                  <凭证字号></凭证字号>
+                  <附件></附件>
+                  <借方></借方>
+                  <贷方></贷方>
+                  <sn></sn>
+                  <选择></选择>
+                  <RowNum></RowNum>
+                  <摘要 />
+                  <科目 />
+                  <平衡 />
+                  <sn2 />
+                  <借方_格式></借方_格式>
+                  <贷方_格式></贷方_格式>
+                </凭证审核>
+              </etpTemplate_MasterTab_xmlland>
+            </XML>
+          </div>
+          <div style="display:none;">
+            <XML id="MasterTab_Sum" typexml="Count" itemname="nav">
+              <DataSet>
+                <DataTableCount>
+                  <TotalPage>1</TotalPage>
+                  <PageIndex>1</PageIndex>
+                  <PageSize>10</PageSize>
+                  <RecordCount>38</RecordCount>
+                </DataTableCount>
+              </DataSet>
+            </XML>
+          </div>
+          <div style="display:none;">
+            <XML id="MasterTab_Delete" typexml="Delete" itemname="nav">
+              <etpTemplate_MasterTab_xmlland></etpTemplate_MasterTab_xmlland>
+            </XML>
+          </div>
+          <div id="etpTemplate_MasterTab_DivForm" style="display: none">
+            <input name="etpTemplate:MasterTab:hlbChanged" type="hidden" id="etpTemplate_MasterTab_hlbChanged" />
+            <input name="etpTemplate:MasterTab:hlbWidth" type="hidden" id="etpTemplate_MasterTab_hlbWidth" />
+            <input name="etpTemplate:MasterTab:hlbState" type="hidden" id="etpTemplate_MasterTab_hlbState" />
+            <input name="etpTemplate:MasterTab:hlb_cmd" type="hidden" id="etpTemplate_MasterTab_hlb_cmd" />
+          </div>
+          <script language="javascript"> var myGrid=new Grid('MasterTab',document.getElementById('etpTemplate_MasterTab_GridDiv'),'',true);</script>
+        </body>
+  </body>
+</html>

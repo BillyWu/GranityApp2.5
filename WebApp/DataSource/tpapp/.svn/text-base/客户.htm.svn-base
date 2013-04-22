@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>    	
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    	<script language="javascript" type="text/javascript">
+    	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;
+            function openPro()
+            {
+                var band=document.UnitItem.getBandByItemName("字典信息");
+                if(!band)    return;
+                var rtn = window.showModalDialog("Template\\供应商编辑.htm",band,"dialogHeight: 430px; dialogWidth: 670px; edge: Raised; center: Yes; help: No; resizable: No; status: No;"); 
+                if(rtn=="" || rtn==null) return 1; 
+                if(rtn>0)
+                {
+            	    gshowModalDialogReturn=1;
+        		    band.setCurrentRow(rtn-1);
+        	    }
+       	    }    		
+            -->
+    	</script>
+    </head>
+	<body>
+		<Control class="" catalog="GridLand.ascx" itemname="字典信息" id="MasterTab" name="">MasterTab
+		<Property name="tpfile" value="ControlTemplate/GridDefault.htm" />
+			<Property name="width" value="100%" /><Property name="height" value="100%" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+		</Control>
+</body>
+</html>

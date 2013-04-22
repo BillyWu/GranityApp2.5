@@ -1,0 +1,67 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Collections.Specialized;
+using Microsoft.ApplicationBlocks.ExceptionManagement;
+using Estar.Common.Tools;
+using Estar.Business.DataManager;
+using System.Text.RegularExpressions;
+using Estar.Common.Tools;
+using Granity.winTools;
+
+public partial class html_kqEmpClassMake : System.Web.UI.Page
+{
+    string unitName = "员工排班导入";
+
+    UnitItem unitItem = null;
+    NameObjectList paramwin = null;
+    DataSet dsUnit = null;
+    QueryDataRes Query = null;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!this.IsPostBack)
+        {
+            for (int i = -2; i < 3; i++)
+                this.ddlYear.Items.Add(Convert.ToString(DateTime.Today.Year + i));
+            this.ddlYear.SelectedValue = Convert.ToString(DateTime.Today.Year);
+            this.ddlMonth.SelectedValue = Convert.ToString(DateTime.Today.Month);
+        }
+        else
+            dataImport();
+    }
+    /// <summary>
+    /// 导入数据
+    /// </summary>
+    protected void dataImport()
+    {
+        DateTime dtstart = new DateTime(Convert.ToInt32(this.ddlYear.SelectedValue), Convert.ToInt32(this.ddlMonth.SelectedValue), 1);
+        DateTime dtend = dtstart.AddMonths(1);
+
+        DataTable tab = leofun.LoadFileTab(this.FileUpload1.PostedFile);
+        if (null == tab) return;
+        if (!tab.Columns.Contains("执行结果"))
+            tab.Columns.Add("执行结果");
+        QueryDataRes query = new QueryDataRes("员工排班导入");
+        foreach (DataRow dr in tab.Rows)
+        {
+            NameObjectList ps = ParamManager.createParam(dr);
+            ps["起始日期"] = dtstart;
+            ps["截止日期"] = dtend;
+            string result = "执行成功";
+            if (!query.ExecuteNonQuery("员工排班导入", ps, ps, ps))
+                result = "失败，请核查数据";
+            dr["执行结果"] = result;
+        }
+        this.gdvFile.DataSource = tab;
+        this.gdvFile.DataBind();
+    }
+}

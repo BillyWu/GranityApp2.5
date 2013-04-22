@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+        <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>    	
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script> 
+    	<script language="javascript" src="hmjs/tmpjs/syjz.js" type="text/javascript" charset="gb2312"></script>    	
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    </head>
+<body bgcolor="buttonface">
+<table id="tbmain" align="center" border="1" cellspacing="0" width="462" height="300" 
+style="font-size: 10pt;position:absolute;left:expression(document.body.clientWidth/2-this.width/2);top:expression(document.body.clientHeight/2-this.height/2)" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF">
+	<tbody>
+	<tr>
+		<td valign="top" style="border-bottom-style: none; border-bottom-width: medium" height="82" colspan="2"><br />
+		　提示:　您可以利用“反结帐”工具将当前会计期间返回到已结帐的期间。<br /><br />　　　　　按“确定”按钮进行反结帐。<br /><br />　</td>
+	</tr>
+	<tr>
+		<td style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" height="72" colspan="2" align="center">
+		　会计期间：<INPUT dataFld="日期" dataSrc="#MasterTab" class="xlanddate" style="width:120; " type="text" size="11" /></td>
+	</tr>
+	<tr>
+		<td valign="bottom" style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium; border-right-style:none; border-right-width:medium" align="right" width="64">
+		<input id="chkcash" type="checkbox" dataSrc="#MasterTab" dataFld="登帐" class="xlandinput" name="C1" value="ON" /></td>
+		<td valign="bottom" style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium" width="390">
+		同时将结转本期损益产生的记帐凭证删除！</td>
+	</tr>
+	<tr>
+		<td style="border-top-style: none; border-top-width: medium" height="49" colspan="2" align="center">　
+						<button id="navprev" onclick="cmdOK();" style="width: 80; ">确定<img src="images//ok_16x16.gif" /></button>
+		　　　<button id="navprev" onclick="_close();" style="width: 80; ">放弃<img src="images//delete_16x16.gif" /></button>
+		</td>
+	</tr>
+</tbody>
+</table>
+<Control class="" catalog="GridLand.ascx" itemname="主表" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="" />
+							<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>
+	<Control class="" catalog="GridLand.ascx" itemname="检测" id="dbcheck" name="">dbcheck
+							<Property name="tpfile" value="" />
+							<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>
+</body>
+
+</html>

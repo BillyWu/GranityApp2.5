@@ -1,0 +1,84 @@
+<HTML>
+	<HEAD>
+		<title>提交窗口</title>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+	    <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<script type="text/javascript" language="javascript">
+			//字符串传递的长度有限
+			var objparent = window.dialogArguments;
+			this.document.title = objparent.title+"窗口";
+			function myinit()
+			{
+				document.getElementById("tdtitle").innerHTML = objparent.title+"节点";
+				insRow();
+			}
+			
+			function insRow()
+			{
+				if(objparent==null) return;
+                for(var i=0;i<objparent.names.length;i++)
+                {
+                    var name = objparent.names[i].text;
+                    var id   = objparent.bhs[i].text;
+					
+					var obj=document.getElementById('myTable').insertRow();
+					var objCel = obj.insertCell();
+					objCel.innerHTML = "  "+(i+1);
+						objCel.style.borderBottom="thin groove";
+					objCel.style.borderRight="thin groove";
+					
+					objCel.style.height="30px";
+					objCel.align="center";
+
+					objCel = obj.insertCell();
+					//objCel.innerHTML ='【<a href="#" onclick="cmdOK(this)">'+name+'</a>】';
+					objCel.innerHTML ='<input type="button" style="width:150px; color:#000080" value="'+name+'" name="'+id+'" onclick="cmdOK(this)">';
+					objCel.id="td"+i;
+						objCel.style.borderBottom="thin groove";
+					objCel.align="center";
+										
+                }
+				if(objparent.workflow && objparent.workflow=="凭证审批")
+				{
+					var obj=document.getElementById('myTable').insertRow();
+					objCel = obj.insertCell();
+					objCel = obj.insertCell();
+					objCel.align="center";
+					objCel.innerHTML ='　　　　　　　　　<input id="chkall" type="checkbox" name="C1" value="ON"><label for="chkall">全部提交本期凭证</label>';
+				}
+				var obj=document.getElementById('myTable').insertRow();
+				objCel = obj.insertCell();
+				objCel = obj.insertCell();
+				objCel.align="center";
+				objCel.style.height=parseInt(this.dialogHeight.replace("px",""))-(objparent.names.length+4)*25;
+				objCel.innerHTML="请在上述列表中单击你要提交的下一个审批环节，进行提交！";
+			}
+
+			function cmdOK(obj)
+			{
+				var s="";
+				if(document.getElementById("chkall"))
+				{
+					if(document.getElementById("chkall").status==true)
+						s=";1";
+				}
+				window.returnValue = obj.value+s;
+				window.close();
+			}							
+
+		</script>
+	</HEAD>
+	<body bottomMargin="0" bgColor="activeborder" leftMargin="8" topMargin="8" onload="myinit()" rightMargin="1">
+			<TABLE id="myTable" style="BORDER-RIGHT: thin groove; BORDER-TOP: thin groove; FONT-SIZE: 12px; BORDER-LEFT: thin groove; BORDER-BOTTOM: thin groove; FONT-FAMILY: 宋体"
+				cellSpacing="0" cellPadding="0" width="100%" bgColor="activeborder" border="0">
+				<TR>
+					<TD style="BORDER-BOTTOM: thin groove; HEIGHT: 25px;BORDER-Right: thin groove;  " align="center" bgColor="activeborder" width="10%">序号</TD>
+					<TD id="tdtitle" style="BORDER-BOTTOM: thin groove; HEIGHT: 20px;" align="center" bgColor="activeborder" width="90%">
+					提交条件</TD>
+				</TR>
+
+			</TABLE>
+</form>
+				
+	</body>
+</HTML>

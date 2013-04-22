@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="XmlParamLand.ascx.cs" Inherits="Estar.WebApp.XmlParamLand" %>
+<asp:Xml ID="XmlParam" runat="server" TransformSource="TrvIsland.xslt"></asp:Xml>

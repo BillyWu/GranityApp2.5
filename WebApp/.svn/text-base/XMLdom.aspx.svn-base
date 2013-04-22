@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Estar.WebApp.XMLdom" CodeFile="XMLdom.aspx.cs" %>

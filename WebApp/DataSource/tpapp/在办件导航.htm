@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonAdv.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/tmpjs/msjs.js" type="text/javascript" charset="gb2312"></script>
+<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+<script language="javascript" type="text/javascript">
+<!--
+	window.onload=WinLoadUtil.MDTPLoad;
+	function initWin()
+	{
+	   	window.setInterval(wfRefresh,100000);
+	}
+
+	function addbill()
+	{
+	    var xmldoc=document.UnitItem.ParamXmldoc;
+		ToolUtil.setParamValue(xmldoc, "startnode", "起草", "s", "T", "", "D","");
+		ToolUtil.setParamValue(xmldoc, "workflow", document.UnitItem.workflow, "s","T", "", "D",""); 
+		document.UnitItem.getBandByItemName('nav').setModalWinNoParam('edit');
+		return;
+		ue_bandadd("MasterTab");
+		//先定义出销售合同书.htm位置
+		var rtn = window.showModalDialog("Template\\销售合同书.htm","","dialogHeight: 700px; dialogWidth: 800px; edge: Raised; center: Yes; help: No; resizable: No status: No;"); 
+	}
+	
+	function wfRefresh()
+	{
+	    var myUnitItem=document.UnitItem;
+	    myUnitItem.Query();
+	}
+	
+	function ts_publish(pitem,item)
+	{
+	    var result = confirm("您将"+pitem+",确认吗？");
+		if(!result) return;
+		ue_cmd(pitem,item);
+	}
+	
+	function ws_editbill(item)
+	{
+	    if(!item) item = "nav";
+	    GridUtil.usOnCellRFocusHandle();
+	    var band=document.UnitItem.getBandByItemName(item);
+	    var openitem = band.getFldStrValue("启动项目");
+	    if(openitem == "") 
+	    {
+	    	openitem = band.getFldStrValue("查阅项目");
+	    	if(openitem=="")
+	    		openitem = "edit";
+	    }
+		band.setModalContent(openitem);
+	}
+-->	
+</script>
+</head>
+<body>
+
+<p style="MARGIN-BOTTOM: -8px"><br /></p>
+<table border="0" width="793" id="table1" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align="center">
+	<tbody>
+	<tr>
+		<td align="left" style="width:32%" rowspan="3">
+		<img alt="" style="border:0;width:318;" src="welcome.gif" width="318" height="72" /></td>
+		<td align="left" style="width:56%;height:30" valign="baseline">
+		<div align="center">
+		<table width="470" id="table2" border="0" style="border-collapse: collapse; WORD-BREAK: break-all;" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="29">
+			<tbody>
+			<tr>
+				<td width="83" align="right">
+				<label id="filtertitle">审批事项：</label></td>
+				<td align="center">
+					<input class="tinput" id="filterfldlfow" filter="and" style="WIDTH: 134; height:19" size="18" name="审批事项" /></td>
+				<td align="right" width="52">名称：</td>
+				<td align="right" width="104">
+					<input class="tinput" filter="and" style="WIDTH: 104; height:21" size="18" name="项目名称" /></td>
+				<td align="left" width="17%">
+					<img border="0" src="Images/tb16.gif" width="22" height="22" onclick="ue_tfilter('建筑审批导航')" onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" /><img border="0" src="Images/print.gif" width="22" height="22" onclick="ue_print()" onmouseover="this.src='Images/printover.gif'" onmouseout="this.src='Images/print.gif'" /></td>
+			</tr>
+		</tbody>
+		</table>
+		</div>
+		</td>
+	</tr>
+	<tr>
+		<td id="unittitle" align="right" valign="bottom" style="width:56%;height:8"></td>
+	</tr>
+	<tr>
+		<td align="left" valign="baseline" style="filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFFF', endColorStr=gray, gradientType='1');width:56%;height:10">
+		</td>
+	</tr>
+</tbody>
+</table><p style="MARGIN-BOTTOM: -8px"><br /></p>
+<div align="center" style="width:793px;height:167px">
+	<Control class="" catalog="GridLand.ascx" itemname="nav" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="ControlTemplate/ctrlnavR.htm" />
+							<Property name="width" value="793px" /><Property name="height" value="380px" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+	</Control>
+　		<Control class="" catalog="GridLand.ascx" itemname="role" id="dbrole" name="">
+		role<Property name="tpfile" value="ControlTemplate/GridReadOnlySimA.htm" />
+		<Property name="width" value="0" /><Property name="height" value="0px" /><Property name="hiddenhead" value="false" />
+		<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>	
+　		<Control class="" catalog="GridLand.ascx" itemname="责任人" id="dbduty" name="">
+		duty<Property name="tpfile" value="ControlTemplate/GridReadOnlySimA.htm" />
+		<Property name="width" value="0" /><Property name="height" value="0px" /><Property name="hiddenhead" value="false" />
+		<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>		
+</div>	
+			</body>
+</html>
+

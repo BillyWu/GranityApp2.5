@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+<script language="javascript" type="text/javascript">
+<!--
+    
+	window.onload=WinLoadUtil.MDTPLoad;
+	function initWin()
+	{
+		document.getElementById("unittitle").innerText ="[科目汇总表]    ";
+		var oband=document.UnitItem.getBandByItemName("nav");
+		document.getElementById('dt1').value=oband.getFldStrValue("dt1") ;
+		document.getElementById('dt2').value=oband.getFldStrValue("dt2") ;
+	}
+    function _close(){try{parent.parent.openBusinessNav();}
+    	catch(e){window.close();}}	
+	function _filter()
+	{
+        var xmldoc=document.UnitItem.ParamXmldoc;
+        ToolUtil.setParamValue(xmldoc, "dt1", document.getElementById('dt1').value, "s", "P", "", "Ts","");
+        ToolUtil.setParamValue(xmldoc, "dt2", document.getElementById('dt2').value, "s", "P", "", "Ts","");
+        ToolUtil.setParamValue(xmldoc, "sn1", document.getElementById('sn1').value, "s", "P", "", "Ts","");
+        ToolUtil.setParamValue(xmldoc, "sn2", document.getElementById('sn2').value, "s", "P", "", "Ts","");	
+        ToolUtil.setParamValue(xmldoc, "pzword", document.getElementById('pzword').value, "s", "P", "", "Ts","");
+		ue_tfilter('nav');
+	}
+	function _print()
+	{
+        var xmldoc=document.UnitItem.ParamXmldoc;
+        ToolUtil.setParamValue(xmldoc, "dt1", document.getElementById('dt1').value, "s", "P", "", "Ts","");
+        ToolUtil.setParamValue(xmldoc, "dt2", document.getElementById('dt2').value, "s", "P", "", "Ts","");
+        ToolUtil.setParamValue(xmldoc, "sn1", document.getElementById('sn1').value, "s", "P", "", "Ts","");
+        ToolUtil.setParamValue(xmldoc, "sn2", document.getElementById('sn2').value, "s", "P", "", "Ts","");	
+        ToolUtil.setParamValue(xmldoc, "pzword", document.getElementById('pzword').value, "s", "P", "", "Ts","");
+		ue_print();
+	}
+	
+-->	
+</script>
+</head>
+<body>
+
+		  <p style="MARGIN-BOTTOM: -8px"><br /></p>
+<table border="0" width="800" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align="center" height="70">
+	<tbody>
+	<tr>
+		<td align="left" style="width:14%;height:59px" valign="baseline">
+		<div align="center">
+		<img alt="" style="border:0 none;" src="sx_welcome.gif" /></div>
+		</td>
+		<td align="left" style="width:84%;height:59px; font-size:10pt" valign="baseline">
+		<table width="690" id="table1" border="0" style="border-collapse: collapse; WORD-BREAK: break-all; left:312px; top:19px; font-size:10pt" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="54">
+			<tbody>
+<tr id="filterperson">
+				<td width="61" align="right">凭证日期:</td>
+				<td align="right" width="72">
+					<input id="dt1" class="xlanddate" filter="and" exp="&gt;=" style="WIDTH: 99%;" size="18" name="" /></td>
+				<td align="center" width="18">
+					～</td>
+				<td align="right" width="74">
+					<input id="dt2" class="xlanddate" filter="and" exp="&lt;=" style="WIDTH: 99%;" size="18" name="" /></td>
+				<td align="right" width="60">
+					凭证字：</td>
+				<td width="60">
+				<select id="pzword" class="tselect" filter="and" exp="=" onkeydown="if(event.keyCode==13) event.keyCode=9" name="">
+                    <option value=""></option>
+                    <option value="记">记</option>
+                    <option value="现收">现收</option>
+                    <option value="现付">现付</option>
+                    <option value="银收">银收</option>
+                    <option value="银付">银付</option>
+                    <option value="转">转</option>						
+					</select></td>
+				<td align="right" width="230" colspan="2"><table border="0" width="100%" cellspacing="0" cellpadding="0" id="table2" style="font-size: 10pt; border-collapse:collapse">
+					<tbody>
+					<tr>
+						<td rowspan="2" align="right" >凭证编号：</td>
+						<td width="30" rowspan="2" align="right"><input id="sn1" name="" datatype="int" filter="and" exp="&gt;=" value="1"  class="tinput" style="ime-mode:disabled;width:100%" maxlength="1" onkeydown="if(event.keyCode==13)
+							event.keyCode=9" onKeyPress="if ((event.keyCode&lt;48 || event.keyCode&gt;57)) event.returnValue=false" /></td>
+						<td width="22"><button id="navprev" style="width:22px;height:11" hideFocus="" onclick="ue_upval('startlevel');"><img src="images\iup.gif" /></button></td>
+						<td width="15" rowspan="2" align="center">至</td>
+						<td width="30" rowspan="2"><input id="sn2" name="" datatype="int"  filter="and" exp="&lt;=" value="999" class="tinput" style="ime-mode:disabled;width:100%" maxlength="1" onkeydown="if(event.keyCode==13)
+							event.keyCode=9" onKeyPress="if ((event.keyCode&lt;48 || event.keyCode&gt;57)) event.returnValue=false" /></td>
+						<td width="22"><button id="navprev" style="width:22px;height:11" hideFocus="" onclick="ue_upval('endlevel');"><img src="images\iup.gif" /></button></td>
+					</tr>
+					<tr>
+						<td><button id="navprev" style="width:22;height:10" hideFocus="" onclick="ue_downval('startlevel');"><img src="images\idown.gif" /></button></td>
+						<td><button id="navprev" style="width:22px;height:11" hideFocus="" onclick="ue_downval('endlevel');"><img src="images\idown.gif" /></button></td>
+					</tr>
+				</tbody>
+				</table></td>
+				<td align="center" width="24"><img border="0" src="Images/tb16.gif" width="22" height="22" onclick="_filter()" onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" /></td>
+				<td align="center" width="58">【<a href="#" onclick="_myrefresh()">复位</a>】</td>
+			</tr>			
+<tr id="filterperson">
+				<td width="355" colspan="6" align="center" height="24">未过帐<input type="radio" value="V1" checked="" 
+				name="icase" />　　已过帐：<input type="radio" value="V1" checked="" name="icase" />　　全部：<input type="radio" value="V1" checked="" name="icase" /></td>
+				<td width="67" align="center" height="24">全文检索：</td>
+				<td width="176" align="center" height="24">
+					<input class="tinput" filter="and" style="WIDTH: 99%;" size="18" name="ename;科目代码;科目名称" /></td>
+				<td align="center" width="24" height="24"><img border="0" src="Images/printer0.gif" width="22" height="22" onclick="_print()" onmouseover="this.src='Images/printer.gif'" onmouseout="this.src='Images/printer0.gif'" /></td>
+				<td align="center" width="58" height="24">【<a href="#" onclick="_close()">返回</a>】</td>
+			</tr>			
+			
+			
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" id="unittitle" valign="baseline" style="filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=gray, endColorStr='#FFFFFF', gradientType='1');width:98%;height:10px" colspan="2">
+		</td>
+	</tr>
+</tbody>
+</table><p style="MARGIN-BOTTOM: -18px"></p>
+	<Control class="" catalog="GridLand.ascx" itemname="nav" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="ControlTemplate/GridBrowser.htm" />
+							<Property name="width" value="793px" /><Property name="height" value="395px" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+	</Control></body>
+</html>

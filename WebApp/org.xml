@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<D>
+  <PL t="P" n="B">
+    <L t="Ts">
+      <P n="RecordCount" v="" t="s" pt="M"/>
+      <P n="Command" v="TransParam" t="s"/>
+      <P n="UnitName" v="卡片管理" t="s"/>
+    </L>
+    <L t="C">
+      <P n="RecordCount" v="1" t="s" pt="M"/>
+    </L>
+    <L t="T">
+      <P n="WorkItem" v="selectcard" t="s"/>
+      <P n="ID" v="34ca0f0c-ab78-4c85-a430-95660df690d5" t="s" pt="E"/>
+      <P n="姓名" v="tsest3" t="s" pt="E"/>
+      <P n="用户编号" v="00342" t="s" pt="E"/>
+      <P n="部门" v="710" t="s" pt="E"/>
+      <P n="性别" v="女" t="s" pt="E"/>
+      <P n="卡号" v="2900396" t="s" pt="E"/>
+      <P n="部门名称" v="技术部" t="s" pt="E"/>
+      <P n="车型" v="2" t="i" pt="E"/>
+      <P n="车辆颜色" v="0" t="s" pt="E"/>
+      <P n="车牌" v="" t="s" pt="E"/>
+      <P n="卡片序列号" v="2900396" t="s" pt="E"/>
+      <P n="卡片余额" v="10.00" t="f" pt="E"/>
+      <P n="补助余额" v="10.00" t="f" pt="E"/>
+      <P n="卡有效期" v="2021-04-08" t="s" pt="E"/>
+      <P n="状态" v="发行" t="s" pt="E"/>
+      <P n="身份证" v="" t="s" pt="E"/>
+      <P n="电话" v="" t="s" pt="E"/>
+      <P n="生日" v="2011-04-08" t="s" pt="E"/>
+      <P n="入职日期" v="2011-04-07" t="s" pt="E"/>
+      <P n="邮箱" v="" t="s" pt="E"/>
+      <P n="职务" v="" t="s" pt="E"/>
+      <P n="类型" v="4" t="i" pt="E"/>
+      <P n="操作员" v="10001" t="s" pt="E"/>
+      <P n="日期" v="2011-04-08" t="s" pt="E"/>
+      <P n="车辆类型" v="B类车" t="s" pt="E"/>
+      <P n="RowNum" v="15" t="i" pt="E"/>
+      <P n="Command" v="Cmd_Cmd" t="s"/>
+      <P n="DataItem" v="充值" t="s"/>
+    </L>
+  </PL>
+  <PL t="S">
+    <L t="D">
+      <P n="StartDate" v="2011-03-22" t="d"/>
+      <P n="EndDate" v="2011-04-22" t="d"/>
+      <P n="UserAccounts" v="10001" t="s"/>
+      <P n="UserSn" v="" t="s"/>
+      <P n="UserName" v="leo" t="s"/>
+      <P n="Company" v="" t="s"/>
+      <P n="OPTUnitID" v="1" t="s"/>
+      <P n="UnitCode" v="1" t="s"/>
+      <P n="DWName" v="克立司帝" t="s"/>
+      <P n="DWSupName" v="" t="s"/>
+      <P n="DeptSaleName" v="南方停车场" t="s"/>
+      <P n="DeptSupName" v="南方停车场" t="s"/>
+      <P n="DeptName" v="二期" t="s"/>
+      <P n="DeptCode" v="1001" t="s"/>
+      <P n="Rights" v="" t="s"/>
+      <P n="syspath" v="http://localhost:2670/WebApp/" t="s"/>
+      <P n="LimitDays" v="0" t="i"/>
+    </L>
+  </PL>
+  <PL t="B" n="用户选择">
+    <L t="C">
+      <P n="RecordCount" v="19" t="s" pt="M"/>
+    </L>
+  </PL>
+  <PL t="B" n="selectcard">
+    <L t="C">
+      <P n="FirstRow" v="0" t="s" pt="M"/>
+      <P n="LastRow" v="10" t="s" pt="M"/>
+      <P n="RecordCount" v="1" t="s" pt="M"/>
+    </L>
+    <L t="D">
+      <P n="卡片序列号" v="2900396" t="s"/>
+      <P n="卡号" v="2900396" t="s"/>
+      <P n="用户编号" v="00342" t="s"/>
+      <P n="姓名" v="tsest3" t="s"/>
+      <P n="部门" v="技术部" t="s"/>
+      <P n="卡片余额" v="10.00" t="f"/>
+      <P n="补助余额" v="10.00" t="f"/>
+      <P n="状态" v="发行" t="s"/>
+      <P n="E卡类号" v="4" t="i"/>
+      <P n="E卡类" v="就餐卡" t="s"/>
+      <P n="E日期" v="2011-04-08T13:38:10.15+08:00" t="d"/>
+      <P n="E有效日期" v="2011-04-08T00:00:00+08:00" t="d"/>
+      <P n="P卡类号" v="5" t="i"/>
+      <P n="P卡类" v="临时卡" t="s"/>
+      <P n="P日期" v="2011-04-08T13:38:10.15+08:00" t="d"/>
+      <P n="P有效日期" v="2011-04-08T00:00:00+08:00" t="d"/>
+      <P n="车牌" v="" t="s"/>
+      <P n="车型号" v="2" t="i"/>
+      <P n="车型" v="B类车" t="s"/>
+      <P n="车辆颜色" v="0" t="s"/>
+      <P n="时段1" v="1" t="i"/>
+      <P n="时段名称1" v="" t="s"/>
+      <P n="时段2" v="1" t="i"/>
+      <P n="时段名称2" v="" t="s"/>
+      <P n="D卡类号" v="3" t="i"/>
+      <P n="D卡类" v="用户卡" t="s"/>
+      <P n="D日期" v="2011-04-08T13:38:10.15+08:00" t="d"/>
+      <P n="D有效日期" v="2011-04-08T00:00:00+08:00" t="d"/>
+      <P n="门禁权限" v="" t="s"/>
+      <P n="操作员" v="10001" t="s"/>
+      <P n="备注" v="" t="s"/>
+      <P n="新卡号" v="2900396" t="s"/>
+      <P n="新卡片序列号" v="2900396" t="s"/>
+      <P n="是否有卡" v="true" t="b"/>
+      <P n="消费延期" v="2011-04-08T00:00:00+08:00" t="d"/>
+      <P n="门禁延期" v="2011-04-08T00:00:00+08:00" t="d"/>
+      <P n="停车场延期" v="2011-04-08T00:00:00+08:00" t="d"/>
+      <P n="RowNum" v="1" t="i"/>
+    </L>
+  </PL>
+  <PL t="B" n="卡检测">
+    <L t="C">
+      <P n="FirstRow" v="0" t="s" pt="M"/>
+      <P n="LastRow" v="10" t="s" pt="M"/>
+      <P n="RecordCount" v="1" t="s" pt="M"/>
+    </L>
+  </PL>
+  <PL t="B" n="日志">
+    <L t="C">
+      <P n="FirstRow" v="0" t="s" pt="M"/>
+      <P n="LastRow" v="10" t="s" pt="M"/>
+      <P n="RecordCount" v="0" t="s" pt="M"/>
+    </L>
+  </PL>
+</D>

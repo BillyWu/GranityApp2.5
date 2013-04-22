@@ -1,0 +1,540 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>通道闸监控</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usMenu.js" type="text/javascript" charset="gb2312"></script>
+
+    <script language="javascript" src="../hmjs/sysjs/usMenu.js" type="text/javascript"
+        charset="gb2312"></script>
+
+    <script type="text/javascript" charset="gb2312">
+
+	    function initWin()
+	    {
+            var ob=$band("区域分组");
+            ob.Asyn=true;
+            ob.XQuery();
+            ob.AfterXQuery = function()
+            {
+                ue_expand('区域分组',true);
+                ue_treeline("区域分组",true);
+                var ob1=$band("巡检信息");
+                ob1.minwidth = "80px";
+                ob1.freecols = "状态";
+                ob1.gridtype = 61;ob1.colnum = 3
+                ob1.Asyn=true;
+                ob1.hasGrid=true;
+                new XGrid("divMonitor",ob1,"in");
+                ob1.XQuery();
+                ob1.AfterXQuery = function(){$loading("none");}
+                var selID=window.parent.channelMonitorNode;
+                if(selID)
+                {
+                    ob.Tree.WebTree.selectNodeById(selID);
+                }
+                $loading("none");
+            }
+            ob.AfterRowChanged=function()
+            {
+                showdoormap();
+                var state = this.getFldStrValue("巡检状态");
+                $("btWatch").value= "巡检"==state?"停止监控":"启动监控";
+            }
+            $U().devinfo={};
+            $U().Running=false;
+            $U().dtStart=new Date();
+            //2s周期执行获取巡检数据
+            setInterval(getrecord, 2000);
+	    }
+	    function monitordevice()
+	    {
+	        $U().Running = true;
+	        var cmd = "停止监控"==$("btWatch").value? "停止巡检":"启动巡检";
+	        var ps = "停止巡检"==cmd? "halt":"monitor";
+	        $("btWatch").value = "启动巡检"==cmd?"停止监控":"启动监控";
+	        
+	        var ob = $band("道闸设备");
+	        var devs = "";
+	        for(var i=0,len=ob.RecordCount(); i<len; i++)
+	        {
+	            var dev = ob.getFldStrValue("控制器",i);
+	            if(devs.indexOf(dev)<0)
+	                devs += ","+ dev;
+	        }
+	        if(!devs)
+	        {
+	            $U().Running = true;
+	            return;
+	        }
+	        devs = devs.substr(1);
+	        ps = "cmd="+ps+"&devices="+devs;
+	        var msg = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx");
+	        if("true"!=ToolUtil.valueTag(msg,"成功"))
+	        {
+	            alert("不能"+cmd+"，请检查通讯参数设置！");
+	            $("btWatch").value = "启动巡检"==cmd?"启动监控":"停止监控";
+	            $U().Running = false;
+	            return;
+	        }
+	        var band = $band("区域分组");
+	        band.setFldStrValue(null, "巡检状态", "启动巡检"==cmd?"巡检":"");
+	        ue_save("成功"+cmd);
+	        $U().Running = false;
+	    }
+	    function fireopendoor()
+	    {
+	        var ob = $band("道闸设备");
+	        var devs = "";
+	        for(var i=0,len=ob.RecordCount(); i<len; i++)
+	        {
+	            var dev = ob.getFldStrValue("控制器",i);
+	            if(devs.indexOf(dev)<0)
+	                devs += ","+ dev;
+	        }
+	        if(!devs)   return;
+	        devs = devs.substr(1);
+	        var cmd = "火警开门";
+	        var ps = "fireopendoor";
+	        ps = "cmd="+ps+"&devices="+devs;
+	        var msg = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx");
+	        if("true"!=ToolUtil.valueTag(msg,"成功"))
+	            alert("已经发送火警开门指令！");
+	    }
+	    function readdatadevice()
+	    {
+	        var ob = $band("道闸设备");
+	        var devs = "";
+	        for(var i=0,len=ob.RecordCount(); i<len; i++)
+	        {
+	            var dev = ob.getFldStrValue("控制器",i);
+	            if(devs.indexOf(dev)<0)
+	                devs += ","+ dev;
+	        }
+	        if(!devs)   return;
+	        devs = devs.substr(1);
+	        var cmd = "提取记录";
+	        var ps = "readrecord";
+	        ps = "cmd="+ps+"&devices="+devs;
+	        if(!readdatadevice.runIndex)
+	            readdatadevice.runIndex=1;
+	        else
+	            readdatadevice.runIndex++;
+	        if(!globsum)    $loading();
+	        var xmlhttp = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx",callback);
+	        callback.xmlhttp = xmlhttp;
+	    }
+	    var globsum=0;
+	    var dvcnstate="";
+	    function callback()
+	    {
+	        var arhresp=document.getElementById("arhResponse");
+	        //arhresp.value += "状态改变，状态："+this.readyState+"\r\n";
+	        if(4!=this.readyState)
+	            return;
+            $loading("none");
+	        var msg = this.responseText;
+	        //arhresp.value += msg+"\r\n";
+	        if(readdatadevice.runIndex)
+	            readdatadevice.runIndex -=1;
+	        if(!readdatadevice.runIndex && msg && globsum>0)
+	            readdatadevice();
+            var sum=0;
+            try { sum = writerecord(msg);} catch(e){}
+            globsum += sum;
+            $("readinfo").innerText = "提取记录：" + globsum;
+            if (!msg || sum < 1)
+	        {
+	            globsum = 0;
+	            if(dvcnstate)
+	                dvcnstate += " 通讯中断！\n";
+	            alert(dvcnstate+"已经完成读取数据！");
+	            dvcnstate="";
+	            return;
+	        }
+	        if(!readdatadevice.runIndex)
+                setTimeout("readdatadevice()", 400);
+	    }
+	    function Tree_onNodeSelectionChange(node)
+        {
+            TclickDot(node,false);
+        }
+   	    //当前巡检设备信息 { grpID:{ devs:"", dtrefresh:{ dtrecord,dtalarm}}};
+   	    // 更新devs时，对时间初始化5分钟内数据
+   	    function showdoormap()
+   	    {
+   	        var devinfo = $U().devinfo;
+   	        var grpID = $band("区域分组").getFldStrValue("ID");
+   	        var dtrd = ToolUtil.Convert(ToolUtil.Post(null,"hdlDateNow.ashx"), "datetime");
+   	        if(!devinfo[grpID])
+   	            devinfo[grpID]={ devs:"", dtrecord:dtrd.addDate(-1/(24*12)).formate("yyyy-MM-dd HH:mm:ss"), dtalarm:dtrd.addDate(-1/(24*12)).formate("yyyy-MM-dd HH:mm:ss"), xmldoc:new ActiveXObject("Msxml2.DOMDocument") };
+            var ob = $band("道闸设备");
+            var doormaps = "", devs="";
+            for(var i=0,len=ob.RecordCount(); i<len; i++)
+            {
+                var devid = ob.getFldStrValue("ID",i);
+                devid = devid.replace(/-/g, "");
+                var em = '<div style="width:100px;height:60px;text-align:center;float:left">'
+	                    +'<img border="0" src="images/70.png" id='+devid +' /><br/>'
+	                    +ob.getFldStrValue("名称",i)+'</div>';
+                 doormaps =  doormaps + em;
+                 devid = ob.getFldStrValue("控制器",i);
+                 if(devs.indexOf(devid)<0)
+                    devs += ","+ devid;
+            }
+            if(devs)
+                devs = devs.substr(1);
+            devinfo[grpID].devs= devs;
+            dvob.innerHTML = doormaps;
+   	    }
+        function getrecord()
+        {
+   	        var devinfo = $U().devinfo;
+            var grpID = $band("区域分组").getFldStrValue("ID");
+            if(!devinfo[grpID] || "启动监控"==$("btWatch").value)
+                return;
+            var d=new Date();
+            var inv = Math.round((d-$U().dtStart)/1000/60/60);
+            if(inv>4)
+            {
+                var ob=$band("区域分组");
+                window.parent.channelMonitorNode=ob.Tree.WebTree.SelectedNode.ID;
+                window.location.href=window.location.href;
+            }
+            if($U().Running)
+                return;
+            $U().Running = true;
+            var devinfo = devinfo[grpID];
+            var ps ="cmd=getrecord&datatype=alarm"+"&devices="+devinfo.devs;
+            ps = ps+"&dtUpdate="+devinfo.dtalarm;
+            var xmlhttp = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx", alarmCallback);
+            alarmCallback.xmlhttp = xmlhttp;
+            alarmCallback.devinfo = devinfo;
+        }
+        function alarmCallback()
+        {
+            if(!$U().Running)
+                return;
+	        if(4!=this.readyState)
+	            return;
+	        var msg = this.responseText;
+            var devinfo = alarmCallback.devinfo;
+            try{ altermsg(msg); }catch(e){}
+            var ps ="cmd=getrecord&datatype=record"+"&devices="+devinfo.devs;
+            ps = ps+"&dtUpdate="+devinfo.dtrecord;
+            var xmlhttp = ToolUtil.Post(ps,"hdlDeviceMonitor.ashx", recordCallback);
+            recordCallback.xmlhttp = xmlhttp;
+            recordCallback.devinfo = devinfo;
+        }
+        function recordCallback()
+        {
+            if(!$U().Running)
+                return;
+	        if(4!=this.readyState)
+	            return;
+            var devinfo = recordCallback.devinfo;
+	        var msg = this.responseText;
+            var pos = msg.indexOf("<Row>");
+            if(pos>-1)
+                devinfo.dtrecord = ToolUtil.Post(null,"hdlDateNow.ashx");
+            try{ writerecord(msg); }catch(e){}
+            $U().Running = false;
+        }
+        //更新状态
+        function altermsg(msg)
+        {
+            if(!msg)    return;
+            var pos = msg.indexOf("<Row>");
+            var devinfo = alarmCallback.devinfo;
+            var dtlast = ToolUtil.Post(null,"hdlDateNow.ashx");
+            if(pos>-1)
+                devinfo.dtalarm = dtlast;
+            dtlast = ToolUtil.Convert(dtlast, "datetime");
+            var col = {"Device":"控制器", "Dt":"时间", "Data":"数据"};
+            var info= ["门磁1状态", "门磁2状态", "门磁3状态", "门磁4状态"];
+            var armF= ["火警", "无效刷卡", "联动报警", "非法闯入", "超时", "胁迫" ];
+            var armD= ["1号门报警", "2号门报警", "3号门报警", "4号门报警"];
+            var bugF= ["芯片故障", "系统故障4", "时钟故障", "系统故障2", "系统故障1" ];
+            var band = $band("巡检信息");
+            var obdev= $band("道闸设备");
+            while(pos>-1)
+            {
+                var obj = {};
+                for(var c in col)
+                {
+                    var is = msg.indexOf("<"+c+">");
+                    var ie = msg.indexOf("</"+c+">");
+                    obj[c] = msg.substring(is+c.length+2, ie);
+                }
+                for(var i=0; i<info.length; i++)
+                    obj[info[i]] = ToolUtil.valueTag(obj.Data ,info[i]);
+                for(var i=0; i<armF.length; i++)
+                    obj[armF[i]] = ToolUtil.valueTag(obj.Data ,armF[i]);
+                for(var i=0; i<armD.length; i++)
+                    obj[armD[i]] = ToolUtil.valueTag(obj.Data ,armD[i]);
+                for(var i=0; i<bugF.length; i++)
+                    obj[bugF[i]] = ToolUtil.valueTag(obj.Data ,bugF[i]);
+                //检查报警
+                var amsg="";
+                for(var i=0; i<armF.length; i++)
+                    amsg += "1"==obj[armF[i]]? ","+armF[i]:"";
+                if(amsg)    amsg = amsg.substr(1);
+                var bmsg="";
+                for(var i=0; i<bugF.length; i++)
+                    bmsg += "1"==obj[bugF[i]]? ","+bugF[i]:"";
+                if(bmsg)    bmsg = bmsg.substr(1);
+                //更新门状态图标
+                var station = ToolUtil.valueTag(obj.Data ,"{设备地址}");
+                var imgs = ["images/70.png", "images/72.png", "images/75.png", "images/76.png"];
+                for(var i=0,len=obdev.RecordCount(); i<len; i++)
+                {
+                    var devid = obdev.getFldStrValue("控制器", i);
+                    var devst = obdev.getFldStrValue("站址", i);
+                    var doorn = obdev.getFldStrValue("读卡器号", i);
+                    if(!doorn) doorn="0";
+                    if(obj["Device"]!=devid || !obj.Data || station!=devst)
+                        continue;
+                    var doorid = obdev.getFldStrValue("ID", i);
+                    doorid = doorid.replace(/-/g,"");
+                    var val = obj[info[doorn]];
+                    var img = "1"==val? 1:0;
+                    var val = obj[armD[doorn]];
+                    img += ("1"==val&&amsg)? 2:0;
+                    $(doorid).src = imgs[img];
+                    if(0===img||1==img)
+                        $(doorid).title = "";
+                    else if(amsg && bmsg)
+                        $(doorid).title = amsg+"，"+bmsg;
+                    else
+                        $(doorid).title = amsg? amsg:(bmsg?bmsg:"");
+                    $(doorid).dtlast=dtlast;
+                }
+                pos = msg.indexOf("</Row>");
+                msg = msg.substr(pos+6);
+                pos = msg.indexOf("<Row>");
+            }
+            var imgs = dvob.getElementsByTagName("IMG");
+            for(var i=0; i<imgs.length; i++)
+            {
+                if(!imgs[i].dtlast)
+                {
+                    imgs[i].dtlast = dtlast;
+                    continue;
+                }
+                //超时2分钟提示
+                var diff = dtlast.diffDate(imgs[i].dtlast)*24*60*60;
+                if(diff>120)
+                    imgs[i].src = "images/71.png";
+            }
+        }
+        //写入新记录
+        function writerecord(msg)
+        {
+            var pos = msg.indexOf("<Row>");
+            var band = $band("巡检信息");
+            var obdev= $band("道闸设备");
+            var col = {"Device":"控制器", "Dt":"时间", "Data":"数据"};
+            var info= {"{卡号}":"卡号", "{部门}":"部门", "{姓名}":"姓名", "读卡器":"读卡器", "{刷卡时间}":"刷卡时间","通道":"通道","区域":"工作区","{进入时间}":"进入时间","{离开时间}":"离开时间", "状态":"状态"};
+            var rds = [];
+            var arhresp = document.getElementById("arhResponse");
+            //arhresp.value += "记录Row位置：" + pos + "\r\n";
+            while (pos > -1)
+            {
+                var obj = {};
+                for(var c in col)
+                {
+                    var is = msg.indexOf("<"+c+">");
+                    var ie = msg.indexOf("</"+c+">");
+                    obj[c] = msg.substring(is+c.length+2, ie);
+                }
+                pos = msg.indexOf("</Row>");
+                msg = msg.substr(pos+6);
+                pos = msg.indexOf("<Row>");
+                for(var c in info)
+                    obj[info[c]] = ToolUtil.valueTag(obj.Data ,c);
+                var devst = ToolUtil.valueTag(obj.Data ,"通道");
+                //获取门名称
+                //arhresp.value += "记录内容：" + obj.Device + " 内容：" + obj.Data + "\r\n";
+                var dvstation = "";
+                for(var i=0,len=obdev.RecordCount(); i<len; i++)
+                {
+                    var devid = obdev.getFldStrValue("控制器", i);
+                    var station=obdev.getFldStrValue("名称", i);
+                    var doorn = obdev.getFldStrValue("读卡器号", i);
+                    var dtp = obdev.getFldStrValue("控制器类型", i);
+                    //arhresp.value += "记录循环：" + devid + dtp + "\r\n";
+                    if (!doorn) doorn = "0";
+                    if(obj["Device"]!=devid || station!=devst)
+                        continue;
+                    dvstation = obdev.getFldStrValue("站址", i);
+                    var dn = obj["读卡器"];
+                    if(("进出口"==dtp ||"出入口"==dtp)&& ("0"==dn || "1"==dn))
+                        dn="0";
+                    else if(("进出口"==dtp ||"出入口"==dtp) && ("2"==dn || "3"==dn))
+                        dn="1";
+                    if(dn!=doorn)   continue;
+                    var doorid = obdev.getFldStrValue("ID", i);
+                    doorid = doorid.replace(/-/g,"");
+                    obj["objID"]= doorid;
+                    obj["门"] = obdev.getFldStrValue("名称", i);
+                    obj["工作区"] = obdev.getFldStrValue("区域", i);
+                    break;
+                }
+                if(!obj["卡号"])
+                {
+                    dvcnstate += dvcnstate? "，"+dvstation+"|"+obj["门"]:dvstation+"|"+obj["门"];
+                    continue;
+                }
+                //arhresp.value += "记录内容：" + "卡号：" + obj["卡号"] + "， 时间：" + obj["刷卡时间"] + "\r\n";
+                //没有卡号通讯中断
+                var img = $(obj["objID"]);
+                if(img && img["卡号"] == obj["卡号"] && img["刷卡时间"]==obj["刷卡时间"])
+                    continue;
+                if(img)
+                {
+                    img["卡号"] = obj["卡号"];
+                    img["刷卡时间"] = obj["刷卡时间"];
+                }
+                var rd = {"门":obj["通道"], "卡号":obj["卡号"], "部门":obj["部门"], "姓名":obj["姓名"], "工作区":obj["工作区"], "进入时间":obj["进入时间"], "离开时间":obj["离开时间"], "状态":obj["状态"]};
+                rd["刷卡时间"] = obj["刷卡时间"];
+                rds[rds.length] = rd;
+                //arhresp.value += "记录内容：" + "门—" + rd["门"] + " ## " + "卡号—" + rd["卡号"] + " ## " + "时间—" + rd["时间"] + "\r\n";
+                //arhresp.value += "\r\n记录Row位置：" + pos + "——" + msg + "\r\n";
+            }
+            //arhresp.value += "记录内容：" + "记录行数：" + rds.length + "\r\n";
+            for(var i=0; i<rds.length; i++)
+            {
+                band.NewRecord(0);
+                for(var f in rds[i])
+                    band.setFldStrValue(0, f, rds[i][f]);
+            }
+            while(band.RecordCount()>50)
+                band.DeleteRecord(50);
+            for(var i=0,len=band.RecordCount(); i<len; i++)
+                band.setFldStrValue(i, "RowNum", i+1);
+            return rds.length;
+        }
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');">
+    </div>
+    <fieldset style="float: left; padding: 5px; width: 20%; height: 95%;" id="fdiv">
+        <legend>
+            <img border="0" src="Images/savesmall.gif" />通道信息</legend>
+
+        <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_区域分组Tab_trvLand ***/
+                    window.ComponentArt_Storage_etpTemplate_区域分组Tab_trvLand = null;
+                    //]]>
+        </script>
+
+        <div style="position: absolute; top: 0px; left: 0px; visibility: hidden;">
+            <img src="images/exp.gif" width="0" height="0" alt="" />
+            <img src="images/col.gif" width="0" height="0" alt="" />
+        </div>
+        <div id="etpTemplate_区域分组Tab_trvLand" class="TreeView" style="height: 97%; width: 99%;
+            overflow-y: auto;" onclick="if(window.etpTemplate_区域分组Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_区域分组Tab_trvLand);"
+            onmouseover="if(window.etpTemplate_区域分组Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_区域分组Tab_trvLand);">
+        </div>
+        <input id="etpTemplate_区域分组Tab_trvLand_Data" name="etpTemplate_区域分组Tab_trvLand_Data"
+            type="hidden" />
+        <input id="etpTemplate_区域分组Tab_trvLand_Properties" name="etpTemplate_区域分组Tab_trvLand_Properties"
+            type="hidden" />
+        <input id="etpTemplate_区域分组Tab_trvLand_SelectedNode" name="etpTemplate_区域分组Tab_trvLand_SelectedNode"
+            type="hidden" value="" />
+        <input id="etpTemplate_区域分组Tab_trvLand_ScrollData" name="etpTemplate_区域分组Tab_trvLand_ScrollData"
+            type="hidden" value="0,0" />
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    window.ComponentArt_Init_etpTemplate_区域分组Tab_trvLand = function() {
+                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_区域分组Tab_trvLand'))
+                        {setTimeout('ComponentArt_Init_etpTemplate_区域分组Tab_trvLand()', 100); return; }
+
+                    window.etpTemplate_区域分组Tab_trvLand = new ComponentArt_TreeView('etpTemplate_区域分组Tab_trvLand', ComponentArt_Storage_etpTemplate_区域分组Tab_trvLand);
+                    etpTemplate_区域分组Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$区域分组Tab$trvLand','') };
+                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_区域分组Tab_trvLand; etpTemplate_区域分组Tab_trvLand.GlobalAlias = 'trvLand'; }
+                    etpTemplate_区域分组Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:区域分组Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                    etpTemplate_区域分组Tab_trvLand.Initialize('etpTemplate_区域分组Tab_trvLand');
+
+                    window.etpTemplate_区域分组Tab_trvLand_loaded = true;
+                }
+                ComponentArt_Init_etpTemplate_区域分组Tab_trvLand();
+                var myTree = new Tree(etpTemplate_区域分组Tab_trvLand,'区域分组Tab');
+                //]]>
+        </script>
+
+    </fieldset>
+    <fieldset style="float: right; padding: 8px; width: 79%; height: 95%">
+        <div id="divDin" style="text-align: left; width: 85%">
+            <input type="button" value="提取记录" id="btRead" class="txtbtnex" onclick="readdatadevice()" />
+            <input type="button" value="启动监控" id="btWatch" class="txtbtnex" onclick="monitordevice()" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" value="火警放行" id="btFire" class="txtbtnex" onclick="fireopendoor()" />
+        </div>
+        <fieldset style="padding: 5px; width: 98%; height: 40%">
+            <legend id="tbars" style="margin-bottom: 5">通道</legend>
+            <div id="dvob" style="width: 100%; height: 90%; overflow-y: scroll;">
+            </div>
+        </fieldset>
+        <fieldset style="padding: 5px; width: 98%; height: 42%">
+            <legend id="Legend1" style="margin-bottom: 5">巡检信息&nbsp;&nbsp; <font color="#FF0000"
+                id="readinfo"></font></legend>
+            <div id="divMonitor" style="width: 100%; height: 97%">
+            </div>
+        </fieldset>
+        <textarea id="arhResponse" style="width: 98%; height: 30; display: none;"></textarea>
+    </fieldset>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("道闸监控")</script>
+
+</body>
+</html>

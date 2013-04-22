@@ -1,0 +1,82 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using Granity.winTools;
+using Estar.Common.Tools;
+using Estar.Business.DataManager;
+
+public partial class html_kqCheckEcl : System.Web.UI.Page
+{
+    /// <summary>
+    /// 员工考勤信息导入
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void btGuideData_Click(object sender, EventArgs e)
+    {
+
+        if (FileUpload1.HasFile == false)
+        {
+            Response.Write("<script>alert('请您选择Excel文件')</script> ");
+            return;//当无文件时,返回     
+        }
+        string IsXls = System.IO.Path.GetExtension(FileUpload1.FileName).ToString().ToLower();
+        if (IsXls != ".xls" && IsXls != ".xlsx")
+        {
+            Response.Write("<script>alert('只可以选择Excel文件')</script>");
+            return;//当选择的不是Excel文件时,返回    
+        }
+        //DataTable tab = leofun.LoadFileTab(this.FileUpload1.PostedFile);
+        DataTable tab = leofun.LoadFile(this.FileUpload1);
+        if (null == tab)
+        {
+            Response.Write("<script>alert('格式按要求填写!')</script>");
+            return;
+        }
+        if (!tab.Columns.Contains("执行结果"))
+            tab.Columns.Add("执行结果");
+        QueryDataRes query = new QueryDataRes("考勤信息导入");
+        foreach (DataRow dr in tab.Rows)
+        {
+            NameObjectList ps = ParamManager.createParam(dr);
+
+            string result = "执行成功";
+            if (!query.ExecuteNonQuery("考勤信息导入", ps, ps, ps))
+                result = "失败，请核查数据";
+            dr["执行结果"] = result;
+        }
+        this.gdvFile.DataSource = tab;
+        this.gdvFile.DataBind();
+
+        string path = DataAccRes.AppSettings("DefaultFilePath");
+        if (string.IsNullOrEmpty(path))
+            path = "~/DataSource/upload/";
+        if (!path.StartsWith("~/"))
+        {
+            if (path.StartsWith("/"))
+                path = "~" + path;
+            else
+                path = "~/" + path;
+        }
+        string fileName = FileUpload1.FileName;
+        string serverPath = Server.MapPath(path + fileName);
+        System.IO.File.Delete(serverPath);
+    }
+}

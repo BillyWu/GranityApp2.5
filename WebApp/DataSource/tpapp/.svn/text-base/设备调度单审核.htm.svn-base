@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+<head>
+
+    <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/tmpjs/tempjs.js" type="text/javascript" charset="gb2312"></script>
+    <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <script language="javascript" type="text/javascript">
+    <!--
+		window.onload=WinLoadUtil.MDTPLoad;
+		function initWin()
+		{
+			band=document.UnitItem.getBandByItemName("主表");
+			if(band.RecordCount()<1) band.NewRecord();
+			var bandrole=document.UnitItem.getBandByItemName("角色");    
+			if(bandrole)
+			{
+			    var strRole=bandrole.getFldStrValue("角色");//登录者角色    
+			    band.setFldStrValue(null,"角色",strRole)
+		    }			
+			var state = band.getFldStrValue("状态");
+			var curnode = band.getFldStrValue("节点");
+			switch(state)
+			{
+				case "查询":
+				case "浏览": 
+					tsInitbrowserTab();
+					if(document.getElementById("divbtn"))
+						document.getElementById("divbtn").style.display="none";
+				break;
+				default:
+					if(document.getElementById("divbtn"))
+						document.getElementById("divbtn").style.display="";
+					
+					switch(curnode)
+					{
+						case "主管审核":
+							document.getElementById("text2").style.border="1px solid red";
+							document.getElementById("_asubmit").style.display="";
+							document.getElementById("_aend").style.display="none";							
+							break;
+						case "签发":
+							document.getElementById("text3").style.border="1px solid red";
+							document.getElementById("_asubmit").style.display="";
+							document.getElementById("_aend").style.display="none";							
+							break;
+						case "签收":
+							document.getElementById("text4").style.border="1px solid red";
+							document.getElementById("_asubmit").style.display="none";
+							document.getElementById("_aend").style.display="";
+							break;						
+					}
+			}
+		}		
+    -->
+    </script>
+</head>
+<body>
+<script src="hmjs/tmpjs/tempgov.js" language="JavaScript" type="text/JavaScript" charset="gb2312"></script>
+
+<p style="MARGIN-BOTTOM: -8px"><br /></p>		
+
+<table id="tbframe" border="2"  align="center" width="735" cellspacing="0" cellpadding="0" bordercolorlight="#000000" bordercolordark="#000000" style="border-collapse: collapse" height="645" bgcolor="#FFFFFF">
+					<tbody>
+					<tr>
+						<td width="100%" align="center" height="39" colspan="6" style="font-size: 12pt; font-weight: bold">设备调度单</td>
+					</tr>
+					<tr>
+						<td width="19%" align="center" height="25">标题</td>
+						<td width="47%" height="25" colspan="3" align="center">
+						<input dataFld="主题" class="xlandinput"  style="WIDTH: 99%; height:19" dataSrc="#MasterTab" size="15" /></td>
+						<td width="13%" align="center" height="25">
+				编号</td>
+						<td width="20%" height="25" align="center">
+				<input dataFld="单据编号" class="xlandinput" style="WIDTH: 99%" dataSrc="#MasterTab" size="15" name="T17" /></td>
+					</tr>
+					<tr>
+						<td width="19%" align="center" height="26">部门</td>
+						<td width="14%" height="26" align="center">
+						<input dataFld="部门" class="xlandinput" disabled="true" style="WIDTH: 99%; height:19" dataSrc="#MasterTab" size="15" name="T19" /></td>
+						<td width="17%" height="26" align="center">
+						经办人</td>
+						<td width="17%" height="26" align="center">
+						<input dataFld="经办人" class="xlandinput" disabled="true" style="WIDTH: 99%; height:19" dataSrc="#MasterTab" size="15" name="T20" /></td>
+						<td width="13%" align="center" height="26">
+				日期</td>
+						<td width="20%" height="26" align="center">
+				<input dataFld="日期_格式" class="xlanddate" style="WIDTH: 99%" dataSrc="#MasterTab" size="15" name="T18" /></td>
+					</tr>
+					<tr>
+						<td width="19%" align="center" height="185">				
+						调度内容
+						<br/>
+						<br/>
+						【<a href="#" onclick="document.UnitItem.getBandByItemName('主表').setModalContent('预警');"><font color="red">预警查询</font></a>】						
+						</td>
+						<td colspan="5" align="center" height="185">
+						<table border="0" style="background:white;TABLE-LAYOUT: fixed;border-collapse: collapse;width:100%;height:182px" id="table3">
+												<tbody>
+												<tr>
+													<td colspan="4" align="center">
+													<p style="text-indent: 2px">
+											<textarea rows="8" id="text1" name="S9" cols="61" readonly="true"  dataFld="调度内容" class="xlandinput" ondblclick="getlanguage(this.dataFld)" dataSrc="#MasterTab" style="position: relative; left: 0; top: 0; right: 0; bottom: 0; font-family:楷体_GB2312; font-size:12pt; font-weight:bold; text-indent:2; line-height:150%; margin-top:2"></textarea></p></td>
+												</tr>
+												<tr>
+													<td height="21" width="96">
+													</td>
+													<td height="21" width="24%">
+													</td>
+													<td height="21" align="right" width="24%">
+													签名：</td>
+													<td height="21" width="24%">
+													<label dataFld="起草责任人" class="xlandinput" style="WIDTH: 100%;border:0" dataSrc="#dbDate" size="15" name="经办人9"></label></td>
+												</tr>
+												<tr>
+													<td height="21" width="96"></td>
+													<td height="21" width="24%"> </td>
+													<td height="21" align="right" width="24%"> 
+													日期：</td>
+													<td id="xjbr" height="21" width="24%"><label dataFld="起草结果时间" class="xlandinput" style="WIDTH: 99%;border:0" dataSrc="#dbDate" size="15" name="经办人9"></label></td>
+												</tr>
+											</tbody>
+											</table>
+						</td>
+					</tr>
+					<tr>
+						<td width="19%" align="center" height="149">
+						主管意见</td>
+						<td colspan="5" align="center" height="149">
+						<table border="0" style="background:white;TABLE-LAYOUT: fixed;border-collapse: collapse;width:100%;height:146px" id="table3">
+												<tbody>
+												<tr>
+													<td colspan="4" align="center">
+													<p style="text-indent: 2px">
+											<textarea rows="5" id="text2" name="S9" cols="61" dataFld="主管意见" class="xlandinput" 
+											ondblclick="getlanguage(this.dataFld)" dataSrc="#MasterTab" style="position: relative; left: 0; top: 0; right: 0; bottom: 0; font-family:楷体_GB2312; font-size:12pt; font-weight:bold; text-indent:2; line-height:150%; margin-top:2"></textarea></p></td>
+												</tr>
+												<tr>
+													<td height="21" width="96">
+													</td>
+													<td height="21" width="24%">
+													</td>
+													<td height="21" align="right" width="24%">
+													签名：</td>
+													<td height="21" width="24%">
+													<label dataFld="主管审核责任人" class="xlandinput" style="WIDTH: 100%;border:0" dataSrc="#dbDate" size="15" name="经办人9"></label></td>
+												</tr>
+												<tr>
+													<td height="21" width="96"></td>
+													<td height="21" width="24%"> </td>
+													<td height="21" align="right" width="24%"> 
+													日期：</td>
+													<td id="xjbr" height="21" width="24%"><label dataFld="主管审核结果时间" class="xlandinput" style="WIDTH: 99%;border:0" dataSrc="#dbDate" size="15" name="经办人9"></label></td>
+												</tr>
+											</tbody>
+											</table>
+						</td>
+					</tr>
+					<tr>
+						<td width="19%" align="center" height="149">
+						签办意见</td>
+						<td colspan="5" align="center" height="149"><table border="0" style="background:white;TABLE-LAYOUT: fixed;border-collapse: collapse;width:100%;height:146px" id="table3">
+												<tbody>
+												<tr>
+													<td colspan="4" align="center">
+													<p style="text-indent: 2px">
+											<textarea rows="6" id="text3" name="S9" cols="61" dataFld="签办意见" class="xlandinput" ondblclick="getlanguage(this.dataFld)" dataSrc="#MasterTab" style="position: relative; left: 0; top: 0; right: 0; bottom: 0; font-family:楷体_GB2312; font-size:12pt; font-weight:bold; text-indent:2; line-height:150%; margin-top:2"></textarea></p></td>
+												</tr>
+												<tr>
+													<td height="21" width="96">
+													</td>
+													<td height="21" width="24%">
+													</td>
+													<td height="21" align="right" width="24%">
+													签名：</td>
+													<td height="21" width="24%">
+													<label dataFld="签发责任人" class="xlandinput" style="WIDTH: 100%;border:0" dataSrc="#dbDate" size="15" name="经办人9"></label></td>
+												</tr>
+												<tr>
+													<td height="21" width="96"></td>
+													<td height="21" width="24%"> </td>
+													<td height="21" align="right" width="24%"> 
+													日期：</td>
+													<td id="xjbr" height="21" width="24%"><label dataFld="签发结果时间" class="xlandinput" style="WIDTH: 99%;border:0" dataSrc="#dbDate" size="15" name="经办人9"></label></td>
+												</tr>
+											</tbody>
+											</table>
+						</td>
+					</tr>
+					<tr>
+						<td width="19%" align="center" height="102">
+						签收情况</td>
+						<td colspan="5" align="center" height="102">
+						<table border="0" style="background:white;TABLE-LAYOUT: fixed;border-collapse: collapse;width:100%;height:98px" id="table3">
+												<tbody>
+												<tr>
+													<td colspan="4" align="center">
+													<p style="text-indent: 2px">
+											<textarea rows="3" id="text4" name="S9" cols="61" dataFld="签收意见" class="xlandinput" ondblclick="getlanguage(this.dataFld)" dataSrc="#MasterTab" style="position: relative; left: 0; top: 0; right: 0; bottom: 0; font-family:楷体_GB2312; font-size:12pt; font-weight:bold; text-indent:2; line-height:150%; margin-top:2"></textarea></p></td>
+												</tr>
+												<tr>
+													<td height="21" width="96">
+													</td>
+													<td height="21" width="24%">
+													</td>
+													<td height="21" align="right" width="24%">
+													签名：</td>
+													<td height="21" width="24%">
+													<label dataFld="签收责任人" class="xlandinput" style="WIDTH: 100%;border:0" dataSrc="#dbDate" size="15" name="经办人9"></label></td>
+												</tr>
+												<tr>
+													<td height="21" width="96"></td>
+													<td height="21" width="24%"> </td>
+													<td height="21" align="right" width="24%"> 
+													日期：</td>
+													<td id="xjbr" height="21" width="24%"><label dataFld="签收结果时间" class="xlandinput" style="WIDTH: 99%;border:0" dataSrc="#dbDate" size="15" name="经办人9"></label></td>
+												</tr>
+											</tbody>
+											</table>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+				
+<TABLE height="200" id="tablercyy" cellSpacing="1" cellPadding="0" width="396" bgColor="#000000" border="0" style="display:none;position: absolute; left: 257px; top: 136px;">
+  <TBODY>
+  <TR>
+    <TD align="right" bgColor="#5a8ace" height="18" style="font-family: 宋体; font-size: 9pt; color: #FFFFFF">
+ 〖批语选择〗　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　<A style="FONT-SIZE: 9pt; COLOR: #eeeeee; TEXT-DECORATION: none" href="#" onclick="document.getElementById('tablercyy').style.display='none'">关闭&gt;&gt;&gt;<IMG src="close_o.gif" style="border:0" /></A> </TD></TR>
+  <TR>
+    <TD bgColor="#F7F7F7" align="center" valign="top">
+						<Control class="" catalog="GridLand.ascx" itemname="选择日常用语" id="jbrdb" name="">
+						日常用语<Property name="tpfile" value="ControlTemplate\TableSimple.htm" />
+								<Property name="width" value="500" /><Property name="height" value="200px" /><Property name="hiddenhead" value="false" />
+								<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+						</Control>
+						<p style="margin:2"></p>
+			<input class="gridbtn" id="gridfind5" style="width:60" onclick="okselect('主表')" type="button" value="选择" name="B9" />
+			<p style="margin:2"></p>
+				</TD></TR></TBODY>
+		</TABLE>
+		<TABLE height="200" id="tablewin" cellSpacing="1" cellPadding="0" width="396" bgColor="#000000" border="0" style="display:none;position: absolute; left: 278px; top: 281px">
+  <TBODY>
+  <TR>
+    <TD align="right" bgColor="#5a8ace" height="18" style="font-family: 宋体; font-size: 9pt; color: #FFFFFF">
+ 〖请填写退回窗口意见〗　　　　　　　　　　　　　　　　<A style="FONT-SIZE: 9pt; COLOR: #eeeeee; TEXT-DECORATION: none" href="#" onclick="document.getElementById('tablewin').style.display='none'">关闭&gt;&gt;&gt;<IMG src="close_o.gif" style="border:0" /></A> </TD></TR>
+  <TR>
+    <TD bgColor="#F7F7F7" align="center" valign="top">
+    <textarea rows="9" name="S5" cols="41" dataFld="对窗口意见" class="xlandinput" dataSrc="#MasterTab" style="position: relative; left: 0; top: 0; right: 0; bottom: 0; font-family:楷体_GB2312; font-size:12pt; font-weight:bold; text-indent:2; line-height:100%; margin-top:2"></textarea>
+		　<input class="gridbtn" id="gridfind6" style="width:60;FONT-SIZE: 9pt" onclick="ts_return('建设工程规划许可审批表','退回受理');document.getElementById('tablewin').style.display='none';" type="button" value="确定" name="B10" /></TD></TR></TBODY></TABLE>				
+<p style="MARGIN: 2px"></p>				
+		<Control class="" catalog="GridLand.ascx" itemname="主表" id="MasterTab" name="">MasterTab
+			<Property name="tpfile" value="" />
+			<Property name="width" value="600" /><Property name="height" value="200" /><Property name="hiddenhead" value="true" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+		</Control>
+<Control class="" catalog="GridLand.ascx" itemname="角色" id="dbrole" name="">
+		role<Property name="tpfile" value="ControlTemplate/GridReadOnlySimA.htm" />
+		<Property name="width" value="0" /><Property name="height" value="0px" /><Property name="hiddenhead" value="false" />
+		<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>
+<Control class="" catalog="GridLand.ascx" itemname="审核时间" id="dbDate" name="">
+dbDate<Property name="tpfile" value="ControlTemplate/GridReadOnlySimA.htm" />
+<Property name="width" value="500" /><Property name="height" value="200px" /><Property name="hiddenhead" value="false" />
+<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+</Control>	
+		<p style="MARGIN: 5px"></p>
+		<table  id="divbtn"  align="center" border="0" width="40%" cellpadding="0" style="border-collapse: collapse;display:none">
+	<tr>
+		<td>【<a href="#" onclick="xs_save('主表');">保存</a>】</td>
+		<td id="_asubmit">【<a  href="#" onclick="xs_submit('主表','同意');"><font color="#008000">提交</font></a>】</td>
+		<td id="_aend">【<a id="_aend" href="#" onclick="xs_submit('主表','办结');"><font color="#008000">接收</font></a>】</td>
+		<td>【<a href="#" onclick="rtndoc()"><font color="#FF00FF">退回</font></a>】</td>
+		<td>【<a href="#" onclick="window.close()">关闭</a>】</td>
+	</tr>
+	</table>
+<br />
+<br />
+
+</body>
+</html>

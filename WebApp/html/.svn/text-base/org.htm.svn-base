@@ -1,0 +1,207 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>组织机构</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+     <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usMenu.js" type="text/javascript" charset="gb2312"></script>
+    <script type="text/javascript">
+      var elems2 = ["全部数据","直属机构","外部机构"];
+      var elemsevent2 = ["_refresh('','')","_refresh('','0')","_refresh('','1')"];      
+	    function initWin()
+	    {
+            var oband=$band("单位树");
+            ToolUtil.setParamValue($XD(), "UnitType", "", "s", "P", "", "Ts","");
+            oband.XQuery();
+            ue_treeline("单位树",true);
+            ToolUtil.setParamValue($XD(), "UnitType", "", "s", "P", "", "Ts","");
+            ueLabel("lbldiv1",elems2,elemsevent2);
+            $("fdiv").style.display="block";
+            $loading("none");
+	    }			
+	    function Tree_onNodeSelectionChange(node)
+	    {
+	   	    TclickDot(node);
+	        if(node.ParentNode)
+	            $("parentname").value=node.ParentNode.Text;
+	        else
+	            $("parentname").value="最高级";
+	    }
+	    function _save()
+	    {
+            var xmldoc = document.UnitItem.ParamXmldoc;
+            var sysdb = ue_getsysdb();
+            ToolUtil.setParamValue(xmldoc, "sysdb", sysdb, "s", "P", "", "Ts","");
+            ue_save();
+	    }
+        function _tdelete()
+        {
+            if($("parentname").value=="最高级" || $band("单位树").Val("名称")=="行政部"){alert("友情提示：系统保留机构不可删除!");return;}
+            TreeUtil.deleteNode("组织机构Tab",true);      
+        }
+        function _addenode()
+        {
+            if($("parentname").value=="最高级"){alert("友情提示：系统不允许设置两个最高级机构!");return;}
+            TreeUtil.addNode('组织机构Tab',false);
+        }   
+        function _refresh(unittype,inner,prn)
+        {
+            if(!prn){
+                ToolUtil.setParamValue($XD(), "UnitType", unittype, "s", "P", "", "Ts","");
+                ToolUtil.setParamValue($XD(), "Inner", inner, "s", "P", "", "Ts","");
+                $band("单位树").XQuery(true);
+            }
+            else
+            {
+                if(!unittype) unittype="";if(!inner) inner="";
+                var str ="exec proc_select_组织机构打印";
+                var prn = "org.xml";
+                url=ue_path() + "/frmprintc.aspx?prn="+prn+"&pms="+ue_sysprn+"&sql="+str+"&prntype=excel";
+                window.open(url);            
+            }
+        }
+        function _copy()
+        {
+            var oband=$band("单位树");
+            var pid = oband.getFldStrValue("PID");
+            if(pid=="") return;
+            var str=strscrtable();
+            DlgWin(1,null,"调动设置 - 当前机构为："+$band("单位树").Val("名称"),"itemtree",str,480,200);
+            var xmlNodeRows = oband.XmlLandData.XMLDocument.selectNodes("//orggroup")
+            us_htmlXdict("txtnode",xmlNodeRows);
+            $("txtnode").value=oband.Val("PID");
+        }
+        function us_htmlXdict(objname,xmlrows)
+        {
+            var obj=$(objname);
+            if(!obj || !obj.options) return;
+            var ops = obj.options;
+            if(ops.options.length>0) return;
+            for(var i=0;i<xmlrows.length;i++)
+            {
+                var txt = xmlrows[i].selectSingleNode("名称");
+                var value = xmlrows[i].selectSingleNode("ID");
+                ops.add(new Option(txt.text,value.text));
+            }
+        }
+        function runcopy()
+        {
+            $band("单位树").setFldStrValue(null,"PID",$("txtnode").value);
+            ue_save();
+            ShowHide(1,"none");
+            $band("单位树").XQuery(true);
+        }
+        function strscrtable()
+        {
+            var s= '<div style="padding:30;width:99%;height:120px">选择目标机构名称：<select id="txtnode" size="1" style="WIDTH: 260;" name="D6"></select></div>'+
+            '<input type=button value="确定" onclick="runcopy();"style="width:80px">';
+            return s;
+        }                  
+           
+    </script>
+  </head>
+  <body style="overflow:hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width:100%;background-image: url('images/bg-shd.png');"></div>
+    <div style="margin:10px;height:90%">
+   <fieldset style="padding: 2px;;width:100%;height:40px"><legend>数据查询：</legend>
+		<span style="width:60px;text-align:right;font-family: 微软雅黑;">检索字：</span><input class=xlandinput style="WIDTH: 150; " size=15 name="" id=findtext /><button id="btnfilter" class="txtbtn" onclick="ue_bandTreeSearch(findtext.value,null,'组织机构Tab');" ><img src="images//find16.png" /></button>
+            &nbsp;<button class="txtbtn" onclick="_refresh('','','1')" ><img src="Images/print16.png" /></button>&nbsp;<button class="txtbtn" onclick="_refresh('')" ><img src="Images/refresh1.png" /></button> 
+        <div id="lbldiv1" style="float:right;width:50%"></div></fieldset> 
+    <fieldset style=" float:left;padding: 5px;width:50%;height:80%;display:none" id="fdiv"><legend>组织机构：
+		    <A class="linkbtn_0" href="#" onclick="_addenode();"><img border="0" src="Images/inserttreenext.png" alt="增加同级节点"/>&nbsp;增加</A>    
+			<A class="linkbtn_0" href="#" onclick="TreeUtil.addNode('组织机构Tab',true);"><img border="0" src="Images/addorg.png" alt="增加下级节点"/>&nbsp;增加</A>
+	        <A class="linkbtn_0" href="#" onclick="_tdelete();"><img border="0" src="Images/delete.gif" />&nbsp;删除</A>
+	        <A class="linkbtn_0" href="#" onclick="ue_expand('单位树',true)"><img border="0" src="Images/ig_treeOminus.gif" />展开&nbsp;</A>
+<A class="linkbtn_0" href="#" onclick="ue_expand('单位树',false)"><img border="0" src="Images/ig_treeOplus.gif" />收缩&nbsp;</A>
+<A class="linkbtn_0" href="#" onclick="_copy()"><img border="0" src="Images/move1.png" />调动</A>
+		</legend>
+                    <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                      //<![CDATA[
+                                /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_组织机构Tab_trvLand ***/
+                                window.ComponentArt_Storage_etpTemplate_组织机构Tab_trvLand = null;
+                                //]]>
+                    </script>
+                    <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                      <img src="images/exp.gif" width="0" height="0" alt="" />
+                      <img src="images/col.gif" width="0" height="0" alt="" />
+                    </div>
+                    <div id="etpTemplate_组织机构Tab_trvLand" class="TreeView" style="height:100%;width:99%;overflow-y:auto;" 
+                    onclick="if(window.etpTemplate_组织机构Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_组织机构Tab_trvLand);" onmouseover="if(window.etpTemplate_组织机构Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_组织机构Tab_trvLand);"></div>
+                    <input id="etpTemplate_组织机构Tab_trvLand_Data" name="etpTemplate_组织机构Tab_trvLand_Data" type="hidden" />
+                    <input id="etpTemplate_组织机构Tab_trvLand_Properties" name="etpTemplate_组织机构Tab_trvLand_Properties" type="hidden" />
+                    <input id="etpTemplate_组织机构Tab_trvLand_SelectedNode" name="etpTemplate_组织机构Tab_trvLand_SelectedNode" type="hidden" value="" />
+                    <input id="etpTemplate_组织机构Tab_trvLand_ScrollData" name="etpTemplate_组织机构Tab_trvLand_ScrollData" type="hidden" value="0,0" />
+                            <script type="text/javascript">
+                              //<![CDATA[
+                                        window.ComponentArt_Init_etpTemplate_组织机构Tab_trvLand = function() {
+                                        if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_组织机构Tab_trvLand'))
+	                                        {setTimeout('ComponentArt_Init_etpTemplate_组织机构Tab_trvLand()', 100); return; }
+
+                                        window.etpTemplate_组织机构Tab_trvLand = new ComponentArt_TreeView('etpTemplate_组织机构Tab_trvLand', ComponentArt_Storage_etpTemplate_组织机构Tab_trvLand);
+                                        etpTemplate_组织机构Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$组织机构Tab$trvLand','') };
+                                        if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_组织机构Tab_trvLand; etpTemplate_组织机构Tab_trvLand.GlobalAlias = 'trvLand'; }
+                                        etpTemplate_组织机构Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:组织机构Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                                        etpTemplate_组织机构Tab_trvLand.Initialize('etpTemplate_组织机构Tab_trvLand');
+
+                                        window.etpTemplate_组织机构Tab_trvLand_loaded = true;
+                                    }
+                                    ComponentArt_Init_etpTemplate_组织机构Tab_trvLand();
+                                    var myTree = new Tree(etpTemplate_组织机构Tab_trvLand,'组织机构Tab');
+                                    //]]>
+                            </script>                          
+    </fieldset> 
+			<fieldset style=" float:right;padding: 8px;width:49%;height:80%"><legend>详细信息：
+				        <A class="linkbtn_0" href="#" onclick="_save()"><img border="0" src="Images/savesmall.gif" />&nbsp;保存&nbsp;</A>
+				        <A class="linkbtn_0" href="#" onclick="ms_close()"><img border="0" src="Images/door_out.gif" />&nbsp;关闭&nbsp;</A>
+			</legend>
+			<p style="margin:5"><span class="span80">机构名称：</span><INPUT datasrc="#组织机构Tab" datafld="名称" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" />
+                                              <font color="#FF0000">*</font></p>
+			<p style="margin:5"><span class="span80">机构代码：</span><INPUT datasrc="#组织机构Tab" datafld="代码" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" />
+                                              <font color="#FF0000">*</font></p>
+			<p style="margin:5"><span class="span80">上级机构：</span><INPUT id="parentname" class="xlandinput" style="WIDTH:60%;" readonly type="text" size="11" name="姓名" /></p>
+			<p style="margin:5"><span class="span80">归属关系：</span><select style="WIDTH:40%;" datasrc="#组织机构Tab" datafld="分类" class="xlandinput">
+                                    <option value=""></option><option value="本部">本部</option>
+                                    </select></p>
+			<p style="margin:5"><span class="span80">独立管理：</span><input type="checkbox" datasrc="#组织机构Tab" dataFld="独立管理" style="border:0" class="xlandinput" name="C1" value="ON" />
+			<span class="span80">虚拟单位组：</span><input type="checkbox" datasrc="#组织机构Tab" dataFld="单位组" style="border:0" class="xlandinput" name="C1" value="ON" /></p>
+			<p style="margin:5"><span class="span80">机构性质：</span><select style="WIDTH:40%;" datasrc="#组织机构Tab" datafld="性质" class="xlandinput">
+                                    <option value=1>行政</option>
+                                    <option value=2>生产</option>
+                                    <option value=131>销售</option>
+                                    <option value=121>供应</option>
+                                    <option value=199>其它</option>
+                                  </select></p>
+			<p style="margin:2"><span class="span80">法　人：</span><INPUT datasrc="#组织机构Tab" datafld="法人" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" /></p>
+			<p style="margin:2"><span class="span80">联系人：</span><INPUT datasrc="#组织机构Tab" datafld="联系人" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" /></p>
+			<p style="margin:2"><span class="span80">地　址：</span><INPUT datasrc="#组织机构Tab" datafld="地址" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" /></p>
+			<p style="margin:2"><span class="span80">区　号：</span><INPUT datasrc="#组织机构Tab" datafld="区号" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" /></p>
+			<p style="margin:2"><span class="span80">电　话：</span><INPUT datasrc="#组织机构Tab" datafld="电话" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" /></p>
+			<p style="margin:2"><span class="span80">邮　编：</span><INPUT datasrc="#组织机构Tab" datafld="邮编" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" /></p>
+			<p style="margin:2"><span class="span80">网　址：</span><INPUT datasrc="#组织机构Tab" datafld="网址" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" /></p>
+			<p style="margin:2"><span class="span80">Email：</span><INPUT datasrc="#组织机构Tab" datafld="Email" class="xlandinput" style="WIDTH:60%;" type="text" size="11" name="姓名" /></p>
+			</fieldset>
+</div>
+<script type="text/javascript" charset="gb2312">ue_initsetup("组织机构管理")</script>
+  </body>
+</html>

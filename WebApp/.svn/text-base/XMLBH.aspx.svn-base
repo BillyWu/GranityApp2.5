@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Estar.WebApp.XMLBH" CodeFile="XMLBH.aspx.cs" %>

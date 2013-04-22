@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<trades_sold_get_response>
+  <trades list="true">
+    <trade>
+      <adjust_fee>0.00</adjust_fee>
+      <buyer_nick>huanwawa</buyer_nick>
+      <buyer_obtain_point_fee>0</buyer_obtain_point_fee>
+      <buyer_rate>false</buyer_rate>
+      <cod_fee>0.00</cod_fee>
+      <cod_status>NEW_CREATED</cod_status>
+      <created>2011-04-29 17:43:24</created>
+      <discount_fee>0.00</discount_fee>
+      <modified>2011-04-29 17:49:36</modified>
+      <orders list="true">
+        <order>
+          <adjust_fee>-711.00</adjust_fee>
+          <buyer_rate>false</buyer_rate>
+          <discount_fee>0.00</discount_fee>
+          <num>1</num>
+          <num_iid>10184078061</num_iid>
+          <oid>74126895058147</oid>
+          <payment>79.00</payment>
+          <pic_path>http://img03.taobaocdn.com/bao/uploaded/i3/T1HJ5XXctuXXcEdN.4_053258.jpg</pic_path>
+          <price>790.00</price>
+          <refund_status>NO_REFUND</refund_status>
+          <seller_rate>false</seller_rate>
+          <seller_type>C</seller_type>
+          <sku_id>10816107949</sku_id>
+          <sku_properties_name>颜色分类:黑色;尺码:M</sku_properties_name>
+          <status>WAIT_SELLER_SEND_GOODS</status>
+          <title>PASSIONBREAK 越驭 简洁大方 帅气立领真皮女皮衣 特价pbd91-40</title>
+          <total_fee>79.00</total_fee>
+        </order>
+        <order>
+          <adjust_fee>-891.00</adjust_fee>
+          <buyer_rate>false</buyer_rate>
+          <discount_fee>0.00</discount_fee>
+          <num>1</num>
+          <num_iid>10184645407</num_iid>
+          <oid>74126895078147</oid>
+          <payment>99.00</payment>
+          <pic_path>http://img02.taobaocdn.com/bao/uploaded/i2/T14MiXXedkXXXzGa.4_051800.jpg</pic_path>
+          <price>990.00</price>
+          <refund_status>NO_REFUND</refund_status>
+          <seller_rate>false</seller_rate>
+          <seller_type>C</seller_type>
+          <sku_id>10812569583</sku_id>
+          <sku_properties_name>颜色:白兰地色;尺码:170/88(M)</sku_properties_name>
+          <status>WAIT_SELLER_SEND_GOODS</status>
+          <title>passionbreak PBU91Z-17 真皮皮衣男款 羊皮小立领皮夹克</title>
+          <total_fee>99.00</total_fee>
+        </order>
+      </orders>
+      <pay_time>2011-04-29 17:49:36</pay_time>
+      <payment>178.00</payment>
+      <point_fee>0</point_fee>
+      <post_fee>0.00</post_fee>
+      <real_point_fee>0</real_point_fee>
+      <received_payment>0.00</received_payment>
+      <receiver_address>余姚市余姚中国塑料城路东28号万里塑料商行</receiver_address>
+      <receiver_city>宁波市</receiver_city>
+      <receiver_district>余姚市</receiver_district>
+      <receiver_mobile>13706745161</receiver_mobile>
+      <receiver_name>徐夏芬</receiver_name>
+      <receiver_state>浙江省</receiver_state>
+      <receiver_zip>315400</receiver_zip>
+      <seller_nick>cherrish07</seller_nick>
+      <seller_rate>false</seller_rate>
+      <shipping_type>free</shipping_type>
+      <sid>74126895038147</sid>
+      <status>WAIT_SELLER_SEND_GOODS</status>
+      <tid>74126895038147</tid>
+      <title>哈弗林格鞋业专营店</title>
+      <total_fee>1780.00</total_fee>
+      <type>fixed</type>
+    </trade>
+    <trade>
+      <adjust_fee>0.00</adjust_fee>
+      <buyer_nick>l707182282</buyer_nick>
+      <buyer_obtain_point_fee>0</buyer_obtain_point_fee>
+      <buyer_rate>true</buyer_rate>
+      <cod_fee>0.00</cod_fee>
+      <cod_status>NEW_CREATED</cod_status>
+      <consign_time>2011-01-24 16:32:20</consign_time>
+      <created>2011-01-05 15:01:38</created>
+      <discount_fee>0.00</discount_fee>
+      <end_time>2011-01-25 20:11:32</end_time>
+      <modified>2011-02-07 15:35:53</modified>
+      <num>1</num>
+      <num_iid>8544021287</num_iid>
+      <orders list="true">
+        <order>
+          <adjust_fee>0.00</adjust_fee>
+          <buyer_rate>true</buyer_rate>
+          <discount_fee>0.00</discount_fee>
+          <num>1</num>
+          <num_iid>8544021287</num_iid>
+          <oid>60289461110547</oid>
+          <outer_iid>BRM-101A</outer_iid>
+          <payment>37.00</payment>
+          <pic_path>http://img04.taobaocdn.com/bao/uploaded/i4/T1zxBSXi4CXXcfpKEY_025913.jpg</pic_path>
+          <price>31.00</price>
+          <refund_status>NO_REFUND</refund_status>
+          <seller_rate>true</seller_rate>
+          <seller_type>C</seller_type>
+          <status>TRADE_FINISHED</status>
+          <title>外贸厂商直销品牌电源插座2位3位接线板BRM-101A</title>
+          <total_fee>31.00</total_fee>
+        </order>
+      </orders>
+      <pay_time>2011-01-05 15:02:07</pay_time>
+      <payment>37.00</payment>
+      <pic_path>http://img04.taobaocdn.com/bao/uploaded/i4/T1zxBSXi4CXXcfpKEY_025913.jpg</pic_path>
+      <point_fee>0</point_fee>
+      <post_fee>6.00</post_fee>
+      <price>31.00</price>
+      <real_point_fee>0</real_point_fee>
+      <received_payment>37.00</received_payment>
+      <receiver_address>前兴路光辉城市3C-503</receiver_address>
+      <receiver_city>昆明市</receiver_city>
+      <receiver_district>西山区</receiver_district>
+      <receiver_mobile>15911667258</receiver_mobile>
+      <receiver_name>李晓静</receiver_name>
+      <receiver_phone>0871-4639148</receiver_phone>
+      <receiver_state>云南省</receiver_state>
+      <receiver_zip>650000</receiver_zip>
+      <seller_nick>cherrish07</seller_nick>
+      <seller_rate>true</seller_rate>
+      <shipping_type>post</shipping_type>
+      <sid>60289461110547</sid>
+      <status>TRADE_FINISHED</status>
+      <tid>60289461110547</tid>
+      <title>哈弗林格鞋业专营店</title>
+      <total_fee>31.00</total_fee>
+      <type>fixed</type>
+    </trade>
+  </trades>
+  <total_results>2</total_results>
+</trades_sold_get_response>

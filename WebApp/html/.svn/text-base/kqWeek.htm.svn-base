@@ -1,0 +1,153 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <title>考勤周报</title>
+    <base target="_self" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/hmstyle.css" type="text/css" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+
+    <link id="cssGlobe" href="../html/skin/globle.css" type="text/css" rel="stylesheet" />
+    <link href="../html/skin/skin_gold.css" rel="stylesheet" type="text/css" id="lnkSkin" />
+
+    <script type="text/javascript">
+      var mband,tband,hband;
+      function initWin()
+      {
+        mband = $band("考勤周报");if(!mband){alert("项目：考勤周报！");return;}
+        $loading();
+        mband.gridtype = 7; mband.freecols = "名称";mband.title = "";mband.minwidth = "60px";mband.editdict=true;
+        if(!mband.Grid) var Grid = new XGrid("dvmband",mband,"in",null,1);      
+        mband.XQuery();
+        $loading("none");
+        initdepts();
+      }
+        //部门
+      function initdepts()
+      {
+        var band=$band("部门列表");
+        band.XQuery();
+        var len = band.RecordCount();
+        var el = document.getElementById("dept");
+        var itemnull = new Option('', '');
+        el.options.add(itemnull);
+        for (var i = 0; i < len; i++)
+        {
+            var code = band.getFldStrValue("部门", i);
+            var val  = band.getFldStrValue("名称", i);
+            var item =new Option(val, code);
+            el.options.add( item );
+        }
+      }
+        //条件时间查询 
+       function ue_Time(isprint)
+        {
+            var xmldoc=document.UnitItem.ParamXmldoc;
+            var dt0=document.getElementById("sdt").value;
+            if(dt0=="") document.getElementById("sdt").value=new Date().formate("yyyy-MM-dd");
+            dt0 = document.getElementById("sdt").value;
+            var dept=document.getElementById("dept").value;
+            ToolUtil.setParamValue(xmldoc, "开始日期", dt0, "", "P", null, "C");
+             ToolUtil.setParamValue(xmldoc, "部门", dept, "", "P", null, "C");
+            $band("考勤周报").XQuery(true);
+        }
+        //打印
+        function tp_print()
+        {	
+            var ob= $band("考勤周报");
+            var sum=ob.getFldStrValue("RecordCount", 0, "sum");
+            var dt0=document.getElementById("sdt").value;
+            if(dt0=="") document.getElementById("sdt").value=new Date().formate("yyyy-MM-dd");
+            dt0 = document.getElementById("sdt").value;
+            var dept=document.getElementById("dept").value;
+            var prn ="kqWeek.xml";
+            var ps  = "@开始日期="+dt0+",@部门="+dept+",@条件="+dt0+" — "+dept;
+                ps += ",@$LastRow=" + sum;
+            var src = "考勤周报.考勤周报;考勤周报.考勤周日期";
+            url=ue_path() + "/frmprintc.aspx?datasrc="+src+"&prn="+prn+"&pms="+ps+"&relation=考勤周日期.ID~考勤周报.ID";
+            window.open(url,"","height=100,width=100,left=0,top=0,menu=yes,status=yes,resizable=no,scrollbars=no");  
+	    } 
+    </script>
+
+</head>
+<body bgcolor="#edebe8" style="overflow: hidden; margin: 0px;" scroll="no">
+    <table border="0" width="99%" height="100%" cellpadding="0" style="border-collapse: collapse"
+        id="mainTable" align="center">
+        <tbody>
+            <tr style="height: 45px">
+                <td>
+                    <fieldset style="padding: 10; width: 99%; height: 100%; border: 1px inset">
+                        <legend style="padding: 1px;">周统计：</legend>
+                        <table align="center" cellspacing="0" bgcolor="#edebe8" bordercolorlight="white"
+                            bordercolordark="#C0C0C0" style="width: 100%; height: 30px; border: 1px inset"
+                            id="table1">
+                            <tr>
+                                <td align="right" width="79" style="height: 28px">
+                                    选择日期：</td>
+                                <td width="90" style="height: 28px">
+                                    <input id="sdt" type="text" class="xlanddate" style="width: 100%" /></td>
+                                <td align="right" style="width: 42px; height: 28px;">
+                                    部门：</td>
+                                <td align="center" width="150" style="height: 28px">
+                                    <select id="dept" style="width: 200">
+                                    </select>
+                                </td>
+                                <td style="height: 28px">
+                                    <input type="button" value="查询" name="B4" onclick="ue_Time();" style="width: 50px" />
+                                    <input type="button" value="打印" name="B3" class="standbtn" onclick="tp_print();"
+                                        style="width: 50px" />
+                                    <input type="button" value="退出" name="B3" class="standbtn" onclick="ms_close()" style="width: 53px" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <fieldset style="padding: 10; width: 99%; height: 98%; border: 1px inset">
+                        <legend style="padding: 1px;">查询清单</legend>
+                        <div id="dvmband" style="width: 100%; height: 97%">
+                        </div>
+                    </fieldset>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("考勤周报")</script>
+
+</body>
+</html>

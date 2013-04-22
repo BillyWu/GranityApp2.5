@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    	<script language="javascript" type="text/javascript">
+        	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;   		
+            -->
+    	</script>
+    </head>
+	<body>
+			<Control class="" catalog="GridLand.ascx" itemname="" id="MasterTab" name="">MasterTab
+			<Property name="tpfile" value="ControlTemplate/GridDef.htm" />
+				<Property name="width" value="100%" /><Property name="height" value="100%" /><Property name="hiddenhead" value="false" />
+				<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+			</Control>
+	</body>
+</html>

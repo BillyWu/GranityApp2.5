@@ -1,0 +1,964 @@
+
+
+//条码段要有的字段:单据编号,条码文本
+//明细段要有的字段:XS,S,M,L,XL,XXL,XXX;XS_T,S_T,M_T,L_T,XL_T,XXL_T,XXX_T;款号颜色条码;
+//itemNameD单据明细段;itemNameT条形码段;strcols:明细记录要记录入条码的字段:款号,颜色名称,零售价格,采购类型,折扣
+function ue_addTXM(itemNameD,itemNameT,strcols,srcsuf,destsuf,isRefreshTXM)
+{
+	if(event.keyCode!=13)	return;
+	var inputctrl=event.srcElement;
+	inputctrl.select();
+	var strAlertMsg="";
+	var mediaPlay=document.getElementById("MyMedia");
+	if(srcsuf=="undefined" || !srcsuf || ''==srcsuf)
+	     srcsuf="";
+	if(!destsuf || ''==destsuf || destsuf=="undefined")
+	    destsuf="_T";
+	var strcodeTM=transCode12(inputctrl.value);
+
+    //控制是否执行条码扫入
+	var bandPD=document.UnitItem.getBandByItemName(itemNameD);
+    var validatExp=inputctrl.getAttribute("validatexp");
+    if(validatExp && ""!=validatExp)
+    {
+        var val=bandPD.getExpValue(validatExp);
+        if(false==val)
+        {
+		    strAlertMsg="不通过校验";
+		    mediaPlay.FileName="Error.wav";
+		    mediaPlay.Play();
+		    return;
+        }
+    }
+	
+	//条码数据段band
+	var band=document.UnitItem.getBandByItemName(itemNameT);
+	if(band.RecordCount()<1)
+	    band.NewRecord();
+	if(band.RecordCount()<1)
+	    return;
+	var xmlNodeTM=band.XmlLandData.XMLDocument.selectSingleNode("/*/*/条码文本");
+    var re=new RegExp("\\b"+strcodeTM+"\\b","ig");
+	if(xmlNodeTM.text.search(re)>-1)
+	{
+		strAlertMsg="条码重复";
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	//款号颜色编码,尺码编码
+	var strCodeKC=strcodeTM.substr(0,6);
+	var strCodeSize=strcodeTM.substr(7,1);
+	var colNameSize="";
+	if('1'==strCodeSize)	colNameSize="XS";
+	if('2'==strCodeSize)	colNameSize="S";
+	if('3'==strCodeSize)	colNameSize="M";
+	if('4'==strCodeSize)	colNameSize="L";
+	if('5'==strCodeSize)	colNameSize="XL";
+	if('6'==strCodeSize)	colNameSize="XXL";
+	if('7'==strCodeSize)	colNameSize="XXXL";
+	if('8'==strCodeSize)	colNameSize="XXXXL";
+	if(""==colNameSize)
+	{
+		strAlertMsg="没有这个尺码的编号";
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	
+	//在明细单据数据中校验
+	//明细表单数据段
+	if(!bandPD.xmlGroupSum)
+	{
+	    var xsldiv=document.createElement("DIV");
+	    document.body.appendChild(xsldiv);
+	    xsldiv.innerHTML="<XML></XML>";
+	    xsldiv.style.display="none";
+	    bandPD.xmlGroupSum=xsldiv.firstChild;
+	}
+	var strGroupSum=bandPD.GroupSum("款号颜色条码");
+	if(strGroupSum=="") strGroupSum=bandPD.GroupSum("条码");
+	bandPD.xmlGroupSum.XMLDocument.loadXML(strGroupSum);
+	var xmlDocSum=bandPD.xmlGroupSum.XMLDocument;
+	var strXPath="/*/*[款号颜色条码='"+strCodeKC+"']/"+colNameSize+srcsuf;
+	if(strXPath=="")
+	    strXPath="/*/*[条码='"+strCodeKC+"']/"+colNameSize+srcsuf;
+	var xmld=xmlDocSum.selectSingleNode(strXPath);
+	var max=ToolUtil.Convert((!xmld)?"0":xmld.text, "int");
+
+    //款号颜色尺码编码,同款号颜色尺码数量
+    var strcode=strcodeTM.substr(0,8);
+    var re=new RegExp("\\b"+strcode,"ig");
+    var arryKCS=xmlNodeTM.text.match(re);
+	var iCountT=(!arryKCS)?1:arryKCS.length+1;
+	if(iCountT>max)
+	{
+		strAlertMsg="数量超限";
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	//条形码个数增加1
+	//单据编号;客户名称;采购类型;折扣金额;(条码记录单据信息)
+	var strDJBH="";var rowIndex=-1;
+	for(var i=0;i<bandPD.XmlLandData.recordset.recordCount;i++)
+	{
+	    var strValueK=bandPD.getFldStrValue("款号颜色条码",i);
+	    if(strValueK=="")
+	        strValueK=bandPD.getFldStrValue("条码",i);
+	    if(strValueK!=strCodeKC)    continue;
+	    var strValueSize=bandPD.getFldStrValue(colNameSize+srcsuf,i);
+	    var strValueSizeT=bandPD.getFldStrValue(colNameSize+destsuf,i);
+	    if(strValueSize==strValueSizeT)     continue;
+	    
+	    var ivalue=ToolUtil.Convert(strValueSize,"int");
+	    var ivalueT=ToolUtil.Convert(strValueSizeT,"int");
+	    if(ivalue<=ivalueT)     continue;
+	    strDJBH=bandPD.getFldStrValue("单据编号",i);
+	    rowIndex=i;
+	    //如果该款号颜色只有一条记录,那么尺码数量根据条形码个数确定;否则只能自增一
+	    var xmlNodesTest=bandPD.XmlLandData.XMLDocument.selectNodes("/*/*[款号颜色条码='"+strCodeKC+"']");
+	    if(!xmlNodesTest)
+	        xmlNodesTest=bandPD.XmlLandData.XMLDocument.selectNodes("/*/*[条码='"+strCodeKC+"']");
+	    if(xmlNodesTest.length>1)
+	        bandPD.setFldStrValue(i,colNameSize+destsuf,ivalueT+1);
+	    else
+	        bandPD.setFldStrValue(i,colNameSize+destsuf,iCountT);
+        if(isRefreshTXM)
+        {
+	        bandPD.setFldStrValue(i,"条码",strcodeTM);
+	        bandPD.setSelectContent("条码",i);
+	    }
+	    bandPD.CalXmlLand.Calculate(i);
+	    break;
+	}
+    if(bandPD.Grid) bandPD.Grid.Sum();
+    else    bandPD.Sum();
+	if(""==strDJBH) return;
+	
+	//条码明细增加条形码记录
+	//条码文本增加新的条码,款号,颜色,尺码信息
+	var strCols=(!strcols)?(new Array()):strcols.split(",");
+	if(""==xmlNodeTM.text)
+	{
+	    var strTMInfo = "\n条码\t\t";
+	    for(var i=0;i<strCols.length;i++)
+	        if(strCols[i] && ""!=strCols[i])
+	            strTMInfo += strCols[i]+"\t";
+	    xmlNodeTM.text=strTMInfo;
+	}
+	var strTMInfo="";
+	for(var i=0;i<strCols.length;i++)
+	    if(strCols[i] && ""!=strCols[i])
+	    {
+	        if("尺码"==strCols[i] || "尺码名称"==strCols[i])
+	            strTMInfo += colNameSize+"\t";
+	        else
+	            strTMInfo += bandPD.getFldStrValue(strCols[i],rowIndex)+"\t";
+	    }
+	xmlNodeTM.text += "\n"+strcodeTM+"\t"+strTMInfo;
+    var strState=xmlNodeTM.parentNode.getAttribute("state");
+    if(!strState || ""==strState)
+        xmlNodeTM.parentNode.setAttribute("state","modify");
+
+}
+
+//条码段要有的字段:单据编号,条码文本
+//明细段要有的字段:XS,S,M,L,XL,XXL,XXX;XS_T,S_T,M_T,L_T,XL_T,XXL_T,XXX_T;款号颜色条码
+//itemNameD单据明细段;itemNameT条形码段;strcols字段列表,明细记录要记录入条码明细的字段: 款号,颜色名称,零售价格,采购类型
+//不进行超限提示限制
+function ue_addTXMN(itemNameD,itemNameT,strcols,srcsuf,destsuf)
+{
+	if(event.keyCode!=13)	return;
+	var inputctrl=event.srcElement;
+	inputctrl.select();
+	var strAlertMsg="";
+	var mediaPlay=document.getElementById("MyMedia");
+	if(!srcsuf)     srcsuf="";
+	if(!destsuf)    destsuf="_T";
+	
+	var strcodeTM=transCode12(inputctrl.value);
+
+    //控制是否执行条码扫入
+	var bandPD=document.UnitItem.getBandByItemName(itemNameD);
+    var validatExp=inputctrl.getAttribute("validatexp");
+    if(validatExp && ""!=validatExp)
+    {
+        var val=bandPD.getExpValue(validatExp);
+        if(false==val)
+        {
+		    strAlertMsg="不通过校验";
+		    mediaPlay.FileName="Error.wav";
+		    mediaPlay.Play();
+		    return;
+        }
+    }
+
+	//条码数据段band
+	var band=document.UnitItem.getBandByItemName(itemNameT);
+	if(band.RecordCount()<1)
+	    band.NewRecord();
+	if(band.RecordCount()<1)
+	    return;
+	var xmlNodeTM=band.XmlLandData.XMLDocument.selectSingleNode("/*/*/条码文本");
+    var re=new RegExp("\\b"+strcodeTM+"\\b","ig");
+	if(xmlNodeTM.text.search(re)>-1)
+	{
+		strAlertMsg="条码重复";
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	//款号颜色编码,尺码编码
+	var strCodeKC=strcodeTM.substr(0,6);
+	var strCodeSize=strcodeTM.substr(7,1);
+	var colNameSize="";
+	if('1'==strCodeSize)	colNameSize="XS";
+	if('2'==strCodeSize)	colNameSize="S";
+	if('3'==strCodeSize)	colNameSize="M";
+	if('4'==strCodeSize)	colNameSize="L";
+	if('5'==strCodeSize)	colNameSize="XL";
+	if('6'==strCodeSize)	colNameSize="XXL";
+	if('7'==strCodeSize)	colNameSize="XXXL";
+	if(""==colNameSize)
+	{
+		strAlertMsg="没有这个尺码的编号";
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	
+	//在明细单据数据中校验
+	//明细表单数据段
+	var bandPD=document.UnitItem.getBandByItemName(itemNameD);
+	if(!bandPD.xmlGroupSum)
+	{
+	    var xsldiv=document.createElement("DIV");
+	    document.body.appendChild(xsldiv);
+	    xsldiv.innerHTML="<XML></XML>";
+	    xsldiv.style.display="none";
+	    bandPD.xmlGroupSum=xsldiv.firstChild;
+	}
+	var strGroupSum=bandPD.GroupSum("款号颜色条码");
+	bandPD.xmlGroupSum.XMLDocument.loadXML(strGroupSum);
+	var xmlDocSum=bandPD.xmlGroupSum.XMLDocument;
+	var strXPath="/*/*[款号颜色条码='"+strCodeKC+"']/"+colNameSize+srcsuf;
+	var xmld=xmlDocSum.selectSingleNode(strXPath);
+
+    //款号颜色尺码编码,同款号颜色尺码数量
+    var strcode=strcodeTM.substr(0,8);
+    var re=new RegExp("\\b"+strcode,"ig");
+    var arryKCS=xmlNodeTM.text.match(re);
+	var iCountT=(!arryKCS)?1:arryKCS.length+1;
+	//条形码个数增加1
+	//单据编号;客户名称;采购类型;折扣金额;(条码记录单据信息)
+	var strDJBH="";var rowIndex=-1;
+	for(var i=0;i<bandPD.XmlLandData.recordset.recordCount;i++)
+	{
+	    var strValueK=bandPD.getFldStrValue("款号颜色条码",i);
+	    if(strValueK!=strCodeKC)    continue;
+	    var strValueSize=bandPD.getFldStrValue(colNameSize+srcsuf,i);
+	    var strValueSizeT=bandPD.getFldStrValue(colNameSize+destsuf,i);
+	    //在盘点时不需要限制条码扫描的最大数
+	    //if(strValueSize==strValueSizeT)     continue;
+	    
+	    var ivalue=ToolUtil.Convert(strValueSize,"int");
+	    var ivalueT=ToolUtil.Convert(strValueSizeT,"int");
+	    //if(ivalue<=ivalueT)     continue;
+	    strDJBH=bandPD.getFldStrValue("单据编号",i);
+	    rowIndex=i;
+	    //如果该款号颜色只有一条记录,那么尺码数量根据条形码个数确定;否则只能自增一
+	    var xmlNodesTest=bandPD.XmlLandData.XMLDocument.selectNodes("/*/*[款号颜色条码='"+strCodeKC+"']");
+	    if(xmlNodesTest.length>1)
+	        bandPD.setFldStrValue(i,colNameSize+destsuf,ivalueT+1);
+	    else
+	        bandPD.setFldStrValue(i,colNameSize+destsuf,iCountT);
+	    bandPD.CalXmlLand.Calculate(i);
+	    break;
+	}
+	bandPD.Grid.Sum();
+	if(""==strDJBH) return;
+	
+	//条码明细增加条形码记录
+	//条码文本增加新的条码,款号,颜色,尺码信息
+	var strCols=(!strcols)?(new Array()):strcols.split(",");
+	if(""==xmlNodeTM.text)
+	{
+	    var strTMInfo = "\n条码\t\t";
+	    for(var i=0;i<strCols.length;i++)
+	        if(strCols[i] && ""!=strCols[i])
+	            strTMInfo += strCols[i]+"\t";
+	    xmlNodeTM.text=strTMInfo;
+	}
+	var strTMInfo="";
+	for(var i=0;i<strCols.length;i++)
+	    if(strCols[i] && ""!=strCols[i])
+	    {
+	        if("尺码"==strCols[i] || "尺码名称"==strCols[i])
+	            strTMInfo += colNameSize+"\t";
+	        else
+	            strTMInfo += bandPD.getFldStrValue(strCols[i],rowIndex)+"\t";
+	    }
+	xmlNodeTM.text += "\n"+strcodeTM+"\t"+strTMInfo;
+    var strState=xmlNodeTM.parentNode.getAttribute("state");
+    if(!strState || ""==strState)
+        xmlNodeTM.parentNode.setAttribute("state","modify");
+
+}
+
+//校验条码,采用12位条码,包含了扫描枪不读前置0,以及国际13位商品码的处理
+//刷入条形码,生成对应的款号尺码单据记录形式,条形码采用12位,兼容最后一位是校验码的
+//因为尺码占两位,所以第6位一定是0
+//主要利用了尺码是两位码,第一位是0的特点
+//无效码,返回""
+function  transCode12(strcode)
+{
+	var strOrgTM=strcode;
+	var strAlertMsg="";
+	
+	if(13==strOrgTM.length)
+	    strOrgTM=strOrgTM.substr(0,12);
+	else if(12>strOrgTM.length)
+	{
+	    if("0"==strOrgTM.substr(strOrgTM.length-6,1))
+	        strOrgTM=("0000"+strOrgTM).substr(strOrgTM.length-8,12);
+	    else
+	        strOrgTM=("0000"+strOrgTM).substr(strOrgTM.length-9,12);
+	}
+	if(12==strOrgTM.length && "0"!=strOrgTM.substr(6,1))
+	    strOrgTM=("0"+strOrgTM).substr(0,12);
+    else if(12!=strOrgTM.length)
+    {
+	    var mediaPlay=document.getElementById("MyMedia");
+		var strAlertMsg="异常条码";
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return "";
+    }
+    return strOrgTM;
+}
+
+//新的方式条码段以大文本方式存放,后台处理为原来的记录方式存放
+//大文本存放的方式有的字段:单据编号,条码文本
+//新的方式条码段使用文本区功能实现,文本区只读,条码只做增加和删除;增加条码放入显示的文本区
+//明细段要有的字段:XS,S,M,L,XL,XXL,XXX;款号颜色条码;
+//itemNameD单据明细段;itemNameT条形码段;fldsuffix尺码字段的后缀字符:如:"_T"
+//strcols需要条码文本记录的字段;isRefreshTXM是否对于每一个条码都级联更新"条码"字段,默认false不需要
+function ue_addTXM2DJ(itemNameD,itemNameT,fldsuffix,strcols,isRefreshTXM)
+{
+	if(event.keyCode!=13)	return;
+	var inputctrl=event.srcElement;
+	inputctrl.select();
+	var strcodeTM=transCode12(inputctrl.value);
+
+    if(!fldsuffix)  fldsuffix="";
+	var strAlertMsg="";
+	var mediaPlay=document.getElementById("MyMedia");
+	//条码数据段band
+	var band=document.UnitItem.getBandByItemName(itemNameT);
+	if(band.RecordCount()<1)
+	    band.NewRecord();
+	if(band.RecordCount()<1)
+	    return;
+	var xmlNodeTM=band.XmlLandData.XMLDocument.selectSingleNode("/*/*/条码文本");
+    var re=new RegExp("\\b"+strcodeTM+"\\b","ig");
+	if(xmlNodeTM.text.search(re)>-1)
+	{
+		var strAlertMsg="条码重复";
+		inputctrl.select();
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	//款号颜色编码,尺码编码
+	var strCodeKC=strcodeTM.substr(0,6);
+	var strCodeSize=strcodeTM.substr(7,1);
+	var colNameSize="";
+	if('1'==strCodeSize)	colNameSize="XS";
+	if('2'==strCodeSize)	colNameSize="S";
+	if('3'==strCodeSize)	colNameSize="M";
+	if('4'==strCodeSize)	colNameSize="L";
+	if('5'==strCodeSize)	colNameSize="XL";
+	if('6'==strCodeSize)	colNameSize="XXL";
+	if('7'==strCodeSize)	colNameSize="XXXL";
+	if(""==colNameSize)
+	{
+		strAlertMsg="没有这个尺码的编号";
+		inputctrl.select();
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	//明细尺码字段
+	var strSize=colNameSize;
+	colNameSize=colNameSize+fldsuffix;
+    
+	//明细表单数据段,条形码个数,沒有对应款号颜色的增加新记录
+	var bandPD=document.UnitItem.getBandByItemName(itemNameD);
+	var strXPath="/*/*[款号颜色条码='"+strCodeKC+"']/"+colNameSize;
+	var xmld=bandPD.XmlLandData.XMLDocument.documentElement.selectSingleNode(strXPath);
+	if(xmld)
+	{
+	    var rowIndex=-1;
+	    for(var i=0;i<bandPD.XmlLandData.XMLDocument.documentElement.childNodes.length;i++)
+	    {
+	        if(xmld.parentNode==bandPD.XmlLandData.XMLDocument.documentElement.childNodes[i])
+	        {
+	            rowIndex=i;break;
+	        }
+	    }
+	    //款号颜色尺码编码,同款号颜色尺码数量
+	    var strcode=strcodeTM.substr(0,8);
+	    var re=new RegExp("\\b"+strcode,"ig");
+        var arryKCS=xmlNodeTM.text.match(re);
+        if(isRefreshTXM)
+        {
+	        bandPD.setFldStrValue(rowIndex,"条码",strcodeTM);
+	        bandPD.setSelectContent("条码",rowIndex);
+	    }
+	    bandPD.setFldStrValue(rowIndex,xmld.baseName,(!arryKCS)?1:arryKCS.length+1);
+	    bandPD.CalXmlLand.Calculate(rowIndex);
+	}else{
+	    //找到一个原来空行的记录
+	    var rowIndex=-1;
+	    for(var i=0;i<bandPD.XmlLandData.XMLDocument.documentElement.childNodes.length;i++)
+	    {
+	        var strKHYS=bandPD.getFldStrValue("款号颜色条码",i);
+	        if(!strKHYS || ""==strKHYS)
+	        { rowIndex=i;break;}
+	    }
+	    if(rowIndex<0)
+	    {
+	        bandPD.NewRecord();
+	        rowIndex=bandPD.XmlLandData.recordset.recordCount-1;
+		    if(bandPD.Grid)
+		        bandPD.Grid.setRowCursor();
+		    bandPD.setCurrentRow(rowIndex);
+	    }
+	    bandPD.setFldStrValue(rowIndex,"条码",strcodeTM);
+	    bandPD.setSelectContent("条码",rowIndex);
+	    //检查款号,颜色是否有效
+	    var strKHYS=bandPD.getFldStrValue("款号颜色条码",rowIndex);
+	    if(!strKHYS || ""==strKHYS)
+	    {
+	        //款号,颜色无效,该记录设置为空记录
+	        bandPD.setFldStrValue(rowIndex,"条码","");
+		    strAlertMsg="款号,颜色编码无效";
+		    inputctrl.select();
+		    mediaPlay.FileName="Error.wav";
+		    mediaPlay.Play();
+		    return;
+	    }
+	    bandPD.setFldStrValue(rowIndex,colNameSize,1);
+	    bandPD.CalXmlLand.Calculate(rowIndex);
+	}
+	bandPD.Grid.Sum();
+	
+	//条码文本增加新的条码,款号,颜色,尺码信息
+	var strCols=(!strcols)?(new Array()):strcols.split(",");
+	if(""==xmlNodeTM.text)
+	{
+	    var strTMInfo = "\n条码\t\t";
+	    for(var i=0;i<strCols.length;i++)
+	        if(strCols[i] && ""!=strCols[i])
+	            strTMInfo += strCols[i]+"\t";
+	    xmlNodeTM.text=strTMInfo;
+	}
+	var strTMInfo="";
+	for(var i=0;i<strCols.length;i++)
+	    if(strCols[i] && ""!=strCols[i])
+	    {
+	        if("尺码"==strCols[i] || "尺码名称"==strCols[i])
+	            strTMInfo += colNameSize+"\t";
+	        else
+	            strTMInfo += bandPD.getFldStrValue(strCols[i],rowIndex)+"\t";
+	    }
+	xmlNodeTM.text += "\n"+strcodeTM+"\t"+strTMInfo;
+    var strState=xmlNodeTM.parentNode.getAttribute("state");
+    if(!strState || ""==strState)
+        xmlNodeTM.parentNode.setAttribute("state","modify");
+}
+
+//原来方式
+//刷入条形码,生成对应的款号尺码单据记录形式
+//条码段要有的字段:款号颜色尺码条码,商品条码,商品条码旧
+//明细段要有的字段:XS,S,M,L,XL,XXL,XXX;款号颜色条码;款号颜色条码旧
+//itemNameD单据明细段;itemNameT条形码段;fldsuffix尺码字段的后缀字符:如:"_T"
+function XXue_addTXM2DJ(itemNameD,itemNameT,fldsuffix)
+{
+	if(event.keyCode!=13)	return;
+	var inputctrl=event.srcElement;
+	var strOrgTM=inputctrl.value;
+	
+	if(13==inputctrl.value.length)
+	    strOrgTM=inputctrl.value.substr(0,12);
+	else if(12>inputctrl.value.length)
+	    strOrgTM=("0000"+inputctrl.value).substr(inputctrl.value.length-9,12);
+	else if(12==inputctrl.value.length && "0"!=inputctrl.value.substr(6,1))
+	    strOrgTM=("0"+inputctrl.value).substr(0,12);
+	if(12==strOrgTM.length)
+	    var strcodeTM=transNew14Data(strOrgTM);
+	else
+	    var strcodeTM=strOrgTM;
+	if(""==strcodeTM || 14!=strcodeTM.length)
+	   return;
+    if(!fldsuffix)  fldsuffix="";
+	var strAlertMsg="";
+	var mediaPlay=document.getElementById("MyMedia");
+	//条码数据段band
+	var band=document.UnitItem.getBandByItemName(itemNameT);
+	var xmlNodeTest=band.XmlLandData.XMLDocument.documentElement.selectSingleNode("/*/*[商品条码='"+strcodeTM+"']");
+	if(xmlNodeTest && "0000"!=strcodeTM.substr(10,4))
+	{
+		var strAlertMsg="条码重复";
+		inputctrl.select();
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	var strcode=strcodeTM.substr(0,10);
+	var strXPath="/*/*[款号颜色尺码条码='"+strcode+"']";
+	//款号颜色编码,尺码编码
+	var strCodeKC=strcodeTM.substr(0,9);
+	var strCodeSize=strcodeTM.substr(9,1);
+	var colNameSize="";
+	if('1'==strCodeSize)	colNameSize="XS";
+	if('2'==strCodeSize)	colNameSize="S";
+	if('3'==strCodeSize)	colNameSize="M";
+	if('4'==strCodeSize)	colNameSize="L";
+	if('5'==strCodeSize)	colNameSize="XL";
+	if('6'==strCodeSize)	colNameSize="XXL";
+	if('7'==strCodeSize)	colNameSize="XXXL";
+	if(""==colNameSize)
+	{
+		strAlertMsg="没有这个尺码的编号";
+		inputctrl.select();
+		mediaPlay.FileName="Error.wav";
+		mediaPlay.Play();
+		return;
+	}
+	colNameSize=colNameSize+fldsuffix;
+	var xmlnodes=band.XmlLandData.XMLDocument.documentElement.selectNodes(strXPath);
+
+	strXPath="/*/*[款号颜色条码='"+strCodeKC+"']/"+colNameSize;
+	//明细表单数据段,条形码个数,沒有对应款号颜色的增加新记录
+	var bandPD=myUnitItem.getBandByItemName(itemNameD);
+	var xmld=bandPD.XmlLandData.XMLDocument.documentElement.selectSingleNode(strXPath);
+	if(xmld)
+	{
+	    var rowIndex=-1;
+	    for(var i=0;i<bandPD.XmlLandData.XMLDocument.documentElement.childNodes.length;i++)
+	    {
+	        if(xmld.parentNode==bandPD.XmlLandData.XMLDocument.documentElement.childNodes[i])
+	        {
+	            rowIndex=i;break;
+	        }
+	    }
+	    bandPD.setFldStrValue(rowIndex,xmld.baseName,xmlnodes.length+1);
+	    bandPD.CalXmlLand.Calculate(rowIndex);
+	}else{
+	    //找到一个原来空行的记录
+	    var rowIndex=-1;
+	    for(var i=0;i<bandPD.XmlLandData.XMLDocument.documentElement.childNodes.length;i++)
+	    {
+	        var strKHYS=bandPD.getFldStrValue("款号颜色条码",i);
+	        if(!strKHYS || ""==strKHYS)
+	        { rowIndex=i;break;}
+	    }
+	    if(rowIndex<0)
+	    {
+	        bandPD.NewRecord();
+	        rowIndex=bandPD.XmlLandData.recordset.recordCount-1;
+		    if(bandPD.Grid)
+		        bandPD.Grid.setRowCursor();
+		    bandPD.setCurrentRow(rowIndex);
+	    }
+	    bandPD.setFldStrValue(rowIndex,"条码",strcodeTM);
+	    bandPD.setSelectContent("条码",rowIndex);
+	    //检查款号,颜色是否有效
+	    var strKHYS=bandPD.getFldStrValue("款号颜色条码",rowIndex);
+	    if(!strKHYS || ""==strKHYS)
+	    {
+	        //款号,颜色无效,该记录设置为空记录
+	        bandPD.setFldStrValue(rowIndex,"条码","");
+		    strAlertMsg="款号,颜色编码无效";
+		    inputctrl.select();
+		    mediaPlay.FileName="Error.wav";
+		    mediaPlay.Play();
+		    return;
+	    }
+	    bandPD.setFldStrValue(rowIndex,colNameSize,1);
+	    bandPD.CalXmlLand.Calculate(rowIndex);
+	}
+	bandPD.Grid.Sum();
+	band.NewRecord();
+	band.setCurrentRow();
+	band.setFldStrValue(band.XmlLandData.recordset.recordCount-1,"商品条码",strcodeTM);
+	band.setSelectContent("商品条码",null);
+	band.CalXmlLand.Calculate();
+	if(12==strOrgTM.length)
+	    band.setFldStrValue(band.XmlLandData.recordset.recordCount-1,"商品条码旧",strOrgTM);
+	inputctrl.select();
+}
+
+
+//新的方式条码段以大文本方式存放,后台处理为原来的记录方式存放
+//大文本存放的方式有的字段:单据编号,条码文本
+//新的方式条码段使用文本区功能实现,文本区只读,条码只做增加和删除;增加条码放入显示的文本区
+//明细段要有的字段:XS,S,M,L,XL,XXL,XXX;款号颜色条码;
+//itemNameD单据明细段;itemNameT条形码段;fldsuffix尺码字段的后缀字符:如:"_T"
+//strcols需要条码文本记录的字段;isRefreshTXM是否对于每一个条码都级联更新"条码"字段,默认false不需要
+//根据条码文本刷新计算单据明细数据
+function ue_TXMCalDJ(itemNameD,itemNameT,fldsuffix)
+{
+	//条码数据段band
+	var band=document.UnitItem.getBandByItemName(itemNameT);
+	if(band.RecordCount()<1)    return;
+	var fldsuffix=fldsuffix?fldsuffix:'';
+	var xmlNodeTM=band.XmlLandData.XMLDocument.selectSingleNode("/*/*/条码文本");
+ 	//明细表单数据段,条形码个数,沒有对应款号颜色的增加新记录
+	var bandPD=document.UnitItem.getBandByItemName(itemNameD);
+    
+    var arrySize=new Array("S","M","L","XL","XXL","XXXL");
+    var icount=bandPD.RecordCount();
+    for(var i=0;i<icount;i++)
+    {
+        var strCodeKC=bandPD.getFldStrValue("款号颜色条码",i);
+        for(var j=0;j<arrySize.length;j++)
+        {
+	        //款号颜色尺码编码,同款号颜色尺码数量
+	        var strXPath="/*/*[款号颜色条码='"+strCodeKC+"']/"+arrySize[j]+fldsuffix;
+	        var xmld=bandPD.XmlLandData.XMLDocument.documentElement.selectSingleNode(strXPath);
+	        if(!xmld)   continue;
+	        var strcode=strCodeKC+'0'+(j+2);
+	        var re=new RegExp("\\b"+strcode,"ig");
+            var arryKCS=xmlNodeTM.text.match(re);
+	        bandPD.setFldStrValue(i,xmld.baseName,(!arryKCS)?0:arryKCS.length);
+        }
+        bandPD.CalXmlLand.Calculate(i);
+    }
+    
+}
+//-------- 拣货,客服销售配货 函数 ---------------------//
+    //在单据内加入条形码的对应的数量加一
+    //单据要有的字段：商品编码/款号/款号颜色条码/颜色/尺码(S/M/L/XL/XXL/XXL值是字段数据值)；根据条码自动识别和增加
+    // 参数： itemname:单据项名称；fldsize:尺码字段, fldsrc:原数量；flddest:实际扫条码数量；txmlist:条形码列表元素； colsfill:填充列表使用的字段
+    //          如果fldsrc/flddest相同则不对数量做对比。
+    var barlen = 16;
+    function usAddTXMFld(itemname, fldsize, fldsrc, flddest, txmlist, colsfill) 
+    {
+        var el = event.srcElement;
+        if (event.keyCode != 13 || el.value=="") return;
+        el.value = barTrue(el.value);
+        el.select();
+        if (!el.value || el.value.length !=15)
+            return;
+        var hashj = false;
+        if ($band("master"))
+            hashj = $band("master").Val("有货架");
+        if (txtHjh && ("1" == hashj || "true" == hashj))
+            hashj = true;
+        else
+            hashj = false;
+        var txtHjh = $("txtHjh");
+        if (txtHjh && !txtHjh.value && hashj)
+        {
+            alert("请选择要放置商品的货架号!");
+            return;
+        }
+        var txmcode = el.value;
+        //检查是否重复
+        var txmlist = $(txmlist);
+        var re = new RegExp("\\b" + txmcode + "\\b", "ig");
+        for (var i = 0; i < txmlist.options.length; i++)
+        {
+            if (txmlist.options[i].text.search(re) < 0)
+                continue;
+            return msgTxm("条码重复", true);
+        }
+        //检查尺码
+        var strKC = txmcode.substr(0, 11);
+        var strSize = txmcode.substr(10, 1);
+        var colSize = ["", "XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+        if (!colSize[strSize])
+            return msgTxm("没有这个尺码的编号", true);
+        colSize = colSize[strSize];
+        //检查单据内条码信息
+        var band = $band(itemname);
+        var index = -1;
+        for (var i = 0, len = band.RecordCount(); i < len; i++)
+        {
+            var kc = band.getFldStrValue("条码", i);
+            if (strKC != kc) continue;  //条码不同,找下一条
+            if (colSize != band.getFldStrValue(fldsize, i)) //尺码不同,找下一个
+                continue;
+            //考虑有货架字段的情况
+            if (hashj && band.Val("货架号",i) != txtHjh.value)
+                continue;
+            index = i;
+            break;
+        }
+        if (index < 0)
+            return msgTxm("单据没有这个颜色的款号", true);
+        //依据条码文本列表统计同款号颜色尺码数量
+        var strKCS = txmcode.substr(0, 11);
+        var countT = 1;
+        var re = new RegExp("\\b" + strKCS + "\\w{4}\\b", "ig");
+        for (var i = 0; i < txmlist.options.length; i++) {
+            var matchs = txmlist.options[i].text.match(re);
+            countT += !matchs ? 0 : matchs.length;
+        }
+        //在单据内更新款号颜色尺码数量,单据内同款号颜色重复多次则条码只自动填充第一个记录
+        if (fldsrc != flddest)
+        {
+            var isrc = ToolUtil.Convert(band.getFldStrValue(fldsrc, index), "int");
+            var idest = ToolUtil.Convert(band.getFldStrValue(flddest, index), "int");
+            if (isrc <= idest)
+                return msgTxm("数量超限", true);
+        }
+        band.setFldStrValue(index, flddest, countT);
+        if (band.Grid) band.Grid.Sum();
+        if($("message")) $("message").innerHTML = "OK!";
+        //条码列表文本中添加条码信息
+        var len = txmlist.options.length = txmlist.options.length + 1;
+        var cols = colsfill.split(",");
+        for (var i = 0; i < cols.length; i++)
+        {
+            if ("尺码" == cols[i] || "尺码名称" == cols[i])
+                txmcode += "    " + colSize;
+            else
+                txmcode += "    " + band.getFldStrValue(cols[i], index);
+        }
+        if (txtHjh && txtHjh.value)
+            txmcode += "    " + txtHjh.value;
+        txmlist.options[len - 1].text = txmcode;
+        txmlist.options[len - 1].value=el.value;
+        
+    }
+    function msgTxm(msg, isalert)
+    {
+        if (!isalert) return;
+        if ($("message")) $("message").innerHTML = '<IMG src="images/warning.png" border="0" style="vertical-align:middle"/>&nbsp;' + msg + "!";
+        var mediaplay = $("MyMedia");
+        mediaplay.FileName = "../Error.wav";
+        mediaplay.Play();
+    }
+    
+    //在单据内加入条形码的对应的数量加一
+    //单据要有的字段：商品编码/款号/款号颜色条码/颜色/S/M/L/XL/XXL/XXL；根据条码自动识别和增加
+    // 参数： detail:单据项名称；hjdetail:货架明细名称；srcsuff:尺码字段源字段后缀(如X1之"1")； destsuff:尺码字段目的字段后缀(如X2之"2")；txmlist:条形码列表元素； colsfill:填充列表使用的字段
+    //        如果srcsuff/destsuff相同则不对数量做对比。
+    //        colsfill有值则没有对应款号颜色时告警限定；为空则根据hjdetail自动生成
+        function usTxmDetail(detail, hjdetail, srcsuff, destsuff, txmlist, colsfill,needfld)
+        {
+        
+            if (event.keyCode != 13) return;
+            if(needfld)
+                if($band("master").Val(needfld)==""){alert("请指定" + needfld + "!");return}
+            var el = event.srcElement;
+            el.value = barTrue(el.value);
+            if (colsfill) el.select();
+            var txtHjh = $("txtHjh");
+            if(txtHjh){
+                if (!txtHjh.value && ($band("master").Val("有货架") == "1" || $band("master").Val("有货架") == "-1" || $band("master").Val("有货架") == "true"))
+                {
+                    alert("您已选择了按货架存放货品，请选择要放置商品的货架号!");
+                    return;
+                }
+                if ($band("master").Val("有货架") == "0" || $band("master").Val("有货架") == "false")
+                    txtHjh.value = $band("master").Val(needfld);
+            }
+            var txmcode = el.value;
+            if (!el.value || el.value.length != 15)
+                return msgTxm("条码不正确!", colsfill);
+            //检查是否重复
+            var txmlist = $(txmlist);
+            var re = new RegExp("\\b" + txmcode + "\\b", "ig");
+            for (var i = 0; colsfill && i < txmlist.options.length; i++)
+            {
+                if (txmlist.options[i].text.search(re) < 0)
+                    continue;
+                return msgTxm("条码重复", colsfill);
+            }
+            if(!isContain(txmcode,"bardata","条码"))
+                return msgTxm("条码不对应", colsfill);
+            //检查尺码
+            var strKC = txmcode.substr(0, 10);
+            var strSize = txmcode.substr(10, 1);
+            var colSize = "";
+            switch (strSize)
+            {
+                case "1": colSize = "XS"; break;
+                case "2": colSize = "S"; break;
+                case "3": colSize = "M"; break;
+                case "4": colSize = "L"; break;
+                case "5": colSize = "XL"; break;
+                case "6": colSize = "XXL"; break;
+                case "7": colSize = "XXXL"; break;
+                case "8": colSize = "XXXXL"; break;
+            }
+            if (!colSize)
+                return msgTxm("没有这个尺码的编号", colsfill);
+            //检查单据内条码信息
+            var band = $band(detail);
+            var index = -1;
+            for (var i = 0, len = band.RecordCount(); i < len; i++)
+            {
+                var kc = band.getFldStrValue("款号颜色条码", i);
+                if (strKC != kc) continue;
+                index = i;
+                break;
+            }
+            if (index < 0)
+                return msgTxm("单据没有这个颜色的款号", colsfill);
+            //依据条码文本列表统计同款号颜色尺码数量
+            var strKCS = txmcode.substr(0, 11);
+            var countT = colsfill ? 1 : 0;
+            var re = new RegExp("\\b" + strKCS + "\\w{4}\\b", "ig");
+            for (var i = 0; i < txmlist.options.length; i++)
+            {
+                var matchs = txmlist.options[i].text.match(re);
+                countT += !matchs ? 0 : 1;
+            }
+            band.setFldStrValue(index, colSize + (destsuff ? destsuff : ""), countT);
+            band.CalXmlLand.Calculate(index);
+            if (band.Grid) band.Grid.Sum();
+            if (!colsfill) return;
+            if($("message")) $("message").innerHTML = "OK!";
+
+            //条码列表文本中添加条码信息
+            var cols = colsfill.split(",");
+            for (var i = 0; i < cols.length; i++)
+            {
+                if ("尺码" == cols[i] || "尺码名称" == cols[i])
+                    txmcode += "    " + colSize;
+                else
+                    txmcode += "    " + band.getFldStrValue(cols[i], index);
+            }
+            if (txtHjh && txtHjh.value)
+                txmcode += "    " + txtHjh.value;
+            var len = txmlist.options.length = txmlist.options.length + 1;
+            txmlist.options[len - 1].text = txmcode;
+            try{
+            if(!window.strbars && window.strbars!="") return; 
+            strbars = strbars + ","+txmcode;
+            }catch(ex){};
+        }
+        function isContain(txm, band, fld)
+        {
+            if (!txm || !fld) return true;
+            var band = $band(band);
+            if (!band) return true;
+            var txmText = band.getFldStrValue(fld);
+            if (!txmText) return true;
+            var re = new RegExp("\\b" + txm + "\\b", "ig");
+            if (txmText.search(re)>-1)
+                return true;
+            return false;
+        }        
+
+    function op_search()
+    {
+        var s = txtbarlocate.value;
+        for(var m=0;m<oBarbox.options.length;m++)
+        {
+            var text = oBarbox.options[m].text;
+            var val  = oBarbox.options[m].value;
+            if(text.indexOf(s)>-1) {
+                oBarbox.options[m].selected=true;
+                break;
+            }
+        }
+    }     
+    function op_delete(suff)
+    {
+        var sl = oBarbox.options.selectedIndex;
+        sl = sl >= oBarbox.options.length ? oBarbox.options.length - 1 : sl < 0 ? 0 : sl;
+        if (sl < 0 || !oBarbox.options[sl]) return;
+        var txmKC = oBarbox.options[sl].text.substr(0, 11);
+        oBarbox.options.remove(sl);
+        //更新明细尺码数量
+        var strSize = txmKC.substr(10, 1);
+        txmKC = txmKC.substr(0, 10);
+        var size = ["", "XS"+suff, "S"+suff, "M"+suff, "L"+suff, "XL"+suff, "XXL"+suff, "XXXL"+suff, "XXXXL"+suff];
+        //检查单据内条码信息
+        var band = $band("detail");
+        var index = -1;
+        for (var i = 0, len = band.RecordCount(); i < len; i++)
+        {
+            var kc = band.getFldStrValue("款号颜色条码", i);
+            if (txmKC != kc) continue;
+            index = i;
+            break;
+        }
+        if (index < 0) return;
+        //依据条码文本列表统计同款号颜色尺码数量
+        var strKCS = txmKC + strSize;
+        var countT = 0;
+        var re = new RegExp("\\b" + strKCS + "\\w{4}\\b", "ig");
+        for (var i = 0; i < oBarbox.options.length; i++)
+        {
+            var matchs = oBarbox.options[i].text.match(re);
+            countT += !matchs ? 0 : 1;
+        }
+        band.setFldStrValue(index, size[strSize], countT);
+        band.CalXmlLand.Calculate(index);
+        if (band.Grid) band.Grid.Sum();
+
+        if (sl < oBarbox.options.length)
+            oBarbox.options[sl].selected = true;
+        else if (oBarbox.options.length > 0)
+            oBarbox.options[sl - 1].selected = true;
+    }        
+    //单个尺码方式
+    function op_sdelete(suff)
+    {
+        var sl = oBarbox.options.selectedIndex;
+        sl = sl >= oBarbox.options.length ? oBarbox.options.length - 1 : sl < 0 ? 0 : sl;
+        if (sl < 0 || !oBarbox.options[sl]) return;
+        var txmKC = oBarbox.options[sl].text.substr(0, 11);
+        oBarbox.options.remove(sl);
+        //更新明细尺码数量
+        var strSize = txmKC.substr(10, 1);
+        if(!suff) suff="";
+        var size = ["", "XS"+suff, "S"+suff, "M"+suff, "L"+suff, "XL"+suff, "XXL"+suff, "XXXL"+suff, "XXXXL"+suff];
+        //检查单据内条码信息
+        var band = $band("detail");
+        var index = -1;
+        for (var i = 0, len = band.RecordCount(); i < len; i++)
+        {
+            var kc = band.getFldStrValue("款号颜色条码", i);
+            var sT = band.getFldStrValue("尺码", i);
+            if (txmKC != kc || sT != size[strSize])
+                continue;
+            index = i;
+            break;
+        }
+        if (index < 0) return;
+        //依据条码文本列表统计同款号颜色尺码数量
+        txmKC = txmKC.substr(0, 10);
+        var strKCS = txmKC + strSize;
+        var countT = 0;
+        var re = new RegExp("\\b" + strKCS + "\\w{4}\\b", "ig");
+        for (var i = 0; i < oBarbox.options.length; i++)
+        {
+            var matchs = oBarbox.options[i].text.match(re);
+            countT += !matchs ? 0 : 1;
+        }
+        if (countT > -1)
+        {
+            band.setFldStrValue(index, "条码数量", countT);
+            band.CalXmlLand.Calculate(index);
+        } 
+        if (band.Grid) band.Grid.Sum();
+
+        if (sl < oBarbox.options.length)
+            oBarbox.options[sl].selected = true;
+        else if (oBarbox.options.length > 0)
+            oBarbox.options[sl - 1].selected = true;
+    }           
+
+     function barTrue(b)
+     {
+        if(b.length==16) b = b.substring(1,b.length);return b;
+     }

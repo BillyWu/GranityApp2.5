@@ -1,0 +1,898 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+	<HEAD>
+		<title>SQL查询设计器</title>
+		<meta content="JavaScript" name="vs_defaultClientScript">		
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<script language="javascript" src="../hmjs/scripts/Tables.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+		<STYLE>BODY { PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; PADDING-TOP: 0px }
+	INPUT { FONT-SIZE: 9pt; WIDTH: 50px; HEIGHT: 15pt }
+	TABLE { BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: #999999 1px solid; CURSOR: default; BORDER-BOTTOM: #999999 1px solid; BORDER-COLLAPSE: collapse; BACKGROUND-COLOR: #eeeecc; align: center }
+		</STYLE>
+		<script language="javascript" type="text/javascript">
+        var xmlhttp,xmldom,xmldata;
+        var gIndex=1;
+        var openerdata="";        
+        var Main_Tab    = null;
+        var cur_row	    = null;
+        var cur_col	    = null;
+        var cur_cell	= null;
+        var Org_con	= "";
+        var sort_col	= null;
+
+        var show_col	= false;
+        var charMode	= 1;
+        var act_bgc	= "#BEC5DE";
+        var act_fc	= "black";
+        var cur_bgc	= "#ccffcc";
+        var cur_fc	= "black";
+        var sysdb="";
+		function window.onload()
+		{
+			var ctrl=document.getElementById("Table1");
+			ctrl.height = screen.availHeight;
+			//ctrl.width = screen.availWidth;			
+			init();
+            sysdb = ue_getsysdb();
+			drag = document.createElement("DIV");
+			drag.innerHTML		= "";
+			drag.style.textAlign 	= "center";
+			drag.style.position 	= "absolute";
+			drag.style.cursor 	= "hand";
+			drag.style.border 	= "1 solid black";
+			drag.style.display 	= "none";
+			drag.style.zIndex 	= "999";
+			
+			document.body.insertBefore(drag);
+			drawTable(otbl); //创建表
+			readxml();		 //初始化	
+		}
+
+		function browser()
+		{
+		    if(showContent.value=="") {alert("请编写查询命令！");return;}
+		    var result=confirm(" 是否执行查询  ？     ");
+            if(!result) return;
+            var strsql=showContent.value;
+            var xmldata = ue_ajaxdom(strsql);
+            openerdata = xmldata.xml;
+            window.open("browser.htm");            
+		}
+        function DbAjaxdom(cmd,strdata)
+        {
+            if(!cmd) {alert("未确定要执行的命令！请检查");return};
+            var xmlhttp = CreateHTTP();
+            xmlhttp.open("POST",ue_path()+"/xmldataset.aspx",false);
+            var xmlparams = new ActiveXObject("Microsoft.XMLDOM")
+            xmlparams.async=false;
+            if(!strdata) strdata="";
+            var strxml = '<?xml version="1.0" encoding="utf-8"?>'+
+                        '<all><command>'+cmd+'</command><data>'+strdata+'</data></all>';
+            xmlparams.loadXML(strxml);
+            xmlhttp.send(xmlparams);
+            xmldata = xmlhttp.responseXML.documentElement;
+            return xmldata;
+        } 		
+		function readxml()
+		{
+            var xmldata = DbAjaxdom("querydb");
+            if(!xmldata || !xmldata.selectNodes("//table/svr") || xmldata.selectNodes("//table/svr").length==0) return;
+            //$("tbSvr").value = xmldata.selectNodes("//table/svr")[0].text;
+            userdb = xmldata.selectNodes("//table/userdb")[0].text;
+            sysdb = xmldata.selectNodes("//table/sysdb")[0].text;
+		
+            var strsql="EXECUTE "+sysdb+".[dbo].[proc_AllTableName] '"+sysdb+"','"+userdb+"'";
+            xmldom = ue_ajaxdom(strsql);
+			if(!document.getElementById("lstTab" + tabId)) return;
+			var nodes = xmldom.selectNodes("//table/name");
+			var tables = "";
+			for(var i=0;i<nodes.length;i++)
+			{
+			    tables = tables + "," + nodes[i].childNodes[0].text;
+			}
+			tables = tables.substr(1,tables.length-1);
+			var arrTab = tables.split(",");
+			document.getElementById("lstTab" + tabId).options.clear;
+			//填充表名
+			
+			setdropdownlistOptions(document.getElementById("lstTab" + tabId),arrTab.unique(),null,null);
+			exchangeTab();		
+		}	
+		
+		function addSQLrow(obj,id,fieldname)
+		{
+			var tabIndex = id.replace("lstFields","");
+			var type = obj.options[obj.selectedIndex].datatype;
+			add_sqlrow(Main_Tab,fieldname,type,document.getElementById("lstTab" + tabIndex).value);
+		}
+		
+        function add_sqlrow(the_table,strfield,type,tablename,datetype)
+        {
+	        event.cancelBubble=true;
+	        var the_row,the_cell;
+	        var ctrl_sl  = "<SELECT size='1' style='WIDTH: 70px;margin:-2px' name='D4' id='lstsort%%' onchange='setSortVal(this)'><OPTION selected></OPTION><OPTION value='ASC' >升序</OPTION><OPTION value='DESC'>降序</OPTION></SELECT>";
+	        var ctrl_sls = "<SELECT size='1' style='WIDTH: 70px;margin:-2px' name='D4' id='lstsorts%%'><OPTION>xx</OPTION></SELECT>";
+	        var ctrl_slg = "<SELECT size='1' style='WIDTH: 100%;margin:-2px' name='D4' id='lstgroup%%'><OPTION value=''></OPTION><OPTION value='Group By'>分组</OPTION><OPTION value='Count'>数量</OPTION><OPTION value='Min'>最小值</OPTION><OPTION value='Max'>最大值</OPTION><OPTION value='Sum'>求和</OPTION><OPTION value='Avg'>平均值</OPTION><OPTION value='distinct'>唯一</OPTION></SELECT>";
+	        var ctrl_chk = "<INPUT type='checkbox' CHECKED value='ON' name='C1' id='chk0'>";
+        	
+	        //记忆原值
+	        var arrOldValue = new Array();
+	        var itab=0;
+	        var str = "<OPTION value=''>未排序</OPTION>";
+	        for(var i=0;i<the_table.rows.length-1;i++)
+	        {	
+		        var ctrl = the_table.rows[i+1].cells[5].getElementsByTagName("SELECT")[0];
+		        if(ctrl!=null)
+		        {
+			        str = str  + "<OPTION value='"+ (itab+1) +"'>" + (itab+1) + "</OPTION>";
+			        arrOldValue[itab]= ctrl.value;
+			        itab = itab + 1;
+		        }
+	        }
+        	
+	        the_row = cur_row==null?-1:(cur_row+1);
+	        clear_color();
+	        var newrow=the_table.insertRow(the_row);
+	        if(strfield!="*(所有列)" && strfield!="*" && type!="guid" && type !="uniqueidentifier")
+		        str = str  + "<OPTION value='"+ (itab+1) +"'>" + (itab+1) + "</OPTION>";
+	        ctrl_sls = ctrl_sls.replace("<OPTION>xx</OPTION>",str);
+	        for (var i=0;i<the_table.rows[0].cells.length;i++)
+	        {
+		        the_cell=newrow.insertCell(i);
+        		
+		        switch(i)
+		        {
+			        case  0 :	
+				        the_cell.innerHTML =strfield;
+				        break;
+			        case  1 :	
+				        if(strfield!="*(所有列)") 
+					        the_cell.innerHTML = '<INPUT style="WIDTH: 100%; border-style:solid;border-width:1" type="text" value="'+ strfield +'" datatype="'+ type + '">';
+				        else 
+					        {
+						        strfield = strfield.replace("(所有列)","");
+						        the_cell.innerHTML = '<INPUT style="WIDTH: 100%; border-style:solid;border-width:1" type="text" value="'+strfield+'" >';
+					        }
+				        break;				
+			        case  2 :
+				        the_cell.innerHTML = tablename;
+				        break;	
+			        case  3 :	
+				        //if(strfield!="*(所有列)" && strfield!="*" && type!="guid" && type !="uniqueidentifier")
+				        the_cell.innerHTML = ctrl_chk;
+				        break;	
+			        case  4 :
+				        if(strfield!="*(所有列)" && strfield!="*" && type!="guid" && type !="uniqueidentifier")
+					        the_cell.innerHTML = ctrl_sl.replace("%%",the_cell.parentElement.rowIndex);
+				        break;
+			        case  5 :
+				        if(strfield!="*(所有列)" && strfield!="*" && type!="guid" && type !="uniqueidentifier")
+				        {
+					        the_cell.innerHTML = ctrl_sls.replace("%%",the_cell.parentElement.rowIndex);
+				        }
+				        break;
+			        case  6 :
+				        if(strfield!="*(所有列)" && strfield!="*" && type!="guid" && type !="uniqueidentifier")
+					        the_cell.innerHTML = ctrl_slg.replace("%%",the_cell.parentElement.rowIndex);
+				        break;						
+			        default :
+				        if(strfield!="*(所有列)" && strfield!="*" && type!="guid" && type !="uniqueidentifier")
+					        the_cell.innerHTML='<INPUT datatype="'+type+'" style="WIDTH: 100%;border-style:solid;border-width:1" type="text"  onchange="setInputVal(this)" id=input'+the_cell.parentElement.rowIndex+'>';
+		        }		
+	        }
+        	
+	        itab=0;
+	        for(var i=0;i<the_table.rows.length-1;i++)
+	        {
+		        var ctrl = the_table.rows[i+1].cells[5].getElementsByTagName("SELECT")[0];
+		        if(ctrl!=null)
+		        {
+			        the_table.rows[i+1].cells[5].innerHTML = ctrl_sls.replace("%%",itab);
+			        the_table.rows[i+1].cells[5].getElementsByTagName("SELECT")[0].value = arrOldValue[itab];
+			        itab = itab + 1;
+		        }
+	        }
+        	
+	        read_def(the_table);
+        }
+
+		//通过表名，字段名查到字段类型，根据字段类型设置内容格式,对于日期等类型进行格式判断
+		function setInputVal(obj)
+		{
+			var mark = getDataTypeSign(obj.datatype);
+			//if(!mark) return;
+			var str = obj.value;
+			var strVal = obj.value;
+			strVal = strVal.LTrim();
+			strVal = strVal.RTrim();
+			var sign0 = strVal.substr(0,4);
+			var sign1 = strVal.substr(0,2);
+			var sign2 = strVal.substr(0,1);
+			if(sign0.toLowerCase()=="like") 
+			{
+			
+				//关系符：
+				obj.value = getSignVal(strVal,sign0,mark);
+				return;
+			}
+			
+			switch(sign1)
+			{
+				case  "==" : 
+					str = "='="+str.replace(sign1,"")+"'";
+					obj.value=str;
+					return;
+					break;
+				case  ">=" : 
+					obj.value = getSignVal(strVal,sign1,mark);
+					return;
+					break;				
+				case  "<=" : 
+					obj.value = getSignVal(strVal,sign1,mark);
+					return;
+					break;
+				case  "<>" : 
+					obj.value = getSignVal(strVal,sign1,mark);
+					return;
+					break;
+			}
+
+			switch(sign2)
+			{
+				case  "=" : 
+					obj.value = getSignVal(strVal,sign2,mark);
+					return;
+					break;
+				case  ">" : 
+					obj.value = getSignVal(strVal,sign2,mark);
+					return;
+					break;				
+				case  "<" : 
+					obj.value = getSignVal(strVal,sign2,mark);
+					return;
+					break;
+			}
+			var typeCh = getDataTypeCh(obj.datatype);
+			if(strVal.Trim()=="") { obj.value=""; return;};
+			if(typeCh=="字符" || typeCh=="日期")
+				obj.value = "LIKE '" + strVal + "'";
+			else
+			    obj.value = "= " + strVal;
+		}
+
+
+        function add_SQLcol(the_table) {
+	        event.cancelBubble=true;
+	        var the_col,i,the_cell;
+	        the_col = cur_col==null?-1:(cur_col+1);
+	        var the_title="或...";
+	        if(the_col!=-1 && the_col<=sort_col && sort_col!=null)sort_col++;
+	        clear_color();
+	        for(var i=0;i<the_table.rows.length;i++){
+		        the_cell=the_table.rows[i].insertCell(the_col);
+		        the_cell.innerHTML=i==0?the_title:('<INPUT style="WIDTH: 200;" type="text">');
+	        }
+	        read_def(the_table);
+	        //the_table.width=2000;
+        }
+
+        function add_row(the_table) {
+	        event.cancelBubble=true;
+	        var the_row,the_cell;
+	        the_row = cur_row==null?-1:(cur_row+1);
+	        clear_color();
+	        var newrow=the_table.insertRow(the_row);
+	        var ctrl_sl  = "<SELECT size='1' style='WIDTH: 70px;' name='D4' id='lstsort%%'><OPTION selected></OPTION><OPTION>升序</OPTION><OPTION>降序</OPTION></SELECT>";
+	        var ctrl_sls = "<SELECT size='1' style='WIDTH: 55px;' name='D4' id='lstsorts%%'><OPTION selected></OPTION><OPTION>1</OPTION><OPTION>2</OPTION></SELECT>";
+	        var ctrl_chk = "<INPUT type='checkbox' CHECKED value='ON' name='C1' id='chk0'>";
+	        for (var i=0;i<the_table.rows[0].cells.length;i++)
+	        {
+		        the_cell=newrow.insertCell(i);
+		        switch(i)
+		        {
+			        case  3 :	
+				        the_cell.innerHTML = ctrl_chk;
+				        break;	
+			        case  4 :
+				        the_cell.innerHTML = ctrl_sl.replace("%%",the_cell.parentElement.rowIndex);
+				        break;
+			        case  5 :
+				        the_cell.innerHTML = ctrl_sls.replace("%%",the_cell.parentElement.rowIndex);
+				        break;						
+			        default :
+				        the_cell.innerText="";
+		        }		
+	        }
+	        read_def(the_table);
+        }
+		
+		function genSQLText()
+		{
+			var ctrl=document.getElementById("showContent"); 
+			var strfields = getSubSql(0);
+			
+			if(strfields=="") 
+			{
+				ctrl.value="";
+				return;
+			}
+			var arrTables = getSubSql(1).split(",");
+			//strTables = strTables.replace(","," INNER JOIN ");
+			if(arrTables.length==0)
+			{
+				ctrl.value="";
+				return;
+			}
+			var mastTable = arrTables[0];
+			var strTables="";
+			for(var i =1;i<arrTables.length;i++)
+			{
+			    strTables = strTables + "," + " INNER JOIN " + arrTables[i];
+			}
+			strTables = strTables.substr(1,strTables.length-1);
+			
+			arrTables = strTables.split(",")
+			var arrlink = getLinkCols().split(",")
+			strTables = "";
+			if(arrTables.length>1)
+			{
+			    for(var i =0;i<arrTables.length;i++)
+			    {
+			        strTables = strTables + arrTables[i] + " on " + arrlink[i]
+			    }
+			    strTables = mastTable +" "+ strTables.substr(1,strTables.length-1);
+			}
+			else
+			    strTables = mastTable;
+			    
+			var strwhere1 = getWhereSql();
+			var strwhere = "";
+			if(strwhere1!=="") strwhere = " Where " + strwhere1;
+			
+			var strOrder = genOrderText();
+			if(strOrder!="") strOrder = " Order By " + strOrder;
+			
+			var strGroup = genGroupText();
+			if(strGroup!="") strGroup = " Group By " + strGroup;
+
+			ctrl.value = "Select " + strfields + " From " + strTables + strwhere + strGroup + strOrder;
+		}
+		
+		function setSortVal(obj)
+		{
+			var str="";
+			var xIndex = obj.parentElement.parentElement.rowIndex;
+			if(Main_Tab.rows[xIndex].cells[0].innerText=="*(所有列)") 
+			{
+				obj.value="";
+				return;
+			}
+			for(var i=1;i<Main_Tab.rows.length;i++) 
+			{
+				var ObjOrderSort = Main_Tab.rows[i].cells[5].getElementsByTagName("SELECT")[0];	
+				if(ObjOrderSort==null) continue;
+				if(ObjOrderSort.value!="")
+					str = str +"," + ObjOrderSort.value;
+			}
+			
+			if(str=="") Main_Tab.rows[xIndex].cells[5].getElementsByTagName("SELECT")[0].value=1;
+			else
+			{
+				str = str.substr(1,str.length-1);	
+				var arrTab = str.split(","); 
+				arrTab = arrTab.unique();
+				var arr = sort(arrTab);
+				if(arr[0]!="未排序")
+				{
+					var val = parseInt(arr[0],10)+1;
+					if(Main_Tab.rows[xIndex].cells[5].getElementsByTagName("SELECT")[0].value=="")
+						Main_Tab.rows[xIndex].cells[5].getElementsByTagName("SELECT")[0].value=val;
+				}
+			}
+		}
+		
+		
+		function genGroupText()
+		{
+			var str = "";
+			for(var i=1;i<Main_Tab.rows.length;i++) 
+			{
+			    
+				var ctrl = Main_Tab.rows[i].cells[6].getElementsByTagName("SELECT")[0];
+				if(!ctrl) continue;
+				if(ctrl.value=="Group By")
+					str = str +","+  Main_Tab.rows[i].cells[2].innerText + "."+ Main_Tab.rows[i].cells[0].innerText;
+			}
+			if(str.length>0) str = str.substr(1,str.length-1);
+			return str;	
+		}		
+
+		
+		function genOrderText()
+		{
+			var str = "";
+			var strSort = "";
+			for(var i=1;i<Main_Tab.rows.length;i++) 
+			{
+				var ctrl = Main_Tab.rows[i].cells[4].getElementsByTagName("SELECT")[0];
+				if(!ctrl) continue;
+				var ObjOrderSort = Main_Tab.rows[i].cells[5].getElementsByTagName("SELECT")[0];
+				var strbm = (Main_Tab.rows[i].cells[1].getElementsByTagName("INPUT")[0]).value;
+				switch(ctrl.value)
+				{
+					case  "ASC" :
+							str = str +","+  Main_Tab.rows[i].cells[2].innerText + "."+ Main_Tab.rows[i].cells[0].innerText;
+							strSort = strSort +"," + ObjOrderSort.value;
+						break;
+					case  "DESC" :
+							str = str +","+  Main_Tab.rows[i].cells[2].innerText + "."+ Main_Tab.rows[i].cells[0].innerText +" DESC ";					
+							strSort = strSort +"," + ObjOrderSort.value;	
+						break;
+				
+				}
+			}
+			
+			if(str.length>0) str = str.substr(1,str.length-1);	
+			if(strSort.length>0)  strSort = strSort.substr(1,strSort.length-1);	
+			
+			var arrTab	= str.split(","); 
+			var arrSort = strSort.split(","); 
+			//记录所有可排序的字段名称
+			arrTab = arrTab.unique();
+			
+			//记录所有可排序的序号
+			var arr = sortAscOrder(arrSort,arrTab);
+			str = "";
+			for(var i=0;i<arr.length;i++) str = str + "," + arr[i];
+			str = str.substr(1,str.length-1);	
+			str = str.replace("(所有列)","");
+						
+			return str;	
+		}		
+		
+		function sortAscOrder(a,arr)
+		{
+			for(var i=0;i<a.length;i++)
+			{
+				for(var j=i+1;j<a.length+1;j++)
+				{
+	               if(a[i]>a[j])
+	               {
+						var temp=a[i];
+						var atemp = arr[i];
+		                a[i]=a[j];
+		                arr[i]=arr[j];
+						a[j]=temp;
+						arr[j] =atemp;
+					}
+                }
+			}
+			return arr;
+		}
+		
+		function getWhereSql()
+		{
+			var strwhere = "";
+			for(var i=7; i<Main_Tab.rows[0].cells.length;i++)
+			{
+				var str_and ="";
+				for(var j=1;j<Main_Tab.rows.length;j++)
+				{
+					if(Main_Tab.rows[j].cells[i].getElementsByTagName("INPUT")[0]!=null)
+					{
+						var strtemp = Main_Tab.rows[j].cells[i].getElementsByTagName("INPUT")[0].value;
+						if(strtemp == "") continue;
+						str_and = str_and +" and "+  Main_Tab.rows[j].cells[2].innerText + "."+ Main_Tab.rows[j].cells[0].innerText +" " + Main_Tab.rows[j].cells[i].getElementsByTagName("INPUT")[0].value;
+					}
+				}
+				str_and = str_and.substr(4,str_and.length-4);
+				if(str_and!="")
+					strwhere =strwhere  + " OR (" + str_and.Trim() +")";
+			}
+			strwhere = strwhere.substr(4,strwhere.length-4);
+			return strwhere;
+		}
+
+		
+		function getLinkCols()
+		{
+			var tdcount = otbl.rows[0].cells.length;
+			if(tdcount<=1) return "";
+			
+			var lstColID = "lstColumn1";
+			var lsttabID = "lstTab1";
+			
+			var strfirst = document.getElementById("lstTab1").value + "."+ document.getElementById("lstColumn1").value
+			var strwhere = "";
+			for(var i=1;i<tdcount;i++)
+			{
+				lstColID = "lstColumn"+(i+1);
+				lsttabID = "lstTab"+(i+1);
+				if(document.getElementById(lstColID).value!="")
+					strwhere = strwhere +  "," + strfirst + " = " + document.getElementById(lsttabID).value + "."+ document.getElementById(lstColID).value;
+			}
+			return strwhere.substr(1,strwhere.length-1);
+		}
+		
+		function getSubSql(type)
+		{
+			var str = "";
+			switch(type)
+			{
+				case  0 : 
+					for(var i=1;i<Main_Tab.rows.length;i++)
+					{
+						var ctrl = Main_Tab.rows[i].cells[3].getElementsByTagName("INPUT")[0];
+						if(!ctrl) continue;
+						if(ctrl.checked)
+						{
+							var strbm = (Main_Tab.rows[i].cells[1].getElementsByTagName("INPUT")[0]).value;
+							var strfld = Main_Tab.rows[i].cells[2].innerText + "."+ Main_Tab.rows[i].cells[0].innerText;
+							
+							var strGroup = "";
+							if(Main_Tab.rows[i].cells[6].getElementsByTagName("SELECT")[0]) 
+							{
+							    strGroup = (Main_Tab.rows[i].cells[6].getElementsByTagName("SELECT")[0]).value;
+							}
+							strfld = getGroupFields(strGroup,strfld);
+							if(strbm=="*")
+							{
+								strfld = strfld.replace("(","");
+								strfld = strfld.replace(")","");
+							}
+							if(strbm!="" && strbm!="*")
+							{
+								str = str +","+  strfld + " AS " + strbm;
+							}
+							else
+								str = str +","+  strfld;
+						}
+					}
+					break;
+				case  1 : 
+					for(var i=1;i<Main_Tab.rows.length;i++)
+					{
+						var ctrl = Main_Tab.rows[i].cells[3].getElementsByTagName("INPUT")[0];
+						if(!ctrl) continue;
+						if(ctrl.checked)
+							str = str +","+  Main_Tab.rows[i].cells[2].innerText;
+					}
+					break;				
+			}
+			
+			
+			str = str.substr(1,str.length-1);	
+			var arrTab = str.split(","); 
+			arrTab = arrTab.unique();
+			str = "";
+			for(var i=0;i<arrTab.length;i++) str = str + "," + arrTab[i];
+			str = str.substr(1,str.length-1);	
+			str = str.replace("(所有列)","");
+			return str;		
+		}
+		
+		function getGroupFields(type,val)
+		{
+			switch(type)
+			{
+				case  "distinct" : 
+					return "distinct " + val
+				break;
+				case  "Group By" : 
+					return val
+				break;
+				default :
+					return  type + "("+val+")";
+			}
+		}
+		
+		String.prototype.Trim = function(){return this.replace(/(^\s*)|(\s*$)/g, "");}
+		String.prototype.LTrim = function(){return this.replace(/(^\s*)/g, "");}
+
+		String.prototype.RTrim = function(){return this.replace(/(\s*$)/g, "");}
+
+		function getSignVal(strVal,sign,mark)
+		{
+			var len = sign.length;
+			var str = strVal.substr(len,strVal.length-len);
+			str = str.LTrim();	str = str.RTrim();
+			if(str=="") return "";
+			//str = 关系符内容
+			if(str.substr(0,mark.length)==mark && str.substr(str.length-mark.length,str.length)==mark)
+			{
+				//符号符合的情况下：
+				str= sign.toUpperCase() +" "+ mark+ (str.substr(mark.length,str.length-mark.length*2)).Trim()+mark;
+			}
+			else
+				str = sign.toUpperCase() +" '"+ (strVal.replace(sign,"")).Trim()+"'";
+			
+			return str;		
+		}
+		function getDataTypeCh(datatype)
+		{
+			switch(datatype)
+			{
+				case "guid" :		return "唯一标识";
+				case "uniqueidentifier" :return "唯一标识";
+
+				case "string":		return "字符";
+				case "varchar":		return "字符";
+				case "nchar":		return "字符";
+				
+				case "int32" :		return "整型";
+				case "int" :		return "整型";
+				
+				case "double" :		return "浮点";
+				case "float" :		return "浮点";
+				case "decimal" :		return "浮点";
+				
+				case "bit" :		return "布尔";
+				case "boolean" :	return "布尔";
+				case "datetime" :   return "日期";
+			}		
+		}
+		function getDataTypeSign(datatype)
+		{
+			switch(datatype)
+			{
+				case "guid" :		return "";
+				case "uniqueidentifier" :return "";
+
+				case "string":		return "'";
+				case "varchar":		return "'";
+				
+				case "int32" :		return "";
+				case "int" :		return "";
+				
+				case "double" :		return "";
+				case "float" :		return "";
+				
+				case "bit" :		return "";
+				case "boolean" :	return "";
+				case "datetime" :   return "'";
+			}		
+		}		
+		
+		function exchangeTab()
+		{
+		    var tablename=document.getElementById("lstTab" + tabId).value;
+            var strsql="EXECUTE "+sysdb+".[dbo].[proc_TableStructs] '"+tablename+"'";
+            var xmlDoc = ue_ajaxdom(strsql);
+			var nodes = xmlDoc.selectNodes("//table/name");
+			var DataTypes = xmlDoc.selectNodes("//table/datatype");
+			var DataLens = xmlDoc.selectNodes("//table/length");
+			var subfields = "";
+			var subTypes   = "";
+			var subLens   = "";
+			
+			for(var i=0;i<nodes.length;i++)
+			{
+				subfields = subfields   + "," + nodes[i].text;		//字段名
+				subTypes  = subTypes    + "," + DataTypes[i].text;	//字段类型
+				subLens  = subLens      + "," + DataLens[i].text;	//字段长度
+			}
+			
+			subfields = subfields.substr(1,subfields.length-1);		//字段名
+			subTypes   = subTypes.substr(1,subTypes.length-1);		//字段类型
+			subLens   = subLens.substr(1,subLens.length-1);		//字段长度
+			
+			var arrFields = subfields.split(",");					//字段名称数据
+			var arrTypes  =  subTypes.split(",");					//字段类型数组
+			var arrLens  =  subLens.split(",");					//字段类型数组
+			
+			var objId = "lstColumn"+ tabId;
+			
+			//填充关联字段
+			setdropdownlistOptions(document.getElementById(objId),arrFields,"",arrTypes,arrLens);
+			
+			//填充选择字段
+			arrFields   = ("*(所有列)," + subfields).split(",");
+			arrTypes    = ("," + subTypes).split(",");
+			arrLens     = ("," + subLens).split(",");
+			
+			setdropdownlistOptions(document.getElementById("lstFields" + tabId),arrFields,null,arrTypes,arrLens);
+		}
+		
+		function setdropdownlistOptions(obj,arr,strFirst,arrtypes,arrLens)
+		{
+			if(obj==null) return;
+			obj.innerHTML="";
+			if(strFirst!=null)	
+			{
+				obj.options.add(new Option("",strFirst));
+				if(arrtypes!=null)	obj.options[0].setAttribute("datatype","");
+				if(arrLens!=null)	obj.options[0].setAttribute("len","");
+			}
+			var k=0;
+			if(obj.options.length==1) k=1;
+			for(var i=0;i<arr.length;i++)
+			{
+				
+				obj.options.add(new Option(arr[i],arr[i]));
+				if(arrtypes!=null)	obj.options[i+k].setAttribute("datatype",arrtypes[i]);
+				if(arrLens!=null)	obj.options[i+k].setAttribute("len",arrLens[i]);
+			}
+		}
+
+		
+        function genTableNames(strsql)
+        {
+            xmldom = ue_ajaxdom(strsql);
+        }
+        
+        function init()
+        {
+	        cur_row			= null;
+	        cur_col			= null;
+	        cur_cell		= null;
+	        sort_col		= null;
+	        Main_Tab 		= PowerTable;
+	        read_def(Main_Tab)
+	        Main_Tab.onmouseover	= overIt;
+	        Main_Tab.onmouseout	= outIt;
+	        Main_Tab.onclick	= clickIt;
+	        Main_Tab.ondblclick	= dblclickIt;
+	        Org_con			= Main_Tab.outerHTML;
+        	
+	        arrow = document.createElement("SPAN");
+	        arrow.style.cssText 	= "PADDING-RIGHT: 0px; MARGIN-TOP: -3px; PADDING-LEFT: 0px; FONT-SIZE: 10px; MARGIN-BOTTOM: 2px; PADDING-BOTTOM: 2px; OVERFLOW: hidden; WIDTH: 10px; COLOR: blue; PADDING-TOP: 0px; FONT-FAMILY: webdings; HEIGHT: 11px";
+        }
+		var fields	=	"<SELECT id='lstFields' style='WIDTH: 100%; HEIGHT: 120px' multiple size='7' onchange='showstatus(this);' ondblclick='addSQLrow(this,this.id,this.value)'>"
+					+	"	<OPTION></OPTION>"
+					+	"</SELECT>";
+					
+		var linkfields = "<SELECT id='lstColumn' title='关联字段' style='WIDTH: 300px' size='1' name='D3'>"
+					+	"	<OPTION></OPTION>"
+					+	"	</SELECT>";
+
+		var tabId=0;
+		
+        function showstatus(obj)
+        {
+			var tabIndex = obj.id.replace("lstFields","");
+			gIndex = tabIndex;
+            myinfo.innerText ="表名:"+document.getElementById("lstTab" + tabIndex).value+" ,当前字段："+obj.options[obj.selectedIndex].value+ " ,数据类型:"+getDataTypeCh(obj.options[obj.selectedIndex].datatype)+"("+obj.options[obj.selectedIndex].datatype+")"
+                            + " ,长度:"+obj.options[obj.selectedIndex].len;
+            status = myinfo.innerText;
+        }
+        
+		function drawTable(tableId)
+		{
+			var table=eval(tableId);
+			tabId=tabId+1;
+			var objtabId = "lstTab" + tabId;
+			var objColId = "lstColumn" + tabId;
+				var newCell=table.rows[0].insertCell();
+				newCell.innerHTML='<select size="1"  name="D1" id="'+objtabId+'" style="WIDTH: 200px"  onchange="exchangeTab()"></select>'
+				var newCell=table.rows[1].insertCell();
+				newCell.innerHTML=fields.replace("lstFields","lstFields" + tabId);
+				var newCell=table.rows[2].insertCell();
+				newCell.innerHTML = '<select size="1"  name="D1" id="'+objColId+'" style="WIDTH: 200px"></select>'
+		}
+
+		function createexecsql(type)
+		{
+		    
+			switch(type)
+			{
+				case "createtable":
+					showContent.value="\r\tUSE "+ sysdb +";\r\t"
+									+" create table [表名](\r\t"
+									+"[ID] [uniqueidentifier] NOT NULL,\r\t"
+									+"[字段1] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,\r\t"
+									+"[字段2] datetime,\r\t"
+									+"[字段3] money null ,\r\t"
+									+"[字段5] int default 0,\r\t"
+									+"[字段6] Decimal (12,4) default 0,\r\t"
+									+"[字段7] image null \r\t"
+									+")";				
+				break;
+				case "addfield":
+				    if(document.getElementById("lstFields"+gIndex).selectedIndex<0) return;
+					showContent.value="\r\tUSE "+ sysdb +";\r\t"
+									+"ALTER TABLE "+document.getElementById("lstTab"+gIndex).value+" ADD [字段名] [varchar](50) NULL";
+				break;
+				case "alter":
+				    if(document.getElementById("lstFields"+gIndex).selectedIndex<0) return;
+					var fld = lstFields1.value;
+					showContent.value="\r\tUSE "+ sysdb +";\r\t"
+									+"ALTER TABLE "+document.getElementById("lstTab"+gIndex).value+"  ALTER COLUMN ["
+									+document.getElementById("lstFields"+gIndex).value +"] ["
+									+document.getElementById("lstFields"+gIndex).options[document.getElementById("lstFields"+gIndex).selectedIndex].datatype+"]("+document.getElementById("lstFields"+gIndex).options[document.getElementById("lstFields"+gIndex).selectedIndex].len+") NULL";
+					break;
+				case "altercol":
+				    if(document.getElementById("lstFields"+gIndex).selectedIndex<0) return;
+					var fld = lstFields1.value;
+					//EXEC   sp_rename   'aaa.[title]',   'xxtitle',   'COLUMN'
+					showContent.value="\r\tUSE "+ sysdb +";\r\t"
+									+"EXEC   sp_rename '"+document.getElementById("lstTab"+gIndex).value+".["
+									+document.getElementById("lstFields"+gIndex).value +"]','[新字段名] ','COLUMN'"
+					break;
+				case "del":
+				    if(document.getElementById("lstFields"+gIndex).selectedIndex<0) return;
+					showContent.value="\r\tUSE "+ sysdb +";\r\t"
+									+"ALTER TABLE "+document.getElementById("lstTab"+gIndex).value+"  DROP COLUMN ["+document.getElementById("lstFields"+gIndex).value+"]";
+				break;				
+			}
+			
+		}
+		
+		function execsql()
+		{
+		    if(showContent.value=="") {alert("请编写查询命令！");return;}
+		    var result=confirm(" 是否执行查询  ？     ");
+            if(!result) return;
+            var strsql=showContent.value;
+            ue_ajaxdom(strsql,1,"操作成功!",null,1)
+		}
+		</script>
+	</HEAD>
+	<body bottomMargin="5" leftMargin="5" topMargin="5" rightMargin="5" bgColor=buttonface>
+			<TABLE id="Table1" height="383" cellSpacing="1" cellPadding="1" border="1"
+				style="WIDTH: 100%; HEIGHT: 100%">
+				<TR>
+					<TD style="HEIGHT: 171px" colspan="2"><FONT face="宋体">
+							<TABLE id="otbl" style="WIDTH: 192px; HEIGHT: 181px" cellSpacing="1" cellPadding="1" width="192"
+								border="1">
+								<TR>
+								</TR>
+								<TR>
+								</TR>
+								<TR>
+								</TR>
+							</TABLE>
+						</FONT>
+					</TD>
+				</TR>
+				<TR>
+					<TD style="HEIGHT: 4px" width="26%" align="center"><FONT face="宋体"><BUTTON id="addSelects" style="WIDTH: 64px; HEIGHT: 24px" onclick="drawTable(otbl);readxml();"
+								type="button">增加表</BUTTON>　<BUTTON id="delSelected" style="WIDTH: 64px; HEIGHT: 24px" onclick="del_col(otbl);"
+								type="button">删除表</BUTTON> &nbsp;<INPUT id="btnXml" style="WIDTH: 96px; HEIGHT: 18pt" onclick="readxml();" type="button"	value="读取XML表名称"></FONT></TD>
+					<TD style="HEIGHT: 4px" width="73%" id="myinfo">　</TD>
+				</TR>
+				<TR>
+					<TD style="HEIGHT: 30px" colspan="2">
+						<TABLE id="PowerTable" style="HEIGHT: 24px" cellSpacing="1" cellPadding="1" width="950"
+							border="1">
+							<TR>
+								<TD align="center" width="110" bgColor="#e8e8e8">列名</TD>
+								<TD align="center" width="110" bgColor="#e8e8e8">别名</TD>
+								<TD align="center" width="200" bgColor="#e8e8e8">表</TD>
+								<TD align="center" width="40" bgColor="#e8e8e8">输出</TD>
+								<TD align="center" width="70" bgColor="#e8e8e8">排序类型</TD>
+								<TD align="center" width="70" bgColor="#e8e8e8">排序顺序</TD>
+								<TD align="center" width="70" bgColor="#e8e8e8">分组</TD>
+								<TD align="center" width="100" bgColor="#e8e8e8">准则</TD>
+								<TD align="center" width="100" bgColor="#e8e8e8">或...</TD>
+								<TD align="center" width="100" bgColor="#e8e8e8">或...</TD>
+								<TD align="center" width="100" bgColor="#e8e8e8">或...</TD>
+							</TR>
+						</TABLE>
+						<INPUT onclick="del_row(Main_Tab)" type="button" value="删除">&nbsp;
+                        <INPUT onclick="res_tab(Main_Tab)" type="button" value="复位">
+						<INPUT id="btnSQLText" style="WIDTH: 108px; HEIGHT: 15pt" onclick="genSQLText();" type="button"
+							value="生成SQL文本">
+                        <INPUT id="btnbrowser" style="WIDTH: 108px; HEIGHT: 15pt" onclick="browser();" type="button"
+							value="浏览" name="Button1">&nbsp;
+							[工具箱]：&nbsp;<INPUT id="btnbrowser" style="WIDTH: 80px; HEIGHT: 15pt" onclick="execsql('createtable');" type="button"
+							value="创建表" name="Button2">&nbsp;<INPUT id="btnbrowser" style="WIDTH: 80px; HEIGHT: 15pt" onclick="createexecsql('addfield');" type="button"
+							value="增加字段" name="Button2">&nbsp;<INPUT id="btnbrowser" style="WIDTH: 90px; HEIGHT: 15pt" onclick="createexecsql('alter');" type="button"
+							value="修改字段属性" name="Button2">&nbsp;<INPUT id="Button1" style="WIDTH: 80px; HEIGHT: 15pt" onclick="createexecsql('altercol');" type="button"
+							value="修改字段名" name="Button2">&nbsp;<INPUT id="btnbrowser" style="WIDTH: 80px; HEIGHT: 15pt" onclick="createexecsql('del');" type="button"
+							value="删除字段" name="Button2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button name="B3" onclick="execsql()" style="width:68px;HEIGHT: 15pt" title="运行SQL命令" ><img src=Images/bullet_disk.gif>&nbsp;运行</button>
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" align="left" colspan="2">
+					<TEXTAREA id="showContent" style="WIDTH: 100%; HEIGHT: 100%" name="showContent"></TEXTAREA></TD>
+				</TR>
+			</TABLE>
+			<div style="DISPLAY: none; VISIBILITY: hidden">
+			<XML id="xmltables" typexml="Data">
+			</XML>
+			<XML id="xmlfields" typexml="Data"></XML>
+            </div>
+			
+	</body>
+</HTML>

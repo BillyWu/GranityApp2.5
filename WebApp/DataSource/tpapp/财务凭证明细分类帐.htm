@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/tmpjs/mxz.js" type="text/javascript" charset="gb2312"></script>
+<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+</head>
+<body>
+
+		  <p style="MARGIN-BOTTOM: -8px"><br /></p>
+<table border="0" width="800" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align="center" height="70">
+	<tbody>
+	<tr>
+		<td align="left" style="width:14%;height:59px" valign="baseline">
+		<div align="center">
+		<img alt="" style="border:0 none;" src="sx_welcome.gif" /></div>
+		</td>
+		<td align="left" style="width:84%;height:59px; font-size:10pt" valign="baseline">
+		<table width="100%" id="table1" border="0" style="border-collapse: collapse; WORD-BREAK: break-all; left:312px; top:19px; font-family:宋体; font-size:10pt" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="29">
+			<tbody>
+<tr id="filterperson">
+				<td width="71" align="right">会计年度：</td>
+				<td width="88">
+					<select id="syear" size="1" class="tselect" style="WIDTH:100%;" name="">
+					</select></td>
+				<td align="right" width="61">
+					会计期间:</td>
+				<td align="right" width="61">
+					<select id="startmonth" size="1" class="tselect"  style="WIDTH:100%;" name="">
+					</select></td>
+				<td align="right" width="14">
+					～</td>
+				<td align="right" width="54">
+					<select id="endmonth" size="1" class="tselect"  style="WIDTH:100%;" name="">																								
+					</select></td>
+				<td align="right" width="13">
+				月</td>
+				<td width="21">　</td>
+				<td align="right" width="37">
+					币别:</td>
+				<td align="right" width="150">
+				<SELECT id="rmb" DataValueField="code" DataTextField="name" class="tselect"
+									 	DataSource="execute [dbo].[proc_dict_币种]" size="1" style="WIDTH:100%;" name="">
+					</SELECT ></td>
+				<td align="center"><img border="0" src="Images/tb16.gif" width="22" height="22" onclick="_filter()" onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" /></td>
+				<td align="center">【<a href="#" onclick="_myrefresh()">复位</a>】</td>
+			</tr>			
+<tr id="filterperson">
+				<td width="71" align="right">会计科目：</td>
+				<td colspan="3"><div style="position:absolute;">
+				<input style="width:167px;" class="tinput" id="ipt" filter="and" exp="&gt;=" onkeydown="if(event.keyCode==13) event.keyCode=9" 
+				onblur="khpymNotBand('ssub')" name="" size="20" />
+						</div>
+            <select style="width:187;" class="tselect" id="ssub" onclick="" onchange="ipt.value=this.value"></select><INPUT onclick="sb_click('ipt')" style="height:20px" type="button" value="…" /></td>
+				<td colspan="4"><input type="checkbox" name="" value="ON" />包含未过帐凭证</td>
+				<td align="right">
+					检索字</td>
+				<td align="right">
+					<input class="tinput" filter="and" style="WIDTH: 99%;" size="18" name="单据编号;凭证字号;摘要;对方科目" /></td>
+				<td align="center"><img border="0" src="Images/printer0.gif" width="22" height="22" onclick="ue_print()" onmouseover="this.src='Images/printer.gif'" onmouseout="this.src='Images/printer0.gif'" /></td>
+				<td align="center">【<a href="#" onclick="_close()">返回</a>】</td>
+			</tr>			
+			
+			
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" id="unittitle" valign="baseline" style="filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=gray, endColorStr='#FFFFFF', gradientType='1');width:98%;height:10px" colspan="2">
+		</td>
+	</tr>
+</tbody>
+</table><p style="MARGIN-BOTTOM: -18px"></p>
+	<Control class="" catalog="GridLand.ascx" itemname="nav" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="ControlTemplate/GridBrowser.htm" />
+							<Property name="width" value="790px" /><Property name="height" value="390px" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+	</Control></body>
+</html>

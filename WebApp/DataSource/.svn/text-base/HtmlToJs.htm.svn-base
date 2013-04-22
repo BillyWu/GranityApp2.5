@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>HTML转JS,JS转HTML,HTML与JS互转工具</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.6002.18071" name=GENERATOR>
+<META content=HTML与JS互转工具 name=description>
+<META content=HTML转JS,JS转HTML name=keywords>
+<style>
+.Content_1 {
+	MARGIN: 15px; LINE-HEIGHT: 200%
+}
+.frame {
+	BORDER-RIGHT: white 1px solid; BORDER-TOP: white 1px solid; BACKGROUND: url(tool_bg2.jpg) #edebe8 repeat-x 0px -30px; MARGIN: 0px 0px 8px; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: white 1px solid
+}
+.frame H6 {
+	BORDER-RIGHT: #fff 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #fff 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 14px; BACKGROUND: url(tool_bg.jpg) no-repeat left -115px; PADDING-BOTTOM: 0px; BORDER-LEFT: #fff 1px solid; COLOR: #039; LINE-HEIGHT: 28px; PADDING-TOP: 0px; BORDER-BOTTOM: white 1px solid; HEIGHT: 28px
+}
+#box {
+	CLEAR: both; MARGIN: auto; WIDTH: 100%; TEXT-ALIGN: left
+}
+
+</style>
+</HEAD>
+<BODY bgcolor=#edebe8><!--顶部-->
+<DIV id=box>
+<DIV class=frame>
+<H6>HTML转JS</H6>
+<DIV class=Content_1 style="TEXT-ALIGN: center">
+<DIV align=center>
+<P>请将HTML源代码拷贝到下面表单中: <BR><TEXTAREA id=oSource2 onpropertychange=change2() name=oSource2 rows=10 cols=99></TEXTAREA> 
+<BR>下面表单中是相应的JS代码: <BR><TEXTAREA id=oResult2 ondblclick='this.select();oResult2.createTextRange().execCommand("Copy")' title=双击复制 name=oResult2 rows=10 cols=99></TEXTAREA> 
+</TEXTAREA><BR>
+<SCRIPT>
+ function change2(){
+ oResult2.value="document.writeln(\""+oSource2.value.replace(/\\/g,"\\\\").replace(/\//g,"\\/").replace(/\'/g,"\\\'").replace(/\"/g,"\\\"").split('\r\n').join("\");\ndocument.writeln(\"")+"\")"
+ } </SCRIPT>
+</P></DIV></DIV></DIV>
+<DIV class=frame>
+<H6>JS转HTML</H6>
+<DIV class=Content_1 style="TEXT-ALIGN: center">
+<DIV align=center>
+<P>请将JS源代码拷贝到下面表单中: <BR><TEXTAREA id=oResult ondblclick='this.select();oResult.createTextRange().execCommand("Copy")' title=双击复制 onpropertychange=rechange() rows=10 cols=99></TEXTAREA> 
+<BR>下面表单中是相应的HTML代码: <BR><TEXTAREA id=Re ondblclick='this.select();this.createTextRange().execCommand("Copy")' title=双击复制 rows=10 cols=99></TEXTAREA>
+<SCRIPT>    
+ function rechange(){
+ Re.value=oResult.value.replace(/document.writeln\("/g,"").replace(/"\);/g,"").replace(/\\\"/g,"\"").replace(/\\\'/g,"\"").replace(/\\\//g,"\/").replace(/\\\\/g,"\\")
+ }
+  </SCRIPT>
+ </P></DIV></DIV></DIV>
+
+</DIV></SPAN></BODY></HTML>

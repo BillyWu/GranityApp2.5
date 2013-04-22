@@ -1,0 +1,1 @@
+﻿<%@ Page language="c#" Inherits="Estar.WebApp.XMLSYSDB" CodeFile="XMLSYSDB.aspx.cs" %>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+
+    <script type="text/javascript" language="javascript">
+    
+
+    function runExecutable()  { 
+       var executableFullPath = 'E:\Program Files\YKT\STATION.EXE';  
+       try { 
+             var shellActiveXObject = new ActiveXObject("WScript.Shell");  
+              if ( !shellActiveXObject )  
+                 { 
+                   alert('Could not get reference to WScript.Shell');  return; 
+                 }    
+              shellActiveXObject.Run(executableFullPath, 1, false); 
+              shellActiveXObject = null; 
+              }catch (errorObject)
+               { 
+                  alert('Error:\n' + errorObject.message); 
+                } 
+            }  
+    </script>
+
+</head>
+<body>
+    <input type="button" value="启动" onclick="runExecutable();" />
+</body>
+</html>

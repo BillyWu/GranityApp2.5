@@ -1,0 +1,9 @@
+<PUBLIC:ATTACH EVENT="onkeydown" ONEVENT="usEnterTab()" />
+<SCRIPT language=javascript>
+function usEnterTab()
+{
+	if(event.keyCode!=13)	return;
+	event.keyCode=9;
+}
+</SCRIPT>
+

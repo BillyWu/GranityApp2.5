@@ -1,0 +1,14 @@
+<PUBLIC:ATTACH EVENT="onclick" ONEVENT="usOnClickHandle()" />
+
+<SCRIPT language=javascript>
+function usOnClickHandle()
+{
+    var img = event.srcElement.src;
+    if(img.indexOf("?img=")>-1)
+    {
+        img = img.replace("?img=","?org=1&img=");
+    }
+	open(img,"_blank");
+}
+
+</SCRIPT>

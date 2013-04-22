@@ -1,0 +1,659 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>用户管理</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script type="text/javascript">
+        function initWin()
+        {
+            var ob=$band("用户选择");
+            ob.minwidth = "80px";
+            ob.freecols = "姓名";
+            ob.gridtype = 61;ob.colnum = 3
+            ob.Asyn=true;
+            ob.hasGrid=true;
+            var Grid = new XGrid("dvgrid",ob,"in");
+            ueSetPage("1>2",ob);
+            ob.XQuery();
+            ob.AfterXQuery = function(){$loading("none");}
+
+            var ob=$band("日志");
+            ob.minwidth = "80px";
+            ob.freecols = "状态";
+            ob.gridtype = 61;ob.colnum = 3
+            ob.Asyn=true;
+            ob.hasGrid=true;
+            var Grid = new XGrid("divUses",ob,"in");
+            ob.XQuery();
+            var ob=$band("selectcard");
+            ob.XQuery();
+            ob.minwidth=60;ob.colnum = 3;ob.startpos=0;ob.endpos=6;ob.pwcols="";ob.hr="卡片信息：&nbsp;&nbsp;(状态—<span id=spanState dataSrc=#selectcardTab dataFld=状态></span>)";
+            YPanel("selectcard","dvinfo",null,1,null,null,80);
+           
+            ob.startpos=6;ob.colnum = 3;ob.endpos=9;ob.hr="";
+            YPanel("selectcard","divmgr",null,1,null,null,80);
+            
+            
+            
+             ob.minwidth=105;ob.startpos=9;ob.colnum = 2;ob.endpos=13;ob.hr="";
+            YPanel("selectcard","divmgr2",null,1,null,null,100);
+            
+             ob.minwidth=105;ob.colnum = 2;ob.startpos=13;ob.endpos=15;ob.hr="";
+            YPanel("selectcard","divmemo",null,1,null,null,100);
+            ob.minwidth=105;ob.colnum = 2;ob.startpos=15;ob.endpos=19;ob.hr="";
+            YPanel("selectcard","divannex",null,1,null,null,100);
+            
+            
+            //初始化协议
+            var banpublish = $band("串口发行器");
+            ToolUtil.setParamValue(banpublish.UnitItem.ParamXmldoc, "通讯协议", "发行器", "", "P", null, "C");
+            banpublish.XQuery(true);
+            if( banpublish.RecordCount()<1)
+            {
+                alert("请首先维护该电脑串口连接的发行器！");
+                return;
+            }
+            var comport = banpublish.getFldStrValue("串口");
+            var station = banpublish.getFldStrValue("站址");
+            var baut = banpublish.getFldStrValue("波特率");
+            cardcmd.inited = false;
+            var rtn = setTPL(cardcmd);
+            if (!rtn) { alert("加载协议失败！"); return; }
+            if(!comport || !baut || !station)
+            {
+                alert("请首先维护发行器端口、波特率和站址！");
+                return;
+            }
+            var rtn = cardcmd.setTarget(comport, baut, station, $("radic").checked);
+            if(!rtn){ alert("设置发行器失败！");return;}
+            cardcmd.Buzz(true);
+            cardcmd.IsCardIC = $("radic").checked;
+            cardcmd.inited = true;
+            cardcmd.inthandle = setInterval("readCard()", 200);
+        }
+        //设置协议,做初始化
+        function setTPL(cardcmd)
+        {
+            var tpllist = [ [ "卡务中心", "联机" ], [ "卡务中心", "防冲突" ], [ "卡务中心", "读卡" ], [ "卡务中心", "卡片停机" ],
+                            [ "卡务中心", "脱机" ], [ "卡务中心", "蜂鸣" ], [ "卡务中心", "选择卡" ], ["卡务中心", "防冲突"],
+                            ["一卡通", "写入发行"], ["一卡通", "读取发行"], ["一卡通", "写入消费权限"], ["一卡通", "读取消费权限"],
+                            ["一卡通", "写入大场权限"], ["一卡通", "读取大场权限"], 
+                            ["一卡通", "读取消费金额"], ["一卡通", "写入消费金额"],
+                            ["卡务中心", "写数据"] ];
+            for(var t=0; t<tpllist.length; t++)
+            {
+                var tpl = tpllist[t][0];
+                var cmd = tpllist[t][1];
+                var xmldoc = ue_ajaxdom("execute 通讯参数设置 '" + tpl + "','" + cmd + "'");
+                if(!xmldoc)  return false;
+                var xndevice = xmldoc.selectSingleNode("//table[type='协议']/pms");
+                if(!xndevice || !xndevice.text)
+                    return false;
+                var tagdevice = xndevice.text;
+                var taginput = "";
+                var xns = xmldoc.selectNodes("//table[type='Input']/pms");
+                for(var i=0; i<xns.length; i++)
+                    taginput += xns[i].text + ";";
+                var tagoutput = "";
+                var xns = xmldoc.selectNodes("//table[type='Output']/pms");
+                for(var i=0; i<xns.length; i++)
+                    tagoutput += xns[i].text + ";";
+                var rtn = cardcmd.setTpl(tpl, cmd, tagdevice, taginput, tagoutput);
+                if(!rtn)    return false;
+            }
+            return true;
+        }
+        //读取卡号
+        function readCard()
+        {
+            cardcmd.Beat();
+            var cardID = cardcmd.getCardSID();
+            if(cardcmd.cardID == cardID)
+                return;
+            if(!cardID)
+            {
+                if(cardcmd.IsCardIC)
+                    cardcmd.cardID = cardcmd.cardNUM = "";
+                return;
+            }
+            cardcmd.cardID = cardID;
+            cardcmd.cardNUM = cardcmd.getCardNum();
+            cardcmd.cardSN  = cardcmd.getCardSN();
+            //跳到发卡信息数据记录
+            if (true === cardcmd.isChanging)
+                setCardNumNew();
+            else
+                findCardInfo();
+        }
+        //刷新卡片余额
+        function readMoney() 
+        {
+       
+            if (!cardcmd.IsCardIC || !cardcmd.cardID)
+                return;
+            var band = $band("用户选择");
+            var cardnum = parseInt(band.getFldStrValue("卡号"));
+            if (cardnum != cardcmd.cardNUM) 
+            {
+                alert("没有当前卡片的用户关联信息！");
+                return;
+            }
+            var cardinfo = cardcmd.tagEatery = cardcmd.ReadEateryInfo();
+            var dteatery = ToolUtil.valueTag(cardinfo, "{消费时间}");
+            if (!cardinfo || !dteatery)
+                cardinfo = cardcmd.tagEatery = cardcmd.ReadEateryInfo();
+            if ("true" != ToolUtil.valueTag(cardinfo, "Success") && dteatery)
+                return;
+            var balance = ToolUtil.valueTag(cardinfo, "{余额}");
+            var subsidy = ToolUtil.valueTag(cardinfo, "{累计补助金额}");
+            var dteatery = ToolUtil.valueTag(cardinfo, "{消费时间}");
+            dteatery = (new Date()).getFullYear() + dteatery.substring(4);
+            ToolUtil.setParamValue($XD(), "卡片卡号", cardnum, "", "P", null, "T");
+            ToolUtil.setParamValue($XD(), "卡片卡余额", balance, "", "P", null, "T");
+            ToolUtil.setParamValue($XD(), "卡片补助余额", subsidy, "", "P", null, "T");
+            ToolUtil.setParamValue($XD(), "卡片消费日期", dteatery, "", "P", null, "T");
+            ue_cmd("刷新卡余额", null, null, true);
+            cardcmd.cardID = cardcmd.getCardSID();
+            cardcmd.cardNUM = cardcmd.getCardNum();
+            cardcmd.cardSN = cardcmd.getCardSN();
+            $band("selectcard").XQuery(true);
+        }
+        //设置新卡号,校验卡片没有关联信息
+        function setCardNumNew()
+        {
+        
+            var cardid = cardcmd.cardID;
+            if (!cardid) return;
+            var cardnum = cardcmd.cardNUM;
+            var cardSN = cardcmd.cardSN;
+            var band = $band("用户选择");
+            var index = band.getRowIndex("卡号", cardnum);
+            if (index < 0 && cardnum && "0"!=cardnum)
+            {
+                ToolUtil.setParamValue($XD(), "卡号", cardnum, "", "P", null, "T");
+                var obcheck = $band("卡检测");
+                obcheck.XQuery();
+                if (obcheck.RecordCount() > 0)
+                    index = 0;
+            }
+            if (index > -1)
+            {
+                alert("此卡已经发行：卡片序列号[" + cardid + "],卡号[" + cardnum + "]");
+                return;
+            }
+            var band = $band("selectcard");
+            band.setFldStrValue(null, "新卡片序列号", cardid);
+            band.setFldStrValue(null, "新卡片SN", cardSN);
+        }
+        //根据当前卡号,对应发卡记录
+        function findCardInfo()
+        {
+           debugger;
+            var cardid = cardcmd.cardID;//"892667";//
+            if(!cardid) return;
+            var cardnum = cardcmd.cardNUM;
+            if(!cardnum || "0"==cardnum)
+            {
+                alert("此卡未发行！");
+                return;
+            }
+//            if(cardnum.length==1)cardnum="000"+cardnum;
+//            if(cardnum.length==2)cardnum="00"+cardnum;
+//            if(cardnum.length==3)cardnum="0"+cardnum;
+            
+            var band = $band("用户选择");
+            var index = band.getRowIndex("卡号", cardnum);
+            if(index<0)
+            {
+                band.Asyn=false;
+                ueSetPage("卡号='"+cardnum+"'",band);
+                band.QueryRefresh("Add","","","X");
+                band.Asyn=true;
+                index = band.getRowIndex("卡号", cardnum);
+            }
+            if(index>-1)
+                band.setCurrentRow(index);
+            else
+                alert("没有此卡信息：卡片序列号["+cardid+"],卡号["+cardnum+"]");
+        }
+        //充值和延期
+        function addMoney(op)
+        {
+            var band = $band("selectcard");
+            if (band.RecordCount() < 1)
+                return;
+            var hascard = band.getFldStrValue("是否有卡");
+            hascard = "-1"==hascard || "true"==hascard || "1"==hascard;
+            if(hascard && (!cardcmd || !cardcmd.inited))
+            {
+                alert("没有成功初始化发行器！");
+                return;
+            }
+            if(hascard && !cardcmd.cardID)
+            {
+                alert("当前没有卡片！");
+                return false;
+            }
+            //充值、延期
+            if(!op) op = "充值";
+            //无卡充值或ID卡充值
+            if(!hascard || !cardcmd.IsCardIC)
+            {
+                var success = ue_cmd(op, "selectcard");
+                if("true"==ToolUtil.valueTag(msg,"成功"))
+                {
+                    $band("日志").XQuery();
+                    band.XQuery();
+                }
+                return success;
+            }
+            //IC卡充值
+            var dtEpub = band.getFldStrValue("E日期");
+            var dtEori = band.getFldStrValue("E有效日期");
+            var dtDori = band.getFldStrValue("D有效日期");
+            var dtPori = band.getFldStrValue("P有效日期");
+            var dtEnew = band.getFldStrValue("消费延期");
+            var dtDnew = band.getFldStrValue("门禁延期");
+            var dtPnew = band.getFldStrValue("停车场延期");
+            var dtZnew = band.getFldStrValue("通道闸延期");
+            var money = band.getFldStrValue("现金充值");
+            var subsidy = band.getFldStrValue("补助充值");
+            var isadd  = band.getFldStrValue("补助累加");
+            isadd = "-1"==isadd || "true"==isadd || "1"==isadd;
+            //执行充值,先写卡再执行数据指令
+            var dtStart,dtEnd;
+            if(dtEpub && dtEori != dtEnew)
+            {
+                dtStart = dtEpub;
+                dtEnd = dtEnew;
+            }
+            money = money || 0;
+            subsidy = subsidy || 0;
+            if(dtStart && dtEnd)
+                var msg = cardcmd.WriteEateryDtLimit2(dtStart, dtEnd, money, subsidy, isadd);
+            else
+                var msg = cardcmd.WriteEateryMoney(money, subsidy, isadd);
+            if("true"!=ToolUtil.valueTag(msg,"Success"))
+            {
+                alert(ToolUtil.valueTag(msg,"{状态}"));
+                return msg;
+            }
+            var msg = ue_cmd(op, "selectcard");
+            if("true"==ToolUtil.valueTag(msg,"成功"))
+            {
+                $band("日志").XQuery();
+                band.XQuery();
+            }
+        }
+        
+        //延期
+        function addDate()
+        {
+            var band = $band("selectcard");
+            if (band.RecordCount() < 1)
+                return;
+            var msg = ue_cmd("延期", "selectcard");
+            if("true"==ToolUtil.valueTag(msg,"成功"))
+            {
+                $band("日志").XQuery();
+                band.XQuery();
+            }
+        }
+        
+        function cardLost()
+        {
+            var state = $band("selectcard").getFldStrValue("状态");
+            if("挂失"==state)
+            {
+                alert("此卡已经挂失！");
+                return;
+            }
+            var msg = ue_cmd("挂失", "selectcard");
+            if("true"==ToolUtil.valueTag(msg,"成功"))
+            {
+                $band("selectcard").setFldStrValue(null, "状态", "挂失");
+                $band("日志").XQuery();
+            }
+        }
+        function cardBack()
+        {
+            var state = $band("selectcard").getFldStrValue("状态");
+            if("挂失"!=state)
+            {
+                msg = "此卡未挂失，不需要解挂！";
+                if("解挂"==state)
+                    msg = "此卡已经解挂！";
+                alert(msg);
+                return;
+            }
+            var msg = ue_cmd("解挂", "selectcard");
+            if("true"==ToolUtil.valueTag(msg,"成功"))
+            {
+                $band("selectcard").setFldStrValue(null, "状态", "解挂");
+                $band("日志").XQuery();
+            }
+        }
+        function cardExit()
+        {
+            var band = $band("selectcard");
+            if (band.RecordCount() < 1)
+                return;
+            if(!confirm("请是否需要退卡！"))
+                return;
+            
+            var hascard = band.getFldStrValue("是否有卡");
+            hascard = "-1"==hascard || "true"==hascard || "1"==hascard;
+            if (hascard && cardcmd.IsCardIC && cardcmd.cardID)
+            {
+                var msg = cardcmd.ClearData(0);
+                if ("true" != ToolUtil.valueTag(msg, "Success"))
+                {
+//                    alert(ToolUtil.valueTag(msg, "{状态}"));
+//                    return;
+                }
+                cardcmd.ClearData(1);
+            }
+            var msg = ue_cmd("退卡", "selectcard");
+            if("true"==ToolUtil.valueTag(msg,"成功"))
+            {
+                $band("用户选择").setFldStrValue(null, "卡号", "");
+                $band("日志").XQuery();
+            }
+        }
+        //清除原卡或对原卡注销或对原卡挂失，对新卡写入发行信息和金额
+        function cardChangeExe()
+        {
+        debugger;
+            var band = $band("selectcard");
+            if (band.RecordCount() < 1)
+                return false;
+            var cardserno = band.getFldStrValue("新卡片序列号");
+            var cardnum = band.getFldStrValue("新卡号");
+            if (!cardserno || !cardnum || !cardcmd.cardID)
+            {
+                var msg = (!cardserno || !cardcmd.cardID) ? "请在发行器上放新卡片！" : "请填写新卡号！";
+                alert(msg);
+                return false;
+            }
+            if (!cardcmd.IsCardIC)
+            {
+                var msg = ue_cmd("换卡", "selectcard");
+                if ("true" != ToolUtil.valueTag(msg, "成功"))
+                    return msg;
+                band.setFldStrValue(null, "卡号", cardnum);
+                band.setFldStrValue(null, "卡片序列号", cardserno);
+                $band("用户选择").setFldStrValue(null, "卡号", cardnum);
+                $band("日志").XQuery();
+                band.XQuery();
+                return msg;
+            }
+            var cardnumorgi = band.getFldStrValue("卡号");
+            var hascard = band.getFldStrValue("是否有卡");
+            hascard = "-1"==hascard || "true"==hascard || "1"==hascard;
+            if(!hascard && cardnum == cardnumorgi)
+            {
+                alert("IC卡无卡换卡时，卡号不能相同，以免与黑名单冲突！");
+                return;
+            }
+            //IC卡换卡发行新卡
+            var dtEpub = band.getFldStrValue("E日期");
+            var dtEori = band.getFldStrValue("E有效日期");
+            var dtDori = band.getFldStrValue("D有效日期");
+            var dtPori = band.getFldStrValue("P有效日期");
+            var dtEnew = band.getFldStrValue("消费延期");
+            var dtDnew = band.getFldStrValue("门禁延期");
+            var dtPnew = band.getFldStrValue("停车场延期");
+            var dtZnew = band.getFldStrValue("通道闸延期");
+            var money = band.getFldStrValue("现金充值");
+            var subsidy = band.getFldStrValue("补助充值");
+            var isadd = band.getFldStrValue("补助累加");
+            isadd = "-1" == isadd || "true" == isadd || "1" == isadd;
+            var isEatery = dtEori ? true : false;
+            var isDoor = dtDori ? true : false;
+            var isPark = dtPori ? true : false;
+            var msg = cardcmd.WriteCardNum(cardnum, isEatery, isPark, isDoor);
+            if (isEatery && "true" == ToolUtil.valueTag(msg, "Success"))
+            {
+                dtEori = dtEnew || dtEori;
+                money = (money || 0) + band.getFldStrValue("卡片余额");
+                var sub = band.getFldStrValue("补助余额");
+                subsidy = ((!isadd && subsidy > 0) ? 0 : sub) + (subsidy || 0);
+                var cardtype = band.getFldStrValue("E卡类号");
+                msg = cardcmd.WriteEateryDtLimit(cardtype, dtEpub, dtEori, 1, "123456", money, subsidy);
+                 
+            }
+            if ("true" != ToolUtil.valueTag(msg, "Success"))
+            {
+                alert(ToolUtil.valueTag(msg, "{状态}"));
+                return msg;
+            }
+            var msg = ue_cmd("换卡", "selectcard");
+            if ("true" == ToolUtil.valueTag(msg, "成功"))
+            {
+                band.setFldStrValue(null, "卡号", cardnum);
+                band.setFldStrValue(null, "卡片序列号", cardserno);
+                $band("用户选择").setFldStrValue(null, "卡号", cardnum);
+                $band("日志").XQuery();
+                band.XQuery();
+            }
+            return msg;
+        }
+        //换卡
+        function cardChange()
+        {
+            if(!cardcmd || !cardcmd.inited)
+            {
+                alert("没有成功初始化发行器！");
+                return;
+            }
+            var band = $band("selectcard");
+            if (band.RecordCount() < 1)
+                return;
+            var hascard = band.getFldStrValue("是否有卡");
+            hascard = "-1" == hascard || "true" == hascard || "1" == hascard;
+            if (hascard && cardcmd.IsCardIC)
+            {
+                if (confirm("是否清除原卡") && cardcmd.cardID)
+                {
+                    cardcmd.ClearData(1);
+                    cardcmd.ClearData(0);
+                }
+            }
+            //设置当前正在更换状态
+            cardcmd.isChanging = true;
+            openchange();
+            return;
+        }
+        function openchange()
+        {
+            var winid = "newcard";
+            var owin = dwobj(winid);
+            if (!owin)
+            {
+                var owin = new Object;
+                owin.id = winid;
+                owin.width = 350;
+                owin.height = 100;
+                owin.top = 200;
+                owin.left = 200;
+                owin.title = "换卡新卡资料";
+                owin.text = buildwinstr();
+                owin.hovercolor = "orange";
+                owin.color = "black";
+                var a = new xWin(owin);
+            }
+            center(winid);
+            ShowHide("newcard", "");
+        }
+        function _btnOK()
+        {
+            var msg = cardChangeExe();
+            if(false===msg)
+                return;
+            if ("true" == ToolUtil.valueTag(msg, "成功"))
+                ShowHide("newcard", "none");
+        }
+        function _btnCancel()
+        {
+            ShowHide("newcard", "none");
+        }
+        function BeforeWinClose()
+        {
+            cardcmd.isChanging = undefined;
+            return true;
+        }
+        function buildwinstr()
+        {
+            var s = '<fieldset style="padding: 5px;;width:98%"><legend>新卡信息：</legend>'
+                    + '<table border="0" width="90%" cellpadding="0" style="border-collapse: collapse" align=center ><tr>'
+		            + '        <td width="120" align="right">卡片序列号：</td><td width="200">'
+		            + '        <input datasrc="#selectcardTab" datafld="新卡片序列号" class=\"xlandinput\" readonly=\"true\" style=\"WIDTH: 100%;\" /></td></tr><tr>'
+		            + '        <td width="120" align="right">卡号：</td><td width="200">'
+		            + '        <input datasrc="#selectcardTab" datafld="新卡号" class="xlandinput" style="width:100%;" type="text" size="11"  /></td></tr><tr>'
+		            + '        <td width="120" align="center">【<a href="#" onclick="_btnOK()">确定</a>】</td><td align="center">【<a href="#" onclick="_btnCancel()">取消</a>】</td>'
+	                + '    </tr></table></fieldset>';
+            return s;
+        }
+        //同步设备黑白名单
+        function syndeviceUser()
+        {
+            var tag = ToolUtil.setValueTag("", "指令", "设备同步黑白名单");
+            var xmlhttp = ToolUtil.Post(tag,"hdlDownParam.ashx", callbackSyndevice);
+	        callbackSyndevice.xmlhttp = xmlhttp;
+	        $loading();
+        }
+        function callbackSyndevice()
+        {
+            if(4!=this.readyState)
+                return;
+            var txt = this.responseText;
+            var msg = ToolUtil.valueTag(txt,"提示");
+            if("true"!=ToolUtil.valueTag(txt,"成功"))
+                msg += " 同步设备名单：执行失败！";
+            else
+                msg = "成功执行设备名单同步";
+            $loading("none");
+            alert(msg);
+        }
+        function selectuseres()
+        {
+            var mband = $band("用户选择");
+            var filter=ue_tfilter();
+            var ck = $("publish").checked;
+            if (true==ck)
+                filter += " and ''!=卡号 ";
+            ueSetPage(filter,mband);
+            mband.XQuery(true);
+        }
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20; width: 100%; background-image: url('images/bg-shd.png');">
+    </div>
+    <object id="cardcmd" classid="clsid:818A30FB-8903-4cd7-BAE1-00BD5C5B52AC" codebase="../SetupCard.msi#version=1,0,0,0"
+        style="display: none;">
+    </object>
+    <div style="height: 78%; width: 35%; float: left" id="DIV1">
+        <table>
+            <img border="0" src="Images/reply.gif" />
+            <input class="xlandinput" style="width: 160; height: 20" size="15" name="卡号;用户编号;姓名;部门名称"
+                id="Text1" />
+            <input id="publish" class="xlandradio" type="checkbox" checked="true" /><label for="publish">已发行</label>
+            <img border="0" src="Images/tb16.gif" width="22" height="22" onclick="selectuseres()"
+                onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" />
+        </table>
+        <div id="dvgrid" style="width: 100%; height: 100%">
+        </div>
+    </div>
+    <div style="height: 95%; width: 63%; float: right">
+        <table id="mainTable" border="0" cellpadding="0" style="border-collapse: collapse;
+            width: 100%; height: 100%">
+            <tbody>
+                <tr>
+                    <td style="height: 70px; text-align: center">
+                        <fieldset style="padding: 2px; width: 98%; text-align: left">
+                            <legend>日志信息： </legend>
+                            <div id="divUses" style="height: 170px; text-align: center">
+                            </div>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">
+                        <fieldset style="padding: 5px; width: 98%; height: 93%; text-align: left">
+                            <legend>
+                                <input id="radic" type="radio" value="0" checked name="rad"><label for="radic">IC模式</label>
+                                <input id="radid" type="radio" value="1" name="rad"><label for="radid">ID模式</label>
+                                <input type="button" value="刷新余额" class="txtbtnex" onclick="readMoney()" />
+                                <input type="button" value="充值" class="txtbtnex" onclick="addMoney('充值')" />
+                                <input type="button" value="延期" class="txtbtnex" onclick="addMoney('延期')" />
+                                <input type="button" value="挂失" class="txtbtnex" onclick="cardLost()" />
+                                <input type="button" value="解挂" class="txtbtnex" onclick="cardBack()" />
+                                <input type="button" value="退卡" class="txtbtnex" onclick="cardExit()" />
+                                <input type="button" value="换卡" class="txtbtnex" onclick="cardChange()" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" value="同步设备" class="txtbtnex" onclick="syndeviceUser()" />
+                            </legend>
+                            <br />
+                            <div id="dvinfo" style="text-align: center; width: 90%">
+                            </div>
+                            <div id="divmgr" style="text-align: center; width: 90%">
+                            </div>
+                            <div id="divmgr2" style="text-align: center; width: 90%">
+                            </div>
+                            <div id="divmemo" style="text-align: center; width: 90%">
+                            </div>
+                            <div id="divannex" style="text-align: center; width: 90%">
+                            </div>
+                            <br />
+                            <hr size="1" noshade style="text-align: center; width: 98%; border: 1px dotted #000000" />
+                            <font color="#FF0000">*</font>说明：退卡和换卡功能“有卡”代表此卡片是可收回的，做注销处理，“无卡”表示卡片流失，需拉黑名单。<br />
+                            换卡操作：有卡换卡，首先提示“是否清除原卡片”，放置原卡，原卡完好可写则清除卡片信息，损坏写失败则忽略清除操作，<br />
+                            再对话框可更改新卡号，并放置新卡片，最后点击确定写卡片，注销原卡，执行换卡。<br />
+                            无卡换卡，直接对话框可更改新卡号，并放置新卡片，再点击确定写卡片，挂失原卡，执行换卡。
+                            <br />
+                        </fieldset>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("卡片管理")</script>
+
+</body>
+</html>

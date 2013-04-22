@@ -1,0 +1,45 @@
+@charset "utf-8";
+html { padding:0; margin:0;}
+/********** header **********/
+.header { background:#e1ecef; padding:0; margin:0 auto; }
+
+.block_header {margin:0 auto; width:986px; padding:0;}
+/*FBG*/
+.FBG { margin:0 auto; padding:0 0 20px 0;}
+.FBG p { font:normal 11px Arial, Helvetica, sans-serif,Î¢ÈíÑÅºÚ; color:#5f5f5f; line-height:1.8em; padding:5px 0; margin:0;}
+.FBG p strong { color:#2a2a2a;}
+.FBG img { float: left; margin:10px 10px; padding:0;}
+.FBG_resize { width:984px; margin:0 auto; padding:0; border:1px solid #d4d4d4; background:#f0f0f0;}
+/****Recent **/
+.Recent  { width:49%; float:left; height:185px; padding:10px; margin:5px 0; border-right:1px dashed #ddd;}
+.Recent2 { width:49%; float:right; height:185px;padding:10px; margin:5px 0;}
+.Recent4 { width:99%; padding:10px; margin:5px 0;}
+.Recent3  { padding:1px; margin:1px 0;}
+/********** block index **********/
+.body_resize { width:100%; margin:0 auto; padding:0 15px; border:1px solid #d4d4d4; }
+.body_resize h1 { font:normal 15px Î¢ÈíÑÅºÚ, Helvetica, sans-serif,Î¢ÈíÑÅºÚ; padding:5px 5px; margin:0; border-bottom:1px solid #dfdfdf;}
+.body_resize h1 span { width:70%; font:normal 11px Arial, Helvetica, sans-serif,Î¢ÈíÑÅºÚ; color:#819e9c; padding:5px 0; margin:0;}
+.body_resize h2 { font:normal 14px Arial, Helvetica, sans-serif,Î¢ÈíÑÅºÚ; padding:5px 5px; margin:0; border-bottom:1px dashed  #dfdfdf;}
+.body_resize h2 span { width:80%; font:normal 11px Arial, Helvetica, sans-serif,Î¢ÈíÑÅºÚ; color:#819e9c; padding:5px 0; margin:0;}
+.body_resize p { font:normal 12px Arial, Helvetica, sans-serif,Î¢ÈíÑÅºÚ; color:#747474; padding:10px 5px; margin:0; line-height:1.8em;}
+.body_resize p span { color:#819e9c;}
+.body_resize a { color:#918755; text-decoration: none;}
+.left ul { list-style:none; margin:0 0 0 210px; padding:10px 0 20px 0;}
+.left li { background:url(images/port_ul_li.gif) left no-repeat; padding:2px 20px; margin:0; font: normal 12px Arial, Helvetica, sans-serif,Î¢ÈíÑÅºÚ; color:#5c8783; line-height:1.8em;}
+.body_resize img { float:left; margin:20px 10px; padding:0;}
+.body_resize img.floated { float:left; margin:10px 5px; padding:0;}
+.right  { width:325px; float:right; margin:0; padding:10px 10px;} 
+.left  { width:100%; float:left; margin:0; padding:10px 10px;} 
+.blog { width:280px; float:left; margin:0; padding:10px;}
+.tablescroll
+{
+    SCROLLBAR-FACE-COLOR: #ffffff; 
+    SCROLLBAR-HIGHLIGHT-COLOR: #A2A2A3;
+    SCROLLBAR-SHADOW-COLOR: #A2A2A3; 
+    SCROLLBAR-3DLIGHT-COLOR: white; 
+    SCROLLBAR-ARROW-COLOR: black;
+    SCROLLBAR-DARKSHADOW-COLOR: white;
+} 
+
+p.clr, .clr { clear:both; padding:0; margin:0; background:none;}
+li.bg, .bg { clear:both; border-top:1px solid #dfdfdf; padding:0; margin:10px 0; background:none; line-height:0;}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--此文件由 XML 架构设计器自动生成。它包含设计器图面组件的布局信息。-->
+<XSDDesignerLayout Style="LeftRight" layoutVersion="2" viewPortLeft="0" viewPortTop="8077" zoom="100">
+    <tododvlocation_XmlElement left="1317" top="12225" width="5292" height="3149" selected="0" zOrder="1" index="0" expanded="1" />
+    <attach_XmlElement left="1317" top="15882" width="5292" height="3149" selected="0" zOrder="2" index="1" expanded="1" />
+    <flowopinion_XmlElement left="1317" top="19671" width="5292" height="3149" selected="0" zOrder="4" index="2" expanded="1" />
+</XSDDesignerLayout>

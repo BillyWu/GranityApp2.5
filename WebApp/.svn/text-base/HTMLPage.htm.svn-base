@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+
+    <script language="javascript" type="text/javascript">
+        function test()
+        {
+            var str=helloBossma.test2(12);
+            alert(str);
+        }
+    </script>
+
+</head>
+<body>
+    <object classid="clsid:818A30FB-8903-4cd7-BAE1-00BD5C5B52AC" codebase="SetupCard.msi#version=1,0,0,0"
+        width="200" height="40" id="helloBossma">
+    </object>
+    <input type="button" onclick="test()" value="测试" />
+    <div style="width: 100%; height: 100%" id="divMonitor_GridDiv">
+        <table style="width: 100%; height: 100%" class="GridWB" cellspacing="0" cellpadding="0"
+            tabtype="grid">
+            <tbody>
+                <tr>
+                    <td style="height: 100%" valign="top" colspan="4" divtype="body">
+                        <div style="overflow-x: auto; overflow-y: scroll; width: 100%" class="ws" align="left"
+                            divtype="title">
+                            <table class="ctabTitle" cellspacing="0" cellpadding="0" height="23" tabtype="title">
+                                <tbody>
+                                    <tr rowtype="title">
+                                        <td class="cellwb_btn" height="23" width="40" align="middle" colname="RowNum" datatype="xs:int"
+                                            tdtype="coltitle">
+                                            序号</td>
+                                        <td onmouseup="GridUtil.usOnTitMouseUp()" class="cellwb_btn" onmousemove="GridUtil.usOnTitMouseMove()"
+                                            ondblclick="GridUtil.usOnTitClick()" height="22" align="middle" colname="部门"
+                                            datatype="xs:string" tdtype="coltitle">
+                                            部门</td>
+                                        <td onmouseup="GridUtil.usOnTitMouseUp()" class="cellwb_btn" onmousemove="GridUtil.usOnTitMouseMove()"
+                                            ondblclick="GridUtil.usOnTitClick()" height="22" width="80" align="middle" colname="姓名"
+                                            datatype="xs:string" tdtype="coltitle">
+                                            姓名</td>
+                                        <td onmouseup="GridUtil.usOnTitMouseUp()" class="cellwb_btn" onmousemove="GridUtil.usOnTitMouseMove()"
+                                            ondblclick="GridUtil.usOnTitClick()" height="22" width="80" align="middle" colname="卡号"
+                                            datatype="xs:string" tdtype="coltitle">
+                                            卡号</td>
+                                        <td onmouseup="GridUtil.usOnTitMouseUp()" class="cellwb_btn" onmousemove="GridUtil.usOnTitMouseMove()"
+                                            ondblclick="GridUtil.usOnTitClick()" height="22" width="80" align="middle" colname="区域"
+                                            datatype="xs:string" tdtype="coltitle">
+                                            工作区</td>
+                                        <td onmouseup="GridUtil.usOnTitMouseUp()" class="cellwb_btn" onmousemove="GridUtil.usOnTitMouseMove()"
+                                            ondblclick="GridUtil.usOnTitClick()" height="22" width="80" align="middle" colname="进入时间"
+                                            datatype="xs:dateTime" tdtype="coltitle">
+                                            进入时间</td>
+                                        <td onmouseup="GridUtil.usOnTitMouseUp()" class="cellwb_btn" onmousemove="GridUtil.usOnTitMouseMove()"
+                                            ondblclick="GridUtil.usOnTitClick()" height="22" width="80" align="middle" colname="出离时间"
+                                            datatype="xs:dateTime" tdtype="coltitle">
+                                            出离时间</td>
+                                        <td onmouseup="GridUtil.usOnTitMouseUp()" class="cellwb_btn" onmousemove="GridUtil.usOnTitMouseMove()"
+                                            ondblclick="GridUtil.usOnTitClick()" height="22" width="120" align="middle" colname="刷卡状态"
+                                            datatype="xs:string" tdtype="coltitle">
+                                            刷卡状态</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="overflow-x: auto; overflow-y: scroll; width: 100%; height: 95.13%" onscroll="GridUtil.usOnScrollHori()"
+                            class="tablescroll" divtype="detail">
+                            <table datasrc="#员工动态Tab" class="ctabDetail" onmousemove="GridUtil.usOnDetailMouseOverHandle()"
+                                onmouseout="GridUtil.usOnDetailMouseOutHandle()" cellspacing="0" cellpadding="0"
+                                width="100%" tabtype="detail">
+                                <tbody>
+                                    <tr rowtype="detail">
+                                        <td class="cellwb_btn" onclick="GridUtil.usOnRowcursorClickHandle()" width="40" align="middle"
+                                            datatype="int" tdtype="rowcursor">
+                                            <span datafld="RowNum" width="100%"></span>
+                                        </td>
+                                        <td class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" height="20" align="left"
+                                            colname="部门" datatype="string" tdtype="">
+                                            <span onblur="GridUtil.usOnCellBlurHandle();" style="text-align: left; width: 100%"
+                                                onkeydown="GridUtil.usOnCellEnterTab();" class="gridbrowse" onfocus="GridUtil.usOnCellFocusHandle();"
+                                                datafld="部门" ondblclick="GridUtil.usOnCellDbClickHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();"
+                                                colname="部门" datatype="string" onchange="return GridUtil.usOnCellChangeHandle();"
+                                                type="text"></span>
+                                        </td>
+                                        <td class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" height="20" width="80"
+                                            align="left" colname="姓名" datatype="string" tdtype="">
+                                            <span onblur="GridUtil.usOnCellBlurHandle();" style="text-align: left; width: 100%"
+                                                onkeydown="GridUtil.usOnCellEnterTab();" class="gridbrowse" onfocus="GridUtil.usOnCellFocusHandle();"
+                                                datafld="姓名" ondblclick="GridUtil.usOnCellDbClickHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();"
+                                                colname="姓名" datatype="string" onchange="return GridUtil.usOnCellChangeHandle();"
+                                                type="text"></span>
+                                        </td>
+                                        <td class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" height="20" width="80"
+                                            align="left" colname="卡号" datatype="string" tdtype="">
+                                            <span onblur="GridUtil.usOnCellBlurHandle();" style="text-align: left; width: 100%"
+                                                onkeydown="GridUtil.usOnCellEnterTab();" class="gridbrowse" onfocus="GridUtil.usOnCellFocusHandle();"
+                                                datafld="卡号" ondblclick="GridUtil.usOnCellDbClickHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();"
+                                                colname="卡号" datatype="string" onchange="return GridUtil.usOnCellChangeHandle();"
+                                                type="text"></span>
+                                        </td>
+                                        <td class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" height="20" width="80"
+                                            align="left" colname="区域" datatype="string" tdtype="">
+                                            <span onblur="GridUtil.usOnCellBlurHandle();" style="text-align: left; width: 100%"
+                                                onkeydown="GridUtil.usOnCellEnterTab();" class="gridbrowse" onfocus="GridUtil.usOnCellFocusHandle();"
+                                                datafld="区域" ondblclick="GridUtil.usOnCellDbClickHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();"
+                                                colname="区域" datatype="string" onchange="return GridUtil.usOnCellChangeHandle();"
+                                                type="text"></span>
+                                        </td>
+                                        <td class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" height="20" width="80"
+                                            align="left" colname="进入时间" datatype="dateTime" tdtype="">
+                                            <span onblur="GridUtil.usOnCellBlurHandle();" style="text-align: center; width: 100%"
+                                                onkeydown="GridUtil.usOnCellEnterTab();" class="gridbrowse" onfocus="GridUtil.usOnCellFocusHandle();"
+                                                datafld="进入时间" ondblclick="GridUtil.usOnCellDbClickHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();"
+                                                colname="进入时间" datatype="dateTime" onchange="return GridUtil.usOnCellChangeHandle();"
+                                                type="text"></span>
+                                        </td>
+                                        <td class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" height="20" width="80"
+                                            align="left" colname="出离时间" datatype="dateTime" tdtype="">
+                                            <span onblur="GridUtil.usOnCellBlurHandle();" style="text-align: center; width: 100%"
+                                                onkeydown="GridUtil.usOnCellEnterTab();" class="gridbrowse" onfocus="GridUtil.usOnCellFocusHandle();"
+                                                datafld="出离时间" ondblclick="GridUtil.usOnCellDbClickHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();"
+                                                colname="出离时间" datatype="dateTime" onchange="return GridUtil.usOnCellChangeHandle();"
+                                                type="text"></span>
+                                        </td>
+                                        <td class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" height="20" width="120"
+                                            align="left" colname="刷卡状态" datatype="string" tdtype="">
+                                            <span onblur="GridUtil.usOnCellBlurHandle();" style="text-align: left; width: 100%"
+                                                onkeydown="GridUtil.usOnCellEnterTab();" class="gridbrowse" onfocus="GridUtil.usOnCellFocusHandle();"
+                                                datafld="刷卡状态" ondblclick="GridUtil.usOnCellDbClickHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();"
+                                                colname="刷卡状态" datatype="string" onchange="return GridUtil.usOnCellChangeHandle();"
+                                                type="text"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table style="width: 100%; border-collapse: collapse" id="table1" border="0" cellpadding="0"
+                            divtype="funarea">
+                            <tbody>
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

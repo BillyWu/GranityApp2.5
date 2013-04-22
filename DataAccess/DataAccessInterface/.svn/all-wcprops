@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/DataAccessInterface
+END
+AssemblyInfo.cs
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/DataAccessInterface/AssemblyInfo.cs
+END
+IQueryDAO.cs
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/DataAccessInterface/IQueryDAO.cs
+END
+DataAccessInterface.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/DataAccessInterface/DataAccessInterface.csproj.user
+END
+DataAccessInterface.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/DataAccessInterface/DataAccessInterface.csproj
+END

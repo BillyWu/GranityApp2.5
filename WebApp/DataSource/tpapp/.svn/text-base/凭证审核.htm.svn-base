@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>    	
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<LINK href="hmjs/sysjs/menu.css" type="text/css" rel="stylesheet" />        	
+    	<script language="javascript" type="text/javascript">
+    	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;
+            function initWin()
+            {
+				var oband = document.UnitItem.getBandByItemName("nav");
+				var _dur = oband.getFldStrValue("日期");
+				var arr = _dur.split("-");
+				
+				document.getElementById("spDur").innerText=arr[0]+"-"+arr[1];
+       	    }    	
+		    function _close()
+		    {
+		    	try{parent.parent.openBusinessNav();}catch(e){window.close();}
+		    }
+            -->
+    	</script>
+    </head>
+
+<body>
+<table  align="center" id="toobar" border="0" cellpadding="1" cellspacing="2" width="100%" height="29" bgcolor="buttonface" onselectstart="event.returnValue=false" style="cursor:default;font-family: 宋体; font-size: 9pt; color: MenuText;  border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-top: 1px solid #FFFFFF; border-bottom: 1px solid #000000; padding:0px"><tbody>
+    <tr><td width="4" height="23"><span class="handout"></span></td>
+<td nowrap="" class="coolButton" id="btnsave" width="46" onclick="ue_save()" 
+	onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" height="23">
+<table border="0" cellspacing="0" cellpadding="0" id="table2" style="font-size: 10pt;width:96%">
+	<tbody>
+	<tr>
+		<td><img src="images\pzchk.png" /></td>
+		<td>审核</td>
+	</tr>
+</tbody>
+</table>
+ </td>
+<td nowrap="" class="coolButton" id="btnsubmit" width="69" onclick="_submit(0);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" height="23">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table6" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="16"><img src="images\spellcheck.gif" width="16" height="16" /></td>
+		<td>批量审核</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td nowrap="" class="coolButton" id="Td1" width="52" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" height="23">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="23"><img src="images\reply.gif" width="16" height="16" /></td>
+		<td style="color: red">退回</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td nowrap="" class="coolButton" id="Td2" width="52" onclick="ms_showBoard('contents',1)" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" height="23">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table12" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td><img src="images\printer.ico" width="16" height="16" /></td>
+		<td>打印</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td width="5" height="23"><span class="handin"></span></td>
+<td nowrap="" height="23" width="70" >
+		<b>凭证审核</b></td>
+<td nowrap="" height="23" width="80" align="right" ><b>会计期间：</b></td>
+<td nowrap="" height="23" >
+<span id="spDur" style="width:120; font-weight:bold"/></td>
+<td width="10" height="23"><span class="handin"></span></td>
+<td nowrap="" class="coolButton" id="btnquit" width="52" onmouseover="this.className='button1'" 
+onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" onclick="_close();" height="23">
+<table border="0" width="131%" cellspacing="0" cellpadding="0" id="table14" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td><img src="images\door.gif" width="16" height="16" /></td>
+		<td width="78">退出</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td width="1%" height="23"> 　</td></tr>
+</tbody>
+</table>
+
+		<Control class="" catalog="GridLand.ascx" itemname="nav" id="MasterTab" name="">
+			MasterTab<Property name="tpfile" value="ControlTemplate/GridMCheck.htm" />
+			<Property name="width" value="790" /><Property name="height" value="440px" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="" />
+		</Control>
+</body>
+
+</html>

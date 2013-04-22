@@ -1,0 +1,28 @@
+.memo {
+	BORDER-RIGHT: black 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: black 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 9pt; PADDING-BOTTOM: 10px; BORDER-LEFT: black 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: ËÎÌו; BACKGROUND-COLOR: #efefef
+}
+.memo1 {
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-BOTTOM-WIDTH: 1px; PADDING-BOTTOM: 3px; PADDING-TOP: 3px; FONT-FAMILY: ËÎÌו; BACKGROUND-COLOR: #efefef; BORDER-RIGHT-WIDTH: 1px
+}
+.ddd {
+	BORDER-RIGHT: silver 1px solid; BORDER-TOP: silver 1px solid; BORDER-LEFT: silver 1px solid; BORDER-BOTTOM: silver 1px solid
+}
+.title {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 10pt; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; FONT-FAMILY: ËÎÌו
+}
+A {
+	FONT-SIZE: 9pt; COLOR: blue; TEXT-DECORATION: none
+}
+TD {
+	FONT-SIZE: 9pt
+}
+A:hover {
+	COLOR: red; TEXT-DECORATION: underline
+}
+BODY {scrollbar-face-color:#f6f6f6;
+SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+scrollbar-3dlight-color:#cccccc;
+scrollbar-darkshadow-color:#ffffff;
+scrollbar-shadow-color:#cccccc;
+scrollbar-arrow-color:#330000;
+scrollbar-track-color:#f6f6f6;}
