@@ -49,139 +49,132 @@
     <script type="text/javascript" charset="gb2312">
 	    function initWin()
 	    {
-	      
-          var ob=$band("停车场分组资料");
+        var ob=$band("停车场分组资料");
            
-            ob.Asyn=true;
-            ob.XQuery();
-            ob.AfterXQuery = function()
-            {
+        ob.Asyn=true;
+        ob.XQuery();
+        ob.AfterXQuery = function()
+        {
+          document.getElementById("radcard").checked=true;
+          var ob2=$band("停车场分组资料");
+          ob2.minwidth=80;ob2.colnum = 3;ob2.startpos=2;ob2.endpos=5;ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor1",null,1,null,null,85);   
           
-                document.getElementById("radcard").checked=true;
-                var ob2=$band("停车场分组资料");
-                ob2.minwidth=80;ob2.colnum = 3;ob2.startpos=2;ob2.endpos=5;ob2.pwcols="";
-                YPanel("停车场分组资料","divDoor1",null,1,null,null,85);   
-                
-                ob2.minwidth=95;ob2.colnum = 3;ob2.startpos=5;ob2.endpos=14;ob2.pwcols="";
-                YPanel("停车场分组资料","divDoor2",null,1,null,null,90);
-                //通道选择
-                ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=16;ob2.endpos=24;ob2.pwcols="";
-                YPanel("停车场分组资料","divDoor4",null,1,null,null,50);
-                //临时卡出卡选择
-                ob2.minwidth=90;ob2.colnum = 1;ob2.startpos=14;ob2.endpos=16;ob2.pwcols="";
-                YPanel("停车场分组资料","divDoor3",null,1,null,null,90); 
-                //放行控制
-                ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=24;ob2.endpos=32;ob2.pwcols="";
-                YPanel("停车场分组资料","divFX",null,1,null,null,50); 
-               //卡类允许
-                ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=32;ob2.endpos=40;ob2.pwcols="";
-                YPanel("停车场分组资料","divcardType",null,1,null,null,50); 
-                //中央收费
-                ob2.minwidth=95;ob2.colnum = 1;ob2.startpos=40;ob2.endpos=42;ob2.pwcols="";
-                YPanel("停车场分组资料","divZYSF",null,1,null,null,90); 
-                //入口满位处理
-                ob2.minwidth=95;ob2.colnum = 1;ob2.startpos=42;ob2.endpos=44;ob2.pwcols="";
-                YPanel("停车场分组资料","divDG",null,1,null,null,90); 
-                //外围设置
-                ob2.minwidth=95;ob2.colnum = 3;ob2.startpos=44;ob2.endpos=51;ob2.pwcols="";
-                YPanel("停车场分组资料","divMW",null,1,null,null,90); 
-                //场信息
-                ob2.minwidth=95;ob2.colnum = 3;ob2.startpos=55;ob2.endpos=61;ob2.pwcols="";
-                YPanel("停车场分组资料","park",null,1,null,null,90); 
-                 ue_expand('停车场分组资料',true);
-                document.getElementById("file10").style.display="none";
-                document.getElementById("file11").style.display="none";
-               //设备
-                var ob = $band("停车场设备");
-                $loading();
-                ob.gridtype = 8; ob.freecols = "";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
-                ob.Grid=null;
-                var Grid = new XGrid("divpark", ob, "in", null, 1);
-                $loading("none")
-                 ue_treeline("停车场分组资料",true);
-                 $loading("none");
-                }  
-        }
-         var PID="";
-         var MID="";
-       function Tree_onNodeSelectionChange(node)
-        {
-         
-             var ob=$band("停车场分组资料");
-             MID=ob.getFldStrValue("MID");
-             PID=ob.getFldStrValue("PID");
-             if(PID=="" || PID=="01116c12-06e8-4b65-ae8b-86cc54809062"||node.ParentNode==null)
-             {
-                ob.setFldStrValue(null, "类别", "分组");
-                document.getElementById("file1").style.display="block";
-                document.getElementById("file2").style.display="block";
-                document.getElementById("file3").style.display="block";
-                document.getElementById("file4").style.display="block";
-                document.getElementById("file5").style.display="block";
-                document.getElementById("file6").style.display="block";
-                document.getElementById("file7").style.display="block";
-                document.getElementById("file8").style.display="block";
-                document.getElementById("file9").style.display="block";
-                document.getElementById("file10").style.display="none";
-                document.getElementById("file11").style.display="none";
-             }else
-             {
-                ob.setFldStrValue(null, "场编号", ob.getFldStrValue("编号"));
-                document.getElementById("file1").style.display="none";
-                document.getElementById("file2").style.display="none";
-                document.getElementById("file3").style.display="none";
-                document.getElementById("file4").style.display="none";
-                document.getElementById("file5").style.display="none";
-                document.getElementById("file6").style.display="none";
-                document.getElementById("file7").style.display="none";
-                document.getElementById("file8").style.display="none";
-                document.getElementById("file9").style.display="none";
-                document.getElementById("file10").style.display="block";
-                document.getElementById("file11").style.display="block";
-             
-             }
-              var ob = $band("停车场设备");
-                $loading();
-                ob.gridtype = 8; ob.freecols = "";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
-                ob.Grid=null;
-                var Grid = new XGrid("divpark", ob, "in", null, 1);
-                $loading("none")
-        }
-        
+          ob2.minwidth=95;ob2.colnum = 3;ob2.startpos=5;ob2.endpos=14;ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor2",null,1,null,null,90);
+          //通道选择
+          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=16;ob2.endpos=24;ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor4",null,1,null,null,50);
+          //临时卡出卡选择
+          ob2.minwidth=90;ob2.colnum = 1;ob2.startpos=14;ob2.endpos=16;ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor3",null,1,null,null,90); 
+          //放行控制
+          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=24;ob2.endpos=32;ob2.pwcols="";
+          YPanel("停车场分组资料","divFX",null,1,null,null,50); 
+         //卡类允许
+          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=32;ob2.endpos=40;ob2.pwcols="";
+          YPanel("停车场分组资料","divcardType",null,1,null,null,50); 
+          //中央收费
+          ob2.minwidth=95;ob2.colnum = 1;ob2.startpos=40;ob2.endpos=42;ob2.pwcols="";
+          YPanel("停车场分组资料","divZYSF",null,1,null,null,90); 
+          //入口满位处理
+          ob2.minwidth=95;ob2.colnum = 1;ob2.startpos=42;ob2.endpos=44;ob2.pwcols="";
+          YPanel("停车场分组资料","divDG",null,1,null,null,90); 
+          //外围设置
+          ob2.minwidth=95;ob2.colnum = 3;ob2.startpos=44;ob2.endpos=51;ob2.pwcols="";
+          YPanel("停车场分组资料","divMW",null,1,null,null,90); 
+          //场信息
+          //ob2.minwidth=95;ob2.colnum = 5;ob2.startpos=51;ob2.endpos=61;ob2.pwcols="";
+          //YPanel("停车场分组资料","park",null,1,null,null,90); 
+          
+          ue_expand('停车场分组资料',true);
+          document.getElementById("file10").style.display="none";
+          //document.getElementById("file11").style.display="none";
+          //设备
+          var ob = $band("停车场设备");
+          $loading();
+          ob.gridtype = 8; ob.freecols = "";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
+          ob.Grid=null;
+          var Grid = new XGrid("divpark", ob, "in", null, 1);
+          $loading("none")
+          ue_treeline("停车场分组资料",true);
+          $loading("none");
+        }  
+      }
 
-        function RadChanager()
+      var PID="";
+      var MID="";
+      function Tree_onNodeSelectionChange(node)
+      {
+        var ob=$band("停车场分组资料");
+        MID=ob.getFldStrValue("MID");
+        PID=ob.getFldStrValue("PID");
+        if(PID=="" || PID=="01116c12-06e8-4b65-ae8b-86cc54809062"||node.ParentNode==null)
         {
-            var ob2=$band("停车场分组资料");
-            if(radcard.checked)
-            {
-               
-                ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=16;ob2.endpos=24;ob2.pwcols="";
-                YPanel("停车场分组资料","divDoor4",null,1,null,null,50); 
-            }else
-            
-            {
-              ob2.minwidth=30;ob2.colnum = 3;ob2.startpos=50;ob2.endpos=55;ob2.pwcols="";
-                YPanel("停车场分组资料","divDoor4",null,1,null,null,80); 
-            }
+          ob.setFldStrValue(null, "类别", "分组");
+          document.getElementById("file1").style.display="block";
+          document.getElementById("file2").style.display="block";
+          document.getElementById("file3").style.display="block";
+          document.getElementById("file4").style.display="block";
+          document.getElementById("file5").style.display="block";
+          document.getElementById("file6").style.display="block";
+          document.getElementById("file7").style.display="block";
+          document.getElementById("file8").style.display="block";
+          document.getElementById("file9").style.display="block";
+          document.getElementById("file10").style.display="none";
+          //document.getElementById("file11").style.display="none";
         }
+        else
+        {
+          ob.setFldStrValue(null, "场编号", ob.getFldStrValue("编号"));
+          document.getElementById("file1").style.display="none";
+          document.getElementById("file2").style.display="none";
+          document.getElementById("file3").style.display="none";
+          document.getElementById("file4").style.display="none";
+          document.getElementById("file5").style.display="none";
+          document.getElementById("file6").style.display="none";
+          document.getElementById("file7").style.display="none";
+          document.getElementById("file8").style.display="none";
+          document.getElementById("file9").style.display="none";
+          document.getElementById("file10").style.display="block";
+          //document.getElementById("file11").style.display="block";
+        }
+        var ob = $band("停车场设备");
+        $loading();
+        ob.gridtype = 8; ob.freecols = "";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
+        ob.Grid=null;
+        var Grid = new XGrid("divpark", ob, "in", null, 1);
+        $loading("none")
+      }
+
+      function RadChanager()
+      {
+        var ob2=$band("停车场分组资料");
+        if(radcard.checked)
+        {
+          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=16;ob2.endpos=24;ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor4",null,1,null,null,50); 
+        }
+        else
+        {
+          ob2.minwidth=30;ob2.colnum = 3;ob2.startpos=50;ob2.endpos=56;ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor4",null,1,null,null,80); 
+        }
+      }
       function _save()
-          {
-     
-            ue_save(); 
-             
-          }
+      {
+        ue_save();
+      }
       //值改变事件
       function beforesave()
       {
-
-          var state= setDoor();
-          return state;
+        var state= setDoor();
+        return state;
       }
       function setDoor()
       { 
-    
         ip();
-        comip();
+        //comip();
         var menu= $band("停车场分组资料");
         menu.setFldStrValue(null, "ID", MID);
      
@@ -190,76 +183,68 @@
         return true;
       }
       
-   function comip()
+      function comip()
       {
-     
-          var menu= $band("停车场分组资料");
-           var IP1 = menu.getFldStrValue("电脑IP");
-          if(menu.getFldStrValue("类别")!="分组")
+        var menu= $band("停车场分组资料");
+        var IP1 = menu.getFldStrValue("电脑IP");
+        if(menu.getFldStrValue("类别")!="分组")
+        {
+          if(IP1==null||IP1=="")
           {
-              
-               if(IP1==null||IP1=="")
-               {
-                   alert("电脑IP不能为空，请检查！");
-                      return false;
-               }
-          
-         
+            alert("电脑IP不能为空，请检查！");
+            return false;
+          }
+        
           var ipValidate="^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$";
                      
-              var   reg   =   IP1.match(ipValidate); 
-              if(reg==null)
-              {
-                  alert("电脑IP地址格式错误，请检查！");
-                   menu.setFldStrValue(null, "电脑IP", "");
-                  return false;
-              }
-           }
-          return true;
+          var reg = IP1.match(ipValidate); 
+          if(reg==null)
+          {
+            alert("电脑IP地址格式错误，请检查！");
+            menu.setFldStrValue(null, "电脑IP", "");
+            return false;
+          }
+        }
+        return true;
       }
     
-
       //IP地址校验
       function ip()
       {
-          var menu= $band("停车场设备");
-          var xml= menu.XmlLandData.XMLDocument;
-          var nodes =xml.selectNodes("/停车场管理/停车场设备/IP地址");
-           var nodeValue="";
-          var index=0;
-          var ipValidate="^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$";
-          
-          for(m=0;m<nodes.length;m++)
-          {              
-              var   reg   =   nodes[m].text.match(ipValidate); 
-              if(reg==null)
-              {
-                  if(nodes[m].text!=""){
-                     alert("IP地址第"+(m+1)+"行IP地址格式错误，请重新输入！");
-                      menu.setFldStrValue(m, "IP地址",""); 
-                  }
-                  
-                 // return false;
-              }
-              nodeValue=nodes[m].text;
-              index=m;
-              for (i=m+1;i<nodes.length;i++)
-              {
-                  if(nodeValue==nodes[i].text)
-                  {
-                      i++;
-                      index++;
-                       if(nodes[m].text!=""){
-                      alert("IP地址第"+i+"行与第"+index+"行存在相同的值，请重新选择其他的值！");
-                      menu.setFldStrValue(m, "IP地址",""); 
-                      }
-                  }      
-              }
+        var menu= $band("停车场设备");
+        var xml= menu.XmlLandData.XMLDocument;
+        var nodes =xml.selectNodes("/停车场管理/停车场设备/IP地址");
+        var nodeValue="";
+        var index=0;
+        var ipValidate="^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$";
+        for(m=0;m<nodes.length;m++)
+        {              
+          var reg = nodes[m].text.match(ipValidate); 
+          if(reg==null)
+          {
+            if(nodes[m].text!=""){
+              alert("IP地址第"+m+"行IP地址格式错误，请重新输入！");
+              menu.setFldStrValue(m, "IP地址",""); 
+            }
+            // return false;
           }
-          return true;
+          nodeValue=nodes[m].text;
+          index=m;
+          for (i=m+1;i<nodes.length;i++)
+          {
+            if(nodeValue==nodes[i].text)
+            {
+              i++;
+              index++;
+              if(nodes[m].text!=""){
+                alert("IP地址第"+i+"行与第"+index+"行存在相同的值，请重新选择其他的值！");
+                menu.setFldStrValue(m, "IP地址",""); 
+              }
+            }      
+          }
+        }
+        return true;
       }
-        
-
     </script>
 
 </head>
@@ -267,13 +252,16 @@
     <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');">
     </div>
     <fieldset style="float: left; padding: 5px; width: 18%; height: 96%;" id="fdiv">
-        <legend><a class="linkbtn_0" href="#" onclick="TreeUtil.addNode('停车场管理Tab',false);"
+        <legend>
+            <a class="linkbtn_0" href="#" onclick="TreeUtil.addNode('停车场管理Tab',false);"
             title="增加同级门组">
-            <img border="0" src="Images/inserttreenext.png" alt="增加同级门组" id="门组" />加组</a> &nbsp;
+                <img border="0" src="Images/inserttreenext.png" alt="增加同级门组" id="门组" />加组</a> &nbsp;
             <a class="linkbtn_0" href="#" onclick="TreeUtil.addNode('停车场管理Tab',true);" title="增加子级门组">
                 <img border="0" src="Images/inserttreenext.png" alt="增加子级门组" id="Img1" />增加车场</a>
-            &nbsp; <a class="linkbtn_0" href="#" onclick="TreeUtil.deleteNode('停车场管理Tab')">
-                <img border="0" src="Images/delete.gif" />删除</a> </legend>
+            &nbsp; 
+            <a class="linkbtn_0" href="#" onclick="TreeUtil.deleteNode('停车场管理Tab')">
+                <img border="0" src="Images/delete.gif" />删除</a> 
+        </legend>
 
         <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
 
@@ -289,9 +277,9 @@
 
         <script type="text/javascript">
           //<![CDATA[
-                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_停车场管理Tab_trvLand ***/
-                    window.ComponentArt_Storage_etpTemplate_停车场管理Tab_trvLand = null;
-                    //]]>
+            /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_停车场管理Tab_trvLand ***/
+            window.ComponentArt_Storage_etpTemplate_停车场管理Tab_trvLand = null;
+          //]]>
         </script>
 
         <div style="position: absolute; top: 0px; left: 0px; visibility: hidden;">
@@ -313,31 +301,33 @@
 
         <script type="text/javascript">
           //<![CDATA[
-                    window.ComponentArt_Init_etpTemplate_停车场管理Tab_trvLand = function() {
-                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_停车场管理Tab_trvLand'))
-                        {setTimeout('ComponentArt_Init_etpTemplate_停车场管理Tab_trvLand()', 100); return; }
+              window.ComponentArt_Init_etpTemplate_停车场管理Tab_trvLand = function() {
+              if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_停车场管理Tab_trvLand'))
+                  {setTimeout('ComponentArt_Init_etpTemplate_停车场管理Tab_trvLand()', 100); return; }
 
-                    window.etpTemplate_停车场管理Tab_trvLand = new ComponentArt_TreeView('etpTemplate_停车场管理Tab_trvLand', ComponentArt_Storage_etpTemplate_停车场管理Tab_trvLand);
-                    etpTemplate_停车场管理Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$停车场管理Tab$trvLand','') };
-                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_停车场管理Tab_trvLand; etpTemplate_停车场管理Tab_trvLand.GlobalAlias = 'trvLand'; }
-                    etpTemplate_停车场管理Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:停车场管理Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
-                    etpTemplate_停车场管理Tab_trvLand.Initialize('etpTemplate_停车场管理Tab_trvLand');
+              window.etpTemplate_停车场管理Tab_trvLand = new ComponentArt_TreeView('etpTemplate_停车场管理Tab_trvLand', ComponentArt_Storage_etpTemplate_停车场管理Tab_trvLand);
+              etpTemplate_停车场管理Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$停车场管理Tab$trvLand','') };
+              if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_停车场管理Tab_trvLand; etpTemplate_停车场管理Tab_trvLand.GlobalAlias = 'trvLand'; }
+              etpTemplate_停车场管理Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:停车场管理Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+              etpTemplate_停车场管理Tab_trvLand.Initialize('etpTemplate_停车场管理Tab_trvLand');
 
-                    window.etpTemplate_停车场管理Tab_trvLand_loaded = true;
-                }
-                ComponentArt_Init_etpTemplate_停车场管理Tab_trvLand();
-                var myTree = new Tree(etpTemplate_停车场管理Tab_trvLand,'停车场管理Tab');
-                //]]>
+              window.etpTemplate_停车场管理Tab_trvLand_loaded = true;
+          }
+          ComponentArt_Init_etpTemplate_停车场管理Tab_trvLand();
+          var myTree = new Tree(etpTemplate_停车场管理Tab_trvLand,'停车场管理Tab');
+          //]]>
         </script>
 
     </fieldset>
-    <div id="divDev" style="height: 100%; width: 90%">
+    <div id="divDev" style="height: 100%; width: 95%">
         <fieldset style="float: right; width: 99%; height: 95%; padding-right: 8px; padding-left: 8px;
             padding-bottom: 9px; padding-top: 8px;">
-            <legend><a class="linkbtn_0" href="#" onclick="_save();">
-                <img border="0" src="Images/savesmall.gif" />&nbsp;保存&nbsp;</a> <a class="linkbtn_0"
-                    href="#" onclick="ms_close()">
-                    <img border="0" src="Images/door_out.gif" />&nbsp;关闭&nbsp;</a> </legend>
+            <legend>
+                <a class="linkbtn_0" href="#" onclick="_save();">
+                    <img border="0" src="Images/savesmall.gif" />&nbsp;保存&nbsp;</a> 
+                <a class="linkbtn_0" href="#" onclick="ms_close()">
+                    <img border="0" src="Images/door_out.gif" />&nbsp;关闭&nbsp;</a> 
+            </legend>
             <br />
             <fieldset id="file1" style="float: right; width: 99%; height: 5%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
@@ -396,12 +386,12 @@
                 <div id="divMW" style="text-align: left; width: 100%">
                 </div>
             </fieldset>
-            <fieldset id="file11" style="float: right; width: 99%; height: 5%; padding-right: 8px;
+<!--            <fieldset id="file11" style="float: right; width: 99%; height: 5%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
                 <legend>场信息: </legend>
                 <div id="park" style="width: 100%; height: 97%; margin-top: 5;">
                 </div>
-            </fieldset>
+            </fieldset>-->
             <fieldset id="file10" style="float: right; width: 99%; height: 60%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
                 <legend>设备信息: </legend>
