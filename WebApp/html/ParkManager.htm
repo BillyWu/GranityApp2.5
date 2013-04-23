@@ -50,167 +50,142 @@
 	    function initWin()
 	    {
 	    //
-        var ob=$band("停车场分组资料");
-           
+        var ob=$band("停车场分组资料");           
         ob.Asyn=true;
         ob.XQuery();
         ob.AfterXQuery = function()
         {
-          document.getElementById("radcard").checked=true;
+          //Billy
+          //document.getElementById("radcard").checked=true;
           var ob2=$band("停车场分组资料");
-          ob2.minwidth=80;ob2.colnum = 3;ob2.startpos=2;ob2.endpos=5;ob2.pwcols="";
-          YPanel("停车场分组资料","divDoor1",null,1,null,null,85);   
           
-          ob2.minwidth=95;ob2.colnum = 3;ob2.startpos=5;ob2.endpos=14;ob2.pwcols="";
-          YPanel("停车场分组资料","divDoor2",null,1,null,null,90);
-          //通道选择
-          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=16;ob2.endpos=24;ob2.pwcols="";
-          YPanel("停车场分组资料","divDoor4",null,1,null,null,50);
-          //临时卡出卡选择
-          ob2.minwidth=90;ob2.colnum = 1;ob2.startpos=14;ob2.endpos=16;ob2.pwcols="";
-          YPanel("停车场分组资料","divDoor3",null,1,null,null,90); 
-          //放行控制
-          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=24;ob2.endpos=32;ob2.pwcols="";
-          YPanel("停车场分组资料","divFX",null,1,null,null,50); 
-         //卡类允许
-          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=32;ob2.endpos=40;ob2.pwcols="";
-          YPanel("停车场分组资料","divcardType",null,1,null,null,50); 
-          //中央收费
-          ob2.minwidth=95;ob2.colnum = 1;ob2.startpos=40;ob2.endpos=42;ob2.pwcols="";
-          YPanel("停车场分组资料","divZYSF",null,1,null,null,90); 
-          //入口满位处理
-          ob2.minwidth=95;ob2.colnum = 1;ob2.startpos=42;ob2.endpos=44;ob2.pwcols="";
-          YPanel("停车场分组资料","divDG",null,1,null,null,90); 
-          //外围设置
-          ob2.minwidth=95;ob2.colnum = 3;ob2.startpos=44;ob2.endpos=51;ob2.pwcols="";
-          YPanel("停车场分组资料","divMW",null,1,null,null,90); 
           //场信息
-          //ob2.minwidth=95;ob2.colnum = 5;ob2.startpos=51;ob2.endpos=61;ob2.pwcols="";
-          //YPanel("停车场分组资料","park",null,1,null,null,90); 
+          //ob2.minwidth=80;ob2.colnum = 3;ob2.startpos=2;ob2.endpos=5;ob2.pwcols="";
+          //YPanel("停车场分组资料","divDoor1",null,1,null,null,85);   
           
+          ob2.minwidth=80;ob2.colnum = 5;
+          ob2.startpos=51;ob2.endpos=56;
+          ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor1",null,1,null,null,80); 
           ue_expand('停车场分组资料',true);
           //document.getElementById("file10").style.display="none";
           //document.getElementById("file11").style.display="none";
-          //设备
-          var ob = $band("停车场设备");
-          $loading();
-          ob.gridtype = 8; ob.freecols = "";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
-          ob.Grid=null;
-          var Grid = new XGrid("divpark", ob, "in", null, 1);
-          $loading("none")
+                    
+          //控制参数
+          ob2.minwidth=95;ob2.colnum = 4;
+          ob2.startpos=5;
+          //ob2.endpos=14;
+          ob2.endpos=12;//移除“车位占用”，“视频卡”
+          ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor2",null,1,null,null,90);
+          //通道选择
+          //Billy 移除通道选择
+          //ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=16;ob2.endpos=24;ob2.pwcols="";
+          //YPanel("停车场分组资料","divDoor4",null,1,null,null,50);
+          //中央收费
+          ob2.minwidth=90;ob2.colnum = 2;
+          //ob2.startpos=40;ob2.endpos=42;
+          ob2.startpos=38;ob2.endpos=40;
+          ob2.pwcols="";
+          YPanel("停车场分组资料","divZYSF",null,1,null,null,90); 
+          //入口满位处理
+          ob2.minwidth=90;ob2.colnum = 2;
+          //ob2.startpos=42;ob2.endpos=44;
+          ob2.startpos=40;ob2.endpos=42;
+          ob2.pwcols="";
+          YPanel("停车场分组资料","divDG",null,1,null,null,90); 
+          //临时卡出卡选择
+          ob2.minwidth=90;ob2.colnum = 2;
+          //ob2.startpos=14;ob2.endpos=16;
+          ob2.startpos=12;ob2.endpos=14;
+          ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor3",null,1,null,null,90); 
+          //放行控制
+          ob2.minwidth=30;ob2.colnum = 4;
+          //ob2.startpos=24;ob2.endpos=32;
+          ob2.startpos=22;ob2.endpos=30;
+          ob2.pwcols="";
+          YPanel("停车场分组资料","divFX",null,1,null,null,50); 
+         //卡类允许
+          ob2.minwidth=30;ob2.colnum = 4;
+          //ob2.startpos=32;ob2.endpos=40;
+          ob2.startpos=30;ob2.endpos=38;
+          ob2.pwcols="";
+          YPanel("停车场分组资料","divcardType",null,1,null,null,50); 
+          
+          //外围设置
+          //Billy
+          ob2.minwidth=95;
+          //ob2.colnum = 3;
+          ob2.colnum = 4;
+          //ob2.startpos=44;
+          ob2.startpos=42;//移除“出口地感”
+          //ob2.endpos=51;
+          ob2.endpos=46;//移除“远距读头1”“远距读头2”
+          ob2.pwcols="";
+          YPanel("停车场分组资料","divMW",null,1,null,null,90); 
+          
+          _Timetfilter();
           ue_treeline("停车场分组资料",true);
           $loading("none");
-        }  
+        }
+        ob.AfterRowChanged=function()
+        {
+        /*
+          var bext=$band("扩展板参数");
+          if(bext.RecordCount()<1)
+          {
+              for(var i=0;i<4;i++)
+              {
+                  bext.NewRecord();
+                  bext.setFldStrValue(null,"编号",i+1);
+              }
+              var mid = $band("设备分组资料").Val("MID");
+              bext.QueryRefresh("RefreshFilter", "分组ID", mid);
+          }
+        */
+        }        
       }
 
-      var PID="";
-      var MID="";
-      function Tree_onNodeSelectionChange(node)
+      function ts_AfterTreeDel()
       {
-        TclickDot(node, false);
-        return;
-        var ob=$band("停车场分组资料");
-        MID=ob.getFldStrValue("MID");
-        PID=ob.getFldStrValue("PID");
-        if(PID=="" || PID=="01116c12-06e8-4b65-ae8b-86cc54809062"||node.ParentNode==null)
-        {
-          ob.setFldStrValue(null, "类别", "分组");
-          document.getElementById("file1").style.display="block";
-          document.getElementById("file2").style.display="block";
-          document.getElementById("file3").style.display="block";
-          document.getElementById("file4").style.display="block";
-          document.getElementById("file5").style.display="block";
-          document.getElementById("file6").style.display="block";
-          document.getElementById("file7").style.display="block";
-          document.getElementById("file8").style.display="block";
-          document.getElementById("file9").style.display="block";
-          //document.getElementById("file10").style.display="none";
-          //document.getElementById("file11").style.display="none";
+        var state= DelParkDev();
+        return state;
+      }
+      
+      function DelParkDev()
+      {  
+        var band= $band("停车场设备");
+        if(band.RecordCount()>0)
+        { 
+          alert('请先删除设备信息，再删除组信息!');return false;
         }
         else
         {
-          ob.setFldStrValue(null, "场编号", ob.getFldStrValue("编号"));
-          document.getElementById("file1").style.display="none";
-          document.getElementById("file2").style.display="none";
-          document.getElementById("file3").style.display="none";
-          document.getElementById("file4").style.display="none";
-          document.getElementById("file5").style.display="none";
-          document.getElementById("file6").style.display="none";
-          document.getElementById("file7").style.display="none";
-          document.getElementById("file8").style.display="none";
-          document.getElementById("file9").style.display="none";
-          //document.getElementById("file10").style.display="block";
-          //document.getElementById("file11").style.display="block";
-        }
-        var ob = $band("停车场设备");
-        $loading();
-        ob.gridtype = 8; ob.freecols = "";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
-        ob.Grid=null;
-        var Grid = new XGrid("divpark", ob, "in", null, 1);
-        $loading("none")
+          return true;;
+        } 
       }
 
-      function RadChanager()
-      {
-        var ob2=$band("停车场分组资料");
-        if(radcard.checked)
-        {
-          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=16;ob2.endpos=24;ob2.pwcols="";
-          YPanel("停车场分组资料","divDoor4",null,1,null,null,50); 
-        }
-        else
-        {
-          ob2.minwidth=30;ob2.colnum = 3;ob2.startpos=50;ob2.endpos=56;ob2.pwcols="";
-          YPanel("停车场分组资料","divDoor4",null,1,null,null,80); 
-        }
-      }
-      function _save()
-      {
-        ue_save();
-      }
       //值改变事件
       function beforesave()
       {
-        var state= setDoor();
+        var state= setPark();
         return state;
       }
-      function setDoor()
+      function setPark()
       { 
         ip();
         //comip();
+        /*
         var menu= $band("停车场分组资料");
         menu.setFldStrValue(null, "ID", MID);
      
         var band=$band("停车场设备");
         band.setFldStrValue(null, "ID", MID);
+        */
         return true;
       }
-      
-      function comip()
-      {
-        var menu= $band("停车场分组资料");
-        var IP1 = menu.getFldStrValue("电脑IP");
-        if(menu.getFldStrValue("类别")!="分组")
-        {
-          if(IP1==null||IP1=="")
-          {
-            alert("电脑IP不能为空，请检查！");
-            return false;
-          }
-        
-          var ipValidate="^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$";
-                     
-          var reg = IP1.match(ipValidate); 
-          if(reg==null)
-          {
-            alert("电脑IP地址格式错误，请检查！");
-            menu.setFldStrValue(null, "电脑IP", "");
-            return false;
-          }
-        }
-        return true;
-      }
-    
+
       //IP地址校验
       function ip()
       {
@@ -248,6 +223,109 @@
         }
         return true;
       }
+                  
+      var PID="";
+      var MID="";
+      function Tree_onNodeSelectionChange(node)
+      {
+        TclickDot(node, false);
+        return;
+        var ob=$band("停车场分组资料");
+        MID=ob.getFldStrValue("MID");
+        PID=ob.getFldStrValue("PID");
+        if(PID=="" || PID=="01116c12-06e8-4b65-ae8b-86cc54809062"||node.ParentNode==null)
+        {
+          ob.setFldStrValue(null, "类别", "分组");
+          document.getElementById("file1").style.display="block";
+          document.getElementById("file2").style.display="block";
+          document.getElementById("file3").style.display="block";
+          //document.getElementById("file4").style.display="block";
+          document.getElementById("file5").style.display="block";
+          document.getElementById("file6").style.display="block";
+          document.getElementById("file7").style.display="block";
+          document.getElementById("file8").style.display="block";
+          document.getElementById("file9").style.display="block";
+          //document.getElementById("file10").style.display="none";
+          //document.getElementById("file11").style.display="none";
+        }
+        else
+        {
+          ob.setFldStrValue(null, "场编号", ob.getFldStrValue("编号"));
+          document.getElementById("file1").style.display="none";
+          document.getElementById("file2").style.display="none";
+          document.getElementById("file3").style.display="none";
+          //document.getElementById("file4").style.display="none";
+          document.getElementById("file5").style.display="none";
+          document.getElementById("file6").style.display="none";
+          document.getElementById("file7").style.display="none";
+          document.getElementById("file8").style.display="none";
+          document.getElementById("file9").style.display="none";
+          //document.getElementById("file10").style.display="block";
+          //document.getElementById("file11").style.display="block";
+        }
+        var ob = $band("停车场设备");
+        $loading();
+        ob.gridtype = 8; ob.freecols = "";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
+        ob.Grid=null;
+        var Grid = new XGrid("divpark", ob, "in", null, 1);
+        $loading("none")
+      }
+      function _Timetfilter()
+      {
+          //设备
+          var ob = $band("停车场设备");
+          $loading();
+          ob.gridtype = 8; ob.freecols = "";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
+          ob.Grid=null;
+          var Grid = new XGrid("divpark", ob, "in", null, 1);
+      }
+      function _save()
+      {
+        ue_save();
+      }
+
+      
+      function comip()
+      {
+        var menu= $band("停车场分组资料");
+        var IP1 = menu.getFldStrValue("电脑IP");
+        if(menu.getFldStrValue("类别")!="分组")
+        {
+          if(IP1==null||IP1=="")
+          {
+            alert("电脑IP不能为空，请检查！");
+            return false;
+          }
+        
+          var ipValidate="^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$";
+                     
+          var reg = IP1.match(ipValidate); 
+          if(reg==null)
+          {
+            alert("电脑IP地址格式错误，请检查！");
+            menu.setFldStrValue(null, "电脑IP", "");
+            return false;
+          }
+        }
+        return true;
+      }
+    
+      //通道选择
+      function RadChanager()
+      {
+        var ob2=$band("停车场分组资料");
+        if(radcard.checked)
+        {
+          ob2.minwidth=30;ob2.colnum = 4;ob2.startpos=16;ob2.endpos=24;ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor4",null,1,null,null,50); 
+        }
+        else
+        {
+          ob2.minwidth=30;ob2.colnum = 3;ob2.startpos=50;ob2.endpos=56;ob2.pwcols="";
+          YPanel("停车场分组资料","divDoor4",null,1,null,null,80); 
+        }
+      }
+
     </script>
 
 </head>
@@ -322,7 +400,7 @@
         </script>
 
     </fieldset>
-    <div id="divDev" style="height: 100%; width: 95%">
+    <div id="divDev" style="height: 100%; width: 99%">
         <fieldset style="float: right; width: 99%; height: 95%; padding-right: 8px; padding-left: 8px;
             padding-bottom: 9px; padding-top: 8px;">
             <legend>基本信息： 
@@ -344,13 +422,13 @@
                 <div id="divDoor2" style="text-align: left; width: 100%">
                 </div>
             </fieldset>
-            <fieldset id="file3" style="float: right; width: 50%; height: 5%; padding-right: 8px;
+            <fieldset id="file6" style="float: right; width: 49%; height: 5%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
-                <legend>临时卡出卡选择: </legend>
-                <div id="divDoor3" style="text-align: left; width: 100%">
+                <legend>放行控制(需要上位机确认): </legend>
+                <div id="divFX" style="text-align: left; width: 100%">
                 </div>
-            </fieldset>
-            <fieldset id="file4" style="float: right; width: 49%; height: 5%; padding-right: 8px;
+            </fieldset>            
+<!--            <fieldset id="file4" style="float: right; width: 49%; height: 5%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
                 <legend>通道选择:
                     <input id="radcar" type="radio" name="rad" onclick="RadChanager()" /><label for="radic">按车型</label>
@@ -358,20 +436,14 @@
                 </legend>
                 <div id="divDoor4" style="text-align: left; width: 100%">
                 </div>
-            </fieldset>
+            </fieldset>-->
             <fieldset id="file5" style="float: right; width: 50%; height: 5%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
                 <legend>卡类允许(允许该卡类入场): </legend>
                 <div id="divcardType" style="text-align: left; width: 100%">
                 </div>
             </fieldset>
-            <fieldset id="file6" style="float: right; width: 49%; height: 5%; padding-right: 8px;
-                padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
-                <legend>放行控制(需要上位机确认): </legend>
-                <div id="divFX" style="text-align: left; width: 100%">
-                </div>
-            </fieldset>
-            <fieldset id="file8" style="float: right; width: 49%; height: 5%; padding-right: 8px;
+            <fieldset id="file8" style="float: right; width: 50%; height: 5%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
                 <legend>入口满位处理: </legend>
                 <div id="divDG" style="text-align: left; width: 100%">
@@ -383,6 +455,12 @@
                 <div id="divZYSF" style="text-align: left; width: 100%">
                 </div>
             </fieldset>
+            <fieldset id="file3" style="float: right; width: 99%; height: 5%; padding-right: 8px;
+                padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
+                <legend>临时卡出卡选择: </legend>
+                <div id="divDoor3" style="text-align: left; width: 100%">
+                </div>
+            </fieldset>            
             <fieldset id="file7" style="float: right; width: 99%; height: 5%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
                 <legend>外围设置: </legend>
@@ -395,7 +473,7 @@
                 <div id="park" style="width: 100%; height: 97%; margin-top: 5;">
                 </div>
             </fieldset>-->
-            <fieldset id="file10" style="float: right; width: 99%; height: 60%; padding-right: 8px;
+            <fieldset id="file10" style="float: right; width: 99%; height: 20%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
                 <legend>设备信息: </legend>
                 <div id="divpark" style="width: 100%; height: 97%; margin-top: 5;">
