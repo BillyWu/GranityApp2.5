@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/winWatchSrv/obj/Release
+END
+winWatchSrv.exe
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/winWatchSrv/obj/Release/winWatchSrv.exe
+END
+winWatchSrv.csproj.GenerateResource.Cache
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/winWatchSrv/obj/Release/winWatchSrv.csproj.GenerateResource.Cache
+END
+winWatchSrv.pdb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/winWatchSrv/obj/Release/winWatchSrv.pdb
+END
+winWatchSrv.ServiceWatch.resources
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/winWatchSrv/obj/Release/winWatchSrv.ServiceWatch.resources
+END

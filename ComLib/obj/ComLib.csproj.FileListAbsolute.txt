@@ -1,0 +1,15 @@
+D:\BS软件\GranityApp2.2\ComLib\bin\Debug\ComLib.dll
+D:\BS软件\GranityApp2.2\ComLib\bin\Debug\ComLib.pdb
+D:\BS软件\GranityApp2.2\ComLib\obj\Debug\ResolveAssemblyReference.cache
+D:\BS软件\GranityApp2.2\ComLib\obj\Debug\ComLib.dll
+D:\BS软件\GranityApp2.2\ComLib\obj\Debug\ComLib.pdb
+D:\BS软件\GranityPark\ComLib\bin\Debug\ComLib.dll
+D:\BS软件\GranityPark\ComLib\bin\Debug\ComLib.pdb
+D:\BS软件\GranityPark\ComLib\obj\Debug\ResolveAssemblyReference.cache
+D:\BS软件\GranityPark\ComLib\obj\Debug\ComLib.dll
+D:\BS软件\GranityPark\ComLib\obj\Debug\ComLib.pdb
+E:\Granity\GranityApp2.5\ComLib\bin\Debug\ComLib.dll
+E:\Granity\GranityApp2.5\ComLib\bin\Debug\ComLib.pdb
+E:\Granity\GranityApp2.5\ComLib\obj\Debug\ResolveAssemblyReference.cache
+E:\Granity\GranityApp2.5\ComLib\obj\Debug\ComLib.dll
+E:\Granity\GranityApp2.5\ComLib\obj\Debug\ComLib.pdb

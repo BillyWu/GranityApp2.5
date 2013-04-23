@@ -1,0 +1,641 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ComLib</name>
+    </assembly>
+    <members>
+        <member name="M:ComLib.CrcClass.ValidateCodeFCS(System.String)">
+            <summary>
+            对命令字符串FCS和校验
+            </summary>
+            <param name="str">需要进行FCS和校验的字符串</param>
+            <returns>校验字:16进制数</returns>
+        </member>
+        <member name="M:ComLib.CrcClass.ValidateCodeLRC(System.String)">
+            <summary>
+            Modbus ASC模式的LRC校验
+            </summary>
+            <param name="str">命令字符串</param>
+            <returns>校验字:16进制数</returns>
+        </member>
+        <member name="M:ComLib.CrcClass.ValidateCodeCRC(System.String)">
+            <summary>
+            Modbus RTU模式的RTU校验
+            </summary>
+            <param name="str">命令字符串</param>
+            <returns>校验字:双字节16进制数</returns>
+        </member>
+        <member name="M:ComLib.CrcClass.CRCXOR4(System.String)">
+            <summary>
+            对命令字符串进行四位异或校验
+            </summary>
+            <param name="str">需要进行四位异或校验的字符串</param>
+            <returns>校验字:16进制数</returns>
+        </member>
+        <member name="M:ComLib.CrcClass.CRCSUM(System.String)">
+            <summary>
+            字节和校验：目前应用于门禁、考勤通讯协议
+            </summary>
+            <param name="strCmd">16进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.CrcClass.sVal10To16(System.String)">
+            <summary>
+            将10进制字符串转化为16进制字符串(2位转)
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.CrcClass.IsNumberic16(System.String)">
+            <summary> 
+            名称：IsNumberic 
+            功能：判断输入的是否是数字 
+            参数：string oText：源文本 
+            返回值：　bool true:是　false:否 
+            </summary> 
+        </member>
+        <member name="T:ComLib.SerialCommi">
+            <summary>
+            串口读取数据通讯类
+            </summary>
+        </member>
+        <member name="M:ComLib.SerialCommi.SetProtocolParam(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits,System.Int32)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+            <param name="parity">奇偶校验位(默认None)</param>
+            <param name="dataBits">数据位(默认8)</param>
+            <param name="stopBits">停止位(默认1)</param>
+            <param name="delay">延迟时间(ms),默认40ms</param>
+        </member>
+        <member name="M:ComLib.SerialCommi.SetProtocolParam(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+            <param name="parity">奇偶校验位(默认None)</param>
+            <param name="dataBits">数据位(默认8)</param>
+            <param name="stopBits">停止位(默认1)</param>
+        </member>
+        <member name="M:ComLib.SerialCommi.SetProtocolParam(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+            <param name="parity">奇偶校验位(默认None)</param>
+            <param name="dataBits">数据位(默认8)</param>
+        </member>
+        <member name="M:ComLib.SerialCommi.SetProtocolParam(System.String,System.Int32,System.IO.Ports.Parity)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+            <param name="parity">奇偶校验位(默认None)</param>
+        </member>
+        <member name="M:ComLib.SerialCommi.SetProtocolParam(System.String,System.Int32,System.Int32)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+            <param name="delay">延迟时间(ms),默认40ms</param>
+        </member>
+        <member name="M:ComLib.SerialCommi.SetProtocolParam(System.String,System.Int32)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+        </member>
+        <member name="M:ComLib.SerialCommi.SetProtocolParam(System.String)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+        </member>
+        <member name="M:ComLib.SerialCommi.SendCommand(System.String)">
+            <summary>
+            串口通讯发送命令接收数据
+            </summary>
+            <param name="cmd">发出的请求字符串</param>
+            <returns>返回接收到的字节数据</returns>
+        </member>
+        <member name="M:ComLib.SerialCommi.SendCommand(System.String,System.Boolean)">
+            <summary>
+            串口通讯发送命令接收数据
+            </summary>
+            <param name="cmd">发出的请求字符串</param>
+            <param name="isHEX">是否是16进制格式的字符串</param>
+            <returns>返回接收到的字节数据</returns>
+        </member>
+        <member name="M:ComLib.SerialCommi.SendCommand(System.Byte[])">
+            <summary>
+            串口通讯发送命令接收数据
+            </summary>
+            <param name="cmd">发出的请求字节数据</param>
+            <returns>返回接收到的字节数据</returns>
+        </member>
+        <member name="P:ComLib.SerialCommi.Delay">
+            <summary>
+            读取或设置通讯时接收数据的延时时刻(单位ms,默认50)
+            </summary>
+        </member>
+        <member name="P:ComLib.SerialCommi.PortName">
+            <summary>
+            读取串口端口名称
+            </summary>
+        </member>
+        <member name="P:ComLib.SerialCommi.BaudRate">
+            <summary>
+            读取串口协议波特率
+            </summary>
+        </member>
+        <member name="P:ComLib.SerialCommi.Parity">
+            <summary>
+            读取串口协议奇偶校验
+            </summary>
+        </member>
+        <member name="P:ComLib.SerialCommi.DataBits">
+            <summary>
+            读取串口协议数据位
+            </summary>
+        </member>
+        <member name="P:ComLib.SerialCommi.StopBits">
+            <summary>
+            读取串口协议停止位
+            </summary>
+        </member>
+        <member name="M:basefun.getLabelname(System.String)">
+            <summary>
+            获得分组显示中字符串的最后一个值用于统计图标签名
+            </summary>
+            <param name="strGroup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:basefun.getArrayFromString(System.String,System.String)">
+            <summary>
+            从字符串获得相应数组
+            </summary>
+            <param name="strGroup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:basefun.IsNumberic(System.String)">
+            <summary> 
+            名称：IsNumberic 
+            功能：判断输入的是否是数字 
+            参数：string oText：源文本 
+            返回值：　bool true:是　false:否 
+            </summary> 
+        </member>
+        <member name="M:basefun.toInt(System.String)">
+            <summary>
+            度量单位或字符串转为整型
+            </summary>
+        </member>
+        <member name="M:basefun.toUnit(System.Int32)">
+            <summary>
+            整型转为度量单位或字符串
+            </summary>
+        </member>
+        <member name="M:basefun.Escape(System.String)">
+            <summary>
+            C#实现javascript的escape ,与javascript的unescape呼应
+            解决字符串编码在服务端与客户端转换问题
+            </summary>
+            <param name="s">需要ASCII编码的字符串</param>
+            <returns>编码后字符串</returns>
+        </member>
+        <member name="F:basefun.pattDt">
+            <summary>
+            常用日期模式匹配
+            </summary>
+        </member>
+        <member name="M:basefun.toDatetimeBCD(System.String,System.String)">
+            <summary>
+            BCD字符转换为日期时间,BCD码只能按字节解析
+            </summary>
+            <param name="valHex">BCD字符值</param>
+            <param name="format">日期时间格式,默认yyMMdd，格式后分号加BCD结尾</param>
+            <returns>返回转换日期时间值,失败返回最小值</returns>
+        </member>
+        <member name="M:basefun.toBCDDatetime(System.String,System.String)">
+            <summary>
+            日期时间转换为指定格式的BCD码字符
+            </summary>
+            <param name="dtval">日期时间值</param>
+            <param name="format">日期时间格式,格式后分号加BCD</param>
+            <returns>返回转换的16进制值</returns>
+        </member>
+        <member name="M:basefun.toDatetime(System.String,System.String)">
+            <summary>
+            16进制字符转换为日期时间
+            </summary>
+            <param name="valHex">16进制字符值</param>
+            <param name="format">日期时间格式,默认yyMMdd，格式后分号加数字#分段解析特殊需求的日期</param>
+            <returns>返回转换日期时间值,失败返回最小值</returns>
+        </member>
+        <member name="M:basefun.toHexDatetime(System.String,System.String)">
+            <summary>
+            日期时间转换为指定格式的16进制字符
+            </summary>
+            <param name="dtval">日期时间值</param>
+            <param name="format">日期时间格式,默认yyMMdd，格式后分号加数字#分段解析特殊需求的日期</param>
+            <returns>返回转换的16进制值</returns>
+        </member>
+        <member name="M:ComLib.ComClass.trHzChar(System.String)">
+            <summary>
+            修补汉字字符串中的单字节字符
+            </summary>
+            <param name="src"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.CommandString(System.String,System.String,System.String,ComLib.devObj@)">
+            <summary>
+            根据设备参数和命令参数计算通讯命令字符串
+            </summary>
+            <param name="devpms">设备参数李氏集合</param>
+            <param name="cmdpms">指令参数李氏集合</param>
+            <returns>通讯字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.transferWords(System.String,System.String)">
+            <summary>
+            处理转义字符：对不包括帧头、帧尾的字节进行转义处理(按字节转义)
+            </summary>
+            <param name="str">需要转义的原字符串</param>
+            <param name="exWords">转义字符集</param>
+            <returns></returns>0000173b
+        </member>
+        <member name="M:ComLib.ComClass.get16sByByte(System.Byte[],System.Boolean)">
+            <summary>
+            去除头尾后的16进制字符串
+            </summary>
+            <param name="buf">字节数组</param>
+            <param name="noHE">是否去掉头尾</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.NameValueTag(System.String)">
+            <summary>
+            对标记形成字符串数组string={{"key","value"},{"key","value"}}
+            </summary>
+            <param name="stag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.AnalysisEateryResults(System.String)">
+            <summary>
+            解析结果值,含多重校验
+            </summary>
+            <param name="strResult">消费机返回字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.AnalysisEateryResults(System.String,System.String@)">
+            <summary>
+            解析结果值,含多重校验,并返回状态值
+            </summary>
+            <param name="strResult">消费机返回字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.AnalysisEateryResults(System.String,System.String,System.String@)">
+            <summary>
+            根据返回值的参数结构解析结果值,含多重校验,并返回状态值
+            </summary>
+            <param name="strResult">消费机返回字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.AnalysisEateryResults(System.String,System.String,ComLib.devObj,System.Boolean,System.String@)">
+            <summary>
+            处理时，结果字符串示noHE的定义而确定是否已包含或未包含帧头帧尾。根据返回值的参数结构解析结果值,含多重校验,并返回状态值
+            </summary>
+            <param name="strResult">待解析的结果字符串</param>
+            <param name="strpms">参数配置集合</param>
+            <param name="devobj">设备参数</param>
+            <param name="noHE">包含帧头帧尾的状态字</param>
+            <param name="state">结果集中的返回状态值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.AnalysisEateryResults(System.String,System.String,ComLib.devObj,System.String@)">
+            <summary>
+            根据返回值的参数结构解析结果值,含多重校验,并返回状态值
+            </summary>
+            <param name="strResult">消费机返回字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.CRCXOR(System.String)">
+            <summary>
+            对命令字符串进行四位异或校验
+            </summary>
+            <param name="str">需要进行FCS和校验的字符串</param>
+            <returns>校验字:16进制数</returns>
+        </member>
+        <member name="M:ComLib.ComClass.GetFormatDateOf16(System.String,System.String)">
+            <summary>
+            由日期格式得到16进制日期字符串
+            </summary>
+            <param name="date"></param>
+            <param name="Format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.GetFormatDateOf16(System.String,System.String,ComLib.pmObj)">
+            <summary>
+            带格式串的日期
+            </summary>
+            <param name="sdate"></param>
+            <param name="Format"></param>
+            <param name="Formats"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.ComplementingBits(System.String,System.Int32)">
+            <summary>
+            字符串补位,默认高位字节补齐
+            </summary>
+            <param name="str">需补位的16进制字符串</param>
+            <param name="ilen">位长度,内部做字节长度转换</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.ComplementingBits(System.String,System.Int32,System.Boolean)">
+            <summary>
+            字符串补位,默认高位补齐
+            </summary>
+            <param name="str">需补位的16进制字符串</param>
+            <param name="ilen">需要的位长度,字节时内部做字节长度转换</param>
+            <param name="isbits">以位直接填充，否则字节对齐填充</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.ComplementingBits(System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            字符串补位
+            </summary>
+            <param name="str">需补位的16进制字符串</param>
+            <param name="ilen">需要的位长度</param>
+            <param name="direct">补位方向(true是前导、false是后置)</param>
+            <param name="isbits">以位直接填充，否则字节对齐填充</param>
+            <returns>填充长度后的字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.String10To16(System.String)">
+            <summary>
+            将10进制字符串转化为16进制字符串(2位转)
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.sVal10To16(System.String)">
+            <summary>
+            将10进制字符串转化为16进制字符串(2位转)
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.sVal10To16(System.String,System.Int32)">
+            <summary>
+            将10进制字符串转化为16进制字符串(2位转)
+            </summary>
+            <param name="str">10进制数字</param>
+            <param name="len">转换字节长度,一个字节2个字符</param>
+            <returns>转换后结果,超长去除高位,不足补0</returns>
+        </member>
+        <member name="M:ComLib.ComClass.exchangeLH(System.String)">
+            <summary>
+            高低位取反
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.exchangeLH(System.String,System.Boolean)">
+            <summary>
+            根据高低位转换要求进行高低位取反
+            </summary>
+            <param name="str"></param>
+            <param name="isLH"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.sVal10To16(System.String,System.String)">
+            <summary>
+            有符号10进制字节数据str,以max最大值(负数取反正数原值)转换为16进制字节数据
+            </summary>
+            <param name="str">有符号10进制数据</param>
+            <param name="max">高位符号16进制数据,如一个字节最大值FF</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.sVal2To16(System.String,System.Int32)">
+            <summary>
+            按字节转换为16进制字符串(2位转)
+            </summary>
+            <param name="str">十进制字符串</param>
+            <param name="len">字节长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.sVal10To2(System.String)">
+            <summary>
+            将十进制字符串转为2进制
+            </summary>
+            <param name="str">输入的数值字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.sVal10To2(System.String,System.Int32)">
+            <summary>
+            将十进制字符串转为2进制,并根据要求的字节数补位
+            </summary>
+            <param name="str">输入的数值字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.sVal16To10(System.String)">
+            <summary>
+            将十六进制字符串转为十进制
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.String16ToArry(System.String)">
+            <summary>
+            将16进制字符串转换为16进制字符数组
+            </summary>
+            <param name="str">16进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.String16ToArry(System.String,System.Int32)">
+            <summary>
+            将16进制字符串转换为以制式参数规定的字符数组
+            </summary>
+            <param name="str">16进制字符串</param>
+            <param name="IFormat">进制</param>
+            <returns>指定制式的字符串数组</returns>
+        </member>
+        <member name="M:ComLib.ComClass.SpecialExchange(System.String,System.String,System.String)">
+            <summary>
+            更换特殊字符
+            </summary>
+            <param name="str">输入字符串</param>
+            <param name="srcsign">原字符</param>
+            <param name="destsign">需更换的字符</param>
+            <returns>输出更换后字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.SpecialRestore(System.String,System.String,System.String)">
+            <summary>
+            替换转义字符,忽略大小写
+            </summary>
+            <param name="data">需要处理的数据</param>
+            <param name="srcsign">需替换的样例字符</param>
+            <param name="destsign">更换的实际字符</param>
+            <returns>返回转义处理后的字符</returns>
+        </member>
+        <member name="M:ComLib.ComClass.EateryCmdStrintg(System.String,System.String,System.String,System.String,System.Int32,System.String)">
+            <summary>
+            根据设备ID,命令字,命令长度，数据字符获得消费命令字符串,含限制位数
+            </summary>
+            <param name="sn">设备ID</param>
+            <param name="cmd">执行命令</param>
+            <param name="stype">控制类型</param>
+            <param name="cmdlen">命令字长</param>
+            <param name="ilmtbytes">限制字数</param>
+            <param name="str">数据串</param>
+            <returns>消费命令字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.EateryCmdStrintg(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            根据设备ID,命令字,命令长度，数据字符获得消费命令字符串,不含限制位数
+            </summary>
+            <param name="sn">设备ID</param>
+            <param name="cmd">执行命令</param>
+            <param name="stype">控制类型</param>
+            <param name="cmdlen">命令字长</param>
+            <param name="str">数据串</param>
+            <returns>消费命令字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.ComCmdStrintg(System.String,System.String,System.String,System.String,System.Int32,System.String)">
+            <summary>
+            根据设备ID,命令格式文档构建命令字符串
+            </summary>
+            <param name="sn">设备ID</param>
+            <param name="cmd">执行命令</param>
+            <param name="stype">控制类型</param>
+            <param name="cmdlen">命令字长</param>
+            <param name="ilmtbytes">限制字数</param>
+            <param name="str">数据串</param>
+            <returns>消费命令字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.getValByHmFormat(System.String,System.String[])">
+            <summary>
+            由串口返回的字符串，按规划的模式赋值
+            </summary>
+            <param name="format">格式化字符串</param>
+            <param name="udpinfos">串口返回的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.getValByHmFormat(System.String,System.String[],ComLib.devObj,System.Boolean,System.String@)">
+            <summary>
+            由串口返回的字符串及hmtag字符串，按规划的模式赋值.由布尔值noHE分辨是否考虑帧头和帧尾
+            </summary>
+            <param name="format">格式化字符串</param>
+            <param name="udpinfos">串口返回的数据</param>
+            <param name="devobj">设备参数类</param>
+            <param name="noHE">布尔值，true- 不包含帧头和帧尾</param>
+            <param name="vtag">返回的状态值</param>
+            <returns>返回的数据字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.getValByHmFormat(System.String,System.String[],ComLib.devObj,System.String@)">
+            <summary>
+            由串口返回的字符串及hmtag字符串，按规划的模式赋值
+            </summary>
+            <param name="format">格式化字符串</param>
+            <param name="udpinfos">串口返回的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.ComClass.InfoTomyDate(System.String,System.String)">
+            <summary>
+            16进制字符串转日期
+            </summary>
+            <param name="s">16进制字符串</param>
+            <param name="format">格式</param>
+            <returns>日期</returns>
+        </member>
+        <member name="M:ComLib.ComClass.InfoTomyDate(System.String,System.String,System.Boolean)">
+            <summary>
+            16进制字符串转日期
+            </summary>
+            <param name="s">16进制字符串</param>
+            <param name="format">格式</param>
+            /// <param name="Is16">是否16进制</param>
+            <returns>日期</returns>
+        </member>
+        <member name="M:ComLib.ComClass.setValByHmFormat(System.String)">
+            <summary>
+            由指定的格式化字符串返回结果字符串
+            </summary>
+            <param name="sformat">格式化字符串</param>
+            <returns>结果字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.setValByHmFormat(System.String,System.String,System.String)">
+            <summary>
+            由指定的格式化字符串返回结果字符串
+            </summary>
+            <param name="sformat">格式化字符串</param>
+            <param name="srcsign">需更换的原16进制字符</param>
+            <param name="destsign">被更换的16进制字符</param>
+            <returns>结果字符串</returns>
+        </member>
+        <member name="M:ComLib.ComClass.getVarNameByHmStr(System.String)">
+            <summary>
+            解析单个变量名
+            </summary>
+            <param name="s">格式化字符@xx = y</param>
+            <returns>变量名称</returns>
+        </member>
+        <member name="M:ComLib.ComClass.toIntval(System.String)">
+            <summary>
+            由字符串取十进制整数值
+            </summary>
+            <param name="str">字符串</param>
+            <returns>返回十进制整数</returns>
+        </member>
+        <member name="M:ComLib.ComClass.toFloatValue(System.String)">
+            <summary>
+            由字符串取十进制浮点值
+            </summary>
+            <param name="str">字符串</param>
+            <returns>返回十进制整数</returns>
+        </member>
+        <member name="M:ComLib.ComClass.getArrayFromString(System.String,System.String)">
+            <summary>
+            从字符串获得相应数组
+            </summary>
+            <param name="strGroup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComLib.NameObjectList.#ctor(System.Collections.IDictionary,System.Boolean)">
+            <summary>
+            根据已有字典建立列表
+            </summary>
+            <param name="d"></param>
+            <param name="bReadOnly"></param>
+        </member>
+        <member name="P:ComLib.NameObjectList.Item(System.Int32)">
+            <summary>
+            读取指定位置的键值对
+            </summary>
+        </member>
+        <member name="P:ComLib.NameObjectList.Item(System.String)">
+            <summary>
+            使用字符键值直接读写对应值
+            </summary>
+        </member>
+        <member name="P:ComLib.NameObjectList.AllKeys">
+            <summary>
+            返回所有键值
+            </summary>
+        </member>
+        <member name="P:ComLib.NameObjectList.AllValues">
+            <summary>
+            返回所有的值
+            </summary>
+        </member>
+        <member name="P:ComLib.NameObjectList.AllStringValues">
+            <summary>
+            返回所有字符类型的值
+            </summary>
+        </member>
+    </members>
+</doc>

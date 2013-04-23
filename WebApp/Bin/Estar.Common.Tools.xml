@@ -1,0 +1,1223 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Estar.Common.Tools</name>
+    </assembly>
+    <members>
+        <member name="T:Estar.Common.Tools.ParamRangeType">
+            <summary>
+            参数有效范围类别:系统,页面(默认),段
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.ParamRangeType.System">
+            <summary>
+            系统参数
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.ParamRangeType.Page">
+            <summary>
+            页面参数
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.ParamRangeType.Band">
+            <summary>
+            段参数
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.ParamUseType">
+            <summary>
+            参数使用来源类别:局部临时,自定义,数据(默认)
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.ParamUseType.Temp">
+            <summary>
+            局部临时
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.ParamUseType.CustomDefine">
+            <summary>
+            自定义
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.ParamUseType.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.ParamUseType.Trans">
+            <summary>
+            传递来的
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.BuildParamList">
+            <summary>
+            管理系统共用参数
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.BuildParamList._typeuser">
+            <summary>
+            参数来源类型,优先级 PL: B->P->S  二级 L: T->C->D
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.BuildParamList._typerange">
+            <summary>
+            参数区域范围类型,
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.getValue(System.Xml.XmlDocument,System.String)">
+            <summary>
+            读取参数值
+            </summary>
+            <param name="xmldoc">参数列表</param>
+            <param name="name">参数名称</param>
+            <returns>参数值</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.getValue(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            读取参数值
+            </summary>
+            <param name="xmldoc">参数列表</param>
+            <param name="bandName">数据段,即Item名称</param>
+            <param name="name">参数名</param>
+            <returns>参数值</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.getXmlNode(System.Xml.XmlDocument,System.String)">
+            <summary>
+            读取参数节点
+            </summary>
+            <param name="xmldoc">参数列表</param>
+            <param name="name">参数名称</param>
+            <returns>参数XmlNode节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.getXmlNode(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            读取参数值
+            </summary>
+            <param name="xmldoc">参数列表</param>
+            <param name="bandName">数据段,即Item名称</param>
+            <param name="name">参数名</param>
+            <returns>参数XmlNode节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.setValue(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            设置参数
+            </summary>
+            <param name="xmldoc">参数列表文档</param>
+            <param name="key">参数名称</param>
+            <param name="value">参数值</param>
+            <returns>返回参数节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.setValue(System.Xml.XmlDocument,Estar.Common.Tools.ParamRangeType,System.String,System.String)">
+            <summary>
+            设置参数
+            </summary>
+            <param name="xmldoc">参数列表文档</param>
+            <param name="PR">参数区域类别</param>
+            <param name="key">参数名称</param>
+            <param name="value">参数值</param>
+            <returns>返回参数节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.setValue(System.Xml.XmlDocument,Estar.Common.Tools.ParamRangeType,System.String,System.String,Estar.Common.Tools.DBTypeCommon)">
+            <summary>
+            设置参数
+            </summary>
+            <param name="xmldoc">参数列表文档</param>
+            <param name="PR">参数区域类别</param>
+            <param name="key">参数名称</param>
+            <param name="value">参数值</param>
+            <param name="dbtype">参数类型</param>
+            <returns>返回参数节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.setValue(System.Xml.XmlDocument,Estar.Common.Tools.ParamRangeType,Estar.Common.Tools.ParamUseType,System.String,System.String)">
+            <summary>
+            设置参数
+            </summary>
+            <param name="xmldoc">参数列表文档</param>
+            <param name="PR">参数区域类别</param>
+            <param name="L">参数使用来源类别</param>
+            <param name="key">参数名称</param>
+            <param name="value">参数值</param>
+            <returns>返回参数节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.setValue(System.Xml.XmlDocument,Estar.Common.Tools.ParamRangeType,System.String,Estar.Common.Tools.ParamUseType,System.String,System.String)">
+            <summary>
+            设置参数
+            </summary>
+            <param name="xmldoc">参数列表文档</param>
+            <param name="PR">参数区域类别</param>
+            <param name="rangeName">参数区域名称</param>
+            <param name="L">参数使用来源类别</param>
+            <param name="key">参数名称</param>
+            <param name="value">参数值</param>
+            <returns>返回参数节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.setValue(System.Xml.XmlDocument,Estar.Common.Tools.ParamRangeType,System.String,Estar.Common.Tools.ParamUseType,System.String,System.String,Estar.Common.Tools.DBTypeCommon)">
+            <summary>
+            设置参数
+            </summary>
+            <param name="xmldoc">参数列表文档</param>
+            <param name="PR">参数区域类别</param>
+            <param name="rangeName">参数区域名称</param>
+            <param name="L">参数使用来源类别</param>
+            <param name="key">参数名称</param>
+            <param name="value">参数值</param>
+            <param name="dbtype">参数数据类型</param>
+            <returns>返回参数节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.BuildParams(System.Xml.XmlDocument)">
+            <summary>
+            根据参数Xml文档列表生成参数:
+            </summary>
+            <param name="xmldoc">文档参数</param>
+            <returns>返回参数</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.BuildParams(System.Xml.XmlDocument,System.String)">
+            <summary>
+            根据参数Xml文档列表生成指定段名的参数:
+            </summary>
+            <param name="xmldoc">文档参数</param>
+            <param name="bandName">段名称</param>
+            <returns>返回参数</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.BuildParamsList(System.Xml.XmlDocument)">
+            <summary>
+            根据参数Xml文档列表生成参数:数组List只限定于PL[@t='B']/L[@='D']/List
+            </summary>
+            <param name="xmldoc">文档参数</param>
+            <returns>返回参数数组</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.BuildParamsList(System.Xml.XmlDocument,System.String)">
+            <summary>
+            根据参数Xml文档列表生成指定段对应参数:数组List只限定于PL[@t='B']/L[@='D']/List
+            </summary>
+            <param name="xmldoc">文档参数</param>
+            <param name="bandName">段名称</param>
+            <returns>返回参数数组</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.BuildParamMacro(System.Xml.XmlDocument)">
+            <summary>
+            根据参数Xml文档列表生成宏变量参数:
+            </summary>
+            <param name="xmldoc">文档参数</param>
+            <returns>返回参数</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.BuildParamMacro(System.Xml.XmlDocument,System.String)">
+            <summary>
+            根据参数Xml文档列表生成指定段名的宏变量参数:
+            </summary>
+            <param name="xmldoc">文档参数</param>
+            <param name="bandName">段名称</param>
+            <returns>返回参数</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.setParamByParamNode(Estar.Common.Tools.NameObjectList,System.Xml.XmlNode)">
+            <summary>
+            根据<Param name="" value="" type=""></Param>节点设置参数
+            </summary>
+            <param name="paramList">参数列表</param>
+            <param name="xmlParam">xml的参数值</param>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.IsSensitivity(System.String)">
+            <summary>
+            是否是敏感信息,敏感信息不能存入视图状态中
+            </summary>
+            <param name="key">session值名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.getXSLGroupSum">
+            <summary>
+            获取进行数据文档汇总分组汇总的XSLT样式表
+            </summary>
+            <returns>返回分组合计样式表</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BuildParamList.XmlGroupSum(System.Xml.XmlDocument,System.Xml.XmlDocument,System.String)">
+            <summary>
+            对xmlData数据文档按照strFld字段进行分组合计;xmlSchema数据文档的结构
+            </summary>
+            <param name="xmlData">数据文档</param>
+            <param name="xmlSchema">数据文档结构</param>
+            <param name="strFld">数据文档分组合计的字段</param>
+            <returns>没有数据返回null,成功返回null</returns>
+        </member>
+        <member name="P:Estar.Common.Tools.BuildParamList.SessionNameTrans">
+            <summary>
+            传递参数的session名称
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.BitsDownFile">
+            <summary>
+            利用windows的后台智能传输服务,实现基于Http协议的文件交换,并利用系统来保证断点续传
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsDownFile.TransFile">
+            <summary>
+            传输文件,多线程传输文件,默认最大20个;
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsDownFile.HandleBits(System.Object)">
+            <summary>
+            检查/启动/结束传输作业进程,参数文件节点为空的取当前文件节点
+            </summary>
+            <param name="nodeFile">要管理的传输文件节点</param>
+        </member>
+        <member name="P:Estar.Common.Tools.BitsDownFile.MaxFiles">
+            <summary>
+            读取或设置并行传输文件的最大数
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.BitsFileList">
+            <summary>
+            后台智能传输服务的文件列表,静态类,对应于一个存储文件BitsFileList.xml
+            srcurl:远程文件位置, doctype 存储本地的文件类型(对应本地文件夹), jobguid:传输服务guid, state:内部使用维护列表的同步属性
+            文件格式:<FileList><File srcurl="" doctype="" jobguid="" state="new" /></FileList>
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsFileList.#cctor">
+            <summary>
+            构造函数,初始化全局文件列表
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsFileList.AddFile(System.String,System.String)">
+            <summary>
+            添加传输文件,列表已经有的,停止原来的下载并使用新的下载任务
+            </summary>
+            <param name="srcurl">文件远程静态url地址</param>
+            <param name="doctype">存储本地的文件类型</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsFileList.SaveFile">
+            <summary>
+            将更新文件列表保存本地文件中
+            </summary>
+            <returns>保存成功返回true,并去掉新添加文件的新标识,否则返回false,并回退加入的节点</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsFileList.GetCurrentFile">
+            <summary>
+            获取当前处理文件节点
+            </summary>
+            <returns>当前的文件</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsFileList.MoveFirst">
+            <summary>
+            移动到第一个文件
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsFileList.MoveNext">
+            <summary>
+            当前的文件列表向前移动一个,到结尾,文件就指向空,
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsFileList.IsEOF">
+            <summary>
+            是否是结尾
+            </summary>
+            <returns>是结尾返回true</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.BitsFileList.FectchFile">
+            <summary>
+            获取下一个文件,并当前文件节点向后移动一个
+            如果到了最后就跳到第一个
+            </summary>
+            <returns>返回下一个文件的XmlNode</returns>
+        </member>
+        <member name="T:Estar.Common.Tools.NameObjectList">
+            <summary>
+            string键的object列表
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.NameObjectList.#ctor(System.Collections.IDictionary,System.Boolean)">
+            <summary>
+            根据已有字典建立列表
+            </summary>
+            <param name="d"></param>
+            <param name="bReadOnly"></param>
+        </member>
+        <member name="P:Estar.Common.Tools.NameObjectList.Item(System.Int32)">
+            <summary>
+            读取指定位置的键值对
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.NameObjectList.Item(System.String)">
+            <summary>
+            使用字符键值直接读写对应值
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.NameObjectList.AllKeys">
+            <summary>
+            返回所有键值
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.NameObjectList.AllValues">
+            <summary>
+            返回所有的值
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.NameObjectList.AllStringValues">
+            <summary>
+            返回所有字符类型的值
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.WorkUnitType">
+            <summary>
+            业务功能项的类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.SimpleBank">
+            <summary>
+            最简单的空白页类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.SimpleBankLeft">
+            <summary>
+            简单模板的左工作区类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.HtmlBankLeft">
+            <summary>
+            自定义模板的左工作区类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.HtmlBankLeftPop">
+            <summary>
+            自定义模板的弹出窗口类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.ReportItem">
+            <summary>
+            报表类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.VmlChartTp">
+            <summary>
+            含有Vml图表类型的模板窗口
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.Updatekey">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.NavPage">
+            <summary>
+            初始预警页面
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.VmlMapPage">
+            <summary>
+            VML地图窗口类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.OtherItem">
+            <summary>
+            其他特殊格式类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.SysItem">
+            <summary>
+            系统菜单定义
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.SysOptRight">
+            <summary>
+            权限设置
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.SysOrganize">
+            <summary>
+            组织机构管理
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.SysOptions">
+            <summary>
+            权限设置
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.SysAssign">
+            <summary>
+            分配操作集
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.AppendUnit">
+            <summary>
+            工作单元中的附加单元
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkUnitType.HomePage">
+            <summary>
+            初始页
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.WorkItemType">
+            <summary>
+            工作单元的单项目分类
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkItemType.MasterData">
+            <summary>
+            主数据
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkItemType.DetailData">
+            <summary>
+            从数据或明细数据
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkItemType.GeneralData">
+            <summary>
+            常规类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkItemType.ReportData">
+            <summary>
+            报表数据
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.AppendFunType">
+            <summary>
+            附加项功能分类
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendFunType.Browse">
+            <summary>
+            浏览
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendFunType.Import">
+            <summary>
+            导入数据
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendFunType.Report">
+            <summary>
+            输出报表
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendFunType.SqlCmd">
+            <summary>
+            直接执行定义的Sql语句
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendFunType.SqlCmdList">
+            <summary>
+            列表参数执行定义的Sql语句
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendFunType.ImportFromExecel">
+            <summary>
+            从Excel文件导入数据到数据库中
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendFunType.ConfigSystem">
+            <summary>
+            配置系统
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.CalculateType">
+            <summary>
+            列的计算类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.CalculateType.NotSet">
+            <summary>
+            不设置计算
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.CalculateType.Init">
+            <summary>
+            初始化计算
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.CalculateType.Dynamic">
+            <summary>
+            动态计算
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.FCalculateType.NotSet">
+            <summary>
+            不设置计算
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.FCalculateType.Init">
+            <summary>
+            初始化计算
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.FCalculateType.Dynamic">
+            <summary>
+            动态计算
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.SaveType">
+            <summary>
+            保存执行类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.SaveType.GenerallySave">
+            <summary>
+            通常类保存
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.SaveType.TransSave">
+            <summary>
+            转换类保存;把一个表数据转换到另一个表中
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.SaveType.SaveAndReload">
+            <summary>
+            保存后,页面重新进行数据绑定
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.PrintType">
+            <summary>
+            打印类别
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.PrintType.Word">
+            <summary>
+            Word类别
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.PrintType.Excel">
+            <summary>
+            Excel类别
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.PrintType.HTML">
+            <summary>
+            网页直接打印
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.DictColumn">
+            <summary>
+            每个单项目的列定义
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.IsReadOnly">
+            <summary>
+            是否只读属性
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.Formate">
+            <summary>
+            列的显示格式
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.Expression">
+            <summary>
+            计算列表达式
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.Footer">
+            <summary>
+            脚注,常数，sum,avg,max,min,count
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.CalType">
+            <summary>
+            计算类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.FCalType">
+            <summary>
+            强制计算类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.IsNeed">
+            <summary>
+            是否可空
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.ValidateCell">
+            <summary>
+            验证单元格输入的合法性
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.MergeCell">
+            <summary>
+            是否合并
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.BarHeight">
+            <summary>
+            地图该列最大值柱子高度
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.BarWidth">
+            <summary>
+            地图该列的柱子宽度
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.BarColor">
+            <summary>
+            地图该列柱子的颜色
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.BarTitle">
+            <summary>
+            地图该列柱子的提示
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.RedWord">
+            <summary>
+            红字条件表达式
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.Width">
+            <summary>
+            列宽
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.DictColumn.Height">
+            <summary>
+            列宽
+            </summary>
+        </member>
+        <!-- 对于成员“F:Estar.Common.Tools.DictColumn.BHRule”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“F:Estar.Common.Tools.DictColumn.ZeroFlag”忽略有格式错误的 XML 注释 -->
+        <member name="T:Estar.Common.Tools.Validity">
+            <summary>
+            行校验定义
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.WorkItem">
+            <summary>
+            工作单元的单个项目
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkItem.BarStep">
+            <summary>
+            地图柱子的间隔
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkItem.BarOffsetX">
+            <summary>
+            地图柱子的x偏移量
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.WorkItem.BarOffsetY">
+            <summary>
+            地图柱子的y偏移量
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.CommandItem">
+            <summary>
+            命令附加项目
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.AppendItem">
+            <summary>
+            命令附加项目
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendItem.UnitGroup">
+            <summary>
+            项目分组
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendItem.ShowPos">
+            <summary>
+            指定该项显示的窗口，1为主窗，0或空为表单窗。若为单窗体，该值不起作用
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendItem.UnitName">
+            <summary>
+            指定调用的UNITITEM，有值时，不考虑DATAITEM
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendItem.CmdItem">
+            <summary>
+            指定插入执行时的ITEM
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendItem.FunType">
+            <summary>
+            功能类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendItem.DialogWidth">
+            <summary>
+            弹出窗口对话框宽度
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendItem.DialogHeight">
+            <summary>
+            弹出窗口对话框高度
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.AppendItem.HTMLURL">
+            <summary>
+            当模板类型为HTML时的URL
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.UnitItem">
+            <summary>
+            工作单元的实例
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.isCache">
+            <summary>
+            是否启用缓存
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.tabsCache">
+            <summary>
+            缓存配置数据
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem._unitName">
+            <summary>
+            单元名称
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.WorkItemList">
+            <summary>
+            单元内项目列表
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.CommandItemList">
+            <summary>
+            命令附加项目
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.AppendItemList">
+            <summary>
+            附加项目名称列表
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.UnitType">
+            <summary>
+            单元类型
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.IsVisibleNav">
+            <summary>
+            是否在左导航栏可见,默认可现
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem._dataSrcFile">
+            <summary>
+            数据源文件,虚拟站点路径
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.FileEditTp">
+            <summary>
+            页面模板文件,虚拟站点路径
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.FilePrnTp">
+            <summary>
+            打印模板文件,虚拟站点路径
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.BillType">
+            <summary>
+            单据类型简称
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.SaveOPType">
+            <summary>
+            保存方式
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.PrintType">
+            <summary>
+            打印类别
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem._dictColSrcFile">
+            <summary>
+            字典数据源文件,虚拟站点路径
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.StFilter">
+            <summary>
+            快捷过虑
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.treeFilter">
+            <summary>
+            树形过滤
+            </summary>
+        </member>
+        <member name="F:Estar.Common.Tools.UnitItem.WorkFlow">
+            <summary>
+            缺省工作流
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.SetWorkUnit(System.String)">
+            <summary>
+            设置当前的工作单元
+            </summary>
+            <param name="workUnit">单元名称</param>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetWorkItemList">
+            <summary>
+            获取业务单元的明细项目
+            </summary>
+            <returns>返回明细项目数组</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetAppendItemList">
+            <summary>
+            获取业务单元的附加子功能单元
+            </summary>
+            <returns>返回明细项目数组</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetAppendItem(System.String)">
+            <summary>
+            获取业务单元的附加子功能单元
+            </summary>
+            <returns>返回明细项目数组</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetCommandItemList">
+            <summary>
+            获取指定单元的命令项列表
+            </summary>
+            <returns>返回命令项目数组</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetWorkUnitType">
+            <summary>
+            获取业务单元类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetUnitGroup">
+            <summary>
+            获取业务单元分组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetDataSrcFile">
+            <summary>
+            获取业务数据的配设资源文件,虚拟站点路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetWorkFlow">
+            <summary>
+            获取业务工作流
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetFileEditTp">
+            <summary>
+            获取单元的整体编辑模板,会对应多个项目数据源
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetFilePrintTp">
+            <summary>
+            获取单元的打印模板,会对应多个项目数据源
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetSaveType">
+            <summary>
+            获取单元的保存类型;
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetDictColSrcFile">
+            <summary>
+            获取字典列的配设资源文件,虚拟站点路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetShortcutFilter">
+            <summary>
+            快速过滤
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetTreeFilter">
+            <summary>
+            树形过滤
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetBillType">
+            <summary>
+            单元单据类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetPrnType">
+            <summary>
+            单元单据类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.UnitItem.GetVisibleNav">
+            <summary>
+            功能单元是否可视
+            </summary>
+            <returns>返回布尔值,默认True</returns>
+        </member>
+        <member name="P:Estar.Common.Tools.UnitItem.UnitNode">
+            <summary>
+            工作单元对应的xmlNode节点配置
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.UnitItem.UnitName">
+            <summary>
+            读取或设置单元名称
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.UnitItem.DataSrcFile">
+            <summary>
+            读取或设置数据源文件
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.UnitItem.DictColSrcFile">
+            <summary>
+            读取或设置字典数据源文件,虚拟站点路径
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.UnitItem.IsCache">
+            <summary>
+            单元是否缓存
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.ShortcutFilter">
+            <summary>
+            快捷过滤
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.TreeFilter">
+            <summary>
+            快捷过滤
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.DBCommand">
+            <summary>
+            DBCommand 的摘要说明。
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.DBCommand.DBCommandType">
+            <summary>
+            获取这个参数的引用参数类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.DBCommand.ExecuteXmlReader">
+            <summary>
+            将 DBCommand.CommandText 发送到 DBCommand.Connection 并生成一个System.Xml.XmlReader对象。
+            </summary>
+            <returns>生成一个System.Xml.XmlReader对象</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.DBCommand.CreateParameter">
+            <summary>
+            隐藏函数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Estar.Common.Tools.DBCommand.SqlCommand">
+            <summary>
+            获取sql类型参数,如果不是就返回null;
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DBCommand.OleDbCommand">
+            <summary>
+            获取OleDb类型参数,如果不是就返回null;
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DBCommand.OracleCommand">
+            <summary>
+            获取oralce的ODP参数类型,如果不是就返回null;
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DBCommand.Parameters">
+            <summary>
+            重定义特性
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.DataAccessType">
+            <summary>
+            列举提供的数据访问方式
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.DataConnInfo">
+            <summary>
+            数据库链接定义;type: SqlClient,OLEDB,ODPNet
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataConnInfo.Name">
+            <summary>
+            数据库链接名称
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataConnInfo.DbType">
+            <summary>
+            数据库链接类型
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataConnInfo.Value">
+            <summary>
+            数据库链接字符串
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataConnInfo.DAType">
+            <summary>
+            读取数据访问类型
+            </summary>
+            <param name="itemname">数据源名称</param>
+            <returns>数据源类型</returns>
+        </member>
+        <member name="T:Estar.Common.Tools.DataConnCollection">
+            <summary>
+            定义数据源连接集合的配置节关联解析类
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.DataConnSection">
+            <summary>
+            WebConfig自定义节点强类型类
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.DataAccRes">
+            <summary>
+            提供数据访问资源类型
+            数据资源的访问方式在使用过程中不能改变
+            默认Sql访问方式
+            默认取与应用同名的子目录配置文件,子目录没有配置文件的取系统配置文件,
+            子目录对应配置项没有的取应用系统配置项;
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.DataAccRes.#ctor">
+            <summary>
+            默认的数据访问资源
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.DataAccRes.#ctor(System.String)">
+            <summary>
+            依据默认数据源连接,指定数据源资源文件
+            </summary>
+            <param name="xmlfile">数据源资源文件</param>
+        </member>
+        <member name="M:Estar.Common.Tools.DataAccRes.#ctor(Estar.Common.Tools.DataAccessType,System.String,System.String)">
+            <summary>
+            指定数据库的访问方式,数据访问项目的xml文件,数据库连接字符串
+            </summary>
+            <param name="pdbtype">数据访问类型</param>
+            <param name="xmlfile">XML数据资源文件</param>
+            <param name="strConn">数据库连接字符串</param>
+        </member>
+        <member name="M:Estar.Common.Tools.DataAccRes.#ctor(System.String,System.String)">
+            <summary>
+            指定数据源连接名称,数据访问资源文件名称
+            </summary>
+            <param name="itemname">指定数据源连接名称</param>
+            <param name="xmlfile">XML数据资源文件</param>
+        </member>
+        <member name="M:Estar.Common.Tools.DataAccRes.AppSettings(System.String)">
+            <summary>
+            读取系统默认配置:首先找与应用对应的文件夹下的配置文件,如果没有就读取应用默认的配置
+            </summary>
+            <param name="strkey">配置键</param>
+            <returns>返回此项配置的字符串</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.DataAccRes.AppSettings(System.String,System.String)">
+            <summary>
+            设置系统默认配置:首先找与应用对应的文件夹下的配置文件,如果没有就读取应用默认的配置
+            </summary>
+            <param name="strkey">配置键</param>
+            <returns>返回此项配置的字符串</returns>
+        </member>
+        <member name="M:Estar.Common.Tools.DataAccRes.SwitchDefaultModel">
+            <summary>
+            切换帐套到默认配置项;
+            有AppModel属性的,设置它的AppModel属性为AppDemo值,否则无效
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Common.Tools.DataAccRes.SwitchModelConfig(System.String)">
+            <summary>
+            切换配置文件的帐套选项
+            </summary>
+            <param name="strpath">帐套配置文件的文件夹</param>
+            <returns></returns>
+        </member>
+        <member name="P:Estar.Common.Tools.DataAccRes.DBAccessType">
+            <summary>
+            读取数据访问类型
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataAccRes.XmlFile">
+            <summary>
+            读取数据访问资源文件
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataAccRes.ConnStr">
+            <summary>
+            读取数据访问连接字符串
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataAccRes.AppName">
+            <summary>
+            读取应用程序名称
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataAccRes.DefaultConfiguration">
+            <summary>
+            读取系统默认配置文件,会话帐套配置-> 应用同名配置-> 应用帐套
+            支持会话帐套,没有会话帐套,则根据应用站点名称选择同名的配置,有应用帐套的转移到帐套配置中
+            以上都没有的使用系统默认配置
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataAccRes.DefaultSection">
+            <summary>
+            读取系统默认配置节点
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DataAccRes.DefaultDataConnInfo">
+            <summary>
+            系统默认配置数据链信息;链接名称取配置文件Appsettings的DataConnInfo设置,
+            没有的取应用名称的配置,没有的取default名称的配置
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.NameParamCollection">
+            <summary>
+            IDataParameterCollection, IList, ICollection, IEnumerable
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.NameParamCollection.ParameterCollectionType">
+            <summary>
+            获取这个参数的引用参数类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Estar.Common.Tools.DBParameter">
+            <summary>
+            对Sql,OLEDB,Oracle各种方式的数据访问参数的适配器
+            </summary>
+        </member>
+        <member name="M:Estar.Common.Tools.DBParameter.ParameterType">
+            <summary>
+            获取这个参数的引用参数类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Estar.Common.Tools.DBParameter.SqlParameter">
+            <summary>
+            获取sql类型参数,如果不是就返回null;
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DBParameter.OleDbParameter">
+            <summary>
+            获取OleDb类型参数,如果不是就返回null;
+            </summary>
+        </member>
+        <member name="P:Estar.Common.Tools.DBParameter.OracleParameter">
+            <summary>
+            获取oralce的ODP参数类型,如果不是就返回null;
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.DBTypeCommon">
+            <summary>
+            通常的数据类型
+            </summary>
+        </member>
+        <member name="T:Estar.Common.Tools.ParseDBType">
+            <summary>
+            解析识别数据类型,辅助处理对应数据库的数据类型
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,440 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Estar.DataAccess.SqlClientDataAccess</name>
+    </assembly>
+    <members>
+        <member name="T:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO">
+            <summary>
+            Sql Server 数据访问
+            </summary>
+        </member>
+        <member name="F:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.UnitHash">
+            <summary>
+            缓存单元配置
+            </summary>
+        </member>
+        <member name="F:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.tabsCache">
+            <summary>
+            缓存配置数据
+            </summary>
+        </member>
+        <member name="F:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO._item">
+            <summary>
+            当前项目名称
+            </summary>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.OnRowUpdated(System.Object,System.Data.SqlClient.SqlRowUpdatedEventArgs)">
+            <summary>
+            忽略空的更新
+            </summary>
+            <param name="sender">引发事件的对象</param>
+            <param name="args">事件参数</param>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ConvertParam(System.Data.SqlClient.SqlParameter,System.Object)">
+            <summary>
+            转换参数数据类型
+            </summary>
+            <param name="sqlParam">Sql参数</param>
+            <param name="objParam">数据访问实体参数</param>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.NodeCascade(System.Xml.XmlNode,System.String[])">
+            <summary>
+            读取SQLCascade节点规则
+            </summary>
+            <param name="lxn_node">SQLCascade节点</param>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.NodeCascade(System.Xml.XmlNode)">
+            <summary>
+            读取SQLCascade节点规则
+            </summary>
+            <param name="lxn_node">SQLCascade节点</param>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.NodeText(System.Xml.XmlNode)">
+            <summary>
+            读取SQLText节点
+            </summary>
+            <param name="lxn_node">SQL语句节点</param>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.NodeText(System.Xml.XmlNode,System.String[])">
+            <summary>
+            读取SQLText节点
+            </summary>
+            <param name="lxn_node">SQL语句节点</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteNonQuery(System.String,System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数来更新数据
+            </summary>
+            <param name="ps_item">要更新的数据项目</param>
+            <param name="ps_optype">更新操作类型(insert,update,delete)</param>
+            <param name="p_paramlist">参数列表</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteNonQuery(System.String,System.String,Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数数组来批量更新数据
+            </summary>
+            <param name="ps_item">要更新的数据项目</param>
+            <param name="ps_optype">更新操作类型(insert,update,delete)</param>
+            <param name="p_paramlist">参数列表</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteNonQuery(System.String,System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数来更新数据
+            </summary>
+            <param name="ps_item">要更新的数据项目</param>
+            <param name="ps_optype">更新操作类型(insert,update,delete)</param>
+            <param name="p_paramlist">参数列表</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteNonQuery(System.String,System.String,Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数数组来批量更新数据
+            </summary>
+            <param name="ps_item">要更新的数据项目</param>
+            <param name="ps_optype">更新操作类型(insert,update,delete)</param>
+            <param name="p_paramlist">参数列表</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.SetItem(System.String)">
+            <summary>
+            设置访问数据项目
+            根据数据资源文件初始化数据构架及查询和更新规则
+            </summary>
+            <param name="item">数据项目名称</param>
+            <returns>返回是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.Open">
+            <summary>
+            启动数据库连接
+            </summary>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.BeginTransaction">
+            <summary>
+            启动数据库连接并开始事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.Commit">
+            <summary>
+            提交次此事务,并关闭数据库连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.RollbackAndClose">
+            <summary>
+            回滚次此事务,并关闭数据库连接,没有事务直接关闭
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.Close">
+            <summary>
+            关闭数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteScalar(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            根据项目名称和参数列表获取单个结果
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="parameters">查询参数列表</param>
+            <returns>返回结果</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.GetDataTable(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            根据项目名称和参数列表获取数据集
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="parameters">查询参数列表</param>
+            <returns>返回DataTable的数据集</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.FillDataSet(System.String,Estar.Common.Tools.NameObjectList,System.Data.DataSet)">
+            <summary>
+            根据项目名称和参数列表填充数据集
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="parameters">查询参数列表</param>
+            <param name="ds">数据集</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.FillDataSet(System.String,Estar.Common.Tools.NameObjectList[],System.Data.DataSet)">
+            <summary>
+            根据项目名称和参数列表填充数据集
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="parameters">查询参数列表</param>
+            <param name="ds">数据集</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.Update(System.String,System.Data.DataTable)">
+            <summary>
+            利用DataTable来更新数据
+            </summary>
+            <param name="item">要更新的数据项目</param>
+            <param name="tab">要更新的数据DataTable</param>
+            <returns>更新是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteNonQuery(System.String,Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数数组分别按照新增,更新,删除的类别来更新数据;保证事务的一致性
+            在执行更新时,按照删除,更新,新增的顺序执行,以避免并发冲突问题
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="paramsListIns">提交的新增参数</param>
+            <param name="paramsListUpt">提交的更新参数</param>
+            <param name="paramsListDel">提交的删除参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteNonQuery(System.String,Estar.Common.Tools.NameObjectList[],Estar.Common.Tools.NameObjectList[],Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数数组分别按照新增,更新,删除的类别来更新数据;保证事务的一致性
+            在执行更新时,按照删除,更新,新增的顺序执行,以避免并发冲突问题
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="paramsListIns">提交的新增参数数组</param>
+            <param name="paramsListUpt">提交的更新参数数组</param>
+            <param name="paramsListDel">提交的删除参数数组</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteInsert(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数按照"insert"项提交数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteUpdate(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数按照"update"项更新数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteDelete(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数按照"delete"项来删除数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteInsert(System.String,Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数数组按照"insert"项批量提交数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteUpdate(System.String,Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数数组按照"update"项批量更新数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteDelete(System.String,Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数数组按照"delete"项来批量删除数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.WriteSingleStream(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用流(Stream)写入单个大字段数据
+            </summary>
+            <param name="item">要写入的数据项目</param>
+            <param name="parameters">写入数据的参数</param>
+            <returns>写入流是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.NewGuid">
+            <summary>
+            产生一个全局唯一标识符
+            </summary>
+            <returns>返回全局唯一标识符</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.SetItem(System.String,System.String[])">
+            <summary>
+            设置访问数据项目
+            根据数据资源文件初始化数据构架及查询和更新规则
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>返回是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.GetDataTable(System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            根据项目名称和参数列表获取数据集
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="parameters">查询参数列表</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>返回DataTable的数据集</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.GetDataTableBySql(System.String)">
+            <summary>
+            根据指定的SQL语句查询数据表
+            </summary>
+            <param name="strSQL">SQL语句</param>
+            <returns>返回DataTable的数据集</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.FillDataSet(System.String,Estar.Common.Tools.NameObjectList,System.String[],System.Data.DataSet)">
+            <summary>
+            根据项目名称和参数列表填充数据集
+            </summary>
+            <param name="item">要填充的数据集Table名称</param>
+            <param name="parameters">参数列表</param>
+            <param name="strParams">字符串参数列表</param>
+            <param name="ds">要填充的数据集</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteInsert(System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数按照"insert"项提交数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteUpdate(System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数按照"update"项更新数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteDelete(System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数按照"delete"项来删除数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteInsert(System.String,Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数数组按照"insert"项批量提交数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteUpdate(System.String,Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数数组按照"update"项批量更新数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteDelete(System.String,Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数数组按照"delete"项来批量删除数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteNonQuery(System.String,Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数数组分别按照新增,更新,删除的类别来更新数据;保证事务的一致性
+            在执行更新时,按照删除,更新,新增的顺序执行,以避免并发冲突问题
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="paramsListIns">提交的新增参数</param>
+            <param name="paramsListUpt">提交的更新参数</param>
+            <param name="paramsListDel">提交的删除参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ExecuteNonQuery(System.String,Estar.Common.Tools.NameObjectList[],Estar.Common.Tools.NameObjectList[],Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数数组分别按照新增,更新,删除的类别来更新数据;保证事务的一致性
+            在执行更新时,按照删除,更新,新增的顺序执行,以避免并发冲突问题
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="paramsListIns">提交的新增参数数组</param>
+            <param name="paramsListUpt">提交的更新参数数组</param>
+            <param name="paramsListDel">提交的删除参数数组</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.IsCache">
+            <summary>
+            是否采用Cache模式
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.XmlFileStr">
+            <summary>
+            读取和设置数据访问资源文件
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.ConnStr">
+            <summary>
+            读取和设置连接字符串
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.SelParamList">
+            <summary>
+            读取当前访问的数据源项目select参数列表
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.InsParamList">
+            <summary>
+            读取当前访问的数据源项目insert参数列表
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.UptParamList">
+            <summary>
+            读取当前访问的数据源项目update参数列表
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.DelParamList">
+            <summary>
+            读取当前访问的数据源项目delete参数列表
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.SelCommand">
+            <summary>
+            读取当前访问的数据源项目select命令
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.InsCommand">
+            <summary>
+            读取当前访问的数据源项目insert命令
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.UptCommand">
+            <summary>
+            读取当前访问的数据源项目update命令
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.DelCommand">
+            <summary>
+            读取当前访问的数据源项目delete命令
+            </summary>
+        </member>
+        <member name="P:Estar.DataAccess.SqlClientDataAccess.SqlQueryDAO.isConn">
+            <summary>
+            是否已经连接
+            </summary>
+        </member>
+    </members>
+</doc>

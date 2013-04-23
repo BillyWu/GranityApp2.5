@@ -1,0 +1,1578 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Granity.commiServer</name>
+    </assembly>
+    <members>
+        <member name="T:Granity.commiServer.DeviceMonitorMgr">
+            <summary>
+            设备巡检管理: 
+            对具体设备启动巡检采集,对巡检结果自动保存入数据库,并分发巡检结果给客户端
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceMonitorMgr.tmService">
+            <summary>
+            服务定时器
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceMonitorMgr.isRuning">
+            <summary>
+            当前定时器是否在执行
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceMonitorMgr.unitItem">
+            <summary>
+            设备监控单元
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceMonitorMgr.query">
+            <summary>
+            数据操作
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceMonitorMgr.devlist">
+            <summary>
+            巡检设备列表
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.#ctor">
+            <summary>
+            设备巡检管理构造函数
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.tmService_Elapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            定时器执行,定时检查无效设备
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.Monitordev(System.Collections.Specialized.NameValueCollection,Granity.communications.ClientInfo)">
+            <summary>
+            监控设备,巡检指令心跳,增加巡检设备
+            间隔超过5分钟自动认为该指令退出
+            </summary>
+            <param name="info">指令内容：service='monitor',device(逗号分割多个设备ID),id,patrol='true'(patrol持续执行)</param>
+            <param name="client">客户端连接信息</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.addDevice(System.String,System.Boolean)">
+            <summary>
+            添加监控管理的设备
+            </summary>
+            <param name="devid">请求的客户端</param>
+            <param name="ispatrol">是否持续巡检</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.device_RecordHandle(System.Object,Granity.commiServer.DvRecordEventArgs)">
+            <summary>
+            设备采集新记录时触发
+            </summary>
+            <param name="sender">智能设备</param>
+            <param name="e">记录参数</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.IsResetNeed">
+            <summary>
+            所有设备没有状态信息则需重置
+            </summary>
+            <returns>返回是否需重置</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.Resetdev">
+            <summary>
+            清空设备
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.Haltdev(System.Collections.Specialized.NameValueCollection,Granity.communications.ClientInfo)">
+            <summary>
+            移除监控的设备或没有指定设备就移除整个指令,或对无效(心跳超时)指令移除
+            </summary>
+            <param name="info">指令内容：service='halt',device(逗号分割多个设备ID),id,all='true'</param>
+            <param name="client">客户端连接信息</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.returnInfo(System.Collections.Specialized.NameValueCollection,Granity.communications.ClientInfo,System.Boolean)">
+            <summary>
+            反馈指令是否成功
+            </summary>
+            <param name="isSeccess">是否成功</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.ReadInfodev(System.Collections.Specialized.NameValueCollection,Granity.communications.ClientInfo)">
+            <summary>
+            读取设备信息,包含了数据和状态
+            </summary>
+            <param name="info">指令内容：service='readinfo',device,id, dt='yyyy-MM-dd HH:mm:ss',datatype='record|alarm|signal'</param>
+            <param name="client">客户端连接信息</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.device_AlarmHandle(System.Object,Granity.commiServer.DvAlarmEventArgs)">
+            <summary>
+            火警联动
+            </summary>
+            <param name="sender">门禁设备</param>
+            <param name="e">报警事件</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceMonitorMgr.getTarget(System.Data.DataRow)">
+            <summary>
+            获取数据行的设备目标位置参数
+            记录包含字段【访问方式】(TCP/UDP/SerialPort)、【端口】(60000/COM1)、【地址】(192.168.1.146)
+            </summary>
+            <param name="dr">数据记录</param>
+            <returns></returns>
+        </member>
+        <member name="P:Granity.commiServer.DeviceMonitorMgr.CountDevice">
+            <summary>
+            当前设备数量
+            </summary>
+        </member>
+        <member name="E:Granity.commiServer.DeviceMonitorMgr.RecordHandle">
+            <summary>
+            响应事件，有采集新记录时触发
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ServiceTool.logname">
+            <summary>
+            服务使用日志名称
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.ServiceTool.LogMessage(System.String,System.Collections.Specialized.NameValueCollection,System.Diagnostics.EventLogEntryType)">
+            <summary>
+            日志记录消息
+            </summary>
+            <param name="msg">日志信息</param>
+            <param name="data">附加数据</param>
+            <param name="logtype">日志类型</param>
+        </member>
+        <member name="M:Granity.commiServer.ServiceTool.LogMessage(System.Exception,System.Collections.Specialized.NameValueCollection,System.Diagnostics.EventLogEntryType)">
+            <summary>
+            日志记录消息
+            </summary>
+            <param name="msg">日志信息</param>
+            <param name="data">附加数据</param>
+            <param name="logtype">日志类型</param>
+        </member>
+        <member name="P:Granity.commiServer.ServiceTool.LogName">
+            <summary>
+            服务使用日志名称
+            </summary>
+        </member>
+        <member name="T:Granity.commiServer.SynDeviceParam">
+            <summary>
+            同步设备参数,更新黑白名单和设备控制参数
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.dbSrc">
+            <summary>
+            协议数据源
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.tmService">
+            <summary>
+            服务定时器
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.isRuning">
+            <summary>
+            当前是否正在执行
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.timeout">
+            <summary>
+            通讯超时，单位毫秒，默认800ms
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.cnnout">
+            <summary>
+            通讯连接恢复超时，默认0不等待恢复连接
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.query">
+            <summary>
+            数据查询
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.Start">
+            <summary>
+            启动定时执行,每20分钟执行一次检查
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.Stop">
+            <summary>
+            停止定时执行
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.CommiDevice">
+            <summary>
+            更新设备控制参数
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downCardALL">
+            <summary>
+            更新所有设备黑白名单
+            </summary>
+            <returns>返回错误提示，无错误提示成功</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.CommiDevice(System.String)">
+            <summary>
+            强制对设备做全部初始化和下载参数,更新黑白名单
+            </summary>
+            <param name="tagdevcmds">设备ID和下载指令,tag格式,其中指令以"|"分割</param>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.sendCommand(Granity.communications.CommiTarget,Granity.CardOneCommi.CmdFileTrans,System.Net.IPAddress,Granity.communications.CommiTarget,Granity.CardOneCommi.CmdProtocol,System.String,System.String,System.String)">
+            <summary>
+            中转执行指令
+            </summary>
+            <param name="tarsrv">服务器</param>
+            <param name="trans">传输实例</param>
+            <param name="proxy">设备代理电脑IP地址</param>
+            <param name="dest">设备目标</param>
+            <param name="cmdP">指令实例</param>
+            <param name="tpl">协议名称</param>
+            <param name="cmd">指令名称</param>
+            <param name="tagdata">指令数据 tag格式</param>
+            <returns>是否执行成功</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getResponse(Granity.communications.CommiTarget,Granity.CardOneCommi.CmdFileTrans,System.Net.IPAddress,Granity.communications.CommiTarget,Granity.CardOneCommi.CmdProtocol,System.String,System.String,System.String)">
+            <summary>
+            中转执行指令，返回响应结果
+            </summary>
+            <param name="tarsrv">服务器</param>
+            <param name="trans">传输实例</param>
+            <param name="proxy">设备代理电脑IP地址</param>
+            <param name="dest">设备目标</param>
+            <param name="cmdP">指令实例</param>
+            <param name="tpl">协议名称</param>
+            <param name="cmd">指令名称</param>
+            <param name="tagdata">指令数据 tag格式</param>
+            <returns>返回执行结果</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.testConnect(Granity.communications.CommiTarget,Granity.communications.CommiTarget)">
+            <summary>
+            检查通讯目标是否可连接
+            </summary>
+            <param name="tarsrv">中转服务目标，在串口时可转发通讯</param>
+            <param name="dest">通讯目标</param>
+            <returns>返回是否可连接</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.Ping(Granity.communications.CommiTarget)">
+            <summary>
+            检查通讯目标是否可连接
+            </summary>
+            <param name="tarsrv">中转服务目标，在串口时可转发通讯</param>
+            <param name="dest">通讯目标</param>
+            <returns>返回是否可连接</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.commiDevicePark(Granity.communications.CommiTarget,Granity.CardOneCommi.CmdFileTrans,System.Net.IPAddress,Granity.communications.CommiTarget,System.Data.DataRow,System.String)">
+            <summary>
+            停车场设备初始化和下载参数,更新黑白名单
+            </summary>
+            <param name="tarsrv">中转服务器</param>
+            <param name="trans">传输指令</param>
+            <param name="proxy">设备通讯代理电脑IP地址</param>
+            <param name="dest">目标设备</param>
+            <param name="drdevice">设备信息记录行</param>
+            <param name="attrcmd">执行指令</param>
+            <returns>返回通讯下载参数是否成功</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downparkCardList(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            更新设备的黑白清名单,执行成功后更新黑白名单下载日期
+            </summary>
+            <param name="arg">传输指令参数</param>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downPayRule(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            更新设备的黑白清名单,执行成功后更新黑白名单下载日期
+            </summary>
+            <param name="arg">传输指令参数</param>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getctrlpm(System.Data.DataRow,System.String)">
+            <summary>
+            从行记录获取tag格式控制参数
+            </summary>
+            <param name="dr">记录行</param>
+            <param name="addrst">站址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getpaypm1(System.Data.DataRow,System.Data.DataTable)">
+            <summary>
+            收费标准1 tag格式参数
+            </summary>
+            <param name="drpay">计费标准记录</param>
+            <param name="tabdetail">标准规则明细</param>
+            <returns>返回tag格式协议参数</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getpaypm2(System.Data.DataRow,System.Data.DataTable)">
+            <summary>
+            收费标准2 tag格式参数
+            </summary>
+            <param name="drpay">计费标准记录</param>
+            <param name="tabdetail">标准规则明细</param>
+            <returns>返回tag格式协议参数</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getpaypm3(System.Data.DataRow,System.Data.DataTable)">
+            <summary>
+            收费标准3 tag格式参数
+            </summary>
+            <param name="drpay">计费标准记录</param>
+            <param name="tabdetail">标准规则明细</param>
+            <returns>返回tag格式协议参数</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getpaypm4(System.Data.DataRow,System.Data.DataTable)">
+            <summary>
+            收费标准4 tag格式参数
+            </summary>
+            <param name="drpay">计费标准记录</param>
+            <param name="tabdetail">标准规则明细</param>
+            <returns>返回tag格式协议参数</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getpaypm5(System.Data.DataRow,System.Data.DataTable)">
+            <summary>
+            收费标准5 tag格式参数
+            </summary>
+            <param name="drpay">计费标准记录</param>
+            <param name="tabdetail">标准规则明细</param>
+            <returns>返回tag格式协议参数</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getpaypm6(System.Data.DataRow,System.Data.DataTable)">
+            <summary>
+            收费标准6 tag格式参数
+            </summary>
+            <param name="drpay">计费标准记录</param>
+            <param name="tabdetail">标准规则明细</param>
+            <returns>返回tag格式协议参数</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.commiDeviceDoor(Granity.communications.CommiTarget,Granity.CardOneCommi.CmdFileTrans,System.Net.IPAddress,Granity.communications.CommiTarget,System.Data.DataRow,System.String)">
+            <summary>
+            门禁设备初始化和下载参数,更新黑白名单
+            </summary>
+            <param name="tarsrv">中转服务器</param>
+            <param name="trans">传输指令</param>
+            <param name="proxy">设备通讯代理电脑IP地址</param>
+            <param name="dest">目标设备</param>
+            <param name="drdevice">设备信息记录行</param>
+            <param name="attrcmd">执行指令</param>
+            <returns>返回通讯下载参数是否成功</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getdoortime(System.Data.DataRow)">
+            <summary>
+            门禁时段  tag格式参数
+            </summary>
+            <param name="drtime">时段记录</param>
+            <returns>返回tag格式协议参数</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downdoorctrlpm(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            下载控制参数
+            </summary>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downdoorCardList(Granity.commiServer.SynDeviceParam.TransArg,System.String)">
+            <summary>
+            更新设备的黑白清名单,执行成功后更新黑白名单下载日期
+            </summary>
+            <param name="arg">传输指令参数</param>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.commiDeviceChannel(Granity.communications.CommiTarget,Granity.CardOneCommi.CmdFileTrans,System.Net.IPAddress,Granity.communications.CommiTarget,System.Data.DataRow,System.String)">
+            <summary>
+            道闸设备初始化和下载参数,更新黑白名单
+            </summary>
+            <param name="tarsrv">中转服务器</param>
+            <param name="trans">传输指令</param>
+            <param name="proxy">设备通讯代理电脑IP地址</param>
+            <param name="dest">目标设备</param>
+            <param name="drdevice">设备信息记录行</param>
+            <param name="attrcmd">执行指令</param>
+            <returns>返回通讯下载参数是否成功</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getchanneltime(System.Data.DataRow)">
+            <summary>
+            门禁时段  tag格式参数
+            </summary>
+            <param name="drtime">时段记录</param>
+            <returns>返回tag格式协议参数</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downchannelctrlpm(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            下载控制参数
+            </summary>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downchannelCardList(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            更新设备的黑白清名单,执行成功后更新黑白名单下载日期
+            </summary>
+            <param name="arg">传输指令参数</param>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.commiDeviceEatery(Granity.communications.CommiTarget,Granity.CardOneCommi.CmdFileTrans,System.Net.IPAddress,Granity.communications.CommiTarget,System.Data.DataRow,System.String)">
+            <summary>
+            消费设备初始化和下载参数,更新黑白名单
+            </summary>
+            <param name="tarsrv">中转服务器</param>
+            <param name="trans">传输指令</param>
+            <param name="proxy">设备通讯代理电脑IP地址</param>
+            <param name="dest">目标设备</param>
+            <param name="drdevice">设备信息记录行</param>
+            <param name="attrcmd">执行指令</param>
+            <returns>返回通讯下载参数是否成功</returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downeaterytime(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            下载时段
+            </summary>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downeateryctrlpm(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            下载控制参数
+            </summary>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downeateryCardList(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            更新设备的黑白清名单,执行成功后更新黑白名单下载日期
+            </summary>
+            <param name="arg">传输指令参数</param>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.downeaterySubsidy(Granity.commiServer.SynDeviceParam.TransArg)">
+            <summary>
+            回收补助机没有下载的补助,清空补助后,合并到未下载补助一起下载
+            </summary>
+            <param name="arg">传输指令参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.setTimeout(Granity.communications.CommandBase)">
+            <summary>
+            设置指令超时属性
+            </summary>
+            <param name="cmd">指令实例</param>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.getTarget(System.Data.DataRow)">
+            <summary>
+            获取数据行的设备目标位置参数
+            记录包含字段【访问方式】(TCP/UDP/SerialPort)、【端口】(60000/COM1)、【地址】(192.168.1.146)
+            </summary>
+            <param name="dr">数据记录</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.commiServer.SynDeviceParam.createParam(System.String)">
+            <summary>
+            根据tag标记创建参数
+            </summary>
+            <param name="tag">包含参数的tag标记</param>
+            <returns>返回新建立的参数</returns>
+        </member>
+        <member name="P:Granity.commiServer.SynDeviceParam.CommiCount">
+            <summary>
+            通讯总数量
+            </summary>
+        </member>
+        <member name="P:Granity.commiServer.SynDeviceParam.CommiIndex">
+            <summary>
+            通讯记录索引
+            </summary>
+        </member>
+        <member name="T:Granity.commiServer.SynDeviceParam.TransArg">
+            <summary>
+            调用多个组合指令时,传递参数类
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.TransArg.trans">
+            <summary>
+            中转指令
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.TransArg.target">
+            <summary>
+            通讯服务地址
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.TransArg.proxy">
+            <summary>
+            通讯目的地代理IP地址
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.TransArg.dest">
+            <summary>
+            通讯目的
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.TransArg.devID">
+            <summary>
+            当前设备ID
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.TransArg.addrst">
+            <summary>
+            通讯站址
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.SynDeviceParam.TransArg.attrCmdtag">
+            <summary>
+            附加指令标记,tag格式信息,可实现指令过滤执行
+            </summary>
+        </member>
+        <member name="T:Granity.commiServer.DeviceBase">
+            <summary>
+            通讯设备
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceBase.target">
+            <summary>
+            通讯目标
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceBase.devid">
+            <summary>
+            设备ID
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceBase.station">
+            <summary>
+            设备站址
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceBase.commimgr">
+            <summary>
+            通讯管理器
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.StartGather">
+            <summary>
+            启动采集
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.StopGather">
+            <summary>
+            停止采集
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.GatherData(System.Boolean)">
+            <summary>
+            直接采集一条数据,并自动存入数据库,返回获取数据的记录
+            没有记录时恢复巡检
+            </summary>
+            <param name="isfirst">是否首次提取,首次会补充采集当前记录以防漏采</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.IsEndReadDevice(System.Int32)">
+            <summary>
+            指定索引号，是否到达结尾
+            </summary>
+            <param name="index">指定记录索引号，-1时判断当前记录位置</param>
+            <returns>返回是否读取到设备结尾，通讯失败返回true</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.SetDevice(Granity.communications.CommiManager,Granity.communications.CommiTarget,System.String,System.Int32)">
+            <summary>
+            设置通讯设备
+            </summary>
+            <param name="devid">设备ID</param>
+            <param name="target">通讯目标</param>
+            <param name="station">站址</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.AddRecord(System.String)">
+            <summary>
+            设置数据,保留2分钟内数据或50条记录,2分钟内有多余50条记录则保留最近100条记录
+            </summary>
+            <param name="tag"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.RaiseRecord(Granity.commiServer.DvRecordEventArgs)">
+            <summary>
+            触发记录事件
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.RaiseSignal(Granity.commiServer.DvSignalEventArgs)">
+            <summary>
+            触发信号变位事件
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceBase.RaiseAlarm(Granity.commiServer.DvAlarmEventArgs)">
+            <summary>
+            触发告警发生或结束事件
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="P:Granity.commiServer.DeviceBase.DevID">
+            <summary>
+            读取设备ID
+            </summary>
+        </member>
+        <member name="P:Granity.commiServer.DeviceBase.IsPatrol">
+            <summary>
+            是否属巡检设备
+            </summary>
+        </member>
+        <member name="P:Granity.commiServer.DeviceBase.dtBeat">
+            <summary>
+            读取或设置设备巡检时心跳时间
+            </summary>
+        </member>
+        <member name="P:Granity.commiServer.DeviceBase.Rows">
+            <summary>
+            读取记录集
+            </summary>
+        </member>
+        <member name="P:Granity.commiServer.DeviceBase.Signal">
+            <summary>
+            读取信号状态
+            </summary>
+        </member>
+        <member name="P:Granity.commiServer.DeviceBase.Alarm">
+            <summary>
+            读取告警状态
+            </summary>
+        </member>
+        <member name="E:Granity.commiServer.DeviceBase.RecordHandle">
+            <summary>
+            响应事件，有采集新记录时触发
+            </summary>
+        </member>
+        <member name="E:Granity.commiServer.DeviceBase.SignalHandle">
+            <summary>
+            响应事件，有信号变位时触发
+            </summary>
+        </member>
+        <member name="E:Granity.commiServer.DeviceBase.AlarmHandle">
+            <summary>
+            响应事件，有告警发生或结束时触发
+            </summary>
+        </member>
+        <member name="T:Granity.commiServer.RecordDev">
+            <summary>
+            设备接收数据记录
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.RecordDev.dtReceive">
+            <summary>
+            接收时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.RecordDev.tag">
+            <summary>
+            接收数据,可以是状态,告警或数据记录,tag格式
+            </summary>
+        </member>
+        <member name="T:Granity.commiServer.DvRecordEventArgs">
+            <summary>
+            设备采集响应记录
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvRecordEventArgs.DeviceID">
+            <summary>
+            设备ID
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvRecordEventArgs.Station">
+            <summary>
+            设备站址
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvRecordEventArgs.DtDevice">
+            <summary>
+            记录的设备时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvRecordEventArgs.TagInfo">
+            <summary>
+            记录内容,tag格式数据
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DvRecordEventArgs.#ctor(System.String,System.Int32,System.DateTime,System.String)">
+            <summary>
+            设备采集记录参数构造函数,初始化参数值
+            </summary>
+            <param name="deviceid">设备ID</param>
+            <param name="station">设备站址</param>
+            <param name="dt">设备记录时间</param>
+            <param name="tag">记录内容tag格式信息</param>
+        </member>
+        <member name="T:Granity.commiServer.DvSignalEventArgs">
+            <summary>
+            设备采集响应信号
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvSignalEventArgs.DeviceID">
+            <summary>
+            设备ID
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvSignalEventArgs.Station">
+            <summary>
+            设备站址
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvSignalEventArgs.DtDevice">
+            <summary>
+            记录的设备时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvSignalEventArgs.TagInfo">
+            <summary>
+            信号状态全信息,tag格式数据
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvSignalEventArgs.TagSignal">
+            <summary>
+            信号变位
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DvSignalEventArgs.#ctor(System.String,System.Int32,System.DateTime,System.String)">
+            <summary>
+            设备采集记录参数构造函数,初始化参数值
+            </summary>
+            <param name="deviceid">设备ID</param>
+            <param name="station">设备站址</param>
+            <param name="dt">设备记录时间</param>
+            <param name="tag">信号状态信息tag格式值</param>
+        </member>
+        <member name="T:Granity.commiServer.DvAlarmEventArgs">
+            <summary>
+            设备巡检告警状态
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvAlarmEventArgs.DeviceID">
+            <summary>
+            设备ID
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvAlarmEventArgs.Station">
+            <summary>
+            设备站址
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvAlarmEventArgs.DtDevice">
+            <summary>
+            记录的设备时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvAlarmEventArgs.TagInfo">
+            <summary>
+            告警状态全信息,tag格式数据
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DvAlarmEventArgs.TagAlarm">
+            <summary>
+            告警发生或结束
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DvAlarmEventArgs.#ctor(System.String,System.Int32,System.DateTime,System.String)">
+            <summary>
+            设备采集记录参数构造函数,初始化参数值
+            </summary>
+            <param name="deviceid">设备ID</param>
+            <param name="station">设备站址</param>
+            <param name="dt">设备记录时间</param>
+            <param name="tag">告警状态信息tag格式值</param>
+        </member>
+        <member name="T:Granity.commiServer.ChannelWorkerMgr">
+            <summary>
+            通道区域员工动态管理
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorkerMgr.listwk">
+            <summary>
+            区域员工动态
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorkerMgr.query">
+            <summary>
+            查询服务定义数据
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorkerMgr.tabRegionSum">
+            <summary>
+            工作区人员数
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorkerMgr.tmService">
+            <summary>
+            服务定时器，定时重置动态数据与数据库同步核对
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.setPassChannel(System.String)">
+            <summary>
+            设置区域通过记录
+            </summary>
+            <param name="tag">tag格式记录数据</param>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.setPassChannel(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            设置区域通过记录
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.ReadWorker(System.Collections.Specialized.NameValueCollection,Granity.communications.ClientInfo)">
+            <summary>
+            读取动态员工信息
+            </summary>
+            <param name="info">指令内容：service='readwkchannel',id, dept='deptid',dt='yyyy-MM-dd HH:mm:ss'</param>
+            <param name="client">客户端连接信息</param>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.ReadWkRegion(System.Collections.Specialized.NameValueCollection,Granity.communications.ClientInfo)">
+            <summary>
+            读取工作区动态员工信息
+            </summary>
+            <param name="info">指令内容：service='readwkregion',id, region='deptid',dt='yyyy-MM-dd HH:mm:ss'</param>
+            <param name="client">客户端连接信息</param>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.ReadRegionSum(System.Collections.Specialized.NameValueCollection,Granity.communications.ClientInfo)">
+            <summary>
+            读取区域信息
+            </summary>
+            <param name="info">指令内容：service='readregionsum',id, region='regionid'</param>
+            <param name="client">客户端连接信息</param>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.findRecord(System.String)">
+            <summary>
+            在列表中查找员工记录
+            </summary>
+            <param name="cardnum">卡号</param>
+            <returns>返回区域员工信息</returns>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.checkRecord">
+            <summary>
+            检查记录，超时离开的记录删除
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.tmService_Elapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            定时器执行,定时检查无效设备
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorkerMgr.ResetRecord">
+            <summary>
+            每间隔3个小时重置记录一次
+            </summary>
+        </member>
+        <member name="T:Granity.commiServer.ChannelWorker">
+            <summary>
+            通道区域员工动态数据
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorker.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            构造函数：部门，姓名，卡号，时间，区域，状态
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorker.SetWorker(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            更新数据：部门，部门ID，部门代码，姓名，卡号，时间，区域，状态
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.ChannelWorker.ToTagString">
+            <summary>
+            字段数据转换为tag标记格式字符串
+            </summary>
+            <returns>记录输出tag标记格式字符串</returns>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.DtReceive">
+            <summary>
+            数据更新的时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.DeptName">
+            <summary>
+            部门名称
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.DeptID">
+            <summary>
+            部门ID
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.DeptCode">
+            <summary>
+            部门代码
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.WorkerName">
+            <summary>
+            员工姓名
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.PicPath">
+            <summary>
+            员工照片
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.WorkerCode">
+            <summary>
+            员工编号
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.CardNum">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.CardNUM">
+            <summary>
+            卡片写入的卡号
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.CardID">
+            <summary>
+            卡片序列号
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.CardSN">
+            <summary>
+            卡片SN号
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.Channel">
+            <summary>
+            经过通道
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.Region">
+            <summary>
+            区域名称
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.RegionID">
+            <summary>
+            区域ID
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.DtIn">
+            <summary>
+            进入区域的时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.DtOut">
+            <summary>
+            离开区域的时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.DtRein">
+            <summary>
+            重复进入区域的时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.DtReout">
+            <summary>
+            重复离开区域的时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.ChannelWorker.Memo">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="T:Granity.commiServer.DeviceDoor">
+            <summary>
+            门禁设备
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.unitItem">
+            <summary>
+            消费监控单元
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.query">
+            <summary>
+            数据操作
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.qyemp">
+            <summary>
+            卡用户信息
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.qydata">
+            <summary>
+            采集数据
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.posRecord">
+            <summary>
+            记录位置
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.devtype">
+            <summary>
+            设备类型：考勤机，单门双向，双门双向，四门单向
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.cmdGather">
+            <summary>
+            采集指令
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.cmdtemp">
+            <summary>
+            数据采集临时指令
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.isexecuting">
+            <summary>
+            当前是否正在通讯执行
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.waitTime">
+            <summary>
+            同步等待时刻,默认500毫秒认为超时失败
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.tsinv">
+            <summary>
+            采集周期,默认巡检周期2秒
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.tsbusy">
+            <summary>
+            判断是否繁忙状态的时间间隔,默认2分钟内记录总数超过60条,认为处于繁忙状态
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.cnnout">
+            <summary>
+            通讯连接恢复超时，默认0不等待恢复连接
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.CNtimeout">
+            <summary>
+            通讯连接恢复超时，默认0不等待恢复连接
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.tagInfos">
+            <summary>
+            当前巡检状态
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.#ctor">
+            <summary>
+            门禁设备
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.SetDevice(Granity.communications.CommiManager,Granity.communications.CommiTarget,System.String,System.Int32)">
+            <summary>
+            设置通讯设备
+            </summary>
+            <param name="devid">设备ID</param>
+            <param name="target">通讯目标</param>
+            <param name="station">站址</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.StartGather">
+            <summary>
+            启动采集
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.ReStartGather">
+            <summary>
+            再确定巡检在执行
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.isResponse(Granity.communications.CommandBase,System.Byte[])">
+            <summary>
+            是否当前指令的结果,验证设备ID和指令
+            </summary>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Granity.commiServer.DeviceDoor.stateChecking">
+            <summary>
+            巡检状态:0/采集记录(暂停巡检),1/巡检
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.reChecking(System.Int32)">
+            <summary>
+            切换巡检状态：0/采集记录(暂停巡检),1/巡检
+            </summary>
+            <param name="stateChk">巡检类型</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.cmdGather_ResponseHandle(System.Object,Granity.communications.ResponseEventArgs)">
+            <summary>
+            巡检响应,连续失败5分钟(tsbusy)则认为停机,间隔tsbusy巡检
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.StopGather">
+            <summary>
+            停止采集
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.validateSate(System.String)">
+            <summary>
+            验证状态信息,对状态对比变化时生成事件记录
+            </summary>
+            <param name="item">巡检项</param>
+            <param name="devid">控制器ID</param>
+            <param name="taginfo">状态信息tag标记值</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.getStateDoorCard(System.String,System.String,System.String)">
+            <summary>
+            根据刷卡状态编码解释刷卡状态
+            </summary>
+            <param name="statecode">刷卡状态编码</param>
+            <returns>返回刷卡状态</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.writeRecord(System.String,System.Boolean)">
+            <summary>
+            写入记录
+            </summary>
+            <param name="tagmsg">tag格式信息：{卡号}、状态编号，读卡器号，{刷卡时间}</param>
+            <param name="isevent">是否触发事件</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.GatherData(System.Boolean)">
+            <summary>
+            直接采集一条数据,并自动存入数据库,返回获取数据的记录
+            没有记录时恢复巡检
+            </summary>
+            <param name="isfirst">是否首次提取,首次会补充采集当前记录以防漏采</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.execResponse(System.Object,Granity.communications.ResponseEventArgs)">
+            <summary>
+            在当前没有执行指令响应时利用响应事件保存数据
+            </summary>
+            <param name="sender">事件指令实例</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.IsEndReadDevice(System.Int32)">
+            <summary>
+            指定索引号，是否到达结尾
+            </summary>
+            <param name="index">指定记录索引号，-1时判断当前记录位置</param>
+            <returns>返回是否读取到设备结尾，通讯失败返回true</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.ClearRecord">
+            <summary>
+            清空记录，重置记录位置
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.FireOpenDoor">
+            <summary>
+            火警开门
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.getResponse(Granity.communications.CommiManager,Granity.communications.CommiTarget,Granity.CardOneCommi.CmdProtocol,System.String,System.String,System.TimeSpan)">
+            <summary>
+            发送指令，获取指令结果，在通讯失败时自动尝试执行5次
+            </summary>
+            <param name="mgr">通讯管理器</param>
+            <param name="target">通讯目标</param>
+            <param name="cmd">执行指令</param>
+            <param name="strcmd">指令名称</param>
+            <param name="tag">指令内容</param>
+            <param name="timeout">超时间隔</param>
+            <returns>返回指令响应结果</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.setTimeout(Granity.communications.CommandBase)">
+            <summary>
+            设置指令超时属性
+            </summary>
+            <param name="cmd">指令实例</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceDoor.Ping(Granity.communications.CommiTarget,System.Int32)">
+            <summary>
+            检查通讯目标是否可连接
+            </summary>
+            <param name="dest">通讯目标</param>
+            <param name="timeout">超时时间，毫秒ms</param>
+            <returns>返回是否可连接</returns>
+        </member>
+        <member name="T:Granity.commiServer.DeviceEatery">
+            <summary>
+            消费设备
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.unitItem">
+            <summary>
+            消费监控单元
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.query">
+            <summary>
+            数据操作
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.cmdGather">
+            <summary>
+            巡检采集指令
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.cmdtemp">
+            <summary>
+            数据采集临时指令
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.isexecuting">
+            <summary>
+            当前是否正在通讯执行
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.waitTime">
+            <summary>
+            同步等待时刻,默认500毫秒认为超时失败
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.tsinv">
+            <summary>
+            采集周期,默认巡检周期2秒
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.tsbusy">
+            <summary>
+            判断是否繁忙状态的时间间隔,默认5分钟内巡检到状态是“工作中”认为是繁忙状态
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.dtwork">
+            <summary>
+            巡检到"工作中"或无采集记录时更新时间
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.tagInfos">
+            <summary>
+            当前巡检状态
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.recordpos">
+            <summary>
+            当前设备记录位置
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.devName">
+            <summary>
+            设备名称，补助机设备名称是：补助机，以区别其他消费机
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.#ctor">
+            <summary>
+            消费设备构造函数
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.SetDevice(Granity.communications.CommiManager,Granity.communications.CommiTarget,System.String,System.Int32)">
+            <summary>
+            设置通讯设备
+            </summary>
+            <param name="devid">设备ID</param>
+            <param name="target">通讯目标</param>
+            <param name="station">站址</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.StartGather">
+            <summary>
+            启动采集
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.ReStartGather">
+            <summary>
+            再确定巡检在执行
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceEatery.stateChecking">
+            <summary>
+            巡检状态:0/采集记录(暂停巡检),1/巡检
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.reChecking(System.Int32)">
+            <summary>
+            切换巡检状态：0/采集记录(暂停巡检),1/巡检
+            </summary>
+            <param name="stateChk">巡检类型</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.cmdGather_ResponseHandle(System.Object,Granity.communications.ResponseEventArgs)">
+            <summary>
+            巡检响应,连续失败5分钟(tsbusy)则认为停机,间隔tsbusy巡检
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.StopGather">
+            <summary>
+            停止采集
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.validateSate(System.String)">
+            <summary>
+            验证状态信息,对状态对比变化时生成事件记录
+            </summary>
+            <param name="item">巡检项</param>
+            <param name="devid">控制器ID</param>
+            <param name="taginfo">状态信息tag标记值</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.writeRecord(System.String)">
+            <summary>
+            写入记录，分补助或消费分别保存
+            </summary>
+            <param name="msg">tag格式信息：{卡号}、状态编号，读卡器号，{刷卡时间}</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.GatherData(System.Boolean)">
+            <summary>
+            直接采集一条数据,并自动存入数据库,返回获取数据的记录
+            没有记录时恢复巡检
+            </summary>
+            <param name="isfirst">是否首次提取,首次会补充采集当前记录以防漏采</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.execResponse(System.Object,Granity.communications.ResponseEventArgs)">
+            <summary>
+            在当前没有执行指令响应时利用响应事件保存数据
+            </summary>
+            <param name="sender">事件指令实例</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.IsEndReadDevice(System.Int32)">
+            <summary>
+            指定索引号，是否到达结尾
+            </summary>
+            <param name="index">指定记录索引号，-1时判断当前记录位置</param>
+            <returns>返回是否读取到设备结尾，通讯失败返回true</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.getSubsidy(System.Boolean)">
+            <summary>
+            采集补助
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.ResetPosition(System.String)">
+            <summary>
+            重置设备记录位置，自
+            </summary>
+            <param name="devid">设备ID，为空则清空所有设备记录位置，有则重置为1，没有则添加</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.getResponse(Granity.communications.CommiManager,Granity.communications.CommiTarget,Granity.CardOneCommi.CmdProtocol,System.String,System.String,System.TimeSpan)">
+            <summary>
+            发送指令，获取指令结果，在通讯失败时自动尝试执行5次
+            </summary>
+            <param name="mgr">通讯管理器</param>
+            <param name="target">通讯目标</param>
+            <param name="cmd">执行指令</param>
+            <param name="strcmd">指令名称</param>
+            <param name="timeout">超时间隔</param>
+            <returns>返回指令响应结果</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceEatery.setTimeout(Granity.communications.CommandBase)">
+            <summary>
+            设置指令超时属性
+            </summary>
+            <param name="cmd">指令实例</param>
+        </member>
+        <member name="T:Granity.commiServer.DeviceChannel">
+            <summary>
+            通道闸设备
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.unitItem">
+            <summary>
+            消费监控单元
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.query">
+            <summary>
+            数据操作
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.qyemp">
+            <summary>
+            卡用户信息
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.qydata">
+            <summary>
+            采集数据
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.devtype">
+            <summary>
+            设备类型：进出口(一号口是进，二号口是出),出入口(一号口是出，二号口是进)
+            目前只做进出口和出入口，单进口、单出口、双进口、双出口类别以后扩展
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.channels">
+            <summary>
+            通道名称，最多四个通道
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.region">
+            <summary>
+            道闸所属区域
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.regionID">
+            <summary>
+            道闸所属区域ID
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.cmdGather">
+            <summary>
+            采集指令
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.sumRecord">
+            <summary>
+            设备记录数
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.cmdtemp">
+            <summary>
+            数据采集临时指令
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.isexecuting">
+            <summary>
+            当前是否正在通讯执行
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.waitTime">
+            <summary>
+            同步等待时刻,默认500毫秒认为超时失败
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.tsinv">
+            <summary>
+            采集周期,默认巡检周期2秒
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.tsbusy">
+            <summary>
+            判断是否繁忙状态的时间间隔,默认2分钟内记录总数超过60条,认为处于繁忙状态
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.cnnout">
+            <summary>
+            通讯连接恢复超时，默认0不等待恢复连接
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.CNtimeout">
+            <summary>
+            通讯连接恢复超时，默认0不等待恢复连接
+            </summary>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.tagInfos">
+            <summary>
+            当前巡检状态
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.#ctor">
+            <summary>
+            门禁设备
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.SetDevice(Granity.communications.CommiManager,Granity.communications.CommiTarget,System.String,System.Int32)">
+            <summary>
+            设置通讯设备
+            </summary>
+            <param name="devid">设备ID</param>
+            <param name="target">通讯目标</param>
+            <param name="station">站址</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.StartGather">
+            <summary>
+            启动采集
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.ReStartGather">
+            <summary>
+            再确定巡检在执行
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.isResponse(Granity.communications.CommandBase,System.Byte[])">
+            <summary>
+            是否当前指令的结果,验证设备ID和指令
+            </summary>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Granity.commiServer.DeviceChannel.stateChecking">
+            <summary>
+            巡检状态:0/采集记录(暂停巡检),1/巡检
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.reChecking(System.Int32)">
+            <summary>
+            切换巡检状态：0/采集记录(暂停巡检),1/巡检
+            </summary>
+            <param name="stateChk">巡检类型</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.cmdGather_ResponseHandle(System.Object,Granity.communications.ResponseEventArgs)">
+            <summary>
+            巡检响应,连续失败5分钟(tsbusy)则认为停机,间隔tsbusy巡检
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.StopGather">
+            <summary>
+            停止采集
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.validateSate(System.String)">
+            <summary>
+            验证状态信息,对状态对比变化时生成事件记录
+            </summary>
+            <param name="item">巡检项</param>
+            <param name="devid">控制器ID</param>
+            <param name="taginfo">状态信息tag标记值</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.getStateDoorCard(System.String,System.String,System.String)">
+            <summary>
+            根据刷卡状态编码解释刷卡状态
+            </summary>
+            <param name="statecode">刷卡状态编码</param>
+            <returns>返回刷卡状态</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.writeRecord(System.String)">
+            <summary>
+            写入记录
+            </summary>
+            <param name="msg">tag格式信息：{卡号}、状态编号，读卡器号，{刷卡时间}</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.GatherData(System.Boolean)">
+            <summary>
+            直接采集一条数据,并自动存入数据库,返回获取数据的记录
+            没有记录时恢复巡检
+            </summary>
+            <param name="isfirst">是否首次提取,首次会补充采集当前记录以防漏采</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.execResponse(System.Object,Granity.communications.ResponseEventArgs)">
+            <summary>
+            在当前没有执行指令响应时利用响应事件保存数据
+            </summary>
+            <param name="sender">事件指令实例</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.IsEndReadDevice(System.Int32)">
+            <summary>
+            指定索引号，是否到达结尾
+            </summary>
+            <param name="index">指定记录索引号，-1时判断当前记录位置</param>
+            <returns>返回是否读取到设备结尾，通讯失败返回true</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.ClearRecord">
+            <summary>
+            清空记录，重置记录位置
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.FireOpenDoor">
+            <summary>
+            火警开门
+            </summary>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.getResponse(Granity.communications.CommiManager,Granity.communications.CommiTarget,Granity.CardOneCommi.CmdProtocol,System.String,System.String,System.TimeSpan)">
+            <summary>
+            发送指令，获取指令结果，在通讯失败时自动尝试执行5次
+            </summary>
+            <param name="mgr">通讯管理器</param>
+            <param name="target">通讯目标</param>
+            <param name="cmd">执行指令</param>
+            <param name="strcmd">指令名称</param>
+            <param name="tag">指令内容</param>
+            <param name="timeout">超时间隔</param>
+            <returns>返回指令响应结果</returns>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.setTimeout(Granity.communications.CommandBase)">
+            <summary>
+            设置指令超时属性
+            </summary>
+            <param name="cmd">指令实例</param>
+        </member>
+        <member name="M:Granity.commiServer.DeviceChannel.Ping(Granity.communications.CommiTarget,System.Int32)">
+            <summary>
+            检查通讯目标是否可连接
+            </summary>
+            <param name="dest">通讯目标</param>
+            <param name="timeout">超时时间，毫秒ms</param>
+            <returns>返回是否可连接</returns>
+        </member>
+    </members>
+</doc>

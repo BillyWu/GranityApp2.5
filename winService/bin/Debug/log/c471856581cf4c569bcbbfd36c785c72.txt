@@ -1,0 +1,501 @@
+11:27:32.703 S接收：<F device='85cab02e-83e2-4f5a-8063-0cb13305299a' patrol='true' service='monitor' id='9d941ea2-22ea-47d3-951a-00cf980e9360' cmd='TransFile.extend' len='0'/><F id='-1' len='0' cmd='TransFile.beat' />
+11:27:32.765 S发送：<F device='85cab02e-83e2-4f5a-8063-0cb13305299a' patrol='true' service='monitor' id='9d941ea2-22ea-47d3-951a-00cf980e9360' cmd='TransFile.extend' len='0' success='true' msg='触发扩展事件'/><F id='-1' len='0' cmd='TransFile.beat' success='true'/>
+11:27:32.765 S发送：<F id='9d941ea2-22ea-47d3-951a-00cf980e9360' cmd='TransFile.extend' service='monitor' len='0' success='true'/>
+11:27:42.093 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='8a49e718-bd46-43cb-a19a-ca0487f657f9' cmd='TransFile.extend' len='0'/><F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='8a49e718-bd46-43cb-a19a-ca0487f657f9' cmd='TransFile.extend' len='0'/><F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='8a49e718-bd46-43cb-a19a-ca0487f657f9' cmd='TransFile.extend' len='0'/><F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='8a49e718-bd46-43cb-a19a-ca0487f657f9' cmd='TransFile.extend' len='0'/><F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='99e7b034-2907-4cd9-8cf4-411c8ea6b31a' cmd='TransFile.extend' len='0'/><F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='99e7b034-2907-4cd9-8cf4-411c8ea6b31a' cmd='TransFile.extend' len='0'/><F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='99e7b034-2907-4cd9-8cf4-411c8ea6b31a' cmd='TransFile.extend' len='0'/><F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='99e7b034-2907-4cd9-8cf4-411c8ea6b31a' cmd='TransFile.extend' len='0'/><F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='6204279a-9335-4c48-922d-d32e4e6868a0' cmd='TransFile.extend' len='0'/><F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='6204279a-9335-4c48-922d-d32e4e6868a0' cmd='TransFile.extend' len='0'/><F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='6204279a-9335-4c48-922d-d32e4e6868a0' cmd='TransFile.extend' len='0'/><F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='6204279a-9335-4c48-922d-d32e4e6868a0' cmd='TransFile.extend' len='0'/><F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='13ffc16d-69c1-4cd9-a2fe-1caaf335887f' cmd='TransFile.extend' len='0'/><F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='13ffc16d-69c1-4cd9-a2fe-1caaf335887f' cmd='TransFile.extend' len='0'/><F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='13ffc16d-69c1-4cd9-a2fe-1caaf335887f' cmd='TransFile.extend' len='0'/><F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='13ffc16d-69c1-4cd9-a2fe-1caaf335887f' cmd='TransFile.extend' len='0'/>
+11:27:42.187 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:42.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='a7e74931-2112-4d8f-a743-872b6220666c' cmd='TransFile.extend' len='0'/>
+11:27:42.187 启动：10118 设备ID：85cab02e-83e2-4f5a-8063-0cb13305299a
+11:27:42.203 S发送：<F id='13ffc16d-69c1-4cd9-a2fe-1caaf335887f' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:42.203 S发送：<F id='13ffc16d-69c1-4cd9-a2fe-1caaf335887f' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:42.203 S发送：<F id='13ffc16d-69c1-4cd9-a2fe-1caaf335887f' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:42.203 S发送：<F id='13ffc16d-69c1-4cd9-a2fe-1caaf335887f' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:42.500 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:42.796 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='a7e74931-2112-4d8f-a743-872b6220666c' cmd='TransFile.extend' len='0'/>
+11:27:42.812 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:42.812 S发送：<F id='6204279a-9335-4c48-922d-d32e4e6868a0' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:42.843 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='ee400530-5c06-4105-b69c-aaf9fe9123be' cmd='TransFile.extend' len='0'/>
+11:27:43.125 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:43.406 S发送：<F id='6204279a-9335-4c48-922d-d32e4e6868a0' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.421 事响：
+11:27:43.421 解析：
+11:27:43.437 S发送：<F id='6204279a-9335-4c48-922d-d32e4e6868a0' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.437 S发送：<F id='6204279a-9335-4c48-922d-d32e4e6868a0' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.453 S发送：<F id='99e7b034-2907-4cd9-8cf4-411c8ea6b31a' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:43.468 S发送：<F id='99e7b034-2907-4cd9-8cf4-411c8ea6b31a' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:43.468 S发送：<F id='99e7b034-2907-4cd9-8cf4-411c8ea6b31a' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:43.468 S发送：<F id='99e7b034-2907-4cd9-8cf4-411c8ea6b31a' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:43.484 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='ee400530-5c06-4105-b69c-aaf9fe9123be' cmd='TransFile.extend' len='0'/>
+11:27:43.531 S发送：<F id='8a49e718-bd46-43cb-a19a-ca0487f657f9' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.531 S发送：<F id='8a49e718-bd46-43cb-a19a-ca0487f657f9' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.531 S发送：<F id='8a49e718-bd46-43cb-a19a-ca0487f657f9' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.531 S发送：<F id='8a49e718-bd46-43cb-a19a-ca0487f657f9' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.531 S发送：<F id='a7e74931-2112-4d8f-a743-872b6220666c' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.546 S发送：<F id='a7e74931-2112-4d8f-a743-872b6220666c' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:43.546 S发送：<F id='ee400530-5c06-4105-b69c-aaf9fe9123be' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:43.546 S发送：<F id='ee400530-5c06-4105-b69c-aaf9fe9123be' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:44.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='07e86349-34fd-4419-981d-19ce89709422' cmd='TransFile.extend' len='0'/>
+11:27:44.250 S发送：<F id='07e86349-34fd-4419-981d-19ce89709422' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:44.296 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='e0af6ef8-a60b-4413-94ea-22b94b2b153e' cmd='TransFile.extend' len='0'/>
+11:27:44.296 S发送：<F id='e0af6ef8-a60b-4413-94ea-22b94b2b153e' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:45.125 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:45.437 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:45.750 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:46.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:46.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='83b6eb8c-b31b-4a47-a944-f6cfe3e327ad' cmd='TransFile.extend' len='0'/>
+11:27:46.359 事响：
+11:27:46.359 解析：
+11:27:46.359 S发送：<F id='83b6eb8c-b31b-4a47-a944-f6cfe3e327ad' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:46.390 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='028e7058-2db4-4b29-9acb-e60a5ae52ad1' cmd='TransFile.extend' len='0'/>
+11:27:46.406 S发送：<F id='028e7058-2db4-4b29-9acb-e60a5ae52ad1' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:48.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:48.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='99914342-b13c-4cb2-8b5a-619d74abb67b' cmd='TransFile.extend' len='0'/>
+11:27:48.359 事响：
+11:27:48.359 解析：
+11:27:48.375 S发送：<F id='99914342-b13c-4cb2-8b5a-619d74abb67b' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:48.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='7d102fb4-3e7f-420f-8c95-01fd726b9248' cmd='TransFile.extend' len='0'/>
+11:27:48.406 S发送：<F id='7d102fb4-3e7f-420f-8c95-01fd726b9248' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:50.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:50.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='7df464cf-6a5a-4818-bcb3-a9628cb5ee20' cmd='TransFile.extend' len='0'/>
+11:27:50.359 事响：
+11:27:50.359 解析：
+11:27:50.359 S发送：<F id='7df464cf-6a5a-4818-bcb3-a9628cb5ee20' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:50.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='9d4bf60b-a79e-4a76-81dc-c3e2c7fb0474' cmd='TransFile.extend' len='0'/>
+11:27:50.406 S发送：<F id='9d4bf60b-a79e-4a76-81dc-c3e2c7fb0474' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:52.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:52.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='dcca58c7-31aa-4363-ac98-1a921d3ec748' cmd='TransFile.extend' len='0'/>
+11:27:52.359 事响：
+11:27:52.359 解析：
+11:27:52.375 S发送：<F id='dcca58c7-31aa-4363-ac98-1a921d3ec748' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:52.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='41054362-7b51-4de9-ae30-5b0cc6c03d14' cmd='TransFile.extend' len='0'/>
+11:27:52.406 S发送：<F id='41054362-7b51-4de9-ae30-5b0cc6c03d14' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:54.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:54.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='06d6672b-9936-49c0-860b-acc8421f00eb' cmd='TransFile.extend' len='0'/>
+11:27:54.359 事响：
+11:27:54.359 解析：
+11:27:54.359 S发送：<F id='06d6672b-9936-49c0-860b-acc8421f00eb' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:54.390 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='55eab075-aecb-4797-bcad-4d30be2d6c0c' cmd='TransFile.extend' len='0'/>
+11:27:54.406 S发送：<F id='55eab075-aecb-4797-bcad-4d30be2d6c0c' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:56.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:56.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='c1fceab4-3c0b-4e6f-a758-ae0b2b1b4c6e' cmd='TransFile.extend' len='0'/>
+11:27:56.359 事响：
+11:27:56.359 解析：
+11:27:56.375 S发送：<F id='c1fceab4-3c0b-4e6f-a758-ae0b2b1b4c6e' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:56.390 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='c5f17d28-a9b2-4362-9623-3f9c4d489cee' cmd='TransFile.extend' len='0'/>
+11:27:56.406 S发送：<F id='c5f17d28-a9b2-4362-9623-3f9c4d489cee' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:27:58.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:27:58.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='334712ad-87ca-4b1d-9a9f-f3fc4888658d' cmd='TransFile.extend' len='0'/>
+11:27:58.375 事响：
+11:27:58.375 解析：
+11:27:58.375 S发送：<F id='334712ad-87ca-4b1d-9a9f-f3fc4888658d' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:27:58.421 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='1311b750-6230-465f-b1b4-7b50b6297645' cmd='TransFile.extend' len='0'/>
+11:27:58.421 S发送：<F id='1311b750-6230-465f-b1b4-7b50b6297645' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:00.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:00.171 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='7e840ce0-83df-4a26-bd1b-c13623bd34b1' cmd='TransFile.extend' len='0'/>
+11:28:00.359 事响：
+11:28:00.359 解析：
+11:28:00.375 S发送：<F id='7e840ce0-83df-4a26-bd1b-c13623bd34b1' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:00.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='7200ba96-30a6-4208-85cc-1dcd208006dd' cmd='TransFile.extend' len='0'/>
+11:28:00.406 S发送：<F id='7200ba96-30a6-4208-85cc-1dcd208006dd' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:02.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:02.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='e9177566-6edd-4b27-bc1f-ad66ffddc6a3' cmd='TransFile.extend' len='0'/>
+11:28:02.375 事响：
+11:28:02.375 解析：
+11:28:02.375 S发送：<F id='e9177566-6edd-4b27-bc1f-ad66ffddc6a3' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:02.421 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='10e31404-0001-4880-aa6c-3cc529f773af' cmd='TransFile.extend' len='0'/>
+11:28:02.421 S发送：<F id='10e31404-0001-4880-aa6c-3cc529f773af' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:04.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:04.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='cd8c85e9-aec7-403b-a7bc-69931890ccd4' cmd='TransFile.extend' len='0'/>
+11:28:04.359 事响：
+11:28:04.359 解析：
+11:28:04.359 S发送：<F id='cd8c85e9-aec7-403b-a7bc-69931890ccd4' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:04.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='ce249cfc-541e-4431-aa62-2518db35d602' cmd='TransFile.extend' len='0'/>
+11:28:04.421 S发送：<F id='ce249cfc-541e-4431-aa62-2518db35d602' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:06.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:06.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='37fb398e-2806-47a5-aa19-30d45a4f414f' cmd='TransFile.extend' len='0'/>
+11:28:06.359 事响：
+11:28:06.359 解析：
+11:28:06.375 S发送：<F id='37fb398e-2806-47a5-aa19-30d45a4f414f' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:06.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='9bb263af-0616-4af7-9cc2-106dd7dd2db4' cmd='TransFile.extend' len='0'/>
+11:28:06.406 S发送：<F id='9bb263af-0616-4af7-9cc2-106dd7dd2db4' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:08.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:08.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='8ad8b9a8-9fea-49e7-9e65-836c60ae6141' cmd='TransFile.extend' len='0'/>
+11:28:08.359 事响：
+11:28:08.359 解析：
+11:28:08.359 S发送：<F id='8ad8b9a8-9fea-49e7-9e65-836c60ae6141' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:08.390 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='aa5d745d-62c9-4d0d-9bdf-583cac421d23' cmd='TransFile.extend' len='0'/>
+11:28:08.390 S发送：<F id='aa5d745d-62c9-4d0d-9bdf-583cac421d23' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:10.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:10.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='8b7281f5-ecd7-4770-91b5-d1f49933392e' cmd='TransFile.extend' len='0'/>
+11:28:10.359 事响：
+11:28:10.375 解析：
+11:28:10.375 S发送：<F id='8b7281f5-ecd7-4770-91b5-d1f49933392e' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:10.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='3ecd02e5-0fce-4b50-a15a-2666dafd3a27' cmd='TransFile.extend' len='0'/>
+11:28:10.421 S发送：<F id='3ecd02e5-0fce-4b50-a15a-2666dafd3a27' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:12.062 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:12.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='572e7eff-2fdc-46c8-9896-9c71e6e8f24b' cmd='TransFile.extend' len='0'/>
+11:28:12.359 事响：
+11:28:12.359 解析：
+11:28:12.359 S发送：<F id='572e7eff-2fdc-46c8-9896-9c71e6e8f24b' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:12.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='cc87ca14-9597-41c6-bdf3-8401e0af8954' cmd='TransFile.extend' len='0'/>
+11:28:12.406 S发送：<F id='cc87ca14-9597-41c6-bdf3-8401e0af8954' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:14.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='569f1f80-20e1-46dc-bcc8-44c6d38ac65d' cmd='TransFile.extend' len='0'/>
+11:28:14.484 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:14.546 S发送：<F id='569f1f80-20e1-46dc-bcc8-44c6d38ac65d' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:14.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='ebc913f8-0ac0-4822-baad-62b6d6facd92' cmd='TransFile.extend' len='0'/>
+11:28:14.562 S发送：<F id='ebc913f8-0ac0-4822-baad-62b6d6facd92' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:14.796 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:15.109 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:15.421 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:15.734 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:16.046 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:16.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='bda32cae-5d76-49fe-94fb-5d805ee68a63' cmd='TransFile.extend' len='0'/>
+11:28:16.343 事响：
+11:28:16.343 解析：
+11:28:16.343 S发送：<F id='bda32cae-5d76-49fe-94fb-5d805ee68a63' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:16.375 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='15f97af5-c361-44ae-acad-ba9f0402410c' cmd='TransFile.extend' len='0'/>
+11:28:16.375 S发送：<F id='15f97af5-c361-44ae-acad-ba9f0402410c' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:18.046 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:18.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='fb76ec02-1bf8-4dd4-81b4-a9e7f0ed8f99' cmd='TransFile.extend' len='0'/>
+11:28:18.343 事响：
+11:28:18.343 解析：
+11:28:18.359 S发送：<F id='fb76ec02-1bf8-4dd4-81b4-a9e7f0ed8f99' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:18.390 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='3b6e6fff-a766-4121-a391-14e1d31c36ed' cmd='TransFile.extend' len='0'/>
+11:28:18.390 S发送：<F id='3b6e6fff-a766-4121-a391-14e1d31c36ed' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:20.046 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:20.187 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='641327e0-a2c0-4875-acf8-c63c397f46e7' cmd='TransFile.extend' len='0'/>
+11:28:20.359 事响：
+11:28:20.359 解析：
+11:28:20.359 S发送：<F id='641327e0-a2c0-4875-acf8-c63c397f46e7' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:27:42'/>
+11:28:20.406 S接收：<F datatype='record' response='false' dt='2012-11-09 11:22:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='b5688f79-6675-4537-a030-fe876f1bc524' cmd='TransFile.extend' len='0'/>
+11:28:20.406 S发送：<F id='b5688f79-6675-4537-a030-fe876f1bc524' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:22:20'/>
+11:28:22.046 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:22.359 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:22.671 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:22.984 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:23.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:23.609 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:23.921 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:24.234 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:24.546 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:24.859 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:25.171 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:25.484 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:25.796 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:26.109 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:26.421 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:26.734 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:27.046 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:27.359 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:27.671 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:27.984 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:28.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:28.609 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:28.921 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:29.109 S接收：<F device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='halt' id='7c7e6005-164a-4553-acd1-1a3662e14817' cmd='TransFile.extend' len='0'/>
+11:28:29.125 停止：85cab02e-83e2-4f5a-8063-0cb13305299a
+11:28:29.125 S发送：<F device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='halt' id='7c7e6005-164a-4553-acd1-1a3662e14817' cmd='TransFile.extend' len='0' success='true' msg='触发扩展事件'/>
+11:28:29.125 S发送：<F id='7c7e6005-164a-4553-acd1-1a3662e14817' cmd='TransFile.extend' service='halt' len='0' success='true'/>
+11:28:32.687 S接收：<F id='-1' len='0' cmd='TransFile.beat' />
+11:28:32.703 S发送：<F id='-1' len='0' cmd='TransFile.beat' success='true'/>
+11:28:50.062 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='29c5288a-5cc4-4345-9c5a-e49f94c200d0' cmd='TransFile.extend' len='0'/>
+11:28:50.078 启动：10118 设备ID：85cab02e-83e2-4f5a-8063-0cb13305299a
+11:28:50.078 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:50.078 接收：7E86278110121109051128419A08000000211F4A9169197D5B00130000000013050D
+11:28:50.093 事响：7E86278110121109051128419A08000000211F4A9169197D5B00130000000013050D
+11:28:50.109 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:41,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=4857633,@状态编号=9,@读卡器=1,@{刷卡时间}=2012-11-09 11:27:58,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0513,@{帧尾}=0D,@Success=true
+11:28:50.125 火警：4857633  9  1
+11:28:50.359 S发送：<F id='29c5288a-5cc4-4345-9c5a-e49f94c200d0' cmd='TransFile.extend' service='readinfo' len='566' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:50'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:41,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=4857633,@状态编号=9,@读卡器=1,@{刷卡时间}=2012-11-09 11:27:58,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0513,@{帧尾}=0D,@Success=true
+11:28:50.359 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='95626be8-15d2-4351-9b25-0bb082da370c' cmd='TransFile.extend' len='0'/>
+11:28:50.359 S发送：<F id='95626be8-15d2-4351-9b25-0bb082da370c' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:28:51.109 S接收：<F device='85cab02e-83e2-4f5a-8063-0cb13305299a' all='true' service='halt' id='5fba1adb-14e5-4539-8a51-3db6676fc9d5' cmd='TransFile.extend' len='0'/>
+11:28:51.125 停止：85cab02e-83e2-4f5a-8063-0cb13305299a
+11:28:51.125 S发送：<F id='5fba1adb-14e5-4539-8a51-3db6676fc9d5' cmd='TransFile.extend' service='halt' len='0' success='true'/>
+11:28:51.125 S发送：<F device='85cab02e-83e2-4f5a-8063-0cb13305299a' all='true' service='halt' id='5fba1adb-14e5-4539-8a51-3db6676fc9d5' cmd='TransFile.extend' len='0' success='true' msg='触发扩展事件'/>
+11:28:53.234 S接收：<F device='85cab02e-83e2-4f5a-8063-0cb13305299a' patrol='true' service='monitor' id='2e81d32e-02d2-4545-942f-e38c73555b57' cmd='TransFile.extend' len='0'/>
+11:28:53.250 S发送：<F device='85cab02e-83e2-4f5a-8063-0cb13305299a' patrol='true' service='monitor' id='2e81d32e-02d2-4545-942f-e38c73555b57' cmd='TransFile.extend' len='0' success='true' msg='触发扩展事件'/>
+11:28:53.250 S发送：<F id='2e81d32e-02d2-4545-942f-e38c73555b57' cmd='TransFile.extend' service='monitor' len='0' success='true'/>
+11:28:53.281 启动：10118 设备ID：85cab02e-83e2-4f5a-8063-0cb13305299a
+11:28:53.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:53.281 接收：7E86278110121109051128459A08000000FFFFFFFFFFFFFFFF0013000000009A0A0D
+11:28:53.296 事响：7E86278110121109051128459A08000000FFFFFFFFFFFFFFFF0013000000009A0A0D
+11:28:53.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:28:53.296 火警：16777215  15  15
+11:28:54.468 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:28:50' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='5db0d429-c82b-4969-9e8f-80b99ee984bb' cmd='TransFile.extend' len='0'/>
+11:28:54.484 S发送：<F id='5db0d429-c82b-4969-9e8f-80b99ee984bb' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:28:54.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='cefb12f8-b395-4342-ba27-1589b0e23bb3' cmd='TransFile.extend' len='0'/>
+11:28:54.578 S发送：<F id='cefb12f8-b395-4342-ba27-1589b0e23bb3' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:28:55.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:55.281 接收：7E86278110121109051128479A08000000FFFFFFFFFFFFFFFF0013000000009C0A0D
+11:28:55.281 事响：7E86278110121109051128479A08000000FFFFFFFFFFFFFFFF0013000000009C0A0D
+11:28:55.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:47,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9C,@{帧尾}=0D,@Success=true
+11:28:55.281 火警：16777215  15  15
+11:28:56.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:28:54' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='c5a0ee24-4cb0-4756-9c08-f78827725c5f' cmd='TransFile.extend' len='0'/>
+11:28:56.500 S发送：<F id='c5a0ee24-4cb0-4756-9c08-f78827725c5f' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:28:56.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='78ef008c-1917-42df-81ec-a7e0e003de2e' cmd='TransFile.extend' len='0'/>
+11:28:56.562 S发送：<F id='78ef008c-1917-42df-81ec-a7e0e003de2e' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:28:57.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:57.281 接收：7E86278110121109051128499B08000000211F4A916919985B00130000000037050D
+11:28:57.281 事响：7E86278110121109051128499B08000000211F4A916919985B00130000000037050D
+11:28:57.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:49,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=4857633,@状态编号=9,@读卡器=1,@{刷卡时间}=2012-11-09 11:28:48,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0537,@{帧尾}=0D,@Success=true
+11:28:57.281 火警：4857633  9  1
+11:28:58.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:28:56' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='ed86677e-f4f4-4de0-b050-e080bea5f791' cmd='TransFile.extend' len='0'/>
+11:28:58.484 S发送：<F id='ed86677e-f4f4-4de0-b050-e080bea5f791' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:28:58.531 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='07c74d28-6969-4cf4-8676-32ecf8864b12' cmd='TransFile.extend' len='0'/>
+11:28:58.531 S发送：<F id='07c74d28-6969-4cf4-8676-32ecf8864b12' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:28:59.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:28:59.281 接收：7E86278110121109051128519B08000000FFFFFFFFFFFFFFFF001300000000A70A0D
+11:28:59.281 事响：7E86278110121109051128519B08000000FFFFFFFFFFFFFFFF001300000000A70A0D
+11:28:59.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:51,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0AA7,@{帧尾}=0D,@Success=true
+11:28:59.296 火警：16777215  15  15
+11:29:00.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:28:58' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='78916729-5275-4bdb-ab69-d0d7ab003d62' cmd='TransFile.extend' len='0'/>
+11:29:00.484 S发送：<F id='78916729-5275-4bdb-ab69-d0d7ab003d62' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:00.546 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='c493440a-ea10-47c0-be4b-b0ac88e3c457' cmd='TransFile.extend' len='0'/>
+11:29:00.562 S发送：<F id='c493440a-ea10-47c0-be4b-b0ac88e3c457' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:01.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:01.281 接收：7E86278110121109051128539B08000000FFFFFFFFFFFFFFFF001300000000A90A0D
+11:29:01.281 事响：7E86278110121109051128539B08000000FFFFFFFFFFFFFFFF001300000000A90A0D
+11:29:01.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:53,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0AA9,@{帧尾}=0D,@Success=true
+11:29:01.281 火警：16777215  15  15
+11:29:02.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:00' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='ac344ebc-9dba-468f-b145-5f1d0e116ca7' cmd='TransFile.extend' len='0'/>
+11:29:02.500 S发送：<F id='ac344ebc-9dba-468f-b145-5f1d0e116ca7' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:02.546 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='a2da710d-76c2-47c1-b565-b9b43cb66ecd' cmd='TransFile.extend' len='0'/>
+11:29:02.562 S发送：<F id='a2da710d-76c2-47c1-b565-b9b43cb66ecd' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:03.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:03.281 接收：7E86278110121109051128559B08000000FFFFFFFFFFFFFFFF001300000000AB0A0D
+11:29:03.281 事响：7E86278110121109051128559B08000000FFFFFFFFFFFFFFFF001300000000AB0A0D
+11:29:03.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:55,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0AAB,@{帧尾}=0D,@Success=true
+11:29:03.281 火警：16777215  15  15
+11:29:04.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:02' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='9b2e8ff6-12f5-4524-8ad7-ecb8c1ac34c6' cmd='TransFile.extend' len='0'/>
+11:29:04.484 S发送：<F id='9b2e8ff6-12f5-4524-8ad7-ecb8c1ac34c6' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:04.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='72fbd07d-520c-428b-88f7-48fe5fee0e16' cmd='TransFile.extend' len='0'/>
+11:29:04.562 S发送：<F id='72fbd07d-520c-428b-88f7-48fe5fee0e16' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:05.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:05.281 接收：7E86278110121109051128579B08000000FFFFFFFFFFFFFFFF001300000000AD0A0D
+11:29:05.281 事响：7E86278110121109051128579B08000000FFFFFFFFFFFFFFFF001300000000AD0A0D
+11:29:05.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:57,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0AAD,@{帧尾}=0D,@Success=true
+11:29:05.281 火警：16777215  15  15
+11:29:06.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:04' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='d45e4972-1ac2-4a64-b565-c6174de5e3f7' cmd='TransFile.extend' len='0'/>
+11:29:06.484 S发送：<F id='d45e4972-1ac2-4a64-b565-c6174de5e3f7' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:06.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='ec42de54-8a06-4358-9f1a-273da4ddd4fd' cmd='TransFile.extend' len='0'/>
+11:29:06.562 S发送：<F id='ec42de54-8a06-4358-9f1a-273da4ddd4fd' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:07.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:07.296 接收：7E86278110121109051128599B08000000FFFFFFFFFFFFFFFF001300000000AF0A0D
+11:29:07.296 事响：7E86278110121109051128599B08000000FFFFFFFFFFFFFFFF001300000000AF0A0D
+11:29:07.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:59,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0AAF,@{帧尾}=0D,@Success=true
+11:29:07.296 火警：16777215  15  15
+11:29:08.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:06' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='fc3c995e-1dd6-473a-8353-fc8399db4112' cmd='TransFile.extend' len='0'/>
+11:29:08.484 S发送：<F id='fc3c995e-1dd6-473a-8353-fc8399db4112' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:08.578 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='9d75c069-5e47-4c66-a576-949fd8705f2a' cmd='TransFile.extend' len='0'/>
+11:29:08.578 S发送：<F id='9d75c069-5e47-4c66-a576-949fd8705f2a' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:09.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:09.281 接收：7E86278110121109051129019B08000000FFFFFFFFFFFFFFFF001300000000580A0D
+11:29:09.281 事响：7E86278110121109051129019B08000000FFFFFFFFFFFFFFFF001300000000580A0D
+11:29:09.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:01,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A58,@{帧尾}=0D,@Success=true
+11:29:09.281 火警：16777215  15  15
+11:29:10.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:08' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='ae249726-dcb7-4091-a6d4-d0be6ffe6625' cmd='TransFile.extend' len='0'/>
+11:29:10.484 S发送：<F id='ae249726-dcb7-4091-a6d4-d0be6ffe6625' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:10.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='4b2a2562-1ff4-4a07-aa4d-643ef3c26c69' cmd='TransFile.extend' len='0'/>
+11:29:10.578 S发送：<F id='4b2a2562-1ff4-4a07-aa4d-643ef3c26c69' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:11.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:11.281 接收：7E86278110121109051129039B08000000FFFFFFFFFFFFFFFF0013000000005A0A0D
+11:29:11.281 事响：7E86278110121109051129039B08000000FFFFFFFFFFFFFFFF0013000000005A0A0D
+11:29:11.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:03,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A5A,@{帧尾}=0D,@Success=true
+11:29:11.296 火警：16777215  15  15
+11:29:12.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:10' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='6c54c14b-c269-4cc1-b011-678cdc28d3d6' cmd='TransFile.extend' len='0'/>
+11:29:12.484 S发送：<F id='6c54c14b-c269-4cc1-b011-678cdc28d3d6' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:12.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='4c08232a-989c-4c19-b1fd-1a85c094f16e' cmd='TransFile.extend' len='0'/>
+11:29:12.562 S发送：<F id='4c08232a-989c-4c19-b1fd-1a85c094f16e' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:13.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:13.296 接收：7E86278110121109051129059B08000000FFFFFFFFFFFFFFFF0013000000005C0A0D
+11:29:13.296 事响：7E86278110121109051129059B08000000FFFFFFFFFFFFFFFF0013000000005C0A0D
+11:29:13.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:05,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A5C,@{帧尾}=0D,@Success=true
+11:29:13.296 火警：16777215  15  15
+11:29:14.468 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:12' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='07440bbe-8688-43a5-87b2-16b3b1465011' cmd='TransFile.extend' len='0'/>
+11:29:14.484 S发送：<F id='07440bbe-8688-43a5-87b2-16b3b1465011' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:14.546 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='e36cbb4d-dedc-4a23-93ba-f8b7bb0fd82e' cmd='TransFile.extend' len='0'/>
+11:29:14.562 S发送：<F id='e36cbb4d-dedc-4a23-93ba-f8b7bb0fd82e' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:15.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:15.281 接收：7E86278110121109051129079B08000000FFFFFFFFFFFFFFFF0013000000005E0A0D
+11:29:15.281 事响：7E86278110121109051129079B08000000FFFFFFFFFFFFFFFF0013000000005E0A0D
+11:29:15.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:07,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A5E,@{帧尾}=0D,@Success=true
+11:29:15.281 火警：16777215  15  15
+11:29:16.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:14' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='28b39069-a42b-4e2f-8750-eee2bea57655' cmd='TransFile.extend' len='0'/>
+11:29:16.484 S发送：<F id='28b39069-a42b-4e2f-8750-eee2bea57655' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:16.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='52b8e510-b3c5-495f-bff1-f72cbc0ef00a' cmd='TransFile.extend' len='0'/>
+11:29:16.562 S发送：<F id='52b8e510-b3c5-495f-bff1-f72cbc0ef00a' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:17.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:17.281 接收：7E86278110121109051129099B08000000FFFFFFFFFFFFFFFF001300000000600A0D
+11:29:17.281 事响：7E86278110121109051129099B08000000FFFFFFFFFFFFFFFF001300000000600A0D
+11:29:17.281 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:09,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A60,@{帧尾}=0D,@Success=true
+11:29:17.281 火警：16777215  15  15
+11:29:18.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:16' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='05de1dcd-8a8a-475a-8024-cb258608a0e6' cmd='TransFile.extend' len='0'/>
+11:29:18.484 S发送：<F id='05de1dcd-8a8a-475a-8024-cb258608a0e6' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:18.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='bc956767-f6db-4cbf-96e3-dcd650ac7e10' cmd='TransFile.extend' len='0'/>
+11:29:18.562 S发送：<F id='bc956767-f6db-4cbf-96e3-dcd650ac7e10' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:19.281 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:19.296 接收：7E86278110121109051129119B08000000FFFFFFFFFFFFFFFF001300000000680A0D
+11:29:19.296 事响：7E86278110121109051129119B08000000FFFFFFFFFFFFFFFF001300000000680A0D
+11:29:19.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:11,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A68,@{帧尾}=0D,@Success=true
+11:29:19.296 火警：16777215  15  15
+11:29:20.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:18' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='6f5d6e76-6fc2-43f5-a976-4a6448f9f716' cmd='TransFile.extend' len='0'/>
+11:29:20.484 S发送：<F id='6f5d6e76-6fc2-43f5-a976-4a6448f9f716' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:20.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='e30503cb-afdb-44c6-86e4-92c9ce911213' cmd='TransFile.extend' len='0'/>
+11:29:20.562 S发送：<F id='e30503cb-afdb-44c6-86e4-92c9ce911213' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:21.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:21.296 接收：7E86278110121109051129139B08000000FFFFFFFFFFFFFFFF0013000000006A0A0D
+11:29:21.296 事响：7E86278110121109051129139B08000000FFFFFFFFFFFFFFFF0013000000006A0A0D
+11:29:21.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:13,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A6A,@{帧尾}=0D,@Success=true
+11:29:21.296 火警：16777215  15  15
+11:29:22.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:20' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='0f13a9d7-ea0a-43cd-91d3-ce316e44c859' cmd='TransFile.extend' len='0'/>
+11:29:22.484 S发送：<F id='0f13a9d7-ea0a-43cd-91d3-ce316e44c859' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:22.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='04e59251-ac21-4a78-b0c4-b3053fb27395' cmd='TransFile.extend' len='0'/>
+11:29:22.562 S发送：<F id='04e59251-ac21-4a78-b0c4-b3053fb27395' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:23.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:23.296 接收：7E86278110121109051129159B08000000FFFFFFFFFFFFFFFF0013000000006C0A0D
+11:29:23.312 事响：7E86278110121109051129159B08000000FFFFFFFFFFFFFFFF0013000000006C0A0D
+11:29:23.312 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:15,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A6C,@{帧尾}=0D,@Success=true
+11:29:23.312 火警：16777215  15  15
+11:29:24.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:22' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='d3a5d9f8-16f5-4387-95cc-fab2dc37b4b5' cmd='TransFile.extend' len='0'/>
+11:29:24.484 S发送：<F id='d3a5d9f8-16f5-4387-95cc-fab2dc37b4b5' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:24.546 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='5b6e06c5-715e-4bed-8bd2-cc258f040d08' cmd='TransFile.extend' len='0'/>
+11:29:24.562 S发送：<F id='5b6e06c5-715e-4bed-8bd2-cc258f040d08' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:25.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:25.296 接收：7E86278110121109051129179B08000000FFFFFFFFFFFFFFFF0013000000006E0A0D
+11:29:25.296 事响：7E86278110121109051129179B08000000FFFFFFFFFFFFFFFF0013000000006E0A0D
+11:29:25.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:17,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A6E,@{帧尾}=0D,@Success=true
+11:29:25.296 火警：16777215  15  15
+11:29:26.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:24' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='882975b4-332b-44e0-bc18-90f63da90e7e' cmd='TransFile.extend' len='0'/>
+11:29:26.500 S发送：<F id='882975b4-332b-44e0-bc18-90f63da90e7e' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:26.546 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='78a56b40-2de6-48fc-bbd3-5143d264940b' cmd='TransFile.extend' len='0'/>
+11:29:26.562 S发送：<F id='78a56b40-2de6-48fc-bbd3-5143d264940b' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:27.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:27.312 接收：7E86278110121109051129199B08000000FFFFFFFFFFFFFFFF001300000000700A0D
+11:29:27.312 事响：7E86278110121109051129199B08000000FFFFFFFFFFFFFFFF001300000000700A0D
+11:29:27.312 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:19,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A70,@{帧尾}=0D,@Success=true
+11:29:27.312 火警：16777215  15  15
+11:29:28.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:26' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='448185b8-97b0-447e-8c8a-d4b2c0eca7bc' cmd='TransFile.extend' len='0'/>
+11:29:28.484 S发送：<F id='448185b8-97b0-447e-8c8a-d4b2c0eca7bc' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:28.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='a0a42707-e1e3-4b65-9398-4fbd7b78be87' cmd='TransFile.extend' len='0'/>
+11:29:28.562 S发送：<F id='a0a42707-e1e3-4b65-9398-4fbd7b78be87' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:29.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:29.312 接收：7E86278110121109051129219B08000000FFFFFFFFFFFFFFFF001300000000780A0D
+11:29:29.312 事响：7E86278110121109051129219B08000000FFFFFFFFFFFFFFFF001300000000780A0D
+11:29:29.312 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:21,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A78,@{帧尾}=0D,@Success=true
+11:29:29.312 火警：16777215  15  15
+11:29:30.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:28' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='b968cf04-a60f-41c1-b68d-adfd4532fcc2' cmd='TransFile.extend' len='0'/>
+11:29:30.484 S发送：<F id='b968cf04-a60f-41c1-b68d-adfd4532fcc2' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:30.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='cd66f0aa-0d49-4f37-b0ae-5b2f4bc55423' cmd='TransFile.extend' len='0'/>
+11:29:30.562 S发送：<F id='cd66f0aa-0d49-4f37-b0ae-5b2f4bc55423' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:31.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:31.328 接收：7E86278110121109051129239B08000000FFFFFFFFFFFFFFFF0013000000007A0A0D
+11:29:31.328 事响：7E86278110121109051129239B08000000FFFFFFFFFFFFFFFF0013000000007A0A0D
+11:29:31.328 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:23,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A7A,@{帧尾}=0D,@Success=true
+11:29:31.328 火警：16777215  15  15
+11:29:32.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:30' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='1e80cf0e-aaea-43fc-a833-c8e8b3261ef5' cmd='TransFile.extend' len='0'/>
+11:29:32.500 S发送：<F id='1e80cf0e-aaea-43fc-a833-c8e8b3261ef5' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:32.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='8ca05604-0990-4330-b28c-78d513131f0c' cmd='TransFile.extend' len='0'/>
+11:29:32.578 S发送：<F id='8ca05604-0990-4330-b28c-78d513131f0c' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:32.718 S接收：<F id='-1' len='0' cmd='TransFile.beat' />
+11:29:32.718 S发送：<F id='-1' len='0' cmd='TransFile.beat' success='true'/>
+11:29:33.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:33.328 接收：7E86278110121109051129259B08000000FFFFFFFFFFFFFFFF0013000000007C0A0D
+11:29:33.328 事响：7E86278110121109051129259B08000000FFFFFFFFFFFFFFFF0013000000007C0A0D
+11:29:33.328 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:25,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A7C,@{帧尾}=0D,@Success=true
+11:29:33.328 火警：16777215  15  15
+11:29:34.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:32' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='c0246829-a690-450f-ae55-28e82858dbc9' cmd='TransFile.extend' len='0'/>
+11:29:34.484 S发送：<F id='c0246829-a690-450f-ae55-28e82858dbc9' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:34.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='7d810d74-f020-425e-b729-794b9aec6b69' cmd='TransFile.extend' len='0'/>
+11:29:34.562 S发送：<F id='7d810d74-f020-425e-b729-794b9aec6b69' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:35.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:35.343 接收：7E86278110121109051129279B08000000FFFFFFFFFFFFFFFF0013000000007E0A0D
+11:29:35.343 事响：7E86278110121109051129279B08000000FFFFFFFFFFFFFFFF0013000000007E0A0D
+11:29:35.343 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:27,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A7E,@{帧尾}=0D,@Success=true
+11:29:35.343 火警：16777215  15  15
+11:29:36.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:34' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='3879f878-3f28-454a-8ebe-d40aceba33f2' cmd='TransFile.extend' len='0'/>
+11:29:36.484 S发送：<F id='3879f878-3f28-454a-8ebe-d40aceba33f2' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:36.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='0b0ff904-f798-4cff-96d6-1521f2f741c7' cmd='TransFile.extend' len='0'/>
+11:29:36.562 S发送：<F id='0b0ff904-f798-4cff-96d6-1521f2f741c7' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:37.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:37.296 接收：7E86278110121109051129299B08000000FFFFFFFFFFFFFFFF001300000000800A0D
+11:29:37.296 事响：7E86278110121109051129299B08000000FFFFFFFFFFFFFFFF001300000000800A0D
+11:29:37.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:29,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A80,@{帧尾}=0D,@Success=true
+11:29:37.296 火警：16777215  15  15
+11:29:38.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:36' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='37e47922-db69-4477-9ce1-52adcc2bf7cb' cmd='TransFile.extend' len='0'/>
+11:29:38.484 S发送：<F id='37e47922-db69-4477-9ce1-52adcc2bf7cb' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:38.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='8d22071b-8206-4e0e-8953-eb3c6bc7a921' cmd='TransFile.extend' len='0'/>
+11:29:38.562 S发送：<F id='8d22071b-8206-4e0e-8953-eb3c6bc7a921' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:39.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:39.296 接收：7E86278110121109051129319B08000000FFFFFFFFFFFFFFFF001300000000880A0D
+11:29:39.296 事响：7E86278110121109051129319B08000000FFFFFFFFFFFFFFFF001300000000880A0D
+11:29:39.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:31,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A88,@{帧尾}=0D,@Success=true
+11:29:39.296 火警：16777215  15  15
+11:29:40.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:38' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='44026882-f58c-457d-8245-da32da6482ba' cmd='TransFile.extend' len='0'/>
+11:29:40.484 S发送：<F id='44026882-f58c-457d-8245-da32da6482ba' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:40.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='7a481522-1749-40f2-bb78-95b4e056fdd2' cmd='TransFile.extend' len='0'/>
+11:29:40.562 S发送：<F id='7a481522-1749-40f2-bb78-95b4e056fdd2' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:41.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:41.296 接收：7E86278110121109051129339B08000000FFFFFFFFFFFFFFFF0013000000008A0A0D
+11:29:41.296 事响：7E86278110121109051129339B08000000FFFFFFFFFFFFFFFF0013000000008A0A0D
+11:29:41.312 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:33,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A8A,@{帧尾}=0D,@Success=true
+11:29:41.312 火警：16777215  15  15
+11:29:42.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:40' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='70dc2cf3-0dd6-43d7-876f-b0ad52c5090b' cmd='TransFile.extend' len='0'/>
+11:29:42.500 S发送：<F id='70dc2cf3-0dd6-43d7-876f-b0ad52c5090b' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:42.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='a9d5fe60-e8c3-4dc5-b512-5af5f485c93f' cmd='TransFile.extend' len='0'/>
+11:29:42.562 S发送：<F id='a9d5fe60-e8c3-4dc5-b512-5af5f485c93f' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:43.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:43.296 接收：7E86278110121109051129359B08000000FFFFFFFFFFFFFFFF0013000000008C0A0D
+11:29:43.296 事响：7E86278110121109051129359B08000000FFFFFFFFFFFFFFFF0013000000008C0A0D
+11:29:43.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:35,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A8C,@{帧尾}=0D,@Success=true
+11:29:43.296 火警：16777215  15  15
+11:29:44.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:42' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='88f44cc6-7d74-499f-b83b-029b3240c9b4' cmd='TransFile.extend' len='0'/>
+11:29:44.500 S发送：<F id='88f44cc6-7d74-499f-b83b-029b3240c9b4' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:44.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='648743ee-6f6c-46ac-a515-fc904cdca777' cmd='TransFile.extend' len='0'/>
+11:29:44.562 S发送：<F id='648743ee-6f6c-46ac-a515-fc904cdca777' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:45.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:45.296 接收：7E86278110121109051129379B08000000FFFFFFFFFFFFFFFF0013000000008E0A0D
+11:29:45.296 事响：7E86278110121109051129379B08000000FFFFFFFFFFFFFFFF0013000000008E0A0D
+11:29:45.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:37,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A8E,@{帧尾}=0D,@Success=true
+11:29:45.296 火警：16777215  15  15
+11:29:46.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:44' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='935176cb-0689-46c8-90cf-387a71ebb587' cmd='TransFile.extend' len='0'/>
+11:29:46.484 S发送：<F id='935176cb-0689-46c8-90cf-387a71ebb587' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:46.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='2712f39c-a97f-44ea-8e08-d94599757058' cmd='TransFile.extend' len='0'/>
+11:29:46.562 S发送：<F id='2712f39c-a97f-44ea-8e08-d94599757058' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:47.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:47.296 接收：7E86278110121109051129399B08000000FFFFFFFFFFFFFFFF001300000000900A0D
+11:29:47.296 事响：7E86278110121109051129399B08000000FFFFFFFFFFFFFFFF001300000000900A0D
+11:29:47.312 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:39,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A90,@{帧尾}=0D,@Success=true
+11:29:47.312 火警：16777215  15  15
+11:29:48.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:46' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='62dcd1b4-60cf-47b0-bdf8-afac2d092c32' cmd='TransFile.extend' len='0'/>
+11:29:48.500 S发送：<F id='62dcd1b4-60cf-47b0-bdf8-afac2d092c32' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:48.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='00e5cd18-b62f-4fdf-b7f6-bdbcd7a88928' cmd='TransFile.extend' len='0'/>
+11:29:48.578 S发送：<F id='00e5cd18-b62f-4fdf-b7f6-bdbcd7a88928' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:49.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:49.296 接收：7E86278110121109051129419B08000000FFFFFFFFFFFFFFFF001300000000980A0D
+11:29:49.296 事响：7E86278110121109051129419B08000000FFFFFFFFFFFFFFFF001300000000980A0D
+11:29:49.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:41,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A98,@{帧尾}=0D,@Success=true
+11:29:49.296 火警：16777215  15  15
+11:29:50.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:48' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='9699ec60-5df1-44bd-9a25-488f4f0e1230' cmd='TransFile.extend' len='0'/>
+11:29:50.500 S发送：<F id='9699ec60-5df1-44bd-9a25-488f4f0e1230' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:50.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='a47d3174-b542-481c-b5ed-393f503394f4' cmd='TransFile.extend' len='0'/>
+11:29:50.562 S发送：<F id='a47d3174-b542-481c-b5ed-393f503394f4' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:51.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:51.296 接收：7E86278110121109051129439B08000000FFFFFFFFFFFFFFFF0013000000009A0A0D
+11:29:51.296 事响：7E86278110121109051129439B08000000FFFFFFFFFFFFFFFF0013000000009A0A0D
+11:29:51.296 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:43,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:51.296 火警：16777215  15  15
+11:29:52.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:50' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='65a094d4-01d2-4c04-840d-5ca1ea8b8315' cmd='TransFile.extend' len='0'/>
+11:29:52.484 S发送：<F id='65a094d4-01d2-4c04-840d-5ca1ea8b8315' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:52.578 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='643eaeda-344c-4a9c-8ee1-601c9f0ec639' cmd='TransFile.extend' len='0'/>
+11:29:52.578 S发送：<F id='643eaeda-344c-4a9c-8ee1-601c9f0ec639' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:53.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:53.296 接收：7E86278110121109051129459B08000000FFFFFFFFFFFFFFFF0013000000009C0A0D
+11:29:53.296 事响：7E86278110121109051129459B08000000FFFFFFFFFFFFFFFF0013000000009C0A0D
+11:29:53.312 解析：@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:29:45,@{刷卡记录数}=2203,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9C,@{帧尾}=0D,@Success=true
+11:29:53.312 火警：16777215  15  15
+11:29:54.484 S接收：<F datatype='alarm' response='false' dt='2012-11-09 11:29:52' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='84650d7d-0367-46c7-9dc1-adaebf750a46' cmd='TransFile.extend' len='0'/>
+11:29:54.484 S发送：<F id='84650d7d-0367-46c7-9dc1-adaebf750a46' cmd='TransFile.extend' service='readinfo' len='569' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='alarm' dt='2012-11-09 11:28:53'/>@{帧头}=7E,@{设备地址}=10118,@{命令字}=1081,@{当前时间}=2012-11-09 11:28:45,@{刷卡记录数}=2202,@{权限数量}=0,@{刷卡卡号}=16777215,@状态编号=15,@读卡器=15,@{刷卡时间}=0001-01-01 00:00:00,@保留=0,@继4状态=0,@继3状态=0,@继2状态=0,@继1状态=0,@门磁4状态=0,@门磁3状态=0,@门磁2状态=0,@门磁1状态=1,@按钮4状态=0,@按钮3状态=0,@按钮2状态=1,@按钮1状态=1,@火警=0,@无效刷卡=0,@联动报警=0,@非法闯入=0,@超时=0,@胁迫=0,@芯片故障=0,@系统故障4=0,@时钟故障=0,@系统故障2=0,@系统故障1=0,@4号门报警=0,@3号门报警=0,@2号门报警=0,@1号门报警=0,@{保留字}=00,@{校验字}=0A9A,@{帧尾}=0D,@Success=true
+11:29:54.562 S接收：<F datatype='record' response='false' dt='2012-11-09 11:23:49' device='85cab02e-83e2-4f5a-8063-0cb13305299a' service='readinfo' id='a4066aa2-1282-4557-8986-8af9ce110d86' cmd='TransFile.extend' len='0'/>
+11:29:54.562 S发送：<F id='a4066aa2-1282-4557-8986-8af9ce110d86' cmd='TransFile.extend' service='readinfo' len='0' deviceid='85cab02e-83e2-4f5a-8063-0cb13305299a' datatype='record' dt='2012-11-09 11:23:49'/>
+11:29:55.296 发送：7E8627811000000000000000000000000000000000000000000000000000003E010D
+11:29:55.296 接收：7E86278110121109051129479B08000000FFFFFFFFFFFFFFFF0013000000009E0A0D
+11:29:55.296 事响：7E86278110121109051129479B08000000FFFFFFFFFFFFFFFF0013000000009E0A0D

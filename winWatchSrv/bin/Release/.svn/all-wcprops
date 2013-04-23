@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/winWatchSrv/bin/Release
+END
+winWatchSrv.exe
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/winWatchSrv/bin/Release/winWatchSrv.exe
+END
+winWatchSrv.pdb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/winWatchSrv/bin/Release/winWatchSrv.pdb
+END

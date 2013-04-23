@@ -88,7 +88,7 @@
           //YPanel("停车场分组资料","park",null,1,null,null,90); 
           
           ue_expand('停车场分组资料',true);
-          document.getElementById("file10").style.display="none";
+          //document.getElementById("file10").style.display="none";
           //document.getElementById("file11").style.display="none";
           //设备
           var ob = $band("停车场设备");
@@ -106,6 +106,8 @@
       var MID="";
       function Tree_onNodeSelectionChange(node)
       {
+        TclickDot(node, false);
+        return;
         var ob=$band("停车场分组资料");
         MID=ob.getFldStrValue("MID");
         PID=ob.getFldStrValue("PID");
@@ -121,7 +123,7 @@
           document.getElementById("file7").style.display="block";
           document.getElementById("file8").style.display="block";
           document.getElementById("file9").style.display="block";
-          document.getElementById("file10").style.display="none";
+          //document.getElementById("file10").style.display="none";
           //document.getElementById("file11").style.display="none";
         }
         else
@@ -136,7 +138,7 @@
           document.getElementById("file7").style.display="none";
           document.getElementById("file8").style.display="none";
           document.getElementById("file9").style.display="none";
-          document.getElementById("file10").style.display="block";
+          //document.getElementById("file10").style.display="block";
           //document.getElementById("file11").style.display="block";
         }
         var ob = $band("停车场设备");
@@ -322,7 +324,7 @@
     <div id="divDev" style="height: 100%; width: 95%">
         <fieldset style="float: right; width: 99%; height: 95%; padding-right: 8px; padding-left: 8px;
             padding-bottom: 9px; padding-top: 8px;">
-            <legend>
+            <legend>基本信息： 
                 <a class="linkbtn_0" href="#" onclick="_save();">
                     <img border="0" src="Images/savesmall.gif" />&nbsp;保存&nbsp;</a> 
                 <a class="linkbtn_0" href="#" onclick="ms_close()">
@@ -331,7 +333,7 @@
             <br />
             <fieldset id="file1" style="float: right; width: 99%; height: 5%; padding-right: 8px;
                 padding-left: 8px; padding-bottom: 9px; padding-top: 5px;">
-                <legend>基本信息: </legend>
+                <legend></legend>
                 <div id="divDoor1" style="text-align: left; width: 100%">
                 </div>
             </fieldset>

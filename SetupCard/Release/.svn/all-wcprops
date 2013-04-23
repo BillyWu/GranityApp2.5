@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/SetupCard/Release
+END
+setup.exe
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/SetupCard/Release/setup.exe
+END
+SetupCard.msi
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/GranityApp/!svn/ver/1/GranityApp2.5/SetupCard/Release/SetupCard.msi
+END

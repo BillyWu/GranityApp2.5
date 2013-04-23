@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Estar.Business.UserRight</name>
+    </assembly>
+    <members>
+        <member name="F:Estar.Business.UserRight.OperationType.Selecte">
+            <summary>
+            选择查询权限
+            </summary>
+        </member>
+        <member name="F:Estar.Business.UserRight.OperationType.Insert">
+            <summary>
+            创建新权限
+            </summary>
+        </member>
+        <member name="F:Estar.Business.UserRight.OperationType.Update">
+            <summary>
+            修改数据权限
+            </summary>
+        </member>
+        <member name="F:Estar.Business.UserRight.OperationType.Delete">
+            <summary>
+            删除数据权限
+            </summary>
+        </member>
+        <member name="F:Estar.Business.UserRight.OperationType.DutyAll">
+            <summary>
+            包括增删改查的全面责任权限
+            </summary>
+        </member>
+        <member name="F:Estar.Business.UserRight.OperationType.None">
+            <summary>
+            无操作,无效的权限
+            </summary>
+        </member>
+        <member name="T:Estar.Business.UserRight.User">
+            <summary>
+            新的分级用户权限角色管理
+            </summary>
+        </member>
+        <member name="M:Estar.Business.UserRight.User.HasRight(System.String,Estar.Business.UserRight.OperationType)">
+            <summary>
+            判断用户是否有指定单元的权限
+            </summary>
+            <param name="strWorkUnitName">功能单元名称</param>
+            <param name="operateType">操作权限类型</param>
+            <returns>返回是否有该权限;true为有;false为没有</returns>
+        </member>
+        <member name="M:Estar.Business.UserRight.User._parseOperateType(System.String)">
+            <summary>
+            把操作数据中的字符转换成枚举类型
+            </summary>
+            <param name="operationName">数据库中存储的类型</param>
+            <returns>系统权限枚举类型</returns>
+        </member>
+        <member name="M:Estar.Business.UserRight.User.login(System.String)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.UserRight.User.ModifyPassword(System.String,System.String)">
+            <summary>
+            用户修改密码
+            </summary>
+            <param name="oldPassword">原来的密码</param>
+            <param name="newPassword">新密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.UserRight.User.IfFirstLogin">
+            <summary>
+            判断是否初次使用本系统
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.UserRight.User.HeartBeat">
+            <summary>
+            用户心跳,更新用户离线时间
+            </summary>
+            <param name="userid"></param>
+        </member>
+        <member name="M:Estar.Business.UserRight.User.createUserInfo">
+            <summary>
+            设置用户信息
+            </summary>
+        </member>
+        <member name="M:Estar.Business.UserRight.User.valtag(System.String,System.String)">
+            <summary>
+            取出XML节点Tag标记的字典值对数据
+            </summary>
+            <param name="stag">tag值</param>
+            <param name="varname">取的字典值键值</param>
+            <returns>得到对应的键值</returns>
+        </member>
+        <member name="M:Estar.Business.UserRight.User._setWorkUnitName(System.String)">
+            <summary>
+            设置用户当前工作单元,初始化权限
+            </summary>
+            <param name="strWorkUnitName"></param>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.UserAccounts">
+            <summary>
+            读取用户帐号
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.UserSerialNum">
+            <summary>
+            读取用户编号
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.DeptmentName">
+            <summary>
+            获取部门名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.DeptSaleName">
+            <summary>
+            读取独立销售部门名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.DeptmentCode">
+            <summary>
+            获取部门编号
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.DeptmentID">
+            <summary>
+            获取部门ID
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.DeptSup">
+            <summary>
+            获取用户部门的上级部门名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.SubDeptName">
+            <summary>
+            读取分部门名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.SubDeptCode">
+            <summary>
+            读取分部门编号
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.SubDeptID">
+            <summary>
+            读取分部门编号
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.Company">
+            <summary>
+            获取用户总公司名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.UnitName">
+            <summary>
+            获取用户单位名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.UnitCode">
+            <summary>
+            读取单位编号
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.UnitID">
+            <summary>
+            读取单位GUID
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.OPTUnitID">
+            <summary>
+            读取用户所属的独立单位ID
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.UnitSup">
+            <summary>
+            读取用户单位的上级单位名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.RoleName">
+            <summary>
+            读取用户角色名称
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.Rights">
+            <summary>
+            读取用户角色权限范围
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.XmlDocDeptRight">
+            <summary>
+            用户所属独立单位权限文档
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.DsDeptRight">
+            <summary>
+            用户所属权限表
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.LimitDays">
+            <summary>
+            读取用户访问数据的有效天数
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.VisitOut">
+            <summary>
+            读取用户是否访问公网属性
+            </summary>
+        </member>
+        <member name="T:Estar.Business.UserRight.User.WorkUnitRight">
+            <summary>
+            工作单元权限
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.WorkUnitRight.WorkName">
+            <summary>
+            工作单元
+            </summary>
+        </member>
+        <member name="P:Estar.Business.UserRight.User.WorkUnitRight.Operation">
+            <summary>
+            操作权限
+            </summary>
+        </member>
+    </members>
+</doc>

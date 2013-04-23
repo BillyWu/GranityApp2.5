@@ -1,0 +1,1710 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Granity.winTools</name>
+    </assembly>
+    <members>
+        <member name="T:Granity.winTools.Sa7134Capture">
+            <summary>
+            天敏视频卡驱动接口
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCAInitSdk(System.IntPtr,Granity.winTools.DISPLAYTRANSTYPE,System.Boolean)">
+            <summary>
+            初始化视频卡环境
+            </summary>
+            <param name="hWndMain">当前渲染的窗口句柄</param>
+            <param name="bInitVidDev">视频模式</param>
+            <param name="bInitAudDev">是否音频</param>
+            <returns>初始化成功返回true,无卡或无驱动则失败</returns>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCAGetDevNum">
+            <summary>
+            获取当前视频通道总数
+            </summary>
+            <returns>返回通道数,没有则返回0</returns>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCAOpenDevice(System.Int32,System.IntPtr)">
+            <summary>
+            打开指定通道,分配响应资源
+            系统将自动给定传入子窗口的大小来显示视频. 预览窗口的分辨率为该窗口的尺寸大小
+            </summary>
+            <param name="dwCard">通道号</param>
+            <param name="hPreviewWnd">视频预览窗口句柄</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCAStartVideoPreview(System.Int32)">
+            <summary>
+            启动视频预览
+            </summary>
+            <param name="dwCard">通道号</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCAStopVideoPreview(System.Int32)">
+            <summary>
+            停止视频预览
+            </summary>
+            <param name="dwCard">通道号</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCAUpdateVideoPreview(System.Int32,System.IntPtr)">
+            <summary>
+            更新视频预览，比如改变了显示窗口时，调用
+            </summary>
+            <param name="dwCard">通道号</param>
+            <param name="hPreviewWnd">预览窗口句柄</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCASaveBitsToBuf(System.Int32,System.IntPtr,System.Int32@,System.Int32@)">
+            <summary>
+            保存快照数据到相应的缓冲区
+            </summary>
+            <param name="dwCard">通道号</param>
+            <param name="pDestBuf">缓冲区指针</param>
+            <param name="dwWidth">图像宽度</param>
+            <param name="dwHeight">图像高度</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCASaveAsJpegFile(System.Int32,System.String,System.Int32)">
+            <summary>
+            保存快照为JPEG文件
+            </summary>
+            <param name="dwCard">通道号</param>
+            <param name="lpFileName">文件绝对路径</param>
+            <param name="dwQuality">视频质量：1—100</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.Sa7134Capture.VCACloseDevice(System.Int32)">
+            <summary>
+            关闭通道，释放相应系统资源
+            </summary>
+            <param name="dwCard">通道号</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="T:Granity.winTools.DISPLAYTRANSTYPE">
+            <summary>
+            天敏卡视频显示模式
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.DISPLAYTRANSTYPE.NOT_DISPLAY">
+            <summary>
+            不显示
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.DISPLAYTRANSTYPE.PCI_VIEDOMEMORY">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.DISPLAYTRANSTYPE.PCI_MEMORY_VIDEOMEMORY">
+            <summary>
+            常用模式
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.DataGridViewCalendarColumn">
+            <summary>
+            表格日期列
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.DataGridViewCalendarColumn.CellTemplate">
+            <summary>
+            获取或设置创建单元格的模板
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.CalendarCell">
+            <summary>
+            表格日期单元格模板,默认长日期格式
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.CalendarCell.InitializeEditingControl(System.Int32,System.Object,System.Windows.Forms.DataGridViewCellStyle)">
+            <summary>
+            附加并初始化寄宿的编辑控件
+            </summary>
+            <param name="rowIndex">行索引号</param>
+            <param name="initialFormattedValue">要在控件中显示的初始值</param>
+            <param name="dataGridViewCellStyle">确定寄宿控件的外观</param>
+        </member>
+        <member name="P:Granity.winTools.CalendarCell.EditType">
+            <summary>
+            获取单元格的寄宿编辑控件的类型
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.CalendarCell.ValueType">
+            <summary>
+            获取单元格值类型
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.CalendarCell.DefaultNewRowValue">
+            <summary>
+            获取单元格默认值
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.CalendarEditingControl">
+            <summary>
+            单元格编辑控件
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.CalendarEditingControl.GetEditingControlFormattedValue(System.Windows.Forms.DataGridViewDataErrorContexts)">
+            <summary>
+            获取控件的Text值
+            </summary>
+            <param name="context">错误上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.CalendarEditingControl.ApplyCellStyleToEditingControl(System.Windows.Forms.DataGridViewCellStyle)">
+            <summary>
+            设置样式
+            </summary>
+            <param name="dataGridViewCellStyle">单元格样式</param>
+        </member>
+        <member name="M:Granity.winTools.CalendarEditingControl.EditingControlWantsInputKey(System.Windows.Forms.Keys,System.Boolean)">
+            <summary>
+            编辑键盘
+            </summary>
+            <param name="key">键盘键</param>
+            <param name="dataGridViewWantsInputKey"></param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Granity.winTools.CalendarEditingControl.PrepareEditingControlForEdit(System.Boolean)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Granity.winTools.CalendarEditingControl.OnValueChanged(System.EventArgs)">
+            <summary>
+            编辑值改变触发表格事件(重写基类)
+            </summary>
+            <param name="eventargs"></param>
+        </member>
+        <member name="P:Granity.winTools.CalendarEditingControl.EditingControlDataGridView">
+            <summary>
+            获取或设置包含单元格的 DataGridView
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.CalendarEditingControl.EditingControlRowIndex">
+            <summary>
+            控件所在行
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.CalendarEditingControl.EditingControlFormattedValue">
+            <summary>
+            获取或设置格式化后的值
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.CalendarEditingControl.EditingControlValueChanged">
+            <summary>
+            获取或设置一个值，该值指示编辑控件的值是否与承载单元格的值不同
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.CalendarEditingControl.RepositionEditingControlOnValueChange">
+            <summary>
+            获取或设置一个值，该值指示每当值更改时，是否需要重新定位单元格的内容
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.CalendarEditingControl.EditingPanelCursor">
+            <summary>
+            获取当鼠标指针位于 DataGridView.EditingPanel 上方但不位于编辑控件上方时所使用的光标
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.CmdUDPznetCom">
+            <summary>
+            可使用ZNetCom的设备UDP通讯口搜索工具类
+                该工具通过广播8800和8801端口搜索设备
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.initcmd">
+            <summary>
+            初始广播指令
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.initport">
+            <summary>
+            初始广播端口
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.infocmd">
+            <summary>
+            获取信息指令,含UDP物理地址参数和指令号(A1 14 00 02 00/A1 14 00 02 02)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.infomdi">
+            <summary>
+            修改信息确认指令，含UDP物理地址参数
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.searcmd">
+            <summary>
+            搜索门禁设备
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.searport">
+            <summary>
+            广播门禁设备通讯端口号,60000
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.infoport">
+            <summary>
+            获取信息广播端口
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.regIPaddr">
+            <summary>
+            IP4地址校验
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.CmdUDPznetCom.regMacaddr">
+            <summary>
+            物理地址校验
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.SearchUDPnet">
+            <summary>
+            搜索网络内支持UDP通讯的设备信息,设备信息使用tag格式数据
+            </summary>
+            <returns>返回tag格式数据信息</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.cmd_ResponseHandle(System.Object,Granity.communications.ResponseEventArgs)">
+            <summary>
+            接收广播反馈,需要多次交互获取完整信息
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.isRpsZnet(Granity.communications.CommandBase,System.Byte[])">
+            <summary>
+            判断是否是指令的响应
+            </summary>
+            <param name="cmd">指令</param>
+            <param name="response">响应字节</param>
+            <returns>是否匹配</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.isResponseCmd(Granity.communications.CommandBase,System.Byte[])">
+            <summary>
+            判断是否是指令的响应
+            </summary>
+            <param name="cmd">指令</param>
+            <param name="response">响应字节</param>
+            <returns>是否匹配</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.parseAddrMac(System.String)">
+            <summary>
+            解析响应结果,读取其中的物理地址
+            </summary>
+            <param name="response">通讯响应结果,16进制字符串</param>
+            <returns>返回物理地址,非法数据则返回空字符</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.parseFunCode(System.String)">
+            <summary>
+            解析响应结果,读取其中的功能代码
+            </summary>
+            <param name="response">通讯响应结果,16进制字符串</param>
+            <returns>返回功能代码</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.SearchUDPDoor">
+            <summary>
+            搜索网络内支持UDP通讯的设备信息,设备信息使用tag格式数据
+            </summary>
+            <returns>返回tag格式数据信息</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.cmd_RpsDoorHandle(System.Object,Granity.communications.ResponseEventArgs)">
+            <summary>
+            接收广播反馈,需要多次交互获取完整信息
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.isRpsDoor(Granity.communications.CommandBase,System.Byte[])">
+            <summary>
+            判断是否是搜索门禁指令的响应
+            </summary>
+            <param name="cmd">门禁搜索指令</param>
+            <param name="response">响应字节</param>
+            <returns>是否匹配</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.SetTCPIPZnet(System.String,System.String,System.String,System.String)">
+            <summary>
+            设置通讯ZNetCom模块IP地址端口号及网关
+            </summary>
+            <param name="macaddr">物理地址,为空则忽略操作</param>
+            <param name="ipaddr">IP地址,为空则忽略操作</param>
+            <param name="maskcode">子网掩码，为空保持原值</param>
+            <param name="gateway">网关，为空保持原值</param>
+            <returns>修改是否成功</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.SetSerialZnet(System.String,System.Int32,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+            <summary>
+            设置通讯ZNetCom模块端口好，及串口波特率
+            </summary>
+            <param name="macaddr">物理地址,为空则忽略操作</param>
+            <param name="netport">网络端口</param>
+            <param name="baudRate">波特率</param>
+            <param name="parity">奇偶校验</param>
+            <param name="dataBits">数据位</param>
+            <param name="stopBits">停止位</param>
+            <returns>修改是否成功</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.SetTCPIPDoor(System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            设置门禁IP地址端口号及网关；无IP地址忽略操作，无其它则默认保持原来的值
+            </summary>
+            <param name="station">站址序列号</param>
+            <param name="ipaddr">IP地址</param>
+            <param name="maskcode">掩码，默认255.255.255.0</param>
+            <param name="gateway">网关</param>
+            <param name="macaddr">物理地址</param>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.convertHEX(System.String,System.String,System.Boolean)">
+            <summary>
+            转换为16进制字符串，每一分割节为一个字节
+            </summary>
+            <param name="value">原格式值</param>
+            <param name="sp">分隔符</param>
+            <param name="isHEXsrc">原值是否是HEX值</param>
+            <returns>返回HEX值</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.sumValiHex(System.String)">
+            <summary>
+            计算字符串和校验
+            </summary>
+            <param name="valhex">16进制字符串</param>
+            <returns>返回校验和,不截取和对齐字节位数</returns>
+        </member>
+        <member name="M:Granity.winTools.CmdUDPznetCom.parseDetail(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            解析响应结果,生成tag格式的标记详细信息
+            格式参数用分号分割,其中名称|索引号|字节长度用逗号分割
+            </summary>
+            <param name="response">通讯响应结果,16进制字符串</param>
+            <param name="taginfo">tag格式结果数据</param>
+            <param name="format">格式参数,普通格式</param>
+            <param name="addrmac">格式参数,物理地址类型</param>
+            <param name="addrip">格式参数,IP地址类型</param>
+            <param name="txt">格式参数,文本类型</param>
+            <param name="num">格式参数,数字类型</param>
+            <param name="chgLH">是否高地位转置</param>
+            <returns>返回tag格式的详细信息</returns>
+        </member>
+        <member name="P:Granity.winTools.CmdUDPznetCom.ptlZnet">
+            <summary>
+            Znet协议规则
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.ToolTipMsg">
+            <summary>
+            控件的快捷提示
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.ToolTipMsg.#ctor">
+            <summary>
+            控件的快捷提示
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.ToolTipMsg.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            控件的快捷提示
+            </summary>
+            <param name="ct">绑定控件</param>
+        </member>
+        <member name="T:Granity.winTools.BindManager">
+            <summary>
+            对windows应用的数据绑定管理,提供统一的处理方式
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.dbpro">
+            <summary>
+            绑定数据源(tag标记名称)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.fldpro">
+            <summary>
+            绑定字段(tag标记名称)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.srcpro">
+            <summary>
+            字典源(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.txtpro">
+            <summary>
+            字典源文本字段(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.valpro">
+            <summary>
+            字典值字段(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.itempro">
+            <summary>
+            关联单元子数据项(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.widthpro">
+            <summary>
+            列宽(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.visipro">
+            <summary>
+            是否可见(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.readpro">
+            <summary>
+            是否只读(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.validpro">
+            <summary>
+            校验表达式(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.isnullpro">
+            <summary>
+            是否可空,(DataTable列扩展属性)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.regexSQL">
+            <summary>
+            验证是否是SQL语句
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.regexINT">
+            <summary>
+            验证是否是整数
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.BindManager.dsCompte">
+            <summary>
+            处理单元数据表校验及计算的单行数据表
+            在每个数据表第一次使用时克隆并创建结构
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.BindManager.#ctor(System.Windows.Forms.Form)">
+            <summary>
+            构造函数,初始化绑定管理所在的窗口
+            </summary>
+            <param name="win"></param>
+        </member>
+        <member name="F:Granity.winTools.BindManager.tree">
+            <summary>
+            检查win 里是否有树控件，有树控件，tree 指向它，否则为Null
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.BindManager.setTablepro(System.Data.DataTable,Estar.Common.Tools.WorkItem)">
+            <summary>
+            数据项属性写入数据表扩展属性,便于绑定时处理
+            </summary>
+            <param name="tab">数据表</param>
+            <param name="item">数据项</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BuildDataset(Estar.Common.Tools.UnitItem,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            初始化创建单元数据集
+            </summary>
+            <param name="unitItem">单元实例</param>
+            <param name="ps">传递的环境参数</param>
+            <returns>单元的数据集</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetGridCols(System.Windows.Forms.DataGridView,System.String)">
+            <summary>
+            设置表格列字段，列名用逗号分割
+            </summary>
+            <param name="dbgrid">表格控件</param>
+            <param name="cols">需要显示的列名,逗号分割,为空默认不处理</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetGridCols(DevExpress.XtraGrid.GridControl,System.String)">
+            <summary>
+            设置表格列字段，列名用逗号分割
+            </summary>
+            <param name="dbgrid">表格控件</param>
+            <param name="cols">需要显示的列名,逗号分割,为空默认不处理</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.UpdateTable(System.Data.DataTable,System.Data.DataTable,System.String)">
+            <summary>
+            使用更改的数据表tabChanged来更新数据表tabData,状态无修改和新增加的不更新
+            数据表都要有相同的结构和相同的主键
+            </summary>
+            <param name="tabData">数据表</param>
+            <param name="tabChanged">对比的数据表</param>
+            <param name="addfilter">更新记录的过滤表达式</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetControlValue(System.Data.DataRow,System.Windows.Forms.Control,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            对控件具有的字段值赋值,控件tag标记或colmap映射字段
+            </summary>
+            <param name="tab">数据表</param>
+            <param name="ct">控件容器</param>
+            <param name="tagName">控件tag标记字段的名称,标记值是字段或字段的标题,无对应则使用colmap再映射,再无则忽略</param>
+            <param name="colmap">字段映射(可空):tagName—colmap[tagname,fld]—tab.fld</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetDataRowValue(System.Data.DataRow,System.Data.DataRow,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            对记录行的字段值赋值,字段名称或标题或映射相同
+            </summary>
+            <param name="drsrc">源行记录</param>
+            <param name="drdest">需要更新的目标行记录</param>
+            <param name="colmap">列映射</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.Save(Estar.Business.DataManager.QueryDataRes,System.Data.DataSet,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            更新数据
+            </summary>
+            <param name="query">数据查询</param>
+            <param name="ds">数据集,更新的数据项是数据表名称</param>
+            <param name="ps">环境参数</param>
+            <returns>是否执行成功</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.Save(Estar.Business.DataManager.QueryDataRes,System.Data.DataTable,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            更新数据
+            </summary>
+            <param name="query">数据查询</param>
+            <param name="tab">数据表,更新的数据项是数据表名称</param>
+            <param name="ps">环境参数</param>
+            <returns>是否执行成功</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SaveImage(System.Guid,System.Drawing.Image)">
+            <summary>
+            存入图片
+            </summary>
+            <param name="id">图片ID</param>
+            <param name="image">图片对象</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SaveImage(System.Guid,System.IO.MemoryStream)">
+            <summary>
+            存入图片
+            </summary>
+            <param name="id">图片ID</param>
+            <param name="streamImage">图片字节流</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SaveImage(System.Guid,System.Byte[])">
+            <summary>
+            存入图片
+            </summary>
+            <param name="id">图片ID</param>
+            <param name="image">图片字节</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.getImage(System.Guid)">
+            <summary>
+            读取图片
+            </summary>
+            <param name="id">图片ID</param>
+            <returns>返回图片字节</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.getImage(System.String)">
+            <summary>
+            读取图片
+            </summary>
+            <param name="id">图片ID</param>
+            <returns>返回图片字节</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BindGrid(System.Windows.Forms.DataGridView,System.Data.DataTable)">
+            <summary>
+            绑定表格数据
+            </summary>
+            <param name="dbgrid">显示数据的表格</param>
+            <param name="tab">数据表</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BindGrid(DevExpress.XtraGrid.GridControl,System.Data.DataTable)">
+            <summary>
+            绑定表格数据
+            </summary>
+            <param name="dbgrid">显示数据的表格</param>
+            <param name="tab">数据表</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.GetTable(System.Data.DataTable,System.Data.DataRow[])">
+            <summary>
+            行数组 转换成表,
+            </summary>
+            <param name="dt">该表需要有结构，否则该方法会出错</param>
+            <param name="drr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.GetTree(System.Windows.Forms.Control)">
+            <summary>
+            判断页面是否包含Tree（dev）树控件 并且返回树控件
+            </summary>
+            <param name="frm">页面，或容器</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.dbgrid_RowPostPaint(System.Object,System.Windows.Forms.DataGridViewRowPostPaintEventArgs)">
+            <summary>
+            设置表格行标号
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.dbgrid_DataError(System.Object,System.Windows.Forms.DataGridViewDataErrorEventArgs)">
+            <summary>
+            表格字典列或格式列显示时出错忽略
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.dbgrid_CellEndEdit(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            编辑表格事件,数据绑定同步
+            </summary>
+            <param name="sender">表格</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.bindctrl(System.Data.DataTable,System.Windows.Forms.ListControl,System.String,System.Data.DataTable,System.String,System.String)">
+            <summary>
+            下拉字典控件的绑定
+            </summary>
+            <param name="tab">控件关联数据源</param>
+            <param name="ctrl">下拉控件</param>
+            <param name="fld">控件关联字段</param>
+            <param name="dictsrc">字典数据源</param>
+            <param name="dicttxt">字典显示值</param>
+            <param name="dictval">字典Value值</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.bindctrl(System.Data.DataTable,DevExpress.XtraEditors.LookUpEdit,System.String,System.Data.DataTable,System.String,System.String)">
+            <summary>
+            下拉字典控件的绑定
+            </summary>
+            <param name="tab">控件关联数据源</param>
+            <param name="ctrl">下拉控件</param>
+            <param name="fld">控件关联字段</param>
+            <param name="dictsrc">字典数据源</param>
+            <param name="dicttxt">字典显示值</param>
+            <param name="dictval">字典Value值</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.bindctrl(System.Data.DataTable,System.Windows.Forms.CheckBox,System.String)">
+            <summary>
+            复选框控件绑定
+            </summary>
+            <param name="tab">控件关联数据源</param>
+            <param name="ctrl">复选框控件</param>
+            <param name="fld">控件关联字段</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.bindctrl(System.Data.DataTable,DevExpress.XtraEditors.CheckEdit,System.String)">
+            <summary>
+            复选框控件绑定
+            </summary>
+            <param name="tab">控件关联数据源</param>
+            <param name="ctrl">复选框控件</param>
+            <param name="fld">控件关联字段</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.bindctrl(System.Data.DataTable,DevExpress.XtraEditors.DateEdit,System.String)">
+            <summary>
+            日期控件绑定
+            </summary>
+            <param name="tab">控件关联数据源</param>
+            <param name="ctrl">复选框控件</param>
+            <param name="fld">控件关联字段</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BindFld(System.Windows.Forms.Control,System.Data.DataSet,System.String)">
+            <summary>
+            绑定字段,按照字段控件的tag属性内db和fld值来绑定Text值
+            </summary>
+            <param name="ct">字段所在的容器控件或字段控件本身</param>
+            <param name="ds">数据集</param>
+            <param name="db">关联数据表的名称</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.validateRow(System.Data.DataRow,System.String,System.String)">
+            <summary>
+            校验数据行字段,校验表达式在DataTable的列扩展属性
+            校验：是否为空,长度,类型,正则表达式或计算表达式
+            </summary>
+            <param name="dr">数据行</param>
+            <param name="fld">校验字段</param>
+            <param name="value">检验字符数据</param>
+            <returns>校验非法则返回提示字符串,否则返回空</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.ct_Validating(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            校验数据有效性,只对编辑框和日期框验证
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.ct_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            字段编辑文本改变时触发
+            </summary>
+            <param name="sender">文本字段控件</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BindFld(System.Windows.Forms.Control,System.Data.DataSet)">
+            <summary>
+            绑定字段,按照字段控件的tag属性内db和fld值来绑定Text值
+            </summary>
+            <param name="ct">字段所在的容器控件或字段控件本身</param>
+            <param name="ds">数据集</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BinddevTestFld(System.Windows.Forms.Control,System.Data.DataSet)">
+            <summary>
+            绑定字段,按照字段控件的tag属性内db和fld值来绑定Text值
+            </summary>
+            <param name="ct">字段所在的容器控件或字段控件本身</param>
+            <param name="ds">数据集</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BindTrv(System.Windows.Forms.TreeView,System.Data.DataTable,System.String,System.String,System.String,System.String)">
+            <summary>
+            绑定树,根据指定数据及显示文本和上下级键递归建立树节点
+            </summary>
+            <param name="trv">树控件</param>
+            <param name="tab">数据表</param>
+            <param name="txtfld">文本字段</param>
+            <param name="idfld">键字段</param>
+            <param name="pidfld">上级字段</param>
+            <param name="tagformat">节点tag值格式</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BindTrv(DevExpress.XtraTreeList.TreeList,System.Data.DataTable,System.String,System.String,System.String,System.String)">
+            <summary>
+            绑定树,根据指定数据及显示文本和上下级键递归建立树节点
+            </summary>
+            <param name="trv">树控件</param>
+            <param name="tab">数据表</param>
+            <param name="txtfld">文本字段</param>
+             <param name="cardNo">卡号</param>
+            <param name="idfld">键字段</param>
+            <param name="pidfld">上级字段</param>
+            <param name="tagformat">节点tag值格式</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.BindTrv(DevExpress.XtraTreeList.TreeList,System.Data.DataTable,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            绑定树,根据指定数据及显示文本和上下级键递归建立树节点
+            </summary>
+            <param name="trv">树控件</param>
+            <param name="tab">数据表</param>
+            <param name="txtfld">文本字段</param>
+             <param name="cardNo">卡号</param>
+            <param name="idfld">键字段</param>
+            <param name="pidfld">上级字段</param>
+            <param name="tagformat">节点tag值格式</param>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetTreeNode(System.Windows.Forms.TreeView,System.Data.DataRow,System.String,System.String,System.String,System.String)">
+            <summary>
+            根据数据记录设置树节点,有则直接返回无则添加节点
+            </summary>
+            <param name="trv">树控件</param>
+            <param name="dr">数据记录</param>
+            <param name="txtfld">文本字段</param>
+            <param name="idfld">键值字段</param>
+            <param name="pidfld">父键字段</param>
+            <param name="tagformat">附加tag标签属性值格式：对其中{字段名称}替换具体值,没有该字段则不替换</param>
+            <returns>返回数据记录对应的树节点</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetTreeNode(System.Windows.Forms.TreeView,System.Data.DataRow,System.String,System.String,System.String)">
+            <summary>
+            根据数据记录设置树节点,有则直接返回无则添加节点
+            </summary>
+            <param name="trv">树控件</param>
+            <param name="dr">数据记录</param>
+            <param name="txtfld">文本字段</param>
+            <param name="idfld">键值字段</param>
+            <param name="pidfld">父键字段</param>
+            <returns>返回数据记录对应的树节点</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetTreeNode(System.Windows.Forms.TreeView,System.String,System.String,System.String,System.String)">
+            <summary>
+            根据数据值设置树节点,有则直接返回无则添加节点,上级节点无则是根节点
+            </summary>
+            <param name="trv">建立的树</param>
+            <param name="txt">显示文本值</param>
+            <param name="id">键值</param>
+            <param name="pid">上级节点</param>
+            <param name="tag">tag属性值</param>
+            <returns>返回对应节点</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetTreeNode(System.Windows.Forms.TreeView,System.String,System.String,System.String)">
+            <summary>
+            根据数据值设置树节点,有则直接返回无则添加节点,上级节点无则是根节点
+            </summary>
+            <param name="trv">建立的树</param>
+            <param name="txt">显示文本值</param>
+            <param name="id">键值</param>
+            <param name="pid">上级节点</param>
+            <returns>返回对应节点</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetTreeNode(DevExpress.XtraTreeList.TreeList,System.Data.DataRow,System.String,System.String,System.String,System.String)">
+            <summary>
+            根据数据记录设置树节点,有则直接返回无则添加节点
+            </summary>
+            <param name="trv">树控件</param>
+            <param name="dr">数据记录</param>
+            <param name="txtfld">文本字段</param>
+            <param name="cardNo">卡号</param>
+            <param name="idfld">键值字段</param>
+            <param name="pidfld">父键字段</param>
+            <param name="tagformat">附加tag标签属性值格式：对其中{字段名称}替换具体值,没有该字段则不替换</param>
+            <returns>返回数据记录对应的树节点</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.SetTreeNode(DevExpress.XtraTreeList.TreeList,System.Data.DataRow,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            根据数据记录设置树节点,有则直接返回无则添加节点
+            </summary>
+            <param name="trv">树控件</param>
+            <param name="dr">数据记录</param>
+            <param name="txtfld">文本字段</param>
+            <param name="cardNo">卡号</param>
+            <param name="idfld">键值字段</param>
+            <param name="pidfld">父键字段</param>
+            <param name="tagformat">附加tag标签属性值格式：对其中{字段名称}替换具体值,没有该字段则不替换</param>
+            <returns>返回数据记录对应的树节点</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.setUser(System.String)">
+            <summary>
+            设置全局当前用户
+            </summary>
+            <param name="userid">用户ID</param>
+            <returns>用户实例</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.getUser">
+            <summary>
+            获取当前用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.getCodeSn(System.String)">
+            <summary>
+            获取当前编号
+            </summary>
+            <param name="prefix">前缀</param>
+            <returns>返回前缀加序号的编号</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.getSystemParam">
+            <summary>
+            获取系统参数,每获取一次都创建一个新的参数列表
+            </summary>
+            <returns>系统参数列表</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.setTransParam(Estar.Common.Tools.NameObjectList)">
+            <summary>
+            设置传递参数,传递参数在获取后置空,没有设置传递参数则创建新的实例
+            </summary>
+            <param name="ps">传递参数,为空则创建新参数实例</param>
+            <returns>返回传递参数的引用</returns>
+        </member>
+        <member name="M:Granity.winTools.BindManager.getTransParam">
+            <summary>
+            读取传递参数,然后置空
+            </summary>
+            <returns>返回传递参数,如果在读取前没有设置则返回空</returns>
+        </member>
+        <member name="T:Granity.winTools.VideoPreview">
+            <summary>
+            视频预览
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.VideoPreview.VideoType">
+            <summary>
+            视频卡类别
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.VideoPreview.channelHandle">
+            <summary>
+            通道句柄
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.InitVideo(System.IntPtr,Granity.winTools.VideoType)">
+            <summary>
+            初始化环境
+            </summary>
+            <param name="hdlwin">初始化当前窗口</param>
+            <param name="videotype">视频卡类别</param>
+            <returns>返回视频卡通道数量</returns>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.InitVideo(System.IntPtr)">
+            <summary>
+            初始化环境
+            </summary>
+            <param name="hdlwin">初始化当前窗口</param>
+            <param name="videotype">视频卡类别</param>
+            <returns>返回视频卡通道数量</returns>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.OpenChannel(System.Int32,System.IntPtr)">
+            <summary>
+            打开视频通道,已经打开则关闭后重新打开
+            </summary>
+            <param name="channel">视频通道号</param>
+            <param name="hdlpreview">预览控件句柄</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.OpenChannel(System.Int32,System.Windows.Forms.Panel)">
+            <summary>
+            打开视频通道,已经打开则关闭后重新打开
+            </summary>
+            <param name="channel">视频通道号</param>
+            <param name="hdlpreview">预览控件句柄</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.StopChannel(System.Int32,System.IntPtr)">
+            <summary>
+            停止视频，,已经打开则关闭
+            </summary>
+            <param name="channel">视频通道号</param>
+            <param name="hdlpreview">预览控件句柄</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.StartChannel(System.Int32,System.Windows.Forms.Panel)">
+            <summary>
+            开启视频，,已经打开则关闭重新开启
+            </summary>
+            <param name="channel">视频通道号</param>
+            <param name="hdlpreview">预览控件句柄</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.UpdateChannel(System.Int32,System.Windows.Forms.Panel)">
+            <summary>
+            更新视频图像
+            </summary>
+            <param name="channel">通道号</param>
+            <param name="hdlpreview">预览控件句柄</param>
+            <returns>true 成功，false 失败</returns>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.CloseChannel(System.Int32)">
+            <summary>
+            关闭视频通道
+            </summary>
+            <param name="channel">视频通道号</param>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.CloseVideo">
+            <summary>
+            关闭所有视频通道
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.SaveCaptureFile(System.Int32,System.String)">
+            <summary>
+            抓拍图片,保存文件
+            </summary>
+            <param name="channel">通道号</param>
+            <param name="file">文件全路径</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.VideoPreview.TempSaveCaptureFile(System.Int32,System.String)">
+            <summary>
+            抓拍图片,保存文件
+            </summary>
+            <param name="channel">通道号</param>
+            <param name="file">文件全路径</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="T:Granity.winTools.VideoType">
+            <summary>
+            视频卡类型
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.VideoType.MvAPI">
+            <summary>
+            微视视频卡
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.VideoType.Sa7134Capture">
+            <summary>
+            天敏视频卡
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.MvAPI">
+            <summary>
+            微视视频卡驱动接口
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.MvAPI.MV_GetDeviceNumber">
+            <summary>
+            获取通道总数
+            </summary>
+            <returns>返回通道数,没有则返回0</returns>
+        </member>
+        <member name="M:Granity.winTools.MvAPI.MV_OpenDevice(System.UInt32,System.Boolean)">
+            <summary>
+            打开通道,返回通道句柄
+            </summary>
+            <param name="Index">通道号</param>
+            <param name="bRelese">是否发布版本SDK</param>
+            <returns>返回通道句柄,失败返回0</returns>
+        </member>
+        <member name="M:Granity.winTools.MvAPI.MV_SetDeviceParameter(System.Int32,System.Int32,System.UInt32)">
+            <summary>
+            设置设备和SDK的工作参数
+            </summary>
+            <param name="hDevice">通道句柄</param>
+            <param name="Oper">工作参数</param>
+            <param name="Val">参数值</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.MvAPI.MV_CaptureSingle(System.Int32,System.Boolean,System.Int32,System.Int32,Granity.winTools.MV_IMAGEINFO@)">
+            <summary>
+            捕获一幅图像的数据，当pInBuff为NULL时使用内部的缓冲区。
+            </summary>
+            <param name="hDevice">通道句柄</param>
+            <param name="IsProcess">捕获的图像是否经过处理</param>
+            <param name="Buffer">用户指定的缓冲区地址</param>
+            <param name="Bufflen">缓冲区长度</param>
+            <param name="pinfo">调用返回后为图像信息描述的结构</param>
+            <returns>返回存有图像数据的缓冲区指针</returns>
+        </member>
+        <member name="M:Granity.winTools.MvAPI.MV_OperateDevice(System.Int32,System.Int32)">
+            <summary>
+            操纵设备, 即使采集卡处于运行/停止/暂停状态。
+            </summary>
+            <param name="hDevice">通道句柄</param>
+            <param name="Oper">设备的状态(运行，停止，暂停，查询)</param>
+            <returns>返回卡的当前工作状态</returns>
+        </member>
+        <member name="M:Granity.winTools.MvAPI.MV_SaveFile(System.String,System.Int32,System.IntPtr,Granity.winTools.MV_IMAGEINFO@,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            保存pImageData中图像到MV_FILETYPE指定类型的文件。
+            </summary>
+            <param name="FileName">文件路径</param>
+            <param name="FileType">文件类型RAW:1/BMP文件，2/JPEG文件。</param>
+            <param name="pImageData">图像数据缓冲区指针</param>
+            <param name="pinfo">图像描述信息</param>
+            <param name="ImageTotal">图像数量</param>
+            <param name="IsUpDown">保存图像时是否上下颠倒</param>
+            <param name="ColororNot">存JPEG文件时是否要颜色</param>
+            <param name="Quality">存JPEG文件时的质量0—99</param>
+            <param name="m_bRGB15">是否将16bit色彩转换为24bit色彩</param>
+            <returns>成功返回true,失败返回false</returns>
+        </member>
+        <member name="M:Granity.winTools.MvAPI.MV_CloseDevice(System.Int32)">
+            <summary>
+            关闭通道并释放句柄资源
+            </summary>
+            <param name="hDevice">通道句柄</param>
+        </member>
+        <member name="T:Granity.winTools.MV_IMAGEINFO">
+            <summary>
+            微视视频卡图像描述信息
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_IMAGEINFO.Length">
+            <summary>
+            图像的大小，以字节计
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_IMAGEINFO.nColor">
+            <summary>
+            图像的颜色
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_IMAGEINFO.Heigth">
+            <summary>
+            图像的高
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_IMAGEINFO.Width">
+            <summary>
+            图像的宽
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_IMAGEINFO.SkipPixel">
+            <summary>
+            每行跳过的像素
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.RUNOPER">
+            <summary>
+            微视视频卡运行状态
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.RUNOPER.MVSTOP">
+            <summary>
+            停止工作
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.RUNOPER.MVRUN">
+            <summary>
+            卡开始工作
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.RUNOPER.MVPAUSE">
+            <summary>
+            暂停卡的工作
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.RUNOPER.MVQUERYSTATU">
+            <summary>
+            查询卡的当前状态
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.RUNOPER.MVERROR">
+            <summary>
+            为错误的状态
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.MV_PARAMTER">
+            <summary>
+            微视视频卡工作参数
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_PARAMTER.DISP_WHND">
+            <summary>
+            显示控件句柄
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_PARAMTER.DISP_TOP">
+            <summary>
+            显示区顶位置
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_PARAMTER.DISP_LEFT">
+            <summary>
+            显示区左位置
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_PARAMTER.DISP_HEIGHT">
+            <summary>
+            显示区高度
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MV_PARAMTER.DISP_WIDTH">
+            <summary>
+            显示区宽度
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.HVDLLFun">
+            <summary>
+            车牌识别函数库
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.HVDLLFun.SearchHVDeviceCount(System.UInt32*)">
+            <summary>
+            搜索局域网内所有的视频处理设备，返回设备数目
+            </summary>
+            <param name="pdwCount">返回车牌识别器设备数目</param>
+            <returns>成功返回一个的视频处理系统的句柄,失败则返回E_HV_INVALID_HANDLE</returns>
+        </member>
+        <member name="M:Granity.winTools.HVDLLFun.GetHVDeviceAddr(System.Int32,System.UInt64*,System.UInt32*,System.UInt32*,System.UInt32*)">
+            <summary>
+            根据索引查询设备ip地址
+            </summary>
+            <param name="iIndex">指定查询的索引,该索引不大于视频处理系统的最大数目</param>
+            <param name="pdw64MacAddr">返回设备以太网地址</param>
+            <param name="pdwIP">返回设备IP地址</param>
+            <param name="pdwMask">返回设备IP掩码</param>
+            <param name="pdwGateway">返回设备IP网关地址</param>
+            <returns>成功返回一个的视频处理系统的句柄,失败则返回E_HV_INVALID_HANDLE</returns>
+        </member>
+        <member name="M:Granity.winTools.HVDLLFun.OpenHv(System.String)">
+            <summary>
+            打开一个视频处理系统句柄 在对视频处理系统作任何操作之前打开视频处理系统取得一个句柄
+            </summary>
+            <param name="pcIp">视频处理系统的IP地址或串口名称</param>
+            <returns>成功返回一个的视频处理系统的句柄,失败则返回E_HV_INVALID_HANDLE</returns>
+        </member>
+        <member name="M:Granity.winTools.HVDLLFun.CloseHv(System.IntPtr)">
+            <summary>
+            关闭一个视频处理系统句柄
+            </summary>
+            <param name="hHandle">由OpenHv()函数打开的句柄</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HVDLLFun.SetHvCallBack(System.IntPtr,System.IntPtr,System.IntPtr,System.UInt16,System.UInt16)">
+            <summary>
+            设置一个视频流的一种数据类型的回调函数
+            若有数据传回而且是视频，则调用视频回调函数；若是其他数据传回，则回调其他数据类型函数；若数据传回失败，则返回上一层。
+            </summary>
+            <param name="hHandle">由OpenHv()函数打开的句柄</param>
+            <param name="pFunction">回调函数的函数指针，为NULL则关闭该回调(Marshal.GetFunctionPointerForDelegate)</param>
+            <param name="pFirstParameter">回调pFunction的第一个参数，该参数一般为一个对象的指针(Marshal.GetIUnknownForObject)</param>
+            <param name="wVideoID">表示视频ID的2字节的无符号整数</param>
+            <param name="wStream">表示数据类型的2字节的无符号整数(HvStreamType)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HVDLLFun.HvIsConnected(System.IntPtr,System.Int32@)">
+            <summary>
+            获取连接状态
+            </summary>
+            <param name="hHandle">由OpenHv()函数打开的句柄</param>
+            <param name="piStatus">输出连接状态 0表示已连接 -1表示未连接</param>
+            <returns>返回S_OK/成功；返回E_HANDLE/非法的句柄；返回E_FAIL/操作失败</returns>
+        </member>
+        <member name="M:Granity.winTools.HVDLLFun.Yuv2BMP(System.Byte*,System.Int32,System.Int32@,System.Byte*,System.Int32,System.Int32)">
+            <summary>
+            转换YUV数据到RGB
+            </summary>
+            <param name="pbDest">输出RGB数据的缓冲区指针</param>
+            <param name="iDestBufLen">输出缓冲区大小</param>
+            <param name="piDestLen">实际输出数据大小</param>
+            <param name="pbSrc">输入YUV数据的缓冲区指针</param>
+            <param name="iSrcWidth">图像宽度</param>
+            <param name="iSrcHeight">图像高度</param>
+            <returns>返回S_OK/成功；返回E_HANDLE/非法的句柄；返回E_FAIL/操作失败</returns>
+        </member>
+        <member name="M:Granity.winTools.HVDLLFun.HV_GetPlateInfo(System.IntPtr,System.Byte**)">
+            <summary>
+            读取车牌附加信息(根据实际情况包括车速，车牌位置，亮度等,)
+            本函数在识别器设置为输出附加信息时才能取得数据
+            </summary>
+            <param name="hHandle">由OpenHv()函数打开的句柄</param>
+            <param name="ppszPlateInfo">输入指向车牌附加信息的指针的地址</param>
+            <returns>返回S_OK/成功；返回E_HANDLE/非法的句柄；返回E_FAIL/操作失败</returns>
+        </member>
+        <member name="T:Granity.winTools.HVDLLFun.CARINFO_BEGIN_CALLBACK">
+            <summary>
+            车牌信息开始回调函数指针,系统在接收一次识别结果前调用本函数
+            函数指针在函数返回时即被释放
+            </summary>
+            <param name="pFirstParameter">回调时传递的第一个参数,该参数一般为一个对象的指针(Marshal.GetObjectForIUnknown)</param>
+            <param name="dwCarID">车辆ID</param>
+            <returns>预留将来用途,建议0/成功,-1/失败</returns>
+        </member>
+        <member name="T:Granity.winTools.HVDLLFun.CARINFO_END_CALLBACK">
+            <summary>
+            车牌信息结束回调,系统在接收完一次识别结果后调用本函数
+            函数指针在函数返回时即被释放
+            </summary>
+            <param name="pFirstParameter">回调时传递的第一个参数,该参数一般为一个对象的指针(Marshal.GetObjectForIUnknown)</param>
+            <param name="dwCarID">车辆ID</param>
+            <returns>预留将来用途,建议0/成功,-1/失败</returns>
+        </member>
+        <member name="T:Granity.winTools.HVDLLFun.PLATE_NO_CALLBACK">
+            <summary>
+            车牌号码回调函数指针,
+            函数指针在函数返回时即被释放
+            </summary>
+            <param name="pFirstParameter">回调时传递的第一个参数,该参数一般为一个对象的指针(Marshal.GetObjectForIUnknown)</param>
+            <param name="dwCarID">车辆ID</param>
+            <param name="pcPlateNo">车牌号码字符串</param>
+            <param name="dwTimeMs">时间(1970-1-1 0:0:0以来的毫秒数);</param>
+            <returns>预留将来用途,建议0/成功,-1/失败</returns>
+        </member>
+        <member name="T:Granity.winTools.HVDLLFun.BIG_IMAGE_CALLBACK">
+            <summary>
+            车辆全景大图回调函数指针,
+            函数指针在函数返回时即被释放
+            </summary>
+            <param name="pFirstParameter">回调时传递的第一个参数,该参数一般为一个对象的指针(Marshal.GetObjectForIUnknown)</param>
+            <param name="dwCarID">车辆ID</param>
+            <param name="wImageWidth">图像的宽度</param>
+            <param name="wImageHigh">图像的高度</param>
+            <param name="bType">图像类型</param>
+            <param name="wSize">数据大小</param>
+            <param name="pbImage">图像数据的指针</param>
+            <param name="wImageID">图像的ID号，表示得到的是哪一张图片</param>
+            <param name="wHighImgFlag">高清图片标志,如果该变量高8位值是0xFF00, 则该变量低8位值为图片大小的高位值</param>
+            <param name="wPlateWidth">表示该图象中检测到的车牌矩形左上坐标（低8位是左，高8位是上）,坐标都是用原图的百分比表示</param>
+            <param name="wPlateHigh">表示该图象中检测到的车牌矩形右下坐标（低8位是右，高8位是下）,坐标都是用原图的百分比表示</param>
+            <param name="dwTimeMs">时间(1970-1-1 0:0:0以来的毫秒数)</param>
+            <returns>预留将来用途,建议0/成功,-1/失败</returns>
+        </member>
+        <member name="T:Granity.winTools.HVDLLFun.SMALL_IMAGE_CALLBACK">
+            <summary>
+            车牌小图回调函数指针
+            函数指针在函数返回时即被释放
+            </summary>
+            <param name="pFirstParameter">回调时传递的第一个参数,该参数一般为一个对象的指针(Marshal.GetObjectForIUnknown)</param>
+            <param name="dwCarID">车辆ID</param>
+            <param name="wImageWidth">图像的宽度</param>
+            <param name="wImageHigh">图像的高度</param>
+            <param name="bType">图像类型</param>
+            <param name="wSize">数据大小</param>
+            <param name="pbImage">图像数据的指针</param>
+            <param name="dwTimeMs">时间(1970-1-1 0:0:0以来的毫秒数)</param>
+            <returns>预留将来用途,建议0/成功,-1/失败</returns>
+        </member>
+        <member name="T:Granity.winTools.HVDLLFun.BINARY_IMAGE_CALLBACK">
+            <summary>
+            车牌小图像二值化回调函数指针
+            函数指针在函数返回时即被释放
+            </summary>
+            <param name="pFirstParameter">回调时传递的第一个参数,该参数一般为一个对象的指针(Marshal.GetObjectForIUnknown)</param>
+            <param name="dwCarID">车辆ID</param>
+            <param name="wImageWidth">图像的宽度</param>
+            <param name="wImageHigh">图像的高度</param>
+            <param name="bType">图像类型</param>
+            <param name="wSize">数据大小</param>
+            <param name="pbImage">图像数据的指针</param>
+            <param name="dwTimeMs">时间(1970-1-1 0:0:0以来的毫秒数)</param>
+            <returns>预留将来用途,建议0/成功,-1/失败</returns>
+        </member>
+        <member name="T:Granity.winTools.HVDLLFun.VIDEO_CALLBACK">
+            <summary>
+            实时视频回调函数指针
+            </summary>
+            <param name="pFirstParameter">回调时传递的第一个参数,该参数一般为一个对象的指针(Marshal.GetObjectForIUnknown)</param>
+            <param name="wVideoID">视频流编号</param>
+            <param name="dwSize">数据大小</param>
+            <param name="pbImage">图像数据的指针</param>
+            <returns>预留将来用途,建议0/成功,-1/失败</returns>
+        </member>
+        <member name="T:Granity.winTools.HvStreamType">
+            <summary>
+            车牌识别字节流类型
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.PlateStr">
+            <summary>
+            车牌号码字符流
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.BigImage">
+            <summary>
+            车牌大图象流
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.SmallImage">
+            <summary>
+            车牌小图象流
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.FullCmpImage">
+            <summary>
+            完整的压缩视频流(暂不支持)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.BinaryImage">
+            <summary>
+            车牌二值化小图象流
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.CarinfoBegin">
+            <summary>
+            车辆信息开始接收信号
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.CarinfoEnd">
+            <summary>
+            车辆信息结束接收信号
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.TriggerInfo">
+            <summary>
+            视频检测器的触发信息
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.CustomerDetectBin">
+            <summary>
+            与检测有关的调试二进制流
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.PerfStr">
+            <summary>
+            与性能有关的调试字符流
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.AviBlock">
+            <summary>
+            AVI数据块
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvStreamType.VideoHistory">
+            <summary>
+            高清硬盘录像
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.ParamManager">
+            <summary>
+            参数管理工具类
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.ParamManager.createParam(System.String)">
+            <summary>
+            根据tag标记创建参数
+            </summary>
+            <param name="tag">包含参数的tag标记</param>
+            <returns>返回新建立的参数</returns>
+        </member>
+        <member name="M:Granity.winTools.ParamManager.createParam(System.Data.DataRow)">
+            <summary>
+            根据数据记录DataRow创建参数
+            </summary>
+            <param name="dr">数据记录</param>
+            <returns>返回新建立的参数</returns>
+        </member>
+        <member name="M:Granity.winTools.ParamManager.createParam(System.Data.DataTable,System.Data.DataRowState)">
+            <summary>
+            根据数据表创建参数列表
+            </summary>
+            <param name="tab">数据表</param>
+            <returns>返回参数列表</returns>
+        </member>
+        <member name="M:Granity.winTools.ParamManager.MergeParam(Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList,System.Boolean)">
+            <summary>
+            把次级参数更新到主参数上,默认覆盖模式true
+            </summary>
+            <param name="psMaster">主参数</param>
+            <param name="psSub">次级参数</param>
+            <param name="isOver">是否覆盖主参数,默认true</param>
+            <returns>返回合并的主参数</returns>
+        </member>
+        <member name="M:Granity.winTools.ParamManager.MergeParam(Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            把次级参数更新到主参数上,默认覆盖模式true
+            </summary>
+            <param name="psMaster">主参数</param>
+            <param name="psSub">次级参数</param>
+            <returns>返回合并的主参数</returns>
+        </member>
+        <member name="M:Granity.winTools.ParamManager.setMacroParam(Granity.winTools.MacroPmType,System.String)">
+            <summary>
+            设置宏参数的其中一个值,其他值使用默认值
+            </summary>
+            <param name="tp">宏参数类别</param>
+            <param name="value">宏参数值</param>
+            <returns>返回设定的宏参数数组</returns>
+        </member>
+        <member name="M:Granity.winTools.ParamManager.setMacroParam(System.String[],Granity.winTools.MacroPmType,System.String)">
+            <summary>
+            设置宏参数指定值
+            </summary>
+            <param name="ps">宏参数数组,参数长度不够9则直接返回忽略设置新值</param>
+            <param name="tp">宏参数类别</param>
+            <param name="value">宏参数值</param>
+            <returns>返回宏参数值</returns>
+        </member>
+        <member name="T:Granity.winTools.MacroPmType">
+            <summary>
+            数据项查询时传递的宏参数类别
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MacroPmType.pagesize">
+            <summary>
+            (?num0)分页尺寸,默认100
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MacroPmType.firstnum">
+            <summary>
+            (?num1)分页起始行
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MacroPmType.QW">
+            <summary>
+            (1>0,1=1)快捷查询宏参数
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MacroPmType.FW">
+            <summary>
+            (2>0,2=2)过滤数据或初始化过滤宏参数
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MacroPmType.FGroup">
+            <summary>
+            (###)分组宏参数
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MacroPmType.FSumcol">
+            <summary>
+            ($$$)计算合计列
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MacroPmType.FWhere">
+            <summary>
+            (***)
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.MacroPmType.topnum">
+            <summary>
+            (?num2)分页结尾行
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.HvCarDiscern">
+            <summary>
+            车牌硬识别
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.onPlateNoCallBack(System.IntPtr,System.UInt32,System.String,System.UInt64)">
+            <summary>
+            车牌号回调
+            </summary>
+            <param name="pFirstParameter">第一个传递参数</param>
+            <param name="dwCarID">车号</param>
+            <param name="pcPlateNo">车牌号</param>
+            <param name="dwTimeMs">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.onSmallImgCallBack(System.IntPtr,System.UInt32,System.UInt16,System.UInt16,System.Byte,System.UInt16,System.Byte*,System.UInt64)">
+            <summary>
+            小图回调
+            </summary>
+            <param name="pFirstParameter"></param>
+            <param name="dwCarID"></param>
+            <param name="wImageWidth"></param>
+            <param name="wImageHigh"></param>
+            <param name="bType"></param>
+            <param name="wSize"></param>
+            <param name="pbImage"></param>
+            <param name="dwTimeMs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.onBigImgCallBack(System.IntPtr,System.UInt32,System.UInt16,System.UInt16,System.Byte,System.UInt16,System.Byte*,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt64)">
+            <summary>
+            大图回传
+            </summary>
+            <param name="pFirstParameter">第一个传递参数</param>
+            <param name="dwCarID">车号</param>
+            <param name="wImageWidth">图像尺寸宽度</param>
+            <param name="wImageHigh">图像尺寸高度</param>
+            <param name="bType">图像类别</param>
+            <param name="wSize">数据大小</param>
+            <param name="pbImage">图像数据的指针</param>
+            <param name="wImageID">图像的ID号，表示得到的是哪一张图片</param>
+            <param name="wHighImgFlag">高清图片标志</param>
+            <param name="wPlateWidth">表示该图象中检测到的车牌矩形左上坐标</param>
+            <param name="wPlateHigh">表示该图象中检测到的车牌矩形右下坐标</param>
+            <param name="dwTimeMs">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.onVideoCallBack(System.IntPtr,System.UInt16,System.UInt16,System.Byte*)">
+            <summary>
+            实时视频回调
+            </summary>
+            <param name="pFirstParameter"></param>
+            <param name="wVideoID"></param>
+            <param name="wSize"></param>
+            <param name="pbImage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.checkedOpened">
+            <summary>
+            检查是否连接,断开时自动重联
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.whCheckOpened">
+            <summary>
+            可同步处理检查连接打开状态
+            </summary>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.Open(System.String)">
+            <summary>
+            打开指定IP地址的识别器
+            </summary>
+            <param name="ip">识别器IP地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.Close">
+            <summary>
+            关闭当前识别器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.getStreamVideo(System.Int32)">
+            <summary>
+            读取视频图像流
+            </summary>
+            <param name="iVideo">视频通道号(0,1)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.getCarPlateInfo(System.Int32)">
+            <summary>
+            获取视频通道当前识别信息
+            </summary>
+            <param name="iVideo">视频通道号(0,1)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.getVideoInfo(System.Int32)">
+            <summary>
+            获取视频信息
+            </summary>
+            <param name="iVideo">视频通道号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.winTools.HvCarDiscern.ResetInfo(System.Int32)">
+            <summary>
+            重置识别器结果信息
+            <param name="iVideo">视频通道号</param>
+            </summary>
+        </member>
+        <member name="P:Granity.winTools.HvCarDiscern.IpAddr">
+            <summary>
+            读取当前识别器IP地址
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.HvCarDiscern.HvResult">
+            <summary>
+            识别结果
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.m_Hv">
+            <summary>
+            当前结果所属的HV句柄
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.CarID">
+            <summary>
+            识别器车序号
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.strTime">
+            <summary>
+            当前时间
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.info">
+            <summary>
+            车牌附加信息
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.strcolor">
+            <summary>
+            车牌颜色
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.strplateno">
+            <summary>
+            车牌信息
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.BigImage">
+            <summary>
+            图像字节
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.SmallImage">
+            <summary>
+            小图字节
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.VideoImage">
+            <summary>
+            视频图像
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.VideoSize">
+            <summary>
+            视频图像尺寸
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.dtVideo">
+            <summary>
+            视频回送的时间
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarDiscern.HvResult.streamVideo">
+            <summary>
+            视频字节包装成为视频图像流
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.HvCarPlateInfo">
+            <summary>
+            车牌信息
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarPlateInfo.CarNum">
+            <summary>
+            车辆牌号
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarPlateInfo.BigImage">
+            <summary>
+            车牌抓拍大图
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvCarPlateInfo.SmallImage">
+            <summary>
+            车牌抓拍小图
+            </summary>
+        </member>
+        <member name="T:Granity.winTools.HvVideoInfo">
+            <summary>
+            识别器视频信息
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvVideoInfo.DtVideo">
+            <summary>
+            视频回传最后时间
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvVideoInfo.VideoSize">
+            <summary>
+            视频图像大小
+            </summary>
+        </member>
+        <member name="F:Granity.winTools.HvVideoInfo.VideoImage">
+            <summary>
+            视频流字节
+            </summary>
+        </member>
+    </members>
+</doc>
