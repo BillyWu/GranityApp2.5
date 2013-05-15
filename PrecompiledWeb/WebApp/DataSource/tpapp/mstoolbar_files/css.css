@@ -1,0 +1,97 @@
+BODY {
+	MARGIN: 0px
+}
+#msviGlobalToolbar {
+	PADDING-LEFT: 1px
+}
+#msviGlobalToolbar A {
+	FONT: 8.7pt ËÎÌו; TEXT-DECORATION: none
+}
+#msviLocalToolbar {
+	PADDING-LEFT: 1px
+}
+#msviLocalToolbar A {
+	FONT: 8.7pt ËÎÌו; TEXT-DECORATION: none
+}
+#msviFootToolbar {
+	PADDING-LEFT: 1px
+}
+#msviFootToolbar A {
+	FONT: 8.7pt ËÎÌו; TEXT-DECORATION: none
+}
+
+
+.gt0 {
+	BORDER-RIGHT: #0382ad 1px solid; 
+	PADDING-RIGHT: 4px; 
+	BORDER-TOP: #0382ad 1px solid; 
+	PADDING-LEFT: 4px; 
+	FONT-SIZE: 100%; 
+	PADDING-BOTTOM: 2px; 
+	BORDER-LEFT: #0382ad 1px solid; 
+	PADDING-TOP: 0px; 
+	BORDER-BOTTOM: #0382ad 1px solid
+}
+.gt1 {
+	BORDER-RIGHT: #a2b7e9 1px solid; 
+	PADDING-RIGHT: 4px; 
+	BORDER-TOP: #a2b7e9 1px solid; 
+	PADDING-LEFT: 4px; 
+	FONT-SIZE: 100%; 
+	PADDING-BOTTOM: 2px; 
+	BORDER-LEFT: #a2b7e9 1px solid; 
+	PADDING-TOP: 0px; 
+	BORDER-BOTTOM: #a2b7e9 1px solid
+}
+
+.xt0 {
+	BORDER-RIGHT: #36afd7 0px solid; 
+	PADDING-RIGHT: 4px; 
+	BORDER-TOP: #36afd7 0px solid; 
+	PADDING-LEFT: 4px; 
+	FONT-SIZE: 100%; 
+	PADDING-BOTTOM: 2px; 
+	BORDER-LEFT: #36afd7 0px solid; 
+	PADDING-TOP: 0px; 
+	BORDER-BOTTOM: #36afd7 0px solid
+}
+
+.gtsep {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 2px; FONT: 65% Verdana; COLOR: #a2b7e9; PADDING-TOP: 0px
+}
+.lt0 {
+	BORDER-RIGHT: #f1f1f1 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #f1f1f1 1px solid; PADDING-LEFT: 6px; BACKGROUND: #f1f1f1; PADDING-BOTTOM: 0px; BORDER-LEFT: #f1f1f1 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #f1f1f1 1px solid
+}
+
+.ltGrid {
+	BORDER-RIGHT: #E8E8E8 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #E8E8E8 1px solid; PADDING-LEFT: 6px; BACKGROUND: #E8E8E8; PADDING-BOTTOM: 0px; BORDER-LEFT: #E8E8E8 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #E8E8E8 1px solid
+}
+
+.lt0a {
+	BORDER-RIGHT: #FBFAFA 1px solid; 
+	PADDING-RIGHT: 6px; 
+	BORDER-TOP: #E8E8E8 1px solid; 
+	PADDING-LEFT: 6px; 
+	BACKGROUND: #FBFAFA; 
+	PADDING-BOTTOM: 0px; 
+	BORDER-LEFT: #FBFAFA 1px solid; 
+	PADDING-TOP: 0px; 
+	BORDER-BOTTOM: #E8E8E8 1px solid
+}
+
+.lt0b {
+	BORDER-RIGHT: #FBFAFA 1px solid; 
+	PADDING-RIGHT: 6px; 
+	BORDER-TOP: #FBFAFA 1px solid; 
+	PADDING-LEFT: 6px; 
+	BACKGROUND: #FBFAFA; 
+	PADDING-BOTTOM: 0px; 
+	BORDER-LEFT: #FBFAFA 1px solid; 
+	PADDING-TOP: 0px; 
+	BORDER-BOTTOM: #FBFAFA 1px solid
+}
+
+.lt0c
+{
+	BORDER: #aca899 0px solid; FONT-SIZE: 9pt; BACKGROUND-COLOR: #FBFAFA
+}

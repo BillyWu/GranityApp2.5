@@ -1,59 +1,37 @@
-K 25
-svn:wc:ra_dav:version-url
-V 77
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug
 END
 Estar.DataAccess.OleDbDataAccess.dll
 K 25
 svn:wc:ra_dav:version-url
 V 114
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.DataAccess.OleDbDataAccess.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.DataAccess.OleDbDataAccess.dll
 END
 Estar.DataAccess.DataAccessInterface.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 118
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.DataAccess.DataAccessInterface.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.DataAccess.DataAccessInterface.pdb
 END
 Estar.Common.Tools.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 100
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.Common.Tools.pdb
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.dll
-K 25
-svn:wc:ra_dav:version-url
-V 129
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Microsoft.ApplicationBlocks.ExceptionManagement.dll
-END
-Oracle.DataAccess.dll
-K 25
-svn:wc:ra_dav:version-url
-V 99
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Oracle.DataAccess.dll
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
-K 25
-svn:wc:ra_dav:version-url
-V 140
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.Common.Tools.pdb
 END
 Estar.DataAccess.OleDbDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 114
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.DataAccess.OleDbDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.DataAccess.OleDbDataAccess.pdb
 END
 Estar.DataAccess.DataAccessInterface.dll
 K 25
 svn:wc:ra_dav:version-url
 V 118
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.DataAccess.DataAccessInterface.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.DataAccess.DataAccessInterface.dll
 END
 Estar.Common.Tools.dll
 K 25
 svn:wc:ra_dav:version-url
 V 100
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.Common.Tools.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/DataAccess/OLEDBDataAccess/bin/Debug/Estar.Common.Tools.dll
 END

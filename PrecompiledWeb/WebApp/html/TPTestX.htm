@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBliC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>淘宝开发者社区—API Tools在线测试工具</title>	
+	<link rel="stylesheet" type="text/css" href="http://my.open.taobao.com/assets/apitools/apitools.css" />
+	<script type="text/javascript" src="http://my.open.taobao.com/assets/jquery-1.4.2.min.js"></script>
+	
+	<style type="text/css">
+		.sellernavwrap {
+			 height:36px;
+		}
+
+		.sellernav{
+			 position:relative;
+			 height:36px;
+
+		}
+		.sellernav ul{
+			 position:absolute;top:0;
+			 background-repeat:no-repeat;
+			 height:34px;
+		}
+
+		.sellernav ul li{
+			 float:left;
+			 text-align:center;
+			 background:url(http://img01.taobaocdn.com/tps/i1/T1B10ZXoNXXXXXXXXX-2-33.png) no-repeat right 1px;
+		}
+
+		.sellernav ul li.last{
+			 background:none;
+		}
+		.sellernav ul.chn li a, .sellernav ul.ass li a{
+			 line-height:34px;
+		}
+
+		.sellernav ul.chn{
+			 left:0;
+			 width:770px;
+			 padding-left:2px;
+			 background-position:left top;
+		}
+		.sellernav ul.chn li{
+			 width:110px;
+		}
+		.sellernav ul.chn li a{
+			 color:#666;
+			 font-size: 14px;
+			 font-weight: bold
+		}
+		.sellernav ul.chn li.current{
+			 width:92px;
+			 margin-left:-2px;
+			 background:url(http://img02.taobaocdn.com/tps/i2/T1buBZXoVdXXXXXXXX-92-34.png) no-repeat;
+		}
+		.sellernav ul.chn li.current a{
+			 color:#fff;
+			 font-weight:bold;
+		}
+
+		.sellernav ul.ass{
+			 right:0;
+			 width:120px;
+			 background-position:right top;
+		}
+		.sellernav ul.ass li{
+			 width:60px;
+		}
+	</style>
+	
+</head>
+<body>
+	<!--Header Start--> 
+	<!--new header sta--> 
+	<div id="header_t"> 
+	<div id="main_t_mid"> 
+	    <!--top_div sta--> 
+	    <div id="logo_t"> 
+	    <a href="http://www.taobao.com/" title="淘宝网"><img src="/assets/images/logo_tb.png" width="140" height="38" /></a> 
+        <span class="sub-logo"></span> 
+   	    </div>
+
+		<div class="clearfloat_2"></div> 
+	    <!--top_div end--> 
+	    <!--menu sta--> 
+ 
+	    <div id="menu_t">
+	        <ul> 
+	            <li> 
+					<a href="/">首页</a> 
+				</li> 
+				<li > 
+					<a href="http://open.taobao.com/biz/">商务合作</a> 
+				</li> 
+				<li> 
+					<a href="http://open.taobao.com/dev/">开发文档</a> 
+				</li> 
+				<li> 
+					<a href="/isv/index.htm">我的工作台</a> 
+				</li> 
+				<li> 
+					<a href="http://app.taobao.com/" target="_blank">在线订购</a> 
+					<img src="http://assets.taobaocdn.com/sys/common/icon/misc/new.gif" style="width: 19px; display: block; margin-top:-45px; margin-left:58px;position:absolute;"> 
+				</li> 
+				<li> 
+					<a href="http://blog.open.taobao.com/" target="_blank">博客</a> 
+				</li> 
+				<li> 
+					<a href="http://open.taobao.com/bbs/forum.php">论坛</a>
+				</li> 
+	        </ul> 
+	    </div> 
+ 
+	    <!--menu end-->
+	    <div class="clearfloat_2"></div> 
+	    </div> 
+	</div> 
+	<!--new header end--> 
+	<!--Header End--> 
+	<div class="main">
+	<div class="maincontent">
+	<table>
+        <tr> 
+        	<td colspan="2"> 
+        		<span style="float: left;"><a href="http://my.open.taobao.com/apidoc/main.htm" target="_blank" style="color:blue">API文档</a> 
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://open.taobao.com/api_tool/props" target="_blank" style="color:blue;">API属性工具</a></span> 
+				<span style="float:right;">
+        		<a href="http://open.taobao.com/api_tool/taobaoPubAccount.html" target="_blank" style="text-decoration:underline"> 查看测试环境公用账号</a></span> 
+        	</td> 
+        </tr>
+		<tr>
+        	<td valign="top">
+        		<table border="0" cellpadding="0" cellspacing="0">
+        			<tbody>
+						<tr>
+        				<td>
+							<input type="hidden" name="appkey" id="appkey" value="12129701"/>
+							<input type="hidden" name="api_soure" id="api_soure" value="0"/>
+							<table class="parameters" width="500" border="0" cellpadding="4" cellspacing="0">
+        						<tbody>
+								<tr>
+        							<td width="160" align="right">返回结果：</td>
+        							<td width="340">
+        								<select id="format" name="format" style="width:195px;">
+        									<option value="xml">XML</option>
+        									<option value="json">json</option>
+        								</select>
+        							</td>
+        						</tr>
+        						<tr>
+        							<td align="right">API类目：</td>
+        							<td>
+        								<select name="apiCategoryId" id="apiCategoryId" style="width:195px;" onchange="getApiListByCategoryId(this);">
+											<option value="">--请选择API类目--</option>
+																						<option value="1">用户API</option>
+                																		<option value="2">产品API</option>
+                																		<option value="3">类目属性API</option>
+                																		<option value="4">商品API</option>
+                																		<option value="5">交易API</option>
+                																		<option value="6">评价API</option>
+                																		<option value="7">物流API</option>
+                																		<option value="8">收费API</option>
+                																		<option value="9">店铺API</option>
+                																		<option value="15">分销API</option>
+                																		<option value="16">画报API</option>
+                																		<option value="18">旺旺API</option>
+                																		<option value="38">淘客API</option>
+                																		<option value="39">增量API</option>
+                																		<option value="40">系统API</option>
+                																		<option value="41">仓储API</option>
+                																		<option value="42">信息安全API</option>
+                																		<option value="10058">收藏夹API</option>
+                																		<option value="10082">异步API</option>
+                																		<option value="10083">营销API</option>
+                																		<option value="10084">淘花API</option>
+                							        									 </select>
+        							</td>
+        						</tr>
+        						<tr>
+        							<td align="right">API：</td>
+        							<td>
+        								<span id="SipApinameDiv">
+        									<select id="sip_apiname" name="sip_apiname" style="width:195px;"><!-- onchange="callgetParamListByApi(this);"-->
+        										<option value="">--请选择API--</option>
+        									</select>
+        								</span>&nbsp;</td>
+        						</tr>
+        						<tr>
+        							<td align="right">数据环境：</td>
+        							<td><input id="restId" type="radio" name="restId" checked=""  value = "1"> 测试 <input id="restId" type="radio" name="restId" value = "2"> 正式</td>
+        						</tr>
+        						<tr>
+        							<td align="right">提交方式：</td>
+        							<td><input type="radio" name="sip_http_method" value="2" checked=""> POST　<input type="radio" name="sip_http_method" value="1"> GET</td>
+        						</tr>
+        						<tr>
+        							<td align="right">SDK类型：</td>
+        							<td><input type="radio" name="codeType" value="JAVA" checked=""> JAVA　<input type="radio" name="codeType" value="PHP"> PHP　<input type="radio" name="codeType" value=".NET"> .NET</td>
+        						</tr>
+        						<tr>
+        							<td align="right">app key：</td>
+        							<td><input type="text" id="app_key" name="app_key" value="系统分配" style="width:190px;" readonly="true">&nbsp;<a href="javascript:void(0)" onclick="javascript:readonlySelect();this.blur();"><span id="automaticSpan">自定义</span></a></td>
+        						</tr>
+        						<tr>
+        							<td align="right">app secret：</td>
+        							<td><input type="text" id="app_secret" name="app_secret" value="系统分配" style="width:190px;" readonly="true"></td>
+        						</tr>
+        						<tr id="sessionSapn" style="display:none">
+        							<td align="right">session key：</td>
+        							<td><input type="text" id="session" name="session" value="" style="width:190px;">&nbsp;<a href="javascript:void(0)" title="当API的访问级别为‘公开’时，session key不需要填写；当API的访问级别为‘须用户登录’时，session key必须填写；当API的访问级别为‘隐私数据须用户登录’时，session key可填可不填；如何获取session key，请看API测试工具使用指南" onclick="alert('当API的访问级别为‘公开’时，session key不需要填写；\r\n当API的访问级别为‘须用户登录’时，session key必须填写；\r\n当API的访问级别为‘隐私数据须用户登录’时，session key可填可不填；\r\n如何获取session key，请看API测试工具使用指南');">说明</a></td>
+        						</tr>
+        						</tbody>
+							</table>
+        				</td>
+						</tr>
+            			<tr>
+            				<td> <span id="ParamDiv"></span></td>
+            			</tr>
+            			<tr>
+            				<td>
+            					<table width="500" border="0" cellpadding="4" cellspacing="0">
+            						<tbody><tr>
+            							<td width="160">&nbsp;</td>
+            							<td width="340" align="left">
+            								<input type="button" value="提交测试" onclick="checkForm();this.blur();" style="width:60px;height:24px;*padding-top:3px;border:#666666 1px solid;cursor:pointer">
+            								<span id="bindUrlSpan" style=""><input type="button" value="绑定用户" onclick="bindUser();" onfocus="blur();" style="width:60px;height:24px;*padding-top:3px;border:#666666 1px solid;cursor:pointer;"></span>
+            							</td>
+            						</tr>
+            					</tbody></table>
+            				</td>
+            			</tr>
+        			</tbody>
+				</table>
+        	</td>
+        	<td valign="top">
+        		提交参数：<br>
+        		<textarea name="param" id="param" cols="60" rows="8" style="overflow-x:scroll" readonly=""></textarea><br><br>
+        		返回结果：<br>
+        		<textarea name="resultShow" id="resultShow" cols="60" rows="15" style="overflow-x:scroll" readonly=""></textarea><br /><br />
+				SDK 调用示例代码：<br />
+				<textarea id="sampleCode" name="sampleCode" cols="60" rows="12"></textarea>
+        	</td>
+        </tr>
+        <tr></tr>
+    </table>
+	</div>
+	</div>
+</body>
+<script type="text/javascript">
+var defaultFields = eval('(' + '[{"key":"taobao.item.sku.get","value":"sku_id,num_iid,properties,quantity,price,outer_id,created,modified,status"},{"key":"taobao.items.search","value":"num_iid,title,nick,pic_url,cid,price,type,delist_time,post_fee,score,volume"},{"key":"taobao.items.onsale.get","value":"approve_status,num_iid,title,nick,type,cid,pic_url,num,props,valid_thru,list_time,price,has_discount,has_invoice,has_warranty,has_showcase,modified,delist_time,postage_id,seller_cids,outer_id"},{"key":"taobao.products.search","value":"product_id,cid,props,name,pic_url"},{"key":"taobao.itemprops.get","value":"pid,name,must,multi,prop_values"},{"key":"taobao.users.get","value":"user_id,nick,sex,buyer_credit,seller_credit,location,created,last_visit"},{"key":"taobao.taobaoke.items.convert","value":"click_url,num_iid,commission,commission_rate,commission_num,commission_volume"},{"key":"taobao.logistics.orders.get","value":"tid,seller_nick,buyer_nick,delivery_start,delivery_end,out_sid,item_title,receiver_name,created,modified,status,type,freight_payer,seller_confirm,company_name"},{"key":"taobao.taobaoke.report.get","value":"trade_id,pay_time,pay_price,num_iid,outer_code,commission_rate,commission,seller_nick,pay_time,app_key"},{"key":"taobao.items.inventory.get","value":"approve_status,num_iid,title,nick,type,cid,pic_url,num,props,valid_thru,list_time,price,has_discount,has_invoice,has_warranty,has_showcase,modified,delist_time,postage_id,seller_cids,outer_id"},{"key":"taobao.shopcats.list.get","value":"cid,parent_cid,name,is_parent"},{"key":"taobao.trades.bought.get","value":"seller_nick,buyer_nick,title,type,created,sid,tid,seller_rate,buyer_rate,status,payment,discount_fee,adjust_fee,post_fee,total_fee,pay_time,end_time,modified,consign_time,buyer_obtain_point_fee,point_fee,real_point_fee,received_payment,commission_fee,pic_path,num_iid,num_iid,num,price,cod_fee,cod_status,shipping_type,receiver_name,receiver_state,receiver_city,receiver_district,receiver_address,receiver_zip,receiver_mobile,receiver_phone,orders.title,orders.pic_path,orders.price,orders.num,orders.iid,orders.num_iid,orders.sku_id,orders.refund_status,orders.status,orders.oid,orders.total_fee,orders.payment,orders.discount_fee,orders.adjust_fee,orders.sku_properties_name,orders.item_meal_name,orders.buyer_rate,orders.seller_rate,orders.outer_iid,orders.outer_sku_id,orders.refund_id,orders.seller_type"},{"key":"taobao.item.get","value":"detail_url,num_iid,title,nick,type,cid,seller_cids,props,input_pids,input_str,desc,pic_url,num,valid_thru,list_time,delist_time,stuff_status,location,price,post_fee,express_fee,ems_fee,has_discount,freight_payer,has_invoice,has_warranty,has_showcase,modified,increment,approve_status,postage_id,product_id,auction_point,property_alias,item_img,prop_img,sku,video,outer_id,is_virtual"},{"key":"taobao.trades.sold.get","value":"seller_nick,buyer_nick,title,type,created,sid,tid,seller_rate,buyer_rate,status,payment,discount_fee,adjust_fee,post_fee,total_fee,pay_time,end_time,modified,consign_time,buyer_obtain_point_fee,point_fee,real_point_fee,received_payment,commission_fee,pic_path,num_iid,num_iid,num,price,cod_fee,cod_status,shipping_type,receiver_name,receiver_state,receiver_city,receiver_district,receiver_address,receiver_zip,receiver_mobile,receiver_phone,orders.title,orders.pic_path,orders.price,orders.num,orders.iid,orders.num_iid,orders.sku_id,orders.refund_status,orders.status,orders.oid,orders.total_fee,orders.payment,orders.discount_fee,orders.adjust_fee,orders.sku_properties_name,orders.item_meal_name,orders.buyer_rate,orders.seller_rate,orders.outer_iid,orders.outer_sku_id,orders.refund_id,orders.seller_type"},{"key":"taobao.traderates.get","value":"tid,oid,role,rated_nick,nick,result,created,item_title,item_price,content,reply"},{"key":"taobao.itemcats.get","value":"cid,parent_cid,name,is_parent"},{"key":"taobao.items.custom.get","value":"num_iid,sku,item_img,prop_img"},{"key":"taobao.logistics.orders.detail.get","value":"tid,buyer_nick,receiver_name,receiver_mobile,receiver_phone,receiver_location"},{"key":"taobao.user.get","value":"user_id,uid,nick,sex,buyer_credit,seller_credit,location,created,last_visit,birthday,type,status,alipay_no,alipay_account,alipay_account,email,consumer_protection,alipay_bind"},{"key":"taobao.skus.custom.get","value":"sku_id,properties"},{"key":"taobao.itempropvalues.get","value":"cid,pid,prop_name,vid,name,name_alias,status,sort_order"},{"key":"taobao.postage.get","value":"postage_id,name,memo,post_price,post_increase,express_price,express_increase,ems_price,ems_increase,postage_mode.id,postage_mode.type,postage_mode.dest,postage_mode.price,postage_mode.increase"},{"key":"taobao.itemcats.authorize.get","value":"brand.vid,brand.name,item_cat.cid,item_cat.name,item_cat.status,item_cat.sort_order,item_cat.parent_cid,item_cat.is_parent"},{"key":"taobao.products.get","value":"product_id,outer_id,created,cid,cat_name,props,props_str,name,binds,binds_str,sale_props,desc,pic_url,modified"},{"key":"taobao.taobaoke.shops.convert","value":"shop_title,click_url,commission_rate"},{"key":"taobao.areas.get","value":"id,type,name,parent_id,zip"},{"key":"taobao.taobaoke.items.detail.get","value":"click_url,shop_click_url,seller_credit_score,num_iid,title,nick"},{"key":"taobao.product.get","value":"product_id,cid,cat_name,props,props_str,name,binds,binds_str,sale_props,sale_props_str,price,desc,pic_url,created,modified,product_img.id,product_img.url,product_img.position,product_prop_img.id,product_prop_img.props,product_prop_img.url,product_prop_img.position"},{"key":"taobao.item.skus.get","value":"sku_id,num_iid,properties,quantity,price,outer_id,created,modified"},{"key":"taobao.trades.sold.increment.get","value":"seller_nick,buyer_nick,title,type,created,sid,tid,seller_rate,buyer_rate,status,payment,discount_fee,adjust_fee,post_fee,total_fee,pay_time,end_time,modified,consign_time,buyer_obtain_point_fee,point_fee,real_point_fee,received_payment,commission_fee,pic_path,num_iid,num_iid,num,price,cod_fee,cod_status,shipping_type,receiver_name,receiver_state,receiver_city,receiver_district,receiver_address,receiver_zip,receiver_mobile,receiver_phone,orders.title,orders.pic_path,orders.price,orders.num,orders.iid,orders.num_iid,orders.sku_id,orders.refund_status,orders.status,orders.oid,orders.total_fee,orders.payment,orders.discount_fee,orders.adjust_fee,orders.sku_properties_name,orders.item_meal_name,orders.buyer_rate,orders.seller_rate,orders.outer_iid,orders.outer_sku_id,orders.refund_id,orders.seller_type"},{"key":"taobao.shop.get","value":"sid,cid,title,nick,desc,bulletin,pic_path,created,modified"},{"key":"taobao.items.get","value":"num_iid,title,nick,pic_url,cid,price,type,delist_time,post_fee,score,volume"},{"key":"taobao.trade.fullinfo.get","value":"seller_nick,buyer_nick,title,type,created,sid,tid,seller_rate,buyer_rate,status,payment,discount_fee,adjust_fee,post_fee,total_fee,pay_time,end_time,modified,consign_time,buyer_obtain_point_fee,point_fee,real_point_fee,received_payment,commission_fee,pic_path,num_iid,num_iid,num,price,cod_fee,cod_status,shipping_type,receiver_name,receiver_state,receiver_city,receiver_district,receiver_address,receiver_zip,receiver_mobile,receiver_phone,orders.title,orders.pic_path,orders.price,orders.num,orders.iid,orders.num_iid,orders.sku_id,orders.refund_status,orders.status,orders.oid,orders.total_fee,orders.payment,orders.discount_fee,orders.adjust_fee,orders.sku_properties_name,orders.item_meal_name,orders.buyer_rate,orders.seller_rate,orders.outer_iid,orders.outer_sku_id,orders.refund_id,orders.seller_type"},{"key":"taobao.taobaoke.items.get","value":"num_iid,title,nick,pic_url,price,click_url,commission,commission_rate,commission_num,commission_volume,shop_click_url,seller_credit_score,item_location,volume"},{"key":"taobao.postages.get","value":"postage_id,name,post_price,post_increase,express_price,express_increase,ems_price,ems_increase,postage_mode.id,postage_mode.type,postage_mode.dests,postage_mode.price"}]' + ')');
+function getDefaultFields(key) {
+	for(i=0;i<defaultFields.length;i++) {
+		if(defaultFields[i].key == key) {
+			return defaultFields[i].value;
+			break;
+		}
+	}
+	return "";
+}
+var xmlHttp;
+var apiArr = new Array();
+var apiParamArr = new Array();
+var categoryId=0;
+var api_name="";
+
+if(window.ActiveXObject) {
+	xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+} else {
+	xmlHttp = new XMLHttpRequest();
+}
+function getXmlHttp() {
+	if(window.ActiveXObject) {
+    	xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } else {
+    	xmlHttp = new XMLHttpRequest();
+    }
+	return xmlHttp;
+}
+
+function displayOptions() {
+	var sel = document.createElement('SELECT');
+	sel.setAttribute('name','sip_apiname');
+    sel.setAttribute('id','sip_apiname');
+	var op = document.createElement('OPTION');
+	op.setAttribute('value', '');
+	op.innerHTML = '--请选择API--';
+	sel.appendChild(op);
+	
+	var i;
+	for (i in apiArr) {
+		op = document.createElement('OPTION');
+		op.setAttribute('value', apiArr[i].apiId);
+		op.innerHTML = apiArr[i].apiName;
+		sel.appendChild(op);
+	}
+	document.getElementById('SipApinameDiv').innerHTML = '';
+	document.getElementById('SipApinameDiv').appendChild(sel);
+	document.getElementById('ParamDiv').innerHTML = '';
+
+	document.getElementById('sip_apiname').onchange = function(){callgetParamListByApi(this);};
+}
+
+function getApiListByCategoryId(o) {
+	var cateId = o.value;
+	categoryId = cateId;
+	
+	var url = 'http://my.open.taobao.com/apitools/getApiList.htm?cid='+cateId;
+    getXmlHttp();
+	xmlHttp.open('GET', url, false);
+    xmlHttp.send(null);
+    if(xmlHttp.readyState == 4) {
+    	if(xmlHttp.status == 200) {
+    		response = xmlHttp.responseText;
+    		apiArr = eval("(" + response + ")");
+    	}
+    }
+	displayOptions();
+	
+}
+
+function callgetParamListByApi(o) {
+	var apiId = o.value;
+	var apiName = o.options[o.selectedIndex].text;
+	var selectedApiName = $("#sip_apiname").find("option:selected").text();
+	if(apiId!="") {
+	var url = 'http://my.open.taobao.com/apitools/getApiParamList.htm?apiId='+apiId+"&apiName="+apiName;
+	getXmlHttp();
+	xmlHttp.open('GET', url, false);
+    xmlHttp.send(null);
+    if(xmlHttp.readyState == 4) {
+    	if(xmlHttp.status == 200) {
+    		response = xmlHttp.responseText;
+    		apiParamArr = eval("(" + response + ")");
+    	}
+    }
+	var str = '<table width="500" border=0 cellPadding=4 cellSpacing=0>';
+	str += '<tr style="height:30px;"><td colspan="2">将鼠标移至说明上，查看参数介绍；<font color="red">*</font> 表示必填，<font color="blue">*</font> 表示几个参数中必填一个；查看<a href="/apidoc/index.htm#categoryId:'+categoryId+'-apiId:'+apiId+'" target="_blank" style="color:blue">API详情</a></td>';
+	str += '</tr>';
+	for (var i=0; i<apiParamArr.length; i++) {
+		str += '<tr style="height:30px;"><td align="right" width="140">' + apiParamArr[i].name + '：</td>';
+		str += '<td width="360">';
+		
+		if(apiParamArr[i].name == 'fields') {
+			str += '<span class="l"><input type="' + apiParamArr[i].type + '" id="' + apiParamArr[i].name + '" name="' + apiParamArr[i].name + '" value="'+getDefaultFields(selectedApiName)+'" style="width:220px;" /></span>';
+		}else if (apiParamArr[i].type == 'file') {
+			str += '<span class="l"><iframe id="apirightframe" name="apirightframe" width="325px" height="28px" frameborder=0  scrolling="no" src="imgUpload.htm?imgName=' + apiParamArr[i].name + '"></iframe></span>';
+			str += '<input type="hidden" name="' + apiParamArr[i].name + '" id="' + apiParamArr[i].name + '" value=""/>';
+		} else {
+			str += '<span class="l"><input type="' + apiParamArr[i].type + '" id="' + apiParamArr[i].name + '" name="' + apiParamArr[i].name + '" value="" style="width:220px;" /></span>';
+		}
+		if ('isMust' == apiParamArr[i].classname){
+			str += '<span class="point-red">*</span>';
+		}else if('mSelect' == apiParamArr[i].classname){
+			str += '<span class="point-blue">*</span>';
+		} else {
+			str += '<span class="point-blue">&nbsp</span>';
+		}
+		str += '<span class="l"><a href="javascript:void(0);" title="' + apiParamArr[i].desc + '" class="explain">说明</a></span>';
+		str += '</td>';
+		str += '</tr>';
+	}
+	str += '</table>';
+	document.getElementById('ParamDiv').innerHTML = str;
+	}
+}
+
+function findApiName(apiId) {
+	for(i in apiArr) {
+		if(apiArr[i].apiId == apiId) {
+			api_name = apiArr[i].apiName;
+			break;
+		}
+	}
+}
+
+//提交测试
+function checkForm() {//cilai
+	var sip_apiname_id = document.getElementById('sip_apiname').value;
+	document.getElementById('param').value = '';
+	document.getElementById('resultShow').value = '';
+	if ('' == document.getElementById('apiCategoryId').value) {
+		alert('请选择API类目');
+		return false;
+	}
+	if ('' == sip_apiname_id) {
+		alert('请选择API');
+		return false;
+	}
+ 
+	if ('' == document.getElementById('app_key').value) {
+		alert('请输入app key');
+		document.getElementById('app_key').focus()
+		return false;
+	} 
+ 
+	if ('' == document.getElementById('app_secret').value) {
+		alert('请输入app secret');
+		document.getElementById('app_secret').focus()
+		return false;
+	}
+ 
+	if (document.getElementsByName('sip_http_method')[0].checked) {
+		ajaxRequest('POST', sip_apiname_id);
+	} else {
+		ajaxRequest('GET', sip_apiname_id);
+	}
+}
+
+//ajax向应用服务发送请求
+function ajaxRequest(sip_http_method, sip_apiname_id) {
+	getXmlHttp();
+	//参数设置
+	findApiName(sip_apiname_id);//get api_name
+	var restId = -1;
+	if (document.getElementsByName('restId')[0].checked) {
+		restId = 1;
+	} else {
+		restId = 2;
+	}
+	var api_soure = document.getElementById('api_soure').value;
+	var app_key = document.getElementById('app_key').value;
+	var app_secret = document.getElementById('app_secret').value;
+	var session = document.getElementById('session').value;
+	var codeType = getCodeType();
+ 
+	var paramString =  'format=' + document.getElementById('format').value +
+						'&method=' + api_name +
+						'&restId=' + restId +
+						'&api_soure=' + api_soure +
+						'&app_key=' + app_key +
+						'&app_secret=' + app_secret +
+						'&sip_http_method=' +  sip_http_method +
+						'&codeType=' +  codeType;
+ 
+	if ('undefined' != typeof(apiParamArr)) {
+		for (var i = 0; i < apiParamArr.length; i++) {
+			paramString += '&' + apiParamArr[i].name + '=' + document.getElementById(apiParamArr[i].name).value;
+		}
+	}
+ 
+	//IE兼容中文
+	paramString = encodeURI(paramString) + '&session=' + encodeURIComponent(session);
+	
+	//异步调用时，IE下的GET提交时，onreadystatechange声明必须在send()之前，否则无效
+	//同步调用时，onreadystatechange函数会失效
+	//回调函数,显示传递的参数和返回结果
+	xmlHttp.onreadystatechange = function() {
+		if (4 == xmlHttp.readyState) {
+			if (200 == xmlHttp.status) {
+				var response = xmlHttp.responseText;
+				response = response.split('^|^');
+				//var response1 = response[0].replace(/(<br>)/g, '\r\n');
+				var response1 = response[0];
+				var response2 = response[1];
+				var response3 = response[2];
+				if ('-1' != response2.indexOf('<code>26</code>') || '-1' != response2.indexOf('"code":26') || '-1' != response2.indexOf('<code>27</code>') || '-1' != response2.indexOf('"code":27')) {
+					if (document.getElementById("api_soure").value == 0) {
+						alert('调用此api需要绑定用户，请用户登录后再操作！');
+						bindUser();
+					} else {
+						if ('' == document.getElementById('session').value) {
+							alert('请输入session key！');
+						} else {
+							alert('无效session key,请重新输入session key！');
+						}
+						document.getElementById('session').focus();
+					}
+				} else {
+					response1 = response1.replace(new RegExp("&quot;","gm"),'"').replace(new RegExp("%2C","gm"),',').replace(new RegExp("&amp;","gm"),"&");
+					document.getElementById('param').value = response1;
+					response2 = response2.replace(new RegExp("&quot;","gm"),'"');
+					response2 = response2.replace(new RegExp("&lt;","gm"),'<').replace(new RegExp("&gt;","gm"),'>');
+					response2 = response2.replace(new RegExp("&amp;amp;","gm"),'&').replace(new RegExp("&amp;","gm"),'&');
+					//如果格式为xml，IE下缩进xml
+					if ('xml' == document.getElementById('format').value && window.ActiveXObject) {
+						var rdr = new ActiveXObject("MSXML2.SAXXMLReader");
+						var wrt = new ActiveXObject("MSXML2.MXXMLWriter");
+						wrt.indent = true;
+						rdr.contentHandler = wrt;
+						try {
+    						rdr.parse(response2);
+    						document.getElementById('resultShow').value = wrt.output;
+						}catch(err) {
+							document.getElementById('resultShow').value = response2;
+						}
+					} else {
+						document.getElementById('resultShow').value = response2;
+					}
+ 
+					if (document.getElementById('image') !=	null) {
+						document.getElementById('image').value = '';
+					}
+					response3 = response3.replace(new RegExp("&quot;","gm"),'"').replace(new RegExp("%2C","gm"),',');
+					response3 = response3.replace(new RegExp("&lt;","gm"),'<').replace(new RegExp("&gt;","gm"),'>').replace(new RegExp("&amp;","gm"),"&");
+					document.getElementById("sampleCode").value=response3;
+				}
+			}
+		}
+	}
+ 
+	//发送请求
+	if ('POST' == sip_http_method) {
+		xmlHttp.open('POST', 'http://my.open.taobao.com/apitools/getResult.htm', true);
+		//FF兼容中文
+		xmlHttp.setRequestHeader("Content-Length",paramString.length);
+		xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		xmlHttp.send(paramString);
+	} else {
+		var url = 'http://my.open.taobao.com/apitools/getResult.htm?'+paramString;
+		xmlHttp.open('GET', url, true);
+		xmlHttp.send(null);
+	}
+}
+
+function readonlySelect(){//cilai
+	if (document.getElementById("api_soure").value == 0) {
+		document.getElementById("app_key").value = "";
+		document.getElementById("app_key").readOnly = false;
+		document.getElementById("app_secret").value = "";
+		document.getElementById("app_secret").readOnly = false;
+		document.getElementById("automaticSpan").innerHTML = "系统分配";
+		document.getElementById("api_soure").value = 1;
+
+		document.getElementById("sessionSapn").style.display='';
+		document.getElementById("bindUrlSpan").style.display = 'none';
+
+	} else {
+		document.getElementById("app_key").value = "系统分配";
+		document.getElementById("app_key").readOnly = true;
+		document.getElementById("app_secret").value = "系统分配";
+		document.getElementById("app_secret").readOnly = true;
+		document.getElementById("automaticSpan").innerHTML = "自定义";
+		document.getElementById("api_soure").value = 0;
+
+		document.getElementById("sessionSapn").style.display='none';
+		document.getElementById("bindUrlSpan").style.display = '';
+	}
+}
+ 
+//绑定用户
+function bindUser() {//cilai
+
+	var appKey = document.getElementById('appkey').value;
+	var restId = document.getElementById('restId').value;
+	if(document.getElementsByName('restId')[0].checked )
+		window.open ('http://container.api.tbsandbox.com/container?appkey=' + appKey);
+	else
+		window.open ('http://container.api.taobao.com/container?appkey=' + appKey);
+}
+
+//初始化类目绑定
+function init_cat(){
+	var apiCategory = document.getElementById("apiCategoryId");
+	selectedObjByValue(apiCategory,"");
+	getApiListByCategoryId(apiCategory);
+	}
+
+function selectedObjByValue(obj,value)
+{
+	for(var i=0;i<obj.options.length;i++){
+		if(obj.options[i].value == value){
+			obj.options[i].selected = true ;
+			return;
+		}
+	}
+	var opt = new Option( "其它API" , value) ;
+	obj.options[obj.options.length] = opt ;
+	obj.options[obj.options.length-1].selected = true ;
+}
+
+function getCodeType()
+{
+	var codeTypes = document.getElementsByName('codeType');
+	for(var i=0;i<codeTypes.length;i++){
+		if(codeTypes[i].checked){
+			return codeTypes[i].value;
+		}
+	}
+	return "";
+}
+
+</script>
+</html>

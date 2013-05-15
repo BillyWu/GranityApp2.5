@@ -1,0 +1,84 @@
+/* CSS Document  Created by Wayhome Wang(wfwang@corp.netease.com) */
+
+
+/*--通用Class 开始--*/
+
+	/*按钮*/
+	.Btn,.ABtn{border:1px solid #a4946f; background-color:#fefcf8;}
+	.BtnHv,.ABtn:hover{border:1px solid #A2904D; background-color:#fff;}
+	/*输入框*/	
+	.Ipt,.IptOnF,.Cmp_editor_wide,.Cmp_editor{border-color:#b6ae9c; }
+
+	.Hr{border-top:1px solid #ccc8b6; border-bottom:1px solid #ebeae8;}
+	.HrSub{border-top:1px solid #ccc8b6; border-bottom:none;}/*子分隔线*/
+	.HrSub2{border-top:none;border-bottom:1px solid #ededed;}/*子子分隔线*/
+
+	.Tips_Nml_C{ border:1px solid #dcd9ca; background-color:#faf9f7;}
+	
+	/*通用背景框（一级）*/ /*写信页面，读信等页面公用*/
+	.gCBgWp{background-color:#faf9f7; border-top:1px solid #E5E5D8; border-bottom:1px solid #E5E5D8;}
+
+	/*通用系统对话框*/
+	.gSW_Con_WpIn,.gSW_Footer_WpIn{border:1px solid #b58417;}
+	.gSW_Con_WpIn{border-top:none; border-bottom:none;}
+	.gSW_Footer_Wp{background-color:#faf9f7;}
+	.gSW_Footer_WpIn{border-top:none;}
+	.gSW_Footer_WpIn .HrSub{border-top-color:#dcd9ca;}
+
+/*--通用Class 结束--*/
+
+
+
+/*--图片集成 开始--*/
+	/*--f1.gif，纵向平铺、框架元素以及非浅色背景的ico集合。--*/
+	.F1Img,.HeadWpInner,.SchBtn,.SchMenuBtn,.SidebarBdWp,.BigBtnWp a.aShouXIN,.BigBtnWp a.aXieXIN,.BigBtnWp,.Sb_Line,.Sb_Line,.BBIco,.BBVLine
+	{background-image:url('f1.gif');background-repeat:no-repeat;}/*,.PanelCon li.On a.fileItem*/
+
+	/*--f2.gif，横向平铺--*/
+	.F2Img,.HeadWp,.Btn,.BtnHv,.ABtn,.gToolbar
+	{background-image:url('f2.gif');background-repeat:repeat-x;}
+
+	/*--ico.gif，浅色背景的ico集合。--*/
+	.IcoImg,.icoOpCls,.icoCls,.icoTips,.icoIbx,.icoInfo
+	{background-image:url('ico.gif');background-repeat:no-repeat;}
+
+	/*--loading.gif，加载中Loading小图标。--*/
+	.IcoLoading
+	{background-image:url('loading.gif');background-repeat:no-repeat; background-position:0px 0px;}
+
+/*--图片集成 结束--*/
+
+
+
+/*--框架 开始--*/
+
+	/*自定义logo样式*/
+	.g163logo{}
+	.g126Logo{}
+	.gYeahLogo{}
+	.g188Logo{}
+	.gVip163Logo{}
+
+	.SidebarBdWp{background-repeat:repeat-y;}
+
+	.gToolbar{background-color:#f7efd7;}
+	.gTbrSmb{background:none;}
+
+/*--框架 结束--*/
+
+
+
+/*--写信 开始--*/
+	.Cmp_tip table tr.Cmp_TipOn,.Cmp_RTcont a:hover,table.Cmp_RtI_Hv,.autofinish_over{ background-color:#FFFFE1}/*鼠标划过背景蓝色*//*通讯录可用*/
+	.Cmp_att{ background-color:#f0eade;}/*附件区域背景色*/
+	.Cmp_tip table tr td b{ color:#a37906}/*写信提示命中文字颜色*/
+	.ctn{ background-color:#A5DD3D}/*上传进度条内部色*/
+	/*.Cmp_editor_wide,.Cmp_editor,.Cmp_table td input.Ipt,.Cmp_table td .Ipt{border-color:#839BB1}写信输入框边框颜色*/
+	.Cmp_txlbox,.Cmp_PslMpWp,.Cmp_TBtit a{border-color:#ccc8b6}/*写信的通讯录边框色*/
+	.Cmp_TBtit a{background-color:#faf9f7}/*写信通讯录标签未选定背景色*/
+	.Cmp_RHcont a.on,.Cmp_RHcont a.on:hover{ background-color:#ffeda1;border-color:#FFC467}/*写信信纸选中的背景及边框色*/
+	.Cmp_cpt_txlW{border-color:#ccc8b6}/*写信成功快速添加通讯录边框色*/
+	.CMPth_lbtab{ border-top-color:#ccc8b6; border-bottom-color:#ccc8b6; background-color:#faf9f7}/*添加到通讯录上下边框色及其背景色*/
+	.CMPth_lbtab th{ border-bottom-color:#f0ede7; background-color:#f0eade}/*表格头部色彩及底边色*/
+/*--写信 结束--*/
+

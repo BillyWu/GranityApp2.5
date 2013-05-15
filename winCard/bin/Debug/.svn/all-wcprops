@@ -1,155 +1,121 @@
-K 25
-svn:wc:ra_dav:version-url
-V 58
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/bin/Debug
-END
-ComLib.dll
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/ComLib.dll
 END
 Estar.Business.DataManager.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 89
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.Business.DataManager.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.Business.DataManager.pdb
+END
+ComLib.dll
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/ComLib.dll
 END
 Granity.CardOneCommi.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 83
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Granity.CardOneCommi.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Granity.CardOneCommi.pdb
 END
 Estar.DataAccess.OdpNetDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 96
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.OdpNetDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.OdpNetDataAccess.pdb
 END
 Estar.DataAccess.OleDbDataAccess.dll
 K 25
 svn:wc:ra_dav:version-url
 V 95
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.OleDbDataAccess.dll
-END
-Estar.Business.DataManager.dll
-K 25
-svn:wc:ra_dav:version-url
-V 89
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.Business.DataManager.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.OleDbDataAccess.dll
 END
 Estar.DataAccess.SqlClientDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 99
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.SqlClientDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.SqlClientDataAccess.pdb
 END
-Estar.DataAccess.OdpNetDataAccess.dll
+Estar.Business.DataManager.dll
 K 25
 svn:wc:ra_dav:version-url
-V 96
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.OdpNetDataAccess.dll
+V 89
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.Business.DataManager.dll
 END
 Granity.CardOneCommi.dll
 K 25
 svn:wc:ra_dav:version-url
 V 83
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Granity.CardOneCommi.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Granity.CardOneCommi.dll
+END
+Estar.DataAccess.OdpNetDataAccess.dll
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.OdpNetDataAccess.dll
 END
 Estar.DataAccess.DataAccessInterface.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 99
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.DataAccessInterface.pdb
-END
-winCard.pdb
-K 25
-svn:wc:ra_dav:version-url
-V 70
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/winCard.pdb
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
-K 25
-svn:wc:ra_dav:version-url
-V 121
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/bin/Debug/Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.DataAccessInterface.pdb
 END
 Estar.DataAccess.SqlClientDataAccess.dll
 K 25
 svn:wc:ra_dav:version-url
 V 99
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.SqlClientDataAccess.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.SqlClientDataAccess.dll
+END
+winCard.pdb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/winCard.pdb
 END
 Estar.DataAccess.DataAccessInterface.dll
 K 25
 svn:wc:ra_dav:version-url
 V 99
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.DataAccessInterface.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.DataAccessInterface.dll
 END
 winCard.exe
 K 25
 svn:wc:ra_dav:version-url
 V 70
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/winCard.exe
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/winCard.exe
 END
 Estar.Common.Tools.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 81
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.Common.Tools.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.Common.Tools.pdb
 END
 Granity.communications.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Granity.communications.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Granity.communications.pdb
 END
 ComLib.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/ComLib.pdb
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.dll
-K 25
-svn:wc:ra_dav:version-url
-V 110
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/bin/Debug/Microsoft.ApplicationBlocks.ExceptionManagement.dll
-END
-Oracle.DataAccess.dll
-K 25
-svn:wc:ra_dav:version-url
-V 80
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/bin/Debug/Oracle.DataAccess.dll
-END
-Estar.Business.DataManager.xml
-K 25
-svn:wc:ra_dav:version-url
-V 89
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/bin/Debug/Estar.Business.DataManager.xml
-END
-winCard.exe.config
-K 25
-svn:wc:ra_dav:version-url
-V 77
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/bin/Debug/winCard.exe.config
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/ComLib.pdb
 END
 Estar.DataAccess.OleDbDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 95
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.OleDbDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.DataAccess.OleDbDataAccess.pdb
 END
 Estar.Common.Tools.dll
 K 25
 svn:wc:ra_dav:version-url
 V 81
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Estar.Common.Tools.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Estar.Common.Tools.dll
 END
 Granity.communications.dll
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/bin/Debug/Granity.communications.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/bin/Debug/Granity.communications.dll
 END

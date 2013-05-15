@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+<script language="javascript">
+<!--
+	function initWin()
+	{
+	    var msgdiv=new MessageBox(document.getElementById("eMeng"));
+	    msgdiv.MsgTest=testMsg;
+		testMsg("first");	//msgdiv.MsgTestTimer=window.setInterval(msgdiv.MsgTest,18000);
+		msgdiv.AfterClose=msgdiv.MsgTest;
+	}
+	function testMsg(times)
+	{
+		var msg=document.getElementById("eMeng");
+		var band=document.UnitItem.getBandByItemName("消息提示");
+		if("first"!=times)
+			band.Query();
+		if(band.RecordCount()<1)
+		{
+			if(msg && msg.Object && !msg.Object.MsgTestTimer && msg.Object.MsgTest)
+				msg.Object.MsgTestTimer=window.setInterval(msg.Object.MsgTest,18000);
+			return;
+		}else if(msg && msg.Object)
+		{
+			if(msg.Object.MsgTestTimer)
+				window.clearInterval(msg.Object.MsgTestTimer);
+			msg.Object.MsgTestTimer=null;
+			var msgtxt=document.getElementById("content");
+			ToolUtil.sleep(100);
+			msg.Object.SetMsgText(msgtxt.innerHTML);
+			msg.Object.StartUp();
+		}
+	}
+-->
+</script>
+	<body>
+		<!--温馨提示代码开始-->
+		<DIV id="eMeng" style="BORDER-RIGHT: #455690 1px solid; BORDER-TOP: #a6b4cf 1px solid; Z-INDEX:99999; LEFT: 0px; visibility:hidden; BORDER-LEFT: #a6b4cf 1px solid; WIDTH: 180px; BORDER-BOTTOM: #455690 1px solid; POSITION: absolute; TOP: 0px; HEIGHT: 116px; BACKGROUND-COLOR: #c9d3f3">
+		<iframe frameborder="0" marginheight="0" marginwidth="0" hspace="0" vspace="0" scrolling="no" style="WIDTH:180px;HEIGHT:116px;"></iframe>
+		 <TABLE style="BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid" cellSpacing="0" cellPadding="0" width="100%" bgColor="#AFDCF3" border="0">
+		 <TBODY>
+		  <TR bgColor="#6699cc">
+		   <TD style="font-size: 12px; background-image: url('msgTopBg.gif'); color: #0f2c8c" width="30" height="24"></TD>
+		   <TD style="font-weight: normal; font-size: 12px; background-image: url('msgTopBg.gif'); color: #ffffff; padding-left: 4px; padding-top: 4px" vAlign="center" width="100%"> 温馨提示：</TD>
+		   <TD style="background-image: url('msgTopBg.gif'); padding-right: 2px; padding-top: 2px" vAlign="center" align="right" width="19"><span title="关闭" style="CURSOR: hand;color:white;font-size:12px;font-weight:bold;margin-right:4px;" onclick="window.frameElement.parentElement.Object.Close();">×</span></TD>
+		  </TR>
+		  <TR>
+		   <TD style="background-image: url('images/windty_bg.jpg'); padding-right: 1px; padding-bottom: 1px" colSpan="3" height="90">
+		    <DIV msgtype="content" style="BORDER-RIGHT: #b9c9ef 1px solid; PADDING-RIGHT: 13px; BORDER-TOP: #728eb8 1px solid; PADDING-LEFT: 13px; FONT-SIZE: 12px; PADDING-BOTTOM: 8px; BORDER-LEFT: #728eb8 1px solid; WIDTH: 100%; COLOR: #1f336b; PADDING-TOP: 10px; BORDER-BOTTOM: #b9c9ef 1px solid; HEIGHT: 100%">
+				<label datasrc="#MasterTab" datafld="审批事项" color="#FF0000">消息</label>
+		    </DIV>
+		   </TD>
+		  </TR>
+		 </TBODY>
+		 </TABLE>
+		</DIV>
+         <Control class="" catalog="GridLand.ascx" itemname="消息提示" id="TabMsg" name="">MasterTab
+			<Property name="tpfile" value="ControlTemplate/LinkList.htm" />
+			<Property name="width" value="650px" /><Property name="height" value="40px" /><Property name="hiddenhead" value="true" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+		</Control>
+		<div style="display:none;"  id="content">
+			<label datasrc="#TabMsg" datafld="消息" color="#FF0000">消息</label>
+		</div>
+	</body>
+</html>

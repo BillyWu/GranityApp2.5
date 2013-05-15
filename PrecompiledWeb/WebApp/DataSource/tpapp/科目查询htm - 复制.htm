@@ -1,0 +1,501 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+  <head>
+    <title>会计科目查询</title>
+    <base target="_self" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <script src="idx.js" type="text/javascript"></script>
+    <script src="treeidx.js" type="text/javascript"></script>
+  </head>
+  <body style="overflow:hidden; margin: 0px;" scroll="no">
+    <script language="javascript" src="baseidx.js" type="text/javascript" charset="gb2312"></script>
+    <div style="display:none;">
+      <XML id="xmlparam" typexml="Param">
+        <D>
+          <PL t="P">
+            <L t="Ts">
+              <P n="RecordCount" v="" t="s" pt="M" />
+              <P n="Command" v="TransParam" t="s" />
+              <P n="UnitName" v="科目查询" t="s" />
+            </L>
+          </PL>
+        </D>
+      </XML>
+    </div>
+    <div style="display:none;">
+      <XML name="科目查询" templatetype="HTML" id="xmlConf_xmlLandConf" typexml="ConfProperty" confpro="" tpath="DataSource/resources/Template/会计科目查询.htm">
+        <UnitItem>
+          <Item name="字典信息" relation="M" dataitem="subject" columnkey="ID" />
+        </UnitItem>
+      </XML>
+    </div>
+      <div style="display:none" >
+        <input name="hlb_cmd" type="hidden" id="hlb_cmd" />
+        <input name="hlbRequestParams" type="hidden" id="hlbRequestParams" />
+      </div>
+        <head>
+          <style type="text/css">
+            .sec1 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+            .sec2 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+            .sec3 {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+            .secx {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+            .main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+          </style>
+          <script language="javascript" type="text/javascript">
+            <!--
+            /*  ../hmjs/sysjs/usTreeLand.js */
+            initsysparams();//初始化系统参数            
+			window.onload=WinLoadUtil.MDTPLoad;
+	        function initWin()
+	        {
+	            var oband=document.UnitItem.getBandByItemName("字典信息");
+	            oband.Query();
+	            //初始化字典列
+			    spotchk("DCFLAG");
+			    spotchk("HSWBFLAG");	            
+	        }
+			//通过检查node的最顶级节点的CashType字段的值来判断是否显示"核算现金流量"选项
+			function chkCashType(node,band)
+			{
+			    var codevalue = band.getFldStrValue("scode");
+			    var fourcode = codevalue.substring(0,4);
+			    if(fourcode.length<4) {alert("科目代码不得小于四位数字！");return;}
+			    if(fourcode=="1001" || fourcode=="1002" || fourcode=="1009" ) document.getElementById("chkcash").disabled=null;
+			    else document.getElementById("chkcash").disabled = true;
+			}
+			
+			function ms_finance(typename,n)
+			{
+				var menutable = document.getElementById("secTable");			
+			    for(i=0;i<menutable.cells.length;i++)
+			    {
+			    	if(menutable.cells[i].className!="secx")
+			    	menutable.cells[i].className="sec1";
+			    }
+			    menutable.cells[n].className="sec2";
+			
+				var _band = document.UnitItem.getBandByItemName("字典信息");
+				if(!_band) return;
+				var xmldoc=document.UnitItem.ParamXmldoc;
+				ToolUtil.setParamValue(xmldoc, "ftype", typename, "s",    "T", "", "D",""); 
+				_band.Query();
+				_band.Tree.WebTree.ExpandAll();
+			}
+function Tree_onNodeSelectionChange(node)
+{
+    var band=document.UnitItem.getBandByItemName("字典信息");
+    var codevalue = band.getFldStrValue("scode");
+    var xmlpnodeRow = band.XmlLandData.XMLDocument.selectSingleNode("//*[ID='"+band.getFldStrValue("PID")+"']");
+    var pcode="";
+    if(xmlpnodeRow) var pcode = xmlpnodeRow.selectSingleNode("scode").text;
+    if(codevalue.length==4 || pcode=="1131" || pcode=="1151") 
+    {
+        document.getElementById("scode").disabled=true;document.getElementById("name").disabled=true;
+    }
+    else {document.getElementById("scode").disabled = false;document.getElementById("name").disabled=false;}
+    if(band.getFldStrValue("text")=="查阅客户...")   _addcnode(node,"execute custdata 0");
+    if(band.getFldStrValue("text")=="查阅供应商...") _addcnode(node,"execute custdata 1");
+    chkCashType(node,band)
+    spotchk("DCFLAG");
+    spotchk("HSWBFLAG");
+}
+
+function _addcnode(trvNode,nodedrc)
+{
+    var PNode= trvNode.ParentNode;
+    if(!PNode) return;
+    var xmlhttp = QueryDict(nodedrc);
+    var xmldict = xmlhttp.responseXML;
+    if(xmldict.xml=="") return;
+    var _xpath = nodedrc.replaceAll(" ","_x0020_").replaceAll(":","_x003A_").replaceAll("'","_x0027_");        
+    var texts = xmldict.selectNodes("//"+ _xpath +"//名称");
+    var vals  = xmldict.selectNodes("//"+ _xpath +"//编码");
+    var plen = PNode.Nodes().length;
+    var pid = PNode.ID;
+    var tree = trvNode.ParentTreeView.Tree;
+    var xmlpnodeRow = tree.Band.XmlLandData.XMLDocument.selectSingleNode("//*[ID='"+pid+"']")
+	trvNode.ParentTreeView.beginUpdate();
+    tree.deleteNode(trvNode);    
+    var root=tree.Band.XmlLandData.XMLDocument.documentElement;
+	var colList=tree.Band.XmlSchema.XMLDocument.selectNodes("//xs:element");
+	//"@code=2101001,@name=A市工商银行西区办"
+    for(var i=0;i<texts.length;i++)
+    {
+	    var newid = ToolUtil.NewGUID();
+        var txt = PNode.Text.substring(0,4) + vals[i].text + " 【"+ texts[i].text+"】";
+        var value = "@code="+ PNode.Text.substring(0,4) + vals[i].text+",@name=" + texts[i].text;
+        var newNode = _newNode(newid,txt,value);
+        PNode.AddNode(newNode);
+        xmlNodeRow = tree.Band.XmlLandData.XMLDocument.createElement(tree.Band.DataItem);
+	    var rowIndex= tree.Band.XmlLandData.recordset.recordCount-1 + i;
+	    for(var j=0;j<colList.length;j++)
+	    {
+		    var colname=colList[j].getAttribute("name");
+		    var xmlNode=xmlNodeRow.appendChild(xmlNodeRow.ownerDocument.createElement(colname));
+		    if("RowNum"==colname) xmlNode.text= rowIndex + 1;
+		    switch(colname)
+		    {
+		        case tree.IDField:xmlNode.text=newid;break;
+		        case tree.PIDField:xmlNode.text=pid;break;
+		        case tree.TxtField:xmlNode.text=txt;break;
+		        case tree.ValueField:
+		        case tree.OrderField:
+		            xmlNode.text=value;break;
+		        case tree.NameField:xmlNode.text=texts[i].text;break;
+		        default:
+		            if(xmlpnodeRow.selectSingleNode(colname))
+		                xmlNode.text = xmlpnodeRow.selectSingleNode(colname).text;
+		    }
+	    }
+	    root.appendChild(xmlNodeRow);
+    }
+    trvNode.ParentTreeView.endUpdate();
+    trvNode.ParentTreeView.Render();    
+    trvNode.ParentTreeView.SelectNodeById(PNode.Nodes()[plen-1].ID);
+}
+			
+			function cmdOK()
+			{
+				 var oband=document.UnitItem.getBandByItemName("字典信息");
+				 var node=oband.Tree.WebTree.SelectedNode;
+				 if(node.Nodes().length>0){alert("科目“"+node.Text+"”不是一个明细科目！");return}
+				 var str = ToolUtil.valueTag(node.Value,"name");
+				 str = ToolUtil.valueTag(node.Value,"code") + " " + us_treeNodePath(node,str,"name","→");
+				 var obj =new Object();
+				 obj.km = str;
+				 obj.hscash = oband.getFldStrValue("HSCASH");
+				 window.returnValue = obj;
+				 //document.getElementById("scode").value+":"+document.getElementById("name").value;
+				 window.close();						
+			}	
+			
+			function cmdAdd()
+			{
+				 var srcband = window.dialogArguments;
+				 var oband=document.UnitItem.getBandByItemName("字典信息");
+				 var node=oband.Tree.WebTree.SelectedNode;
+				 if(node.Nodes().length>0){alert("科目“"+node.Text+"”不是一个明细科目！");return}
+				 var str = ToolUtil.valueTag(node.Value,"name");
+				 if(!str) str = node.Value + " " + us_treeNodePath(node,node.Value,"name","→");
+				 else
+				    str = ToolUtil.valueTag(node.Value,"code") + " " + us_treeNodePath(node,str,"name","→");
+				 var im=null;
+                 var x="";
+				 if(srcband.RecordCount()!=0)
+				 {
+                     for(var i=0;i<srcband.RecordCount();i++)
+                     {
+                        if(srcband.getFldStrValue("摘要",i)!="")
+                            x = srcband.getFldStrValue("摘要",i);
+                        if(srcband.getFldStrValue("科目",i)=="") {im=i;break;}
+                     }
+                     if(im!=null)
+                     {
+                        srcband.setFldStrValue(im,"科目",str);
+                        srcband.setFldStrValue(im,"摘要",x);
+                        srcband.setCurrentRow(im);
+                     }
+                     else
+				         srcband.NewRecord();
+				         srcband.setFldStrValue(null,"科目",str);                     
+				         srcband.setFldStrValue(null,"摘要",x);
+                 }
+                 else
+                 {
+				     srcband.NewRecord();
+				     srcband.setFldStrValue(null,"科目",str);
+				 }
+			}	
+            function spotchk(ichk)
+            {
+	            var chk=document.getElementsByName(ichk);
+	            var band=document.UnitItem.getBandByItemName('字典信息');
+	            var xstate = band.getFldStrValue(ichk);
+	            for(var i=0;i<chk.length;i++)
+	            {
+		            if(chk[i].parentElement.nextSibling)
+		                chk[i].parentElement.nextSibling.style.fontWeight="";
+	            }
+	            for(var i=0;i<chk.length;i++)
+	            {
+		            if(chk[i].value==xstate)
+		            {
+			            chk[i].checked=true;
+			            if(chk[i].parentElement.nextSibling)
+			                chk[i].parentElement.nextSibling.style.fontWeight="bold";
+			            break;
+		            }
+		            else
+		                chk[i].checked=false;
+            			
+	            }
+            }
+            function usEnterTab()
+            {
+	            if(event.keyCode!=13)	return;
+	            var	ls_rule=event.srcElement.name;
+	            if(ls_rule.length<1)	{event.keyCode=9;return;}
+	            var	lsa_rules=ls_rule.split(";");
+	            if(lsa_rules[0].toLowerCase()=="last")
+		            if(lsa_rules[1])
+			            {usOnBlurHandle();usNextRowStart(lsa_rules[1]);return;}
+	            event.keyCode=9;
+            }            				
+		-->
+          </script>
+        </head>
+        <body>
+          <table style="WIDTH: 100%;height:100%; BORDER-COLLAPSE: collapse; border:1 none; " id="table13" cellPadding="0" border="0" bgcolor="#D4D0C8">
+            <tbody>
+              <tr>
+                <td style=" color: #333333;" vAlign="top" colspan="2" height="20">
+                  <TABLE align="center" id="secTable" cellSpacing="0" cellPadding="0" width="100%" border="0" style="border-bottom-width: 0px;font-size:10pt">
+                    <TBODY>
+                      <TR align="middle" height="20px">
+                        <TD class="sec2" onclick="ms_finance(this.innerText,0)" width="10%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">资产类</TD>
+                        <TD class="sec1" onclick="ms_finance(this.innerText,1)" width="10%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">负债类</TD>
+                        <TD class="sec1" onclick="ms_finance(this.innerText,2);" width="10%">权益类</TD>
+                        <TD class="sec1" onclick="ms_finance(this.innerText,3)" width="10%">成本类</TD>
+                        <TD class="sec1" onclick="ms_finance(this.innerText,4)" width="10%">损益类</TD>
+                        <TD id="tdfix" class="secx">
+                          <a href="#" class="linkbtn_0" onclick="cmdAdd()">增加</a>
+                          <a href="#" class="linkbtn_0" onclick="cmdOK()">确定</a>
+                          <a href="#" class="linkbtn_0" onclick="window.close();">关闭</a>
+                        </TD>
+                      </TR>
+                    </TBODY>
+                  </TABLE>
+                </td>
+              </tr>
+              <tr>
+                <td style=" color: #333333;" vAlign="top" align="left" height="411">
+                  <TABLE class="main_tab" id="mainTable" cellSpacing="2" cellPadding="2" border="0" style="width:100%;height:100%">
+                    <!--菜单一内容-->
+                    <TBODY style="DISPLAY: block">
+                      <TR>
+                        <TD align="left" height="100%" valign="top">
+                          <div style="display:none;">
+                            <XML id="treeland_dict" typexml="Dict" itemname="字典信息">
+                              <Dict></Dict>
+                            </XML>
+                          </div>
+                            <script type="text/javascript">
+                                        //<![CDATA[
+                                            window.ComponentArt_Storage_etpTemplate_treeland_trvLand = null;
+                                        //]]>
+                            </script>
+                          <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                            <img src="images/exp.gif" width="0" height="0" alt="" />
+                            <img src="images/col.gif" width="0" height="0" alt="" />
+                          </div>
+                          <div id="etpTemplate_treeland_trvLand" class="TreeView" style="height:100%;width:100%;overflow:auto;" onclick="if(window.etpTemplate_treeland_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_treeland_trvLand);" onmouseover="if(window.etpTemplate_treeland_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_treeland_trvLand);"></div>
+                          <input id="etpTemplate_treeland_trvLand_Data" name="etpTemplate_treeland_trvLand_Data" type="hidden" />
+                          <input id="etpTemplate_treeland_trvLand_Properties" name="etpTemplate_treeland_trvLand_Properties" type="hidden" />
+                          <input id="etpTemplate_treeland_trvLand_SelectedNode" name="etpTemplate_treeland_trvLand_SelectedNode" type="hidden" value="" />
+                          <input id="etpTemplate_treeland_trvLand_ScrollData" name="etpTemplate_treeland_trvLand_ScrollData" type="hidden" value="0,0" />
+                            <script type="text/javascript">
+                                        //<![CDATA[
+                                            window.ComponentArt_Init_etpTemplate_treeland_trvLand = function() 
+                                            {
+                                            if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_treeland_trvLand'))
+	                                            {setTimeout('ComponentArt_Init_etpTemplate_treeland_trvLand()', 100); return; }
+
+                                            window.etpTemplate_treeland_trvLand = new ComponentArt_TreeView('etpTemplate_treeland_trvLand', ComponentArt_Storage_etpTemplate_treeland_trvLand);
+                                            etpTemplate_treeland_trvLand.Postback = function() { __doPostBack('etpTemplate$treeland$trvLand','') };
+                                            if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_treeland_trvLand; etpTemplate_treeland_trvLand.GlobalAlias = 'trvLand'; }
+                                            etpTemplate_treeland_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:treeland:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                                            etpTemplate_treeland_trvLand.Initialize('etpTemplate_treeland_trvLand');
+
+                                            window.etpTemplate_treeland_trvLand_loaded = true;
+                                            }
+                                            ComponentArt_Init_etpTemplate_treeland_trvLand();
+                                        //]]>
+                            </script>
+                          <XML id="treeland_Schema" typexml="Schema" ctrlAlert="s_code" ctrlchanged="etpTemplate_treeland_hlbChanged" ctrlschema="etpTemplate_treeland_hlbWidth" ctrlstate="etpTemplate_treeland_hlbState" ctrlhlbcmd="etpTemplate_treeland_hlb_cmd" ctrlbtcommand="bt_PostBack" idfld="ID" pidfld="PID" txtfld="text" namefld="name" selfid="" valuefld="ntag" typefld="" 
+                            orderfld="scode" ntag="ntag" keyfid="" noexpand="false" name="字典信息" relation="M" columnkey="ID">
+                            <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+                              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" minOccurs="0" />
+                              <xs:element name="PID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" minOccurs="0" />
+                              <xs:element name="scode" type="xs:string" minOccurs="0" />
+                              <xs:element name="name" type="xs:string" minOccurs="0" />
+                              <xs:element name="ename" type="xs:string" minOccurs="0" />
+                              <xs:element name="text" type="xs:string" minOccurs="0" />
+                              <xs:element name="DCFLAG" type="xs:string" minOccurs="0" />
+                              <xs:element name="DETAILFLAG" type="xs:string" minOccurs="0" />
+                              <xs:element name="HSCASH" type="xs:string" minOccurs="0" />
+                              <xs:element name="HSWBFLAG" type="xs:string" minOccurs="0" />
+                              <xs:element name="MONEYID" type="xs:string" minOccurs="0" />
+                              <xs:element name="ATTRFLAG" type="xs:string" minOccurs="0" />
+                              <xs:element name="HELPCODE" type="xs:string" minOccurs="0" />
+                              <xs:element name="SPECIALCODE" type="xs:string" minOccurs="0" />
+                              <xs:element name="RELEVANTI" type="xs:string" minOccurs="0" />
+                              <xs:element name="sn" type="xs:int" minOccurs="0" />
+                              <xs:element name="memo" type="xs:string" minOccurs="0" />
+                              <xs:element name="ntag" type="xs:string" minOccurs="0" />
+                              <xs:element name="RowNum" type="xs:int" minOccurs="0" visible="1" />
+                            </xs:schema>
+                          </XML>
+                          <div style="display:none;">
+                            <XML id="treeland" itemname="字典信息" typexml="Data">
+                              <etpTemplate_treeland_xmlland>
+                                <subject>
+                                  <ID></ID>
+                                  <scode></scode>
+                                  <name></name>
+                                  <ename></ename>
+                                  <text></text>
+                                  <DCFLAG></DCFLAG>
+                                  <DETAILFLAG></DETAILFLAG>
+                                  <HSCASH></HSCASH>
+                                  <HSWBFLAG></HSWBFLAG>
+                                  <MONEYID></MONEYID>
+                                  <ATTRFLAG></ATTRFLAG>
+                                  <HELPCODE></HELPCODE>
+                                  <SPECIALCODE></SPECIALCODE>
+                                  <RELEVANTI></RELEVANTI>
+                                  <sn></sn>
+                                  <memo></memo>
+                                  <ntag></ntag>
+                                  <RowNum></RowNum>
+                                  <PID />
+                                </subject>
+                              </etpTemplate_treeland_xmlland>
+                            </XML>
+                          </div>
+                          <div style="display:none;">
+                            <XML id="treeland_Sum" typexml="Count" itemname="字典信息">
+                              <DataSet>
+                                <DataTableCount>
+                                  <TotalPage>1</TotalPage>
+                                  <PageIndex>1</PageIndex>
+                                  <PageSize>10</PageSize>
+                                  <RecordCount>109</RecordCount>
+                                </DataTableCount>
+                              </DataSet>
+                            </XML>
+                          </div>
+                          <div style="display:none;">
+                            <XML id="treeland_Delete" typexml="Delete" itemname="字典信息">
+                              <etpTemplate_treeland_xmlland></etpTemplate_treeland_xmlland>
+                            </XML>
+                          </div>
+                          <div style="display: none">
+                            <input name="etpTemplate:treeland:hlbChanged" type="hidden" id="etpTemplate_treeland_hlbChanged" />
+                            <input name="etpTemplate:treeland:hlbWidth" type="hidden" id="etpTemplate_treeland_hlbWidth" />
+                            <input name="etpTemplate:treeland:hlbState" type="hidden" id="etpTemplate_treeland_hlbState" />
+                            <input name="etpTemplate:treeland:hlb_cmd" type="hidden" id="etpTemplate_treeland_hlb_cmd" />
+                          </div>
+
+                          <script language="javascript"> var myTree=new Tree(etpTemplate_treeland_trvLand,'treeland');</script>
+                        </TD>
+                      </TR>
+                    </TBODY>
+                    <!--菜单二内容-->
+                  </TABLE>
+                </td>
+                <td style=" color: #333333;" vAlign="top" width="45%" height="411">
+                  <p style="margin:3"></p>
+<table border="1" cellspacing="0" width="100%" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt" 
+height="100%">
+								<tbody>
+								<tr>
+									<td align="center" width="97%" colspan="4" height="40">
+									<table border="0" width="80%" cellpadding="0" style="border-collapse: collapse">
+						                <tr>
+							                <td align="right" width="52">查询：</td>
+							                <td width="200"><input style="WIDTH: 100%; height:20" title="可采用拼音码查询，如现金-XJ,银行-YX " onkeydown="usEnterTab();" size="15" name="scode;name;[dbo].[fun_getPY]([name]);memo;hswbflag" id="textlocation" /></td>
+							                <td width="80" align="left"><button id="btnfind" title="查找..." onclick="ws_location('字典信息');"><img src="images/search0.gif" /></button><button id="Button1" title="刷新数据" onclick="document.getElementById('textlocation').value='';ws_location('字典信息');"><img src="images/clear.ico" /></button></td>
+						                </tr>
+					                </table></td>
+								</tr>
+								<tr>
+									<td align="center" width="27%">
+									属性</td>
+									<td style="height: 23px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="center" width="70%" colspan="3">
+					值</td>
+								</tr>
+								<tr>
+									<td align="right" width="27%" height="23">
+									科目代码：</td>
+									<td align="left" colSpan="3" height="23">
+									 <INPUT id="scode" datasrc="#treeland" datafld="scode" class="xlandinput" disabled="" style="width:97%" type="text" size="11" name="姓名5" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td align="right" width="27%">
+									科目名称：</td>
+									<td style="height: 23px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" align="left" colSpan="3">
+					<INPUT id="name" datasrc="#treeland" datafld="name" class="xlandinput" disabled="" style="width:97%" type="text" size="11" name="姓名" /><font color="#FF0000">*</font></td>
+								</tr>
+								<tr>
+									<td align="right" width="27%" rowspan="3">
+									核算外币：</td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-right-style:none; border-right-width:medium" height="23" width="7%" align="right">
+					<input type="radio" value="不核算外币" checked="" name="HSWBFLAG" disabled="" /></td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium; border-right-style:none; border-right-width:medium" height="23" width="28%">
+					不核算外币</td>
+									<td style="border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium" height="23" width="33%">
+					　</td>
+								</tr>
+								<tr>
+									<td style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium; border-right-style:none; border-right-width:medium" height="22" width="7%" align="right">
+									 <input type="radio" value="核算单一外币" name="HSWBFLAG" disabled="" /></td>
+									<td style="border-style:none; border-width:medium; " height="22" width="28%">
+									 核算单一外币</td>
+									<td style="border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium; border-left-style:none; border-left-width:medium" height="22" width="33%">
+									 <SELECT id="moneytype" disabled="" dataFld="moneyid" DataValueField="code" DataTextField="name" 
+									 	DataSource="execute dbo.proc_dict_币种" dataSrc="#treeland" class="xlandinput" size="1" 
+									 	style="WIDTH:100%;height:21" name="D8">
+                                    </SELECT></td>
+								</tr>
+								<tr>
+									<td style="border-top-style: none; border-top-width: medium; border-right-style:none; border-right-width:medium" height="23" width="7%" align="right">
+									 <input type="radio" value="核算所有外币" name="HSWBFLAG" disabled="" />　　</td>
+									<td style="border-top-style: none; border-top-width: medium; border-left-style:none; border-left-width:medium; border-right-style:none; border-right-width:medium" height="23" width="28%">
+									 核算所有外币 </td>
+									<td style="border-top-style: none; border-top-width: medium; border-left-style:none; border-left-width:medium" height="23" width="33%">
+									 　</td>
+								</tr>
+								<tr>
+									<td align="right" height="27">核算现金流量</td>
+									<td colspan="3" height="27"><input id="chkcash" type="checkbox" dataSrc="#treeland" dataFld="HSCASH" class="xlandinput" disabled="" name="C1" value="ON" /></td>
+								</tr>
+								<tr>
+									<td align="right" height="24">
+									余额方向：</td>
+									<td height="24" colspan="3">
+					<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table14">
+						<tbody>
+						<tr>
+							<td width="20">
+					<input type="radio" value="借" name="DCFLAG"  disabled="" checked="" /></td>
+							<td width="62">借方</td>
+							<td width="20">
+							<input type="radio" value="贷" checked="" name="DCFLAG"  disabled="" /></td>
+							<td>贷方</td>
+						</tr>
+					</tbody>
+					</table>
+									</td>
+								</tr>
+								<tr>
+									<td width="27%" height="167" align="right">
+									摘要：</td>
+									<td height="140" colspan="3"><textarea dataSrc="#treeland" dataFld="memo" disabled="" class="xlandinput" style="width:100%;height:100%" name="S1"></textarea></td>
+								</tr>
+								<tr>
+									<td align="center" colspan="4">
+				【<a href="#" class="linkbtn_0" onclick="ue_treeline('字典信息',true)">连线</a>】
+				【<a href="#" class="linkbtn_0" onclick="ue_expand('字典信息',false);">合并</a>】
+				【<a href="#" class="linkbtn_0" onclick="ue_expand('字典信息',true);">展开</a>】
+			</td>
+								</tr>
+							</tbody>
+							</table>                  
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </body>
+    </body>
+  </html>
+  

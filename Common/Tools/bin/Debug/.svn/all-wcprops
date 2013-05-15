@@ -1,35 +1,13 @@
-K 25
-svn:wc:ra_dav:version-url
-V 63
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Common/Tools/bin/Debug
 END
 Estar.Common.Tools.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 86
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Common/Tools/bin/Debug/Estar.Common.Tools.pdb
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.dll
-K 25
-svn:wc:ra_dav:version-url
-V 115
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Common/Tools/bin/Debug/Microsoft.ApplicationBlocks.ExceptionManagement.dll
-END
-Oracle.DataAccess.dll
-K 25
-svn:wc:ra_dav:version-url
-V 85
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Common/Tools/bin/Debug/Oracle.DataAccess.dll
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
-K 25
-svn:wc:ra_dav:version-url
-V 126
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Common/Tools/bin/Debug/Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Common/Tools/bin/Debug/Estar.Common.Tools.pdb
 END
 Estar.Common.Tools.dll
 K 25
 svn:wc:ra_dav:version-url
 V 86
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Common/Tools/bin/Debug/Estar.Common.Tools.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Common/Tools/bin/Debug/Estar.Common.Tools.dll
 END

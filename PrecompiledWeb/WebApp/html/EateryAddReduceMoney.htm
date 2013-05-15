@@ -1,0 +1,305 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>补助管理</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+     <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+    <script type="text/javascript">
+        function initWin()
+        {
+            setdtparam();
+            var ob = $band("单位树");
+            var empbd = $band('员工明细');
+            var sband = $band('补助明细');
+            ob.Asyn = true;
+            sband.Asyn = true;
+            empbd.Asyn = true;
+            empbd.queryType = "Query";
+            sband.RightCol = "!!下载日期";
+            ob.XQuery();
+            empbd.gridtype = 19; empbd.freecols = "选择"; empbd.minwidth = "90px";
+            sband.gridtype = 9; sband.freecols = "部门名称"; sband.minwidth = "100px";
+            new XGrid("gdemploy", empbd, "in", null, 100);
+            new XGrid("GridDiv", sband, "in", null, 1); 
+            
+            ob.AfterXQuery = function ()
+            {
+                ue_treeline("单位树", true);
+                ue_expand('单位树', true);
+                $loading("none");
+            }
+            ob.BeforeRowChanged = function (oldindex, rowindex)
+            {
+                var node = this.Tree.getTrvNodeByID(this.getFldStrValue("ID", rowindex));
+                var codes = getcodes(this, node, "");
+                var child = $band("补助明细");
+                var parent = this.getFldStrValue("部门", rowindex);
+                for (var i = 0, len = child.RecordCount(); i < len; i++)
+                {
+                    var dept = child.getFldStrValue("部门代码", i);
+                    if (codes.indexOf("," + dept + ",") < 0) continue;
+                    child.setFldStrValue(i, "所属部门", parent);
+                }
+                var nodes = child.XmldocFilter.documentElement.selectNodes("/*/*/部门代码");
+                for (var i = 0; i < nodes.length; i++)
+                {
+                    var dept = nodes[i].text;
+                    if (codes.indexOf("," + dept + ",") < 0) continue;
+                    nodes[i].parentNode.selectSingleNode("所属部门").text = parent;
+                }
+            }
+            $band("补助设备").XQuery(true);
+        }
+        function getcodes(band, node,values)
+        {
+            values = values || ",";
+            if (!node) return values;
+            var index = band.Tree.getRowIndexByTrvNode(node);
+            values += band.getFldStrValue("部门", index) + ",";
+            var nodes = node.Nodes();
+            for (var i = 0; i < nodes.length; i++)
+                values = getcodes(band, nodes[i], values);
+            return values;
+        }
+        //条件时间查询 
+        function setdtparam()
+        {
+            var xmldoc = document.UnitItem.ParamXmldoc;
+            var dt0 = document.getElementById("sdt").value;
+            if (dt0 == "") document.getElementById("sdt").value = new Date().formate("yyyy-MM-dd");
+            var dt1 = document.getElementById("edt").value;
+            if (dt1 == "") document.getElementById("edt").value = new Date().formate("yyyy-MM-dd");
+            dt0 = document.getElementById("sdt").value;
+            dt1 = document.getElementById("edt").value;
+            ToolUtil.setParamValue(xmldoc, "StartTime", dt0, "", "P", null, "C");
+            ToolUtil.setParamValue(xmldoc, "EndTime", dt1, "", "P", null, "C");
+        }
+        function selrow(isselect)
+        {
+            var band = $band('员工明细');
+            var len = band.RecordCount();
+            if(true!==isselect && false!==isselect)
+            {
+                for (var i = 0; i < len; i++)
+                    band.setFldStrValue(i, "选择", !ToolUtil.Convert(band.getFldStrValue("选择", i), "bool"));
+                return;
+            }
+            for (var i = 0; i < len; i++)
+                band.setFldStrValue(i, "选择", isselect);
+        }
+        function addsel()
+        {
+            var band = $band('员工明细');
+            var len = band.RecordCount();
+            var dest = $band('补助明细');
+            var count = dest.RecordCount();
+            var cols = { 部门代码: "", 部门: "", 姓名: "", 用户编号: "", 卡号: "", 卡型: "", 卡片余额: "原有金额", 补助余额: "原有补助" };
+            var now = new Date();
+            var val = $("txtval").value;
+            if(val=="")
+            {
+               alert("请输入金额");
+               return;
+            }
+            var index=0;
+            if (len==0)
+            {
+               alert("请选择用户！");
+               return;
+            }
+            for (var i = 0; i < len; i++)
+            {
+                if (true !== ToolUtil.Convert(band.getFldStrValue("选择", i),"bool"))
+                {
+                    index++;
+                    if(index!=len)
+                    {
+                       continue;  
+                    }
+                    else                      
+                    {
+                       alert("请选择用户！");
+                       return;
+                    }
+                 }
+                dest.NewRecord();
+                for (var fld in cols)
+                    dest.setFldStrValue(count, cols[fld] || fld, band.getFldStrValue(fld, i));
+                dest.setFldStrValue(count, "日期", now);
+                dest.setFldStrValue(count, "补助充值", val);
+                count++;
+            }
+        }
+        function bandQuery()
+        {
+            setdtparam();
+            $band("补助明细").XQuery(true);
+        }
+        function beforeDelete(hint)
+        {
+            var band = GridUtil.FindBand();
+            if ("补助明细" != band.key)
+                return true;
+            var dtdown = band.getFldStrValue("下载日期");
+            var val = !dtdown;
+            return !dtdown;
+        }
+        function ueSaveSubsidy()
+        {
+            var dest = $band('补助明细');
+            if(dest.RecordCount()==0)
+            {
+               alert("没有补助记录");
+               return;
+            }
+            ue_save();
+        }
+        function synSubsidy()
+        {
+            var band = $band("补助设备");
+            if(band.RecordCount()<1)
+            {
+                alert("没有维护补助机设备，请首先维护补助机");
+                return;
+            }
+            var devid = band.getFldStrValue("ID");
+            var tag = ToolUtil.setValueTag("", "设备ID", devid);
+            var reqid = ToolUtil.NewGUID();
+            tag = ToolUtil.setValueTag(tag, "reqID", reqid);
+            tag = ToolUtil.setValueTag(tag, "指令", "|下载补助名单|");
+            callback.tagreq = ToolUtil.setValueTag("", "reqID", reqid);
+            callback.devcount=1;
+	        var xmlhttp = ToolUtil.Post(tag,"hdlDownParam.ashx",callback);
+	        callback.xmlhttp = xmlhttp;
+	        $loading("");
+        }
+      function reqdown()
+      {
+            var xmlhttp = ToolUtil.Post(callback.tagreq,"hdlDownParam.ashx",callback);
+            callback.xmlhttp = xmlhttp;
+      }
+	  function callback()
+	  {
+        if(4!=this.readyState)
+            return;
+        var msg = this.responseText;
+        if(!msg && !callback.tagreq)
+            return;
+        msg = !msg?[]:msg.split(";");
+        if(msg.length<1)
+        {
+            setTimeout("reqdown()", 400);
+            return;
+        }
+        var su = ToolUtil.valueTag(msg[0],"成功");
+        if("true"!=su)
+            msg = "同步补助机失败！";
+        else
+            msg = "成功下载补助！";
+        $loading("none");
+        alert(msg);
+	  }
+    </script>
+  </head>
+  <body style="overflow:hidden; margin: 0px;"scroll="no" >
+  <div style="height: 20; width:100%;background-image: url('images/bg-shd.png');"></div>
+  <div style="height: 95%; width:29%;float:left">
+    <p style="margin:5px"><img border="0" src="Images/reply.gif" />
+       <input class="xlandinput" style="WIDTH: 60; height:20" size="15" name="" id="findtext" onfocus="this.nextSibling.value='查找'" /><input class="txtbtn" id="gridfind7" style="width:44; height:22" onclick="ue_bandTreeSearch(findtext.value,'下一个'==this.value,'orgtreegroupTab');this.value='下一个';" type="button" value="查找" name="B15" />
+       【<a href="#" class="linkbtn_0" onclick="ue_expand('单位树',true)">展开</a>】【<a href="#" class="linkbtn_0" onclick="ue_expand('单位树',false)">收缩</a>】
+       </p>               <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+                          <script type="text/javascript">
+                            //<![CDATA[
+                              /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_orgtreegroupTab_trvLand ***/
+                              window.ComponentArt_Storage_etpTemplate_orgtreegroupTab_trvLand = null;
+                                //]]>
+                          </script>
+                          <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                            <img src="images/exp.gif" width="0" height="0" alt="" />
+                            <img src="images/col.gif" width="0" height="0" alt="" />
+                          </div>
+                          <div id="etpTemplate_orgtreegroupTab_trvLand" class="TreeView" style="height:92%;width:98%;overflow:auto;" onclick="if(window.etpTemplate_orgtreegroupTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_orgtreegroupTab_trvLand);" onmouseover="if(window.etpTemplate_orgtreegroupTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_orgtreegroupTab_trvLand);"></div>
+                          <input id="etpTemplate_orgtreegroupTab_trvLand_Data" name="etpTemplate_orgtreegroupTab_trvLand_Data" type="hidden" />
+                          <input id="etpTemplate_orgtreegroupTab_trvLand_Properties" name="etpTemplate_orgtreegroupTab_trvLand_Properties" type="hidden" />
+                          <input id="etpTemplate_orgtreegroupTab_trvLand_SelectedNode" name="etpTemplate_orgtreegroupTab_trvLand_SelectedNode" type="hidden" value="" />
+                          <input id="etpTemplate_orgtreegroupTab_trvLand_ScrollData" name="etpTemplate_orgtreegroupTab_trvLand_ScrollData" type="hidden" value="0,0" />
+                          <script type="text/javascript">
+                            //<![CDATA[
+                              window.ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand = function ()
+                              {
+                                  if (!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_orgtreegroupTab_trvLand'))
+                                  { setTimeout('ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand()', 100); return; }
+                                  window.etpTemplate_orgtreegroupTab_trvLand = new ComponentArt_TreeView('etpTemplate_orgtreegroupTab_trvLand', ComponentArt_Storage_etpTemplate_orgtreegroupTab_trvLand);
+                                  etpTemplate_orgtreegroupTab_trvLand.Postback = function () { __doPostBack('etpTemplate$orgtreegroupTab$trvLand', '') };
+                                  if (!window['trvLand']) { window['trvLand'] = window.etpTemplate_orgtreegroupTab_trvLand; etpTemplate_orgtreegroupTab_trvLand.GlobalAlias = 'trvLand'; }
+                                  etpTemplate_orgtreegroupTab_trvLand.Properties = [['ApplicationPath', '/HMApp'], ['ClientEvents', { 'NodeMouseDoubleClick': TreeUtil.onNodeDoubleClick, 'NodeBeforeMove': TreeUtil.onNodeBeforeMove}], ['ClientSideOnNodeSelect', 'TreeUtil.onNodeSelectionChange'], ['ClientTemplates', []], ['CollapseSlide', 2], ['CollapseDuration', 200], ['CollapseTransition', 0], ['CollapseImageUrl', 'images/exp.gif'], ['ControlId', 'etpTemplate:orgtreegroupTab:trvLand'], ['CssClass', 'TreeView'], ['DefaultImageHeight', 0], ['DefaultImageWidth', 0], ['MarginImageHeight', 0], ['MarginImageWidth', 0], ['DragAndDropAcrossTreesEnabled', true], ['DragHoverExpandDelay', 700], ['Enabled', true], ['EnableViewState', true], ['ExpandSlide', 2], ['ExpandDuration', 200], ['ExpandTransition', 0], ['ExpandCollapseImageHeight', 0], ['ExpandCollapseImageWidth', 0], ['ExpandImageUrl', 'images/col.gif'], ['ExpandSelectedPath', true], ['ExpandSinglePath', true], ['HoverNodeCssClass', 'HoverTreeNode'], ['ItemSpacing', 0], ['LineImageHeight', 0], ['LineImageWidth', 0], ['LineImagesFolderUrl', 'images/lines/'], ['LoadingFeedbackText', 'Loading...'], ['MarginWidth', 32], ['MultipleSelectEnabled', true], ['NodeCssClass', 'TreeNode'], ['NodeLabelPadding', 0], ['NodeIndent', 16], ['SelectedNodeCssClass', 'SelectedTreeNode'], ];
+                                  etpTemplate_orgtreegroupTab_trvLand.Initialize('etpTemplate_orgtreegroupTab_trvLand');
+                                  window.etpTemplate_orgtreegroupTab_trvLand_loaded = true;
+                              }
+                              ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand();
+                              var myTree = new Tree(etpTemplate_orgtreegroupTab_trvLand, 'orgtreegroupTab');
+                                  //]]>
+                          </script>
+  </div>
+  <div style="height: 95%; width:70%;float:right">
+  <table id="mainTable" border="0" cellpadding="0" style="border-collapse: collapse;width:100%;height:100%">
+<tbody>
+	<tr>
+		<td style="height:100px"><fieldset style="padding: 2px;;width:98%;height:200px"><legend>员工信息：
+		<INPUT class="txtbtn" onclick="selrow(true);" type="button" value="【全选】" />
+        <INPUT class="txtbtn" onclick="selrow(false);" type="button" value="【清空】" />
+        <INPUT class="txtbtn" onclick="selrow();" type="button" value="【反选】" />
+		<INPUT class="txtbtn" onclick="addsel();" type="button" value="【加入补助】" />
+        补助金额(元)：<INPUT class="xlandinput" style="WIDTH: 80;" size="15" id="txtval" value="0"  />
+		</legend>
+            <div id="gdemploy" style="width:100%;height:97%"></div>
+            <hr size="1" noshade style="text-align:center;width:98%;border:1px dotted #000000" />
+            　<font color="#FF0000">*</font>说明：加入补助列表后，可下载补助，已经下载的补助不能删除。
+            </fieldset></td>
+	</tr>
+	<tr><td><fieldset style="padding: 5px;width:98%;height:99%"><legend>补助列表：</legend>
+              <table align="center" cellspacing="0" bgcolor="#edebe8" bordercolorlight="white"
+                            bordercolordark="#C0C0C0" style="width: 100%; height: 20px; border: 1px inset">
+                <tr>
+                    <td align="right" width="79">选择日期：</td>
+                    <td width="90"><input id="sdt" type="text" class="xlanddate" style="width: 90%" /></td>
+                    <td align="center" width="20">至</td>
+                    <td align="center" width="90"><input id="edt" type="text" class="xlanddate" style="width: 90%" size="20" /></td>
+                    <td align="left" width="70"><input type="button" value="查询" name="B4" onclick="bandQuery()" style="width: 68px" /></td>
+                    <td align="left" width="70"><input type="button" value="保存" name="B4" onclick="ueSaveSubsidy()" style="width: 68px" /></td>
+                    <td align="left"><input type="button" value="同步设备" name="B4" onclick="synSubsidy()" style="width: 68px" /></td>
+                </tr>
+            </table>
+		    <div id="GridDiv" style="width:100%;height:85%"></div>
+			</fieldset></td>
+	</tr>			
+</tbody>
+	</table>
+  </div>
+  <script type="text/javascript" charset="gb2312">ue_initsetup("补助管理")</script>
+  </body>
+</html>

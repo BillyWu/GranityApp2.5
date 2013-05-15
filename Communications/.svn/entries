@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/Communications
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/Communications
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -25,40 +25,6 @@ admin
 
 
 b7a1bd86-2f50-7044-aac2-f90e8b3b5af3
-
-myThread.cs
-file
-
-
-
-
-2013-04-22T08:29:04.156250Z
-e2adbb424a7a396d1f04b59b669e72fa
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4888
 
 ResponseEventArgs.cs
 file
@@ -93,6 +59,40 @@ admin
 
 
 10368
+
+myThread.cs
+file
+
+
+
+
+2013-04-22T08:29:04.156250Z
+e2adbb424a7a396d1f04b59b669e72fa
+2013-04-12T05:49:58.203125Z
+1
+admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4888
 
 SvrFileTrans.cs
 file
@@ -335,40 +335,6 @@ admin
 
 168
 
-ServerBase.cs
-file
-
-
-
-
-2013-04-22T08:29:04.171875Z
-a1a976322fb328280ad958ec9b2cf996
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8635
-
 Protocol.cs
 file
 
@@ -402,6 +368,40 @@ admin
 
 
 6895
+
+ServerBase.cs
+file
+
+
+
+
+2013-04-22T08:29:04.171875Z
+a1a976322fb328280ad958ec9b2cf996
+2013-04-12T05:49:58.203125Z
+1
+admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8635
 
 ThreadManager.cs
 file

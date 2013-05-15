@@ -1,0 +1,459 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title>无标题页</title>
+<script language="javascript" type="text/javascript">
+// <!CDATA[
+ var comobj;   // COM Component
+ var sRecPath =""; // 巡检记录目录
+
+function openBtn_onclick() {
+        var  iComPort, iBaudRate,  iEquipmentType;
+
+        comobj =  document.getElementById("wmportobj"); 
+
+        iComPort = document.getElementById("txtPort").value;
+        iBardRate = document.getElementById("txtBaud").value;
+        iEquipmentType = document.getElementById("selDevType").selectedIndex;
+        
+        sRecPath =  document.getElementById("txtRecPath").value;
+        if( sRecPath == "")
+        {
+            sRecPath = ".//"; 
+        }
+        
+
+        if( comobj != null)
+        {
+            
+            var  hr = comobj.OpenPort2();
+            if( hr >= 0 )
+            {
+                 ShowErrMsg( "" );
+                 
+            }
+            else
+            {
+                 ShowErrMsg( "打开端口失败!" );
+            }
+            
+        } 
+}
+
+
+
+function  GetData(sRecData)  // 显示读取的巡更记录; sRecData: 一次读取的所有巡更记录; 返回 解析后的记录.
+{
+   var sTmp, iStartPos, iEndPos, iLen, sData, txtLog;
+   var iTmpPos, iTmpEndPos, sTmpData;
+   var dt, sYear;
+   var scardno, sdate;
+   
+   sData = sRecData;
+   txtLog = "";
+
+   iStartPos = 0; // 一条巡更记录开始位置
+   iEndPos = 0; // 一条巡更记录结束位置
+
+   blRead = true; // 巡更记录是否已经读完
+
+   dt = new Date();
+   sYear = dt.getYear();
+
+   while( blRead )
+   {
+       iEndPos = sData.indexOf( String.fromCharCode(13) );
+       sTmp = sData.substring(0,iEndPos); // 截取一条完整的巡更记录
+
+       iStartPos = iEndPos + 2; // 下一条巡更记录的开始位置
+       iLen = sData.length; // 本条巡更记录及其后未解析的所有巡更记录的长度(用于获取下一条巡更记录)
+          
+
+       if( sTmp != "")  // 如果当前巡更记录内容不为空,则解析该记录
+       {
+            
+          if( txtLog != "" )
+          {
+             txtLog += String.fromCharCode(13);
+          }
+
+           // 卡号部分
+
+           iTmpPos = sTmp.indexOf(" ");
+           sTmpData = sTmp.substring(0,iTmpPos);
+              
+           txtLog +="卡号: "+ sTmpData + " " ;
+
+
+           // 日期部分 
+
+           iTmpPos += 1;  // 日期部分开始位置           
+
+           txtLog += "日期:";  
+           txtLog += sYear + "-"; // 年
+
+
+           iTmpEndPos = iTmpPos + 2; 
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += sTmpData + "-" ;  // 月
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += sTmpData + " " ; // 日
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += sTmpData + ":" ;  // 时
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += sTmpData + ":" ; // 分
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += sTmpData ; // 秒
+
+
+/*
+          if( txtLog != "" )
+          {
+             txtLog += "&";
+          }
+
+           // 卡号部分
+
+           iTmpPos = sTmp.indexOf(" ");
+           sTmpData = sTmp.substring(0,iTmpPos);
+           
+           
+           scardno = sTmpData; // 卡号 
+
+           // 日期部分 
+
+           iTmpPos += 1;  // 日期部分开始位置           
+
+
+           sdate = sYear + "-"; // 年
+           
+           iTmpEndPos = iTmpPos + 2; 
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           sdate += sTmpData + "-" ;  // 月
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           sdate += sTmpData + " " ;  // 日
+
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           sdate += sTmpData + ":" ;  // 时
+
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           sdate += sTmpData + ":" ; // 分
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           sdate += sTmpData ; // 秒
+
+           txtLog += "scardno="+scardno+"&"+"sdate="+sdate; // 连接巡更记录 卡号+时间
+
+
+*/
+
+/*
+
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += "月:" + sTmpData + " " ;
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += "日:" + sTmpData + " " ; 
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += "时:" + sTmpData + " " ; 
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += "分:" + sTmpData + " " ;
+
+           iTmpPos = iTmpEndPos;
+           iTmpEndPos = iTmpPos + 2;
+           sTmpData = sTmp.substring(iTmpPos,iTmpEndPos);
+           txtLog += "秒:" + sTmpData;
+*/    
+              
+       }
+       else
+       {
+          alert("读取数据时发生错误!");
+          blRead = false;
+          break;
+       }
+
+       if( iStartPos >= iLen )
+       {
+          blRead = false;
+          break;
+                 
+       }
+
+       sData = sData.substring( iStartPos, iLen); // 截取下一条记录及其后的所有未解析的记录
+
+   }
+
+   return txtLog;
+
+}
+
+
+function disconBtn_onclick()  
+{
+
+   var  hr = comobj.DisConnect();  // 断开同设备的连接
+   if( hr >= 0 )
+   {
+      // 正常
+      ShowErrMsg( "" );
+   }
+   else
+   {
+       //失败
+      ShowErrMsg( "同设备断开连接时发生错误!" ); 
+   }
+   
+}
+
+function closeBtn_onclick() 
+{ 
+
+   var  hr =  comobj.ClosePort();  // 关闭通讯端口
+   if( hr >= 0 )
+    {
+      // 正常
+        ShowErrMsg( "" );
+        comobj = null;
+    }
+    else
+    {
+       //失败
+        ShowErrMsg( "关闭通讯端口时发生错误!" ); 
+    }
+   
+}
+
+function conBtn_onclick() {
+
+   var  hr = comobj.EnConnect();  // 连接设备
+   if( hr >= 0 )
+   {
+      // 连接正常
+       ShowErrMsg( "" );
+   }
+   else
+   {
+       // 连接失败
+       ShowErrMsg( "连接设备时发生错误!" ); 
+   }
+   
+}
+
+function setDevNoBtn_onclick()
+ {
+   var  devno;
+   devno = document.getElementById("txtDevNo").value;
+ 
+   var  hr = comobj.SetTermNo(devno);  // 设置设备号
+   if( hr >= 0 )
+   {
+      // 正常
+       ShowErrMsg( "" );
+   }
+   else
+   {
+       // 失败
+       ShowErrMsg( "设置设备号时发生错误!" ); 
+   }
+   
+}
+
+function getDevNoBtn_onclick() {
+   var  devno;
+   devno = document.getElementById("txtDevNo");
+ 
+   var  hr = comobj.GetTermNo();  // 获取设备号
+   if( hr >= 0 )
+   {
+      // 正常, 显示设备号
+      devno.value = hr;
+       ShowErrMsg( "" );
+   }
+   else
+   {
+       // 失败
+       ShowErrMsg( "获取设备号时发生错误!" ); 
+   }
+   
+   
+}
+
+function setTimeBtn_onclick() 
+{
+   var  hr = comobj.SetDateTime();  //设置设备时间
+   if( hr >= 0 )
+   {
+      // 正常
+       ShowErrMsg( "" );
+   }
+   else
+   {
+       // 失败
+       ShowErrMsg( "设置设备时间时发生错误!" ); 
+   }
+
+}
+
+function getRecord_onclick() 
+{
+
+   var  sData = comobj.GetRecordsByString(sRecPath);  //读取巡检记录
+   var  txtLog  = document.getElementById("txtRecord");
+
+   if( sData != "" )
+   {
+      // 正常, 在 GetData 事件处理中显示相关记录
+       ShowErrMsg( "" );
+       
+       txtLog.value = GetData(sData);
+   }
+   else
+   {
+       // 失败
+       ShowErrMsg( "没有巡检记录!" ); 
+   }
+
+
+}
+
+function clrecord_onclick() 
+{
+
+   var  hr = comobj.ClearRecords();  //清除巡检记录
+   if( hr >= 0 )
+   {
+      // 正常, 
+       ShowErrMsg( "" );
+   }
+   else
+   {
+       // 失败
+       ShowErrMsg( "清除巡检记录时发生错误!" ); 
+   }
+   
+}
+
+function  ShowErrMsg( sErrMsg )  // 显示错误信息.
+{
+
+   var  errdiv =  document.getElementById("errmsg");
+   if( errdiv != null )
+   {
+       errdiv.innerHTML ="<font color=red>" +  sErrMsg + "</font>";
+   }
+   
+}
+
+
+// ]]>
+</script>
+
+
+</head>
+<body >
+    <object classid="clsid:{38C727F8-03B6-426C-A970-E61D1315A28E}" id="wmportobj" codebase="wmportv.dll" style="width:0px;height:0px" ></object>
+    <form id="form1"  method="post" action="" >
+        <table  border ="1" >
+            <tr>
+                <td style="width: 265px">
+                    端口号: :<input id="txtPort" type="text" value="1" /></td>
+                <td style="width: 253px">
+                    设备号: :<input id="txtDevNo" type="text" value="1234" /></td>
+            </tr>
+            <tr>
+                <td style="width: 265px; height: 1px">
+                    波特率:
+                    <input id="txtBaud" type="text" value="57600" /></td>
+                <td style="width: 253px; height: 1px">
+                    设备类型;&nbsp;
+                    <select id="selDevType" style="width: 132px">
+                        <option  value="2001-WMModem">WMModem</option>
+                        <option  selected="selected"  value="5005-WM5000V">WM5000V</option>
+                        <option  value="5004-WM5000V4BIT">WM5000V4BIT</option>
+                        <option  value="5001-WM5000PL">WM5000PL</option>
+                        <option  value="5002-WM5000FGPS">WM5000FGPS</option>
+                        <option  value="4001-WMGPSUSB">WMGPSUSB</option>
+                        <option  value="4002-WMPLUSB">WMPLUSB</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 265px; height: 3px">
+                    <input id="openBtn" type="button" value="打开" onclick="return openBtn_onclick()" />
+                    <input id="conBtn" type="button" value="连接" onclick="return conBtn_onclick()" /></td>
+                <td style="width: 253px; height: 3px">
+                    <input id="disconBtn" type="button" value="断开" onclick="return disconBtn_onclick()" />
+                    <input id="closeBtn" type="button" value="关闭" onclick="return closeBtn_onclick()" /></td>
+            </tr>
+            <tr>
+                <td style="width: 265px;">
+                    <input id="setDevNoBtn" type="button" value="设置设备号" style="width: 82px" onclick="return setDevNoBtn_onclick()" />
+                    <input id="getDevNoBtn" type="button" value="获取设备号" style="width: 81px" onclick="return getDevNoBtn_onclick()" />&nbsp;
+                </td>
+                <td style="width: 253px; height: 21px">
+                    <input id="setTimeBtn" type="button" value="设置时间" onclick="return setTimeBtn_onclick()" /></td>
+            </tr>
+            <tr>
+                <td style="width: 265px; height: 13px">
+                    <input id="getRecord" type="button" value="读取记录" onclick="return getRecord_onclick()" />
+                    <input id="clrecord" type="button" value="清除记录" onclick="return clrecord_onclick()" /></td>
+                <td style="width: 253px; height: 13px">
+                    记录位置:
+                    <input id="Text1" name="txtRecPath" type="text" value="E:\\" /></td>
+            </tr>
+            <tr>
+                <td style="width: 265px; height: 9px">
+                    记录:</td>
+                <td style="width: 253px; height: 9px">
+                </td>
+            </tr>
+            <tr>
+                <td  colspan="2" style="height: 23px" >
+                    <div id="errmsg"   style ="color:Red;"> </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="height: 280px">
+                    &nbsp;
+                    <textarea  id="txtRecord" style="width: 517px; height: 254px"></textarea>
+                 </td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>
+

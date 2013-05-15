@@ -1,0 +1,422 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title></title>
+    <base target="_self" />
+    <script language="javascript" src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />    
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>    
+    <script language="javascript" src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>     
+    <script language="javascript" src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>     
+      <script language="javascript" type="text/javascript">
+	        var copyid="";var copytxt="";var iscut=0;
+	        function initWin()
+	        {
+	            for(var i=0;i<4;i++){
+                    $band("data"+i).Asyn =true;
+                    $band("data"+i).XQuery();
+                 }
+                $band("data0").AfterXQuery = function()
+                {
+                    etpTemplate_assignedrightsTab_trvLand.set_expandSinglePath(false);
+                    etpTemplate_assignedrightsTab_trvLand.set_showLines(true);
+                    if($band("data0").Tree.NoExpand==true)
+                        etpTemplate_assignedrightsTab_trvLand.ExpandAll();
+	                $loading("none");
+	            }
+	        }
+			
+			function _btnOK(item)
+			{
+			    var dstitem = "data0";
+				var oband   = $band(item);
+				var dstband = $band(dstitem);
+				var srcNode = dstband.Tree.WebTree.SelectedNode;
+				var dstType = dstband.getFldStrValue(dstband.Tree.TypeField)
+				$band(item).IsImport=true;
+				oband.exportItem = dstitem;
+				document.importItem=dstitem;
+				switch(item)
+				{
+					case "data2":
+						if(dstType!="单位"){alert("请选择单位后再增加角色！") ;return;}
+						//ue_import(item,"import",true,'name');
+						TreeUtil.addAllNode(oband,dstband);
+						break;
+					case "data3":
+						if(dstType!="单位"){alert("请选择单位后再增加部门！") ;return;}
+						TreeUtil.addAllNode(oband,dstband);
+						//ue_import(item,"import",true,'name')
+						break;
+					case "data1":
+						if(dstType!="角色" && dstType!="操作集组"){alert("请选择角色后再增加操作项目！") ;return;}
+						TreeUtil.addAllNode(oband,dstband);
+						break;
+				}
+			}
+	        function showwin(tab){$(tab).style.display="";}
+			function setRight(){
+			    var str="<div id='gridset' style='padding:15; width:100%;height:100%;text-align:left'></div>";
+			    DlgWin("winset","gridset","属性及权限设置：","data0",str,470,320,null,null,true);
+			    $band("data0").colnum=1;$band("data0").minwidth=300;
+			    YPanel("data0","gridset",null,1,null,300);
+			}
+		
+			function settagval(stag,varname,value)
+			{
+			    if(stag.indexOf("@"+varname)<=-1) 
+					stag = stag+",@"+varname+"="+value;
+				else
+				{
+					var arr = stag.split(",");
+					stag ="";
+					for(var i=0;i<arr.length;i++)
+					{
+						var index = arr[i].indexOf("@"+varname+"=");
+						if(index>-1)
+						{
+							arr[i] = "@" + varname + "=" + value;
+						}
+						stag = stag + "," + arr[i];
+					}
+					stag = stag.substr(1,stag.length-1);
+				}
+				return stag;
+			}		
+		
+			function _rightreset()
+			{
+				if(confirm("重置权限菜单将更新现有内容，确定吗？"))	
+				{
+				    var band=$band("data0");
+				    ue_cmd("execute","data0",true,true);	
+				    band.Tree.WebTree.expandAll()
+				}
+			}
+ 
+			function _treereset(item)
+			{
+			    var band=$band(item);
+			    band.Refresh();	
+			    band.Tree.WebTree.expandAll();
+			}
+		
+			function _rlocation()
+			{
+	            var band=$band("data0");
+	            if(!band) return;           
+	            var xmldoc=document.UnitItem.ParamXmldoc;
+	            var uc = $("uc");
+	            if(uc.value=="") return;
+	            
+	            ToolUtil.setParamValue(xmldoc, "UnitCode", uc.value, "", "s", band.ItemName, "D",""); 
+	            band.Query();	
+	            band.Tree.WebTree.expandAll();
+			}        			
+            function Tree_onNodeSelectionChange(node)
+            {
+                TclickDot(node,true);				  
+            }
+            function _copy()
+            {
+                iscut=0;
+                copyid = $band("data0").Val($band("data0").Tree.IDField);
+                copytxt= $band("data0").Val($band("data0").Tree.TxtField);
+            }	
+            function _cut()
+            {
+                iscut=1;
+                copyid = $band("data0").Val($band("data0").Tree.IDField);
+                copytxt= $band("data0").Val($band("data0").Tree.TxtField);
+            }	
+            function _paste()
+            {
+                var iddest = $band("data0").Val("ID");
+                var s = (iscut==1)?"移动":"复制";
+                var result = confirm("您将"+s+"【"+copytxt+"】和其子菜单至【"+$band("data0").Val($band("data0").Tree.TxtField)+"】下，确认吗？");
+                if(!result) return;                    
+                ue_save("");
+                var strsql = "execute "+ue_getsysdb()+".dbo.权限复制Ex '"+copyid+"','"+ iddest +"',"+iscut +",1";
+                ue_ajaxdom(strsql,1,"复制成功！");
+                    //$band("data0").XQuery(true);
+                iscut=false;
+            }
+            function _btnimgEdit()
+            {
+                var tmps = ue_ajaxdom("","iconfiles");
+                Acbo(tmps.text.split(","))            
+            }
+
+      </script>
+  </head>
+  <body style="overflow:hidden; margin: 0px;" scroll="no">    
+<table id="table1" style="border-collapse: collapse" height="100%" cellspacing="0" cellpadding="0" width="100%" border="1">
+<tbody>
+  <tr>
+    <td style="height: 25px;" valign="middle" bgcolor="buttonshadow" colspan="3" rowspan="1">
+      <table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table4">
+        <tbody>
+          <tr>
+            <td width="80" align="right">
+              <font color="#FFFFFF">选择单位：</font>
+            </td>
+            <td width="169">
+              <SELECT id="uc" class="xlandselect" size="1" style="WIDTH: 100%" name="" DataValueField="代码" DataTextField="名称" DataSource="dict_aloneunit">
+                <OPTION value="" />
+              </SELECT></td>
+            <td width="22"><img alt="查询" border="0" onclick="_rlocation();" onmousedown="this.src='images/tb16c.gif'" 
+              onmouseout="this.src='images/tb16.gif'" onmouseover="this.src='images/tb16c.gif'"
+               onmouseup="this.src='images/tb16c.gif'" src="images/tb16.gif" style="cursor:hand" /></td>
+            <td width="40"><input id="btnRight" onclick="_rightreset();" type="button" value="重置" style="width: 40; height: 22" /></td>
+            <td width="79" style="color: #FFFFFF" align="right">当前节点：</td>
+            <td style="color: #FFFFFF;" ><label type="text" 
+            datasrc="#assignedrightsTab" datafld="name" class="xlandinput" 
+            style="word-wrap:break-word; overflow:hidden;width: 100%; color:#FFFFFF;border:0" name="T3" size="20"></label></td>                       
+            <td align="right" style="color: #FFFFFF" width="51">类别：</td>
+            <td style="color: #FFFFFF" style="width:80px"><input type="text" datasrc="#assignedrightsTab" 
+            datafld="ntype" class="xlandinput" style="width: 100%; height:19" name="T5" size="20" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" style="width: 55%">
+      <table id="tabUnit" style="border-collapse: collapse; height: 100%; width: 100%" 
+      cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+          <tr>
+            <td style="height: 22px;width:110px" background="images\bkgray-s.gif" bgcolor="buttonface" >
+              <input id="btnRight" onclick="setRight();" type="button" value="权限设置" style="width: 60px; height: 22px" />
+              <input id="btnRight" onclick="ue_save();" type="button" value="保存" style="width: 40px; height: 22px" />
+            </td>
+            <td background="images\bkgray-s.gif" bgcolor="buttonface" style="height: 22px;">
+              <img id="Img1" border="0" onclick="_refresh()" style="cursor:hand" alt="刷新" src="images/run.gif" />
+              <img alt="增加同级节点" border="0" onclick="TreeUtil.addNode('assignedrightsTab',false);setRight();" onmousedown="this.src='images/treeadd-down.gif'" onmouseout="this.src='images/treeadd.gif'" onmouseover="this.src='images/treeadd-over.gif'" onmouseup="this.src='images/treeadd-over.gif'" src="images/treeadd.gif" style="width: 21px" />
+              <img alt="增加下级节点" border="0" onclick="TreeUtil.addNode('assignedrightsTab',true);setRight();" onmousedown="this.src='images/treeadds-down.gif'" onmouseout="this.src='images/treeadds.gif'" onmouseover="this.src='images/treeadds-over.gif'" onmouseup="this.src='images/treeadds-over.gif'" src="images/treeadds.gif" style="width: 20px" />
+              <img alt="删除当前节点" border="0" onclick="TreeUtil.deleteNode('assignedrightsTab');" onmousedown="this.src='images/del-down.gif'" onmouseout="this.src='images/del.gif'" onmouseover="this.src='images/del-over.gif'" onmouseup="this.src='images/del-over.gif'" src="images/del.gif" />
+              <img border="0" src="images/sp.gif" width="8" />
+              <img id="downnode" border="0" onclick="TreeUtil.moveDown('assignedrightsTab')" onmousedown="this.src='images/down-down.gif'" onmouseout="this.src='images/down.gif'" onmouseover="this.src='images/down-over.gif'" onmouseup="this.src='images/down-over.gif'" src="images/down.gif" />
+              <img id="upnode" border="0" onclick="TreeUtil.moveUp('assignedrightsTab')" onmousedown="this.src='images/up-down.gif'" onmouseout="this.src='images/up.gif'" onmouseover="this.src='images/up-over.gif'" onmouseup="this.src='images/up-over.gif'" src="images/up.gif" />
+          </td>            
+          </tr>
+          <tr>
+            <td style="height: 20px" valign="middle" colspan="2">
+                【<a href="#" class="linkbtn_0" onclick="ue_expand('data0',true)">展开</a>】
+                【<a href="#" class="linkbtn_0" onclick="ue_expand('data0',false)">收缩</a>】　　
+                【<a href="#" class="linkbtn_0" onclick="_copy()">复制</a>】
+                【<a href="#" class="linkbtn_0" onclick="_cut()">剪切</a>】                
+                【<a href="#" class="linkbtn_0" onclick="_paste()">粘贴</a>】    
+            </td></tr>
+          <tr>
+            <td valign="top" style="height:100%" colspan="4">
+              <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+              <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+              <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+              <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+              <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+              <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+              <script type="text/javascript">
+                //<![CDATA[
+                        /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_assignedrightsTab_trvLand ***/
+                        window.ComponentArt_Storage_etpTemplate_assignedrightsTab_trvLand = null;
+                        //]]>
+              </script>
+              <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                <img src="images/exp.gif" width="0" height="0" alt="" />
+                <img src="images/col.gif" width="0" height="0" alt="" />
+              </div>
+              <div id="etpTemplate_assignedrightsTab_trvLand" class="TreeView" style="height:100%;width:100%;overflow:auto;" onclick="if(window.etpTemplate_assignedrightsTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_assignedrightsTab_trvLand);" onmouseover="if(window.etpTemplate_assignedrightsTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_assignedrightsTab_trvLand);"></div>
+              <input id="etpTemplate_assignedrightsTab_trvLand_Data" name="etpTemplate_assignedrightsTab_trvLand_Data" type="hidden" />
+              <input id="etpTemplate_assignedrightsTab_trvLand_Properties" name="etpTemplate_assignedrightsTab_trvLand_Properties" type="hidden" />
+              <input id="etpTemplate_assignedrightsTab_trvLand_SelectedNode" name="etpTemplate_assignedrightsTab_trvLand_SelectedNode" type="hidden" value="" />
+              <input id="etpTemplate_assignedrightsTab_trvLand_ScrollData" name="etpTemplate_assignedrightsTab_trvLand_ScrollData" type="hidden" value="0,0" />
+              <script type="text/javascript">
+                //<![CDATA[
+                  window.ComponentArt_Init_etpTemplate_assignedrightsTab_trvLand = function() {
+                  if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !$('etpTemplate_assignedrightsTab_trvLand'))
+                      {setTimeout('ComponentArt_Init_etpTemplate_assignedrightsTab_trvLand()', 100); return; }
+                   
+                  window.etpTemplate_assignedrightsTab_trvLand = new ComponentArt_TreeView('etpTemplate_assignedrightsTab_trvLand', ComponentArt_Storage_etpTemplate_assignedrightsTab_trvLand);
+                  etpTemplate_assignedrightsTab_trvLand.Postback = function() { __doPostBack('etpTemplate$assignedrightsTab$trvLand','') };
+                  if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_assignedrightsTab_trvLand; etpTemplate_assignedrightsTab_trvLand.GlobalAlias = 'trvLand'; }
+                  etpTemplate_assignedrightsTab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick,'NodeBeforeMove':TreeUtil.onNodeBeforeMove}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:assignedrightsTab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['ExpandSinglePath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                  etpTemplate_assignedrightsTab_trvLand.Initialize('etpTemplate_assignedrightsTab_trvLand');
+                   
+                  window.etpTemplate_assignedrightsTab_trvLand_loaded = true;
+                  }
+                  ComponentArt_Init_etpTemplate_assignedrightsTab_trvLand();
+                  var myTree=new Tree(etpTemplate_assignedrightsTab_trvLand,'assignedrightsTab');
+                  //]]>
+                </script>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+    <td valign="top" align="center" style="width: 200px">
+      <table id="table3" border="0" cellpadding="0" style="border-collapse: collapse; width: 200;height: 100%">
+        <tbody>
+          <tr>
+            <td background="images/bkgray-s.gif" style="height: 24px;width: 191px;">
+              <a href="#" class="linkbtn_0" onclick="_btnOK('data2')">
+				←加入(角色)</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 191px; height: 50%" align="center" valign="top">
+              </div>
+              <script type="text/javascript">
+                //<![CDATA[
+                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_sqlroleTab_trvLand ***/
+                    window.ComponentArt_Storage_etpTemplate_sqlroleTab_trvLand = null;
+                    //]]>
+              </script>
+              <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                <img src="images/exp.gif" width="0" height="0" alt="" />
+                <img src="images/col.gif" width="0" height="0" alt="" />
+              </div>
+              <div id="etpTemplate_sqlroleTab_trvLand" class="TreeView" style="height:100%;width:200px;overflow:auto;" onclick="if(window.etpTemplate_sqlroleTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_sqlroleTab_trvLand);" onmouseover="if(window.etpTemplate_sqlroleTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_sqlroleTab_trvLand);"></div>
+              <input id="etpTemplate_sqlroleTab_trvLand_Data" name="etpTemplate_sqlroleTab_trvLand_Data" type="hidden" />
+              <input id="etpTemplate_sqlroleTab_trvLand_Properties" name="etpTemplate_sqlroleTab_trvLand_Properties" type="hidden" />
+              <input id="etpTemplate_sqlroleTab_trvLand_SelectedNode" name="etpTemplate_sqlroleTab_trvLand_SelectedNode" type="hidden" value="" />
+              <input id="etpTemplate_sqlroleTab_trvLand_ScrollData" name="etpTemplate_sqlroleTab_trvLand_ScrollData" type="hidden" value="0,0" />
+              <script type="text/javascript">
+                //<![CDATA[
+                          window.ComponentArt_Init_etpTemplate_sqlroleTab_trvLand = function() {
+                          if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !$('etpTemplate_sqlroleTab_trvLand'))
+                              {setTimeout('ComponentArt_Init_etpTemplate_sqlroleTab_trvLand()', 100); return; }
+                           
+                          window.etpTemplate_sqlroleTab_trvLand = new ComponentArt_TreeView('etpTemplate_sqlroleTab_trvLand', ComponentArt_Storage_etpTemplate_sqlroleTab_trvLand);
+                          etpTemplate_sqlroleTab_trvLand.Postback = function() { __doPostBack('etpTemplate$sqlroleTab$trvLand','') };
+                          if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_sqlroleTab_trvLand; etpTemplate_sqlroleTab_trvLand.GlobalAlias = 'trvLand'; }
+                          etpTemplate_sqlroleTab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick,'NodeBeforeMove':TreeUtil.onNodeBeforeMove}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:sqlroleTab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['ExpandSinglePath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                          etpTemplate_sqlroleTab_trvLand.Initialize('etpTemplate_sqlroleTab_trvLand');
+                           
+                          window.etpTemplate_sqlroleTab_trvLand_loaded = true;
+                          }
+                          ComponentArt_Init_etpTemplate_sqlroleTab_trvLand();
+                          var myTree=new Tree(etpTemplate_sqlroleTab_trvLand,'sqlroleTab');
+                        //]]>
+              </script>
+            </td>
+          </tr>
+          <tr>
+            <td background="images/bkgray-s.gif" style="height: 24px; width: 191px">
+              <a href="#" class="linkbtn_0" onclick="_btnOK('data3')">
+				←加入(新单位)</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="height: 100%; width: 191px" valign="top">
+              <script type="text/javascript">
+                //<![CDATA[
+                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_sqlorganizationsTab_trvLand ***/
+                    window.ComponentArt_Storage_etpTemplate_sqlorganizationsTab_trvLand = null;
+                    //]]>
+              </script>
+              <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                <img src="images/exp.gif" width="0" height="0" alt="" />
+                <img src="images/col.gif" width="0" height="0" alt="" />
+              </div>
+              <div id="etpTemplate_sqlorganizationsTab_trvLand" class="TreeView" style="height:100%;width:200px;overflow:auto;" onclick="if(window.etpTemplate_sqlorganizationsTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_sqlorganizationsTab_trvLand);" onmouseover="if(window.etpTemplate_sqlorganizationsTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_sqlorganizationsTab_trvLand);"></div>
+              <input id="etpTemplate_sqlorganizationsTab_trvLand_Data" name="etpTemplate_sqlorganizationsTab_trvLand_Data" type="hidden" />
+              <input id="etpTemplate_sqlorganizationsTab_trvLand_Properties" name="etpTemplate_sqlorganizationsTab_trvLand_Properties" type="hidden" />
+              <input id="etpTemplate_sqlorganizationsTab_trvLand_SelectedNode" name="etpTemplate_sqlorganizationsTab_trvLand_SelectedNode" type="hidden" value="" />
+              <input id="etpTemplate_sqlorganizationsTab_trvLand_ScrollData" name="etpTemplate_sqlorganizationsTab_trvLand_ScrollData" type="hidden" value="0,0" />
+              <script type="text/javascript">
+                //<![CDATA[
+                    window.ComponentArt_Init_etpTemplate_sqlorganizationsTab_trvLand = function() {
+                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !$('etpTemplate_sqlorganizationsTab_trvLand'))
+                        {setTimeout('ComponentArt_Init_etpTemplate_sqlorganizationsTab_trvLand()', 100); return; }
+                     
+                    window.etpTemplate_sqlorganizationsTab_trvLand = new ComponentArt_TreeView('etpTemplate_sqlorganizationsTab_trvLand', ComponentArt_Storage_etpTemplate_sqlorganizationsTab_trvLand);
+                    etpTemplate_sqlorganizationsTab_trvLand.Postback = function() { __doPostBack('etpTemplate$sqlorganizationsTab$trvLand','') };
+                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_sqlorganizationsTab_trvLand; etpTemplate_sqlorganizationsTab_trvLand.GlobalAlias = 'trvLand'; }
+                    etpTemplate_sqlorganizationsTab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick,'NodeBeforeMove':TreeUtil.onNodeBeforeMove}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:sqlorganizationsTab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['ExpandSinglePath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                    etpTemplate_sqlorganizationsTab_trvLand.Initialize('etpTemplate_sqlorganizationsTab_trvLand');
+                     
+                    window.etpTemplate_sqlorganizationsTab_trvLand_loaded = true;
+                    }
+                    ComponentArt_Init_etpTemplate_sqlorganizationsTab_trvLand();
+                    var myTree=new Tree(etpTemplate_sqlorganizationsTab_trvLand,'sqlorganizationsTab');
+              //]]>
+              </script>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+    <td valign="top" align="right" width="30%">
+      <table id="table2" border="0" cellpadding="0" style="border-collapse: collapse; width: 100%;height:100%;">
+        <tbody>
+          <tr>
+            <td background="images/bkgray-s.gif" height="1" style="height: 1px" width="24">
+              <img border="0" src="images/treesp.gif" />
+            </td>
+            <td background="images/bkgray-s.gif" height="1" style="height: 1px" width="280">
+              <a href="#" class="linkbtn_0" onclick="_btnOK('data1')">
+				←加入(操作集)</a>　　<img border="0" src="images/FileAddNew2.gif" onclick="showwin('tablesrc')" />
+            【<a href="#" class="linkbtn_0" onclick="ue_treeline('data0',true);ue_treeline('data1',true);ue_treeline('data2',true);ue_treeline('data3',true)">连线</a>】
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" valign="top" align="right">
+              <script type="text/javascript">
+                //<![CDATA[
+                        /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_sql_optionsTab_trvLand ***/
+                        window.ComponentArt_Storage_etpTemplate_sql_optionsTab_trvLand = null;
+                        //]]>
+              </script>
+              <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                <img src="images/exp.gif" width="0" height="0" alt="" />
+                <img src="images/col.gif" width="0" height="0" alt="" />
+              </div>
+              <div id="etpTemplate_sql_optionsTab_trvLand" class="TreeView" style="height:100%;width:100%;overflow:auto;" onclick="if(window.etpTemplate_sql_optionsTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_sql_optionsTab_trvLand);" onmouseover="if(window.etpTemplate_sql_optionsTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_sql_optionsTab_trvLand);"></div>
+              <input id="etpTemplate_sql_optionsTab_trvLand_Data" name="etpTemplate_sql_optionsTab_trvLand_Data" type="hidden" />
+              <input id="etpTemplate_sql_optionsTab_trvLand_Properties" name="etpTemplate_sql_optionsTab_trvLand_Properties" type="hidden" />
+              <input id="etpTemplate_sql_optionsTab_trvLand_SelectedNode" name="etpTemplate_sql_optionsTab_trvLand_SelectedNode" type="hidden" value="" />
+              <input id="etpTemplate_sql_optionsTab_trvLand_ScrollData" name="etpTemplate_sql_optionsTab_trvLand_ScrollData" type="hidden" value="0,0" />
+              <script type="text/javascript">
+                //<![CDATA[
+                    window.ComponentArt_Init_etpTemplate_sql_optionsTab_trvLand = function() {
+                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !$('etpTemplate_sql_optionsTab_trvLand'))
+                        {setTimeout('ComponentArt_Init_etpTemplate_sql_optionsTab_trvLand()', 100); return; }
+                     
+                    window.etpTemplate_sql_optionsTab_trvLand = new ComponentArt_TreeView('etpTemplate_sql_optionsTab_trvLand', ComponentArt_Storage_etpTemplate_sql_optionsTab_trvLand);
+                    etpTemplate_sql_optionsTab_trvLand.Postback = function() { __doPostBack('etpTemplate$sql_optionsTab$trvLand','') };
+                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_sql_optionsTab_trvLand; etpTemplate_sql_optionsTab_trvLand.GlobalAlias = 'trvLand'; }
+                    etpTemplate_sql_optionsTab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick,'NodeBeforeMove':TreeUtil.onNodeBeforeMove}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:sql_optionsTab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['ExpandSinglePath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                    etpTemplate_sql_optionsTab_trvLand.Initialize('etpTemplate_sql_optionsTab_trvLand');
+                     
+                    window.etpTemplate_sql_optionsTab_trvLand_loaded = true;
+                    }
+                    ComponentArt_Init_etpTemplate_sql_optionsTab_trvLand();
+                    var myTree=new Tree(etpTemplate_sql_optionsTab_trvLand,'sql_optionsTab');
+              //]]>
+              </script>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</tbody>
+</table>
+<script type="text/javascript" charset="gb2312">ue_initsetup("sys_rights")</script>    </body>
+</html>

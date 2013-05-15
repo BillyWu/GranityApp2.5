@@ -33,7 +33,6 @@
 
     <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
 
-    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
 
     <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
 
@@ -47,204 +46,198 @@
         charset="gb2312"></script>
 
     <script type="text/javascript" charset="gb2312">
-	     var elems = ["输出一","输出二","输出三","输出四"];
-         var freecols  = ["编号","编号","编号","编号"];
-         var elemsevent = ["_tfilter()","_tfilter()","_tfilter()","_tfilter()"];  
-         var Timeelems = ["门禁设备","门禁有效时段","定时任务"];
-         var Timefreecols  = ["名称","选择","控制方式"];
-         var Timeelemsevent = ["_Timetfilter()","_Timetfilter()","_Timetfilter()"];  
+      var elems = ["输出一","输出二","输出三","输出四"];
+      var freecols  = ["编号","编号","编号","编号"];
+      var elemsevent = ["_tfilter()","_tfilter()","_tfilter()","_tfilter()"];  
+      var Timeelems = ["门禁设备","门禁有效时段","定时任务"];
+      var Timefreecols  = ["名称","选择","控制方式"];
+      var Timeelemsevent = ["_Timetfilter()","_Timetfilter()","_Timetfilter()"];  
          
         //加载页面信息
 	    function initWin()
 	    {
-	        ueToolbar("tbars",elems,elemsevent,"txtbtn",null,"rownames","扩展信息设置：");
-	        ueToolbar("tTimebars",Timeelems,Timeelemsevent,"txtbtn",null,"rownames","基本资料：");
-	        $band("扩展板参数").expfilter="编号=1";
-            var ob=$band("设备分组资料");
-            ob.Asyn=true;
-            ob.XQuery();
-            ob.AfterXQuery = function()
-            {
-                var ob2=$band("设备分组资料");
-                ob2.minwidth=80;ob2.colnum = 3;ob2.startpos=0;ob2.endpos=4;ob2.pwcols="";
-                YPanel("设备分组资料","divDoor1",null,1,null,null,85);
-                ob2.minwidth=80;ob2.colnum = 3;ob2.startpos=5;ob2.endpos=11;ob2.pwcols="";
-                YPanel("设备分组资料","divDoor2",null,1,null,null,85);
-                ob2.minwidth=85;ob2.colnum = 3;ob2.startpos=11;ob2.endpos=20;ob2.pwcols="";
-                YPanel("设备分组资料","divDoor3",null,1,null,null,85); 
-                ue_expand('设备分组资料',true);
-                //扩展板内容
-                var ob =  $band("扩展板参数");
-                ob.minwidth=15;ob.colnum = 3;ob.startpos=2;ob.endpos=8;ob.pwcols="";
-                YPanel("扩展板参数","divKzb",null,1,null,null,100); 
-                ob.colnum = 4;ob.startpos=8;ob.endpos=12;ob.hr="";
-                YPanel("扩展板参数","divKzbDoor",null,1,null,null,100);
-                
-                _Timetfilter();
-                ue_treeline("设备分组资料",true);
-                $loading("none");
-            }
-            ob.AfterRowChanged=function()
-            {
-                var bext=$band("扩展板参数");
-                if(bext.RecordCount()<1)
-                {
-                    for(var i=0;i<4;i++)
-                    {
-                        bext.NewRecord();
-                        bext.setFldStrValue(null,"编号",i+1);
-                    }
-                    var mid = $band("设备分组资料").Val("MID");
-                    bext.QueryRefresh("RefreshFilter", "分组ID", mid);
-                }
-                 
-            }
-           
+        ueToolbar("tbars",elems,elemsevent,"txtbtn",null,"rownames","扩展信息设置：");
+        ueToolbar("tTimebars",Timeelems,Timeelemsevent,"txtbtn",null,"rownames","基本资料：");
+        $band("扩展板参数").expfilter="编号=1";
+        var ob=$band("设备分组资料");
+        ob.Asyn=true;
+        ob.XQuery();
+        ob.AfterXQuery = function()
+        {
+          var ob2=$band("设备分组资料");
+          ob2.minwidth=80;ob2.colnum = 3;ob2.startpos=0;ob2.endpos=4;ob2.pwcols="";
+          YPanel("设备分组资料","divDoor1",null,1,null,null,85);
+          ob2.minwidth=80;ob2.colnum = 3;ob2.startpos=5;ob2.endpos=11;ob2.pwcols="";
+          YPanel("设备分组资料","divDoor2",null,1,null,null,85);
+          ob2.minwidth=85;ob2.colnum = 3;ob2.startpos=11;ob2.endpos=20;ob2.pwcols="";
+          YPanel("设备分组资料","divDoor3",null,1,null,null,85); 
+          ue_expand('设备分组资料',true);
+          //扩展板内容
+          var ob =  $band("扩展板参数");
+          ob.minwidth=15;ob.colnum = 3;ob.startpos=2;ob.endpos=8;ob.pwcols="";
+          YPanel("扩展板参数","divKzb",null,1,null,null,100); 
+          ob.colnum = 4;ob.startpos=8;ob.endpos=12;ob.hr="";
+          YPanel("扩展板参数","divKzbDoor",null,1,null,null,100);
+          
+          _Timetfilter();
+          ue_treeline("设备分组资料",true);
+          $loading("none");
         }
+        ob.AfterRowChanged=function()
+        {
+          var bext=$band("扩展板参数");
+          if(bext.RecordCount()<1)
+          {
+              for(var i=0;i<4;i++)
+              {
+                  bext.NewRecord();
+                  bext.setFldStrValue(null,"编号",i+1);
+              }
+              var mid = $band("设备分组资料").Val("MID");
+              bext.QueryRefresh("RefreshFilter", "分组ID", mid);
+          }
+        }
+           
+      }
         
-     
-       //添加数据前事件
       function ts_AfterTreeDel()
       {
-
-          var state= DelDoorDev();
-          return state;
+        var state= DelDoorDev();
+        return state;
       }
+      
       function DelDoorDev()
       {  
-    
-         var band= $band("门禁设备");
-         if(band.RecordCount()>0)
-            { 
-               alert('请先删除设备信息，在删除组信息!');return false;
-            }
-         else
-            {
-               return true;;
-            } 
+        var band= $band("门禁设备");
+        if(band.RecordCount()>0)
+        { 
+          alert('请先删除设备信息，在删除组信息!');return false;
+        }
+        else
+        {
+          return true;;
+        } 
       }
         
        //值改变事件
       function beforesave()
       {
-     
-          var state= setDoor();
-          return state;
+        var state= setDoor();
+        return state;
       }
       function setDoor()
       {  
-       ip();
+        ip();
         var band=$band("门禁设备");
         var controlType=band.getFldStrValue("控制器类型");
         switch(controlType)
-               {
-                 case "双门双向":
-                     if(band.getFldStrValue("三号门")!=""||band.getFldStrValue("四号门")!="")  alert("双门双向三号门，四号门不用填写;单门双向二号门，三号门，四号门不用填写!");
-	                 for(var i=0;i<band.RecordCount();i++)
-                        {
-                              if(band.getFldStrValue("三号门",i)!=""||band.getFldStrValue("四号门",i)!="")
-                              {
-                                  band.setFldStrValue(i, "三号门",""); 
-                                  band.setFldStrValue(i, "四号门",""); 
-                                
-                              }
-                        }  
-                 break;
-                 case "单门双向":
-                     if(band.getFldStrValue("二号门",i)!=""||band.getFldStrValue("三号门",i)!=""||band.getFldStrValue("四号门",i)!="")  alert("双门双向三号门，四号门不用填写;单门双向二号门，三号门，四号门不用填写!");
-	                 for(var i=0;i<band.RecordCount();i++)
-                        {
-                              if(band.getFldStrValue("二号门",i)!=""||band.getFldStrValue("三号门",i)!=""||band.getFldStrValue("四号门",i)!="")
-                              {
-                                  band.setFldStrValue(i, "二号门",""); 
-                                  band.setFldStrValue(i, "三号门",""); 
-                                  band.setFldStrValue(i, "四号门",""); 
-                              }
-                              
-                        }
-                 break;
-                 
-               }  
-          return true;
+        {
+          case "双门双向":
+            if(band.getFldStrValue("三号门")!=""||band.getFldStrValue("四号门")!="")  alert("双门双向三号门，四号门不用填写;单门双向二号门，三号门，四号门不用填写!");
+            for(var i=0;i<band.RecordCount();i++)
+            {
+              if(band.getFldStrValue("三号门",i)!=""||band.getFldStrValue("四号门",i)!="")
+              {
+                band.setFldStrValue(i, "三号门","");
+                band.setFldStrValue(i, "四号门","");
+              }
+            }  
+          break;
+          case "单门双向":
+            if(band.getFldStrValue("二号门",i)!=""||band.getFldStrValue("三号门",i)!=""||band.getFldStrValue("四号门",i)!="")  alert("双门双向三号门，四号门不用填写;单门双向二号门，三号门，四号门不用填写!");
+            for(var i=0;i<band.RecordCount();i++)
+            {
+              if(band.getFldStrValue("二号门",i)!=""||band.getFldStrValue("三号门",i)!=""||band.getFldStrValue("四号门",i)!="")
+              {
+                  band.setFldStrValue(i, "二号门",""); 
+                  band.setFldStrValue(i, "三号门",""); 
+                  band.setFldStrValue(i, "四号门",""); 
+              }
+            }
+          break;
+        }
+        return true;
       }
       //IP地址校验
       function ip()
       {
-          var menu= $band("门禁设备");
-          var xml= menu.XmlLandData.XMLDocument;
-          var nodes =xml.selectNodes("/设备资料/门禁设备/IP地址");
-           var nodeValue="";
-          var index=0;
-          var ipValidate="^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$";
-          for(m=0;m<nodes.length;m++)
-          {              
-              var   reg   =   nodes[m].text.match(ipValidate); 
-              if(reg==null)
-              {
-                  if(nodes[m].text!=""){
-                     alert("IP地址第"+m+"行IP地址格式错误，请重新输入！");
-                      menu.setFldStrValue(m, "IP地址",""); 
-                  }
-                  
-                 // return false;
-              }
-              nodeValue=nodes[m].text;
-              index=m;
-              for (i=m+1;i<nodes.length;i++)
-              {
-                  if(nodeValue==nodes[i].text)
-                  {
-                      i++;
-                      index++;
-                       if(nodes[m].text!=""){
-                      alert("IP地址第"+i+"行与第"+index+"行存在相同的值，请重新选择其他的值！");
-                      menu.setFldStrValue(m, "IP地址",""); 
-                      }
-                  }      
-              }
+        var menu= $band("门禁设备");
+        var xml= menu.XmlLandData.XMLDocument;
+        var nodes =xml.selectNodes("/设备资料/门禁设备/IP地址");
+        var nodeValue="";
+        var index=0;
+        var ipValidate="^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$";
+        for(m=0;m<nodes.length;m++)
+        {              
+          var reg = nodes[m].text.match(ipValidate); 
+          if(reg==null)
+          {
+            if(nodes[m].text!=""){
+               alert("IP地址第"+m+"行IP地址格式错误，请重新输入！");
+                menu.setFldStrValue(m, "IP地址",""); 
+            }
+            // return false;
           }
-          return true;
+          nodeValue=nodes[m].text;
+          index=m;
+          for (i=m+1;i<nodes.length;i++)
+          {
+            if(nodeValue==nodes[i].text)
+            {
+                i++;
+                index++;
+                 if(nodes[m].text!=""){
+                alert("IP地址第"+i+"行与第"+index+"行存在相同的值，请重新选择其他的值！");
+                menu.setFldStrValue(m, "IP地址",""); 
+                }
+            }      
+          }
+        }
+        return true;
       }
         
 	    //树的点击事件
-        function Tree_onNodeSelectionChange(node)
+      function Tree_onNodeSelectionChange(node)
+      {
+        TclickDot(node,false);
+      }
+      //加载定时任务，有效时段
+      function _Timetfilter()
+      {
+        var txt = ueGetTbItem("tTimebars").outerText;
+        var ob = $band(txt);
+        $loading();
+        ob.gridtype = 8; ob.freecols = "名称";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
+        ob.Grid=null;
+        ob.minwidth = "定时任务"==txt?"60px": "门禁有效时段"==txt?"40px": "80px";
+        ob.freecols = "门禁设备"==txt?"名称": "索引号";
+        if("门禁有效时段"==txt)
+          ob.gridtype = 91;
+        if ("门禁设备" == txt)
         {
-            TclickDot(node,false);
+          ob.gridtype = 8;
+          $("btsearch").style.display = "";
+          $("dvob").style.height = "97%";
         }
-        //加载定时任务，有效时段
-        function _Timetfilter()
+        else
         {
-            var txt = ueGetTbItem("tTimebars").outerText;
-            var ob = $band(txt);
-            $loading();
-            ob.gridtype = 8; ob.freecols = "名称";ob.title = "";ob.minwidth = "80px";ob.editdict=true;
-            ob.Grid=null;
-            ob.minwidth = "定时任务"==txt?"60px": "门禁有效时段"==txt?"40px": "80px";
-            ob.freecols = "门禁设备"==txt?"名称": "索引号";
-            if("门禁有效时段"==txt)
-                ob.gridtype = 91;
-            if ("门禁设备" == txt)
-            {
-                ob.gridtype = 8;
-                $("btsearch").style.display = "";
-                $("dvob").style.height = "97%";
-            } else
-            {
-                $("btsearch").style.display = "none";
-                $("dvob").style.height = "100%";
-            }
-            var Grid = new XGrid("dvob", ob, "in", null, 1);
-            $loading("none")
+          $("btsearch").style.display = "none";
+          $("dvob").style.height = "100%";
         }
-        //加载扩展版
-	  function _tfilter()
+        
+        var Grid = new XGrid("dvob", ob, "in", null, 1);
+        
+        $loading("none")
+      }
+      //加载扩展版
+      function _tfilter()
       {  
-            var sel = ueGetTbItem("tbars").outerText;
-            var num = "输出一"==sel?1: "输出二"==sel?2: "输出三"==sel?3: 4;
-            var ob = $band("扩展板参数");
-            ob.expfilter="编号="+num;
-            var mid = $band("设备分组资料").Val("MID");
-            ob.QueryRefresh("RefreshFilter", "分组ID", mid);
+        var sel = ueGetTbItem("tbars").outerText;
+        var num = "输出一"==sel?1: "输出二"==sel?2: "输出三"==sel?3: 4;
+        var ob = $band("扩展板参数");
+        ob.expfilter="编号="+num;
+        var mid = $band("设备分组资料").Val("MID");
+        ob.QueryRefresh("RefreshFilter", "分组ID", mid);
       }
       function _save()
       {
@@ -252,244 +245,272 @@
       }
       function searchUDP(isnet)
       {
-          var ps = "cmd=searchdoor";
-          if(true===isnet)
-              ps = "cmd=searchznet";
-          var msg = ToolUtil.Post(ps, "hdlDeviceMonitor.ashx");
-          if (!msg)
-          {
-              alert("没有搜索到在线设备");
-              return;
-          }
-          //@功能码=A114010200,@物理地址=00-14-97-02-D9-FB,@IP地址=192.168.1.120,@子网掩码=255.255.255.0,@网关IP=192.168.0.1,@DNS服务器=192.168.0.1,@设备名称=3ORT,@密码=88888,@网页端口=80,@命令端口=3003,@工作方式=3,@工作端口=30000,@超时断开时间=0,@心跳时间=20,@波特率=19200,@数据位=8,@停止位=1,@分包长度=500,@帧间隔=50,@目标端口1=6001,@目标端口2=6002,@目标端口3=6003,@目标端口4=6004,@目标端口5=6005,@目标端口6=6006,@目标端口7=6007,@目标端口8=6008
-          var cols = { IP地址: "IP地址", 端口: "工作端口", 站址: "站址" };
-          var devs = msg.split(";");
-          var band = $band("门禁设备");
-          for (var i = 0; i < devs.length; i++)
-          {
-              if (!devs[i]) continue;
-              var info = devs[i], index = -1;
-              var port = ToolUtil.valueTag(info, "工作端口");
-              if("60000"!=port)
-                    continue;
-              var addr = ToolUtil.valueTag(info, "IP地址");
-              var count = band.RecordCount();
-              for (var k = 0; k < count; k++)
-              {
-                  var ipaddr = band.getFldStrValue("IP地址", k);
-                  if (addr != ipaddr)
-                      continue;
-                  index = k;
-                  break;
-              }
-              if (index < 0)
-              {
-                  band.NewRecord();
-                  index = band.RecordCount() - 1;
-              }
-              for (var col in cols)
-                  band.setFldStrValue(index, col, ToolUtil.valueTag(info, cols[col]));
-              band.setFldStrValue(i + count, "通讯类别", "UDP/IP(局域网)");
-          }
-          alert("搜索设备完毕！");
-      }
-      //设置网关和子网掩码
-        function buildwinstr()
+        var ps = "cmd=searchdoor";
+        if(true===isnet)
+          ps = "cmd=searchznet";
+        var msg = ToolUtil.Post(ps, "hdlDeviceMonitor.ashx");
+        if (!msg)
         {
-            var s = '<fieldset style="padding: 5px;;width:98%"><legend>子网掩码和网关：</legend>'
-                    + '<table border="0" width="90%" cellpadding="0" style="border-collapse: collapse" align=center ><tr>'
-		            + '        <td colspan="2">为空默认不修改，保持设备原设置</td></tr><tr>'
-		            + '        <td width="120" align="right">子网掩码：</td><td width="200">'
-		            + '        <input id=\"inputMaskcode\" class=\"xlandinput\" style=\"WIDTH: 100%;\" /></td></tr><tr>'
-		            + '        <td width="120" align="right">网关：</td><td width="200">'
-		            + '        <input id=\"inputGateway\" class="xlandinput" style="width:100%;" type="text" size="11"  /></td></tr><tr>'
-		            + '        <td width="120" align="center">【<a href="#" onclick="_btnOK()">确定</a>】</td><td align="center">【<a href="#" onclick="_btnCancel()">取消</a>】</td>'
-	                + '    </tr></table></fieldset>';
-            return s;
+          alert("没有搜索到在线设备");
+          return;
         }
+        //@功能码=A114010200,@物理地址=00-14-97-02-D9-FB,@IP地址=192.168.1.120,@子网掩码=255.255.255.0,@网关IP=192.168.0.1,@DNS服务器=192.168.0.1,@设备名称=3ORT,@密码=88888,@网页端口=80,@命令端口=3003,@工作方式=3,@工作端口=30000,@超时断开时间=0,@心跳时间=20,@波特率=19200,@数据位=8,@停止位=1,@分包长度=500,@帧间隔=50,@目标端口1=6001,@目标端口2=6002,@目标端口3=6003,@目标端口4=6004,@目标端口5=6005,@目标端口6=6006,@目标端口7=6007,@目标端口8=6008
+        var cols = { IP地址: "IP地址", 端口: "工作端口", 站址: "站址" };
+        var devs = msg.split(";");
+        var band = $band("门禁设备");
+        for (var i = 0; i < devs.length; i++)
+        {
+          if (!devs[i]) continue;
+          var info = devs[i], index = -1;
+          var port = ToolUtil.valueTag(info, "工作端口");
+          if("60000"!=port)
+            continue;
+          var addr = ToolUtil.valueTag(info, "IP地址");
+          var count = band.RecordCount();
+          for (var k = 0; k < count; k++)
+          {
+            var ipaddr = band.getFldStrValue("IP地址", k);
+            if (addr != ipaddr)
+              continue;
+            index = k;
+            break;
+          }
+          if (index < 0)
+          {
+            band.NewRecord();
+            index = band.RecordCount() - 1;
+          }
+          for (var col in cols)
+            band.setFldStrValue(index, col, ToolUtil.valueTag(info, cols[col]));
+          band.setFldStrValue(i + count, "通讯类别", "UDP/IP(局域网)");
+        }
+        alert("搜索设备完毕！");
+      }
+      //设置IP地址，网关和子网掩码
+      function buildwinstr()
+      {
+        var s = '<fieldset style="padding: 5px;;width:98%"><legend>子网掩码和网关：</legend>'
+                + '<table border="0" width="90%" cellpadding="0" style="border-collapse: collapse" align=center ><tr>'
+                + '        <td colspan="2">为空默认不修改，保持设备原设置</td></tr><tr>'
+                + '        <td width="120" align="right">IP地址：</td><td width="200">'
+                + '        <input id=\"inputIPAddress\" class=\"xlandinput\" style=\"WIDTH: 100%;\" /></td></tr><tr>'
+                + '        <td width="120" align="right">子网掩码：</td><td width="200">'
+                + '        <input id=\"inputMaskcode\" class=\"xlandinput\" style=\"WIDTH: 100%;\" /></td></tr><tr>'
+                + '        <td width="120" align="right">网关：</td><td width="200">'
+                + '        <input id=\"inputGateway\" class="xlandinput" style="width:100%;" type="text" size="11"  /></td></tr><tr>'
+                + '        <td width="120" align="center">【<a href="#" onclick="_btnOK()">确定</a>】</td><td align="center">【<a href="#" onclick="_btnCancel()">取消</a>】</td>'
+                + '    </tr></table></fieldset>';
+        return s;
+      }
       function _btnCancel()
       {
-            ShowHide("ipznet", "none");
+        ShowHide("ipznet", "none");
       }
       function _btnOK()
       {
-          ShowHide("ipznet", "none");
-          var devs = [], idxdev=0;
-          var band = $band("门禁设备");
-          for(var i=0,len=band.RecordCount(); i<len; i++)
+        ShowHide("ipznet", "none");
+        var devs = [], idxdev=0;
+        var band = $band("门禁设备");
+        var ipAddrSel = band.getFldStrValue("IP地址");
+        
+        for(var i=0,len=band.RecordCount(); i<len; i++)
+        {
+          //只对当前选中行的设备进行修改。
+          var ipAddrIter = band.getFldStrValue("IP地址", i);
+          if(ipAddrIter != ipAddrSel) continue;          
+          //console.log(ipAddrSel);
+
+          var ps = "&station="+band.getFldStrValue("站址", i);
+          //ps += "&ipaddr="+band.getFldStrValue("IP地址", i);
+          var name = band.getFldStrValue("名称", i);
+          devs.push([ps,name]);
+        }
+        
+        callbackReset.callback=function(msg)
+        {
+          if(idxdev>=devs.length)
           {
-            var sel = band.getFldStrValue("选择", i);
-            if("-1"==sel || "true"==sel || "1"==sel)
-                sel=true;
-            if(true!==sel)  continue;
-            var ps = "&station="+band.getFldStrValue("站址", i);
-            ps += "&ipaddr="+band.getFldStrValue("IP地址", i);
-            var name = band.getFldStrValue("名称", i);
-            devs.push([ps,name]);
+            //msg = devs.join("");
+            //if(msg) msg=devs.join("，")+"\n";
+            //msg+="设置IP已经完成！";
+            msg="设置IP已经完成！";
+            $loading("none");
+            alert(msg);
+            return;
           }
-          callbackReset.callback=function(msg){
-              if(idxdev>=devs.length)
-              {
-                    msg = devs.join("");
-                    if(msg) msg=devs.join("，")+"\n";
-                    msg+="设置IP已经完成！";
-                    $loading("none");
-                    alert(msg);
-                    return;
-              }
-              if(idxdev>0 && msg)
-                devs[idxdev-1] = "true"!=ToolUtil.valueTag(msg,"成功")?devs[idxdev-1][1]:"";
-              var ps = "cmd=setipdoor";
-              ps += "&maskcode="+$("inputMaskcode").value;
-              ps += "&gateway="+$("inputGateway").value;
-              ps += devs[idxdev++][0];
-              callbackReset.xmlhttp = ToolUtil.Post(ps, "hdlDeviceMonitor.ashx", callbackReset);
-              $loading("");
-          };
-          callbackReset.callback();
+          if(idxdev>0 && msg)
+            devs[idxdev-1] = "true"!=ToolUtil.valueTag(msg,"成功")?devs[idxdev-1][1]:"";
+          var ps = "cmd=setipdoor";
+
+          ps += "&ipaddr=";
+          if ($("inputIPAddress") && $("inputIPAddress").value) ps += $("inputIPAddress").value;
+          else ps += ipAddrSel;
+
+          ps += "&maskcode=";
+          if ($("inputMaskcode") && $("inputMaskcode").value) ps += $("inputMaskcode").value;
+          else ps += "255.255.255.0";
+          
+          ps += "&gateway=";
+          if ($("inputGateway") && $("inputGateway").value) ps += $("inputGateway").value;
+          else ps += "192.168.1.1";
+          
+          ps += devs[idxdev++][0];
+          callbackReset.xmlhttp = ToolUtil.Post(ps, "hdlDeviceMonitor.ashx", callbackReset);
+          $loading("");
+        };
+        callbackReset.callback();
       }
       //广播重启门禁
       function setIPznet()
       {
-            var winid = "ipznet";
-            var owin = dwobj(winid);
-            if (!owin)
-            {
-                var owin = new Object;
-                owin.id = winid;
-                owin.width = 350;
-                owin.height = 100;
-                owin.top = 200;
-                owin.left = 200;
-                owin.title = "修改IP地址信息";
-                owin.text = buildwinstr();
-                owin.hovercolor = "orange";
-                owin.color = "black";
-                var a = new xWin(owin);
-            }
-            center(winid);
-            ShowHide("ipznet", "");
+        var winid = "ipznet";
+        var owin = dwobj(winid);
+        if (!owin)
+        {
+          var owin = new Object;
+          owin.id = winid;
+          owin.width = 350;
+          owin.height = 100;
+          owin.top = 200;
+          owin.left = 200;
+          owin.title = "修改IP地址信息";
+          owin.text = buildwinstr();
+          owin.hovercolor = "orange";
+          owin.color = "black";
+          var a = new xWin(owin);
+        }
+        center(winid);
+        ShowHide("ipznet", "");
       }
       function callbackReset()
       {
         if(4!=this.readyState)
-            return;
+          return;
         var msg = this.responseText;
         if(!callbackReset.callback)
         {
-            alert("设置IP已经完成！");
-            return;
+          alert("设置IP已经完成！");
+          return;
         }
         callbackReset.callback(msg);
       }
     </script>
 
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
 </head>
 <body style="overflow: hidden; margin: 0px;" scroll="no">
-    <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');">
+  <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');">
+  </div>
+  <fieldset style="float: left; padding: 5px; width: 18%; height: 96%;" id="fdiv">
+    <legend>
+      <a class="linkbtn_0" href="#" onclick="TreeUtil.addNode('设备资料Tab',false);" title="增加同级门组">
+        <img border="0" src="Images/inserttreenext.png" alt="增加同级门组" id="门组" />加组</a> &nbsp;
+      <a class="linkbtn_0" href="#" onclick="TreeUtil.addNode('设备资料Tab',true);" title="增加子级门组">
+        <img border="0" src="Images/inserttreenext.png" alt="增加子级门组" id="Img1" />子级增加</a> &nbsp;
+      <a class="linkbtn_0" href="#" onclick="TreeUtil.deleteNode('设备资料Tab')">
+        <img border="0" src="Images/delete.gif" />删除</a> 
+    </legend>
+
+      <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+
+      <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+
+      <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+
+      <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+
+      <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+
+      <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+
+      <script type="text/javascript">
+        //<![CDATA[
+                  /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_设备资料Tab_trvLand ***/
+                  window.ComponentArt_Storage_etpTemplate_设备资料Tab_trvLand = null;
+                  //]]>
+      </script>
+
+    <div style="position: absolute; top: 0px; left: 0px; visibility: hidden;">
+        <img src="images/exp.gif" width="0" height="0" alt="" />
+        <img src="images/col.gif" width="0" height="0" alt="" />
     </div>
-    <fieldset style="float: left; padding: 5px; width: 18%; height: 96%;" id="fdiv">
-        <legend><a class="linkbtn_0" href="#" onclick="TreeUtil.addNode('设备资料Tab',false);" title="增加同级门组">
-            <img border="0" src="Images/inserttreenext.png" alt="增加同级门组" id="门组" />加组</a> &nbsp;
-        <a class="linkbtn_0" href="#" onclick="TreeUtil.addNode('设备资料Tab',true);" title="增加子级门组">
-            <img border="0" src="Images/inserttreenext.png" alt="增加子级门组" id="Img1" />子级增加</a> &nbsp;
-            <a class="linkbtn_0" href="#" onclick="TreeUtil.deleteNode('设备资料Tab')">
-                <img border="0" src="Images/delete.gif" />删除</a> </legend>
+    <div id="etpTemplate_设备资料Tab_trvLand" class="TreeView" style="height: 95%; width: 123%;
+        overflow-y: auto;" onclick="if(window.etpTemplate_设备资料Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_设备资料Tab_trvLand);"
+        onmouseover="if(window.etpTemplate_设备资料Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_设备资料Tab_trvLand);">
+    </div>
+    <input id="etpTemplate_设备资料Tab_trvLand_Data" name="etpTemplate_设备资料Tab_trvLand_Data"
+        type="hidden" />
+    <input id="etpTemplate_设备资料Tab_trvLand_Properties" name="etpTemplate_设备资料Tab_trvLand_Properties"
+        type="hidden" />
+    <input id="etpTemplate_设备资料Tab_trvLand_SelectedNode" name="etpTemplate_设备资料Tab_trvLand_SelectedNode"
+        type="hidden" value="" />
+    <input id="etpTemplate_设备资料Tab_trvLand_ScrollData" name="etpTemplate_设备资料Tab_trvLand_ScrollData"
+        type="hidden" value="0,0" />
 
-        <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+      <script type="text/javascript">
+        //<![CDATA[
+            window.ComponentArt_Init_etpTemplate_设备资料Tab_trvLand = function() {
+            if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_设备资料Tab_trvLand'))
+                {setTimeout('ComponentArt_Init_etpTemplate_设备资料Tab_trvLand()', 100); return; }
 
-        <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+            window.etpTemplate_设备资料Tab_trvLand = new ComponentArt_TreeView('etpTemplate_设备资料Tab_trvLand', ComponentArt_Storage_etpTemplate_设备资料Tab_trvLand);
+            etpTemplate_设备资料Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$设备资料Tab$trvLand','') };
+            if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_设备资料Tab_trvLand; etpTemplate_设备资料Tab_trvLand.GlobalAlias = 'trvLand'; }
+            etpTemplate_设备资料Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:设备资料Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+            etpTemplate_设备资料Tab_trvLand.Initialize('etpTemplate_设备资料Tab_trvLand');
 
-        <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+            window.etpTemplate_设备资料Tab_trvLand_loaded = true;
+        }
+        ComponentArt_Init_etpTemplate_设备资料Tab_trvLand();
+        var myTree = new Tree(etpTemplate_设备资料Tab_trvLand,'设备资料Tab');
+        //]]>
+      </script>
 
-        <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+  </fieldset>
+  <fieldset style="float: right; width: 78%; height: 95%; padding-right: 8px; padding-left: 8px;
+      padding-bottom: 9px; padding-top: 8px;">
+      <legend>基本信息： 
+          <a class="linkbtn_0" href="#" onclick="_save();">
+              <img border="0" src="Images/savesmall.gif" />&nbsp;保存&nbsp;</a> 
+          <a class="linkbtn_0" href="#" onclick="ms_close()">
+              <img border="0" src="Images/door_out.gif" />&nbsp;关闭&nbsp;</a> 
+      </legend>
+      <br />
+      <div id="divDoor1" style="text-align: left; width: 100%">
+      </div>
+      <div id="divDoor2" style="text-align: left; width: 90%">
+      </div>
+      <div id="divDoor3" style="text-align: left; width: 90%">
+      </div>
+      <div id="divShowKZB">
+          <fieldset style="padding: 5px; width: 100%; height: 10%">
+              <legend id="tbars" style="margin-bottom: 5"></legend>
+              <div id="divKzb" style="text-align: left; width: 90%">
+              </div>
+              <div id="divKzbDoor" style="text-align: left; width: 90%">
+              </div>
+          </fieldset>
+      </div>
+      <div id="divShowTime" style="width: 100%; height: 60%">
+          <fieldset style="padding: 5px; width: 100%; height: 60%">
+              <legend id="tTimebars" style="margin-bottom: 5"></legend>
+              <a id="btsearch" class="linkbtn_0" href="#" onclick="searchUDP()" style="margin-bottom: 5">
+                  <img border="0" src="Images\Search_ico_8.gif" />&nbsp;搜索门禁&nbsp;
+              </a> 
+              <a id="A1" class="linkbtn_0" href="#" onclick="searchUDP(true)" style="margin-bottom: 5">
+                  <img border="0" src="Images\Search_ico_8.gif" />&nbsp;搜索考勤机&nbsp;
+              </a> 
+              <a id="A2" class="linkbtn_0" href="#" onclick="setIPznet()" style="margin-bottom: 5">
+                  <img border="0" src="Images\Search_ico_8.gif" />&nbsp;修改IP信息&nbsp;
+              </a>
+              <div id="dvob" style="width: 100%; height: 97%; margin-top: 5">
+              </div>
+          </fieldset>
+      </div>
+  </fieldset>
 
-        <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
-
-        <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
-
-        <script type="text/javascript">
-          //<![CDATA[
-                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_设备资料Tab_trvLand ***/
-                    window.ComponentArt_Storage_etpTemplate_设备资料Tab_trvLand = null;
-                    //]]>
-        </script>
-
-        <div style="position: absolute; top: 0px; left: 0px; visibility: hidden;">
-            <img src="images/exp.gif" width="0" height="0" alt="" />
-            <img src="images/col.gif" width="0" height="0" alt="" />
-        </div>
-        <div id="etpTemplate_设备资料Tab_trvLand" class="TreeView" style="height: 95%; width: 123%;
-            overflow-y: auto;" onclick="if(window.etpTemplate_设备资料Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_设备资料Tab_trvLand);"
-            onmouseover="if(window.etpTemplate_设备资料Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_设备资料Tab_trvLand);">
-        </div>
-        <input id="etpTemplate_设备资料Tab_trvLand_Data" name="etpTemplate_设备资料Tab_trvLand_Data"
-            type="hidden" />
-        <input id="etpTemplate_设备资料Tab_trvLand_Properties" name="etpTemplate_设备资料Tab_trvLand_Properties"
-            type="hidden" />
-        <input id="etpTemplate_设备资料Tab_trvLand_SelectedNode" name="etpTemplate_设备资料Tab_trvLand_SelectedNode"
-            type="hidden" value="" />
-        <input id="etpTemplate_设备资料Tab_trvLand_ScrollData" name="etpTemplate_设备资料Tab_trvLand_ScrollData"
-            type="hidden" value="0,0" />
-
-        <script type="text/javascript">
-          //<![CDATA[
-                    window.ComponentArt_Init_etpTemplate_设备资料Tab_trvLand = function() {
-                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_设备资料Tab_trvLand'))
-                        {setTimeout('ComponentArt_Init_etpTemplate_设备资料Tab_trvLand()', 100); return; }
-
-                    window.etpTemplate_设备资料Tab_trvLand = new ComponentArt_TreeView('etpTemplate_设备资料Tab_trvLand', ComponentArt_Storage_etpTemplate_设备资料Tab_trvLand);
-                    etpTemplate_设备资料Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$设备资料Tab$trvLand','') };
-                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_设备资料Tab_trvLand; etpTemplate_设备资料Tab_trvLand.GlobalAlias = 'trvLand'; }
-                    etpTemplate_设备资料Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:设备资料Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
-                    etpTemplate_设备资料Tab_trvLand.Initialize('etpTemplate_设备资料Tab_trvLand');
-
-                    window.etpTemplate_设备资料Tab_trvLand_loaded = true;
-                }
-                ComponentArt_Init_etpTemplate_设备资料Tab_trvLand();
-                var myTree = new Tree(etpTemplate_设备资料Tab_trvLand,'设备资料Tab');
-                //]]>
-        </script>
-
-    </fieldset>
-    <fieldset style="float: right; width: 78%; height: 95%; padding-right: 8px; padding-left: 8px;
-        padding-bottom: 9px; padding-top: 8px;">
-        <legend>基本信息： <a class="linkbtn_0" href="#" onclick="_save();">
-            <img border="0" src="Images/savesmall.gif" />&nbsp;保存&nbsp;</a> <a class="linkbtn_0"
-                href="#" onclick="ms_close()">
-                <img border="0" src="Images/door_out.gif" />&nbsp;关闭&nbsp;</a> </legend>
-        <br />
-        <div id="divDoor1" style="text-align: left; width: 100%">
-        </div>
-        <div id="divDoor2" style="text-align: left; width: 90%">
-        </div>
-        <div id="divDoor3" style="text-align: left; width: 90%">
-        </div>
-        <div id="divShowKZB">
-            <fieldset style="padding: 5px; width: 100%; height: 10%">
-                <legend id="tbars" style="margin-bottom: 5"></legend>
-                <div id="divKzb" style="text-align: left; width: 90%">
-                </div>
-                <div id="divKzbDoor" style="text-align: left; width: 90%">
-                </div>
-            </fieldset>
-        </div>
-        <div id="divShowTime" style="width: 100%; height: 60%">
-            <fieldset style="padding: 5px; width: 100%; height: 60%">
-                <legend id="tTimebars" style="margin-bottom: 5"></legend><a id="btsearch" class="linkbtn_0"
-                    href="#" onclick="searchUDP()" style="margin-bottom: 5">
-                    <img border="0" src="Images\Search_ico_8.gif" />&nbsp;搜索门禁&nbsp;</a> <a id="A1" class="linkbtn_0"
-                        href="#" onclick="searchUDP(true)" style="margin-bottom: 5">
-                        <img border="0" src="Images\Search_ico_8.gif" />&nbsp;搜索考勤机&nbsp;</a> <a id="A2"
-                            class="linkbtn_0" href="#" onclick="setIPznet()" style="margin-bottom: 5">
-                            <img border="0" src="Images\Search_ico_8.gif" />&nbsp;修改门禁IP&nbsp;</a>
-                <div id="dvob" style="width: 100%; height: 97%; margin-top: 5">
-                </div>
-            </fieldset>
-        </div>
-    </fieldset>
-
-    <script type="text/javascript" charset="gb2312">ue_initsetup("设备资料")</script>
+  <script type="text/javascript" charset="gb2312">ue_initsetup("设备资料")</script>
 
 </body>
 </html>

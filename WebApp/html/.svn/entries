@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/WebApp/html
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/WebApp/html
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -1632,20 +1632,15 @@ admin
 
 doorDeleteList.htm
 file
+6
 
 
 
-
-2013-04-22T08:29:30.703125Z
-74a89a2332d8e94da4734c0816c2beb0
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
+2013-05-07T02:06:21.546875Z
+c55d5658fc552749db8ac11386cb624e
+2013-05-15T09:20:53.074125Z
+6
+WBin
 
 
 
@@ -1662,7 +1657,12 @@ admin
 
 
 
-6008
+
+
+
+
+
+6006
 
 options.htm
 file
@@ -3335,20 +3335,15 @@ admin
 
 DoorManager.htm
 file
+6
 
 
 
-
-2013-04-22T08:29:31.078125Z
-cfdcfc72c47d7f45a830307ba6411417
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
+2013-04-26T03:23:27.031250Z
+d6ccb129e4059cf81db5992b9ed433b0
+2013-05-15T09:20:53.074125Z
+6
+WBin
 
 
 
@@ -3365,7 +3360,12 @@ admin
 
 
 
-24992
+
+
+
+
+
+24180
 
 doorread.htm
 file
@@ -3712,20 +3712,15 @@ admin
 
 卡片管理.htm
 file
+6
 
 
 
-
-2013-04-22T08:29:31.187500Z
-cb8ec651cc2c1879e0f1498947abc550
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
+2013-05-11T02:34:39.984375Z
+3f08e037c1edc2b4a393d73853b33452
+2013-05-15T09:20:53.074125Z
+6
+WBin
 
 
 
@@ -3742,7 +3737,12 @@ admin
 
 
 
-29090
+
+
+
+
+
+30733
 
 parkTime.htm
 file
@@ -3916,20 +3916,15 @@ admin
 
 doorRightQuery.htm
 file
+6
 
 
 
-
-2013-04-22T08:29:31.250000Z
-8edf4f5a7e023e5d78f6e8ccec7851b7
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
+2013-05-06T08:15:37.812500Z
+0780ea7edcbe873524a8046c6feaef45
+2013-05-15T09:20:53.074125Z
+6
+WBin
 
 
 
@@ -3946,7 +3941,12 @@ admin
 
 
 
-6968
+
+
+
+
+
+7012
 
 SelectDataItem.htm
 file
@@ -3984,20 +3984,15 @@ admin
 
 ParkManager.htm
 file
+6
 
 
 
-
-2013-04-22T08:29:31.281250Z
-2f5b4eb6b25654487d008a8216a5b929
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
+2013-04-26T09:22:27.265625Z
+13c46ef4be6670d0a65892c8457255ec
+2013-05-15T09:20:53.074125Z
+6
+WBin
 
 
 
@@ -4014,7 +4009,12 @@ admin
 
 
 
-22681
+
+
+
+
+
+21681
 
 ParkUserRight.htm
 file

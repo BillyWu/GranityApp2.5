@@ -1,0 +1,194 @@
+<PUBLIC:ATTACH EVENT="onkeydown" ONEVENT="usEnterTab()" />
+<PUBLIC:ATTACH EVENT="onblur" ONEVENT="msOnBlurHandle()" />
+<PUBLIC:ATTACH EVENT="onfocus" ONEVENT="msOnFocusHandle()" />
+<PUBLIC:ATTACH EVENT="onclick" ONEVENT="msOnClickHandle()" />
+<PUBLIC:ATTACH EVENT="ondblclick" ONEVENT="msOnDblClickHandle()" />
+<PUBLIC:ATTACH EVENT="onchange" ONEVENT="msOnChangeHandle()" />
+<PUBLIC:ATTACH EVENT="onpropertychange" ONEVENT="msOnPropertyChangeHandle()" />
+
+<SCRIPT language=javascript>
+//enter changed tab
+function usEnterTab()
+{
+	if(event.keyCode!=13)	return;
+	var	ls_rule=event.srcElement.name;
+	if(ls_rule.length<1)	{event.keyCode=9;return;}
+	var	lsa_rules=ls_rule.split(";");
+	if(lsa_rules[0].toLowerCase()=="last")
+		if(lsa_rules[1])
+			{msOnBlurHandle();usNextRowStart(lsa_rules[1]);return;}
+	event.keyCode=9;
+}
+function msOnFocusHandle()
+{
+	if(event.srcElement.className.toLowerCase()=="inputdate")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy-mm-dd";
+		calendar();	//showCalendar(event.srcElement.id,"y-m-d");
+	}
+	if(event.srcElement.className.toLowerCase()=="inputym")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy-mm";
+		calendar();	//showCalendar(event.srcElement.id,"y-m");
+	}
+	if(event.srcElement.className.toLowerCase()=="inputyy")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy";
+		calendar();	//showCalendar(event.srcElement.id,"y-m");
+	}	
+}
+
+function msOnDblClickHandle()
+{
+	if(event.srcElement.className.toLowerCase()=="inputdate")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy-mm-dd";
+		calendar();	//showCalendar(event.srcElement.id,"y-m-d");
+	}
+	if(event.srcElement.className.toLowerCase()=="inputym")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy-mm";
+		calendar();	//showCalendar(event.srcElement.id,"y-m");
+	}
+	if(event.srcElement.className.toLowerCase()=="inputyy")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy";
+		calendar();	//showCalendar(event.srcElement.id,"y-m");
+	}	
+}
+
+function msOnPropertyChangeHandle()
+{
+	if(event.srcElement.tagName.toLowerCase()!="input")
+		return;
+	if(event.srcElement.className.toLowerCase()!="inputfile")
+		return;
+	var ctrlID="";
+	ctrlID=event.srcElement.parentElement.id;
+}
+
+function msOnClickHandle()
+{
+	if(event.srcElement.className.toLowerCase()=="inputbtn"){
+		var id=event.srcElement.id;
+		if(id=="") id=event.srcElement.name;
+		switch(id.toLowerCase())
+		{
+		    case "增加":
+		    case "add":	ue_add("");
+					    break;
+		    case "增加0":
+		    case "add0":	ue_add("0");
+					    break;
+		    case "增加1":
+		    case "add1":
+		    case "addsub":	ue_add("1");
+					    break;
+		    case "删除":
+		    case "del":	ue_delete("");
+					    break;
+		    case "删除0":
+		    case "del0":	ue_delete("0");
+					    break;
+		    case "删除1":
+		    case "del1":	ue_delete("1");
+					    break;
+		    case "保存":
+		    case "save":ue_save("");
+					    break;
+		    case "保存0":
+		    case "save0":ue_save(0);
+					    break;
+		    case "保存1":
+		    case "save1":ue_save(1);
+					    break;
+		}
+	}
+    var otype= event.srcElement.type;
+    var band = $band(event.srcElement);
+    if(!band) return;
+    if(otype=="checkbox")
+    {
+        msOnBlurHandle();
+        if(event.srcElement.checked==true)
+            band.setFldStrValue(null,event.srcElement.id,"1");
+        else
+            band.setFldStrValue(null,event.srcElement.id,"0");
+    }
+    if(otype=="radio")
+    {
+        msOnBlurHandle();
+        var names = document.getElementsByName(event.srcElement.name);
+        if(names.length==0)
+        {
+            //调用common.js中的
+            names= msgetElementsByName(event.srcElement,event.srcElement.name);
+            for(var i=0;i<names.length;i++)
+            {
+                if(names[i].checked == true)
+                {
+                    band.setFldStrValue(null,names[i].name,names[i].msvalue);
+                    break;
+                }
+            }
+        }
+    }	
+}
+
+//input control onblur
+//div包个文件控件,事件源是文件控件
+function msOnBlurHandle()
+{
+    if(event.srcElement.className.toLowerCase()=="inputbtn") return; //加入判断，如果是inputbtn刚，不处理相关的操作	
+	var ctrlID="";
+	if(null!=event.srcElement.type && event.srcElement.type.toLowerCase()=="file")
+		ctrlID=event.srcElement.parentElement.id;
+	else
+		ctrlID=event.srcElement.id;
+}
+
+function $band(obj)
+{
+    if(!obj) return null;
+    var band;
+    if(obj.id.indexOf(".")>-1)
+        band = obj.document.UnitItem.getBandById(obj.id.split(".")[0]);
+    return band;
+}
+function msOnChangeHandle()
+{
+    var band = $band(event.srcElement);
+    if(!band) return;
+    if((event.srcElement.tagName.toLowerCase()=="input" && event.srcElement.type.toLowerCase()=="text") ||
+        event.srcElement.tagName.toLowerCase()=="select")
+    {
+        msOnBlurHandle();
+        var ctrlID=event.srcElement.id;
+        var otype= event.srcElement.type;
+        if(otype=="checkbox")
+        {
+            if(event.srcElement.checked==true)
+                band.setFldStrValue(null,ctrlID,"1");
+            else
+                band.setFldStrValue(null,ctrlID,"0");
+        }
+        else
+        {
+	        msOnBlurHandle();
+	        var ctrlID=event.srcElement.id;
+	        if(band.getFldStrValue(ctrlID)!=event.srcElement.value)
+	            band.setFldStrValue(null,ctrlID,event.srcElement.value);
+	    }
+	}
+}
+function usOnClickHandle()
+{
+	open(event.srcElement.src,"_blank");
+}
+</SCRIPT>

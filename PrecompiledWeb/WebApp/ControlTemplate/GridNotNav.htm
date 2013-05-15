@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<table class="smartGrid" cellpadding="0" cellSpacing="0" width="100%" tabType="grid">
+	<tbody>
+		<tr>
+			<td divtype="body" colspan="2">
+				<div divtype="title" align="left" style="OVERFLOW:hidden">
+					<table tabType="title" class="tabTitle" cellpadding="0" cellSpacing="0">
+						<thead>
+							<tr rowType="title">
+								<td tdType="rowcursor" class="headerCellStyle" align="center" width="40" height="22" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+									<span width="100%" height="100%" colname="">序号</span>
+								</td>
+								<td tdType="coltitle" class="headerCellStyle" align="center" colname="" datatype="" width="120" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+									<span width="100%" height="100%" colname="">列标题</span>
+								</td>
+								<td class="headerCellStyle" align="center" width="16" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+									<span width="100%" height="100%" colname="">　</span>
+								</td>
+							</tr>
+						</thead></table>
+				</div>
+				<div divtype="detail" style="OVERFLOW:scroll" onscroll="GridUtil.usOnScrollHori();">
+					<table tabType="detail" class="tabDetail" cellpadding="0" cellSpacing="0" onmousemove="GridUtil.usOnDetailMouseOverHandle();" onmouseout="GridUtil.usOnDetailMouseOutHandle();">
+						<thead>
+							<tr rowType="edit" style="DISPLAY:none">
+								<td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="strcenter" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="string" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="date" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="center" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="date" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" /></td>
+								<td datatype="int" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="int" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="bool" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="center" width="120"><input type="checkbox" colname="" datatype="bool" class="gridcheck" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" /></td>
+								<td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="decimal" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="select" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" width="120"><input style="WIDTH:100%;HEIGHT:100%" type="text" colname="" datatype="select" class="gridbrowse" optype="disp" onkeydown="GridUtil.usOnCellEnterTab();" onfocus="GridUtil.usOnCellFocusHandle();" />
+									<select style="DISPLAY:none;WIDTH:100%;HEIGHT:100%" colname="" datatype="select" DataSource="testsel" DataTextField="第一季" DataValueField="年份" class="gridselect" optype="edit" onkeydown="GridUtil.usOnCellEnterTab();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();">
+									</select>
+								</td>
+								<td datatype="stringbtn" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="120">
+									<input style="WIDTH:85%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" />
+									<input type="button" optype="edit" onclick="GridUtil.usOnCellBtnClickHandle();" class="gridselbtn" style="DISPLAY:none;WIDTH:15%;HEIGHT:90%" value="..." />
+								</td>
+								<td datatype="selectbtn" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" width="120"><input style="WIDTH:100%;HEIGHT:100%" type="text" colname="" datatype="select" class="gridbrowse" optype="disp" onkeydown="GridUtil.usOnCellEnterTab();" onfocus="GridUtil.usOnCellFocusHandle();" />
+									<select style="DISPLAY:none;WIDTH:85%;HEIGHT:100%" colname="" datatype="select" DataSource="testsel" DataTextField="第一季" DataValueField="年份" class="gridselect" optype="edit" onkeydown="GridUtil.usOnCellEnterTab();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();">
+									</select><input type="button" optype="edit" onclick="GridUtil.usOnCellBtnClickHandle();" class="gridselbtn" style="DISPLAY:none;WIDTH:15%;HEIGHT:90%" value="..." />
+								</td>
+								<td datatype="alink" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="center" width="120"><a href="#" valuefld="" style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" class="gridlink"><div datatype="alink" colname="" onclick="GridUtil.usOnCellLinkClickHandle();">链接</div></a></td>
+								<td datatype="blink" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="center" width="120" valign="middle">
+									<a href="#" datatype="blink" valuefld="" target="_blank" onclick="" class="gridlink">
+									<div datatype="blink" colname="">链接</div></a>
+									</td>
+								<td datatype="img" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="center" width="120"><img border="2" STYLE="cursor:hand;WIDTH:90%;HEIGHT:40;border-color:red blue yellow green" datatype="img" colname="" class="gridbrowse" onclick="GridUtil.usOnCellImgClickHandle();" /></td>
+							</tr>
+							<tr rowType="readonly" style="DISPLAY:none">
+								<td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="strcenter" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="string" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="date" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="center" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="date" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" /></td>
+								<td datatype="int" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="right" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="int" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="bool" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="center" width="120"><input type="checkbox" colname="" datatype="bool" class="gridcheck" onkeydown="GridUtil.usOnCellEnterTab();" onfocus="GridUtil.usOnCellRFocusHandle();" readonly="true" disabled="true" /></td>
+								<td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="right" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="decimal" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="select" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="select" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" />	</td>
+								<td datatype="alink" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="center" width="120"><a href="#" valuefld="" style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" class="gridlink"><div datatype="alink" colname="" onclick="GridUtil.usOnCellLinkClickHandle();">链接</div></a></td>
+								<td datatype="blink" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="center" width="120"><a href="#" datatype="blink" valuefld="" target="_blank" onclick="" style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" class="gridlink"><div datatype="blink" colname="">链接</div></a></td>
+								<td datatype="img" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="center" width="120"><img border="2" STYLE="cursor:hand;WIDTH:90%;HEIGHT:100;border-color:red blue yellow green" datatype="img" colname="" class="gridbrowse" onclick="GridUtil.usOnCellImgClickHandle();" /></td>
+								<td datatype="stringbtn" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="120">
+									<input style="WIDTH:85%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" onblur="GridUtil.usOnCellBlurHandle();" />
+									<input type="button" optype="edit" onclick="GridUtil.usOnCellBtnClickHandle();" class="gridselbtn" style="DISPLAY:none;WIDTH:15%;HEIGHT:90%" value="..." />
+								</td>
+								<td datatype="selectbtn" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" width="120">
+									<input style="WIDTH:85%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="select" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" onblur="GridUtil.usOnCellBlurHandle();" />
+									<input type="button" optype="edit" onclick="GridUtil.usOnCellBtnClickHandle();" class="gridselbtn" style="DISPLAY:none;WIDTH:15%;HEIGHT:90%" value="..." />
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr rowType="detail">
+								<td tdType="rowcursor" class="rowCursorStyle" align="center" width="40" onclick="GridUtil.usOnRowcursorClickHandle()"><span datafld="RowNum"></span></td>
+								<td tdType="coldata"><span width="100%" height="100%">明细数据</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<table tabType="foot" class="tabDetail" cellpadding="0" cellSpacing="0">
+						<tbody>
+							<tr rowType="foot">
+								<td class="headerCellStyle" align="center" width="40px" height="22px">
+									<span width="100%" height="100%">合计</span>
+								</td>
+								<td tdType="coldata" class="headerCellStyle" width="120" align="right"><span width="100%" height="100%" colname="">　</span>
+									</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	<tbody>
+	<tr>
+		<td class="buttonCellStyle" width="17%" height="18" align="left" valign="top"><div id="msviLocalToolbar" align="center" style="width: 31px; height: 30px">
+			<table border="0" width="20" cellpadding="0" style="border-collapse: collapse" id="table1">
+				<tbody>
+				<tr>
+					<td class="lt0" onmouseover="mhHover('msviLocalToolbar', 0, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 0, 'lt0')" align="center">
+					<img border="0" onclick="ue_savewidth();" src="Images/grid/width.ico" alt="保存调节后的表格宽度" />
+					</td>
+				</tr>
+			</tbody>
+			</table>
+			</div></td>
+		<td class="buttonCellStyle" height="18" align="center" valign="middle" width="83%" style="font-size: 10pt; font-family: 宋体"><img border="0" title="查找" src="Images/Monochrome%20Subscriptions.ico" onmouseover="this.src='Images/Monochrome Subscriptions.ico'" onmouseout="this.src='Images/Monochrome Subscriptions.ico'" />
+		<input type="text" name="T1" size="17" onfocus="this.nextSibling.value='查找'" />
+		<input type="button" class="gridbtn" value="查找" name="B3" onclick="ue_bandsearch(this.previousSibling.value,'下一个'==this.value);this.value='下一个';" style="width: 60" /></td>
+		
+	</tr>
+</tbody>
+</table>

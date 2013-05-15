@@ -1,0 +1,50 @@
+.plTitleSelect
+{
+border-right: #999999 1px solid;
+border-top: #999999 1px solid;
+font-size: 12px;
+border-left: #999999 1px solid;
+cursor: hand;
+border-bottom: #999999 0px solid;
+background-color: #ffffff;
+text-align: center;
+}
+.plTitleUnSelect
+{
+border-right: #999999 1px solid;
+border-top: #999999 1px solid;
+font-size: 12px;
+border-left: #999999 1px solid;
+cursor: hand;
+border-bottom: #999999 1px solid;
+background-color: #ececec;
+text-align: center;
+}
+.plTitleSpace
+{
+font-size: 12px;
+border-bottom: #999999 1px solid;
+text-align: center;
+}
+.plPanelSelect
+{
+border-right: #999999 1px solid;
+border-top: #999999 0px solid;
+display: block;
+font-size: 12px;
+border-left: #999999 1px solid;
+border-bottom: #999999 1px solid;
+background-color: #ffffff;
+behavior: url(panel.htc);
+}
+.plPanelUnSelect
+{
+border-right: #999999 1px solid;
+border-top: #999999 0px solid;
+display: none;
+font-size: 12px;
+border-left: #999999 1px solid;
+border-bottom: #999999 1px solid;
+background-color: #ffffff;
+behavior: url(panel.htc);
+}

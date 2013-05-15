@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/winTools/bin/Debug
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/winTools/bin/Debug
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -28,14 +28,14 @@ b7a1bd86-2f50-7044-aac2-f90e8b3b5af3
 
 Estar.Business.DataManager.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.671875Z
-aed00e3bee633ab30855d266026b5acf
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:25.022101Z
+7f4cfb64a6f13de6a12bb1e4e080b796
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -58,18 +58,18 @@ has-props
 
 
 
-38400
+36352
 
 ComLib.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.484375Z
-89d34eb67adba860197f0b1821dc7ae6
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.740851Z
+f1b929d983403fb9c4651349d667c2e7
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -130,14 +130,14 @@ has-props
 
 Estar.DataAccess.OleDbDataAccess.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.906250Z
-77721c2283414cbc295abb77b4150cc7
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.600226Z
+2dfaf32969db0a427188582341e5b7cd
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -232,14 +232,14 @@ admin
 
 Estar.Business.DataManager.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.765625Z
-00aeaf80a5073dc3468e04bdc5cac015
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:25.100226Z
+01293dfb169b11381e58fd213451c61b
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -266,14 +266,14 @@ has-props
 
 Estar.DataAccess.DataAccessInterface.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.562500Z
-a7f6a3023cae150cbbe712cb844376c9
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.193976Z
+ed0828c576e0d185c9ce05a0d76f7e51
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -300,14 +300,14 @@ has-props
 
 Estar.Business.UserRight.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.015625Z
-0ea26c3198e2d7f611b37fe34b0bf008
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:41:44.453125Z
+0f0992fb751d5c67e846976d748aba0d
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -368,14 +368,14 @@ admin
 
 Estar.DataAccess.DataAccessInterface.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.656250Z
-da6c5324144489633d3aecb0f9ab1b86
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.287726Z
+a5eaf57b13a9edbc2da4ed0b71141b02
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -402,14 +402,14 @@ has-props
 
 Estar.Business.UserRight.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.093750Z
-2c9d1783706af6b81b68df2fa40cb4d6
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:41:44.578125Z
+e76709e8e5c164b8e689d3d9d9ecbe6e
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -504,14 +504,14 @@ has-props
 
 Granity.winTools.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:08.484375Z
-1b438c762731a2ff6ac90e22ffe62187
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:41:47.078125Z
+3e0fff5458a8c7e948f09555c59f1057
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -534,18 +534,18 @@ has-props
 
 
 
-136704
+138752
 
 Granity.winTools.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:08.593750Z
-1b36f7420a594e1bd7f27aeefc25748f
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:41:47.171875Z
+8caf6e782f4b0296a87f4c5ef946b242
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -606,14 +606,14 @@ has-props
 
 Granity.communications.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.656250Z
-e8ff4deb8442dcc0bd8d85657a6b5bc7
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.381476Z
+b48f3714ae7d5756ae30bfd003cc88f5
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -636,18 +636,18 @@ has-props
 
 
 
-187904
+175616
 
 Estar.Common.Tools.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.281250Z
-d92df117a96d59f376c5b52d27d93a9b
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:22.850226Z
+25c680fd067521bffb683dcd83d9f8f7
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -670,7 +670,7 @@ has-props
 
 
 
-153088
+144896
 
 Oracle.DataAccess.dll
 file
@@ -810,14 +810,14 @@ has-props
 
 Granity.communications.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.750000Z
-62d0c51719e33a4dd851d7249b2c34e3
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.459601Z
+6711431b37ca8ff1f46044b717d10e0f
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -844,14 +844,14 @@ has-props
 
 Estar.Common.Tools.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.375000Z
-b3f8357c88ac8561113924647a4cb039
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:22.959601Z
+300bf7c04a3a33ceec18ab1d3e0ef8f1
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -878,14 +878,14 @@ has-props
 
 Estar.DataAccess.OdpNetDataAccess.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.328125Z
-cde1133a67d431142d340b096f5b59da
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.037726Z
+174053cec66523eb36f323515623360a
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -912,14 +912,14 @@ has-props
 
 Estar.DataAccess.SqlClientDataAccess.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.078125Z
-a6817c60113558ab48a363911a794f06
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.787726Z
+5b0971c1ac1436a2fc4b8f9e77c44743
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -942,18 +942,18 @@ has-props
 
 
 
-83456
+81408
 
 Estar.DataAccess.OdpNetDataAccess.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.421875Z
-ce41930cd58d6c972b58dac13610c294
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.131476Z
+a927aa156d96084f505c1756a9d248c1
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -1082,14 +1082,14 @@ admin
 
 Estar.DataAccess.SqlClientDataAccess.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.171875Z
-b99a9f408472c458730c168cbbb1c3a8
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.865851Z
+fd36dd7fc86e4b4eaf1afa6432877cce
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -1252,14 +1252,14 @@ admin
 
 ComLib.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.390625Z
-0480bec503d8fc5dcb9e3692163b6379
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.662726Z
+bbe27f3b9da9434171eced66403dddb5
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -1282,7 +1282,7 @@ has-props
 
 
 
-136704
+132608
 
 Estar.Business.DataManager.xml
 file
@@ -1320,14 +1320,14 @@ admin
 
 Estar.DataAccess.OleDbDataAccess.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.828125Z
-886b1dfd215288f3cf89bd02c2ff3ae2
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.522101Z
+9346b617bc364e64c6e9d7988bea2155
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -1350,5 +1350,5 @@ has-props
 
 
 
-77312
+75264
 

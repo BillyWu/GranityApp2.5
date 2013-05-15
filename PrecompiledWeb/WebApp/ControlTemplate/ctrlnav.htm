@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<table cellpadding="0" cellSpacing="0" width="100%" tabType="grid" bgcolor="">
+	<tbody>
+		<tr>
+			<td divtype="body">
+				<div divtype="title" align="left" style="OVERFLOW:hidden">
+					<table tabType="title" cellpadding="0" cellSpacing="0" bgcolor="">
+						<thead>
+							<tr rowType="title">
+								<td tdType="rowcursor" bgcolor="" align="center" width="40" height="22" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();" onclick="us_tablepro()">
+									<span width="100%" height="100%" colname="">序号</span>
+								</td>
+								<td tdType="coltitle" align="center" colname="" datatype="" width="120" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+									<span width="100%" height="100%" colname="">列标题</span>
+								</td>
+								<td align="center" width="16" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+									<span width="100%" height="100%" colname="">　</span>
+								</td>
+							</tr>
+						</thead></table>
+				</div>
+				<div divtype="detail" style="" onscroll="GridUtil.usOnScrollHori();">
+					<table tabType="detail" cellpadding="0" cellSpacing="0" onmousemove="GridUtil.usOnDetailMouseOverHandle();" onmouseout="GridUtil.usOnDetailMouseOutHandle();">
+						<thead>
+							<tr rowType="edit" style="DISPLAY:none">
+								<td datatype="string" align="left" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="string" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="strcenter" align="left" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="string" colname="" class="warmbrowser" readonly="true"  /></td>
+								<td datatype="strredcenter" align="left" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center;color:Red;" type="text" datatype="string" colname="" class="warmbrowser" readonly="true"  /></td>
+								<td datatype="date" align="center" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="date" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="int" align="right" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="int" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="bool" align="center" width="120" discolor="true"><input type="checkbox" colname="" datatype="bool" class="gridcheck" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" disabled="true" /></td>
+								<td datatype="decimal" align="right" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="decimal" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="select" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="select" colname="" class="warmbrowser" readonly="true" />	</td>
+								<td datatype="img" align="center" width="100" discolor="true"><img border="2" STYLE="cursor:hand;WIDTH:90%;HEIGHT:100;border-color:red blue yellow green" datatype="img" colname="" class="warmbrowser" /></td>
+								<td datatype="alink" align="center" width="100" discolor="true"><a href="#" valuefld="" style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" class="gridlink"><div datatype="alink" colname="" onclick="GridUtil.usOnCellLinkClickHandle();">链接</div></a></td>
+								<td datatype="blink" align="center" width="120" valign="middle" discolor="true">
+									<a href="#" datatype="blink" valuefld="" target="_blank" onclick="" class="gridlink">
+									<div datatype="blink" colname="">链接</div></a>
+									</td>
+								<td datatype="blinkimglt" align="center" width="120" valign="middle" discolor="true">
+									<a href="#" datatype="blinkimglt" valuefld="" target="_blank" onclick="" class="gridlinkred">
+									<img datatype="blinkimglt" colname="" border="2" STYLE="cursor:hand;border-color:red blue yellow green" class="warmbrowser" /></a>
+									</td>
+								<td datatype="stringbtn" align="left" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="selectbtn" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="select" colname="" class="warmbrowser" readonly="true" />	</td>
+							</tr>
+							<tr rowType="readonly" style="DISPLAY:none">
+								<td datatype="string" align="left" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="string" colname="" class="warmbrowser" readonly="true"  /></td>
+								<td datatype="strcenter" align="left" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="string" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="strredcenter" align="left" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center;color:Red;" type="text" datatype="string" colname="" class="warmbrowser" readonly="true"  /></td>
+								<td datatype="date" align="center" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" type="text" datatype="date" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="int" align="right" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="int" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="bool" align="center" width="120" discolor="true"><input type="checkbox" colname="" datatype="bool" class="gridcheck" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" disabled="true" /></td>
+								<td datatype="decimal" align="right" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="decimal" colname="" class="warmbrowser" readonly="true" /></td>
+								<td datatype="select" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="select" colname="" class="warmbrowser" readonly="true" />	</td>
+								<td datatype="img" align="center" width="100" discolor="true"><img border="2" STYLE="cursor:hand;WIDTH:90%;HEIGHT:100;border-color:red blue yellow green" datatype="img" colname="" class="warmbrowser" onclick="GridUtil.usOnCellImgClickHandle();" /></td>
+								<td datatype="alink" align="center" width="100" discolor="true"><a href="#" valuefld="" style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:center" class="gridlink"><div datatype="alink" colname="" onclick="GridUtil.usOnCellLinkClickHandle();">链接</div></a></td>
+								<td datatype="blink" align="center" width="120" valign="middle" discolor="true">
+									<a href="#" datatype="blink" valuefld="" target="_blank" onclick="" class="gridlink">
+									<div datatype="blink" colname="">链接</div></a>
+									</td>
+								<td datatype="blinkimglt" align="center" width="120" valign="middle" discolor="true">
+									<a href="#" datatype="blinkimglt" valuefld="" target="_blank" onclick="" class="gridlinkred">
+									<img datatype="blinkimglt" colname="" border="2" STYLE="cursor:hand;border-color:red blue yellow green" class="warmbrowser" /></a>
+									</td>
+								<td datatype="stringbtn" align="left" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="" class="warmbrowser" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" /></td>
+								<td datatype="selectbtn" width="120" discolor="true"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="select" colname="" class="warmbrowser" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" />	</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr rowType="detail">
+								<td tdType="rowcursor" align="center" width="40" onclick="GridUtil.usOnRowcursorClickHandle()"><span datafld="RowNum"></span></td>
+								<td tdType="coldata"><span width="100%" height="100%">明细数据</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<table tabType="foot" class="tabDetail" cellpadding="0" cellSpacing="0" bgcolor="">
+						<tbody>
+							<tr rowType="foot">
+								<td class="headerCellStyle" align="center" width="40px" height="22px">
+									<span width="100%" height="100%">合计</span>
+								</td>
+								<td tdType="coldata" class="headerCellStyle" width="120" align="right"><span width="100%" height="100%" colname="">　</span>
+									</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+		<td>
+		<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" bgcolor="">
+			<tbody>
+			<tr>
+				<td width="60%" align="center">　　　　　　　　　　　　　　　<input class="gridbtn" id="sysbtn" style="width:60;display:none" onclick="addbill();" type="button" value="起草" name="B9" /></td>
+				<td width="40%" divtype="funarea">
+				<DIV align="center" style="height:25px">页次:<input size="1" style="TEXT-ALIGN:right;" class="flatCellStyleK" name="lblCurrentPage" value="0" />/<input style="TEXT-ALIGN:left" class="flatCellStyleK" size="1" name="lblTotalPages" value="0" />总数<input name="lblRecordCount" size="1" style="TEXT-ALIGN:left" class="flatCellStyleK" value="0" />
+		<A title="首页" href="#" onclick="ue_bandcmd_nav('first')"><FONT face="webdings">9</FONT></A>
+		<A title="上一页" href="#" onclick="ue_bandcmd_nav('prev')"><FONT face="webdings">3</FONT></A>
+		<A title="下一页" href="#" onclick="ue_bandcmd_nav('next')"><FONT face="webdings">4</FONT></A>
+		<A title="最后一页" href="#" onclick="ue_bandcmd_nav('last')"><FONT face="webdings">:</FONT></A> 　转到: 
+		<select name="ddlPageIndex" size="1" class="tselect" onchange="ue_bandcmd_nav('jump',this.value);" style="width: 40"><option value="1" selected="true">1</option></select></DIV></td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+		</tr>
+	</tbody>
+	<tbody>
+</tbody>
+</table>

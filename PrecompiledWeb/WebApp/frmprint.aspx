@@ -1,0 +1,1 @@
+<%@ page language="c#" inherits="Estar.WebApp.frmprint, App_Web_yawaynrb" %>

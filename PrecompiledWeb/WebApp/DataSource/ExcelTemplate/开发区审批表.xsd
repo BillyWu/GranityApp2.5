@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/kfsp.xsd" elementFormDefault="qualified" 
+           xmlns="http://tempuri.org/kfsp.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" 
+           xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="tododvlocation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="单据编号" type="xs:string" />
+        <xs:element name="受理号" type="xs:string" />
+				<xs:element name="开发区" type="xs:string" />
+				<xs:element name="t1" type="xs:string" />
+				<xs:element name="t2" type="xs:string" />
+				<xs:element name="t3" type="xs:string" />
+				<xs:element name="项目名称" type="xs:string" />
+        <xs:element name="建设单位" type="xs:string" />
+        <xs:element name="建设地址" type="xs:string" />
+        <xs:element name="用地性质" type="xs:string" />
+				<xs:element name="建设规模" type="xs:string" />
+        <xs:element name="审批事项" type="xs:string" />
+        <xs:element name="重大事项" type="xs:string" />
+        <xs:element name="val" type="xs:string" />
+        <xs:element name="备注" type="xs:string" />
+        <xs:element name="事项类型" type="xs:string" />
+        <xs:element name="单据日期" type="xs:dateTime" msprop:format="yyyy-MM-dd"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="attach">
+		<xs:complexType>
+			<xs:sequence>
+        <xs:element name="单据编号" type="xs:string" />
+        <xs:element name="编号" type="xs:string" />
+        <xs:element name="材料名称" type="xs:string" />
+        <xs:element name="类型" type="xs:string"  />
+        <xs:element name="数量" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+  <xs:element name="flowopinion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="单据编号" type="xs:string"/>
+        <xs:element name="节点标题" type="xs:string"/>
+        <xs:element name="意见" type="xs:string"/>
+        <xs:element name="经办人" type="xs:string"/>
+        <xs:element name="时间" type="xs:dateTime" msprop:format="yyyy-MM-dd"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:annotation>
+		<xs:appinfo>
+			<msdata:Relationship msdata:parent="tododvlocation" msdata:child="attach" msdata:parentkey="单据编号" msdata:childkey="单据编号" />
+      <msdata:Relationship msdata:parent="tododvlocation" msdata:child="flowopinion" msdata:parentkey="单据编号" msdata:childkey="单据编号" />
+		</xs:appinfo>
+	</xs:annotation>
+</xs:schema>

@@ -1,0 +1,1 @@
+﻿<%@ page language="c#" inherits="Estar.WebApp.XMLSYSDB, App_Web_yawaynrb" %>

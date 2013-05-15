@@ -1,0 +1,64 @@
+<PUBLIC:PROPERTY NAME="ImagesSrc" />
+<PUBLIC:PROPERTY NAME="PanelCaption" />
+<PUBLIC:ATTACH   EVENT="ondocumentready"  HANDLER="DoInit"       />
+<PUBLIC:ATTACH   EVENT="onclick"  HANDLER="load" />
+<SCRIPT LANGUAGE="jscript">
+window.Panel=new Array();
+function DoInit(){
+ if (!element.document.getElementById("oPanelHeader")){
+  inithtml='<table height="31" cellSpacing="0" id="oPanelHeader" cellPadding="0" width="98%" border="0" align="center" >'+
+    '<tr>'+
+    ' <td class="plTitleSpace" width="1%" height="31">&nbsp;</td>'+
+    ' <td class="plTitleSelect" width="15%" height="31" isTitle="true">'+
+    '  <table style="FONT-SIZE: 12px" height="25">'+
+    '   <tr>'+
+    '    <td><IMG height="18" src="'+ImagesSrc+'" width="18"></td>'+
+    '    <td vAlign="bottom">'+PanelCaption+'</td>'+
+    '   </tr>'+
+    '  </table>'+
+    ' </td>'+
+    ' <td class="plTitleSpace" width="*%" height="31">&nbsp;</td>'+
+    '</tr>'+
+    '</table>';
+  element.insertAdjacentHTML("beforeBegin",inithtml);
+  oPanelHeader.attachEvent("onclick",oPanelHeaderClick);
+ }
+ else{
+  var rows=oPanelHeader.rows[0];
+  var cell=rows.insertCell(rows.cells.length-1);
+  cell.className="plTitleSpace"; 
+  cell.width="1%"; 
+  cell.innerHTML="&nbsp;"; 
+  var cell=rows.insertCell(rows.cells.length-1);
+  cell.className="plTitleUnSelect"; 
+  cell.isTitle="true";
+  cell.width="15%";  
+  cell.innerHTML= '<table style="FONT-SIZE: 12px" height="25">'+
+      ' <tr>'+
+      '  <td><IMG height="18" src="'+ImagesSrc+'" width="18"></td>'+
+      '  <td vAlign="bottom">'+PanelCaption+'</td>'+
+      ' </tr>'+
+      '</table>';        
+ }
+ window.Panel[window.Panel.length]=element;
+}
+function oPanelHeaderClick(){
+  var e = GetObj(window.event.srcElement);
+  if (e)
+     if (e.className=="plTitleUnSelect"){
+        for(i=0;i<window.Panel.length;i++){
+            window.Panel[i].className="plPanelUnSelect";
+            oPanelHeader.rows[0].cells[i*2+1].className="plTitleUnSelect";
+        }       
+        window.Panel[(e.cellIndex+1)/2-1].className="plPanelSelect";
+        e.className="plTitleSelect";
+     }
+}
+function GetObj(src){
+    if (src.parentElement.tagName!="BODY"){
+         if (src.isTitle=="true") return src;
+         return GetObj(src.parentElement)
+    }
+   return null;
+} 
+</script>

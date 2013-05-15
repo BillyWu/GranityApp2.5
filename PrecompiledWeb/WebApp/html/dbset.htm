@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
+	<title>修改数据库配置</title>
+	<link href="../index/dbset.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" src="../hmjs/sysjs/cookie.js" type="text/javascript" charset="gb2312"></script>	
+    <script language="javascript" src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>	
+    <script language="javascript" type="text/javascript">    
+<!--
+    function setfocus(keyCode)
+    {if(keyCode==13){
+          ctrl=document.getElementById("btOK_Click");
+          if(null==ctrl)	return;
+          ctrl.focus();ctrl.select();}}
+    function usLoadHandle()
+    {
+        if(!$("tbSvr")) return;
+        $("tbSvr").select();
+        $("tbSvr").focus();
+        var xmldata = _ajaxdom("querydb");
+        if(!xmldata || !xmldata.selectNodes("//table/svr") || xmldata.selectNodes("//table/svr").length==0) return;
+        $("tbSvr").value = xmldata.selectNodes("//table/svr")[0].text;
+        $("tbDb").value = xmldata.selectNodes("//table/userdb")[0].text;
+        $("tbsysdb").value = xmldata.selectNodes("//table/sysdb")[0].text;
+    }
+    function okserver()
+    {
+        if($("tbSvr").value=="") {alert("请输入服务器名称！");$("tbSvr").focus();return;}; 
+        if($("tbDb").value=="") {alert("请输入数据库名称 ！");$("tbDb").focus();return;};
+        if($("tbsysdb").value=="") {alert("请输入系统数据库名称 ！");$("tbsysdb").focus();return;};
+        if($("tbSa").value=="") {alert("请输入数据库登录名！");$("tbSa").focus();return;}; if($("tbPwd").value=="") {alert("请输入数据库密码 ！");$("tbPwd").focus();return;};
+        var strdata = " server="+$("tbSvr").value  +
+                  ";user id="+$("tbSa").value +
+                  ";password="+$("tbPwd").value+
+                  ";database="+$("tbDb").value+";Min Pool Size=10;Connection Lifetime=240;Connection Timeout=120;";
+        var xmldata = _ajaxdom("updatedb","@userdb="+strdata+",@sysdb="+$("tbsysdb").value);
+        alert(xmldata.selectNodes("//table/result")[0].text);
+    }
+    function _ajaxdom(cmd,strdata)
+    {
+        if(!cmd) {alert("未确定要执行的命令！请检查");return};
+        var xmlhttp = CreateHTTP();
+        xmlhttp.open("POST",ue_path()+"/xmldataset.aspx",false);
+        var xmlparams = new ActiveXObject("Microsoft.XMLDOM")
+        xmlparams.async=false;
+        if(!strdata) strdata="";
+        var strxml = '<?xml version="1.0" encoding="utf-8"?>'+
+                    '<all><command>'+cmd+'</command><data>'+strdata+'</data></all>';
+        xmlparams.loadXML(strxml);
+        xmlhttp.send(xmlparams);
+        xmldata = xmlhttp.responseXML.documentElement;
+        return xmldata;
+    }    
+    function ms_close(icase)
+    {
+        if(!icase){
+        var result = confirm("您关闭当前窗口吗？");
+        if(!result) return false}
+        try{parent.parent.openBusinessNav();return true}catch(e){window.onbeforeunload=null;window.close();return true}
+    }
+    function onCache(flag)
+    {
+        var xmldata = ue_ajaxdom(null,flag,null,null,true);
+        if(xmldata=="ok" && flag=="cache") alert("系统已被设置为高速模式!")
+        else alert("系统已被设置为正常模式!")
+    }
+    function iisreset()
+    {
+        var result = confirm("重启IIS前将导致所有使用该系统的用户暂时无法工作,确认吗？");
+        if(!result) return;
+        var xmlhttp = CreateHTTP();
+        xmlhttp.open("POST",ue_path()+"/xmliis.aspx",false);
+        xmlhttp.send(null);
+    }
+    function fTrim(str){return str.replace(/(^\s*)|(\s*$)/g, ""); }
+    function $( id ){return document.getElementById( id );}
+//-->
+</script>
+</head>
+<body scroll="no" onload="usLoadHandle()">
+<div style="height: 20px; width:100%;background-image: url('images/bg-shd.png');"></div>
+<div class="page" id="divPage">
+	<div class="content">
+		<div class="login">
+		    <h2 style="font-size:18px;color:#454545;margin:0 0 20px 3px;">修改数据库配置</h2>
+				<div class="fi">
+					<label class="lb100">服务器名称：</label>
+					<input id="tbSvr" name="tbSvr" onkeydown="if(event.keyCode==13) event.keyCode=9" 
+          class="ipt-t no-ime" onfocus="this.className+=' ipt-t-focus'" onblur="this.className='ipt-t no-ime'" 
+          tabindex="1"/>
+				</div>
+				<div class="fi">
+					<label class="lb100">数据库名称：</label>
+					<input id="tbDb" name="tbDb" onkeydown="if(event.keyCode==13) event.keyCode=9" 
+          class="ipt-t no-ime" onfocus="this.className+=' ipt-t-focus'" onblur="this.className='ipt-t no-ime'" 
+          tabindex="2"/>
+				</div>
+				<div class="fi">
+					<label class="lb100">系统库名称：</label>
+					<input id="tbsysdb" name="tbsysdb" onkeydown="if(event.keyCode==13) event.keyCode=9" 
+          class="ipt-t no-ime" onfocus="this.className+=' ipt-t-focus'" onblur="this.className='ipt-t no-ime'" 
+          tabindex="3"/>
+				</div>
+				<div class="fi">
+					<label class="lb100">登录名：</label>
+					<input id="tbSa" name="tbSa" onkeydown="if(event.keyCode==13) event.keyCode=9" 
+          class="ipt-t no-ime" onfocus="this.className+=' ipt-t-focus'" onblur="this.className='ipt-t no-ime'" 
+          tabindex="4"/>
+				</div>			
+				<div class="fi">
+					<label class="lb100">密　码：</label>
+					<input id="tbPwd" autocomplete="off" name="tbDb" onkeydown="if(event.keyCode==13) event.keyCode=9;" 
+					type="password" class="ipt-t" onfocus="this.className+=' ipt-t-focus'" onblur="this.className='ipt-t no-ime'" tabindex="5" maxlength="20"/>
+				</div>			
+				<div class="reg">
+					<span  width="100"></span><input type="button" class="ipt-b" value="确定" onmouseover="this.className+=' ipt-b-hover'" 
+					onmouseout="this.className='ipt-b'" name="enter.x" tabindex="6" 
+					onclick="okserver();" />
+					<span  width="200">　</span>　　<input type="button" class="ipt-b" value="返回" onmouseover="this.className+=' ipt-b-hover'" 
+					onmouseout="this.className='ipt-b'" name="enter.x" tabindex="7" 
+					onclick="ms_close();" />　<input type="button" class="ipt-b" value="重启IIS" onmouseover="this.className+=' ipt-b-hover'" 
+					onmouseout="this.className='ipt-b'" name="enter.x" tabindex="7" 
+					onclick="iisreset();" />
+					<p style="margin:10px"><label for="cacheT" >启用缓存机制</label><input id="cacheT" type="radio" onclick="onCache('cache')" value="1" checked name="chkcache">
+					　　<label for="cacheF" >关闭缓存机制</label><input id="cacheF" onclick="onCache('nocache')" type="radio" value="0" name="chkcache">
+</p>
+				</div>
+			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	window.onresize = function(){
+		$("divPage").style.height = document.documentElement.offsetHeight < 500 ? "500px" : "100%";
+		$("divPage").style.width = document.documentElement.offsetWidth < 900 ? "900px" : "auto";
+	}
+	window.onresize();
+</script>
+</body>
+</html>

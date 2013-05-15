@@ -1,0 +1,57 @@
+table {
+	border-collapse:collapse;
+}
+.interiorTable {
+	border: 0px solid #cccccc; 
+	padding: 0px;
+	spacing: 0px;
+} 
+.noBorderTable {
+	border-top: 1px solid #dddddd; 
+	border-bottom: 1px solid #aaaaaa;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc; 
+	padding: 0px;
+	cursor:pointer;
+}
+.borderTable {
+	border-top: 1px solid #ff3300; 
+	border-bottom: 1px solid #bb0000;
+	border-left: 1px solid #dd3409;
+	border-right: 1px solid #dd3409;
+	padding: 0px;
+	cursor:pointer;
+} 
+.Activation {
+  	border-width: 0px 0px 0px 0px; 
+	color:#666666;
+	padding-left:10px; 
+	padding-right:10px; 
+	padding-top:5px; 
+	padding-bottom:5px; 
+	font-family: verdana; 
+	font-size:10px;
+}
+.product
+{
+ 	width:150px;
+}
+.font01 {
+	font-family:Verdana;
+	font-size:9px;
+	color: #666666;
+	line-height: 13px;
+}
+.font02 {
+	font-family:Verdana;
+	font-size:9px;
+	color: #666666;
+	line-height: 13px;
+} 
+body
+{
+	background-color:White; 
+	font-family: verdana; 
+	font-size:10px;
+	color:#3F3F3F; 
+}

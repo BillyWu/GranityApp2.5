@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/DataAccess/DataAccessInterface/obj/Debug
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/DataAccess/DataAccessInterface/obj/Debug
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -28,14 +28,14 @@ b7a1bd86-2f50-7044-aac2-f90e8b3b5af3
 
 ResolveAssemblyReference.cache
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.531250Z
-33d95ec6a23b949701a99d3747d8e265
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.147101Z
+9e65c66ac4da145c4831a46025b6b96c
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -58,21 +58,21 @@ has-props
 
 
 
-36176
+18814
 
 Refactor
 dir
 
 Estar.DataAccess.DataAccessInterface.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.562500Z
-a7f6a3023cae150cbbe712cb844376c9
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.193976Z
+ed0828c576e0d185c9ce05a0d76f7e51
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -102,14 +102,14 @@ dir
 
 Estar.DataAccess.DataAccessInterface.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.656250Z
-da6c5324144489633d3aecb0f9ab1b86
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:23.287726Z
+a5eaf57b13a9edbc2da4ed0b71141b02
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 

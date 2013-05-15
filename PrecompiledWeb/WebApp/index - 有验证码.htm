@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
+	<title>上海恒名服装协同管理系统</title>
+	<link href="index/index.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" src="hmjs/sysjs/cookie.js" type="text/javascript" charset="gb2312"></script>	
+    <script language="javascript" type="text/javascript">
+<!--
+      if(window!=window.top)
+      window.top.location="index.htm";
+      function setfocus(keyCode)
+      {if(keyCode==13){
+              ctrl=document.getElementById("btOK_Click");
+              if(null==ctrl)	return;
+              ctrl.focus();ctrl.select();}}
+
+
+      function switchmodel(strname)
+      {
+          switch(strname)
+          {
+              case "reg":
+              document.getElementById("hlbModel").value="~/reg";
+              break;
+              case "test":
+              document.getElementById("hlbModel").value="~/test";
+              break;
+              case "demo":
+              document.getElementById("hlbModel").value="~/demo";
+              break;
+              default:
+              break;
+          }
+          document.getElementById('tablejbr').style.display='none';
+      }
+      function usLoadHandle()
+      {
+          if(document.getElementById("tbUserAccount"))
+          {
+              document.getElementById("tbUserAccount").select();
+              document.getElementById("tbUserAccount").focus();
+          }
+          if(typeof(initWin)=="function")	initWin();
+//          document.getElementById("vimg").src='wfImgValidate.aspx?temp='+ (new Date().getTime().toString(36)); 
+      }
+      function okserver()
+      {
+        var ouser = document.getElementById("tbUserAccount");var okey = document.getElementById("tbPassword");
+        var ovali = document.getElementById("tbValidateCode");
+        var user = ouser.value;var key = okey.value;
+        if(user=="") {alert("请输入用户名！");ouser.focus();return;}; if(key=="") {alert("请输入密码！");okey.focus();return;};
+        if(ovali.value=="") {alert("请输入验证码！");ovali.focus();return;}; 
+        //将key送入后台
+        Cookie.Set("userid",user);
+        Cookie.Set("erpkey",key);
+        Cookie.Set("vali",ovali.value);
+        url="default.aspx";
+        //url="default.aspx?user="+user+"&key="+key+"&vali="+ovali.value;
+        var xmlhttp =new ActiveXObject ("Microsoft.XMLHTTP");
+        var ls_path="http://"+location.host+location.pathname;
+        ls_path=ls_path.substr(0,ls_path.lastIndexOf("/")+1);      
+        try
+        {
+            xmlhttp.open("POST",ls_path+url, false);
+            xmlhttp.responseText = xmlhttp.send(null);            
+        }
+        catch(ex){}
+        switch(xmlhttp.responseText)
+        {
+            case "WfMain.aspx":
+                window.top.location.href=ls_path+xmlhttp.responseText;
+                Cookie.Set("userid","");
+                Cookie.Set("erpkey","");
+                break;
+            case "dberror":
+                alert("数据库配置错误，请重试！      ");
+                var rtn = window.showModalDialog("dbset.htm",null,"dialogHeight: 500px; dialogWidth: 900px; edge: Raised; center: Yes; help: No; resizable: No status: No;"); 
+                break;
+            default:
+                alert("用户名或密码错误，请重试！      ");
+                break;
+        }
+      }
+ 	  function reset()
+ 	  {
+ 	  	var obj= event.srcElement;
+		obj.src='wfImgValidate.aspx?temp='+ (new Date().getTime().toString(36)); return false;
+ 	  }
+
+
+function fTrim(str)
+{
+	return str.replace(/(^\s*)|(\s*$)/g, ""); 
+}
+
+function fGetIEVersion()
+{
+	var IEAppName   = window.navigator.appName;						//得到当前浏览器的名.		
+	var IEversion	= window.navigator.appVersion;					//得到当前浏览器的版本说明
+	if(IEAppName.indexOf("Microsoft")<0){
+		gIEVersion = IEAppName;
+		return 0;
+	}
+	var isOpera = window.navigator.userAgent.indexOf("Opera") > -1;
+	if(isOpera){
+		gIEVersion = "Opera";
+		return 0;
+	}
+
+	var k=IEversion.indexOf("MSIE");					//查找IE的版本号
+	if(k>=0){
+		k+=4;
+		var j=IEversion.indexOf(";",k);
+		if(j<0){
+			j=IEversion.length-1;
+		}	
+		IEversion	=IEversion.substring(k,j)*1;				//得到IE的版本号，并且数字化
+		gIEVersion = "MSIE: "+IEversion;
+		if(IEversion >= 6){										//如果版本号6.0以上，		
+			return 6;
+		}else if( IEversion >= 5.5 && IEversion < 6 ){
+			return 5.5;
+		}else if( IEversion >= 5 && IEversion <5.5){
+			return 5;
+		}
+		else{
+			return 0;
+		}
+	}else{
+		gIEVersion =  window.navigator.appVersion;
+		return 0;
+	}
+}
+gVersionNum = fGetIEVersion();
+
+var gAppName,gVersion;
+
+function $( id ){return document.getElementById( id );}
+
+function fEvent(sType,oInput){
+	switch (sType){
+		case "focus" :
+			oInput.isfocus = true;
+			oInput.style.backgroundColor='#FFFFD8';
+		case "mouseover" :
+			oInput.style.borderColor = '#99E300';
+			break;
+		case "blur" :
+			oInput.isfocus = false;
+			oInput.style.backgroundColor="";
+		case "mouseout" :
+			if(!oInput.isfocus){
+				oInput.style.borderColor='#A1BCA3';
+			}
+			break;
+	}
+}
+
+//-->
+</script>
+</head>
+<body scroll=no>
+<div class="page" id="divPage">
+	<div class="head">
+		<a href="javascript:;" title="设置为浏览器首页" onClick="">设为主页</a>| <a href="#" target="_blank">企业邮箱</a> | <a href="#" target="_blank">帮助</a>
+	</div>
+	<div class="content">
+		<div class="logo">
+			<h1><img src="index/glogo.gif" /></h1>
+			<h2>服装协同管理系统</h2>
+		</div>
+		<div class="login">
+			<h3>登录服装协同管理系统</h3>
+				<div class="fi">
+					<label class="lb">用户名</label>
+					<input id="tbUserAccount" name="tbUserAccount" onkeydown="if(event.keyCode==13) event.keyCode=9" 
+          class="ipt-t no-ime" onfocus="this.className+=' ipt-t-focus'" onblur="this.className='ipt-t no-ime'" 
+          tabindex="1"/>
+				</div>
+				<div class="fi">
+					<label class="lb">密　码</label>
+					<input id="tbPassword" autocomplete="off" name="tbPassword" onkeydown="if(event.keyCode==13) event.keyCode=9;" 
+					type="password" class="ipt-t" onfocus="this.className+=' ipt-t-focus'" onblur="this.className='ipt-t no-ime'" tabindex="2" maxlength="20"/>
+				</div>
+				<div class="fi">
+					<label class="lb">验证码</label>
+					<input id="tbValidateCode" name="tbValidateCode" onkeydown="if(event.keyCode==13) event.keyCode=9" 
+          class="ipt-t no-ime" onfocus="this.className+=' ipt-t-focus'" onblur="this.className='ipt-t no-ime'" tabindex="3"/>
+				</div>			
+				<div style="text-align:center;width:300px">
+  					<a href="#" onclick="vimg.src='wfImgValidate.aspx?temp='+ (new Date().getTime().toString(36)); document.getElementById('tbValidateCode').focus();return false;">看不清,换一张:</a>
+					<img id="vimg" src="wfImgValidate.aspx?temp='+ (new Date().getTime().toString(36)" 
+					 height="30" width="90" />
+				</div>			
+				
+				<div class="fi fi-btn">
+					<span  width="100"></span><input type="submit" class="ipt-b" value="登　录" onmouseover="this.className+=' ipt-b-hover'" 
+					onmouseout="this.className='ipt-b'" name="enter.x" tabindex="4" onclick="okserver();" />
+				</div>
+			<div class="reg">
+				<span width="100">用户注册：</span>
+				<a class="btn" href="#" target="_blank" id="lnkReg">立即注册</a>
+			</div>
+		</div>
+		<div class="intro intro-1" id="divIntro">
+			<div class="introtxt introtxt-1">
+				<ul>
+					<li>领先业界的BS架构智能恒名服装协同管理系统；</li>
+					<li>掌控企业的售前、售中、售后完整的销售过程；</li>
+					<li>自由组合的模块化结构体系，具有高度的安全性、可靠的稳定性…</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+		<div class="footer">
+	<div class="copyright">
+<a href="#" target="_blank">关于恒名ERP</a>|
+<a href="#" target="_blank">客户服务</a><span>|&nbsp;&nbsp;&nbsp;上海恒名软件有限公司版权所有 &copy; 2008-<script src="index/year.js" language="javascript"></script>
+</span>
+</div></div>
+<script type="text/javascript">
+	window.onresize = function(){
+		$("divPage").style.height = document.documentElement.offsetHeight < 600 ? "600px" : "100%";
+		$("divPage").style.width = document.documentElement.offsetWidth < 960 ? "960px" : "auto";
+	}
+
+	window.onresize();
+
+	if( $("tbUserAccount").value=="") {
+		$("tbUserAccount").focus();
+	} else {
+		$("tbPassword").focus();
+	}
+	
+</script>
+</body>
+</html>

@@ -1,41 +1,19 @@
-K 25
-svn:wc:ra_dav:version-url
-V 58
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/obj/Debug
 END
 ResolveAssemblyReference.cache
 K 25
 svn:wc:ra_dav:version-url
 V 89
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/obj/Debug/ResolveAssemblyReference.cache
-END
-winCard.Properties.Resources.resources
-K 25
-svn:wc:ra_dav:version-url
-V 97
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/obj/Debug/winCard.Properties.Resources.resources
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/obj/Debug/ResolveAssemblyReference.cache
 END
 winCard.exe
 K 25
 svn:wc:ra_dav:version-url
 V 70
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/obj/Debug/winCard.exe
-END
-winCard.csproj.GenerateResource.Cache
-K 25
-svn:wc:ra_dav:version-url
-V 96
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/obj/Debug/winCard.csproj.GenerateResource.Cache
-END
-winCard.fmCard.resources
-K 25
-svn:wc:ra_dav:version-url
-V 83
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winCard/obj/Debug/winCard.fmCard.resources
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/obj/Debug/winCard.exe
 END
 winCard.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 70
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winCard/obj/Debug/winCard.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winCard/obj/Debug/winCard.pdb
 END

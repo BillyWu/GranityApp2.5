@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/winTools
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/winTools
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -60,40 +60,6 @@ admin
 
 17933
 
-MvAPI.cs
-file
-
-
-
-
-2013-04-22T08:30:40.578125Z
-85edef8e952f421d2cd3d03bd8bcb288
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7385
-
 CmdUDPznetCom.cs
 file
 
@@ -127,6 +93,40 @@ admin
 
 
 31924
+
+MvAPI.cs
+file
+
+
+
+
+2013-04-22T08:30:40.578125Z
+85edef8e952f421d2cd3d03bd8bcb288
+2013-04-12T05:49:58.203125Z
+1
+admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7385
 
 DataGridViewPrinter.cs
 file
@@ -162,40 +162,6 @@ admin
 
 20961
 
-HVDLLFun.cs
-file
-
-
-
-
-2013-04-22T08:30:40.593750Z
-f7fcc2e2dc5bed1ac43a65f3a680bd9b
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12928
-
 DataGridViewCalendarColumn.cs
 file
 
@@ -229,6 +195,40 @@ admin
 
 
 7597
+
+HVDLLFun.cs
+file
+
+
+
+
+2013-04-22T08:30:40.593750Z
+f7fcc2e2dc5bed1ac43a65f3a680bd9b
+2013-04-12T05:49:58.203125Z
+1
+admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12928
 
 CmdProtocol.cs
 file
@@ -372,6 +372,9 @@ admin
 bin
 dir
 
+obj
+dir
+
 Sa7134Capture.cs
 file
 
@@ -405,9 +408,6 @@ admin
 
 
 4623
-
-obj
-dir
 
 BindManager.cs
 file

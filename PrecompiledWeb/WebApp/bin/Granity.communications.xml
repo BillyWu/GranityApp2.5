@@ -1,0 +1,1941 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Granity.communications</name>
+    </assembly>
+    <members>
+        <member name="T:Granity.communications.Protocol">
+            <summary>
+            通讯协议规约定义
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.FrameHeader">
+            <summary>
+            帧头字节
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.FrameFoot">
+            <summary>
+            帧尾字节
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.KeyIndexStart">
+            <summary>
+            键值索引号(通常是站址,默认-1,以帧头字节后取值)
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.KeyLength">
+            <summary>
+            键值字节长度,默认一个字节,可以为0
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.TotalBytes">
+            <summary>
+            固定长度的协议,字节总长度,默认是变长,该值为-1
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.LenIndexStart">
+            <summary>
+            帧内数据长度索引号(默认-1,表示协议无该项内容)
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.LenLength">
+            <summary>
+            帧内数据长度字节所占位数,默认一个字节,可以是0
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.EncodingByte">
+            <summary>
+            编码字节数,数据内容每字占用字节,计算数据长度时倍乘系数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.IsLenHEX">
+            <summary>
+            帧内数据长度字节,读取或设置是否16进制数据
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.IsLenChangeHL">
+            <summary>
+            读取或设置是否高低位交换
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.ExecuteSequence">
+            <summary>
+            协议指令在执行时的执行序列
+            </summary>
+        </member>
+        <member name="F:Granity.communications.Protocol.MergeListHandle">
+            <summary>
+            一帧分多次接收数据时，连接完整帧加入目标字节数组列表中,不完整帧放入临时上下文字节数组
+            合并帧数据，加入列表数据，以供业务应用。
+            </summary>
+        </member>
+        <member name="P:Granity.communications.Protocol.IsLenByte">
+            <summary>
+            帧内数据长度字节,读取或设置是否字节,否时以编码方式处理
+            </summary>
+        </member>
+        <member name="P:Granity.communications.Protocol.LenEncoding">
+            <summary>
+            帧内数据长度字节,读取或设置字节所属编码类别,默认ASCII编码
+            </summary>
+        </member>
+        <member name="P:Granity.communications.Protocol.PTLCard">
+            <summary>
+            读取发行器通讯协议帧头,帧尾,数据长度及键值位置
+            </summary>
+        </member>
+        <member name="P:Granity.communications.Protocol.PTLPark">
+            <summary>
+            读取停车场通讯协议帧头帧尾及键值位置
+            </summary>
+        </member>
+        <member name="P:Granity.communications.Protocol.PTLDoor">
+            <summary>
+            读取门禁通讯协议帧头帧尾及键值位置
+            </summary>
+        </member>
+        <member name="P:Granity.communications.Protocol.PTLEatery">
+            <summary>
+            读取消费通讯协议帧头帧尾及键值位置
+            </summary>
+        </member>
+        <member name="T:Granity.communications.SequenceType">
+            <summary>
+            通讯指令执行序列类别：并行和串行
+            </summary>
+        </member>
+        <member name="F:Granity.communications.SequenceType.Parallel">
+            <summary>
+            指令以并行方式执行
+            </summary>
+        </member>
+        <member name="F:Granity.communications.SequenceType.Serial">
+            <summary>
+            指令以串行方式执行
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CommiManager">
+            <summary>
+            通讯管理,提供通讯的统一接口,封装大容量通讯,支持多线程
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.encodGB2312">
+            <summary>
+            GB2312编码器
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.entityList">
+            <summary>
+            通讯目标参数列表,添加项需要多线程同步处理
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.clientTcptList">
+            <summary>
+            TCP通讯缓存,在通讯异常时可重复使用,空闲过多时可关闭删除释放缓存
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.clientUdpList">
+            <summary>
+            UDP通讯缓存,在通讯异常时可重复使用,空闲过多时可关闭删除释放缓存
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.clientSerList">
+            <summary>
+            Ser串口通讯缓存,在通讯异常时可重复使用,空闲过多时可关闭删除释放缓存
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiManager.#ctor">
+            <summary>
+            实例构造函数
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiManager.TestConnect(Granity.communications.CommiTarget)">
+            <summary>
+            测试目标是否联通
+            </summary>
+            <param name="target">通讯目标</param>
+            <returns>是否可连接通讯(或是否在线)</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.SynchHandleSet(Granity.communications.CommiTarget)">
+            <summary>
+            触发同步事件，运行一个或多个线程同步继续
+            </summary>
+            <param name="target">需要同步的通讯目标</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.ContainCommand(Granity.communications.CommiTarget,Granity.communications.CommandBase)">
+            <summary>
+            在目标位置是否已经有指令
+            </summary>
+            <param name="target">目标位置</param>
+            <param name="cmd">通讯指令</param>
+            <returns></returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.SendCommand(Granity.communications.CommiTarget,Granity.communications.CommandBase)">
+            <summary>
+            发送通讯命令,命令已经存在则重用不在加命令
+            </summary>
+            <param name="target">目标位置</param>
+            <param name="cmd">通讯指令</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.SendCommand(Granity.communications.CommiTarget,Granity.communications.CommandBase,System.Boolean)">
+            <summary>
+            发送通讯命令,命令已经存在则重用不在加命令
+            </summary>
+            <param name="target">目标位置</param>
+            <param name="cmd">通讯指令</param>
+            <param name="reset">是否时间重置</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.SendCommand(Granity.communications.CommiTarget,System.String)">
+            <summary>
+            发送通讯命令
+            </summary>
+            <param name="target">通讯的目标位置</param>
+            <param name="cmd">通讯命令</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.SendCommand(Granity.communications.CommiTarget,System.String,System.Boolean)">
+            <summary>
+            发送通讯命令
+            </summary>
+            <param name="target">通讯的目标位置</param>
+            <param name="cmd">通讯命令</param>
+            <param name="isHEX">是否16进制格式字符串</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.SendCommand(Granity.communications.CommiTarget,System.Byte[])">
+            <summary>
+            发送通讯指令
+            </summary>
+            <param name="target">通讯目标位置</param>
+            <param name="cmd">通讯指令字节</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.RemoveCommand(Granity.communications.CommiTarget,Granity.communications.CommandBase)">
+            <summary>
+            移除目标地址通讯的指定指令
+            </summary>
+            <param name="target">通讯的目标位置</param>
+            <param name="cmd">要移除的指令</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.RemoveCommand(Granity.communications.CommiTarget)">
+            <summary>
+            移除目标地址通讯的所有指令
+            </summary>
+            <param name="target">通讯的目标位置</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.ClearCommand">
+            <summary>
+            清空放弃当前指令的执行
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiManager.ResetClient">
+            <summary>
+            关闭重置通讯状态,需要在清空命令和关闭线程后执行
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiManager.ClearBuffer(Granity.communications.CommiTarget)">
+            <summary>
+            清空接收响应的缓存,以及时清除有错误的缓存
+            </summary>
+            <param name="target">通讯目标</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.getEntity(Granity.communications.CommiTarget)">
+            <summary>
+            从缓存中找到通讯实例(包含一个TCP/UDP/SerialPort和指令列表及状态信息)
+            如果没有则创建一个新的实例并加入缓存中
+            </summary>
+            <param name="target">终端目标</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.getClient``1(System.Collections.Generic.List{Granity.communications.CommiManager.ClientEntity{``0}})">
+            <summary>
+            从缓存中找到空闲的嵌套字(UDP使用同一个来通讯)
+            </summary>
+            <typeparam name="T">Socket/UDPClient/SerialPort</typeparam>
+            <param name="list">缓存列表</param>
+            <returns>返回可用的Client,没有空闲的就创建新的</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.openTCP(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            打开通讯,失败时置目标通讯为空闲
+            </summary>
+            <param name="entity">目标通讯实例</param>
+            <returns>是否打开连接</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.openSer(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            打开通讯,失败时置目标通讯为空闲
+            </summary>
+            <param name="entity">目标通讯实例</param>
+            <returns>是否打开连接</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.openUDP(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            打开通讯,失败时置目标通讯为空闲
+            </summary>
+            <param name="entity">目标通讯实例</param>
+            <returns>是否打开连接</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.closeTCP(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            关闭通讯并置目标通讯为空闲,异常时处理同步线程
+            </summary>
+            <param name="entity">目标通讯实例</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.closeTCP(Granity.communications.CommiManager.CommiEntity,System.Boolean)">
+            <summary>
+            关闭通讯并置目标通讯为空闲,异常时处理同步线程
+            </summary>
+            <param name="entity">目标通讯实例</param>
+            <param name="reopen">是否重新打开</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.closeSer(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            关闭通讯并置目标通讯为空闲,异常时处理同步线程
+            </summary>
+            <param name="entity">目标通讯实例</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.closeUDP(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            关闭通讯,UDP通讯不需要关闭只置目标通讯为空闲,异常时处理同步线程
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.closeTCPSocket(Granity.communications.CommiManager.ClientEntity{System.Net.Sockets.Socket})">
+            <summary>
+            关闭Socket以重用
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.containState(Granity.communications.CommandBase[],Granity.communications.CmdState)">
+            <summary>
+            检查指令中是否有指定状态的指令
+            </summary>
+            <param name="cmds">指令数组</param>
+            <param name="state">指令状态</param>
+            <returns>是否包含指定指令的状态</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.containState(Granity.communications.CommandBase[],Granity.communications.Protocol,System.Byte[],Granity.communications.CmdState)">
+            <summary>
+            检查指令中是否有指定状态的指令,只对指令数组中键值相同的指令做对比
+            </summary>
+            <param name="cmds">指令数组</param>
+            <param name="ptl">协议</param>
+            <param name="data">包含指令键值的字节指令数据</param>
+            <param name="state">指令状态</param>
+            <returns>是否包含指定指令的状态</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.writeTCP(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            异步写入TCP通讯数据,通过对当前状态writing的判断确保一个线程在写入指令数据
+            </summary>
+            <param name="entity">目标通讯实例</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.writeUDP(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            异步写入UDP通讯数据
+            </summary>
+            <param name="entity">通讯目标实例</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.writeSer(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            异步写入Serial通讯数据
+            </summary>
+            <param name="entity">通讯目标实例</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.frameIndexOf(System.Byte[],System.Int32,System.Byte[])">
+            <summary>
+            获取帧包含标识字节的起点位置
+            </summary>
+            <param name="src">字节流</param>
+            <param name="pos">检查起点位置</param>
+            <param name="frame">帧字节,字节流分帧的字节分隔符</param>
+            <returns>返回标识起点位置</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.frameEndIndex(System.Byte[],System.Int32,Granity.communications.Protocol)">
+            <summary>
+            获取帧结束索引号,帧尾最后一位索引号
+            </summary>
+            <param name="src">字节流</param>
+            <param name="posstart">检查帧时的起点</param>
+            <param name="ptl">通讯协议</param>
+            <returns>成功则返回所引号,不包含帧字节返回-1</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.joinToList(System.Byte[],System.Int32,System.Byte[]@,System.Collections.Generic.IList{System.Byte[]},Granity.communications.Protocol)">
+            <summary>
+            一帧分多次接收数据时，连接完整帧加入目标字节数组列表中,不完整帧放入临时上下文字节数组
+            </summary>
+            <param name="buffer">读取当前缓存字节流</param>
+            <param name="len">字节流数据长度</param>
+            <param name="temp">临时字节数组，或上次接收的不完整字节数组，或承接下次字节流的字节数组</param>
+            <param name="destlist">目标字节数组列表</param>
+            <param name="tpl">协议定义</param>
+            <returns>返回目标字节数组列表,如果参数没有定义列表则创建</returns>
+        </member>
+        <member name="M:Granity.communications.CommiManager.readTCP(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            使用TCP通讯监听读取数据,读取数据会触发响应事件
+            </summary>
+            <param name="entity">通讯参数实例</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.readUDP(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            使用UDP通讯监听读取数据,读取数据会触发响应事件
+            </summary>
+            <param name="entity">通讯参数实例</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.readSer(Granity.communications.CommiManager.CommiEntity)">
+            <summary>
+            使用TCP通讯监听读取数据,读取数据会触发响应事件
+            </summary>
+            <param name="entity">通讯参数实例</param>
+        </member>
+        <member name="F:Granity.communications.CommiManager.beginXML">
+            <summary>
+            自定义XML报文格式
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiManager.raiseResponse(Granity.communications.CommiManager.CommiEntity,Granity.communications.ResponseEventArgs)">
+            <summary>
+            触发响应事件,超限自动移除,其他需调用者维护移除
+            </summary>
+            <param name="arg">触发响应事件参数</param>
+        </member>
+        <member name="F:Granity.communications.CommiManager.argsHandle">
+            <summary>
+            指令事件参数列表
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.dtRunHandle">
+            <summary>
+            是否正在执行指令事件
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.argWh">
+            <summary>
+            同步执行指令事件
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiManager.raiseCmdHandle(System.Object)">
+            <summary>
+            触发指令事件
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="F:Granity.communications.CommiManager.argsHdl">
+            <summary>
+            指令事件参数列表
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.dtRunHdl">
+            <summary>
+            是否正在执行指令事件
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.argHdlWh">
+            <summary>
+            同步执行指令事件
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiManager.raiseCmdHdl(System.Object)">
+            <summary>
+            触发指令事件
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="F:Granity.communications.CommiManager.argsChannel">
+            <summary>
+            指令事件参数列表
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.dtRunChannel">
+            <summary>
+            是否正在执行指令事件
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.argWhChannel">
+            <summary>
+            同步执行指令事件
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiManager.raiseCmdChannel(System.Object)">
+            <summary>
+            触发指令事件
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.raiseError(Granity.communications.ErrorCommiEventArgs)">
+            <summary>
+            触发异常事件
+            </summary>
+            <param name="arg">引发异常的参数</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.raiseErrorOpen(Granity.communications.ErrorCommiEventArgs)">
+            <summary>
+            触发异常事件
+            </summary>
+            <param name="arg">引发异常的参数</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.raiseErrorWrite(Granity.communications.ErrorCommiEventArgs)">
+            <summary>
+            触发异常事件
+            </summary>
+            <param name="arg">引发异常的参数</param>
+        </member>
+        <member name="M:Granity.communications.CommiManager.raiseErrorRead(Granity.communications.ErrorCommiEventArgs)">
+            <summary>
+            触发异常事件
+            </summary>
+            <param name="arg">引发异常的参数</param>
+        </member>
+        <member name="E:Granity.communications.CommiManager.ResponseHandle">
+            <summary>
+            响应事件
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommiManager.ErrorCommiHandle">
+            <summary>
+            通讯异常事件
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommiManager.ErrorOpenHandle">
+            <summary>
+            通讯链路打开时异常事件
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommiManager.ErrorWriteHandle">
+            <summary>
+            通讯发送数据时异常事件
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommiManager.ErrorReadHandle">
+            <summary>
+            通讯接收数据时异常事件
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommiManager.GlobalManager">
+            <summary>
+            全局管理器
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CommiManager.CommiEntity">
+            <summary>
+            内置通讯实例类,关联通讯实例和通讯参数及命令
+            通讯参数是标识,通讯实例可重用,命令可重新赋值使用
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.target">
+            <summary>
+            通讯参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.Entity">
+            <summary>
+            通讯ClientEntity实例(ClientEntity&lt;Socket|UDPClient|SerialPort>)
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.CmdList">
+            <summary>
+            通讯数据命令,需做多线程同步处理锁整个CommiEntity实例
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.buffer">
+            <summary>
+            缓冲接收数据,接收多帧时进行拼接
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.running">
+            <summary>
+            当前是否在运行,read和write需要同步退出
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.dtwrite">
+            <summary>
+            写数据时间，以双重验证running
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.dtread">
+            <summary>
+            读数据时间，以双重验证running
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.writewh">
+            <summary>
+            同步写数据使用,在需要读写同步处理时互相同步
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiManager.CommiEntity.readwh">
+            <summary>
+            同步读数据使用,在需要读写同步处理时互相同步
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CommiManager.ClientEntity`1">
+            <summary>
+            通讯Client
+            </summary>
+            <typeparam name="Tsocket">Socket/UDPClient/SerialPort</typeparam>
+        </member>
+        <member name="T:Granity.communications.ThreadManager">
+            <summary>
+            线程池管理,负责线程调度优化
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ThreadManager.QueueUserWorkItem(System.Threading.WaitCallback,System.Object)">
+            <summary>
+            开启或唤醒一个线程去执行指定的回调方法
+            </summary>
+            <param name="cb">回调函数</param>
+            <param name="arg">回调函数参数对象</param>
+        </member>
+        <member name="M:Granity.communications.ThreadManager.AbortAll">
+            <summary>
+            关闭清除所有线程,并释放相关资源
+            </summary>
+        </member>
+        <member name="P:Granity.communications.ThreadManager.MaxWorkerThreads">
+            <summary>
+            读取或设置最大空闲线程数
+            </summary>
+        </member>
+        <member name="P:Granity.communications.ThreadManager.MinWorkerThreads">
+            <summary>
+            读取或设置最小空闲线程数
+            </summary>
+        </member>
+        <member name="P:Granity.communications.ThreadManager.IsResetNeed">
+            <summary>
+            读取线程数是否超极限，需要重新启动
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CommandBase">
+            <summary>
+            通讯命令简单实现(默认失败时可重试3次,不重复执行超限40s)
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommandBase.subCmdList">
+            <summary>
+            子命令
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommandBase.IsResposeHandle">
+            <summary>
+            检查是否为响应的指令源
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommandBase.RaiseResponse(Granity.communications.ResponseEventArgs)">
+            <summary>
+            触发事件
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:Granity.communications.CommandBase.#ctor">
+            <summary>
+            默认方式构造实例,不初始化同步事件句柄,无指令ID
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommandBase.#ctor(System.String)">
+            <summary>
+            构造函数指定构造指令ID(指令ID是可更改的)
+            </summary>
+            <param name="id">指令ID</param>
+        </member>
+        <member name="M:Granity.communications.CommandBase.#ctor(System.Boolean)">
+            <summary>
+            构造函数,初始化同步事件句柄状态
+            </summary>
+            <param name="ewhState">同步事件初始状态</param>
+        </member>
+        <member name="M:Granity.communications.CommandBase.#ctor(System.String,System.Boolean)">
+            <summary>
+            构造函数,初始化指令ID,初始化同步事件句柄状态
+            </summary>
+            <param name="id">指令ID,使用中可更改</param>
+            <param name="ewhState">同步事件初始状态</param>
+        </member>
+        <member name="M:Granity.communications.CommandBase.CheckState">
+            <summary>
+            检查指令当前状态
+            </summary>
+            <returns>返回当前指令状态</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.ResetState">
+            <summary>
+            重置指令创建时间/发送时间/响应时间,状态是最初可请求
+            </summary>
+            <returns>返回最初状态可请求</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.getCommand">
+            <summary>
+            生成命令通讯字符串
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommandBase.setCommand(System.Byte[])">
+            <summary>
+            设置通讯指令
+            </summary>
+            <param name="cmd">指令字节</param>
+            <returns>成功返回true,指令为空则false不改变原来指令</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.setCommand(System.String,System.Boolean)">
+            <summary>
+            设置通讯指令,指定是否16进制字节数据,否则按Gb312编码
+            </summary>
+            <param name="cmd">指令字符串</param>
+            <param name="isHEX">是否是16进制字符串</param>
+            <returns>成功返回true,指令为空则false不改变原来指令</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.setCommand(System.String)">
+            <summary>
+            设置通讯指令
+            </summary>
+            <param name="cmd">指令字符串,默认按照ASCII编码字节</param>
+            <returns>成功返回true,指令为空则false不改变原来指令</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.setCommand(System.String,System.Text.Encoding)">
+            <summary>
+            设置通讯指令,以指定编码格式编码
+            </summary>
+            <param name="cmd">指令字符串</param>
+            <param name="encoding">指令字符串,默认按照GB2312编码字节</param>
+            <returns>成功返回true,指令为空则false不改变原来指令</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.setCommand(System.String,Granity.communications.HlCoding)">
+            <summary>
+            设置通讯指令,以指定编码方法编码字符串
+            </summary>
+            <param name="cmd">指令字符串</param>
+            <param name="coding">编码方法</param>
+            <returns>成功返回true,指令为空或编码不成功则false不改变原来指令</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.Parse(System.Byte[],System.Text.Encoding)">
+            <summary>
+            字节结果转换成GB2312编码字符串
+            </summary>
+            <param name="result">字节数据</param>
+            <param name="encoding">编码格式,默认GB312</param>
+            <returns>解析后的字符串</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.Parse(System.Byte[],System.Boolean)">
+            <summary>
+            字节结果转换成字符串
+            </summary>
+            <param name="result">字节数据</param>
+            <param name="isHEX">是否以16进制格式解析</param>
+            <returns>解析后的字符串</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.Parse(System.Byte[])">
+            <summary>
+            字节结果转换成字符串,默认以GB2312编码
+            </summary>
+            <param name="result">字节数据</param>
+            <returns>解析后的字符串</returns>
+        </member>
+        <member name="M:Granity.communications.CommandBase.Parse(System.Byte[],Granity.communications.HlDecoding)">
+            <summary>
+            字节结果转换成字符串,使用指定解码方法解码
+            </summary>
+            <param name="result">字节数据</param>
+            <param name="decoding">解码方法,为空则使用默认编码格式处理</param>
+            <returns>解析后的字符串</returns>
+        </member>
+        <member name="P:Granity.communications.CommandBase.CmdId">
+            <summary>
+            获取或设置指令Id(键值)
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.Tag">
+            <summary>
+            指令实例附加扩展属性
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.DeviceType">
+            <summary>
+            读取和修改设备类型
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.TimeSendInv">
+            <summary>
+            发送时间间隔,小于0表示不持续发送(默认-10秒,不重发)
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.TimeLimit">
+            <summary>
+            超限时间间隔,TimeSpan.MaxValue则永不超限(默认3秒超限退出命令)
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.TimeFailLimit">
+            <summary>
+            连续无响应时间间隔,TimeSpan.MaxValue则永不失败退出(默认600ms超限失败)
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.TimeOut">
+            <summary>
+            超时时间间隔,小于0表示不需要接收响应(默认200ms可接收到响应)
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.ResponseDatetime">
+            <summary>
+            响应指令时间,初始值与创建时间相同
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.SendDatetime">
+            <summary>
+            发送指令时间,初始值与创建时间相同
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.FirstDatetime">
+            <summary>
+            第一次发送指令时间,初始值与创建时间相同
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.CreateDatetime">
+            <summary>
+            实例化命令时间
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.SubCmdList">
+            <summary>
+            交互时子级命令。
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.ResponseData">
+            <summary>
+            读取当前响应字节数据
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.FailProAf">
+            <summary>
+            读取或设置失败超限后处理类别:重连,退出,忽略(默认退出)
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommandBase.ResponseHandle">
+            <summary>
+            响应事件
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommandBase.EventWh">
+            <summary>
+            获取或设置多个响应之间线程同步事件句柄(由需要同步的主线程分发赋值)
+            有实例时在指令响应触发事件后自动触发同步事件
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CmdState">
+            <summary>
+            指令状态
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CmdState.Request">
+            <summary>
+            可发送请求指令
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CmdState.ReqTimeout">
+            <summary>
+            可发送请求指令
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CmdState.Response">
+            <summary>
+            指令已经发送
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CmdState.WaitRepeat">
+            <summary>
+            等待重复发送指令
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CmdState.Completed">
+            <summary>
+            指令已经完成
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CmdState.TimeFailLimit">
+            <summary>
+            指令超限失败
+            </summary>
+        </member>
+        <member name="T:Granity.communications.FailAftPro">
+            <summary>
+            在指令失败超限后处理进程类别
+            </summary>
+        </member>
+        <member name="F:Granity.communications.FailAftPro.Reconn">
+            <summary>
+            重新连接
+            </summary>
+        </member>
+        <member name="F:Granity.communications.FailAftPro.Exit">
+            <summary>
+            指令退出
+            </summary>
+        </member>
+        <member name="F:Granity.communications.FailAftPro.Ignor">
+            <summary>
+            忽略,不做处理
+            </summary>
+        </member>
+        <member name="T:Granity.communications.HlCoding">
+            <summary>
+            对字符串编码为字节
+            </summary>
+            <param name="content">需要编码的字符串内容</param>
+            <returns>返回编码后的字节数据</returns>
+        </member>
+        <member name="T:Granity.communications.HlDecoding">
+            <summary>
+            对字节解码为字符串
+            </summary>
+            <param name="content">需要解码的字节内容</param>
+            <returns>返回解码后的字符串数据</returns>
+        </member>
+        <member name="T:Granity.communications.myThread">
+            <summary>
+            扩展线程,强化池的使用效率
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myThread.innerThead">
+            <summary>
+            内部封装线程
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myThread.callback">
+            <summary>
+            线程执行的委托
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myThread.arg">
+            <summary>
+            委托参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myThread.dtRunned">
+            <summary>
+            最近一次执行时间
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myThread.resetwh">
+            <summary>
+            同步线程,启用调用回调过程的信号
+            </summary>
+        </member>
+        <member name="M:Granity.communications.myThread.Start(System.Threading.WaitCallback,System.Object)">
+            <summary>
+            启动并执行线程,在忙则返回false忽略执行
+            </summary>
+            <param name="cb">线程回调函数</param>
+            <param name="arg">回调函数的参数</param>
+        </member>
+        <member name="M:Granity.communications.myThread.threadProcess">
+            <summary>
+            执行线程,使用信号通知机制保持线程缓存
+            </summary>
+        </member>
+        <member name="M:Granity.communications.myThread.IsEffect">
+            <summary>
+            判断是否有效,超过一分钟空闲可以确定为无效
+            </summary>
+            <returns>线程是否空闲太久,空闲太久可释放</returns>
+        </member>
+        <member name="F:Granity.communications.myThread.isEnd">
+            <summary>
+            是否结束线程,在线程空闲太久可以关闭结束线程
+            </summary>
+        </member>
+        <member name="M:Granity.communications.myThread.Close">
+            <summary>
+            关闭线程,释放相关资源
+            </summary>
+        </member>
+        <member name="P:Granity.communications.myThread.IsWait">
+            <summary>
+            读取线程是否正在执行回调过程
+            </summary>
+        </member>
+        <member name="P:Granity.communications.myThread.IsEnd">
+            <summary>
+            读取线程是否已经结束
+            </summary>
+        </member>
+        <member name="T:Granity.communications.ServerBase">
+            <summary>
+            基本服务,为统一服务端模式的基础类
+            提供包含协议和服务指令,服务指令的名称使用属性声明
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ServerBase.GetClients">
+            <summary>
+            读取连接到服务端的客户端列表,断开时自动删除
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ServerBase.Execute(Granity.communications.ClientInfo,System.Byte[],System.Int32,System.IO.MemoryStream@)">
+            <summary>
+            解析数据返回响应数据
+            </summary>
+            <param name="clientinfo">通讯连接</param>
+            <param name="data">数据字节</param>
+            <param name="len">字节长度</param>
+            <param name="buffer">已接收数据缓存</param>
+            <returns>返回执行结果</returns>
+        </member>
+        <member name="M:Granity.communications.ServerBase.Add(System.Net.Sockets.Socket)">
+            <summary>
+            添加新的通讯连接，无连接的则暂停接收新请求
+            </summary>
+            <param name="client">新的通讯连接</param>
+            <returns>返回新的客户端连接信息，暂停时返回null</returns>
+        </member>
+        <member name="M:Granity.communications.ServerBase.Close(Granity.communications.ClientInfo)">
+            <summary>
+            关闭服务的指定连接
+            </summary>
+            <param name="clientinfo">通讯连接</param>
+        </member>
+        <member name="M:Granity.communications.ServerBase.Close">
+            <summary>
+            关闭服务的所有连接
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ServerBase.CheckClient">
+            <summary>
+            检查连接，自动断开
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ServerBase.RaiseRequest(Granity.communications.RequestEventArgs)">
+            <summary>
+            触发请求事件
+            </summary>
+            <param name="arg">请求事件参数</param>
+            <returns>返回-1则失败,不响应请求</returns>
+        </member>
+        <member name="P:Granity.communications.ServerBase.Port">
+            <summary>
+            读取或设置服务端口号
+            </summary>
+        </member>
+        <member name="P:Granity.communications.ServerBase.TimeDisconn">
+            <summary>
+            读取或设置连接断开时间间隔,默认3分钟
+            </summary>
+        </member>
+        <member name="P:Granity.communications.ServerBase.IsEmpty">
+            <summary>
+            读取服务是否无连接
+            </summary>
+        </member>
+        <member name="E:Granity.communications.ServerBase.RequestHandle">
+            <summary>
+            请求事件
+            </summary>
+        </member>
+        <member name="T:Granity.communications.ClientInfo">
+            <summary>
+            客户端连接信息
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ClientInfo.#ctor(System.Net.Sockets.Socket)">
+            <summary>
+            构造客户端连接信息,一个Socket是连接基础
+            </summary>
+            <param name="client">已经建立连接的Socket</param>
+        </member>
+        <member name="P:Granity.communications.ClientInfo.BufferResponse">
+            <summary>
+            缓存响应数据
+            </summary>
+        </member>
+        <member name="P:Granity.communications.ClientInfo.Client">
+            <summary>
+            读取连接Socket
+            </summary>
+        </member>
+        <member name="P:Granity.communications.ClientInfo.IPEndPoint">
+            <summary>
+            读取连接的客户端IP端口地址
+            </summary>
+        </member>
+        <member name="P:Granity.communications.ClientInfo.OPdt">
+            <summary>
+            读取或设置通讯操作时间
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CommandServerAttribute">
+            <summary>
+            定义服务指令
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommandServerAttribute.#ctor(System.String)">
+            <summary>
+            定义服务指令
+            </summary>
+            <param name="cmdname">指令名称</param>
+        </member>
+        <member name="T:Granity.communications.HdlExecute">
+            <summary>
+            服务指令执行委托
+            </summary>
+            <param name="client">通讯连接</param>
+            <param name="data">请求数据</param>
+            <returns>返回响应结果</returns>
+        </member>
+        <member name="T:Granity.communications.ResponseEventArgs">
+            <summary>
+            通讯响应参数。
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseEventArgs.Response">
+            <summary>
+            响应数据的读取流
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseEventArgs.Success">
+            <summary>
+            是否成功响应
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseEventArgs.ContentLen">
+            <summary>
+            响应数据长度
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseEventArgs.Client">
+            <summary>
+            通讯Client：Socket/UdpClient/SerialPort
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseEventArgs.Target">
+            <summary>
+            通讯地址参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseEventArgs.Commands">
+            <summary>
+            来源指令
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseEventArgs.CurrentCommand">
+            <summary>
+            当前指令,事件无法确定当前指令时为空
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ResponseEventArgs.#ctor">
+            <summary>
+            构造函数,默认成功,响应和指令默认长度0
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ResponseEventArgs.#ctor(System.Object,Granity.communications.CommiTarget,Granity.communications.CommandBase[],System.Byte[])">
+            <summary>
+            构造函数,默认成功
+            </summary>
+            <param name="client">通讯的Socket/UdpClient/SerailPort</param>
+            <param name="param">通讯参数,IP地址或串口参数</param>
+            <param name="cmds">当前进行通讯的指令列表</param>
+            <param name="response">响应结果</param>
+        </member>
+        <member name="M:Granity.communications.ResponseEventArgs.#ctor(System.Object,Granity.communications.CommiTarget,Granity.communications.CommandBase[],System.Byte[],Granity.communications.CommandBase,System.Boolean)">
+            <summary>
+            构造函数,默认成功
+            </summary>
+            <param name="client">通讯的Socket/UdpClient/SerailPort</param>
+            <param name="cmds">当前进行通讯的指令列表</param>
+            <param name="response">响应结果</param>
+            <param name="cmd">当前指令</param>
+            <param name="success">响应是否成功</param>
+        </member>
+        <member name="T:Granity.communications.ErrorCommiEventArgs">
+            <summary>
+            通讯错误参数。
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ErrorCommiEventArgs.Client">
+            <summary>
+            通讯Client：Socket/UdpClient/SerialPort
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ErrorCommiEventArgs.Target">
+            <summary>
+            通讯地址参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ErrorCommiEventArgs.CurrentCommand">
+            <summary>
+            当前指令,事件无法确定当前指令时为空
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ErrorCommiEventArgs.#ctor(System.Exception)">
+            <summary>
+            构造函数,默认成功,响应和指令默认长度0
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ErrorCommiEventArgs.#ctor(System.Object,Granity.communications.CommiTarget,Granity.communications.CommandBase,System.Exception)">
+            <summary>
+            构造函数,默认成功
+            </summary>
+            <param name="client">通讯的Socket/UdpClient/SerailPort</param>
+            <param name="param">通讯参数,IP地址或串口参数</param>
+            <param name="cmds">当前进行通讯的指令列表</param>
+            <param name="response">响应结果</param>
+        </member>
+        <member name="P:Granity.communications.ErrorCommiEventArgs.Exception">
+            <summary>
+            读取当前触发的异常
+            </summary>
+        </member>
+        <member name="T:Granity.communications.RequestEventArgs">
+            <summary>
+            请求事件参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.RequestEventArgs.Request">
+            <summary>
+            请求数据
+            </summary>
+        </member>
+        <member name="F:Granity.communications.RequestEventArgs.Client">
+            <summary>
+            请求的客户端
+            </summary>
+        </member>
+        <member name="F:Granity.communications.RequestEventArgs.ContentLen">
+            <summary>
+            请求内容长度
+            </summary>
+        </member>
+        <member name="F:Granity.communications.RequestEventArgs.Server">
+            <summary>
+            服务实例
+            </summary>
+        </member>
+        <member name="F:Granity.communications.RequestEventArgs.Return">
+            <summary>
+            返回值,默认0
+            </summary>
+        </member>
+        <member name="M:Granity.communications.RequestEventArgs.#ctor(System.Net.Sockets.Socket,Granity.communications.ServerBase,System.Byte[])">
+            <summary>
+            请求事件参数构造函数
+            </summary>
+            <param name="client">发出请求的客户端</param>
+            <param name="server">服务器服务实例</param>
+            <param name="request">请求数据内容</param>
+        </member>
+        <member name="T:Granity.communications.ResponseSrvEventArgs">
+            <summary>
+            服务端响应事件参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseSrvEventArgs.Response">
+            <summary>
+            请求数据
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseSrvEventArgs.Client">
+            <summary>
+            请求的客户端
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseSrvEventArgs.ContentLen">
+            <summary>
+            请求内容长度
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ResponseSrvEventArgs.Server">
+            <summary>
+            服务实例
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ResponseSrvEventArgs.#ctor(System.Net.Sockets.Socket,Granity.communications.ServerBase,System.Byte[])">
+            <summary>
+            服务端响应事件参数
+            </summary>
+            <param name="client">发出请求的客户端</param>
+            <param name="server">服务器实例</param>
+            <param name="response">响应数据</param>
+        </member>
+        <member name="T:Granity.communications.ErrorRequestEventArgs">
+            <summary>
+            服务器端异常事件参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ErrorRequestEventArgs.Request">
+            <summary>
+            请求数据
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ErrorRequestEventArgs.Client">
+            <summary>
+            请求的客户端
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ErrorRequestEventArgs.ContentLen">
+            <summary>
+            请求内容长度
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ErrorRequestEventArgs.Server">
+            <summary>
+            服务实例
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ErrorRequestEventArgs.Exception">
+            <summary>
+            服务端异常
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ErrorRequestEventArgs.#ctor(System.Net.Sockets.Socket,Granity.communications.ServerBase,System.Byte[],System.Exception)">
+            <summary>
+            服务器端异常事件参数
+            </summary>
+            <param name="client">发出请求的客户端</param>
+            <param name="server">服务器服务实例</param>
+            <param name="request">请求数据内容</param>
+            <param name="ex">服务端异常</param>
+        </member>
+        <member name="T:Granity.communications.DisconnEventArgs">
+            <summary>
+            断开连接事件参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.DisconnEventArgs.Client">
+            <summary>
+            请求的客户端
+            </summary>
+        </member>
+        <member name="F:Granity.communications.DisconnEventArgs.Server">
+            <summary>
+            服务实例
+            </summary>
+        </member>
+        <member name="F:Granity.communications.DisconnEventArgs.Exception">
+            <summary>
+            服务端异常
+            </summary>
+        </member>
+        <member name="M:Granity.communications.DisconnEventArgs.#ctor(System.Net.Sockets.Socket,Granity.communications.ServerBase)">
+            <summary>
+            请求事件参数构造函数
+            </summary>
+            <param name="client">发出请求的客户端</param>
+            <param name="server">服务器服务实例</param>
+        </member>
+        <member name="M:Granity.communications.DisconnEventArgs.#ctor(System.Net.Sockets.Socket,Granity.communications.ServerBase,System.Exception)">
+            <summary>
+            请求事件参数构造函数
+            </summary>
+            <param name="client">发出请求的客户端</param>
+            <param name="server">服务器服务实例</param>
+            <param name="ex">异常事件</param>
+        </member>
+        <member name="T:Granity.communications.ExtendEventArgs">
+            <summary>
+            扩展事件参数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ExtendEventArgs.Request">
+            <summary>
+            请求数据
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ExtendEventArgs.ContentLen">
+            <summary>
+            请求内容长度
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ExtendEventArgs.Server">
+            <summary>
+            服务实例
+            </summary>
+        </member>
+        <member name="F:Granity.communications.ExtendEventArgs.Client">
+            <summary>
+            请求客户端实例，可对实例追加响应数据
+            </summary>
+        </member>
+        <member name="M:Granity.communications.ExtendEventArgs.#ctor(Granity.communications.ServerBase,Granity.communications.ClientInfo,System.Byte[])">
+            <summary>
+            请求事件参数构造函数
+            </summary>
+            <param name="server">服务器服务实例</param>
+            <param name="client">客户端实例</param>
+            <param name="request">请求数据内容</param>
+        </member>
+        <member name="T:Granity.communications.SvrFileTrans">
+            <summary>
+            文件上传到服务器端保存,包含有增删改查功能
+                文件头协议格式：1,使用一个简单XML格式,属性值可数字字符汉字及.\-符号, 2,包含属性：id,pathfile,len,cmd,msg
+            </summary>
+        </member>
+        <member name="F:Granity.communications.SvrFileTrans.regFilePath">
+            <summary>
+            合法字符验证
+            </summary>
+        </member>
+        <member name="F:Granity.communications.SvrFileTrans.regXMLFormat">
+            <summary>
+            验证XML格式
+            </summary>
+        </member>
+        <member name="F:Granity.communications.SvrFileTrans.regAttribute">
+            <summary>
+            文件头信息属性内容
+            </summary>
+        </member>
+        <member name="F:Granity.communications.SvrFileTrans.fhStart">
+            <summary>
+            文件头开始字节
+            </summary>
+        </member>
+        <member name="F:Granity.communications.SvrFileTrans.fhEndseal">
+            <summary>
+            文件头自封闭式结尾
+            </summary>
+        </member>
+        <member name="F:Granity.communications.SvrFileTrans.fhEndclose">
+            <summary>
+            文件头关闭式结尾
+            </summary>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.FindHeader(System.Byte[],System.Int64)">
+            <summary>
+            从响应字节中查找头信息位置
+            </summary>
+            <param name="data">数据字节</param>
+            <param name="index">寻找匹配的起点</param>
+            <returns>返回头信息起点，不包含头信息返回-1</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.FindHeader(System.Byte[])">
+            <summary>
+            从响应字节中查找头信息位置
+            </summary>
+            <param name="data">数据字节</param>
+            <returns>返回头信息起点，不包含头信息返回-1</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.isFirstHeader(System.Byte[],System.Int64)">
+            <summary>
+            响应字节从检查起点开始是否是头信息
+            </summary>
+            <param name="data">数据字节</param>
+            <param name="index">寻找匹配的起点</param>
+            <returns>是否匹配头信息</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.isFirstHeader(System.Byte[])">
+            <summary>
+            响应字节从检查起点开始是否是头信息
+            </summary>
+            <param name="data">数据字节</param>
+            <returns>是否匹配头信息</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.GetFileheader(System.Byte[],System.Int64)">
+            <summary>
+            从响应字节中检查匹配的头信息
+            </summary>
+            <param name="data">数据字节</param>
+            <param name="index">寻找匹配的起点</param>
+            <returns>有头信息返回头信息字节数据,无则返回NULL</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.GetFileheader(System.Byte[])">
+            <summary>
+            从响应字节中检查匹配的头信息
+            </summary>
+            <param name="data">数据字节</param>
+            <returns>有头信息返回头信息字节数据,无则返回NULL</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.ParseInfo(System.Byte[])">
+            <summary>
+            头信息解析为字典对
+            </summary>
+            <param name="header">头字节</param>
+            <returns>字典对</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.ParseInfo(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            头信息解析为字典对
+            </summary>
+            <param name="header">头字节</param>
+            <returns>字典对</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.getLocalPath(System.String)">
+            <summary>
+            由相对路径转换本地路径
+            </summary>
+            <param name="pathfile">请求指令中的相对路径</param>
+            <returns>本地路径</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.MergeResponseHdl(System.Byte[],System.Collections.Generic.IList{System.Byte[]})">
+            <summary>
+            对响应结果按照协议分成完整包,返回剩余不完整包
+            </summary>
+            <param name="buffer">数据字节</param>
+            <param name="destlist">完整包列表</param>
+            <returns>返回剩余不完整包</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.Execute(Granity.communications.ClientInfo,System.Byte[],System.Int32,System.IO.MemoryStream@)">
+            <summary>
+            重载执行函数,不完整帧时接收数据缓存
+            </summary>
+            <param name="client">通讯连接</param>
+            <param name="data">接收请求数据</param>
+            <param name="bufferStream">缓存字节流</param>
+            <returns>返回响应数据,帧不完整返回0字节,待接收完整帧执行后返回响应结果</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.LoadFile(Granity.communications.ClientInfo,System.Byte[])">
+            <summary>
+            加载文件,执行结果返回
+            </summary>
+            <param name="client">通讯连接</param>
+            <param name="context">文件头和文件内容</param>
+            <returns>返回执行结果文件头</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.GetFile(Granity.communications.ClientInfo,System.Byte[])">
+            <summary>
+            获取文件,执行结果返回
+            </summary>
+            <param name="client">通讯连接</param>
+            <param name="context">文件头和文件内容</param>
+            <returns>返回执行结果头信息和文件内容</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.DelFile(Granity.communications.ClientInfo,System.Byte[])">
+            <summary>
+            删除文件,执行结果返回
+            </summary>
+            <param name="context">文件头和文件内容</param>
+            <returns>返回执行结果头信息</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.HeadBeat(Granity.communications.ClientInfo,System.Byte[])">
+            <summary>
+            心跳,无执行直接返回
+            </summary>
+            <param name="client">通讯连接</param>
+            <param name="context">文件头和文件内容</param>
+            <returns>返回执行结果头信息</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.CommiTrans(Granity.communications.ClientInfo,System.Byte[])">
+            <summary>
+            传递通讯,作为通讯的中转桥,既传送请求指令又传送响应结果
+                包含参数: len,dir=request/response,cmd=TransFile.trans,source,target,
+                          CommiType,addr=ipaddr/COM1,port,baudRate,parity,dataBits,stopBits
+            </summary>
+            <param name="client">通讯连接</param>
+            <param name="context">头信息和要传送的指令或结果</param>
+            <returns>返回0字节,这里返回数据需要的是异步过程,由响应事件后再回传数据</returns>
+        </member>
+        <member name="M:Granity.communications.SvrFileTrans.ExtendSrv(Granity.communications.ClientInfo,System.Byte[])">
+            <summary>
+            扩展服务通讯,作为系统扩展应用,能够触发扩展事件
+                包含参数: len,cmd=TransFile.extend,及其他扩展参数
+            </summary>
+            <param name="client">通讯连接</param>
+            <param name="context">头信息和要传送的指令或结果</param>
+            <returns>返回传送</returns>
+        </member>
+        <member name="P:Granity.communications.SvrFileTrans.CmdMap">
+            <summary>
+            提供服务的指令映射列表
+            </summary>
+        </member>
+        <member name="E:Granity.communications.SvrFileTrans.ExtendHandle">
+            <summary>
+            扩展服务事件
+            </summary>
+        </member>
+        <member name="T:Granity.communications.myLog">
+            <summary>
+            日志记录工具类
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.islog">
+            <summary>
+            是否启动记录日志
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.logtype">
+            <summary>
+            记录日志使用的方式：文件，windows，数据库
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.maxpage">
+            <summary>
+            记录日志的页数，超过这个数新建立日志保存
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.pagesize">
+            <summary>
+            每页记录数，每页满时保存一次
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.index">
+            <summary>
+            当前日志页内序号
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.pgnum">
+            <summary>
+            当前页码数
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.logfile">
+            <summary>
+            当前日志文件路径
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.logbuilder">
+            <summary>
+            日志记录
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.objlog">
+            <summary>
+            多线程执行排它锁
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.objmonitor">
+            <summary>
+            同步时的锁定实例
+            </summary>
+        </member>
+        <member name="M:Granity.communications.myLog.#cctor">
+            <summary>
+            初始化配置
+            </summary>
+        </member>
+        <member name="M:Granity.communications.myLog.Write(System.String)">
+            <summary>
+            写入日志
+            </summary>
+            <param name="msg">日志信息</param>
+        </member>
+        <member name="M:Granity.communications.myLog.WriteLine(System.String)">
+            <summary>
+            写入一行日志
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:Granity.communications.myLog.Flush">
+            <summary>
+            清空缓冲区日志，提交入文件或windows日志
+            </summary>
+        </member>
+        <member name="M:Granity.communications.myLog.Flush(System.Boolean)">
+            <summary>
+            清空缓冲区日志，提交入文件或windows日志
+            <param name="force">强制清空,开始一个新日志起点</param>
+            </summary>
+        </member>
+        <member name="P:Granity.communications.myLog.IsLog">
+            <summary>
+            是否记录日志
+            </summary>
+        </member>
+        <member name="T:Granity.communications.myLog.logType">
+            <summary>
+            日志记录分类：文本文件日志,windows日志
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.logType.File">
+            <summary>
+            文本日志,默认
+            </summary>
+        </member>
+        <member name="F:Granity.communications.myLog.logType.Windows">
+            <summary>
+            windows日志
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CommiServer">
+            <summary>
+            统一模式通讯服务
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiServer.listenermap">
+            <summary>
+            监听端口列表
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiServer.Start(System.Int32,Granity.communications.ServerBase)">
+            <summary>
+            启动服务,已经启动则失败
+            </summary>
+            <param name="port">端口号</param>
+            <param name="server">服务器</param>
+        </member>
+        <member name="M:Granity.communications.CommiServer.Stop(System.Int32)">
+            <summary>
+            停止服务
+            </summary>
+            <param name="port">端口号</param>
+        </member>
+        <member name="M:Granity.communications.CommiServer.Stop">
+            <summary>
+            停止所有端口服务
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiServer.start(System.Int32,Granity.communications.ServerBase)">
+            <summary>
+            启动服务,已经启动则忽略,被占用则忽略加入和启动
+            </summary>
+            <param name="port">端口号</param>
+            <param name="server">服务器</param>
+        </member>
+        <member name="M:Granity.communications.CommiServer.readData(Granity.communications.ClientInfo,Granity.communications.ServerBase)">
+            <summary>
+            服务器读取通讯数据
+            </summary>
+            <param name="client">客户端连接</param>
+            <param name="server">服务器</param>
+        </member>
+        <member name="M:Granity.communications.CommiServer.writeData(Granity.communications.ClientInfo,Granity.communications.ServerBase)">
+            <summary>
+            服务器写入通讯数据
+            </summary>
+            <param name="client">客户端连接</param>
+            <param name="server">服务器</param>
+        </member>
+        <member name="M:Granity.communications.CommiServer.raiseEvent(System.EventArgs)">
+            <summary>
+            触发服务端事件:请求/响应/异常
+            </summary>
+            <param name="args">要触发的事件</param>
+        </member>
+        <member name="F:Granity.communications.CommiServer.argsHandle">
+            <summary>
+            指令事件参数列表
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiServer.isRunHandle">
+            <summary>
+            是否正在执行指令事件
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiServer.raiseCmdHandle(System.Object)">
+            <summary>
+            触发指令事件
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="P:Granity.communications.CommiServer.GlobalServer">
+            <summary>
+            全局实例
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommiServer.RequestHandle">
+            <summary>
+            请求事件
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommiServer.ResponseHandle">
+            <summary>
+            响应事件
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommiServer.ErrorHandle">
+            <summary>
+            异常时事件
+            </summary>
+        </member>
+        <member name="E:Granity.communications.CommiServer.DisconnHandle">
+            <summary>
+            断开连接时事件
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CommiTarget">
+            <summary>
+            通讯参数
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.#ctor">
+            <summary>
+            构建默认参数,协议参数为空,默认UDP通讯
+            </summary>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.#ctor(System.Net.IPEndPoint,Granity.communications.CommiType)">
+            <summary>
+            构建通讯参数,并以UDP/TCP参数初始值
+            </summary>
+            <param name="ep">通讯另一端IP地址和端口号</param>
+            <param name="ptype">通讯类别UDP/TCP,设置SerialPort触发异常</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.#ctor(System.String,System.Int32,Granity.communications.CommiType)">
+            <summary>
+            构建通讯参数,并以UDP/TCP参数初始值
+            </summary>
+            <param name="ipaddress">IP地址</param>
+            <param name="port">端口号</param>
+            <param name="ptype">协议类型UDP/TCP,设置SerialPort触发异常</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+            <summary>
+            构建通讯参数,并以串口参数初始值
+            </summary>
+            <param name="portName">通讯串口名称</param>
+            <param name="baudRate">波特率</param>
+            <param name="parity">奇偶校验</param>
+            <param name="dataBits">数据位</param>
+            <param name="stopBits">停止位</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)">
+            <summary>
+            构建通讯参数,并以串口参数初始值
+            </summary>
+            <param name="portName">通讯串口名称</param>
+            <param name="baudRate">波特率</param>
+            <param name="parity">奇偶校验</param>
+            <param name="dataBits">数据位</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.#ctor(System.String,System.Int32,System.IO.Ports.Parity)">
+            <summary>
+            构建通讯参数,并以串口参数初始值
+            </summary>
+            <param name="portName">通讯串口名称</param>
+            <param name="baudRate">波特率</param>
+            <param name="parity">奇偶校验</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.#ctor(System.String,System.Int32)">
+            <summary>
+            构建通讯参数,并以串口参数初始值
+            </summary>
+            <param name="portName">通讯串口名称</param>
+            <param name="baudRate">波特率</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.#ctor(System.String)">
+            <summary>
+            构建通讯参数,并以串口参数初始值
+            </summary>
+            <param name="portName">通讯串口名称</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.SetProtocolParam(System.Net.IPEndPoint,Granity.communications.CommiType)">
+            <summary>
+            设置TCP/UDP通讯端点,类型使用串口触发异常
+            </summary>
+            <param name="ep">通讯端点,包含地址和端口号</param>
+            <param name="ptype">协议类型</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.SetProtocolParam(System.String,System.Int32,Granity.communications.CommiType)">
+            <summary>
+            设置TCP/UDP通讯端点,类型使用串口触发异常
+            </summary>
+            <param name="ipaddress">IP地址</param>
+            <param name="port">端口号</param>
+            <param name="ptype">协议类型</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.SetProtocolParam(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+            <param name="parity">奇偶校验位(默认None)</param>
+            <param name="dataBits">数据位(默认8)</param>
+            <param name="stopBits">停止位(默认1)</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.SetProtocolParam(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+            <param name="parity">奇偶校验位(默认None)</param>
+            <param name="dataBits">数据位(默认8)</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.SetProtocolParam(System.String,System.Int32,System.IO.Ports.Parity)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+            <param name="parity">奇偶校验位(默认None)</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.SetProtocolParam(System.String,System.Int32)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+            <param name="baudRate">波特率(默认9600)</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.SetProtocolParam(System.String)">
+            <summary>
+            设置串口通讯参数
+            </summary>
+            <param name="portName">串口名称</param>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.setProtocol(System.Byte[],System.Byte[],System.Int32,System.Int32,Granity.communications.SequenceType)">
+            <summary>
+            设置通讯协议规约
+            </summary>
+            <param name="frameH">帧头字节</param>
+            <param name="frameF">帧尾字节</param>
+            <param name="keyIndex">键值索引号</param>
+            <param name="keyLen">键值字节长度</param>
+            <param name="seq">执行序列</param>
+            <returns>返回设置的协议</returns>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.setProtocol(Granity.communications.Protocol)">
+            <summary>
+            设置通讯协议规约
+            </summary>
+            <param name="pt">协议规约</param>
+            <returns>返回设置的协议</returns>
+        </member>
+        <member name="M:Granity.communications.CommiTarget.Clone">
+            <summary>
+            克隆通讯协议参数
+            </summary>
+            <returns>创建新的协议参数,参数值相同</returns>
+        </member>
+        <member name="P:Granity.communications.CommiTarget.ProtocolType">
+            <summary>
+            读取当前通讯的类型
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommiTarget.SrvEndPoint">
+            <summary>
+            读取服务端地址端口,使用串口协议时为null
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommiTarget.PortName">
+            <summary>
+            读取串口协议端口号
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommiTarget.BaudRate">
+            <summary>
+            读取串口协议波特率
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommiTarget.Parity">
+            <summary>
+            读取串口协议奇偶校验
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommiTarget.DataBits">
+            <summary>
+            读取串口协议数据位
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommiTarget.StopBits">
+            <summary>
+            读取串口协议停止位
+            </summary>
+        </member>
+        <member name="P:Granity.communications.CommiTarget.Ptl">
+            <summary>
+            读取协议规约
+            </summary>
+        </member>
+        <member name="T:Granity.communications.CommiType">
+            <summary>
+            通讯类别
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiType.TCP">
+            <summary>
+            传输控制协议
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiType.UDP">
+            <summary>
+            用户数据报协议
+            </summary>
+        </member>
+        <member name="F:Granity.communications.CommiType.SerialPort">
+            <summary>
+            串口通讯协议
+            </summary>
+        </member>
+    </members>
+</doc>

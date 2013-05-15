@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/winService/obj
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/winService/obj
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -31,14 +31,14 @@ dir
 
 winService.csproj.FileListAbsolute.txt
 file
-5
+6
 
 
 
-2013-04-22T08:34:28.562500Z
-72aaf738dd0d7f057d96e3d994ceba4a
-2013-04-22T08:43:47.453125Z
-5
+2013-05-15T06:17:39.296875Z
+31db3a9d955815cee38d1d553e75a27b
+2013-05-15T09:20:53.074125Z
+6
 WBin
 
 
@@ -61,7 +61,7 @@ WBin
 
 
 
-9466
+8706
 
 Debug
 dir

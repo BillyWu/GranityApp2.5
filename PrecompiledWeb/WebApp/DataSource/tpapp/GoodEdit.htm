@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+    <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/GridUtilAdv.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usCommonAdv.js" type="text/javascript" charset="gb2312"></script>    
+    <script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>    
+    <script language="javascript" src="hmjs/sysjs/usxmllandcal.js" type="text/javascript" charset="gb2312"></script>        
+    <script language="javascript" src="hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>            
+    <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+<style type=text/css>
+.sec1 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+.sec2 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+.sec3 {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+.secx {BORDER-RIGHT: gray 0 solid; BORDER-TOP: #ffffff 0px solid;FONT-SIZE: 12px; BORDER-LEFT: #ffffff 0px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+input
+{
+	behavior:url(/hmjs/sysjs/common.htc);
+};
+select
+{
+	behavior:url(/hmjs/sysjs/common.htc);
+}
+.inputDate
+{
+	behavior:url(/hmjs/sysjs/common.htc);
+}
+.xlandImg
+{
+	cursor:hand;
+	behavior:url(/hmjs/sysjs/inputImg.htc);
+}
+
+</style>
+    
+    <script language="javascript" type="text/javascript">
+    <!--
+		window.onload=WinLoadUtil.MDTPLoad;
+		function secBoard(n) {
+		    for(i=0;i<secTable.cells.length;i++)
+		    {
+		    	if(secTable.cells[i].className!="secx")
+		    	secTable.cells[i].className="sec1";
+		    }
+		    secTable.cells[n].className="sec2";
+		    for(i=0;i<mainTable.tBodies.length;i++)
+		      mainTable.tBodies[i].style.display="none";
+		    mainTable.tBodies[n].style.display="block";
+		}
+		
+	-->
+	</script>
+<title>货品资料</title>
+</head>
+<body  bgcolor=activeborder class="sec3" >
+<table  align=center border="0" style="width:724px; font-size:10pt" cellspacing="0" cellpadding="3" id="table3" height="35">
+	<tr>
+		<td align="right" width="50">名称: </td>
+		<td width="192"><INPUT dataFld="名称" dataSrc="#goods"  style="width:98%;" type="text" size="11" name="姓名" /></td>
+		<td width="72" align="right">编码:</td>
+		<td width="175"><INPUT id="编码" dataFld="编码" dataSrc="#goods"  style="width:100%" type="text" size="11" name="姓名19" /></td>
+		<td align="right" width="100">
+					　</td>
+		<td width="23" align="right">
+		<input id="UPFLAG" type="checkbox" name="C2" value="ON"></td>
+		<td width="67">
+		非使用中</td>
+	</tr>
+</table>
+<TABLE align=center id=secTable cellSpacing=0 cellPadding=0 width=720px border=0  style="border-bottom-width: 0px;font-size:10pt">
+  <TBODY> 
+    <TR align=middle height="20px">
+      <TD class=sec2 onclick=secBoard(0) width="10%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">基本资料</TD>
+      <TD class=sec1 onclick=secBoard(1) width="10%">明细信息</TD>
+      <TD class=sec1 onclick=secBoard(2) width="10%">存货情况</TD>
+      <TD id="tdfix" align=right class=secx width="55%" style="background-color: #D4D0C8"><table border="0" cellpadding="0" style="width:206px"  height="20" >
+			<tr>
+				<td width="16"><button id="navfirst" onclick="ue_mstart();iniData();"><img src="images/MoveFirstHS.gif"></button></td>
+				<td width="16"><button id="navprev" onclick="ue_mprev();iniData();"><img src="images//MovePrevious.gif"></button></td>
+				<td align=center><INPUT id="rsnum" type="text" size="5" name="姓名2" /></td>
+				<td width="16"><button id="navnext" onclick="ue_mnext();iniData();"><img src="images//MoveNextHS.gif"></button></td>
+				<td width="16"><button id="navlast"onclick="ue_mlast();iniData();"><img src="images//MoveLastHS.gif"></Botton></td>
+				<td width="16"><button onclick="ms_bandadd();iniData();"><img src="images//NewRecordHS.gif"></Botton></td>
+				<td width="16"><button onclick="ms_banddel();iniData();"><img src="images//EditDelete1.gif" width="16" height="16"></Botton></td>
+				<td width="16"><button onclick="ms_save();"><img src="images//saveHS.gif"></Botton></td>
+			</tr>
+		</table></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+      
+<TABLE align=center class=main_tab id=mainTable cellSpacing=0 cellPadding=0 width="720" border=0 style="border-top-width: 0px" height="210px">
+  <!--菜单一内容-->
+  <TBODY style="DISPLAY: block">
+    <TR>
+      <TD align=right height=270 >
+        <TABLE id="Table2" style="table-layout:fixed;BORDER-RIGHT: thin groove; BORDER-TOP: thin groove; FONT-SIZE: 12px; BORDER-LEFT: thin groove; BORDER-BOTTOM: thin groove; FONT-FAMILY: 宋体"
+				cellSpacing="0" cellPadding="0" width="713" height="258" bgColor="activeborder" border="0">
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: medium none" height="26" align="right">
+					&nbsp;规格：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium" height="26" align="left" width="55%" colspan="4">
+					<INPUT id="BIRTHDAY" class="inputDate" style="width:95%; " type="text" size="11" name="姓名2" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove;BORDER-LEFT: thin groove;height:219px" align="center" rowspan="8" width="206">
+					<IMG src="" id="字典信息:pic" class="xlandImg" 
+						onload="javascript:if(this.width>160){this.resized=true;this.style.width=160;};"  
+						alt="个人照片" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="27"
+					 align="right">型号：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; 
+					border-top-style:none; border-top-width:medium" height="27" 
+					align="left" width="55%" colspan="4">
+					<INPUT id="BIRTHDAY" class="inputDate" style="width:95%; " type="text" size="11" name="姓名30" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="28"
+					 align="right">单位：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" height="28" align="left" width="55%" colspan="4">
+										<select id="EMPTYPEID"  size="1" style="WIDTH: 97%;" name="D7"></select></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="28"
+					 align="right">类别：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" height="28" align="left" width="55%" colspan="4">
+										<INPUT id="SEX" title="双击更改" style="width:95%; "  ondblclick="changesex(this)" type="text" size="11" name="姓名26" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="25"
+					 align="right">货品属性：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" height="25" align="left" width="55%" colspan="4">
+					<INPUT id="POSTDATE" class="inputDate" style="width:95%; " type="text" size="11" name="姓名25" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="25"
+					 align="right">核算方法：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" height="25" align="left" width="55%" colspan="4">
+					<select id="CULTURE"  size="1" style="WIDTH: 97%;" name="D8">
+                                        <option value=""></option>
+                                        <option value="小学">小学</option>
+                                        <option value="中学">中学</option>
+                                        <option value="中专">中专</option>
+                                        <option value="大专">大专</option>
+                                        <option value="本科">本科</option>                                      
+                                        <option value="硕士">硕士</option>
+                                        <option value="博士">博士</option>                                      
+                                    </select></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="30"
+					 align="right">加权成本价：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" height="30" align="left" width="128">
+					<INPUT id="IDCARD" style="width:95%; " type="text" size="11" name="姓名22" /></TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" height="30" align="right" colspan="2">
+					零售价：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" height="30" align="left" width="128">
+					<INPUT id="IDCARD" style="width:95%; " type="text" size="11" name="姓名27" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="30"
+					 align="right">产地：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" height="30" align="left" width="55%" colspan="4">
+					<INPUT id="POSTDATE" class="inputDate" style="width:95%; " type="text" size="11" name="姓名28" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: thin groove; border-top-style:none; border-top-width:medium" height="29" align="right">
+					&nbsp;库存上限：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove; border-left-style:none; border-left-width:medium" align="left" width="128" height="29">
+					<INPUT id="FOREFATHER" style="width:98.5%; " type="text" size="11" name="姓名23" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove; border-left-style:none; border-left-width:medium" align="right" height="29" colspan="2">
+					库存下限：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove; border-left-style:none; border-left-width:medium" align="left" width="128" height="29">
+					<INPUT id="FOREFATHER" style="width:98.5%; " type="text" size="11" name="姓名29" /></TD>
+					<TD style=" BORDER-BOTTOM: thin groove; BORDER-LEFT: thin groove;" align="center" width="206" height="29">
+					<FONT face="宋体">
+					<INPUT id="Button1" title="上传照片" style="WIDTH: 100px;" onclick="upload()" type="button"
+								value="上传" name="btnOK1"></FONT></TD>
+				</TR>
+				<TR>
+					<TD align="right" style="WIDTH: 103px;BORDER-Right: medium none;BORDER-BOTTOM: thin groove; border-top-style:none; border-top-width:medium"  height="36">条码规则：</TD>
+					<TD colspan="5" align="right" style=" BORDER-BOTTOM: thin groove; BORDER-LEFT: thin groove;" height="36">
+					<INPUT id="BIRTHDAY" class="inputDate" style="width:100%; " type="text" size="11" name="姓名31" /></TD>
+				</TR>
+				<TR>
+					<TD colspan="3" align=center height="36" style="color: #800000">
+					若未定义条码规则，则按通用规则设定</TD>
+					<TD colspan="3" align="right" height="36"><INPUT id="Button1" title="保存并返回" style="WIDTH: 64px; HEIGHT: 24px" onclick="cmdOK()" type="button"
+								value="确定" name="btnOK" runat="server">&nbsp;<INPUT id="Button2" style="WIDTH: 66px; HEIGHT: 24px" onclick="cmdCancel()" type="button"
+								value="返回" name="btnCancel" runat="server">&nbsp; 
+					</FONT>
+					</TD>
+				</TR>
+			</TABLE>
+      </TD>
+    </TR>
+  </TBODY>
+  <!--菜单二内容-->
+  <TBODY style="DISPLAY: none">
+    <TR>
+      <TD align=center>
+        <TABLE id="Table2" style="BORDER-RIGHT: thin groove; BORDER-TOP: thin groove; FONT-SIZE: 12px; BORDER-LEFT: thin groove; BORDER-BOTTOM: thin groove; FONT-FAMILY: 宋体"
+				cellSpacing="0" cellPadding="0" width="600px" height="191" bgColor="activeborder" border="0">
+				<TR>
+					<TD style="WIDTH: 13%;BORDER-Right: medium none;BORDER-BOTTOM: medium none" height="30" align="right">
+					&nbsp;邮&nbsp;&nbsp;&nbsp; 编：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium" width="35%" height="30">
+					<INPUT id="POSTCODE" style="width:100%; " type="text" size="11" name="姓名2" /></TD>
+					<TD style=" BORDER-BOTTOM: medium none; " align="right" width="19%" height="30">
+					家庭电话：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; " align="right" width="32%" height="30"><INPUT id="HOMEPHONE" style="width:100%; " type="text" size="11" name="姓名1" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 13%;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="30" align="right">
+					&nbsp;住&nbsp;&nbsp;&nbsp; 址：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" width="86%" colspan="3" height="30">
+					<INPUT id="ADDRESS" style="width:100%; " type="text" size="11" name="姓名4" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 13%;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="30" align="right">
+					&nbsp;职&nbsp;&nbsp;&nbsp; 务：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" width="35%" height="30">
+					<INPUT id="DUTY" style="width:100%; " type="text" size="11" name="姓名20" /></TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" width="19%" height="30">
+					工作电话：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" width="32%" height="30">
+					<INPUT id="TELEPHONE" style="width:100%; " type="text" size="11" name="姓名21" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 13%;BORDER-Right: medium none;BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" height="30" align="right">&nbsp;EMAIL地址：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-left-style:none; border-left-width:medium; border-top-style:none; border-top-width:medium" width="35%" height="30">
+					<INPUT id="EMAIL" style="width:100%; " type="text" size="11" name="姓名22" /></TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" align="right" width="19%" height="30">
+					手机：</TD>
+					<TD style=" BORDER-BOTTOM: medium none; ; border-top-style:none; border-top-width:medium" width="32%" height="30">
+					<INPUT id="MPHONE" style="width:100%; " type="text" size="11" name="姓名24" /></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 13%;BORDER-Right: medium none;BORDER-BOTTOM: thin groove; border-top-style:none; border-top-width:medium" height="30" align="right">
+					&nbsp;备&nbsp;&nbsp;&nbsp; 注：</TD>
+					<TD style=" BORDER-BOTTOM: thin groove; border-left-style:none; border-left-width:medium" align="right" width="86%" colspan="3" height="30">
+					<INPUT id="MEMORY" style="width:100%; " type="text" size="11" name="姓名23" /></TD>
+				</TR>
+				<TR>
+					<TD colspan="4" align="right" height="30"><INPUT id="hlb_gridname" style="WIDTH: 88px; HEIGHT: 22px" type="hidden" size="9">
+					<FONT face="宋体">
+					<INPUT id="Button1" title="确定" style="WIDTH: 64px; HEIGHT: 24px" onclick="cmdOK()" type="button"
+								value="确定" name="btnOK" runat="server">&nbsp;<INPUT id="Button2" style="WIDTH: 66px; HEIGHT: 24px" onclick="cmdCancel()" type="button"
+								value="返回" name="btnCancel" runat="server">&nbsp; 
+					</FONT>
+					</TD>
+				</TR>
+			</TABLE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+		<Control class="" catalog="GridLand.ascx" itemname="goods" id="goods" name="">goods
+			<Property name="tpfile" value="" />
+			<Property name="width" value="900" /><Property name="height" value="500" /><Property name="hiddenhead" value="" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="" />
+		</Control>
+
+</body>
+
+</html>

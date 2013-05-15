@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    	<style>
+		<!--
+			.kuang_BDBDBD 
+			{
+						border-top-width: 1px;	border-bottom-width: 1px;	border-top-style: solid;
+						border-bottom-style: solid;	border-top-color: #BDBDBD;	border-bottom-color: #BDBDBD;
+			}
+			.button 
+			{
+						background-color: #024489;	border: 1px solid #024489;	height: 22px;	padding-top: 1px;
+						padding-right: 0px;		padding-bottom: 2px;		padding-left: 0px;
+			}
+			.button1 
+			{
+						background-color: #800000;	border: 1px solid #800000;	height: 19px;	padding-top: 1px;
+						padding-right: 0px;		padding-bottom: 2px;		padding-left: 0px;
+			}
+		-->
+		</style>
+    	<script language="javascript" type="text/javascript">
+    	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;
+			function initWin()
+    		{
+   				var band=document.UnitItem.getBandByItemName('注册');
+    			if(band.RecordCount()<1) band.NewRecord();
+    		}
+    		function btnShowReg()
+    		{
+    			document.getElementById("tbnode").style.display="none";
+    			document.getElementById("tbreg").style.display="";
+    		}
+    		
+    		function btnShownotice()
+    		{
+    			document.getElementById("tbnode").style.display="";
+    			document.getElementById("tbreg").style.display="none";
+    		}
+    		
+    		function _submit()
+    		{
+    			var band=document.UnitItem.getBandByItemName('注册');
+    		    var bandc = document.UnitItem.getBandByItemName('检测');
+    		    if(bandc) 
+    		    {
+					var xmldoc=document.UnitItem.ParamXmldoc;
+					ToolUtil.setParamValue(xmldoc, "帐号", band.getFldStrValue("帐号"), "", "B", bandc.ItemName, "C","D"); 
+    		    	bandc.Query();
+    		    	if(bandc.RecordCount()>0) {alert("该用户已存在,请更换用户名!");	return;}
+    		   	}
+    			
+    			if(band.getFldStrValue("密码")==band.getFldStrValue("确认密码"))
+    			{
+    			   	if(!ue_save()) return;
+					var result=confirm(" 是否立即进行申报  ？     ");
+					if(result) parent.location.href="default.aspx";
+    			}
+    			else
+    				alert("密码错误,请检查!");
+    		}
+    		
+    		function _chkname()
+    		{
+    			var band=document.UnitItem.getBandByItemName('注册');
+    			if(band.getFldStrValue("帐号")=="") return;
+    		    var bandc = document.UnitItem.getBandByItemName('检测');
+    		    if(bandc) 
+    		    {
+					var xmldoc=document.UnitItem.ParamXmldoc;
+					ToolUtil.setParamValue(xmldoc, "帐号", band.getFldStrValue("帐号"), "", "B", bandc.ItemName, "C","D"); 
+    		    	bandc.Query();
+    		    	if(bandc.RecordCount()>0) {alert("该用户已存在,请更换用户名!");	return;}
+    		    	else
+    		    		alert("恭喜你可以使用该用户名!")
+    		   	}
+    		}
+
+		-->    		
+    	</script>
+    </head>
+<body>
+		  <p style="MARGIN-BOTTOM: -8px"><br /></p>
+<table border="0" width="793" id="table1" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align="center">
+	<tbody>
+	<tr>
+		<td align="left" style="width:32%" rowspan="3">
+		<img alt="" style="border:0;width:318;" src="fay_welcome.gif" width="318" height="72" /></td>
+		<td align="left" style="width:56%;height:30" valign="baseline">
+		</td>
+	</tr>
+	<tr>
+		<td id="unittitle" align="right" valign="bottom" style="width:56%;height:8"></td>
+	</tr>
+	<tr>
+		<td align="left" valign="baseline" style="filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFFF', endColorStr=gray, gradientType='1');width:56%;height:10">
+		</td>
+	</tr>
+</tbody>
+</table><p style="MARGIN-BOTTOM: -10px"></p>
+<table id="tbnode" cellSpacing="0" cellPadding="5" width="79%" align="center" border="0">
+								<tbody>
+								<tr>
+									<th><font color="black">网上申报安全协议</font></th>
+								</tr>
+								<tr>
+									<td align="center">
+									<div align="left" class="tablescroll" style="overflow-x:none;overflow-y:none;height:300px;width:640px">
+									<p>
+									　为方便企业，提高办事效率，甲方开通了网上办公系统，乙方愿意采用该系统办理有关事项。为使网上办公系统能够安全运行，妥善解决网上办公涉及的有效性、真实性、合法性等方面的问题，甲乙双方达成协议如下： 
+									</p><p></p>
+									<p style="MARGIN-BOTTOM: -5px"></p><p>
+									　一、甲方开通相应的网上管理和服务项目，保证有效性、合法性。努力保障网上办公系统正常运行。</p>
+									<p style="MARGIN-BOTTOM: -5px"></p><p>　二、甲方负责为乙方提供网上办公系统基本操作培训和相应的技术咨询与支持。</p>
+									<p style="MARGIN-BOTTOM: -5px"></p><p>
+									　三、双方遵守国家安全、保密、版权等方面的有关规定。甲方有义务为乙方的申报信息保密。乙方遵守甲方关于网络安全、保密方面的规定，不得进行破坏网络安全的活动。</p>
+									<p style="MARGIN-BOTTOM: -5px"></p><p>
+									　四、乙方不得使用他人上网帐号，或将自己的转给他人使用。乙方应妥善保存上网帐号和密码。在未接到乙方通知报失前，凡使用乙方帐号进行网上的申报均视为乙方亲自办理。</p>
+									<p style="MARGIN-BOTTOM: -5px"></p><p>　五、乙方必须依法如实申报各种信息、材料和报表，并遵守网上申报的注意事项。</p>
+									<p style="MARGIN-BOTTOM: -5px"></p><p>
+									　六、乙方应保证网上申报的最终信息与现实提交或存档信息的一致性，否则甲方有权决定相应审批或申报无效。</p>
+									<p style="MARGIN-BOTTOM: -5px"></p><p>
+									　七、由于网络故障或病毒等不可控制因素导致网上办公系统不能成功接受乙方信息时，乙方有义务采取措施补交。</p>
+									<p style="MARGIN-BOTTOM: -5px"></p><p>　八、对于任何一方因违反本协议规定引起的后果，由此方承担全部法律责任。</p>
+									</div>
+									</td>
+								</tr>
+								<tr>
+									<td align="center"><input class="button" onclick="btnShowReg()" type="button" value="　　同意并注册　　" name="addnew" style="color: white" />
+									　</td>
+								</tr>
+							</tbody>
+							</table>
+		<table cellSpacing="0" cellPadding="5" width="80%" align="center" border="0" id="tbreg" style="display:none">
+								<tbody>
+								<tr>
+									<th colSpan="3">企业(个人)用户注册信息</th>
+								</tr>
+								<tr>
+									<td noWrap="">用户名：</td>
+									<td>
+									<input dataFld="帐号" class="xlandinput" dataSrc="#MasterTab" name="T71" />
+									<input class="button1" onclick="_chkname()" type="button" value="检测" style="color: white;" />　<font color="#FF0000">*</font>可以是英文字母和阿拉伯数字，6-10位</td>
+								</tr>
+								<tr>
+									<td noWrap="">密码：</td>
+									<td>
+									<input dataFld="密码" class="xlandinput" dataSrc="#MasterTab" name="T71" />
+									<font color="#FF0000">*</font>可以是英文字母和阿拉伯数字，6-10位</td>
+								</tr>
+								<tr>
+									<td noWrap="">确认密码：</td>
+									<td>
+									<input dataFld="确认密码" class="xlandinput" dataSrc="#MasterTab" name="T71" />
+									<font color="#FF0000">*</font>密码确认，同上</td>
+								</tr>
+								<tr>
+									<td noWrap="">联系人：</td>
+									<td>
+									<input dataFld="姓名" class="xlandinput" maxLength="20" size="40" dataSrc="#MasterTab" name="T71" />
+									<font color="#FF0000">*</font>中文方式 
+									</td>
+								</tr>
+								<tr>
+									<td noWrap="">移动电话：</td>
+									<td>
+									<input dataFld="手机" class="xlandinput" maxLength="20" size="40" dataSrc="#MasterTab" name="T71" />
+									<font color="#FF0000">*</font>为数字，可以使用“-”和“,”</td>
+								</tr>
+								<tr>
+									<td noWrap="">电子邮件：</td>
+									<td>
+									<input dataFld="邮箱" class="xlandinput" maxLength="20" size="40" dataSrc="#MasterTab" name="T71" /></td>
+								</tr>
+								<tr>
+									<td noWrap="">联系电话：</td>
+									<td>
+									<input dataFld="电话" class="xlandinput" maxLength="20" size="40" dataSrc="#MasterTab" name="T71" /></td>
+								</tr>
+								<tr>
+									<td noWrap="">传真号码：</td>
+									<td>
+									<input dataFld="传真" class="xlandinput" maxLength="20" size="40" dataSrc="#MasterTab" name="T71" /></td>
+								</tr>
+								<tr>
+									<td noWrap="">企业（公司）名称：</td>
+									<td>
+									<input dataFld="公司名称" class="xlandinput" maxLength="20" size="60" dataSrc="#MasterTab" name="T71" /></td>
+								</tr>
+								<tr>
+									<td noWrap="">联系地址：</td>
+									<td>
+									<input dataFld="地址" class="xlandinput" maxLength="20" size="60" dataSrc="#MasterTab" name="T71" /></td>
+								</tr>
+								<tr>
+									<td align="center" noWrap="" colSpan="2" height="32"><input class="button" onclick="_submit()" type="button" value="　提交　" style="color: white" />　　　<input class="button" onclick="btnShownotice();" type="button" value="查看服务条款" style="color: white" /> </td>
+								</tr>
+							</tbody>
+							</table>					
+							
+	<Control class="" catalog="GridLand.ascx" itemname="注册" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="" />
+							<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>
+		<Control class="" catalog="GridLand.ascx" itemname="检测" id="chkTab" name="">chkTab
+							<Property name="tpfile" value="" />
+							<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+	</Control>
+			</body>
+</html>

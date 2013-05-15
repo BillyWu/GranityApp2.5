@@ -1,113 +1,85 @@
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/UserRight/bin/Debug
 END
 Estar.Business.DataManager.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 100
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.DataManager.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.DataManager.pdb
 END
 Estar.DataAccess.OdpNetDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 107
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.OdpNetDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.OdpNetDataAccess.pdb
 END
 Estar.DataAccess.OleDbDataAccess.dll
 K 25
 svn:wc:ra_dav:version-url
 V 106
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.OleDbDataAccess.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.OleDbDataAccess.dll
 END
 Estar.Business.DataManager.dll
 K 25
 svn:wc:ra_dav:version-url
 V 100
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.DataManager.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.DataManager.dll
 END
 Estar.DataAccess.SqlClientDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 110
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.SqlClientDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.SqlClientDataAccess.pdb
 END
 Estar.DataAccess.OdpNetDataAccess.dll
 K 25
 svn:wc:ra_dav:version-url
 V 107
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.OdpNetDataAccess.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.OdpNetDataAccess.dll
 END
 Estar.Business.UserRight.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 98
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.UserRight.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.UserRight.pdb
 END
 Estar.DataAccess.DataAccessInterface.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 110
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.DataAccessInterface.pdb
-END
-Estar.DataAccess.SqlClientDataAccess.dll
-K 25
-svn:wc:ra_dav:version-url
-V 110
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.SqlClientDataAccess.dll
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
-K 25
-svn:wc:ra_dav:version-url
-V 132
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/UserRight/bin/Debug/Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
-END
-Estar.Business.UserRight.dll
-K 25
-svn:wc:ra_dav:version-url
-V 98
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.UserRight.dll
-END
-Estar.DataAccess.DataAccessInterface.dll
-K 25
-svn:wc:ra_dav:version-url
-V 110
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.DataAccessInterface.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.DataAccessInterface.pdb
 END
 Estar.Common.Tools.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Common.Tools.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Common.Tools.pdb
 END
-Oracle.DataAccess.dll
+Estar.DataAccess.SqlClientDataAccess.dll
 K 25
 svn:wc:ra_dav:version-url
-V 91
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/UserRight/bin/Debug/Oracle.DataAccess.dll
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.dll
-K 25
-svn:wc:ra_dav:version-url
-V 121
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/UserRight/bin/Debug/Microsoft.ApplicationBlocks.ExceptionManagement.dll
-END
-Estar.Business.DataManager.xml
-K 25
-svn:wc:ra_dav:version-url
-V 100
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.DataManager.xml
+V 110
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.SqlClientDataAccess.dll
 END
 Estar.DataAccess.OleDbDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 106
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.OleDbDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.OleDbDataAccess.pdb
+END
+Estar.Business.UserRight.dll
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Business.UserRight.dll
+END
+Estar.DataAccess.DataAccessInterface.dll
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.DataAccess.DataAccessInterface.dll
 END
 Estar.Common.Tools.dll
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Common.Tools.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/Business/UserRight/bin/Debug/Estar.Common.Tools.dll
 END

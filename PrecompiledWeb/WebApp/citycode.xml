@@ -1,0 +1,2450 @@
+<NewDataSet>
+- <Area id="Area1" rowOrder="0">
+		<ID>1</ID>
+		<ZoneID>1</ZoneID>
+		<Area>北京</Area>
+		<AreaCode>54511</AreaCode>
+	</Area>
+      - <Area id="Area2" rowOrder="1">
+		<ID>2</ID>
+		<ZoneID>1</ZoneID>
+		<Area>上海</Area>
+		<AreaCode>58367</AreaCode>
+	</Area>
+      - <Area id="Area3" rowOrder="2">
+		<ID>3</ID>
+		<ZoneID>1</ZoneID>
+		<Area>天津</Area>
+		<AreaCode>54517</AreaCode>
+	</Area>
+      - <Area id="Area4" rowOrder="3">
+		<ID>4</ID>
+		<ZoneID>1</ZoneID>
+		<Area>重庆</Area>
+		<AreaCode>57516</AreaCode>
+	</Area>
+      - <Area id="Area5" rowOrder="4">
+		<ID>5</ID>
+		<ZoneID>2</ZoneID>
+		<Area>香港</Area>
+		<AreaCode>45005</AreaCode>
+	</Area>
+      - <Area id="Area6" rowOrder="5">
+		<ID>6</ID>
+		<ZoneID>2</ZoneID>
+		<Area>澳门</Area>
+		<AreaCode>45011</AreaCode>
+	</Area>
+      - <Area id="Area7" rowOrder="6">
+		<ID>7</ID>
+		<ZoneID>3</ZoneID>
+		<Area>哈尔滨</Area>
+		<AreaCode>50953</AreaCode>
+	</Area>
+      - <Area id="Area8" rowOrder="7">
+		<ID>8</ID>
+		<ZoneID>3</ZoneID>
+		<Area>齐齐哈尔</Area>
+		<AreaCode>50745</AreaCode>
+	</Area>
+      - <Area id="Area9" rowOrder="8">
+		<ID>9</ID>
+		<ZoneID>3</ZoneID>
+		<Area>牡丹江</Area>
+		<AreaCode>54094</AreaCode>
+	</Area>
+      - <Area id="Area10" rowOrder="9">
+		<ID>10</ID>
+		<ZoneID>3</ZoneID>
+		<Area>大庆</Area>
+		<AreaCode>50842</AreaCode>
+	</Area>
+      - <Area id="Area11" rowOrder="10">
+		<ID>11</ID>
+		<ZoneID>3</ZoneID>
+		<Area>伊春</Area>
+		<AreaCode>50774</AreaCode>
+	</Area>
+      - <Area id="Area12" rowOrder="11">
+		<ID>12</ID>
+		<ZoneID>3</ZoneID>
+		<Area>双鸭山</Area>
+		<AreaCode>50884</AreaCode>
+	</Area>
+      - <Area id="Area13" rowOrder="12">
+		<ID>13</ID>
+		<ZoneID>3</ZoneID>
+		<Area>鹤岗</Area>
+		<AreaCode>50775</AreaCode>
+	</Area>
+      - <Area id="Area14" rowOrder="13">
+		<ID>14</ID>
+		<ZoneID>3</ZoneID>
+		<Area>鸡西</Area>
+		<AreaCode>50978</AreaCode>
+	</Area>
+      - <Area id="Area15" rowOrder="14">
+		<ID>15</ID>
+		<ZoneID>3</ZoneID>
+		<Area>佳木斯</Area>
+		<AreaCode>50873</AreaCode>
+	</Area>
+      - <Area id="Area16" rowOrder="15">
+		<ID>16</ID>
+		<ZoneID>3</ZoneID>
+		<Area>七台河</Area>
+		<AreaCode>50971</AreaCode>
+	</Area>
+      - <Area id="Area17" rowOrder="16">
+		<ID>17</ID>
+		<ZoneID>3</ZoneID>
+		<Area>黑河</Area>
+		<AreaCode>50468</AreaCode>
+	</Area>
+      - <Area id="Area18" rowOrder="17">
+		<ID>18</ID>
+		<ZoneID>3</ZoneID>
+		<Area>绥化</Area>
+		<AreaCode>50853</AreaCode>
+	</Area>
+      - <Area id="Area19" rowOrder="18">
+		<ID>19</ID>
+		<ZoneID>3</ZoneID>
+		<Area>大兴安岭</Area>
+		<AreaCode>50442</AreaCode>
+	</Area>
+      - <Area id="Area20" rowOrder="19">
+		<ID>20</ID>
+		<ZoneID>4</ZoneID>
+		<Area>长春</Area>
+		<AreaCode>54161</AreaCode>
+	</Area>
+      - <Area id="Area21" rowOrder="20">
+		<ID>22</ID>
+		<ZoneID>4</ZoneID>
+		<Area>吉林</Area>
+		<AreaCode>54172</AreaCode>
+	</Area>
+      - <Area id="Area22" rowOrder="21">
+		<ID>23</ID>
+		<ZoneID>4</ZoneID>
+		<Area>白山</Area>
+		<AreaCode>54371</AreaCode>
+	</Area>
+      - <Area id="Area23" rowOrder="22">
+		<ID>24</ID>
+		<ZoneID>4</ZoneID>
+		<Area>白城</Area>
+		<AreaCode>50936</AreaCode>
+	</Area>
+      - <Area id="Area24" rowOrder="23">
+		<ID>25</ID>
+		<ZoneID>4</ZoneID>
+		<Area>四平</Area>
+		<AreaCode>54157</AreaCode>
+	</Area>
+      - <Area id="Area25" rowOrder="24">
+		<ID>26</ID>
+		<ZoneID>4</ZoneID>
+		<Area>松原</Area>
+		<AreaCode>50946</AreaCode>
+	</Area>
+      - <Area id="Area26" rowOrder="25">
+		<ID>27</ID>
+		<ZoneID>4</ZoneID>
+		<Area>辽源</Area>
+		<AreaCode>54260</AreaCode>
+	</Area>
+      - <Area id="Area27" rowOrder="26">
+		<ID>28</ID>
+		<ZoneID>4</ZoneID>
+		<Area>大安</Area>
+		<AreaCode>50945</AreaCode>
+	</Area>
+      - <Area id="Area28" rowOrder="27">
+		<ID>29</ID>
+		<ZoneID>4</ZoneID>
+		<Area>通化</Area>
+		<AreaCode>54363</AreaCode>
+	</Area>
+      - <Area id="Area29" rowOrder="28">
+		<ID>30</ID>
+		<ZoneID>5</ZoneID>
+		<Area>沈阳</Area>
+		<AreaCode>54342</AreaCode>
+	</Area>
+      - <Area id="Area30" rowOrder="29">
+		<ID>31</ID>
+		<ZoneID>5</ZoneID>
+		<Area>大连</Area>
+		<AreaCode>54662</AreaCode>
+	</Area>
+      - <Area id="Area31" rowOrder="30">
+		<ID>32</ID>
+		<ZoneID>5</ZoneID>
+		<Area>葫芦岛</Area>
+		<AreaCode>54453</AreaCode>
+	</Area>
+      - <Area id="Area32" rowOrder="31">
+		<ID>33</ID>
+		<ZoneID>5</ZoneID>
+		<Area>旅顺</Area>
+		<AreaCode>54660</AreaCode>
+	</Area>
+      - <Area id="Area33" rowOrder="32">
+		<ID>34</ID>
+		<ZoneID>5</ZoneID>
+		<Area>本溪</Area>
+		<AreaCode>54346</AreaCode>
+	</Area>
+      - <Area id="Area34" rowOrder="33">
+		<ID>35</ID>
+		<ZoneID>5</ZoneID>
+		<Area>抚顺</Area>
+		<AreaCode>54353</AreaCode>
+	</Area>
+      - <Area id="Area35" rowOrder="34">
+		<ID>36</ID>
+		<ZoneID>5</ZoneID>
+		<Area>铁岭</Area>
+		<AreaCode>54249</AreaCode>
+	</Area>
+      - <Area id="Area36" rowOrder="35">
+		<ID>37</ID>
+		<ZoneID>5</ZoneID>
+		<Area>辽阳</Area>
+		<AreaCode>54347</AreaCode>
+	</Area>
+      - <Area id="Area37" rowOrder="36">
+		<ID>38</ID>
+		<ZoneID>5</ZoneID>
+		<Area>营口</Area>
+		<AreaCode>54471</AreaCode>
+	</Area>
+      - <Area id="Area38" rowOrder="37">
+		<ID>39</ID>
+		<ZoneID>5</ZoneID>
+		<Area>阜新</Area>
+		<AreaCode>54237</AreaCode>
+	</Area>
+      - <Area id="Area39" rowOrder="38">
+		<ID>40</ID>
+		<ZoneID>5</ZoneID>
+		<Area>朝阳</Area>
+		<AreaCode>54324</AreaCode>
+	</Area>
+      - <Area id="Area40" rowOrder="39">
+		<ID>41</ID>
+		<ZoneID>5</ZoneID>
+		<Area>锦州</Area>
+		<AreaCode>54337</AreaCode>
+	</Area>
+      - <Area id="Area41" rowOrder="40">
+		<ID>42</ID>
+		<ZoneID>5</ZoneID>
+		<Area>丹东</Area>
+		<AreaCode>54497</AreaCode>
+	</Area>
+      - <Area id="Area42" rowOrder="41">
+		<ID>43</ID>
+		<ZoneID>5</ZoneID>
+		<Area>鞍山</Area>
+		<AreaCode>54339</AreaCode>
+	</Area>
+      - <Area id="Area43" rowOrder="42">
+		<ID>44</ID>
+		<ZoneID>6</ZoneID>
+		<Area>呼和浩特</Area>
+		<AreaCode>53463</AreaCode>
+	</Area>
+      - <Area id="Area44" rowOrder="43">
+		<ID>46</ID>
+		<ZoneID>6</ZoneID>
+		<Area>锡林浩特</Area>
+		<AreaCode>54102</AreaCode>
+	</Area>
+      - <Area id="Area45" rowOrder="44">
+		<ID>47</ID>
+		<ZoneID>6</ZoneID>
+		<Area>包头</Area>
+		<AreaCode>53446</AreaCode>
+	</Area>
+      - <Area id="Area46" rowOrder="45">
+		<ID>48</ID>
+		<ZoneID>6</ZoneID>
+		<Area>赤峰</Area>
+		<AreaCode>54218</AreaCode>
+	</Area>
+      - <Area id="Area47" rowOrder="46">
+		<ID>49</ID>
+		<ZoneID>6</ZoneID>
+		<Area>海拉尔</Area>
+		<AreaCode>50527</AreaCode>
+	</Area>
+      - <Area id="Area48" rowOrder="47">
+		<ID>50</ID>
+		<ZoneID>6</ZoneID>
+		<Area>乌海</Area>
+		<AreaCode>53512</AreaCode>
+	</Area>
+      - <Area id="Area49" rowOrder="48">
+		<ID>51</ID>
+		<ZoneID>6</ZoneID>
+		<Area>鄂尔多斯</Area>
+		<AreaCode>53543</AreaCode>
+	</Area>
+      - <Area id="Area50" rowOrder="49">
+		<ID>52</ID>
+		<ZoneID>6</ZoneID>
+		<Area>锡林浩特</Area>
+		<AreaCode>54102</AreaCode>
+	</Area>
+      - <Area id="Area51" rowOrder="50">
+		<ID>53</ID>
+		<ZoneID>6</ZoneID>
+		<Area>通辽</Area>
+		<AreaCode>54135</AreaCode>
+	</Area>
+      - <Area id="Area52" rowOrder="51">
+		<ID>54</ID>
+		<ZoneID>7</ZoneID>
+		<Area>石家庄</Area>
+		<AreaCode>53698</AreaCode>
+	</Area>
+      - <Area id="Area53" rowOrder="52">
+		<ID>55</ID>
+		<ZoneID>7</ZoneID>
+		<Area>唐山</Area>
+		<AreaCode>54534</AreaCode>
+	</Area>
+      - <Area id="Area54" rowOrder="53">
+		<ID>56</ID>
+		<ZoneID>7</ZoneID>
+		<Area>张家口</Area>
+		<AreaCode>54401</AreaCode>
+	</Area>
+      - <Area id="Area55" rowOrder="54">
+		<ID>57</ID>
+		<ZoneID>7</ZoneID>
+		<Area>廊坊</Area>
+		<AreaCode>54515</AreaCode>
+	</Area>
+      - <Area id="Area56" rowOrder="55">
+		<ID>58</ID>
+		<ZoneID>7</ZoneID>
+		<Area>邢台</Area>
+		<AreaCode>53798</AreaCode>
+	</Area>
+      - <Area id="Area57" rowOrder="56">
+		<ID>59</ID>
+		<ZoneID>7</ZoneID>
+		<Area>邯郸</Area>
+		<AreaCode>53892</AreaCode>
+	</Area>
+      - <Area id="Area58" rowOrder="57">
+		<ID>60</ID>
+		<ZoneID>7</ZoneID>
+		<Area>沧州</Area>
+		<AreaCode>54616</AreaCode>
+	</Area>
+      - <Area id="Area59" rowOrder="58">
+		<ID>61</ID>
+		<ZoneID>7</ZoneID>
+		<Area>衡水</Area>
+		<AreaCode>54702</AreaCode>
+	</Area>
+      - <Area id="Area60" rowOrder="59">
+		<ID>62</ID>
+		<ZoneID>7</ZoneID>
+		<Area>承德</Area>
+		<AreaCode>54423</AreaCode>
+	</Area>
+      - <Area id="Area61" rowOrder="60">
+		<ID>63</ID>
+		<ZoneID>7</ZoneID>
+		<Area>保定</Area>
+		<AreaCode>54602</AreaCode>
+	</Area>
+      - <Area id="Area62" rowOrder="61">
+		<ID>64</ID>
+		<ZoneID>7</ZoneID>
+		<Area>秦皇岛</Area>
+		<AreaCode>54449</AreaCode>
+	</Area>
+      - <Area id="Area63" rowOrder="62">
+		<ID>65</ID>
+		<ZoneID>8</ZoneID>
+		<Area>郑州</Area>
+		<AreaCode>57083</AreaCode>
+	</Area>
+      - <Area id="Area64" rowOrder="63">
+		<ID>66</ID>
+		<ZoneID>8</ZoneID>
+		<Area>开封</Area>
+		<AreaCode>57091</AreaCode>
+	</Area>
+      - <Area id="Area65" rowOrder="64">
+		<ID>67</ID>
+		<ZoneID>8</ZoneID>
+		<Area>洛阳</Area>
+		<AreaCode>57073</AreaCode>
+	</Area>
+      - <Area id="Area66" rowOrder="65">
+		<ID>68</ID>
+		<ZoneID>8</ZoneID>
+		<Area>平顶山</Area>
+		<AreaCode>57171</AreaCode>
+	</Area>
+      - <Area id="Area67" rowOrder="66">
+		<ID>69</ID>
+		<ZoneID>8</ZoneID>
+		<Area>焦作</Area>
+		<AreaCode>53982</AreaCode>
+	</Area>
+      - <Area id="Area68" rowOrder="67">
+		<ID>70</ID>
+		<ZoneID>8</ZoneID>
+		<Area>鹤壁</Area>
+		<AreaCode>53990</AreaCode>
+	</Area>
+      - <Area id="Area69" rowOrder="68">
+		<ID>71</ID>
+		<ZoneID>8</ZoneID>
+		<Area>新乡</Area>
+		<AreaCode>53986</AreaCode>
+	</Area>
+      - <Area id="Area70" rowOrder="69">
+		<ID>72</ID>
+		<ZoneID>8</ZoneID>
+		<Area>安阳</Area>
+		<AreaCode>53898</AreaCode>
+	</Area>
+      - <Area id="Area71" rowOrder="70">
+		<ID>73</ID>
+		<ZoneID>8</ZoneID>
+		<Area>濮阳</Area>
+		<AreaCode>54900</AreaCode>
+	</Area>
+      - <Area id="Area72" rowOrder="71">
+		<ID>74</ID>
+		<ZoneID>8</ZoneID>
+		<Area>许昌</Area>
+		<AreaCode>57089</AreaCode>
+	</Area>
+      - <Area id="Area73" rowOrder="72">
+		<ID>75</ID>
+		<ZoneID>8</ZoneID>
+		<Area>漯河</Area>
+		<AreaCode>57186</AreaCode>
+	</Area>
+      - <Area id="Area74" rowOrder="73">
+		<ID>76</ID>
+		<ZoneID>8</ZoneID>
+		<Area>三门峡</Area>
+		<AreaCode>57051</AreaCode>
+	</Area>
+      - <Area id="Area75" rowOrder="74">
+		<ID>77</ID>
+		<ZoneID>8</ZoneID>
+		<Area>南阳</Area>
+		<AreaCode>57178</AreaCode>
+	</Area>
+      - <Area id="Area76" rowOrder="75">
+		<ID>78</ID>
+		<ZoneID>8</ZoneID>
+		<Area>商丘</Area>
+		<AreaCode>58005</AreaCode>
+	</Area>
+      - <Area id="Area77" rowOrder="76">
+		<ID>79</ID>
+		<ZoneID>8</ZoneID>
+		<Area>信阳</Area>
+		<AreaCode>57297</AreaCode>
+	</Area>
+      - <Area id="Area78" rowOrder="77">
+		<ID>80</ID>
+		<ZoneID>8</ZoneID>
+		<Area>周口</Area>
+		<AreaCode>57195</AreaCode>
+	</Area>
+      - <Area id="Area79" rowOrder="78">
+		<ID>81</ID>
+		<ZoneID>8</ZoneID>
+		<Area>驻马店</Area>
+		<AreaCode>57290</AreaCode>
+	</Area>
+      - <Area id="Area80" rowOrder="79">
+		<ID>82</ID>
+		<ZoneID>9</ZoneID>
+		<Area>济南</Area>
+		<AreaCode>54823</AreaCode>
+	</Area>
+      - <Area id="Area81" rowOrder="80">
+		<ID>83</ID>
+		<ZoneID>9</ZoneID>
+		<Area>青岛</Area>
+		<AreaCode>54857</AreaCode>
+	</Area>
+      - <Area id="Area82" rowOrder="81">
+		<ID>84</ID>
+		<ZoneID>9</ZoneID>
+		<Area>淄博</Area>
+		<AreaCode>54830</AreaCode>
+	</Area>
+      - <Area id="Area83" rowOrder="82">
+		<ID>85</ID>
+		<ZoneID>9</ZoneID>
+		<Area>威海</Area>
+		<AreaCode>54774</AreaCode>
+	</Area>
+      - <Area id="Area84" rowOrder="83">
+		<ID>86</ID>
+		<ZoneID>9</ZoneID>
+		<Area>曲阜</Area>
+		<AreaCode>54918</AreaCode>
+	</Area>
+      - <Area id="Area85" rowOrder="84">
+		<ID>87</ID>
+		<ZoneID>9</ZoneID>
+		<Area>临沂</Area>
+		<AreaCode>54938</AreaCode>
+	</Area>
+      - <Area id="Area86" rowOrder="85">
+		<ID>88</ID>
+		<ZoneID>9</ZoneID>
+		<Area>烟台</Area>
+		<AreaCode>54765</AreaCode>
+	</Area>
+      - <Area id="Area87" rowOrder="86">
+		<ID>89</ID>
+		<ZoneID>9</ZoneID>
+		<Area>枣庄</Area>
+		<AreaCode>58024</AreaCode>
+	</Area>
+      - <Area id="Area88" rowOrder="87">
+		<ID>90</ID>
+		<ZoneID>9</ZoneID>
+		<Area>聊城</Area>
+		<AreaCode>54806</AreaCode>
+	</Area>
+      - <Area id="Area89" rowOrder="88">
+		<ID>91</ID>
+		<ZoneID>9</ZoneID>
+		<Area>济宁</Area>
+		<AreaCode>54915</AreaCode>
+	</Area>
+      - <Area id="Area90" rowOrder="89">
+		<ID>92</ID>
+		<ZoneID>9</ZoneID>
+		<Area>菏泽</Area>
+		<AreaCode>54906</AreaCode>
+	</Area>
+      - <Area id="Area91" rowOrder="90">
+		<ID>93</ID>
+		<ZoneID>9</ZoneID>
+		<Area>泰安</Area>
+		<AreaCode>54827</AreaCode>
+	</Area>
+      - <Area id="Area92" rowOrder="91">
+		<ID>94</ID>
+		<ZoneID>9</ZoneID>
+		<Area>日照</Area>
+		<AreaCode>54945</AreaCode>
+	</Area>
+      - <Area id="Area93" rowOrder="92">
+		<ID>95</ID>
+		<ZoneID>9</ZoneID>
+		<Area>东营</Area>
+		<AreaCode>54736</AreaCode>
+	</Area>
+      - <Area id="Area94" rowOrder="93">
+		<ID>96</ID>
+		<ZoneID>9</ZoneID>
+		<Area>德州</Area>
+		<AreaCode>54714</AreaCode>
+	</Area>
+      - <Area id="Area95" rowOrder="94">
+		<ID>97</ID>
+		<ZoneID>9</ZoneID>
+		<Area>滨州</Area>
+		<AreaCode>54734</AreaCode>
+	</Area>
+      - <Area id="Area96" rowOrder="95">
+		<ID>98</ID>
+		<ZoneID>9</ZoneID>
+		<Area>莱芜</Area>
+		<AreaCode>54828</AreaCode>
+	</Area>
+      - <Area id="Area97" rowOrder="96">
+		<ID>99</ID>
+		<ZoneID>9</ZoneID>
+		<Area>潍坊</Area>
+		<AreaCode>54843</AreaCode>
+	</Area>
+      - <Area id="Area98" rowOrder="97">
+		<ID>100</ID>
+		<ZoneID>10</ZoneID>
+		<Area>太原</Area>
+		<AreaCode>53772</AreaCode>
+	</Area>
+      - <Area id="Area99" rowOrder="98">
+		<ID>101</ID>
+		<ZoneID>10</ZoneID>
+		<Area>阳泉</Area>
+		<AreaCode>53782</AreaCode>
+	</Area>
+      - <Area id="Area100" rowOrder="99">
+		<ID>102</ID>
+		<ZoneID>10</ZoneID>
+		<Area>晋城</Area>
+		<AreaCode>53976</AreaCode>
+	</Area>
+      - <Area id="Area101" rowOrder="100">
+		<ID>103</ID>
+		<ZoneID>10</ZoneID>
+		<Area>晋中</Area>
+		<AreaCode>53778</AreaCode>
+	</Area>
+      - <Area id="Area102" rowOrder="101">
+		<ID>104</ID>
+		<ZoneID>10</ZoneID>
+		<Area>临汾</Area>
+		<AreaCode>53868</AreaCode>
+	</Area>
+      - <Area id="Area103" rowOrder="102">
+		<ID>105</ID>
+		<ZoneID>10</ZoneID>
+		<Area>运城</Area>
+		<AreaCode>53959</AreaCode>
+	</Area>
+      - <Area id="Area104" rowOrder="103">
+		<ID>106</ID>
+		<ZoneID>10</ZoneID>
+		<Area>长治</Area>
+		<AreaCode>53882</AreaCode>
+	</Area>
+      - <Area id="Area105" rowOrder="104">
+		<ID>107</ID>
+		<ZoneID>10</ZoneID>
+		<Area>朔州</Area>
+		<AreaCode>53578</AreaCode>
+	</Area>
+      - <Area id="Area106" rowOrder="105">
+		<ID>108</ID>
+		<ZoneID>10</ZoneID>
+		<Area>忻州</Area>
+		<AreaCode>53674</AreaCode>
+	</Area>
+      - <Area id="Area107" rowOrder="106">
+		<ID>109</ID>
+		<ZoneID>10</ZoneID>
+		<Area>大同</Area>
+		<AreaCode>53487</AreaCode>
+	</Area>
+      - <Area id="Area108" rowOrder="107">
+		<ID>110</ID>
+		<ZoneID>11</ZoneID>
+		<Area>南京</Area>
+		<AreaCode>58238</AreaCode>
+	</Area>
+      - <Area id="Area109" rowOrder="108">
+		<ID>111</ID>
+		<ZoneID>11</ZoneID>
+		<Area>苏州</Area>
+		<AreaCode>58357</AreaCode>
+	</Area>
+      - <Area id="Area110" rowOrder="109">
+		<ID>112</ID>
+		<ZoneID>11</ZoneID>
+		<Area>昆山</Area>
+		<AreaCode>58356</AreaCode>
+	</Area>
+      - <Area id="Area111" rowOrder="110">
+		<ID>113</ID>
+		<ZoneID>11</ZoneID>
+		<Area>南通</Area>
+		<AreaCode>58259</AreaCode>
+	</Area>
+      - <Area id="Area112" rowOrder="111">
+		<ID>114</ID>
+		<ZoneID>11</ZoneID>
+		<Area>太仓</Area>
+		<AreaCode>58377</AreaCode>
+	</Area>
+      - <Area id="Area113" rowOrder="112">
+		<ID>115</ID>
+		<ZoneID>11</ZoneID>
+		<Area>吴县</Area>
+		<AreaCode>58349</AreaCode>
+	</Area>
+      - <Area id="Area114" rowOrder="113">
+		<ID>116</ID>
+		<ZoneID>11</ZoneID>
+		<Area>徐州</Area>
+		<AreaCode>58027</AreaCode>
+	</Area>
+      - <Area id="Area115" rowOrder="114">
+		<ID>117</ID>
+		<ZoneID>11</ZoneID>
+		<Area>宜兴</Area>
+		<AreaCode>58346</AreaCode>
+	</Area>
+      - <Area id="Area116" rowOrder="115">
+		<ID>118</ID>
+		<ZoneID>11</ZoneID>
+		<Area>镇江</Area>
+		<AreaCode>58248</AreaCode>
+	</Area>
+      - <Area id="Area117" rowOrder="116">
+		<ID>119</ID>
+		<ZoneID>11</ZoneID>
+		<Area>淮安</Area>
+		<AreaCode>58145</AreaCode>
+	</Area>
+      - <Area id="Area118" rowOrder="117">
+		<ID>120</ID>
+		<ZoneID>11</ZoneID>
+		<Area>常熟</Area>
+		<AreaCode>58352</AreaCode>
+	</Area>
+      - <Area id="Area119" rowOrder="118">
+		<ID>121</ID>
+		<ZoneID>11</ZoneID>
+		<Area>盐城</Area>
+		<AreaCode>58151</AreaCode>
+	</Area>
+      - <Area id="Area120" rowOrder="119">
+		<ID>122</ID>
+		<ZoneID>11</ZoneID>
+		<Area>泰州</Area>
+		<AreaCode>58246</AreaCode>
+	</Area>
+      - <Area id="Area121" rowOrder="120">
+		<ID>123</ID>
+		<ZoneID>11</ZoneID>
+		<Area>无锡</Area>
+		<AreaCode>58354</AreaCode>
+	</Area>
+      - <Area id="Area122" rowOrder="121">
+		<ID>124</ID>
+		<ZoneID>11</ZoneID>
+		<Area>连云港</Area>
+		<AreaCode>58044</AreaCode>
+	</Area>
+      - <Area id="Area123" rowOrder="122">
+		<ID>125</ID>
+		<ZoneID>11</ZoneID>
+		<Area>扬州</Area>
+		<AreaCode>58245</AreaCode>
+	</Area>
+      - <Area id="Area124" rowOrder="123">
+		<ID>126</ID>
+		<ZoneID>11</ZoneID>
+		<Area>常州</Area>
+		<AreaCode>58343</AreaCode>
+	</Area>
+      - <Area id="Area125" rowOrder="124">
+		<ID>127</ID>
+		<ZoneID>11</ZoneID>
+		<Area>宿迁</Area>
+		<AreaCode>58131</AreaCode>
+	</Area>
+      - <Area id="Area126" rowOrder="125">
+		<ID>128</ID>
+		<ZoneID>12</ZoneID>
+		<Area>合肥</Area>
+		<AreaCode>58321</AreaCode>
+	</Area>
+      - <Area id="Area127" rowOrder="126">
+		<ID>129</ID>
+		<ZoneID>12</ZoneID>
+		<Area>巢湖</Area>
+		<AreaCode>58326</AreaCode>
+	</Area>
+      - <Area id="Area128" rowOrder="127">
+		<ID>130</ID>
+		<ZoneID>12</ZoneID>
+		<Area>蚌埠</Area>
+		<AreaCode>58221</AreaCode>
+	</Area>
+      - <Area id="Area129" rowOrder="128">
+		<ID>131</ID>
+		<ZoneID>12</ZoneID>
+		<Area>安庆</Area>
+		<AreaCode>58424</AreaCode>
+	</Area>
+      - <Area id="Area130" rowOrder="129">
+		<ID>132</ID>
+		<ZoneID>12</ZoneID>
+		<Area>六安</Area>
+		<AreaCode>58311</AreaCode>
+	</Area>
+      - <Area id="Area131" rowOrder="130">
+		<ID>133</ID>
+		<ZoneID>12</ZoneID>
+		<Area>滁州</Area>
+		<AreaCode>58236</AreaCode>
+	</Area>
+      - <Area id="Area132" rowOrder="131">
+		<ID>134</ID>
+		<ZoneID>12</ZoneID>
+		<Area>马鞍山</Area>
+		<AreaCode>58336</AreaCode>
+	</Area>
+      - <Area id="Area133" rowOrder="132">
+		<ID>135</ID>
+		<ZoneID>12</ZoneID>
+		<Area>阜阳</Area>
+		<AreaCode>58203</AreaCode>
+	</Area>
+      - <Area id="Area134" rowOrder="133">
+		<ID>136</ID>
+		<ZoneID>12</ZoneID>
+		<Area>宣城</Area>
+		<AreaCode>58433</AreaCode>
+	</Area>
+      - <Area id="Area135" rowOrder="134">
+		<ID>137</ID>
+		<ZoneID>12</ZoneID>
+		<Area>铜陵</Area>
+		<AreaCode>58429</AreaCode>
+	</Area>
+      - <Area id="Area136" rowOrder="135">
+		<ID>138</ID>
+		<ZoneID>12</ZoneID>
+		<Area>淮北</Area>
+		<AreaCode>58116</AreaCode>
+	</Area>
+      - <Area id="Area137" rowOrder="136">
+		<ID>139</ID>
+		<ZoneID>12</ZoneID>
+		<Area>芜湖</Area>
+		<AreaCode>58334</AreaCode>
+	</Area>
+      - <Area id="Area138" rowOrder="137">
+		<ID>141</ID>
+		<ZoneID>12</ZoneID>
+		<Area>宿州</Area>
+		<AreaCode>58122</AreaCode>
+	</Area>
+      - <Area id="Area139" rowOrder="138">
+		<ID>142</ID>
+		<ZoneID>12</ZoneID>
+		<Area>淮南</Area>
+		<AreaCode>58224</AreaCode>
+	</Area>
+      - <Area id="Area140" rowOrder="139">
+		<ID>143</ID>
+		<ZoneID>12</ZoneID>
+		<Area>池州</Area>
+		<AreaCode>58427</AreaCode>
+	</Area>
+      - <Area id="Area141" rowOrder="140">
+		<ID>144</ID>
+		<ZoneID>13</ZoneID>
+		<Area>西安</Area>
+		<AreaCode>57036</AreaCode>
+	</Area>
+      - <Area id="Area142" rowOrder="141">
+		<ID>145</ID>
+		<ZoneID>13</ZoneID>
+		<Area>韩城</Area>
+		<AreaCode>53955</AreaCode>
+	</Area>
+      - <Area id="Area143" rowOrder="142">
+		<ID>146</ID>
+		<ZoneID>13</ZoneID>
+		<Area>安康</Area>
+		<AreaCode>57245</AreaCode>
+	</Area>
+      - <Area id="Area144" rowOrder="143">
+		<ID>147</ID>
+		<ZoneID>13</ZoneID>
+		<Area>汉中</Area>
+		<AreaCode>57127</AreaCode>
+	</Area>
+      - <Area id="Area145" rowOrder="144">
+		<ID>148</ID>
+		<ZoneID>13</ZoneID>
+		<Area>宝鸡</Area>
+		<AreaCode>57016</AreaCode>
+	</Area>
+      - <Area id="Area146" rowOrder="145">
+		<ID>149</ID>
+		<ZoneID>13</ZoneID>
+		<Area>咸阳</Area>
+		<AreaCode>57048</AreaCode>
+	</Area>
+      - <Area id="Area147" rowOrder="146">
+		<ID>150</ID>
+		<ZoneID>13</ZoneID>
+		<Area>榆林</Area>
+		<AreaCode>53646</AreaCode>
+	</Area>
+      - <Area id="Area148" rowOrder="147">
+		<ID>151</ID>
+		<ZoneID>13</ZoneID>
+		<Area>渭南</Area>
+		<AreaCode>57045</AreaCode>
+	</Area>
+      - <Area id="Area149" rowOrder="148">
+		<ID>152</ID>
+		<ZoneID>13</ZoneID>
+		<Area>商洛</Area>
+		<AreaCode>57143</AreaCode>
+	</Area>
+      - <Area id="Area150" rowOrder="149">
+		<ID>153</ID>
+		<ZoneID>13</ZoneID>
+		<Area>铜川</Area>
+		<AreaCode>53947</AreaCode>
+	</Area>
+      - <Area id="Area151" rowOrder="150">
+		<ID>154</ID>
+		<ZoneID>13</ZoneID>
+		<Area>延安</Area>
+		<AreaCode>53845</AreaCode>
+	</Area>
+      - <Area id="Area152" rowOrder="151">
+		<ID>155</ID>
+		<ZoneID>14</ZoneID>
+		<Area>银川</Area>
+		<AreaCode>53614</AreaCode>
+	</Area>
+      - <Area id="Area153" rowOrder="152">
+		<ID>156</ID>
+		<ZoneID>14</ZoneID>
+		<Area>固原</Area>
+		<AreaCode>53817</AreaCode>
+	</Area>
+      - <Area id="Area154" rowOrder="153">
+		<ID>157</ID>
+		<ZoneID>14</ZoneID>
+		<Area>中卫</Area>
+		<AreaCode>53704</AreaCode>
+	</Area>
+      - <Area id="Area155" rowOrder="154">
+		<ID>158</ID>
+		<ZoneID>14</ZoneID>
+		<Area>石嘴山</Area>
+		<AreaCode>53518</AreaCode>
+	</Area>
+      - <Area id="Area156" rowOrder="155">
+		<ID>159</ID>
+		<ZoneID>14</ZoneID>
+		<Area>吴忠</Area>
+		<AreaCode>53612</AreaCode>
+	</Area>
+      - <Area id="Area157" rowOrder="156">
+		<ID>160</ID>
+		<ZoneID>15</ZoneID>
+		<Area>兰州</Area>
+		<AreaCode>52889</AreaCode>
+	</Area>
+      - <Area id="Area158" rowOrder="157">
+		<ID>161</ID>
+		<ZoneID>15</ZoneID>
+		<Area>白银</Area>
+		<AreaCode>52896</AreaCode>
+	</Area>
+      - <Area id="Area159" rowOrder="158">
+		<ID>162</ID>
+		<ZoneID>15</ZoneID>
+		<Area>庆阳</Area>
+		<AreaCode>53829</AreaCode>
+	</Area>
+      - <Area id="Area160" rowOrder="159">
+		<ID>163</ID>
+		<ZoneID>15</ZoneID>
+		<Area>酒泉</Area>
+		<AreaCode>52533</AreaCode>
+	</Area>
+      - <Area id="Area161" rowOrder="160">
+		<ID>164</ID>
+		<ZoneID>15</ZoneID>
+		<Area>天水</Area>
+		<AreaCode>57006</AreaCode>
+	</Area>
+      - <Area id="Area162" rowOrder="161">
+		<ID>165</ID>
+		<ZoneID>15</ZoneID>
+		<Area>武威</Area>
+		<AreaCode>52679</AreaCode>
+	</Area>
+      - <Area id="Area163" rowOrder="162">
+		<ID>166</ID>
+		<ZoneID>15</ZoneID>
+		<Area>张掖</Area>
+		<AreaCode>52652</AreaCode>
+	</Area>
+      - <Area id="Area164" rowOrder="163">
+		<ID>167</ID>
+		<ZoneID>15</ZoneID>
+		<Area>甘南</Area>
+		<AreaCode>50741</AreaCode>
+	</Area>
+      - <Area id="Area165" rowOrder="164">
+		<ID>168</ID>
+		<ZoneID>15</ZoneID>
+		<Area>临夏</Area>
+		<AreaCode>52984</AreaCode>
+	</Area>
+      - <Area id="Area166" rowOrder="165">
+		<ID>169</ID>
+		<ZoneID>15</ZoneID>
+		<Area>平凉</Area>
+		<AreaCode>53915</AreaCode>
+	</Area>
+      - <Area id="Area167" rowOrder="166">
+		<ID>170</ID>
+		<ZoneID>15</ZoneID>
+		<Area>定西</Area>
+		<AreaCode>52995</AreaCode>
+	</Area>
+      - <Area id="Area168" rowOrder="167">
+		<ID>171</ID>
+		<ZoneID>15</ZoneID>
+		<Area>金昌</Area>
+		<AreaCode>52675</AreaCode>
+	</Area>
+      - <Area id="Area169" rowOrder="168">
+		<ID>172</ID>
+		<ZoneID>16</ZoneID>
+		<Area>西宁</Area>
+		<AreaCode>52866</AreaCode>
+	</Area>
+      - <Area id="Area170" rowOrder="169">
+		<ID>173</ID>
+		<ZoneID>16</ZoneID>
+		<Area>海北</Area>
+		<AreaCode>52754</AreaCode>
+	</Area>
+      - <Area id="Area171" rowOrder="170">
+		<ID>174</ID>
+		<ZoneID>16</ZoneID>
+		<Area>海西</Area>
+		<AreaCode>52737</AreaCode>
+	</Area>
+      - <Area id="Area172" rowOrder="171">
+		<ID>175</ID>
+		<ZoneID>16</ZoneID>
+		<Area>黄南</Area>
+		<AreaCode>56065</AreaCode>
+	</Area>
+      - <Area id="Area173" rowOrder="172">
+		<ID>176</ID>
+		<ZoneID>16</ZoneID>
+		<Area>果洛</Area>
+		<AreaCode>56043</AreaCode>
+	</Area>
+      - <Area id="Area174" rowOrder="173">
+		<ID>177</ID>
+		<ZoneID>16</ZoneID>
+		<Area>玉树</Area>
+		<AreaCode>56029</AreaCode>
+	</Area>
+      - <Area id="Area175" rowOrder="174">
+		<ID>178</ID>
+		<ZoneID>16</ZoneID>
+		<Area>海东</Area>
+		<AreaCode>52875</AreaCode>
+	</Area>
+      - <Area id="Area176" rowOrder="175">
+		<ID>179</ID>
+		<ZoneID>16</ZoneID>
+		<Area>海南</Area>
+		<AreaCode>52856</AreaCode>
+	</Area>
+      - <Area id="Area177" rowOrder="176">
+		<ID>180</ID>
+		<ZoneID>17</ZoneID>
+		<Area>武汉</Area>
+		<AreaCode>57494</AreaCode>
+	</Area>
+      - <Area id="Area178" rowOrder="177">
+		<ID>181</ID>
+		<ZoneID>17</ZoneID>
+		<Area>宜昌</Area>
+		<AreaCode>57461</AreaCode>
+	</Area>
+      - <Area id="Area179" rowOrder="178">
+		<ID>182</ID>
+		<ZoneID>17</ZoneID>
+		<Area>黄冈</Area>
+		<AreaCode>57498</AreaCode>
+	</Area>
+      - <Area id="Area180" rowOrder="179">
+		<ID>183</ID>
+		<ZoneID>17</ZoneID>
+		<Area>恩施</Area>
+		<AreaCode>57447</AreaCode>
+	</Area>
+      - <Area id="Area181" rowOrder="180">
+		<ID>184</ID>
+		<ZoneID>17</ZoneID>
+		<Area>荆州</Area>
+		<AreaCode>57476</AreaCode>
+	</Area>
+      - <Area id="Area182" rowOrder="181">
+		<ID>185</ID>
+		<ZoneID>17</ZoneID>
+		<Area>神农架</Area>
+		<AreaCode>57362</AreaCode>
+	</Area>
+      - <Area id="Area183" rowOrder="182">
+		<ID>186</ID>
+		<ZoneID>17</ZoneID>
+		<Area>十堰</Area>
+		<AreaCode>57256</AreaCode>
+	</Area>
+      - <Area id="Area184" rowOrder="183">
+		<ID>187</ID>
+		<ZoneID>17</ZoneID>
+		<Area>咸宁</Area>
+		<AreaCode>57590</AreaCode>
+	</Area>
+      - <Area id="Area185" rowOrder="184">
+		<ID>188</ID>
+		<ZoneID>17</ZoneID>
+		<Area>襄樊</Area>
+		<AreaCode>57278</AreaCode>
+	</Area>
+      - <Area id="Area186" rowOrder="185">
+		<ID>189</ID>
+		<ZoneID>17</ZoneID>
+		<Area>孝感</Area>
+		<AreaCode>57482</AreaCode>
+	</Area>
+      - <Area id="Area187" rowOrder="186">
+		<ID>190</ID>
+		<ZoneID>17</ZoneID>
+		<Area>随州</Area>
+		<AreaCode>57381</AreaCode>
+	</Area>
+      - <Area id="Area188" rowOrder="187">
+		<ID>191</ID>
+		<ZoneID>17</ZoneID>
+		<Area>黄石</Area>
+		<AreaCode>58407</AreaCode>
+	</Area>
+      - <Area id="Area189" rowOrder="188">
+		<ID>192</ID>
+		<ZoneID>17</ZoneID>
+		<Area>荆门</Area>
+		<AreaCode>57377</AreaCode>
+	</Area>
+      - <Area id="Area190" rowOrder="189">
+		<ID>193</ID>
+		<ZoneID>17</ZoneID>
+		<Area>鄂州</Area>
+		<AreaCode>57496</AreaCode>
+	</Area>
+      - <Area id="Area191" rowOrder="190">
+		<ID>194</ID>
+		<ZoneID>18</ZoneID>
+		<Area>长沙</Area>
+		<AreaCode>57679</AreaCode>
+	</Area>
+      - <Area id="Area192" rowOrder="191">
+		<ID>195</ID>
+		<ZoneID>18</ZoneID>
+		<Area>邵阳</Area>
+		<AreaCode>57766</AreaCode>
+	</Area>
+      - <Area id="Area193" rowOrder="192">
+		<ID>196</ID>
+		<ZoneID>18</ZoneID>
+		<Area>常德</Area>
+		<AreaCode>57662</AreaCode>
+	</Area>
+      - <Area id="Area194" rowOrder="193">
+		<ID>197</ID>
+		<ZoneID>18</ZoneID>
+		<Area>郴州</Area>
+		<AreaCode>57972</AreaCode>
+	</Area>
+      - <Area id="Area195" rowOrder="194">
+		<ID>198</ID>
+		<ZoneID>18</ZoneID>
+		<Area>吉首</Area>
+		<AreaCode>57649</AreaCode>
+	</Area>
+      - <Area id="Area196" rowOrder="195">
+		<ID>199</ID>
+		<ZoneID>18</ZoneID>
+		<Area>株洲</Area>
+		<AreaCode>57780</AreaCode>
+	</Area>
+      - <Area id="Area197" rowOrder="196">
+		<ID>200</ID>
+		<ZoneID>18</ZoneID>
+		<Area>娄底</Area>
+		<AreaCode>57763</AreaCode>
+	</Area>
+      - <Area id="Area198" rowOrder="197">
+		<ID>201</ID>
+		<ZoneID>18</ZoneID>
+		<Area>湘潭</Area>
+		<AreaCode>57773</AreaCode>
+	</Area>
+      - <Area id="Area199" rowOrder="198">
+		<ID>202</ID>
+		<ZoneID>18</ZoneID>
+		<Area>益阳</Area>
+		<AreaCode>57674</AreaCode>
+	</Area>
+      - <Area id="Area200" rowOrder="199">
+		<ID>203</ID>
+		<ZoneID>18</ZoneID>
+		<Area>永州</Area>
+		<AreaCode>57866</AreaCode>
+	</Area>
+      - <Area id="Area201" rowOrder="200">
+		<ID>204</ID>
+		<ZoneID>18</ZoneID>
+		<Area>岳阳</Area>
+		<AreaCode>57584</AreaCode>
+	</Area>
+      - <Area id="Area202" rowOrder="201">
+		<ID>205</ID>
+		<ZoneID>18</ZoneID>
+		<Area>衡阳</Area>
+		<AreaCode>57872</AreaCode>
+	</Area>
+      - <Area id="Area203" rowOrder="202">
+		<ID>206</ID>
+		<ZoneID>18</ZoneID>
+		<Area>怀化</Area>
+		<AreaCode>57749</AreaCode>
+	</Area>
+      - <Area id="Area204" rowOrder="203">
+		<ID>207</ID>
+		<ZoneID>18</ZoneID>
+		<Area>韶山</Area>
+		<AreaCode>57771</AreaCode>
+	</Area>
+      - <Area id="Area205" rowOrder="204">
+		<ID>208</ID>
+		<ZoneID>18</ZoneID>
+		<Area>张家界</Area>
+		<AreaCode>57558</AreaCode>
+	</Area>
+      - <Area id="Area206" rowOrder="205">
+		<ID>209</ID>
+		<ZoneID>19</ZoneID>
+		<Area>杭州</Area>
+		<AreaCode>58457</AreaCode>
+	</Area>
+      - <Area id="Area207" rowOrder="206">
+		<ID>210</ID>
+		<ZoneID>19</ZoneID>
+		<Area>湖州</Area>
+		<AreaCode>58450</AreaCode>
+	</Area>
+      - <Area id="Area208" rowOrder="207">
+		<ID>211</ID>
+		<ZoneID>19</ZoneID>
+		<Area>金华</Area>
+		<AreaCode>58549</AreaCode>
+	</Area>
+      - <Area id="Area209" rowOrder="208">
+		<ID>212</ID>
+		<ZoneID>19</ZoneID>
+		<Area>宁波</Area>
+		<AreaCode>58563</AreaCode>
+	</Area>
+      - <Area id="Area210" rowOrder="209">
+		<ID>213</ID>
+		<ZoneID>19</ZoneID>
+		<Area>丽水</Area>
+		<AreaCode>58646</AreaCode>
+	</Area>
+      - <Area id="Area211" rowOrder="210">
+		<ID>214</ID>
+		<ZoneID>19</ZoneID>
+		<Area>绍兴</Area>
+		<AreaCode>58453</AreaCode>
+	</Area>
+      - <Area id="Area212" rowOrder="211">
+		<ID>216</ID>
+		<ZoneID>19</ZoneID>
+		<Area>衢州</Area>
+		<AreaCode>58633</AreaCode>
+	</Area>
+      - <Area id="Area213" rowOrder="212">
+		<ID>217</ID>
+		<ZoneID>19</ZoneID>
+		<Area>嘉兴</Area>
+		<AreaCode>58452</AreaCode>
+	</Area>
+      - <Area id="Area214" rowOrder="213">
+		<ID>218</ID>
+		<ZoneID>19</ZoneID>
+		<Area>台州</Area>
+		<AreaCode>58660</AreaCode>
+	</Area>
+      - <Area id="Area215" rowOrder="214">
+		<ID>219</ID>
+		<ZoneID>19</ZoneID>
+		<Area>舟山</Area>
+		<AreaCode>58477</AreaCode>
+	</Area>
+      - <Area id="Area216" rowOrder="215">
+		<ID>220</ID>
+		<ZoneID>19</ZoneID>
+		<Area>温州</Area>
+		<AreaCode>58659</AreaCode>
+	</Area>
+      - <Area id="Area217" rowOrder="216">
+		<ID>221</ID>
+		<ZoneID>20</ZoneID>
+		<Area>南昌</Area>
+		<AreaCode>58606</AreaCode>
+	</Area>
+      - <Area id="Area218" rowOrder="217">
+		<ID>222</ID>
+		<ZoneID>20</ZoneID>
+		<Area>萍乡</Area>
+		<AreaCode>57786</AreaCode>
+	</Area>
+      - <Area id="Area219" rowOrder="218">
+		<ID>223</ID>
+		<ZoneID>20</ZoneID>
+		<Area>九江</Area>
+		<AreaCode>58502</AreaCode>
+	</Area>
+      - <Area id="Area220" rowOrder="219">
+		<ID>224</ID>
+		<ZoneID>20</ZoneID>
+		<Area>上饶</Area>
+		<AreaCode>58637</AreaCode>
+	</Area>
+      - <Area id="Area221" rowOrder="220">
+		<ID>225</ID>
+		<ZoneID>20</ZoneID>
+		<Area>抚州</Area>
+		<AreaCode>58617</AreaCode>
+	</Area>
+      - <Area id="Area222" rowOrder="221">
+		<ID>226</ID>
+		<ZoneID>20</ZoneID>
+		<Area>吉安</Area>
+		<AreaCode>57799</AreaCode>
+	</Area>
+      - <Area id="Area223" rowOrder="222">
+		<ID>227</ID>
+		<ZoneID>20</ZoneID>
+		<Area>鹰潭</Area>
+		<AreaCode>58627</AreaCode>
+	</Area>
+      - <Area id="Area224" rowOrder="223">
+		<ID>228</ID>
+		<ZoneID>20</ZoneID>
+		<Area>宜春</Area>
+		<AreaCode>57793</AreaCode>
+	</Area>
+      - <Area id="Area225" rowOrder="224">
+		<ID>229</ID>
+		<ZoneID>20</ZoneID>
+		<Area>新余</Area>
+		<AreaCode>57796</AreaCode>
+	</Area>
+      - <Area id="Area226" rowOrder="225">
+		<ID>230</ID>
+		<ZoneID>20</ZoneID>
+		<Area>景德镇</Area>
+		<AreaCode>58527</AreaCode>
+	</Area>
+      - <Area id="Area227" rowOrder="226">
+		<ID>231</ID>
+		<ZoneID>20</ZoneID>
+		<Area>赣州</Area>
+		<AreaCode>57993</AreaCode>
+	</Area>
+      - <Area id="Area228" rowOrder="227">
+		<ID>232</ID>
+		<ZoneID>21</ZoneID>
+		<Area>福州</Area>
+		<AreaCode>58847</AreaCode>
+	</Area>
+      - <Area id="Area229" rowOrder="228">
+		<ID>233</ID>
+		<ZoneID>21</ZoneID>
+		<Area>厦门</Area>
+		<AreaCode>59134</AreaCode>
+	</Area>
+      - <Area id="Area230" rowOrder="229">
+		<ID>234</ID>
+		<ZoneID>21</ZoneID>
+		<Area>龙岩</Area>
+		<AreaCode>58927</AreaCode>
+	</Area>
+      - <Area id="Area231" rowOrder="230">
+		<ID>235</ID>
+		<ZoneID>21</ZoneID>
+		<Area>南平</Area>
+		<AreaCode>58834</AreaCode>
+	</Area>
+      - <Area id="Area232" rowOrder="231">
+		<ID>236</ID>
+		<ZoneID>21</ZoneID>
+		<Area>宁德</Area>
+		<AreaCode>58846</AreaCode>
+	</Area>
+      - <Area id="Area233" rowOrder="232">
+		<ID>237</ID>
+		<ZoneID>21</ZoneID>
+		<Area>莆田</Area>
+		<AreaCode>58946</AreaCode>
+	</Area>
+      - <Area id="Area234" rowOrder="233">
+		<ID>238</ID>
+		<ZoneID>21</ZoneID>
+		<Area>泉州</Area>
+		<AreaCode>59137</AreaCode>
+	</Area>
+      - <Area id="Area235" rowOrder="234">
+		<ID>239</ID>
+		<ZoneID>21</ZoneID>
+		<Area>三明</Area>
+		<AreaCode>58828</AreaCode>
+	</Area>
+      - <Area id="Area236" rowOrder="235">
+		<ID>240</ID>
+		<ZoneID>21</ZoneID>
+		<Area>漳州</Area>
+		<AreaCode>59126</AreaCode>
+	</Area>
+      - <Area id="Area237" rowOrder="236">
+		<ID>241</ID>
+		<ZoneID>22</ZoneID>
+		<Area>贵阳</Area>
+		<AreaCode>57816</AreaCode>
+	</Area>
+      - <Area id="Area238" rowOrder="237">
+		<ID>242</ID>
+		<ZoneID>22</ZoneID>
+		<Area>安顺</Area>
+		<AreaCode>57806</AreaCode>
+	</Area>
+      - <Area id="Area239" rowOrder="238">
+		<ID>243</ID>
+		<ZoneID>22</ZoneID>
+		<Area>赤水</Area>
+		<AreaCode>57609</AreaCode>
+	</Area>
+      - <Area id="Area240" rowOrder="239">
+		<ID>244</ID>
+		<ZoneID>22</ZoneID>
+		<Area>遵义</Area>
+		<AreaCode>57713</AreaCode>
+	</Area>
+      - <Area id="Area241" rowOrder="240">
+		<ID>245</ID>
+		<ZoneID>22</ZoneID>
+		<Area>铜仁</Area>
+		<AreaCode>57741</AreaCode>
+	</Area>
+      - <Area id="Area242" rowOrder="241">
+		<ID>246</ID>
+		<ZoneID>22</ZoneID>
+		<Area>六盘水</Area>
+		<AreaCode>56693</AreaCode>
+	</Area>
+      - <Area id="Area243" rowOrder="242">
+		<ID>247</ID>
+		<ZoneID>22</ZoneID>
+		<Area>毕节</Area>
+		<AreaCode>57707</AreaCode>
+	</Area>
+      - <Area id="Area244" rowOrder="243">
+		<ID>248</ID>
+		<ZoneID>22</ZoneID>
+		<Area>凯里</Area>
+		<AreaCode>57825</AreaCode>
+	</Area>
+      - <Area id="Area245" rowOrder="244">
+		<ID>249</ID>
+		<ZoneID>22</ZoneID>
+		<Area>都匀</Area>
+		<AreaCode>57827</AreaCode>
+	</Area>
+      - <Area id="Area246" rowOrder="245">
+		<ID>250</ID>
+		<ZoneID>23</ZoneID>
+		<Area>成都</Area>
+		<AreaCode>56294</AreaCode>
+	</Area>
+      - <Area id="Area247" rowOrder="246">
+		<ID>251</ID>
+		<ZoneID>23</ZoneID>
+		<Area>泸州</Area>
+		<AreaCode>57602</AreaCode>
+	</Area>
+      - <Area id="Area248" rowOrder="247">
+		<ID>252</ID>
+		<ZoneID>23</ZoneID>
+		<Area>内江</Area>
+		<AreaCode>57504</AreaCode>
+	</Area>
+      - <Area id="Area249" rowOrder="248">
+		<ID>253</ID>
+		<ZoneID>23</ZoneID>
+		<Area>凉山</Area>
+		<AreaCode>56571</AreaCode>
+	</Area>
+      - <Area id="Area250" rowOrder="249">
+		<ID>254</ID>
+		<ZoneID>23</ZoneID>
+		<Area>阿坝</Area>
+		<AreaCode>56171</AreaCode>
+	</Area>
+      - <Area id="Area251" rowOrder="250">
+		<ID>255</ID>
+		<ZoneID>23</ZoneID>
+		<Area>巴中</Area>
+		<AreaCode>57313</AreaCode>
+	</Area>
+      - <Area id="Area252" rowOrder="251">
+		<ID>256</ID>
+		<ZoneID>23</ZoneID>
+		<Area>广元</Area>
+		<AreaCode>57206</AreaCode>
+	</Area>
+      - <Area id="Area253" rowOrder="252">
+		<ID>257</ID>
+		<ZoneID>23</ZoneID>
+		<Area>乐山</Area>
+		<AreaCode>56386</AreaCode>
+	</Area>
+      - <Area id="Area254" rowOrder="253">
+		<ID>258</ID>
+		<ZoneID>23</ZoneID>
+		<Area>绵阳</Area>
+		<AreaCode>56196</AreaCode>
+	</Area>
+      - <Area id="Area255" rowOrder="254">
+		<ID>259</ID>
+		<ZoneID>23</ZoneID>
+		<Area>德阳</Area>
+		<AreaCode>56198</AreaCode>
+	</Area>
+      - <Area id="Area256" rowOrder="255">
+		<ID>260</ID>
+		<ZoneID>23</ZoneID>
+		<Area>攀枝花</Area>
+		<AreaCode>56666</AreaCode>
+	</Area>
+      - <Area id="Area257" rowOrder="256">
+		<ID>261</ID>
+		<ZoneID>23</ZoneID>
+		<Area>雅安</Area>
+		<AreaCode>56287</AreaCode>
+	</Area>
+      - <Area id="Area258" rowOrder="257">
+		<ID>262</ID>
+		<ZoneID>23</ZoneID>
+		<Area>宜宾</Area>
+		<AreaCode>56492</AreaCode>
+	</Area>
+      - <Area id="Area259" rowOrder="258">
+		<ID>263</ID>
+		<ZoneID>23</ZoneID>
+		<Area>自贡</Area>
+		<AreaCode>56396</AreaCode>
+	</Area>
+      - <Area id="Area260" rowOrder="259">
+		<ID>264</ID>
+		<ZoneID>23</ZoneID>
+		<Area>甘孜州</Area>
+		<AreaCode>56146</AreaCode>
+	</Area>
+      - <Area id="Area261" rowOrder="260">
+		<ID>265</ID>
+		<ZoneID>23</ZoneID>
+		<Area>达州</Area>
+		<AreaCode>57328</AreaCode>
+	</Area>
+      - <Area id="Area262" rowOrder="261">
+		<ID>266</ID>
+		<ZoneID>23</ZoneID>
+		<Area>资阳</Area>
+		<AreaCode>56298</AreaCode>
+	</Area>
+      - <Area id="Area263" rowOrder="262">
+		<ID>267</ID>
+		<ZoneID>23</ZoneID>
+		<Area>广安</Area>
+		<AreaCode>57415</AreaCode>
+	</Area>
+      - <Area id="Area264" rowOrder="263">
+		<ID>268</ID>
+		<ZoneID>23</ZoneID>
+		<Area>遂宁</Area>
+		<AreaCode>57405</AreaCode>
+	</Area>
+      - <Area id="Area265" rowOrder="264">
+		<ID>269</ID>
+		<ZoneID>23</ZoneID>
+		<Area>眉山</Area>
+		<AreaCode>56391</AreaCode>
+	</Area>
+      - <Area id="Area266" rowOrder="265">
+		<ID>270</ID>
+		<ZoneID>23</ZoneID>
+		<Area>南充</Area>
+		<AreaCode>57411</AreaCode>
+	</Area>
+      - <Area id="Area267" rowOrder="266">
+		<ID>271</ID>
+		<ZoneID>24</ZoneID>
+		<Area>广州</Area>
+		<AreaCode>59287</AreaCode>
+	</Area>
+      - <Area id="Area268" rowOrder="267">
+		<ID>272</ID>
+		<ZoneID>24</ZoneID>
+		<Area>深圳</Area>
+		<AreaCode>59493</AreaCode>
+	</Area>
+      - <Area id="Area269" rowOrder="268">
+		<ID>273</ID>
+		<ZoneID>24</ZoneID>
+		<Area>潮州</Area>
+		<AreaCode>59312</AreaCode>
+	</Area>
+      - <Area id="Area270" rowOrder="269">
+		<ID>274</ID>
+		<ZoneID>24</ZoneID>
+		<Area>韶关</Area>
+		<AreaCode>59082</AreaCode>
+	</Area>
+      - <Area id="Area271" rowOrder="270">
+		<ID>275</ID>
+		<ZoneID>24</ZoneID>
+		<Area>湛江</Area>
+		<AreaCode>59658</AreaCode>
+	</Area>
+      - <Area id="Area272" rowOrder="271">
+		<ID>276</ID>
+		<ZoneID>24</ZoneID>
+		<Area>惠州</Area>
+		<AreaCode>59298</AreaCode>
+	</Area>
+      - <Area id="Area273" rowOrder="272">
+		<ID>277</ID>
+		<ZoneID>24</ZoneID>
+		<Area>清远</Area>
+		<AreaCode>59280</AreaCode>
+	</Area>
+      - <Area id="Area274" rowOrder="273">
+		<ID>278</ID>
+		<ZoneID>24</ZoneID>
+		<Area>东莞</Area>
+		<AreaCode>59289</AreaCode>
+	</Area>
+      - <Area id="Area275" rowOrder="274">
+		<ID>279</ID>
+		<ZoneID>24</ZoneID>
+		<Area>江门</Area>
+		<AreaCode>59473</AreaCode>
+	</Area>
+      - <Area id="Area276" rowOrder="275">
+		<ID>280</ID>
+		<ZoneID>24</ZoneID>
+		<Area>茂名</Area>
+		<AreaCode>59659</AreaCode>
+	</Area>
+      - <Area id="Area277" rowOrder="276">
+		<ID>281</ID>
+		<ZoneID>24</ZoneID>
+		<Area>肇庆</Area>
+		<AreaCode>59278</AreaCode>
+	</Area>
+      - <Area id="Area278" rowOrder="277">
+		<ID>282</ID>
+		<ZoneID>24</ZoneID>
+		<Area>汕尾</Area>
+		<AreaCode>59501</AreaCode>
+	</Area>
+      - <Area id="Area279" rowOrder="278">
+		<ID>283</ID>
+		<ZoneID>24</ZoneID>
+		<Area>河源</Area>
+		<AreaCode>59293</AreaCode>
+	</Area>
+      - <Area id="Area280" rowOrder="279">
+		<ID>284</ID>
+		<ZoneID>24</ZoneID>
+		<Area>揭阳</Area>
+		<AreaCode>59315</AreaCode>
+	</Area>
+      - <Area id="Area281" rowOrder="280">
+		<ID>285</ID>
+		<ZoneID>24</ZoneID>
+		<Area>梅州</Area>
+		<AreaCode>59117</AreaCode>
+	</Area>
+      - <Area id="Area282" rowOrder="281">
+		<ID>286</ID>
+		<ZoneID>24</ZoneID>
+		<Area>中山</Area>
+		<AreaCode>59485</AreaCode>
+	</Area>
+      - <Area id="Area283" rowOrder="282">
+		<ID>287</ID>
+		<ZoneID>24</ZoneID>
+		<Area>德庆</Area>
+		<AreaCode>59269</AreaCode>
+	</Area>
+      - <Area id="Area284" rowOrder="283">
+		<ID>288</ID>
+		<ZoneID>24</ZoneID>
+		<Area>阳江</Area>
+		<AreaCode>59663</AreaCode>
+	</Area>
+      - <Area id="Area285" rowOrder="284">
+		<ID>289</ID>
+		<ZoneID>24</ZoneID>
+		<Area>云浮</Area>
+		<AreaCode>59471</AreaCode>
+	</Area>
+      - <Area id="Area286" rowOrder="285">
+		<ID>290</ID>
+		<ZoneID>24</ZoneID>
+		<Area>珠海</Area>
+		<AreaCode>59488</AreaCode>
+	</Area>
+      - <Area id="Area287" rowOrder="286">
+		<ID>291</ID>
+		<ZoneID>24</ZoneID>
+		<Area>汕头</Area>
+		<AreaCode>59316</AreaCode>
+	</Area>
+      - <Area id="Area288" rowOrder="287">
+		<ID>292</ID>
+		<ZoneID>25</ZoneID>
+		<Area>南宁</Area>
+		<AreaCode>59431</AreaCode>
+	</Area>
+      - <Area id="Area289" rowOrder="288">
+		<ID>293</ID>
+		<ZoneID>25</ZoneID>
+		<Area>桂林</Area>
+		<AreaCode>57957</AreaCode>
+	</Area>
+      - <Area id="Area290" rowOrder="289">
+		<ID>294</ID>
+		<ZoneID>25</ZoneID>
+		<Area>阳朔</Area>
+		<AreaCode>59051</AreaCode>
+	</Area>
+      - <Area id="Area291" rowOrder="290">
+		<ID>295</ID>
+		<ZoneID>25</ZoneID>
+		<Area>柳州</Area>
+		<AreaCode>59046</AreaCode>
+	</Area>
+      - <Area id="Area292" rowOrder="291">
+		<ID>296</ID>
+		<ZoneID>25</ZoneID>
+		<Area>梧州</Area>
+		<AreaCode>59265</AreaCode>
+	</Area>
+      - <Area id="Area293" rowOrder="292">
+		<ID>297</ID>
+		<ZoneID>25</ZoneID>
+		<Area>玉林</Area>
+		<AreaCode>59453</AreaCode>
+	</Area>
+      - <Area id="Area294" rowOrder="293">
+		<ID>298</ID>
+		<ZoneID>25</ZoneID>
+		<Area>桂平</Area>
+		<AreaCode>59254</AreaCode>
+	</Area>
+      - <Area id="Area295" rowOrder="294">
+		<ID>299</ID>
+		<ZoneID>25</ZoneID>
+		<Area>贺州</Area>
+		<AreaCode>59065</AreaCode>
+	</Area>
+      - <Area id="Area296" rowOrder="295">
+		<ID>300</ID>
+		<ZoneID>25</ZoneID>
+		<Area>钦州</Area>
+		<AreaCode>59632</AreaCode>
+	</Area>
+      - <Area id="Area297" rowOrder="296">
+		<ID>301</ID>
+		<ZoneID>25</ZoneID>
+		<Area>贵港</Area>
+		<AreaCode>59249</AreaCode>
+	</Area>
+      - <Area id="Area298" rowOrder="297">
+		<ID>302</ID>
+		<ZoneID>25</ZoneID>
+		<Area>防城港</Area>
+		<AreaCode>59635</AreaCode>
+	</Area>
+      - <Area id="Area299" rowOrder="298">
+		<ID>303</ID>
+		<ZoneID>25</ZoneID>
+		<Area>百色</Area>
+		<AreaCode>59211</AreaCode>
+	</Area>
+      - <Area id="Area300" rowOrder="299">
+		<ID>304</ID>
+		<ZoneID>25</ZoneID>
+		<Area>北海</Area>
+		<AreaCode>59644</AreaCode>
+	</Area>
+      - <Area id="Area301" rowOrder="300">
+		<ID>305</ID>
+		<ZoneID>25</ZoneID>
+		<Area>河池</Area>
+		<AreaCode>59023</AreaCode>
+	</Area>
+      - <Area id="Area302" rowOrder="301">
+		<ID>306</ID>
+		<ZoneID>25</ZoneID>
+		<Area>来宾</Area>
+		<AreaCode>59242</AreaCode>
+	</Area>
+      - <Area id="Area303" rowOrder="302">
+		<ID>307</ID>
+		<ZoneID>25</ZoneID>
+		<Area>崇左</Area>
+		<AreaCode>59425</AreaCode>
+	</Area>
+      - <Area id="Area304" rowOrder="303">
+		<ID>308</ID>
+		<ZoneID>26</ZoneID>
+		<Area>昆明</Area>
+		<AreaCode>56778</AreaCode>
+	</Area>
+      - <Area id="Area305" rowOrder="304">
+		<ID>309</ID>
+		<ZoneID>26</ZoneID>
+		<Area>保山</Area>
+		<AreaCode>56748</AreaCode>
+	</Area>
+      - <Area id="Area306" rowOrder="305">
+		<ID>310</ID>
+		<ZoneID>26</ZoneID>
+		<Area>楚雄</Area>
+		<AreaCode>56768</AreaCode>
+	</Area>
+      - <Area id="Area307" rowOrder="306">
+		<ID>311</ID>
+		<ZoneID>26</ZoneID>
+		<Area>德宏</Area>
+		<AreaCode>56844</AreaCode>
+	</Area>
+      - <Area id="Area308" rowOrder="307">
+		<ID>312</ID>
+		<ZoneID>26</ZoneID>
+		<Area>红河</Area>
+		<AreaCode>56975</AreaCode>
+	</Area>
+      - <Area id="Area309" rowOrder="308">
+		<ID>313</ID>
+		<ZoneID>26</ZoneID>
+		<Area>临沧</Area>
+		<AreaCode>56951</AreaCode>
+	</Area>
+      - <Area id="Area310" rowOrder="309">
+		<ID>314</ID>
+		<ZoneID>26</ZoneID>
+		<Area>怒江</Area>
+		<AreaCode>56533</AreaCode>
+	</Area>
+      - <Area id="Area311" rowOrder="310">
+		<ID>315</ID>
+		<ZoneID>26</ZoneID>
+		<Area>曲靖</Area>
+		<AreaCode>56783</AreaCode>
+	</Area>
+      - <Area id="Area312" rowOrder="311">
+		<ID>316</ID>
+		<ZoneID>26</ZoneID>
+		<Area>思茅</Area>
+		<AreaCode>56964</AreaCode>
+	</Area>
+      - <Area id="Area313" rowOrder="312">
+		<ID>317</ID>
+		<ZoneID>26</ZoneID>
+		<Area>文山</Area>
+		<AreaCode>56994</AreaCode>
+	</Area>
+      - <Area id="Area314" rowOrder="313">
+		<ID>318</ID>
+		<ZoneID>26</ZoneID>
+		<Area>玉溪</Area>
+		<AreaCode>56875</AreaCode>
+	</Area>
+      - <Area id="Area315" rowOrder="314">
+		<ID>319</ID>
+		<ZoneID>26</ZoneID>
+		<Area>昭通</Area>
+		<AreaCode>56586</AreaCode>
+	</Area>
+      - <Area id="Area316" rowOrder="315">
+		<ID>320</ID>
+		<ZoneID>26</ZoneID>
+		<Area>丽江</Area>
+		<AreaCode>56651</AreaCode>
+	</Area>
+      - <Area id="Area317" rowOrder="316">
+		<ID>321</ID>
+		<ZoneID>26</ZoneID>
+		<Area>大理</Area>
+		<AreaCode>56751</AreaCode>
+	</Area>
+      - <Area id="Area318" rowOrder="317">
+		<ID>322</ID>
+		<ZoneID>27</ZoneID>
+		<Area>海口</Area>
+		<AreaCode>59758</AreaCode>
+	</Area>
+      - <Area id="Area319" rowOrder="318">
+		<ID>323</ID>
+		<ZoneID>27</ZoneID>
+		<Area>三亚</Area>
+		<AreaCode>59948</AreaCode>
+	</Area>
+      - <Area id="Area320" rowOrder="319">
+		<ID>324</ID>
+		<ZoneID>27</ZoneID>
+		<Area>儋州</Area>
+		<AreaCode>59845</AreaCode>
+	</Area>
+      - <Area id="Area321" rowOrder="320">
+		<ID>325</ID>
+		<ZoneID>27</ZoneID>
+		<Area>琼山</Area>
+		<AreaCode>59757</AreaCode>
+	</Area>
+      - <Area id="Area322" rowOrder="321">
+		<ID>326</ID>
+		<ZoneID>27</ZoneID>
+		<Area>通什</Area>
+		<AreaCode>59941</AreaCode>
+	</Area>
+      - <Area id="Area323" rowOrder="322">
+		<ID>327</ID>
+		<ZoneID>27</ZoneID>
+		<Area>文昌</Area>
+		<AreaCode>59856</AreaCode>
+	</Area>
+      - <Area id="Area324" rowOrder="323">
+		<ID>328</ID>
+		<ZoneID>28</ZoneID>
+		<Area>乌鲁木齐</Area>
+		<AreaCode>51463</AreaCode>
+	</Area>
+      - <Area id="Area325" rowOrder="324">
+		<ID>329</ID>
+		<ZoneID>28</ZoneID>
+		<Area>阿勒泰</Area>
+		<AreaCode>51076</AreaCode>
+	</Area>
+      - <Area id="Area326" rowOrder="325">
+		<ID>330</ID>
+		<ZoneID>28</ZoneID>
+		<Area>阿克苏</Area>
+		<AreaCode>51628</AreaCode>
+	</Area>
+      - <Area id="Area327" rowOrder="326">
+		<ID>331</ID>
+		<ZoneID>28</ZoneID>
+		<Area>昌吉</Area>
+		<AreaCode>51368</AreaCode>
+	</Area>
+      - <Area id="Area328" rowOrder="327">
+		<ID>332</ID>
+		<ZoneID>28</ZoneID>
+		<Area>哈密</Area>
+		<AreaCode>52203</AreaCode>
+	</Area>
+      - <Area id="Area329" rowOrder="328">
+		<ID>333</ID>
+		<ZoneID>28</ZoneID>
+		<Area>和田</Area>
+		<AreaCode>51828</AreaCode>
+	</Area>
+      - <Area id="Area330" rowOrder="329">
+		<ID>334</ID>
+		<ZoneID>28</ZoneID>
+		<Area>喀什</Area>
+		<AreaCode>51709</AreaCode>
+	</Area>
+      - <Area id="Area331" rowOrder="330">
+		<ID>335</ID>
+		<ZoneID>28</ZoneID>
+		<Area>克拉玛依</Area>
+		<AreaCode>51243</AreaCode>
+	</Area>
+      - <Area id="Area332" rowOrder="331">
+		<ID>336</ID>
+		<ZoneID>28</ZoneID>
+		<Area>石河子</Area>
+		<AreaCode>51356</AreaCode>
+	</Area>
+      - <Area id="Area333" rowOrder="332">
+		<ID>337</ID>
+		<ZoneID>28</ZoneID>
+		<Area>塔城</Area>
+		<AreaCode>51133</AreaCode>
+	</Area>
+      - <Area id="Area334" rowOrder="333">
+		<ID>338</ID>
+		<ZoneID>28</ZoneID>
+		<Area>库尔勒</Area>
+		<AreaCode>51656</AreaCode>
+	</Area>
+      - <Area id="Area335" rowOrder="334">
+		<ID>339</ID>
+		<ZoneID>28</ZoneID>
+		<Area>吐鲁番</Area>
+		<AreaCode>51573</AreaCode>
+	</Area>
+      - <Area id="Area336" rowOrder="335">
+		<ID>340</ID>
+		<ZoneID>29</ZoneID>
+		<Area>拉萨</Area>
+		<AreaCode>55591</AreaCode>
+	</Area>
+      - <Area id="Area337" rowOrder="336">
+		<ID>341</ID>
+		<ZoneID>29</ZoneID>
+		<Area>阿里</Area>
+		<AreaCode>55437</AreaCode>
+	</Area>
+      - <Area id="Area338" rowOrder="337">
+		<ID>342</ID>
+		<ZoneID>29</ZoneID>
+		<Area>昌都</Area>
+		<AreaCode>56137</AreaCode>
+	</Area>
+      - <Area id="Area339" rowOrder="338">
+		<ID>343</ID>
+		<ZoneID>29</ZoneID>
+		<Area>那曲</Area>
+		<AreaCode>55299</AreaCode>
+	</Area>
+      - <Area id="Area340" rowOrder="339">
+		<ID>344</ID>
+		<ZoneID>29</ZoneID>
+		<Area>日喀则</Area>
+		<AreaCode>55578</AreaCode>
+	</Area>
+      - <Area id="Area341" rowOrder="340">
+		<ID>345</ID>
+		<ZoneID>29</ZoneID>
+		<Area>山南</Area>
+		<AreaCode>55598</AreaCode>
+	</Area>
+      - <Area id="Area342" rowOrder="341">
+		<ID>346</ID>
+		<ZoneID>29</ZoneID>
+		<Area>林芝</Area>
+		<AreaCode>56312</AreaCode>
+	</Area>
+      - <Area id="Area343" rowOrder="342">
+		<ID>347</ID>
+		<ZoneID>30</ZoneID>
+		<Area>台北</Area>
+		<AreaCode>58968</AreaCode>
+	</Area>
+      - <Area id="Area344" rowOrder="343">
+		<ID>348</ID>
+		<ZoneID>30</ZoneID>
+		<Area>高雄</Area>
+		<AreaCode>59554</AreaCode>
+	</Area>
+      - <Area id="Area345" rowOrder="344">
+		<ID>349</ID>
+		<ZoneID>31</ZoneID>
+		<Area>伊斯坦布尔 ISTANBUL</Area>
+		<AreaCode>17060</AreaCode>
+	</Area>
+      - <Area id="Area346" rowOrder="345">
+		<ID>350</ID>
+		<ZoneID>31</ZoneID>
+		<Area>德黑兰 TEHRAN</Area>
+		<AreaCode>40754</AreaCode>
+	</Area>
+      - <Area id="Area347" rowOrder="346">
+		<ID>351</ID>
+		<ZoneID>31</ZoneID>
+		<Area>卡拉奇 KARACHI</Area>
+		<AreaCode>41781</AreaCode>
+	</Area>
+      - <Area id="Area348" rowOrder="347">
+		<ID>352</ID>
+		<ZoneID>31</ZoneID>
+		<Area>新德里 NEW DELHI</Area>
+		<AreaCode>42182</AreaCode>
+	</Area>
+      - <Area id="Area349" rowOrder="348">
+		<ID>353</ID>
+		<ZoneID>31</ZoneID>
+		<Area>科伦坡 COLOMBO</Area>
+		<AreaCode>43466</AreaCode>
+	</Area>
+      - <Area id="Area350" rowOrder="349">
+		<ID>354</ID>
+		<ZoneID>31</ZoneID>
+		<Area>首尔 SEOUL</Area>
+		<AreaCode>47108</AreaCode>
+	</Area>
+      - <Area id="Area351" rowOrder="350">
+		<ID>355</ID>
+		<ZoneID>31</ZoneID>
+		<Area>釜山 BUSAN</Area>
+		<AreaCode>47159</AreaCode>
+	</Area>
+      - <Area id="Area352" rowOrder="351">
+		<ID>356</ID>
+		<ZoneID>31</ZoneID>
+		<Area>东京 TOKYO</Area>
+		<AreaCode>47662</AreaCode>
+	</Area>
+      - <Area id="Area353" rowOrder="352">
+		<ID>357</ID>
+		<ZoneID>31</ZoneID>
+		<Area>仰光 YANGON</Area>
+		<AreaCode>48097</AreaCode>
+	</Area>
+      - <Area id="Area354" rowOrder="353">
+		<ID>358</ID>
+		<ZoneID>31</ZoneID>
+		<Area>曼谷 BANGKOK</Area>
+		<AreaCode>48454</AreaCode>
+	</Area>
+      - <Area id="Area355" rowOrder="354">
+		<ID>359</ID>
+		<ZoneID>31</ZoneID>
+		<Area>吉隆坡 KUALA LUMPUR</Area>
+		<AreaCode>48647</AreaCode>
+	</Area>
+      - <Area id="Area356" rowOrder="355">
+		<ID>360</ID>
+		<ZoneID>31</ZoneID>
+		<Area>河内 HA NOI</Area>
+		<AreaCode>48820</AreaCode>
+	</Area>
+      - <Area id="Area357" rowOrder="356">
+		<ID>361</ID>
+		<ZoneID>31</ZoneID>
+		<Area>北京 BEIJING</Area>
+		<AreaCode>54511</AreaCode>
+	</Area>
+      - <Area id="Area358" rowOrder="357">
+		<ID>362</ID>
+		<ZoneID>31</ZoneID>
+		<Area>雅加达 JAKARTA</Area>
+		<AreaCode>96745</AreaCode>
+	</Area>
+      - <Area id="Area359" rowOrder="358">
+		<ID>363</ID>
+		<ZoneID>32</ZoneID>
+		<Area>汉堡 HAMBURG</Area>
+		<AreaCode>10141</AreaCode>
+	</Area>
+      - <Area id="Area360" rowOrder="359">
+		<ID>364</ID>
+		<ZoneID>32</ZoneID>
+		<Area>柏林 BERLIN</Area>
+		<AreaCode>10381</AreaCode>
+	</Area>
+      - <Area id="Area361" rowOrder="360">
+		<ID>365</ID>
+		<ZoneID>32</ZoneID>
+		<Area>法兰克福 FRANKFURT</Area>
+		<AreaCode>10637</AreaCode>
+	</Area>
+      - <Area id="Area362" rowOrder="361">
+		<ID>366</ID>
+		<ZoneID>32</ZoneID>
+		<Area>维也纳 VIENNA</Area>
+		<AreaCode>11034</AreaCode>
+	</Area>
+      - <Area id="Area363" rowOrder="362">
+		<ID>367</ID>
+		<ZoneID>32</ZoneID>
+		<Area>米兰 MILANO</Area>
+		<AreaCode>16066</AreaCode>
+	</Area>
+      - <Area id="Area364" rowOrder="363">
+		<ID>368</ID>
+		<ZoneID>32</ZoneID>
+		<Area>罗马 ROMA</Area>
+		<AreaCode>16235</AreaCode>
+	</Area>
+      - <Area id="Area365" rowOrder="364">
+		<ID>369</ID>
+		<ZoneID>32</ZoneID>
+		<Area>雅典 ATHENS</Area>
+		<AreaCode>16701</AreaCode>
+	</Area>
+      - <Area id="Area366" rowOrder="365">
+		<ID>370</ID>
+		<ZoneID>32</ZoneID>
+		<Area>斯德哥尔摩 STOCKHOLM</Area>
+		<AreaCode>2484</AreaCode>
+	</Area>
+      - <Area id="Area367" rowOrder="366">
+		<ID>371</ID>
+		<ZoneID>32</ZoneID>
+		<Area>莫斯科 MOSKVA</Area>
+		<AreaCode>27612</AreaCode>
+	</Area>
+      - <Area id="Area368" rowOrder="367">
+		<ID>372</ID>
+		<ZoneID>32</ZoneID>
+		<Area>曼彻斯特 MANCHESTER</Area>
+		<AreaCode>3334</AreaCode>
+	</Area>
+      - <Area id="Area369" rowOrder="368">
+		<ID>373</ID>
+		<ZoneID>32</ZoneID>
+		<Area>伦敦 LONDON</Area>
+		<AreaCode>3779</AreaCode>
+	</Area>
+      - <Area id="Area370" rowOrder="369">
+		<ID>374</ID>
+		<ZoneID>32</ZoneID>
+		<Area>阿姆斯特丹 AMSTERDAM</Area>
+		<AreaCode>6240</AreaCode>
+	</Area>
+      - <Area id="Area371" rowOrder="370">
+		<ID>375</ID>
+		<ZoneID>32</ZoneID>
+		<Area>布鲁塞尔 BRUSSELES</Area>
+		<AreaCode>6451</AreaCode>
+	</Area>
+      - <Area id="Area372" rowOrder="371">
+		<ID>376</ID>
+		<ZoneID>32</ZoneID>
+		<Area>苏黎世 ZURICH</Area>
+		<AreaCode>6660</AreaCode>
+	</Area>
+      - <Area id="Area373" rowOrder="372">
+		<ID>377</ID>
+		<ZoneID>32</ZoneID>
+		<Area>日内瓦 GENEVE</Area>
+		<AreaCode>6700</AreaCode>
+	</Area>
+      - <Area id="Area374" rowOrder="373">
+		<ID>378</ID>
+		<ZoneID>33</ZoneID>
+		<Area>巴马科 BAMAKO</Area>
+		<AreaCode>61291</AreaCode>
+	</Area>
+      - <Area id="Area375" rowOrder="374">
+		<ID>379</ID>
+		<ZoneID>33</ZoneID>
+		<Area>亚的斯亚贝巴 ADDIS ABABA</Area>
+		<AreaCode>63450</AreaCode>
+	</Area>
+      - <Area id="Area376" rowOrder="375">
+		<ID>380</ID>
+		<ZoneID>33</ZoneID>
+		<Area>内罗毕 NAIROBI</Area>
+		<AreaCode>63740</AreaCode>
+	</Area>
+      - <Area id="Area377" rowOrder="376">
+		<ID>381</ID>
+		<ZoneID>33</ZoneID>
+		<Area>阿克拉 ACCRA</Area>
+		<AreaCode>65472</AreaCode>
+	</Area>
+      - <Area id="Area378" rowOrder="377">
+		<ID>382</ID>
+		<ZoneID>33</ZoneID>
+		<Area>马普托 MAPUTO</Area>
+		<AreaCode>67341</AreaCode>
+	</Area>
+      - <Area id="Area379" rowOrder="378">
+		<ID>383</ID>
+		<ZoneID>33</ZoneID>
+		<Area>约翰内斯堡 JOHANNESBURG</Area>
+		<AreaCode>68368</AreaCode>
+	</Area>
+      - <Area id="Area380" rowOrder="379">
+		<ID>384</ID>
+		<ZoneID>33</ZoneID>
+		<Area>曼齐尼 MANZINI</Area>
+		<AreaCode>68396</AreaCode>
+	</Area>
+      - <Area id="Area381" rowOrder="380">
+		<ID>385</ID>
+		<ZoneID>33</ZoneID>
+		<Area>开普敦 CAPE TOWN</Area>
+		<AreaCode>68816</AreaCode>
+	</Area>
+      - <Area id="Area382" rowOrder="381">
+		<ID>386</ID>
+		<ZoneID>34</ZoneID>
+		<Area>多伦多 TORONTO</Area>
+		<AreaCode>71624</AreaCode>
+	</Area>
+      - <Area id="Area383" rowOrder="382">
+		<ID>387</ID>
+		<ZoneID>34</ZoneID>
+		<Area>蒙特利尔 MONTREAL</Area>
+		<AreaCode>71627</AreaCode>
+	</Area>
+      - <Area id="Area384" rowOrder="383">
+		<ID>388</ID>
+		<ZoneID>34</ZoneID>
+		<Area>渥太华 OTTAWA</Area>
+		<AreaCode>71628</AreaCode>
+	</Area>
+      - <Area id="Area385" rowOrder="384">
+		<ID>389</ID>
+		<ZoneID>34</ZoneID>
+		<Area>温哥华 VANCOUVER</Area>
+		<AreaCode>71892</AreaCode>
+	</Area>
+      - <Area id="Area386" rowOrder="385">
+		<ID>390</ID>
+		<ZoneID>34</ZoneID>
+		<Area>迈阿密 MIAMI</Area>
+		<AreaCode>72202</AreaCode>
+	</Area>
+      - <Area id="Area387" rowOrder="386">
+		<ID>391</ID>
+		<ZoneID>34</ZoneID>
+		<Area>亚特兰大 ATLANTA</Area>
+		<AreaCode>72219</AreaCode>
+	</Area>
+      - <Area id="Area388" rowOrder="387">
+		<ID>392</ID>
+		<ZoneID>34</ZoneID>
+		<Area>休斯敦 HOUSTON</Area>
+		<AreaCode>72243</AreaCode>
+	</Area>
+      - <Area id="Area389" rowOrder="388">
+		<ID>393</ID>
+		<ZoneID>34</ZoneID>
+		<Area>洛杉矶 LOS ANGELES</Area>
+		<AreaCode>72295</AreaCode>
+	</Area>
+      - <Area id="Area390" rowOrder="389">
+		<ID>394</ID>
+		<ZoneID>34</ZoneID>
+		<Area>拉斯维加斯 LAS VEGAS</Area>
+		<AreaCode>72386</AreaCode>
+	</Area>
+      - <Area id="Area391" rowOrder="390">
+		<ID>395</ID>
+		<ZoneID>34</ZoneID>
+		<Area>华盛顿 WASHINGTON DC</Area>
+		<AreaCode>72405</AreaCode>
+	</Area>
+      - <Area id="Area392" rowOrder="391">
+		<ID>396</ID>
+		<ZoneID>34</ZoneID>
+		<Area>纽约 NEW YORK</Area>
+		<AreaCode>72503</AreaCode>
+	</Area>
+      - <Area id="Area393" rowOrder="392">
+		<ID>397</ID>
+		<ZoneID>34</ZoneID>
+		<Area>波士顿 BOSTON</Area>
+		<AreaCode>72509</AreaCode>
+	</Area>
+      - <Area id="Area394" rowOrder="393">
+		<ID>398</ID>
+		<ZoneID>34</ZoneID>
+		<Area>芝加哥 CHICAGO</Area>
+		<AreaCode>72530</AreaCode>
+	</Area>
+      - <Area id="Area395" rowOrder="394">
+		<ID>399</ID>
+		<ZoneID>34</ZoneID>
+		<Area>西雅图 SEATTLE</Area>
+		<AreaCode>72793</AreaCode>
+	</Area>
+      - <Area id="Area396" rowOrder="395">
+		<ID>400</ID>
+		<ZoneID>34</ZoneID>
+		<Area>圣地亚哥 SANTIAGO DE CUBA</Area>
+		<AreaCode>78264</AreaCode>
+	</Area>
+      - <Area id="Area397" rowOrder="396">
+		<ID>401</ID>
+		<ZoneID>35</ZoneID>
+		<Area>波哥大 BOGOTA</Area>
+		<AreaCode>80222</AreaCode>
+	</Area>
+      - <Area id="Area398" rowOrder="397">
+		<ID>402</ID>
+		<ZoneID>35</ZoneID>
+		<Area>利马 LIMA</Area>
+		<AreaCode>84628</AreaCode>
+	</Area>
+      - <Area id="Area399" rowOrder="398">
+		<ID>403</ID>
+		<ZoneID>35</ZoneID>
+		<Area>蒙特港 PUERTO MONTT</Area>
+		<AreaCode>85799</AreaCode>
+	</Area>
+      - <Area id="Area400" rowOrder="399">
+		<ID>404</ID>
+		<ZoneID>35</ZoneID>
+		<Area>布宜诺斯艾利斯 BUENOS AIRES</Area>
+		<AreaCode>87585</AreaCode>
+	</Area>
+      - <Area id="Area401" rowOrder="400">
+		<ID>405</ID>
+		<ZoneID>36</ZoneID>
+		<Area>奥克兰 AUCKLAND</Area>
+		<AreaCode>93110</AreaCode>
+	</Area>
+      - <Area id="Area402" rowOrder="401">
+		<ID>406</ID>
+		<ZoneID>36</ZoneID>
+		<Area>惠灵顿 WELLINGTON</Area>
+		<AreaCode>93436</AreaCode>
+	</Area>
+      - <Area id="Area403" rowOrder="402">
+		<ID>407</ID>
+		<ZoneID>36</ZoneID>
+		<Area>悉尼 SYDNEY</Area>
+		<AreaCode>94767</AreaCode>
+	</Area>
+      - <Area id="Area404" rowOrder="403">
+		<ID>408</ID>
+		<ZoneID>36</ZoneID>
+		<Area>墨尔本 MELBOURNE</Area>
+		<AreaCode>94868</AreaCode>
+	</Area>
+      - <Area id="Area405" rowOrder="404">
+		<ID>409</ID>
+		<ZoneID>36</ZoneID>
+		<Area>堪培拉 CANBERRA</Area>
+		<AreaCode>94926</AreaCode>
+	</Area>
+      - <Area id="Area406" rowOrder="405">
+		<ID>410</ID>
+		<ZoneID>24</ZoneID>
+		<Area>佛山</Area>
+		<AreaCode>59279</AreaCode>
+	</Area>
+      - <Area id="Area407" rowOrder="406">
+		<ID>411</ID>
+		<ZoneID>10</ZoneID>
+		<Area>吕梁</Area>
+		<AreaCode>53753</AreaCode>
+	</Area>
+      - <Area id="Area408" rowOrder="407">
+		<ID>412</ID>
+		<ZoneID>28</ZoneID>
+		<Area>伊宁</Area>
+		<AreaCode>51431</AreaCode>
+	</Area>
+</NewDataSet>

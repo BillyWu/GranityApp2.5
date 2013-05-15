@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script> 
+    <script language="javascript" src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/ustreeland.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/tmpjs/unititem.js" type="text/javascript" charset="gb2312"></script>
+    <style type="text/css">
+        BODY{FONT-SIZE:9pt;COLOR:#333333;FONT-FAMILY:"宋体","Arial"}
+        TD{FONT-SIZE:9pt;COLOR:#333333;FONT-FAMILY:"宋体","Arial"}
+        #loader_container{text-align:center;position:absolute;top:40%;width:100%;left:0;}
+        #loader{font-family:Tahoma,Helvetica,sans;font-size:11.5px;color:#000000;background-color:#FFFFFF;padding:10px 0 16px 0;margin:0 auto;display:block;width:300px;border:1px solid #5a667b;text-align:left;z-index:2;}
+        #loader_bg{background-color:#e4e7eb;position:relative;top:8px;left:8px;height:7px;width:280px;font-size:1px}
+        #progress{height:5px;font-size:1px;width:1px;position:relative;top:1px;left:0px;background-color:#77A9E0}
+    </style>
+</head>
+<body style="overflow:hidden; margin: 0px;" scroll="no">
+    <table align="center" style="WIDTH: 100%; BORDER-COLLAPSE: collapse; HEIGHT: 100%" bgcolor="#d4d0c8" id="table10" cellSpacing="0" cellPadding="0" border="1">
+    <tbody><tr><td style="color: #333333;; height: 23px" vAlign="middle" bgColor="gray" colSpan="3" rowSpan="1">
+    <font color="white"><B id="frtitle">　　正在加载数据，请稍等...</B> </font><img src="images/Search_ico_8.gif" style="height:12px" border="0" /> <input class=xlandinput style="WIDTH: 150; " size=15 name="" id=findtext /> <a href=# class=linkbtn_0 onclick="ue_bandTreeSearch(findtext.value,'下一个'==this.value,'unititemsTab');this.value='下一个';"><font color=#F6F4F3>查询</font></a></td></tr><tr><td style=" color: #333333;" vAlign=top align=left width=26%><table style="BORDER-COLLAPSE: collapse; width:100%;HEIGHT: 100%;" id=table11 cellSpacing=0 cellPadding=0 border=0><tbody><tr><td style=" width: 22px; color: #333333;; height: 24px" vAlign=middle background=images\bkgray-s.gif bgColor=#d4d0c8 rowSpan=1><img onmouseup="this.src='images/treeadd-over.gif'" onmouseover="this.src='images/treeadd-over.gif'" onmouseout="this.src='images/treeadd.gif'" onmousedown="this.src='images/treeadd-down.gif'" onclick="TreeUtil.addNode('unititemsTab',false)" height=24 alt=增加同级节点 src=images/treeadd.gif width=22 border=0 /></td><td style=" width: 25px; color: #333333;; height: 24px" vAlign=middle background=images\bkgray-s.gif bgColor=#d4d0c8 rowSpan=1><img onmouseup="this.src='images/treeadds-over.gif'" onmouseover="this.src='images/treeadds-over.gif'" onmouseout="this.src='images/treeadds.gif'" onmousedown="this.src='images/treeadds-down.gif'" onclick="TreeUtil.addNode('unititemsTab',true)" height=24 alt=增加下级节点 src=images/treeadds.gif width=22 border=0 /></td><td style=" width: 23px; color: #333333;; height: 24px" vAlign=middle background=images\bkgray-s.gif bgColor=#d4d0c8 rowSpan=1><img onmouseup="this.src='images/del-over.gif'" onmouseover="this.src='images/del-over.gif'" onmouseout="this.src='images/del.gif'" onmousedown="this.src='images/del-down.gif'" onclick="TreeUtil.deleteNode('unititemsTab')" height=24 alt=删除当前节点 src=images/del.gif width=22 border=0 /></td><td style=" width: 25px; color: #333333;; height: 24px" align=center vAlign=middle background=images\bkgray-s.gif bgColor=#d4d0c8 rowSpan=1><img onclick=ws_locktree(this) alt="锁定，禁止展开" src="images/lock_open.gif" /></td><td style=" color: #333333;; height: 24px" vAlign=middle align=left width=50 background=images\bkgray-s.gif bgColor=#d4d0c8 rowSpan=1><img id=downnode onmouseup="this.src='images/down-over.gif'" onmouseover="this.src='images/down-over.gif'" onmouseout="this.src='images/down.gif'" onmousedown="this.src='images/down-down.gif'" onclick="TreeUtil.moveDown('unititemsTab')" height=24 src=images/down.gif width=22 border=0 /><img id=upnode onmouseup="this.src='images/up-over.gif'" onmouseover="this.src='images/up-over.gif'" onmouseout="this.src='images/up.gif'" onmousedown="this.src='images/up-down.gif'" onclick="TreeUtil.moveUp('unititemsTab')" height=24 src=images/up.gif width=20 border=0 /></td><td style=" color: #333333;; height: 24px" vAlign=middle align=left width=158 background=images\bkgray-s.gif bgColor=#d4d0c8 rowSpan=1><a id=btncopy class=linkbtn_0 href=# onclick="_copy('itemtree')">复制</a></td></tr><tr><td vAlign=top colSpan=6 align=center><script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script> <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script> <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script> <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script> <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script> <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script> <script type="text/javascript">
+                          //<![CDATA[
+                                /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_unititemsTab_trvLand ***/
+                                window.ComponentArt_Storage_etpTemplate_unititemsTab_trvLand = null;
+                                //]]>
+                        </script><div style="position:absolute;top:0px;left:0px;visibility:hidden;"><img src=images/exp.gif width=0 height=0 alt="" /> <img src=images/col.gif width=0 height=0 alt="" /></div><div id=etpTemplate_unititemsTab_trvLand class=TreeView style=height:100%;width:99%;overflow-y:auto; onclick="if(window.etpTemplate_unititemsTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_unititemsTab_trvLand);" onmouseover="if(window.etpTemplate_unititemsTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_unititemsTab_trvLand);"></div><input id=etpTemplate_unititemsTab_trvLand_Data name=etpTemplate_unititemsTab_trvLand_Data type=hidden /> <input id=etpTemplate_unititemsTab_trvLand_Properties name=etpTemplate_unititemsTab_trvLand_Properties type=hidden /> <input id=etpTemplate_unititemsTab_trvLand_SelectedNode name=etpTemplate_unititemsTab_trvLand_SelectedNode type=hidden value="" /> <input id=etpTemplate_unititemsTab_trvLand_ScrollData name=etpTemplate_unititemsTab_trvLand_ScrollData type=hidden value=0,0 /> <script type="text/javascript">
+                          //<![CDATA[
+                                window.ComponentArt_Init_etpTemplate_unititemsTab_trvLand = function() {
+                                if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_unititemsTab_trvLand'))
+                                 {setTimeout('ComponentArt_Init_etpTemplate_unititemsTab_trvLand()', 100); return; }
+
+                                window.etpTemplate_unititemsTab_trvLand = new ComponentArt_TreeView('etpTemplate_unititemsTab_trvLand', ComponentArt_Storage_etpTemplate_unititemsTab_trvLand);
+                                etpTemplate_unititemsTab_trvLand.Postback = function() { __doPostBack('etpTemplate$unititemsTab$trvLand','') };
+                                if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_unititemsTab_trvLand; etpTemplate_unititemsTab_trvLand.GlobalAlias = 'trvLand'; }
+                                etpTemplate_unititemsTab_trvLand.Properties = [['ApplicationPath','/WebApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:unititemsTab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                                etpTemplate_unititemsTab_trvLand.Initialize('etpTemplate_unititemsTab_trvLand');
+
+                                window.etpTemplate_unititemsTab_trvLand_loaded = true;
+                            }
+                            ComponentArt_Init_etpTemplate_unititemsTab_trvLand();
+                            var myTree = new Tree(etpTemplate_unititemsTab_trvLand,'unititemsTab');
+                            //]]>
+                        </script></td></tr></tbody></table></td><td bgcolor=#d4d0c8 style=" width: 75%; color: #333333" vAlign=top align=left colSpan=2>
+                        <table style="WIDTH: 100%;height:100%; BORDER-COLLAPSE: collapse; border:1" id=table13 cellPadding=0 border=0><tbody>
+                        <tr><td style=" color: #333333;height: 26px" align=right background=images/bkgray-s.gif width=9%>名称：</td>
+                        <td style=" color: #333333;height: 26px" align=right background=images/bkgray-s.gif width=31%><INPUT datasrc=#unititemsTab datafld=name class=xlandinput style=width:97% type=text size=11 name=姓名 /></td><td style=" color: #333333;height: 26px" align=right background=images/bkgray-s.gif width=10%>性质：</td>
+                        <td style=" color: #333333;height: 26px" align=right background=images/bkgray-s.gif width=16%>
+                        <select dataFld=ntype dataSrc=#unititemsTab class=xlandselect size=1 style="WIDTH: 100%; height:19" name=D9>
+                        <option value=""></option><option value=BusinessSource>项目归属</option> <option value=UnitItem>单元</option>
+                        <option value=Item>项目</option> <option value=AppendItem>附加项</option> <option value=CommandItem>命令项</option> </select></td>
+                        <td style=" color: #333333;height: 26px" align=right background=images/bkgray-s.gif width=34%>
+                        <a href=# class=linkbtn_0 onclick="_save();">【保存】</a></td></tr>
+                        <tr><td style=height:100% vAlign=top colspan=5>
+                            <table id="mainTable" style="HEIGHT: 100%;width:100%;text-align:center"bgcolor="#FFFFFF"  cellSpacing=0 cellPadding=0 align=center border=0>
+                            <tbody>
+                                <tr>
+                                <td vAlign=top id="Td0" style="height:100%;"><fieldset style="padding: 2px;;width:99%;height:99%;text-align:center;">
+		                    <legend>项目属性说明:</legend><p>项目属性为系统设计中业务功能的类别分组,内含业务项目的主单元及各子集项目。</p></fieldset>
+		                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody style="display:none">
+                                <tr>
+                                <td vAlign=top id="Td1" style="height:100%"><fieldset style="padding: 2px;;width:99%;height:99%;text-align:center">
+		                    <legend>单元属性定义：</legend><div id="tabUnit"></div></fieldset></td>
+                                </tr>
+                            </tbody>                            
+                            <tbody style="display:none">
+                                <tr>
+                                <td vAlign=top id="Td2" style="height:100%"><fieldset style="padding: 2px;;width:99%;height:99%;text-align:center">
+		                    <legend>项目属性定义：<a href=# class=linkbtn_0 onclick=showcols()>【字段属性】</a></legend><br /><div id="tabItem"></div><br /><br /><div id="tabItem1"></div></fieldset></td>
+                                </tr>
+                            </tbody>                            
+                            <tbody style="display:none">
+                                <tr>
+                                <td vAlign=top id="Td3" style="height:100%"><fieldset style="padding: 2px;;width:99%;height:99%;text-align:center">
+		                    <legend>附加项目属性定义：</legend><br /><div id="tabappItem"></div></fieldset></td>
+                                </tr>
+                            </tbody>
+                            <tbody style="display:none">
+                                <tr>
+                                <td vAlign=top id="Td4" style="height:100%"><fieldset style="padding: 2px;;width:99%;height:99%;text-align:center">
+		                    <legend>命令项目属性定义：</legend><br /><div id="tabcomItem"></div></fieldset></td>
+                                </tr>
+                            </tbody>                                    
+                            </table>
+                        </td>
+                        </tr>
+                        <tr><td style=" color: #333333;" colspan=5></td></tr>
+                        </tbody>
+                        </table>
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
+<script type="text/javascript" charset="gb2312">ue_initsetup("sys_unititems")</script>
+</body></html>

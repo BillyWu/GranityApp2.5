@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usCommonAdv.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/framefun.js" type="text/javascript" charset="gb2312"></script>
+	<script language="javascript" src="hmjs/sysjs/common.js" type="text/javascript" charset="gb2312"></script>
+    
+	<link rel="STYLESHEET" type="text/css" href="hmjs/codebase/dhtmlxmenu.css" />
+	<script type="text/javascript" language="JavaScript" src="hmjs/codebase/dhtmlxprotobar.js"></script>
+	<script type="text/javascript" language="JavaScript" src="hmjs/codebase/dhtmlxmenubar.js"></script>
+	<script type="text/javascript" language="JavaScript" src="hmjs/codebase/dhtmlxcommon.js"></script>
+    
+	<script src="hmjs/tmpjs/msjs.js" language="JavaScript" type="text/JavaScript" charset="gb2312"></script>
+	<LINK href="hmjs/sysjs/menu.css" type="text/css" rel="stylesheet" />    
+    <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />    
+	<style type="text/css">
+	</style>
+    <script language="javascript" type="text/javascript">
+    <!--
+		var currentMoveObj = null;        //当前拖动对象
+		var relLeft;        //鼠标按下位置相对对象位置
+		var relTop;
+		var zindex=-1;//控制被拖动对象的z-index值
+		window.onload=WinLoadUtil.MDTPLoad;
+		function initWin()
+		{
+		    oUnitItem = document.UnitItem;
+		    var oband=document.UnitItem.getBandByItemName("goods");
+	        var xmldoc=document.UnitItem.ParamXmldoc;
+	        ToolUtil.setParamValue(xmldoc, "客户类别", document.UnitItem.getBandByItemName("edit").getFldStrValue("客户类别"), "s", "P", "", "Ts","");
+	        var xmlhttp = oband.querydict();
+	        var xmldict = xmlhttp.responseXML.xml;
+	        oband.XmlDict.XMLDocument.loadXML(xmldict);	        
+		}
+		function _save()
+		{
+			ws_save("edit","单据编号","标准合同","项目类别",null);
+		}		
+		function _submit(bcase)
+		{
+		    var oband=document.UnitItem.getBandByItemName("edit");
+			var destnode = ws_opensubmit(bcase,oband,0);
+			if(!destnode) return;
+			ws_save("edit","单据编号","标准合同","项目类别",destnode,"提交成功！");
+			window.close();
+		}
+				
+		function showwin(divobj)
+		{
+			var divs = document.getElementsByTagName("div");
+			for(var i=0;i<divs.length;i++)
+			{
+				if(divs[i].frame=="true")
+				{
+					if(divs[i].id!=divobj.id)
+						divs[i].style.display="none";
+				}
+			}
+			divobj.style.display="block";
+			divobj.style.height="631px";
+			divobj.parentElement.style.height="100%";
+		}
+		
+		function secBoard(tablename,menutab,n) {
+			var otable = document.getElementById(tablename);
+			var menutable = document.getElementById(menutab);
+			if(!otable.tBodies[n]) return;
+		    for(i=0;i<menutable.cells.length;i++)
+		    {
+		    	if(menutable.cells[i].className!="secx")
+		    	menutable.cells[i].className="sec1";
+		    }
+		    menutable.cells[n].className="sec2";
+		    for(i=0;i<otable.tBodies.length;i++)
+		      otable.tBodies[i].style.display="none";
+		    otable.tBodies[n].style.display="block";
+		}
+		
+		function ms_showBoard(tablename,n) {
+			var otable = document.getElementById(tablename);
+			if(!otable) return;
+			if(!otable.tBodies[n]) return;
+		    for(i=0;i<otable.tBodies.length;i++)
+		      otable.tBodies[i].style.display="none";
+		    otable.tBodies[n].style.display="block";
+		}
+
+		function Tree_onNodeSelectionChange(node)
+		{
+			var tb = "";
+			if(node.ParentTreeView.Tree.ItemName=="bom") tb = "tbbom";
+			else tb = "dstbom";
+			if(node.ParentNode) ms_showBoard(tb,0);
+			else ms_showBoard(tb,1);
+		}
+		
+		function slquery(item)
+		{
+			var xtype = document.getElementById("xtype").value;
+		    var oband = document.UnitItem.getBandByItemName(item);
+		    if(!oband) return;
+			var xmldoc=document.UnitItem.ParamXmldoc;
+			ToolUtil.setParamValue(xmldoc, "分类", xtype, "", "B", oband.ItemName, "C","D"); 
+	    	oband.Query();
+		}
+		
+		function _qureybom(item)
+		{
+		    var oband = document.UnitItem.getBandByItemName(item);
+		    if(!oband) return;
+	    	oband.Query();			
+		}
+		function _filter()
+		{
+			var otype = document.getElementById("xtype");
+			if(otype.value==""){alert("请先选择货品分类！");otype.focus();return;};
+		    var oinput = document.getElementById("infindtext");
+			if(oinput.style.color=="#c0c0c0"){
+				oinput.style.color="#000";
+				oinput.value="";
+			}
+			ue_tfilter('slgoods');
+			if(oinput.value=='') {oinput.style.color='#c0c0c0';oinput.value=oinput.title};
+		}		
+		
+		function _import()
+		{
+			document.UnitItem.getBandByItemName("bom").isimport=false;
+			var oband=document.UnitItem.getBandByItemName("slgoods");
+			if(oband.RecordCount()==0) {alert("请选择要加入的货品！");document.getElementById("infindtext").onclick();document.getElementById("infindtext").focus(); return;}
+			//如果是备选项目
+			if(oband.exportItem && ""!=oband.exportItem)
+			{
+			    oband.ExportRow(oband.exportItem);
+			    for(var i=0;i<document.UnitItem.Bands.length;i++)
+			    {
+			        //找到主表为band.itemname的所有子表
+			        var osband = document.UnitItem.Bands[i];
+			        if(osband.MasterItemName==oband.ItemName)
+			        {
+			            if(osband.exportItem && osband.exportItem!="")
+			            osband.ExportRow(osband.exportItem);
+			        }
+			        //查找副表，将副表数据增加到目标数据源中
+			    }
+			}		
+		}
+		
+		function NodeAdd(itemId,addnext,proot)
+		{
+			var mband=document.UnitItem.getBandByItemName("goods");
+			if(mband.RecordCount()==0)
+			{
+				alert("请先增添货品后再定义物料结构！");
+				return;
+			}
+			oband=document.UnitItem.getBandByItemName("合同bom");
+			if(oband.RecordCount()==0 && proot!=true)
+			{
+			 	var result = confirm("请首先定义货品物料结构名称！确认吗？");
+				if(!result) return;				
+				TreeUtil.addNode(itemId,false,true);
+			}
+			else
+				TreeUtil.addNode(itemId,addnext,proot);
+				
+			ms_showBoard('dstbom',1);			
+			var oband=document.UnitItem.getBandByItemName("合同bom");
+			node=oband.Tree.WebTree.SelectedNode;
+							
+			if(node.ParentNode)
+			{
+				oband.setFldStrValue(null,"编码",node.ParentNode.ID + "-"+(node.GetCurrentIndex()+1));				
+				oband.setFldStrValue(null,"名称","物品"+(node.GetCurrentIndex()+1));
+				ms_showBoard("dstbom",0);
+			}
+			else 
+			{
+				oband.setFldStrValue(null,"属性","结构"); 
+				oband.setFldStrValue(null,"名称","结构"+(node.GetCurrentIndex()+1));	
+				oband.setFldStrValue(null,"编码",mband.getFldStrValue(mband.linkColM) + "-"+(node.GetCurrentIndex()+1));				
+				ms_showBoard("dstbom",1);
+			}
+		}
+		
+		function isExport()
+		{
+			oband=document.UnitItem.getBandByItemName("bom");
+		    var chkId="";
+		    if(oband.isimport) return;
+		    for(var i=0;i<oband.RecordCount();i++)
+		    {
+		        if(oband.getFldStrValue("选择",i)=="-1")
+		            chkId = oband.getFldStrValue(oband.Tree.IDField,i);
+		        
+		    }
+			
+			if(oband.Tree.WebTree.Nodes().length>1 && chkId=="") 
+			{
+		        {alert("该货品有多种物料结构，请选择一个！");oband.isimport=true;return false;}
+			}
+			return true;
+		}
+		
+		function _rzfun()
+		{
+			document.getElementById("dvtext").style.height=document.body.clientHeight-60;
+		}
+		
+	  function CreateOpionTable()
+	  {
+		 oband=document.UnitItem.getBandByItemName("opinion");
+		 if(oband==null) return;
+		 var spnode = document.UnitItem.getBandByItemName("edit").getFldStrValue("当前状态");
+	  	 var strTabhead = '<table is="tbopinion" style="font-size: 10pt" width="90%" border="1" cellspacing="0" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#efefef"><tbody>'
+	  	 +'<tr><td width="40" height="40">序号</td><td width="120" align="center">审批环节</td>'
+			+'<td align="center">审批意见</td><td colspan="2" align="center">审批日志</td></tr>';	 	 
+		 var strTabend  ='</tbody></table>';
+	 	 var strTabconts = new Array();
+		 var str = "";
+		 var winheight = 600;
+         for(var i=0;i<oband.RecordCount();i++)
+         {
+	 	     strTabconts[0] = '<tr><td width="40"  height="60px" rowspan="3" align="center">';
+	 	     strTabconts[1] = '</td><td rowspan="3" width="120">';
+	 	     strTabconts[2] = '</td><td rowspan="3">';
+	 	     strTabconts[3] = '</td><td width="69" align="right">经办人：</td><td width="138">';
+	 	     strTabconts[4] = '</td></tr><tr><td width="69"  align="right">时间：</td><td width="138">';
+	 	     strTabconts[5] = '</td></tr>';
+	 	     strTabconts[6] = '	<tr><td width="207" height="30" colspan="2" align="center">　</td></tr>';
+		 	 var conts = new Array();
+		 	 conts[0] = i+1;
+		 	 conts[1] = oband.getFldStrValue("节点标题",i);
+		 	 var err1= 500-oband.RecordCount()*80;
+		 	 if(err1>0)
+		 	 var err = 80+(err1)/oband.RecordCount();
+		 	 
+		 	 var strtextarea = '<textarea style="width:100%;height:'+ err + '" disabled="true">';
+		 	 var strname     = '<INPUT style="width:100%; " type="text"  disabled="true" size="11" name="man" value="';
+		 	 var strdt       = '<INPUT style="width:100%; " type="text" disabled="true" size="11" name="dt"  value="';
+		 	 var jbr = oband.getFldStrValue("经办人",i);
+		 	 var dt = oband.getFldStrValue("时间",i);
+		 	 if(spnode ==oband.getFldStrValue("节点",i))
+		 	 {
+                 strtextarea = '<textarea id="txtopion" onchange="_update(\'意见\')" style="width:100%;height:'+ err + '" ;color:#800000">';
+                 //strname     = '<INPUT style="width:100%;color:#800000 " onchange="_update(\'经办人\')" type="text" size="11" name="man" value="';
+                 strdt       = '<INPUT class="inputDate" onchange="_update(\'时间\')" style="width:100%;color:#800000 " type="text" size="11" name="dt"  value="';
+	 	         strTabconts[0] = '<tr><td width="40"  height="60px" rowspan="3" align="center">';
+	 	         strTabconts[1] = '</td><td rowspan="3" width="120" style="font-weight: bold;color:#800000" align="center">';
+	 	         strTabconts[2] = '</td><td rowspan="3" >';
+	 	         strTabconts[3] = '</td><td width="69" align="right">经办人：</td><td width="138">';
+	 	         strTabconts[4] = '</td></tr><tr><td width="69"  align="right">时间：</td><td width="138">';
+	 	         strTabconts[5] = '</td></tr>';
+	 	         var strbtn = '【<a href="#" onclick="_input(\'同意！\')">同意</a>】【<a href="#" onclick="_input(\'不同意！\')">反对</a>】【<a href="#" onclick="_input(\'讨论后再确定！\')">讨论</a>】';
+                 strTabconts[6] = '	<tr><td width="207"  height="30" colspan="2" align="center">'+strbtn+'</td></tr>';                 
+		 	     if(jbr=="") {oband.setFldStrValue(i,"经办人",GetUserName());jbr = GetUserName();}
+		 	     if(dt=="")  {oband.setFldStrValue(i,"时间",new Date().toLocaleDateString());dt = new Date().toLocaleDateString();}
+		 	     oband.setCurrentRow(i);
+             }
+		 	 conts[2] = strtextarea+oband.getFldStrValue("意见",i)+'</textarea>';
+		 	 conts[3] = strname + jbr+'" />';
+		 	 conts[4] = strdt   + dt+'" />';
+		 	 conts[5] = ''; 
+		 	 conts[6] = ''; 	 
+			var strconts = "";
+			for(var j=0;j<strTabconts.length;j++)
+				strconts = strconts + strTabconts[j]+conts[j];
+			str = str + strconts;
+		}
+		var strTable = strTabhead+str+strTabend;	
+		DivID.innerHTML=strTable ;
+		if(document.getElementById("txtopion"))
+		    document.getElementById("txtopion").focus();
+	  }
+      function _input(txt)
+      {
+		if(document.getElementById("txtopion"))
+		{
+		    document.getElementById("txtopion").focus();
+		    document.getElementById("txtopion").innerText = document.getElementById("txtopion").innerText + txt;
+		}
+      }
+    function _update(field)
+    {
+	    var srcEle=event.srcElement;
+	    if(!srcEle) return;
+	    oband=document.UnitItem.getBandByItemName("opinion");
+	    oband.setFldStrValue(null,field,srcEle.value)
+    }		
+
+	function f_mdown()
+	{
+			currentMoveObj = document.getElementById("PopupDiv");                //当对象被按下时，记录该对象
+			if(event.x > currentMoveObj.style.pixelLeft)
+				relLeft = event.x - currentMoveObj.style.pixelLeft;
+			if(event.y > currentMoveObj.style.pixelTop)
+				relTop = event.y - currentMoveObj.style.pixelTop;
+			zindex=currentMoveObj.style.zIndex;//记录原z-index值
+			currentMoveObj.style.zIndex=10000;
+	}
+	window.document.onmouseup = function()
+	{      
+		if(!currentMoveObj) return;
+		currentMoveObj.style.zIndex=zindex;//恢复
+	     zindex=-1;
+		currentMoveObj = null;        //当鼠标释放时同时释放拖动对象
+     }
+
+	function f_move(obj)
+	{
+        if(currentMoveObj != null)
+        {
+        	var frobj=document.getElementById("DivShim");
+        	if(event.x-relLeft>0)
+        	{
+            	currentMoveObj.style.pixelLeft=event.x-relLeft;
+            	frobj.style.pixelLeft=event.x-relLeft;
+            }
+            if(event.y-relTop>0)
+            {
+            	currentMoveObj.style.pixelTop=event.y-relTop;
+				frobj.style.pixelTop=event.y-relTop;
+            }
+        }
+	}
+   
+	function DivSetVisible(state)
+	{
+		var DivRef = document.getElementById('PopupDiv');
+		var IfrRef = document.getElementById('DivShim');
+		if(state)
+		{
+			DivRef.style.display = "block";
+			IfrRef.style.width = DivRef.offsetWidth;
+			IfrRef.style.height = DivRef.offsetHeight;
+			IfrRef.style.top = DivRef.style.top;
+			IfrRef.style.left = DivRef.style.left;
+			IfrRef.style.zIndex = DivRef.style.zIndex - 1;
+			IfrRef.style.display = "block";
+		}
+		else
+		{
+			DivRef.style.display = "none";
+			IfrRef.style.display = "none";
+		}
+	}
+	
+	function openinstance()
+	{
+		var oband=document.UnitItem.getBandByItemName("goods");
+		oband.CheckInBand=true;
+		oband.setModalContent("instance");
+	}
+	
+	function autoph()
+	{
+	 	var result = confirm("累加配货选【确定】，重新配货选【取消】？");
+		if(!result) return;
+		oband=document.UnitItem.getBandByItemName("goods");
+	    for(var i=0;i<oband.RecordCount();i++)
+	    {
+	        var needx = parseFloat(oband.getFldStrValue("数量",i));
+	        var storex = parseFloat(oband.getFldStrValue("库存",i));
+			if(storex>=needx) 
+			    oband.setFldStrValue(i,"配货量",needx);
+			else 
+				oband.setFldStrValue(i,"配货量",storex);
+	    }
+	}
+
+    function toOrder(otype)
+	{
+		var oband=getband("goods");
+		var n=0;
+	    for(var i=0;i<oband.RecordCount();i++)
+		   if(oband.getFldStrValue("选择",i)==1 || oband.getFldStrValue("选择",i)==-1 || oband.getFldStrValue("选择",i)=="true") n++;
+		switch(otype)
+		{
+			case 0:
+	            var msg="您将根据缺口数据自动生成生产计划单吗？";
+	            if(n>0) msg="您确定依据所选择的货品制作生产计划单吗？";
+ 	            var result = confirm(msg);
+	            if(!result) return;
+	            ue_save("");
+		        ue_cmd("toPlan","goods",false,true);
+		        break;
+			case 1:
+	            var msg="您将根据缺口数据自动生成出货单吗？";
+	            if(n>0) msg="您确定依据所选择的货品制作出货单吗？";
+ 	            var result = confirm(msg);
+	            if(!result) return;
+	            ue_save("");
+			    ue_cmd("toPickinglist","goods",false,true);
+			    break;				
+		}
+	}
+	
+	function band_setcheck(item,field,chkval)
+	{
+		var oband=getband(item);
+	    for(var i=0;i<oband.RecordCount();i++)
+		   oband.setFldStrValue(i,field,chkval);
+	}
+	
+	-->
+	</script>
+<title>克立司帝控制系统</title>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:15.6pt;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm
+	}
+
+.xlandinputline
+{
+	BORDER-LEFT-STYLE: none; 
+	BORDER-RIGHT-STYLE:none;
+	BORDER-TOP-STYLE:none;
+	BACKGROUND-COLOR: white;
+	text-align:left;
+}
+	
+-->
+</style>
+</head>
+
+<body onresize="_rzfun()">
+<table id="toobar" border="0" cellpadding="1" cellspacing="2" width="100%" height="26" bgcolor="buttonface" onselectstart="event.returnValue=false" style="cursor:default;font-family: 宋体; font-size: 9pt; color: MenuText;  border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-top: 1px solid #FFFFFF; border-bottom: 1px solid #000000; padding:0px"><tbody>
+    <tr><td width="4"><span class="handout"></span></td>
+<td nowrap="" class="coolButton" id="btnsave" width="42" onclick="_save()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" cellspacing="0" cellpadding="0" id="table2" style="font-size: 10pt;width:100%">
+	<tbody>
+	<tr>
+		<td><img src="images\SaveHS.gif" /></td>
+		<td>保存</td>
+	</tr>
+</tbody>
+</table>
+ </td>
+<td nowrap="" class="coolButton" id="btnsubmit" width="49" onclick="_submit(0);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table6" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="16"><img src="images\report_go.gif" width="16" height="16" /></td>
+		<td>提交</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td nowrap="" class="coolButton" id="Td1" width="59" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="23"><img src="images\reply.gif" width="16" height="16" /></td>
+		<td style="color: red">退回</td>
+	</tr>
+</tbody>
+</table>
+</td>
+
+<td nowrap="" class="coolButton" id="btnedit" width="77" onclick="ms_showBoard('contents',0)" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table11" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td width="18"><img src="images\report_word.gif" width="16" height="16" /></td>
+		<td>合同文本</td>
+	</tr>
+</tbody>
+</table>
+</td><td nowrap="" class="coolButton" id="Td2" width="79" onclick="ms_showBoard('contents',1)" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center"><table border="0" width="100%" cellspacing="0" cellpadding="0" id="table12" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td><img src="images\wordpad.gif" width="16" height="16" /></td>
+		<td>货品清单</td>
+	</tr>
+</tbody>
+</table>
+</td><td nowrap="" class="coolButton" id="btnexam" width="81" onclick="ms_showBoard('contents',2);CreateOpionTable()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+		<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table13" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td><img src="images\pl.gif" /></td>
+		<td>审批意见</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td width="5"><span class="handin"></span></td>
+<td width="37" align="right"> 类别:</td>
+<td width="10%"> 
+<select class="xlandselect" dataFld="项目类别" dataSrc="#MasterTab" size="1" style="WIDTH: 100%;height:20" name="ntype">
+					<option value=""></option>
+					<option value="10">总部</option>
+					<option value="11">国内业务部</option>
+					<option value="12">国际业务部</option>
+					<option value="16">分公司</option>
+					</select></td>
+<td width="7%" align="right"> 客户类型：</td>
+<td width="9%" align="right">  
+<SELECT dataFld="客户类别" dataSrc="#MasterTab" size="1" style="WIDTH: 100%;height:20" name="ntype8"
+	DataSource="字典_客户类型" DataTextField="名称" DataValueField="代码" >
+					</SELECT></td>
+<td width="6%" align="right"> 业务员：
+　</td>
+<td width="8%"><SELECT class="xlandinput" datasrc="#MasterTab" datafld="业务员" style="width:100%" DataSource="dict_saleman" DataTextField="name" DataValueField="name" name="D10">
+</SELECT></td>
+<td width="10"><span class="handin"></span></td>
+<td nowrap="" class="coolButton" id="btnquit" width="52" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" onclick="winclose();">
+<table border="0" width="131%" cellspacing="0" cellpadding="0" id="table14" style="font-size: 10pt">
+	<tbody>
+	<tr>
+		<td><img src="images\door.gif" width="16" height="16" /></td>
+		<td width="78">退出</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td width="1%"> 　</td></tr>
+</tbody>
+</table>
+<table id="contents" border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" bgcolor="buttonface" style="cursor:default;font-family: 宋体; font-size: 9pt; color: MenuText;  border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-top: 1px solid #FFFFFF; border-bottom: 1px solid #000000; padding:0px">
+<tbody>
+<tr>
+<td style="height:655px" colspan="2" bgcolor="#999999">
+<div id="dvtext" align="center" style="overflow-x:hidden;overflow-y:scroll;height:100%"><br /><br />
+<table border="20" cellpadding="0" style="border-collapse: collapse;width:87%;height:100% font-family:serif; font-size:10pt" id="table1" bgcolor="#FFFFFF" bordercolor="#FFFFFF">
+	<tbody>
+		<tr>
+			<td height="20" colspan="2">　</td>
+		</tr>
+		<tr>
+			<td style="font-family: 宋体; font-size: 18pt; font-weight: bold" height="33" colspan="2">
+			<p class="MsoNormal" style="text-align: center; line-height: 125%; layout-grid-mode: char">
+			<b>
+			<span style="font-size: 16.0pt; line-height: 125%; font-family: 黑体; letter-spacing: 1.8pt">克立司帝控制系统（上海）有限公司</span></b></p>
+			</td>
+		</tr>
+		<tr>
+			<td height="30" colspan="2" align="center" ><b>
+			<span style="font-size: 18.0pt; font-family: 黑体">销售合同书</span></b></td>
+		</tr>
+		<tr>
+			<td height="18" valign="baseline" width="10%"></td>
+			<td height="18" valign="baseline" width="90%"></td>
+		</tr>
+		<tr>
+			<td height="25" valign="baseline" width="10%">合同序号：</td>
+			<td height="25" valign="baseline" width="90%">
+			<span dataFld="单据编号" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:100px">　</span></td>
+		</tr>
+		<tr>
+			<td height="26" width="10%">项目名称：</td>
+			<td height="26" width="90%">
+			<span dataFld="项目名称" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:400px">　</span></td>
+		</tr>
+		<tr>
+			<td height="28" width="10%"><b>甲 方：</b></td>
+			<td height="28" width="90%"><span dataFld="客户" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:400px">　</span></td>
+		</tr>
+		<tr>
+			<td><b>乙 方：</b></td>
+			<td><b>克立司帝控制系统（上海）有限公司</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>　</td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2">
+			<p style="margin-top: 0; margin-bottom: 5">　　根据《中华人民共和国合同法》之规定，特订立此合同，以便共同遵守。
+　 </p>
+			<p style="margin-top: 0; margin-bottom: 5">　　<b>第一条产品的品名、规格和数量</b>
+			</p>
+			<p style="margin-top: 0; margin-bottom: 5">经甲乙双方充分协商，甲方同意向乙方购买附件一中所描述的设备型号及数量。附件一的内容是本合同必不可少的组成部份。
+　 </p>
+			<p style="margin-top: 0; margin-bottom: 5">　　<b>第二条产品的价格与货款的结算</b></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2">　　<b>1.产品的价格：</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2">　　按照附件一中双方认可的设备型号及数量，双方约定合同总价为：￥<span dataFld="合同金额_格式" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px">　</span>
+		元，人民币（大写）：<span dataFld="大写金额" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:120px">　</span>整</td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2">　　<b>2.货款的结算：</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>
+			<ol>
+				<li>合同正式签定后的三天内,甲方将合同总金额的  
+			 
+				<span dataFld="预付款p" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px; text-align:right">　</span> %（即￥<span dataFld="预付款" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px">　</span>元），支付给乙方作为预付款，乙方收到该预付款后正式安排生产，否则交货期顺延</li>
+				<li>其中合同总金额的<span dataFld="二期款p" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px;text-align:right">　</span> %(即￥<span dataFld="二期款" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px">　</span>元), 在乙方发货前由甲方予以支付。</li>
+				<li>其中合同总金额的<span dataFld="尾款p" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px;text-align:right">　</span>% (即￥<span dataFld="尾款" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px">　</span>元), 在系统安装完毕验收后一年内予以支付。</li>
+				<li>乙方出具国税<span dataFld="发票类型" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:150px;text-align:center">　</span>发票与甲方结算合同款。</li>
+				<li>甲方用以下第<span dataFld="支付方式" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:150px;text-align:center">　</span>种方式支付合同款： 
+			 
+				<p style="margin-top:5; margin-bottom:0">(1)甲方以转帐支票支付合同款，支票必须正确填写乙方单位名称。否则，造成货款丢失，甲方负全部责任，乙方视同未收货款；</p>
+				<p style="margin-top:5; margin-bottom:0">(2)甲方以现金支付合同款，但必须凭乙方财务出具的《现金收款委托书》方可付款。否则，造成货款丢失，甲方负全部责任，乙方视同未收货款。</p>
+				</li>
+			</ol></td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2"><b>　　第三条交货时间、交货方法、到货地点：</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>
+			<ol>
+				<li>产品的交货时间：乙方在收到甲方预付款后<span dataFld="工作日" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px;;text-align:center">　</span>个工作日内完成所有设备的生产。</li>
+				<li>交货方法，按下列第（<span dataFld="交货方法" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:100px;;text-align:center">　</span>）项执行：（1）乙方送货；（2）乙方代运；（3）甲方自提自运。</li>
+				<li>到货地点：
+ 
+			 
+				<span dataFld="到货地点" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:320px;">　</span>。</li>
+				<li>甲方如要求变更到货地点，应在合同规定的交货期限前3天通知乙方。
+</li>
+				<li>交货日期，以乙方发运产品时承运部门签发的戳记日期为准，实际到货时间应加上运输时间。</li>
+			</ol></td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2"><b>　　第四条产品的签收和保管</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td style="height:22px">
+			<ol>
+				<li>甲方在设备签收中，如果发现产品的品种、型号、规格和颜色不合规定，应一面妥为保管，一面在1天内向乙方提出书面异议。如　 　 甲方未按规定期限提出书面异议的，视为所交产品符合合同规定。
+　 </li>
+				<li>甲方因使用、保管不善等造成产品损坏的，不得提出异议。
+　</li>
+				<li>乙方在接到甲方书面异议后，应在3天内负责处理，否则，即视为默认甲方提出的异议和处理意见。</li>
+			</ol></td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2"><b>　　第五条设备的安装、调试、验收、培训和售后服务</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>
+			<ol>
+				<li>由<span dataFld="施工方式" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:100px;">　</span>方负责工程施工，且施工方必须严格按照双方确认的施工方案施工。
+　　</li>
+				<li>如因甲方自备部分设备的质量或其它原因造成工程无法进行或无法达到设计要求的，乙方有权要求甲方按乙方指定内容购买，且造成后果由甲方负责。
+ 
+			 
+				</li>
+				<li>安装完毕后，由乙方免费负责整个系统的软件安装及系统调试，并积极协助甲方顺利通过工程验收。系统验收后，方能正式开通运行。
+ 
+				</li>
+				<li>乙方在系统安装调试完毕后，向甲方提出书面验收申请，甲方须在三个工作日内组织验收，否则视为验收通过。验收标准以乙方使用说明书所述功能为准。
+ 
+			 
+				</li>
+				<li>系统验收后，由甲方提供培训场地，乙方负责免费培训甲方操作人员一天。
+</li>
+				<li>系统自安装完毕验收后，12个月内乙方负责免费保修（人为、不可抗力因素及消耗品除外），免费保修期满后，乙方提供终身有偿维修服务。 
+			 
+				</li>
+			</ol></td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2"><b>　　第六条乙方的违约责任</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>
+			<ol>
+				<li>乙方若无正当理由延误交货的，应向甲方偿付不能交货部分货款的3‰/天的违约金。
+　　</li>
+				<li>产品错发到货地点或接货人的，乙方除应负责运交合同规定的到货地点或接货人外，还应承担甲方因此多支付的一切实际费用和逾期交货的违约金。乙方未经甲方同意，单方面改变运输路线和运输工具的，应当承担由此增加的费用。</li>
+			</ol></td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2">　　<b>第七条甲方的违约责任</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>
+			<ol>
+				<li>甲方中途退货，应向乙方偿付退货部分货款30%的违约金。</li>
+				<li>甲方逾期付款的，应向乙方偿付拖欠货款的3‰/天的违约金。</li>
+			</ol></td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2"><b>　　第八条不可抗力</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>　
+		甲乙双方的任何一方由于不可抗力的原因不能履行合同时，应及时向对方通报不能履行或不能完全履行的理由，在取得有关主管机关证明以后，允许延期履行、部分履行或者不履行合同，并根据情况可部分或全部免予承担违约责任。</td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2">　　<b>第九条争议的解决</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>　本合同如发生纠纷，当事人双方应当及时协商解决，协商不成时，任何一方均可通过法律途径解决。</td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2">　　<b>第十条</b></td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>　本合同自双方签字盖章后即为有效。合同执行期内，甲乙双方均不得随意变更或解除合同。合同如有未尽事宜，须经双方共同协商，作出补充规定，补充规定与本合同具有同等效力。本合同一式<span style="font-family: 宋体"><span dataFld="合同份数" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px;;text-align:center">　</span></span>份，甲乙双方各执<span style="font-family: 宋体"><span dataFld="单份" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:70px;;text-align:center">　</span></span>份</td>
+		</tr>
+		<tr>
+			<td style="height:22px">　</td>
+			<td>　</td>
+		</tr>
+		<tr>
+			<td style="height:22px" colspan="2">
+			<div align="center">
+				<table border="0" width="80%" id="table7" cellpadding="0" style="border-collapse: collapse; font-family:宋体; font-size:12pt" height="158" bgcolor="#FFFFFF">
+					<tbody>
+						<tr>
+							<td width="103"><b><span style="font-family: 宋体">甲方：</span></b></td>
+							<td width="268"><b><span style="font-family: 宋体">（公章）</span></b></td>
+							<td width="116"><b><span style="font-family: 宋体">乙方：</span></b></td>
+							<td><b><span style="font-family: 宋体">（公章）</span></b></td>
+						</tr>
+						<tr>
+							<td width="103"><b><span style="font-family: 宋体">代表人：</span></b></td>
+							<td width="268">　</td>
+							<td width="116"><b><span style="font-family: 宋体">代表人：</span></b></td>
+							<td>　</td>
+						</tr>
+						<tr>
+							<td width="103"><b><span style="font-family: 宋体">甲方地址：</span></b></td>
+							<td width="268">　</td>
+							<td width="116"><b><span style="font-family: 宋体">乙方地址：</span></b></td>
+							<td>　</td>
+						</tr>
+						<tr>
+							<td width="103"><b><span style="font-family: 宋体">传真：</span></b></td>
+							<td width="268">　</td>
+							<td width="116"><b><span style="font-family: 宋体">传真：</span></b></td>
+							<td>　</td>
+						</tr>
+						<tr>
+							<td width="103"><b><span style="font-family: 宋体">电话：</span></b></td>
+							<td width="268">　</td>
+							<td width="116"><b><span style="font-family: 宋体">电话：</span></b></td>
+							<td>　</td>
+						</tr>
+						<tr>
+							<td width="103">　</td>
+							<td width="268">　</td>
+							<td width="116" align="right">日期：</td>
+							<td>
+							<span dataFld="合同日期" dataSrc="#MasterTab" style="border-bottom:1px solid #808080; width:120px;height:20px;text-align:center">　</span></td>
+						</tr>
+					</tbody>
+				</table></div></td>
+		</tr>
+	</tbody>
+</table><br />
+	</div>
+</td>
+</tr>
+</tbody>
+<tbody style="display:none">
+<tr>
+<td valign="top">
+<table border="1" cellspacing="0" width="100%" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt;table-layout:fixed">
+<tbody>
+<tr>
+<td style="font-weight: bold;height:25px" colspan="8">
+<table border="0" style="TABLE-LAYOUT: fixed; " width="100%" cellspacing="0" cellpadding="0" id="table18">
+	<tbody>
+	<tr>
+		<td>　</td>
+		<td style="font-weight: bold" align="center">报价单</td>
+		<td align="center"><span style="width:70px;border: 1px solid #000000; font-size:10pt; color:#FFFFFF; background-color:#800000" >合同序号</span><span style="width:80px;" class="spanbox" dataFld="单据编号" dataSrc="#MasterTab" >　</span>　<span style="width:70px;border: 1px solid #000000; font-size:10pt; color:#FFFFFF; background-color:#800000" >签约日期</span><span dataFld="合同日期" dataSrc="#MasterTab" class="spanbox" style="width:80;">　</span></td>
+	</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td width="12%">　项目名称</td>
+<td style="height:25px" width="41%" colspan="3">
+<span class="spanbox" style="width:100%;" dataFld="项目名称" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="11%">
+　
+客　　户</td>
+<td style="height:25px" width="11%">
+<span class="spanbox" style="width:100%;" dataFld="客户" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="9%">
+　
+到货地点</td>
+<td style="height:25px" width="12%">
+<span class="spanbox" style="width:100%;" dataFld="到货地点" dataSrc="#MasterTab" >　</span></td>
+</tr>
+<tr>
+<td width="12%">
+　交货方法</td>
+<td style="height:25px" width="16%">
+<span class="spanbox" style="width:100%;" dataFld="交货方法" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="14%">　　　施工方式</td>
+<td style="height:25px" width="11%">
+<span class="spanbox" style="width:100%;" dataFld="施工方式" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="11%">
+
+　发票类型</td>
+<td style="height:25px" width="11%">
+<span class="spanbox" style="width:100%;" dataFld="发票类型" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="9%">
+
+　支付方式</td>
+<td style="height:25px" width="12%">
+<span class="spanbox" style="width:100%;" dataFld="支付方式" dataSrc="#MasterTab" >　</span></td>
+</tr>
+<tr>
+<td width="12%">
+　合同总价(元)</td>
+<td style="height:25px" width="16%">
+<span class="spanbox" style="width:100%;" dataFld="合同金额_格式" dataSrc="#MasterTab" >　</span>
+</td>
+<td style="height:25px" width="68%" colspan="6">
+
+<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse;font-size: 10pt" id="table25">
+	<tr>
+		<td width="82" align="right">预付款:</td>
+		<td width="59"><INPUT dataFld="预付款p" dataSrc="#MasterTab" class="xlandinputline" style="width:40;background-color:transparent " type="text" size="11" name="姓名46" />%</td>
+		<td width="97" align="center"><span style="width:80%;font-size:10pt; " dataFld="预付款_格式" dataSrc="#MasterTab" >　</span>元</td>
+		<td width="50" align="right">二期款:</td>
+		<td width="53">
+<INPUT dataFld="二期款p" dataSrc="#MasterTab" class="xlandinputline" style="width:40; background-color:transparent" type="text" size="11" name="姓名82" />%</td>
+		<td width="115" align="center">
+<span style="width:80%;font-size:10pt; " dataFld="二期款_格式" dataSrc="#MasterTab" >　</span>元</td>
+		<td width="52">　尾款:</td>
+		<td width="51">
+		<INPUT class="xlandinputline" dataFld="尾款p" dataSrc="#MasterTab" style="width:40;background-color:transparent " type="text" size="11" name="姓名49" />%</td>
+		<td align="center">
+<span style="width:80%;font-size:10pt; " dataFld="尾款_格式" dataSrc="#MasterTab" >　</span>元</td>
+	</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td width="12%">
+　货品总额(元)</td>
+<td style="height:25px" width="16%">
+<span style="width:100%;font-size:10pt; " dataFld="货品金额" dataSrc="#MasterTab" >　</span>
+</td>
+<td style="height:25px" width="14%">　　　材料费</td>
+<td style="height:25px" width="11%">
+<span class="spanbox" style="width:100%;" dataFld="材料费" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="11%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table16">
+	<tbody>
+	<tr>
+		<td width="57" align="right" style="font-size: 10pt">调试费:</td>
+		<td>
+<INPUT dataFld="调试费p" dataSrc="#MasterTab" class="xlandinputline" style="width:80%; background-color:transparent" type="text" size="11" name="姓名48" />%</td>
+	</tr>
+</tbody>
+</table></td>
+<td style="height:25px" width="11%"><span style="width:70%;font-size:10pt; " dataFld="调试费" dataSrc="#MasterTab" >　</span>(元)</td>
+<td style="height:25px" width="9%">
+　
+总折扣率</td>
+<td style="height:25px" width="12%">
+<span style="width:90%;font-size:10pt; " dataFld="折扣率_格式" dataSrc="#MasterTab" >　</span>%</td>
+</tr>
+<tr>
+<td width="12%">　费用合计(元)</td>
+<td style="height:25px" width="16%"><span style="width:100%;font-size:10pt; " dataFld="费用合计" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="14%">　　　联系人</td>
+<td style="height:25px" width="11%">
+<span class="spanbox" style="width:100%;" dataFld="联系人" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="11%">
+　
+联系电话</td>
+<td style="height:25px" width="11%">
+<span class="spanbox" style="width:100%;" dataFld="联系电话" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="9%">
+　
+传真</td>
+<td style="height:25px" width="12%">
+<span class="spanbox" style="width:100%;" dataFld="传真" dataSrc="#MasterTab" >　</span></td>
+</tr>
+<tr>
+<td width="12%">　税金(元)</td>
+<td width="16%"><span style="width:100%;font-size:10pt; " dataFld="税金" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="14%">　　　不含税价(元)</td>
+<td style="height:25px" width="11%">
+<span style="width:100%;font-size:10pt; " dataFld="税前金额_格式" dataSrc="#MasterTab" >　</span></td>
+<td style="height:25px" width="11%">
+　
+预期完成日期</td>
+<td style="height:25px" width="11%">
+<span class="spanbox" style="width:100%;" dataFld="承诺时限" dataSrc="#MasterTab" >　</span>
+</td>
+<td style="height:25px" width="9%">
+　
+完成日期</td>
+<td style="height:25px" width="12%">
+<span class="spanbox" style="width:100%;" dataFld="交货时间" dataSrc="#MasterTab" >　</span></td>
+</tr>
+<tr>
+<td colspan="8"><TABLE id="secTabledst" cellSpacing="0" cellPadding="0" width="100%" border="0" style="border-bottom-width: 0px;font-size:10pt">
+  <TBODY> 
+    <TR align="middle" height="20px">
+      <TD class="sec2" onclick="secBoard('dstTable','secTabledst',0)" width="15%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">货品清单</TD>
+      <TD class="sec1" onclick="secBoard('dstTable','secTabledst',1)" width="15%" style="border-bottom-style: none; border-bottom-width: medium;height:16px">参数</TD>
+      <TD class="sec1" onclick="secBoard('dstTable','secTabledst',2);_qureybom('xmldetail')" width="15%">配置清单</TD>
+      <TD id="tdfix" class="secx" width="76%" style="background-color: #D4D0C8;border-top-style:1px solid buttonhighlight">
+      <table border="0" cellpadding="0" style="width:90%">
+			<tbody>
+			<tr>
+				<td width="16"><button id="navfirst" onclick="ue_nstart('goods');"><img src="images/MoveFirstHS.gif" /></button></td>
+				<td width="16"><button id="navprev" onclick="ue_nprev('goods');"><img src="images//MovePrevious.gif" /></button></td>
+				<td align="center"><INPUT dataFld="RowNum" dataSrc="#goods" type="text" size="5" name="姓名2" /></td>
+				<td width="16"><button id="navnext" onclick="ue_nnext('goods');"><img src="images//MoveNextHS.gif" /></button></td>
+				<td width="16"><button id="navlast" onclick="ue_nlast('goods');"><img src="images//MoveLastHS.gif" /></button></td>
+				<td width="16"><button onclick="ns_bandadd('goods');" disabled=""><img src="images//NewRecordHS.gif" /></button></td>
+				<td width="16"><button onclick="ms_banddel();" disabled=""><img src="images//EditDelete1.gif" width="16" height="16" /></button></td>
+				<td width="16"><button onclick="_save();"><img src="images//saveHS.gif" /></button></td>
+				<td width="32"></td>
+				<td width="64"><button onclick="band_setcheck('goods','选择',1)" style="height:23" title="选择需要安排计划的货品">全选</button></td>
+				<td width="64"><button onclick="band_setcheck('goods','选择',0)" style="height:23" title="撤消选择的货品">清除</button></td>
+				<td width="64"><button onclick="autoph()" style="height:23" title="根据订货量与库存量的差额情况进行配货">自动配货</button></td>				
+				<td width="64"><button onclick="toOrder(1)" style="height:23">生成配货单</button></td>
+				<td width="64" title="根据缺口生成计划单"><button onclick="toOrder(0)" style="height:23">生成生产计划</button></td>
+				<td width="64" title="常见商品的订单样例，供参考"><button onclick="openinstance()" style="height:23">货品查询</button></td>
+			</tr>
+		</tbody>
+		</table></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE align="center" class="main_tab" id="dstTable" cellSpacing="0" cellPadding="0" border="0" style="border-top-width: 0px;width:100%;height:95%">
+  <!--菜单一内容-->
+<TBODY style="DISPLAY: block">
+    <TR>
+      <TD align="left" height="418px" valign="top"><p style="margin:6"></p>
+<Control class="" catalog="GridLand.ascx" itemname="goods" id="goods" name="">goods
+			<Property name="tpfile" value="ControlTemplate/GridDefaultNsave.htm" />
+			<Property name="width" value="962" /><Property name="height" value="355px" /><Property name="hiddenhead" value="" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="" />
+		</Control></TD>
+    </TR>
+    <TR>
+      <TD align="left" height="25" valign="top">
+
+<table border="1" cellspacing="0" width="100%" style="TABLE-LAYOUT:fixed; font-size:10pt" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF">
+			<tbody>
+			<tr>
+				<td align="right" width="64">
+<span style="width:60px;height:18px;border: 1px solid #000000; font-size:10pt; color:#FFFFFF; background-color:#800000; text-align:right" >条形码：</span></td>
+				<td align="center">
+<INPUT dataFld="编码" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名87" /></td>
+				<td align="right" width="52">摘要：</td>
+				<td align="right" width="660">
+<INPUT dataFld="备注" dataSrc="#MasterTab" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名86" /></td>
+			</tr>
+		</tbody>
+		</table>
+		</TD>
+    </TR>
+  </TBODY>  
+  <TBODY style="DISPLAY: none">
+    <TR>
+      <TD align="center" height="439" valign="top" width="100%">
+		<table border="1" cellspacing="0" width="100%" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt" height="442">
+				<tbody>
+				<TR>
+					<TD align="right" height="21" width="12%">
+					货品名称：</TD>
+					<TD align="left" height="21" width="20%">
+					<INPUT dataFld="名称" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名73" /></TD>
+					<TD align="right" height="21" width="31%" colspan="2">
+					　货品编码：</TD>
+					<TD align="right" height="21" width="12%">
+					<INPUT dataFld="编码" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名74" /></TD>
+					<TD align="center" height="21" width="24%">
+					　</TD>
+				</TR>
+				<TR>
+					<TD align="center" height="21" colspan="6">
+					<b>参数</b></TD>
+				</TR>
+				<TR>
+					<TD align="right" height="25" width="12%">
+					规格：</TD>
+					<TD align="left" height="25" width="20%">
+					<INPUT dataFld="规格" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名2" /></TD>
+					<TD align="right" height="25" width="12%">
+					型号：</TD>
+					<TD align="right" height="25" width="19%">
+					<INPUT dataFld="型号" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名65" /></TD>
+					<TD align="right" height="25" width="12%">
+					加权成本价：</TD>
+					<TD align="left" height="25" width="24%">
+					<INPUT dataFld="成本" dataSrc="#goods" style="width:100%; " class="xlandinput" type="text" size="11" name="姓名67" /></TD>
+				</TR>
+				<TR>
+					<TD align="right" height="25" width="12%">颜色：</TD>
+					<TD align="left" height="25" width="20%">
+					<INPUT dataFld="颜色" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名39" /></TD>
+					<TD align="right" height="25" width="12%">
+					尺寸：</TD>
+					<TD align="right" height="25" width="19%">
+										<INPUT dataFld="规格尺寸" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名40" /></TD>
+					<TD align="right" height="25" width="12%">
+					零售价：</TD>
+					<TD align="left" height="25" width="24%">
+										<INPUT dataFld="零售价" dataSrc="#goods" style="width:100%; " class="xlandinput" type="text" size="11" name="姓名68" /></TD>
+				</TR>
+				<TR>
+					<TD align="right" height="25" width="12%">计量单位：</TD>
+					<TD align="left" height="25" width="20%">
+					<SELECT class="xlandinput" datasrc="#goods" datafld="单位" style="width:100%" DataSource="resources:base_unit" DataTextField="name" DataValueField="name" name="D9">
+											</SELECT></TD>
+					<TD align="right" height="25" width="12%">
+					类别：</TD>
+					<TD align="right" height="25" width="19%">
+										<INPUT dataFld="类别" dataSrc="#goods" class="xlandinput" style="width:100%; " ondblclick="changesex(this)" type="text" size="11" name="姓名66" /></TD>
+					<TD align="right" height="25" width="12%">
+					产地：</TD>
+					<TD align="left" height="25" width="24%">
+										<INPUT dataFld="产地" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名69" /></TD>
+				</TR>
+				<TR>
+					<TD align="right" height="25" width="12%">货品属性：</TD>
+					<TD align="left" height="25" width="20%">
+					<INPUT dataFld="属性" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名25" /></TD>
+					<TD align="right" height="25" width="12%">
+		核算方法：</TD>
+					<TD align="right" height="25" width="19%">
+					<select dataFld="核算方法" dataSrc="#goods" class="xlandinput" size="1" style="WIDTH: 100%;" name="D8">
+                                        <option value=""></option>
+                                        <option value="小学">小学</option>
+                                        <option value="中学">中学</option>
+                                        <option value="中专">中专</option>
+                                        <option value="大专">大专</option>
+                                        <option value="本科">本科</option>                                      
+                                        <option value="硕士">硕士</option>
+                                        <option value="博士">博士</option>                                      
+                                    </select></TD>
+					<TD align="right" height="25" width="12%">
+		　</TD>
+					<TD align="left" height="25" width="24%">
+					　</TD>
+				</TR>
+				<TR>
+					<TD align="right" height="25" width="12%">库存上限：</TD>
+					<TD align="left" height="25" width="20%">
+					<INPUT dataFld="上限" dataSrc="#goods" class="xlandinput" style="width:98.5%; " type="text" size="11" name="姓名71" /></TD>
+					<TD align="right" height="25" width="12%">
+					库存下限：</TD>
+					<TD align="right" height="25" width="19%">
+					<INPUT dataFld="下限" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名72" /></TD>
+					<TD align="right" height="25" width="12%">
+		　</TD>
+					<TD align="left" height="25" width="24%">
+					　</TD>
+				</TR>
+				<TR>
+					<TD align="right" height="242" width="12%">基本参数：</TD>
+					<TD align="left" colspan="5">
+					<textarea dataSrc="#goods" dataFld="参数" class="xlandinput" style="width:100%;height:100%"></textarea></TD>
+				</TR>
+				<TR>
+					<TD align="right" height="31" width="12%">条码：</TD>
+					<TD align="left" height="31" width="20%">
+					<INPUT dataFld="条码规则" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名31" /></TD>
+					<TD align="right" height="31">
+					备注：</TD>
+					<TD align="left" colspan="3" height="31">
+					<INPUT dataFld="条码规则" dataSrc="#goods" class="xlandinput" style="width:100%; " type="text" size="11" name="姓名70" /></TD>
+				</TR>
+				</tbody>
+				</table>
+      </TD>
+    </TR>
+  </TBODY>
+  <!--菜单二内容-->
+  <TBODY style="DISPLAY: none">
+    <TR>
+      <TD align="center" valign="top" style="border:0 none" width="100%"><Control class="" catalog="GridLand.ascx" itemname="xmldetail" id="xmldetail" name="">xmldetail
+						<Property name="tpfile" value="ControlTemplate/GridEdit.htm"></Property>
+						<Property name="width" value="962px"></Property>
+						<Property name="height" value="390"></Property>
+						<Property name="hiddenhead" value="false"></Property>
+						<Property name="ctrlalert" value="s_code"></Property>
+						</Control></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+<tbody style="display:none">
+<tr>
+<td style="height:680px" colspan="2" bgcolor="#999999" align="center">
+ <div id="DivID"></div>
+　<Control class="" catalog="GridLand.ascx" itemname="opinion" id="opinionTab" name="">opinionTab
+			<Property name="tpfile" value="ControlTemplate/GridNotion.htm" />
+			<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+		</Control>
+		</td>
+</tr>
+</tbody>
+</table>
+		<Control class="" catalog="GridLand.ascx" itemname="edit" id="MasterTab" name="">MasterTab
+			<Property name="tpfile" value="" />
+			<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="true" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" />
+		</Control>
+
+		
+
+</body>
+
+</html>

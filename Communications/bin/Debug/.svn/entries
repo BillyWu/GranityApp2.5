@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/Communications/bin/Debug
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/Communications/bin/Debug
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -28,14 +28,14 @@ b7a1bd86-2f50-7044-aac2-f90e8b3b5af3
 
 Estar.Common.Tools.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.281250Z
-d92df117a96d59f376c5b52d27d93a9b
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:22.850226Z
+25c680fd067521bffb683dcd83d9f8f7
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -58,18 +58,18 @@ has-props
 
 
 
-153088
+144896
 
 Granity.communications.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.656250Z
-e8ff4deb8442dcc0bd8d85657a6b5bc7
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.381476Z
+b48f3714ae7d5756ae30bfd003cc88f5
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-187904
+175616
 
 Microsoft.ApplicationBlocks.ExceptionManagement.dll
 file
@@ -198,14 +198,14 @@ has-props
 
 Estar.Common.Tools.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:04.375000Z
-b3f8357c88ac8561113924647a4cb039
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:22.959601Z
+300bf7c04a3a33ceec18ab1d3e0ef8f1
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -232,14 +232,14 @@ has-props
 
 Granity.communications.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.750000Z
-62d0c51719e33a4dd851d7249b2c34e3
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.459601Z
+6711431b37ca8ff1f46044b717d10e0f
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 

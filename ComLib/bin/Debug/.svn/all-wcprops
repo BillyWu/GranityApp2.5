@@ -1,17 +1,13 @@
-K 25
-svn:wc:ra_dav:version-url
-V 57
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/ComLib/bin/Debug
 END
 ComLib.dll
 K 25
 svn:wc:ra_dav:version-url
 V 68
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/ComLib/bin/Debug/ComLib.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/ComLib/bin/Debug/ComLib.dll
 END
 ComLib.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 68
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/ComLib/bin/Debug/ComLib.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/ComLib/bin/Debug/ComLib.pdb
 END

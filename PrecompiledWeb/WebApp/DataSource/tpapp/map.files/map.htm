@@ -1,0 +1,585 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+	<head>
+		<title>**点击两点:放大|右击:取消放大|双击:适应窗口|Alt+双击:实际尺寸**</title>
+		<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<LINK href="map.files/style.css" type="text/css" rel="stylesheet">
+			<style>v\:* { behavior: url(#default#VML); }
+	</style>
+			<script src="map.files/map.js" type="text/javascript" charset="gb2312"></script>
+			<script src="map.files/popmenu.js" type="text/javascript" charset="gb2312"></script>
+			<SCRIPT language="javascript">
+				window.onload = init;
+			</SCRIPT>
+	</head>
+	<body bgColor="#ced384" leftMargin="0" topMargin="0" scroll="auto" align="center">
+		<base target="_top">
+		<DIV id="oBody" style="LEFT: 20px; POSITION: absolute; TOP: -40px" align="center">
+			<v:rect id="hintframe" style="Z-INDEX:3023;LEFT:3px;WIDTH:152px;POSITION:absolute;TOP:1px;HEIGHT:84px"
+				filled="t" fillcolor="#c3d3e8" strokecolor="black" strokeweight=".75pt" coordsize="21600,21600">
+				<v:fill type="gradientRadial" opacity="1" color2="white" />
+				<v:shadow on="t" color="black" opacity="52428f" offset="2.25pt,2.25pt" />
+			</v:rect>
+			<v:group id="group1" style="WIDTH: 1000px; HEIGHT: 680px" coordsize="1300,910">
+				<v:shape id="map_sxx" ondblclick="openarea('绍兴县')" onmouseover="selectobject(this)" style="Z-INDEX: 2986; LEFT: 430px; WIDTH: 100px; TOP: 111px; HEIGHT: 100px"
+					onmouseout="restorecolor(this,'#cff7f7')" coordsize="100,100" filled="t" fillcolor="#cff7f7"
+					strokecolor="white" strokeweight=".75pt" path=" m0,0 l0,0,-7,9,-10,19,-17,17,-26,21,-42,6,-49,-1,-56,-5,-64,-6,-71,-6,-74,11,-79,18,-91,25,-100,26,-113,26,-126,26,-128,24,-138,26,-146,29,-151,29 -154,39,-149,58,-143,79,-138,94,-135,105,-126,127,-127,143,-132,151,-119,148,-109,150,-98,160,-87,178,-83,185,-65,205,-47,220,-34,226,-26,231,-22,245,-29,273,-30,288 -28,304,-20,317,-11,325,-2,328,4,330,11,329,15,324,22,322,28,321,34,311,42,305,52,300,58,300,64,300,82,311,97,316,102,314,100,295,100,283,98,265 95,251,95,236,96,220,102,213,102,206,102,200,102,188,102,172,102,157,102,139,102,124,99,111,96,99,93,92,85,72,64,49,42,34,34,30,24,27,16,26 12,24,7,19,2,10 xe">
+					<v:shadow on="t" color="#adaeaf" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+					<v:extrusion on="t" foredepth="1pt" backdepth="6pt" color="#adaeaf" diffusity="91750f"></v:extrusion>
+					<v:fill type="gradient" color2="#67d4d4" angle="50" focus="60%" method="none"></v:fill>
+				</v:shape>
+				<v:shape id="vml1" onmouseover="selectobject(this)" style="Z-INDEX: 2999; LEFT: 413px; WIDTH: 140px; TOP: 164px; HEIGHT: 140px"
+					onmouseout="restorecolor(this,'#cff7f7')" coordsize="100,100" filled="t" fillcolor="#cff7f7"
+					strokecolor="#ced384" strokeweight="1pt" path=" m0,0 l0,0,-2,8,-4,12,-2,16,8,14,18,12,23,13,23,18,25,27,33,37,38,45,37,55,29,60,17,66,11,66,2,63,-2,59,-5,50,-7,47,-13,44 -18,45,-22,48,-21,54,-26,54,-30,50,-34,48,-38,44,-39,39,-36,16,-32,9,-25,4,-11,-1 xe">
+					<v:fill type="gradient" color2="#67d4d4" angle="50" focus="60%" method="none"></v:fill>
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml2" style="Z-INDEX: 3039; FILTER: ; LEFT: 382px; WIDTH: 100px; TOP: 204px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="red" strokecolor="red" strokeweight="0" path=" m0,0 l0,0,4,0,6,-5,9,-1,16,-1,11,4,13,9,7,6,1,8,2,3,-2,1 xe"></v:shape>
+				<v:shape id="vml21" style="Z-INDEX: 3301; LEFT: 400px; WIDTH: 60px; TOP: 200px; HEIGHT: 20px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div38" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">市区</DIV>
+				</v:shape>
+				<v:oval id="vml16" style="Z-INDEX: 3301; LEFT: 400px; WIDTH: 9px; TOP: 280px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:rect id="vml16" style="Z-INDEX: 3301; LEFT: 380px; WIDTH: 15px; TOP: 250px; HEIGHT: 40px"
+					coordsize="21600,21600" fillcolor="red" strokecolor="#008284" strokeweight="0">
+					<v:fill type='gradient' />
+				</v:rect>
+				<v:shape id="vml21" style="Z-INDEX: 3301; LEFT: 375px; WIDTH: 50px; TOP: 235px; HEIGHT: 20px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div39" style="FONT-SIZE: 9pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">100%</DIV>
+				</v:shape>
+				<v:shape id="vml21" style="Z-INDEX: 3301; LEFT: 415px; WIDTH: 60px; TOP: 280px; HEIGHT: 20px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div37" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">绍兴县</DIV>
+				</v:shape>
+				<v:shape id="map_sys" onmouseover="selectobject(this)" style="Z-INDEX: 2992; LEFT: 443px; WIDTH: 100px; TOP: 134px; HEIGHT: 100px"
+					onmouseout="restorecolor(this,'#d0d0f3')" coordsize="100,100" filled="t" fillcolor="#d0d0f3"
+					strokecolor="white" strokeweight=".75pt" path=" m0,0 l0,0,6,-1,7,-6,6,-8,9,-12,10,-18,20,-20,24,-22,31,-20,57,-19,68,-16,78,-17,93,-22,102,-26,108,-29,113,-33,124,-41,137,-54,137,-57,140,-59 160,-73,169,-45,173,-27,179,-9,183,2,188,18,191,30,199,44,207,56,220,63,232,67,242,65,251,69,254,77,249,87,248,96,248,105,240,107,235,115,233,120 230,127,229,133,232,145,238,154,256,166,266,171,280,178,290,191,295,210,299,213,291,220,289,224,284,228,276,233,265,239,259,242,249,243,243,245,238,252,235,255 232,258,226,253,214,253,203,258,195,261,188,260,182,260,175,260,171,260,163,257,156,252,153,249,135,210,127,208,120,210,109,214,83,232,82,195,89,188,89,99 84,79,73,49,71,46,50,23,32,10,21,4,14,2,10,-1 xe">
+					<v:shadow on="t" color="#adaeaf" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+					<v:extrusion on="t" foredepth="1pt" backdepth="6pt" color="#adaeaf" diffusity="91750f"></v:extrusion>
+					<v:fill type="gradient" color2="#9a9ab8" angle="50" focus="-80%" method="none"></v:fill>
+				</v:shape>
+				<v:shape id="vml22" style="Z-INDEX: 3301; LEFT: 595px; WIDTH: 60px; TOP: 243px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div1" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">上虞市</DIV>
+				</v:shape>
+				<v:shape id="vml4" style="Z-INDEX: 3244; LEFT: 355px; WIDTH: 100px; TOP: 325px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#dddea2" strokecolor="#efd872" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="map_zjs" onmouseover="selectobject(this)" style="Z-INDEX: 2991; LEFT: 298px; WIDTH: 100px; TOP: 264px; HEIGHT: 100px"
+					onmouseout="restorecolor(this,'#ebbf96')" coordsize="100,100" filled="t" fillcolor="white"
+					strokecolor="white" strokeweight=".75pt" path=" m0,0 l0,0,-14,12,-24,23,-32,26,-50,32,-61,36,-76,45,-79,49,-81,47,-82,47,-91,53,-98,63,-105,76,-114,84,-121,99,-125,109,-125,125,-135,122,-147,125,-152,126 -159,129,-160,140,-158,157,-158,169,-165,179,-175,181,-185,186,-194,190,-200,193,-208,193,-220,197,-228,198,-236,196,-237,202,-237,210,-224,218,-206,233,-190,247,-168,272,-159,289 -153,306,-145,316,-129,328,-117,342,-114,376,-110,377,-106,377,-99,377,-95,381,-90,379,-87,380,-79,369,-72,364,-69,345,-52,331,-42,334,-39,339,-27,352,-11,369,-4,380 0,407,2,417,7,428,19,447,24,449,28,445,51,429,62,419,71,410,77,395,96,360,108,334,122,306,124,300,126,292,123,288,120,222,120,212,126,205,129,197 131,180,131,178,122,174,113,166,106,155,104,135,103,128,105,113,105,109,110,94,106,79,87,69,67,53,51,36,48,32,33,6,21,-3,12,-5 e">
+					<v:shadow on="t" color="#adaeaf" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+					<v:extrusion on="t" foredepth="6pt" backdepth="0" color="#adaeaf" diffusity="91750f"></v:extrusion>
+					<v:fill type="gradient" opacity=".5" color2="#ffb773" angle="50" focus="60%" method="none"></v:fill>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 275px; WIDTH: 60px; TOP: 480px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="t" strokecolor="white">
+					<DIV id="vml25" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">诸暨市</DIV>
+				</v:shape>
+				<v:shape id="vml6" style="Z-INDEX: 3350; LEFT: 660px; WIDTH: 100px; TOP: 127px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#85e2e5" strokecolor="#1d2d35" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="map_szs" onmouseover="selectobject(this)" style="Z-INDEX: 2990; LEFT: 675px; WIDTH: 100px; TOP: 389px; HEIGHT: 100px"
+					onmouseout="restorecolor(this,'#a8cf30')" coordsize="100,100" filled="t" fillcolor="#a8cf30"
+					strokecolor="white" strokeweight=".75pt" path=" m0,0 l0,0,-5,-5,-18,-6,-37,3,-41,1,-61,1,-67,-1,-78,-8,-97,-49,-105,-51,-121,-46,-149,-28,-147,-12,-146,3,-145,30,-149,33,-160,30,-180,17,-193,17,-203,21 -212,27,-218,36,-228,39,-232,41,-235,46,-245,47,-248,69,-256,81,-258,92,-254,163,-251,169,-254,179,-271,213,-261,219,-252,239,-233,278,-233,290,-216,327,-203,334,-196,336 -190,336,-178,334,-171,334,-164,332,-161,332,-159,334,-151,332,-149,328,-139,326,-134,325,-124,302,-111,278,-110,271,-110,266,-117,242,-119,230,-112,218,-106,209,-101,206,-95,203 -84,192,-73,184,-66,177,-40,155,-31,149,-24,146,-18,146,-6,153,6,154,21,154,33,159,40,159,54,157,61,154,64,145,69,132,69,122,68,113,69,101,63,90 59,83,51,68,48,64,44,47,39,47,17,48,8,39,6,31,2,23,-1,13,-2,10 xe">
+					<v:shadow on="t" color="#adaeaf" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+					<v:extrusion on="t" foredepth="1pt" backdepth="6pt" color="#adaeaf" diffusity="91750f"></v:extrusion>
+					<v:fill type="gradient" color2="#5b7900" angle="50" focus="-60%" method="none"></v:fill>
+				</v:shape>
+				<v:shape id="vml23" style="Z-INDEX: 3301; LEFT: 535px; WIDTH: 60px; TOP: 510px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="vml23" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">嵊州市</DIV>
+				</v:shape>
+				<v:shape id="vml8" style="Z-INDEX: 3449; LEFT: 804px; WIDTH: 100px; TOP: 591px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#dddea2" strokecolor="#1d2d35" strokeweight=".75pt"
+					path=" m0,0 l xe"></v:shape>
+				<v:shape id="map_xcs" onmouseover="selectobject(this)" style="Z-INDEX: 2989; LEFT: 540px; WIDTH: 100px; TOP: 715px; HEIGHT: 100px"
+					onmouseout="restorecolor(this,'#d7a797')" coordsize="100,100" filled="t" fillcolor="#d7a797"
+					strokecolor="white" strokeweight=".75pt" path=" m0,0 l0,0,10,-23,23,-45,24,-57,17,-81,16,-92,15,-94,27,-115,43,-124,51,-133,61,-141,71,-149,91,-166,102,-175,112,-179,122,-175,127,-171,156,-169,163,-166,178,-165 191,-168,196,-170,198,-179,203,-191,209,-194,218,-192,225,-191,237,-190,249,-185,253,-185,263,-175,265,-167,266,-152,263,-143,274,-136,282,-135,290,-132,284,-118,281,-106,278,-94 276,-85,276,-73,276,-65,275,-58,267,-49,264,-41,253,-37,247,-31,245,-27,240,-24,232,-23,224,-20,216,-14,206,-9,199,-6,192,-4,185,-4,172,-7,164,-14,161,-16 158,-13,157,-4,152,5,147,9,143,14,133,16,120,17,117,17,117,22,114,27,107,28,107,34,104,40,106,45,102,48,102,54,94,60,86,61,79,56,71,56 66,61,61,69,56,79,51,84,48,84,44,75,38,69,33,64,30,63,29,51,33,34,29,25,22,15,16,12,10,6,7,5,5,2 xe">
+					<v:shadow on="t" color="#adaeaf" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+					<v:extrusion on="t" foredepth="1pt" backdepth="6pt" color="#adaeaf" diffusity="91750f"></v:extrusion>
+					<v:fill type="gradient" color2="#c5826c" angle="50" focus="60%" method="none"></v:fill>
+				</v:shape>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 670px; WIDTH: 60px; TOP: 624px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="vml24" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">新昌县</DIV>
+				</v:shape>
+				<v:shape id="vml50" onmouseover="selectobject(this)" style="Z-INDEX: 3324; LEFT: 151px; WIDTH: 100px; TOP: 580px; HEIGHT: 100px"
+					onmouseout="restorecolor(this,'f')" coordsize="100,100" filled="f" strokecolor="silver"
+					strokeweight="2pt" path=" m0,0 l0,0,-24,22,-34,18,-43,13,-59,14,-75,24,-82,35,-88,47,-87,62,-87,74,-86,91,-93,110,-101,121,-98,145,-108,158,-109,163,-104,179,-113,191,-126,198,-135,203 -143,210,-149,218,-156,226 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml53" style="Z-INDEX: 3367; LEFT: 848px; WIDTH: 100px; TOP: 905px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml56" style="Z-INDEX: 3397; LEFT: 956px; WIDTH: 100px; TOP: 669px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="#00a0dd" strokeweight=".75pt"
+					path=" m0,0 l0,0,-3,0,-4,-3,-4,-6,-2,-11,-1,-14,-1,-17 xe"></v:shape>
+				<v:oval id="vml62" style="Z-INDEX: 3301; LEFT: 182px; WIDTH: 9px; TOP: 95px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 174px; WIDTH: 100px; TOP: 94px; HEIGHT: 30px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div2" style="FONT-SIZE: 12pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: center">杭州市</DIV>
+				</v:shape>
+				<v:oval id="vml12" style="Z-INDEX: 3301; LEFT: 375px; WIDTH: 12px; TOP: 391px; HEIGHT: 12px"
+					coordsize="21600,21600" fillcolor="#7e1f3c" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 390px; WIDTH: 100px; TOP: 391px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div3" style="FONT-SIZE: 12pt; CURSOR: hand; COLOR: #7e1f3c; TEXT-ALIGN: left"><b>绍兴市</b></DIV>
+				</v:shape>
+				<v:oval id="vml63" style="Z-INDEX: 3301; LEFT: 9px; WIDTH: 9px; TOP: 93px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 25px; WIDTH: 60px; TOP: 91px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div4" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">临安市</DIV>
+				</v:shape>
+				<v:oval id="vml64" style="Z-INDEX: 3301; LEFT: 727px; WIDTH: 9px; TOP: 233px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 741px; WIDTH: 60px; TOP: 232px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div5" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">余姚市</DIV>
+				</v:shape>
+				<v:oval id="vml67" style="Z-INDEX: 3301; LEFT: 211px; WIDTH: 9px; TOP: 775px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 226px; WIDTH: 60px; TOP: 775px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div6" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">义乌市</DIV>
+				</v:shape>
+				<v:oval id="vml68" style="Z-INDEX: 3301; LEFT: 386px; WIDTH: 9px; TOP: 812px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 401px; WIDTH: 60px; TOP: 812px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div7" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">东阳市</DIV>
+				</v:shape>
+				<v:oval id="vml69" style="Z-INDEX: 3301; LEFT: 880px; WIDTH: 9px; TOP: 659px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 895px; WIDTH: 60px; TOP: 659px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div8" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">宁海</DIV>
+				</v:shape>
+				<v:oval id="vml70" style="Z-INDEX: 3301; LEFT: 816px; WIDTH: 9px; TOP: 407px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 831px; WIDTH: 60px; TOP: 407px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div9" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">丰化市</DIV>
+				</v:shape>
+				<v:oval id="vml71" style="Z-INDEX: 3301; LEFT: 84px; WIDTH: 9px; TOP: 209px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 99px; WIDTH: 60px; TOP: 209px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div10" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">富阳市</DIV>
+				</v:shape>
+				<v:oval id="vml72" style="Z-INDEX: 3301; LEFT: 123px; WIDTH: 9px; TOP: 674px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 138px; WIDTH: 60px; TOP: 674px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div11" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">浦江</DIV>
+				</v:shape>
+				<v:oval id="vml73" style="Z-INDEX: 3301; LEFT: 700px; WIDTH: 9px; TOP: 760px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 715px; WIDTH: 60px; TOP: 760px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div12" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">天台</DIV>
+				</v:shape>
+				<v:oval id="vml74" style="Z-INDEX: 3301; LEFT: 832px; WIDTH: 9px; TOP: 158px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 847px; WIDTH: 60px; TOP: 158px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div13" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">鄞县</DIV>
+				</v:shape>
+				<v:oval id="vml75" style="Z-INDEX: 3301; LEFT: 202px; WIDTH: 9px; TOP: 141px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 217px; WIDTH: 60px; TOP: 141px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div14" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">萧山市</DIV>
+				</v:shape>
+				<v:shape id="vml76" style="Z-INDEX: 3658; LEFT: 837px; WIDTH: 100px; TOP: 158px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml95" style="Z-INDEX: 4414; LEFT: 408px; WIDTH: 100px; TOP: 134px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 e"></v:shape>
+				<v:shape id="vml96" style="Z-INDEX: 4422; LEFT: 360px; WIDTH: 100px; TOP: 1px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml98" style="Z-INDEX: 4480; LEFT: 460px; WIDTH: 100px; TOP: 74px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml99" style="Z-INDEX: 4493; LEFT: 352px; WIDTH: 100px; TOP: 2px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml110" style="Z-INDEX: 2999; LEFT: 494px; WIDTH: 100px; TOP: 31px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-6,-1,-14,7,-21,16,-28,30,-34,42,-42,54,-47,61,-62,73,-65,78,-61,89,-58,97,-51,102,-44,102,-43,96,-45,94,-42,90,-41,85,-40,84,-36,83 -31,83,-27,81,-23,82,-19,83,-11,83,-4,83,5,84,11,86,22,86,42,81,60,71,67,65,75,60,86,49,86,45,92,43,101,36,107,32,110,29,108,20 105,13,100,5,95,-3,92,-9,88,-15,85,-16,66,-1,51,7,38,5,21,5,10,1,-2,-3 xe"></v:shape>
+				<v:shape id="vml102" style="Z-INDEX: 4576; LEFT: 749px; WIDTH: 100px; TOP: 2px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml103" style="Z-INDEX: 4578; LEFT: 749px; WIDTH: 100px; TOP: 1px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml105" style="Z-INDEX: 4589; LEFT: 854px; WIDTH: 100px; TOP: 20px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml106" style="Z-INDEX: 4592; LEFT: 743px; WIDTH: 100px; TOP: 34px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml108" style="Z-INDEX: 4663; LEFT: 387px; WIDTH: 100px; TOP: 112px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd6f6" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 e"></v:shape>
+				<v:shape id="vml0" style="Z-INDEX: 3001; LEFT: 429px; WIDTH: 100px; TOP: 113px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 e"></v:shape>
+				<v:shape id="vml1" style="Z-INDEX: 3003; LEFT: 428px; WIDTH: 100px; TOP: 113px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml2" style="Z-INDEX: 3006; LEFT: 429px; WIDTH: 100px; TOP: 112px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml4" style="Z-INDEX: 3061; LEFT: 268px; WIDTH: 100px; TOP: -15px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="#00a0dd" strokeweight=".75pt"
+					path=" m0,0 l0,0,-7,6,-13,12,-14,20,-18,27,-27,32,-34,32,-49,32,-57,31,-64,32,-72,37,-75,44,-80,50,-86,58,-95,64,-103,67,-113,67,-116,66,-116,63,-114,59 -108,55,-105,45,-97,36,-90,26,-84,21,-74,15,-64,14,-53,14,-46,8,-46,3,-42,1 xe"></v:shape>
+				<v:shape id="vml5" style="Z-INDEX: 3104; LEFT: 579px; WIDTH: 100px; TOP: 791px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,-10,13,-21,23,-24,38,-25,49,-22,53,-17,60,-17,67,-11,71,-11,89,-16,97,-21,108 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				<v:shape id="vml6" style="Z-INDEX: 3139; LEFT: 371px; WIDTH: 100px; TOP: 673px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,5,7,9,21,6,29,0,39,-9,51,-16,57,-27,62,-31,74,-28,84,-30,100,-46,115,-46,124,-49,139,-54,161,-64,181,-64,194,-64,205,-90,225 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml7" style="Z-INDEX: 3139; LEFT: 207px; WIDTH: 100px; TOP: 643px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,4,15,4,25,6,43,6,61,-1,75,-9,85,-24,86,-40,93,-64,94,-100,94,-122,104,-123,120,-140,120,-151,125,-159,126,-168,131 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml8" style="Z-INDEX: 3159; LEFT: -13px; WIDTH: 100px; TOP: 507px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="#00a0dd" strokeweight=".75pt"
+					path=" m0,0 l0,0,8,-3,17,-7,19,-11,19,-18,19,-23,27,-28,35,-28,39,-25,37,-14,30,-5,23,4,14,12,3,20,0,24 xe"></v:shape>
+				<v:oval id="vml9" style="Z-INDEX: 3301; LEFT: 652px; WIDTH: 9px; TOP: 625px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:oval id="vml9" style="Z-INDEX: 3301; LEFT: 517px; WIDTH: 9px; TOP: 512px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:oval id="vml9" style="Z-INDEX: 3301; LEFT: 258px; WIDTH: 9px; TOP: 482px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:oval id="vml10" style="Z-INDEX: 3301; LEFT: 581px; WIDTH: 9px; TOP: 245px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:oval id="vml11" style="Z-INDEX: 3301; LEFT: 9px; WIDTH: 9px; TOP: 382px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 24px; WIDTH: 60px; TOP: 382px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div15" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">桐庐</DIV>
+				</v:shape>
+				<v:shape id="vml16" style="Z-INDEX: 3454; LEFT: 367px; WIDTH: 100px; TOP: -5px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="#00a0dd" strokeweight=".75pt"
+					path=" m0,0 l0,0,5,6,10,12,16,16,19,19,27,29,29,32,32,41,32,55,29,58,25,69,24,72,26,89,38,98,48,106,64,118,70,112,75,107,82,102,89,88 95,84,99,77,102,69,105,61,109,54,113,47,119,43,125,41,135,42,145,45,153,46,156,46,163,46,168,46,176,49,186,45,195,40,203,35,211,30,213,27 217,28,228,43,233,54,236,59,237,68,243,65,250,50,260,29,270,13,271,8,276,3,280,-4,283,-8,-7,-5 xe"></v:shape>
+				<v:stroke opacity="1" dashstyle="dash"></v:stroke>
+				<v:oval id="vml18" style="Z-INDEX: 3301; LEFT: 720px; WIDTH: 9px; TOP: 26px; HEIGHT: 9px"
+					coordsize="21600,21600" fillcolor="#008284" strokecolor="#008284" strokeweight=".75pt"></v:oval>
+				<v:shape id="vml24" style="Z-INDEX: 3301; LEFT: 735px; WIDTH: 60px; TOP: 26px; HEIGHT: 25px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div16" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">慈溪市</DIV>
+				</v:shape>
+				<v:shape id="vml19" style="Z-INDEX: 3536; LEFT: 821px; WIDTH: 100px; TOP: 1px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml20" style="Z-INDEX: 3539; LEFT: 837px; WIDTH: 100px; TOP: -14px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="#00a0dd" strokeweight=".75pt"
+					path=" m0,0 l0,0,5,9,9,14,17,21,27,27,39,34,55,41,66,47,84,56,90,59,100,76,109,92,166,180,164,2 xe"></v:shape>
+				<v:shape id="vml21" style="Z-INDEX: 3554; LEFT: 956px; WIDTH: 100px; TOP: 52px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml24" style="Z-INDEX: 3632; LEFT: 1004px; WIDTH: 100px; TOP: 486px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="#00a0dd" strokeweight=".75pt"
+					path=" m0,0 l0,0,-8,1,-12,5,-12,11,-20,13,-22,22,-30,24,-33,29,-37,35,-44,38,-49,48,-54,56,-57,58,-64,62,-69,62,-76,62,-80,60,-88,57,-92,58,-98,63 -100,70,-100,79,-100,85,-102,92,-105,99,-107,103,-106,108,-102,108,-97,107,-93,106,-86,104,-79,102,-74,101,-70,98,-66,99,-66,105,-64,107,-69,116,-71,121,-74,130 -73,133,-73,136,-71,140,-66,140,-62,140,-59,133,-50,126,-46,117,-45,111,-48,105,-48,99,-48,92,-46,83,-43,76,-39,69,-34,68,-29,68,-23,68,-19,64,-17,55 -13,42,-7,36,-2,35 xe"></v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3702; LEFT: 988px; WIDTH: 100px; TOP: 702px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="#00a0dd" strokeweight=".75pt"
+					path=" m0,0 l0,0,-8,8,-19,12,-21,4,-24,-12,-25,-23,-26,-34,-29,-40,-34,-38,-35,-30,-32,-11,-31,3,-28,14,-32,15,-36,15,-38,12,-43,2,-44,-5,-45,-14,-48,-21 -51,-27,-52,-30,-53,-36,-56,-39,-58,-36,-57,-32,-57,-28,-58,-26,-58,-22,-59,-23,-64,-26,-67,-28,-67,-27,-71,-27,-72,-23,-71,-16,-71,-13,-76,-13,-80,-13,-84,-10 -88,-4,-88,1,-88,4,-86,9,-73,19,-66,22,-65,31,-71,38,-84,45,-86,50,-86,57,-85,62,-78,67,-65,65,-64,67,-60,70,-52,75,-46,76,-31,74,-29,67 -27,59,-15,44,-6,43,-4,43,0,43,1,40,10,40,15,40,11,-11 xe"></v:shape>
+				<v:shape id="vml26" style="Z-INDEX: 3781; LEFT: 1000px; WIDTH: 100px; TOP: 694px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#00a0dd" strokecolor="#00a0dd" strokeweight=".75pt"
+					path=" m0,0 l0,0,5,-6,5,49,0,-1 xe"></v:shape>
+				<v:shape id="vml0" style="Z-INDEX: 3330; LEFT: 784px; WIDTH: 100px; TOP: 691px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,20,5,30,21,34,47,48,60,76,81,86,88,93,95,98,105,96,123,94,135,90,146,90,160,97,170,107,187,123,202,128,206 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml4" style="Z-INDEX: 3371; LEFT: 86px; WIDTH: 100px; TOP: 534px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="2pt" path=" m0,0 l0,0,3,-18,-1,-24,-10,-29,-24,-30,-39,-29,-63,-29,-78,-30,-85,-33,-92,-36 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml5" style="Z-INDEX: 3392; LEFT: 185px; WIDTH: 100px; TOP: 346px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,-18,-27,-32,-40,-55,-39,-78,-24,-98,-37,-104,-47,-115,-61,-128,-63,-145,-62,-166,-60,-184,-61 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml7" style="Z-INDEX: 3417; LEFT: 280px; WIDTH: 100px; TOP: 175px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,-21,16,-58,33,-76,26,-90,17,-105,10,-129,4,-148,-3,-190,-10,-212,-11,-232,-8,-262,2,-276,3,-281,2 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml9" style="Z-INDEX: 3436; LEFT: 620px; WIDTH: 100px; TOP: 101px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,25,3,42,6,52,6,69,1,95,-1,128,-5,150,-14,160,-22,178,-36,200,-60,211,-61,223,-61,254,-55,273,-60,281,-67 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml10" style="Z-INDEX: 3453; LEFT: 831px; WIDTH: 100px; TOP: 591px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml11" style="Z-INDEX: 3455; LEFT: 828px; WIDTH: 100px; TOP: 594px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,11,-7,25,-4,38,2,67,9,104,12,131,20,143,20,165,25,173,25 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml12" style="Z-INDEX: 3469; LEFT: 729px; WIDTH: 100px; TOP: 318px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,14,-7,23,-19,45,-35,62,-44,80,-73,90,-95,107,-105,121,-110,137,-109,169,-98,211,-98,226,-98,248,-99,259,-106,269,-115 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml13" style="Z-INDEX: 3486; LEFT: 722px; WIDTH: 100px; TOP: 433px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,13,-22,36,-38,64,-47,103,-56,144,-50,173,-33,198,-21,220,-19,239,-11,271,-2,282,4 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+				<v:shape id="vml14" style="Z-INDEX: 3499; LEFT: 775px; WIDTH: 100px; TOP: 526px; HEIGHT: 100px"
+					coordsize="100,100" filled="f" strokecolor="silver" strokeweight="1.5pt" path=" m0,0 l0,0,19,-1,52,-12,78,-34,110,-52,126,-75,141,-91,147,-110 e">
+					<v:stroke opacity="1" dashstyle="shortDashDot"></v:stroke>
+				</v:shape>
+			</v:group></DIV>
+		<div id="oBodySXX" style="DISPLAY: none; LEFT: -200px; COLOR: black; POSITION: absolute; TOP: -50px"
+			align="center"><v:group id="groupsxx" style="WIDTH: 800px; HEIGHT: 600px" coordsize="600,400"><v:shape id="vml1" style="Z-INDEX: 3022; LEFT: 536px; WIDTH: 100px; TOP: 79px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt" path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml4" style="Z-INDEX: 3356; LEFT: 927px; WIDTH: 100px; TOP: 375px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml6" style="Z-INDEX: 3466; LEFT: 674px; WIDTH: 100px; TOP: 518px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml8" style="Z-INDEX: 3493; LEFT: 871px; WIDTH: 100px; TOP: 251px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#e6f2fa" strokecolor="#f982e8" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml10" style="Z-INDEX: 3571; LEFT: 489px; WIDTH: 100px; TOP: 606px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#9ff7b4" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml11" style="Z-INDEX: 3579; LEFT: 689px; WIDTH: 100px; TOP: 135px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#9ff7b4" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shadow offset="2.25pt,2.25pt" opacity="52428f" color="black" on="t"></v:shadow>
+				<v:shadow offset="2.25pt,2.25pt" opacity="52428f" color="black" on="t"></v:shadow>
+				<v:shadow offset="2.25pt,2.25pt" opacity="52428f" color="black" on="t"></v:shadow>
+				<v:shape id="vml13" style="Z-INDEX: 3705; LEFT: 628px; WIDTH: 100px; TOP: 478px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#decf90" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml15" style="Z-INDEX: 3830; LEFT: 479px; WIDTH: 100px; TOP: 472px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fefba9" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml16" style="Z-INDEX: 3832; LEFT: 479px; WIDTH: 100px; TOP: 472px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#e6b3f9" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 e"></v:shape>
+				<v:shape id="vml18" style="Z-INDEX: 3917; LEFT: 467px; WIDTH: 100px; TOP: 348px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#e6b3f9" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 e"></v:shape>
+				<v:shape id="vml19" style="Z-INDEX: 2977; LEFT: 684px; WIDTH: 100px; TOP: 326px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#dbeccb" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-3,10,-4,17,-14,24,-14,25,-16,25,-17,21,-23,26,-24,27,-37,24,-39,19,-49,15,-54,11,-57,6,-58,2,-60,-1,-68,-5,-68,-8,-69,-10,-66,-22 -60,-22,-57,-22,-54,-24,-46,-24,-42,-26,-34,-29,-32,-32,-26,-27,-23,-26,-24,-20,-19,-17,-16,-10,-12,-2,0,-1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shadow offset="2.25pt,2.25pt" opacity="52428f" color="black" on="t"></v:shadow>
+				<v:shape id="vml21" style="Z-INDEX: 2993; LEFT: 377px; WIDTH: 100px; TOP: 360px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#f9e0b7" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-1,-2,9,-13,8,-17,11,-21,16,-26,22,-29,29,-29,37,-34,40,-39,47,-43,59,-37,69,-28,84,-25,85,-18,89,-14,87,-9,89,-2,94,7,89,12 85,15,83,17,75,19,71,19,66,17,55,25,52,22,47,17,37,18,32,9,24,8,11,14,9,8 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml22" style="Z-INDEX: 4075; LEFT: 434px; WIDTH: 100px; TOP: 397px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#e6f2fa" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 e"></v:shape>
+				<v:shape id="vml23" style="Z-INDEX: 4080; LEFT: 534px; WIDTH: 100px; TOP: 398px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#e6f2fa" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 e"></v:shape>
+				<v:shape id="vml24" style="Z-INDEX: 2999; LEFT: 647px; WIDTH: 100px; TOP: 350px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#b9e8f5" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-11,2,-13,9,-26,11,-27,14,-27,39,-34,42,-36,53,-37,76,-43,83,-44,78,-51,74,-49,66,-57,58,-59,55,-70,52,-71,50,-68,42,-81,36,-90,37 -91,41,-88,49,-97,46,-112,47,-113,47,-111,65,-117,71,-123,82,-127,86,-120,94,-120,99,-134,117,-144,118,-149,121,-150,117,-159,117,-168,122,-176,110,-177,100,-183,99 -190,101,-194,96,-195,95,-190,87,-192,83,-193,82,-168,42,-168,36,-171,32,-172,23,-181,24,-176,17,-180,9,-182,1,-180,-3,-184,-7,-185,-15,-201,-18,-211,-28,-223,-33 -213,-43,-205,-46,-206,-57,-203,-58,-204,-63,-208,-67,-207,-71,-199,-80,-197,-87,-200,-96,-200,-101,-191,-109,-189,-116,-185,-123,-184,-126,-185,-130,-185,-132,-177,-126,-173,-126,-165,-126 -162,-124,-158,-121,-150,-129,-149,-136,-140,-156,-132,-151,-123,-153,-117,-146,-115,-143,-92,-150,-84,-141,-78,-134,-78,-129,-67,-127,-52,-116,-56,-109,-57,-103,-51,-100,-59,-92,-60,-86 -58,-82,-61,-74,-58,-70,-56,-62,-46,-58,-36,-57,-37,-61,-34,-64,-30,-58,-28,-46,-32,-33,-31,-28,-22,-24,-17,-12,-10,-8,-2,-5,0,-1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 2978; LEFT: 620px; WIDTH: 100px; TOP: 303px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#dec5d9" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,5,-3,8,-2,13,-4,12,-14,11,-15,20,-19,24,-19,26,-23,29,-26,29,-30,29,-33,27,-38,29,-42,26,-46,25,-50,22,-55,19,-57,13,-57,9,-58 2,-61,-6,-61,-8,-61,-14,-65,-19,-68,-26,-64,-28,-63,-29,-56,-23,-52,-31,-46,-32,-40,-30,-36,-33,-27,-29,-20,-28,-15,-17,-11,-9,-9,-8,-15,-5,-14,-1,-6 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml26" style="Z-INDEX: 2990; LEFT: 387px; WIDTH: 100px; TOP: 341px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#d9c7df" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,6,-7,13,-10,23,-12,29,-15,29,-18,37,-24,46,-32,55,-36,55,-47,56,-54,54,-56,52,-57,53,-62,64,-77,61,-87,61,-92,56,-97,52,-101,48,-103 43,-102,41,-101,37,-100,34,-99,31,-100,25,-106,19,-103,16,-96,9,-90,5,-95,2,-97,-1,-97,-7,-98,-11,-100,-14,-100,-19,-106,-24,-106,-26,-104,-28,-103,-27,-96 -22,-89,-11,-78,-4,-75,-9,-60,-11,-56,-11,-53,-11,-44,-16,-42,-17,-40,-12,-34,-12,-30,-14,-27,-17,-28,-18,-29,-16,-19,-8,-14,-3,-1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml27" style="Z-INDEX: 4343; LEFT: 380px; WIDTH: 100px; TOP: 329px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#f1a1e9" strokecolor="#242036" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml28" style="Z-INDEX: 2991; LEFT: 370px; WIDTH: 100px; TOP: 314px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#ddebc6" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,3,1,6,-6,2,-11,1,-14,6,-17,6,-27,13,-47,8,-50,-1,-59,-8,-67,-10,-75,-9,-77,-5,-79,-10,-84,-14,-86,-18,-86,-25,-83,-31,-77,-32,-70 -32,-51,-33,-44,-37,-39,-43,-36,-48,-35,-47,-23,-45,-16,-38,-12,-39,-5,-40,2,-42,4,-50,6,-53,11,-55,18,-49,21,-47,31,-51,38,-54,43,-57,46,-47,48 -46,50,-43,51,-39,53,-36,54,-31,54,-27,53,-23,54,-20,57,-13,61,-10,61,-5,61,-5,56,-3,53,-3,50,2,48,3,44,4,41,7,44,16,31,17,29 14,26,11,16,8,13,2,9,1,2 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml29" style="Z-INDEX: 2981; LEFT: 323px; WIDTH: 100px; TOP: 346px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fffcbd" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-8,13,-13,12,-18,16,-22,13,-25,8,-27,5,-34,1,-30,-2,-29,-7,-29,-13,-29,-17,-33,-22,-33,-26,-38,-29,-43,-32,-39,-38,-39,-42,-45,-46,-48,-50 -53,-58,-56,-60,-60,-64,-58,-66,-55,-66,-50,-72,-50,-76,-49,-79,-53,-83,-52,-90,-53,-93,-55,-96,-49,-113,-39,-115,-31,-116,-26,-116,-24,-114,-20,-112,-15,-109,-9,-109 -3,-108,-4,-93,-8,-87,-6,-78,-4,-70,-2,-68,1,-48,9,-44,6,-29,-2,-26,-8,-14,-3,-11,-2,-7,1,-1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml30" style="Z-INDEX: 2982; LEFT: 308px; WIDTH: 100px; TOP: 237px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fcd2de" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,3,-4,6,-11,9,-30,6,-35,2,-38,-4,-40,0,-56,1,-58,6,-61,10,-64,13,-68,16,-70,16,-74,3,-77,1,-74,-7,-74,-13,-74,-18,-72,-20,-70 -21,-60,-21,-57,-26,-58,-32,-60,-36,-53,-40,-49,-38,-45,-48,-41,-51,-46,-53,-51,-56,-51,-63,-49,-69,-44,-66,-36,-68,-31,-77,-23,-78,-22,-80,-20,-78,-17,-69,-13 -63,-14,-54,-20,-50,-14,-39,-14,-34,-13,-36,-9,-24,-6,-18,-9,-11,-8,-7,-4 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml31" style="Z-INDEX: 2983; LEFT: 323px; WIDTH: 100px; TOP: 279px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#f9e0b7" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,12,-5,14,-8,16,-40,21,-46,31,-51,38,-49,42,-45,52,-39,55,-42,56,-47,56,-51,53,-54,52,-59,53,-63,56,-64,62,-64,64,-70,62,-75,63,-81 69,-84,70,-84,79,-76,84,-76,86,-80,86,-85,88,-90,85,-93,79,-96,80,-99,80,-104,79,-109,75,-112,71,-113,63,-110,59,-106,54,-102,55,-100,56,-92,55,-87 48,-88,38,-90,36,-90,35,-91,34,-99,34,-105,29,-108,25,-108,20,-107,19,-90,18,-87,11,-93,10,-97,9,-101,9,-105,4,-107,0,-109,-11,-101,-14,-98,-17,-84 -18,-81,-5,-72,-7,-66,-7,-54,-13,-43,-2,-39,-3,-28,-8,-20,-3,-4,-1,1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml32" style="Z-INDEX: 2984; LEFT: 376px; WIDTH: 100px; TOP: 241px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fefdbe" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,7,3,15,3,21,9,26,7,29,3,29,-1,33,-3,35,-6,45,1,52,-2,52,-5,56,-13,51,-15,55,-19,58,-21,63,-22,65,-26,67,-31,66,-35 61,-40,55,-42,49,-41,47,-35,41,-39,36,-41,34,-45,32,-38,27,-38,18,-46,12,-44,9,-38,13,-31,11,-27,2,-26,0,-21,1,-15,5,-6,0,-1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml33" style="Z-INDEX: 2986; LEFT: 443px; WIDTH: 100px; TOP: 209px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fcd1e5" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,8,0,4,-6,9,-18,6,-23,1,-27,-8,-31,-8,-35,-9,-41,-5,-47,-4,-52,-5,-56,-6,-59,-12,-59,-16,-60,-20,-61,-16,-66,-22,-63,-27,-64,-31,-67 -33,-62,-39,-62,-43,-63,-47,-65,-51,-61,-52,-57,-51,-45,-44,-42,-39,-37,-39,-27,-31,-20,-33,-15,-32,-11,-28,-8,-19,-3,-17,-7,-14,-10,-4,-9,1,-1 e">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml34" style="Z-INDEX: 4724; LEFT: 452px; WIDTH: 100px; TOP: 210px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#76d16d" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-7,0 e"></v:shape>
+				<v:shape id="vml35" style="Z-INDEX: 2985; LEFT: 452px; WIDTH: 100px; TOP: 210px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#dbecca" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-7,1,-12,9,-18,10,-24,16,-19,18,-23,27,-23,30,-15,28,-5,38,4,32,4,29,11,15,11,8,18,14,31,14,38,20,45,9,42,2,40,-3 39,-10,34,-18,31,-24,31,-34,32,-37,30,-42,29,-47,13,-50,8,-53,2,-53,0,-48,-9,-48,-16,-48,-14,-46,-16,-43,-17,-41,-16,-32,-3,-24,1,-20,-4,-8 0,-1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml36" style="Z-INDEX: 2980; LEFT: 498px; WIDTH: 100px; TOP: 219px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fffeb9" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,1,-5,10,-25,19,-19,26,-21,34,-13,53,-23,56,-27,56,-29,59,-37,61,-40,66,-40,68,-54,69,-57,84,-67,93,-84,116,-113,144,-140,140,-145,132,-151 126,-154,117,-160,111,-163,107,-166,89,-147,78,-136,62,-129,54,-110,36,-71,31,-53,24,-48,21,-46,17,-47,12,-49,8,-52,4,-55,-1,-55,-5,-55,-11,-52,-14,-48 -15,-33,-6,-19 e">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml0" style="Z-INDEX: 2992; LEFT: 417px; WIDTH: 100px; TOP: 386px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd2e5" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-2,1,-4,1,-12,13,-26,21,-30,31,-36,36,-42,39,-49,39,-50,41,-52,36,-55,34,-58,34,-60,34,-65,37,-68,37,-69,34,-67,29,-67,24,-67,18 -70,15,-75,17,-78,16,-81,10,-85,8,-87,3,-89,-3,-89,-7,-89,-10,-89,-14,-86,-17,-85,-18,-73,-19,-59,-10,-52,-11,-51,-15,-49,-18,-49,-21,-45,-23,-42,-30 -39,-25,-30,-18,-29,-12,-15,-17,-8,-16,-3,-7,8,-9,10,-5,3,-3 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml1" style="Z-INDEX: 3052; LEFT: 381px; WIDTH: 100px; TOP: 425px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="white" strokecolor="black" strokeweight=".75pt"
+					path=" m0,0 l0,0 xe"></v:shape>
+				<v:shape id="vml2" style="Z-INDEX: 2994; LEFT: 381px; WIDTH: 100px; TOP: 424px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#d9c7df" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-2,6,2,10,6,10,4,18,4,21,6,26,12,27,9,30,13,36,19,38,22,43,25,45,32,45,35,50,37,56,35,58,47,68,49,64,53,64 53,74,59,78,66,79,71,79,76,79,81,81,86,79,86,76,86,73,86,68,86,63,89,60,89,59,91,57,95,55,97,52,97,48,91,38,89,28,86,26 78,28,73,22,76,14,74,10,98,-32,96,-39,96,-41,94,-49,86,-49,86,-52,78,-46,68,-45,62,-46,51,-39,47,-42,42,-41,35,-36,33,-36,25,-25,11,-17 8,-7 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml3" style="Z-INDEX: 2996; LEFT: 681px; WIDTH: 100px; TOP: 345px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fffcbd" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,-12,7,-13,3,-20,8,-32,5,-44,7,-47,14,-59,16,-60,19,-60,44,-67,47,-69,56,-70,81,-75,87,-73,103,-68,116,-58,127,-54,133,-48,135,-45,138 -39,137,-34,133,-30,128,-26,133,-19,128,-17,123,-15,116,-16,109,-16,99,-10,93,-5,91,1,92,0,86,-2,79,-6,76,-1,66,3,59,3,53,-3,48,-4,39 1,36,5,32,8,24,6,14,9,8,3,3,2,1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml4" style="Z-INDEX: 2997; LEFT: 642px; WIDTH: 100px; TOP: 483px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fae0b6" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,2,5,8,6,6,9,5,20,10,20,8,24,7,31,10,39,9,47,1,51,-7,53,-13,53,-17,52,-24,41,-30,41,-34,38,-41,35,-44,30,-58,20 -62,9,-64,7,-71,12,-84,8,-86,14,-83,19,-83,25,-89,35,-98,40,-104,39,-109,36,-115,35,-118,32,-119,30,-123,34,-133,45,-138,56,-145,63,-153,66,-157,63 -161,61,-163,62,-162,68,-166,76,-171,81,-179,78,-181,77,-191,81,-198,86,-204,87,-209,84,-212,82,-212,74,-213,73,-211,67,-204,64,-195,51,-192,48,-192,43,-192,38 -189,36,-185,31,-181,28,-181,21,-174,19,-176,2,-169,-4,-164,-5,-164,-12,-154,-17,-145,-17,-144,-13,-138,-16,-130,-16,-116,-33,-114,-39,-122,-48,-117,-52,-117,-54,-113,-62 -106,-68,-108,-87,-92,-88,-85,-85,-84,-89,-86,-93,-85,-97,-76,-97,-65,-92,-67,-84,-54,-79,-44,-68,-45,-60,-38,-53,-34,-45,-35,-34,-31,-25,-24,-17,-15,-7,-7,-1 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shape id="vml5" style="Z-INDEX: 2998; LEFT: 548px; WIDTH: 100px; TOP: 523px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#dbecca" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,1,11,-7,17,-10,18,-11,21,-9,33,-3,43,-8,50,-8,55,0,58,4,55,9,51,15,53,14,62,11,65,6,71,1,78,0,83,1,93,-12,98 -19,105,-23,109,-25,114,-26,117,-33,117,-37,115,-40,115,-43,118,-45,120,-46,130,-58,142,-59,137,-62,134,-66,136,-69,134,-72,136,-70,141,-74,145,-80,142,-87,146 -93,139,-85,128,-100,103,-100,99,-106,99,-106,92,-108,86,-110,81,-110,75,-107,67,-109,65,-111,60,-111,49,-103,47,-101,44,-96,39,-85,36,-76,40,-66,27,-67,21 -58,25,-46,20,-38,5,-23,-11,-18,-4,-11,-5 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shadow offset="2.25pt,2.25pt" opacity="52428f" color="black" on="t"></v:shadow>
+				<v:shadow offset="2.25pt,2.25pt" opacity="52428f" color="black" on="t"></v:shadow>
+				<v:shape id="vml6" style="Z-INDEX: 2999; LEFT: 645px; WIDTH: 100px; TOP: 533px; HEIGHT: 100px"
+					coordsize="100,100" filled="t" fillcolor="#fbd2e4" strokecolor="white" strokeweight=".75pt"
+					path=" m0,0 l0,0,9,0,5,7,2,14,2,19,8,31,7,32,12,31,16,33,16,39,17,50,16,53,14,56,14,62,9,71,10,75,4,80,-3,80,-6,87,-11,88 -14,101,-5,105,-8,112,-10,120,-12,128,-35,139,-46,135,-51,128,-57,122,-55,106,-63,97,-65,89,-66,90,-71,92,-81,89,-86,89,-94,82,-96,78,-96,73,-96,69 -84,54,-83,44,-88,42,-97,49,-104,46,-105,41,-101,34,-106,25,-108,10,-97,2,-97,-7,-101,-10,-90,-15,-86,-25,-85,-31,-88,-36,-86,-42,-72,-37,-67,-43,-60,-30 -45,-20,-43,-15,-33,-9,-25,-8,-18,4,-8,4 xe">
+					<v:shadow on="t" color="#d1dcee" opacity="52428f" offset="2.25pt,2.25pt"></v:shadow>
+				</v:shape>
+				<v:shadow offset="2.25pt,2.25pt" opacity="52428f" color="black" on="t"></v:shadow>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 588px; WIDTH: 60px; TOP: 550px; HEIGHT: 30px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div17" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">王<BR>
+						坛<BR>
+						镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 480px; WIDTH: 60px; TOP: 560px; HEIGHT: 30px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div18" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">稽<BR>
+						东<BR>
+						镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 530px; WIDTH: 60px; TOP: 460px; HEIGHT: 20px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div19" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">平水镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 430px; WIDTH: 60px; TOP: 410px; HEIGHT: 30px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div20" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">兰<BR>
+						亭<BR>
+						镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 640px; WIDTH: 60px; TOP: 390px; HEIGHT: 30px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div21" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">富<BR>
+						盛<BR>
+						镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 525px; WIDTH: 60px; TOP: 310px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div22" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">越城区</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 630px; WIDTH: 60px; TOP: 317px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div23" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">陶堪镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 600px; WIDTH: 60px; TOP: 260px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div24" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">孙瑞镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 400px; WIDTH: 60px; TOP: 350px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div25" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">福全镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 355px; WIDTH: 60px; TOP: 385px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div26" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">漓渚镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 290px; WIDTH: 60px; TOP: 260px; HEIGHT: 30px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div27" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">夏<BR>
+						履<BR>
+						镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 350px; WIDTH: 60px; TOP: 270px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div28" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">湖<BR>
+						塘<BR>
+						街<BR>
+						道</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 380px; WIDTH: 60px; TOP: 290px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div29" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">柯岩街道</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 250px; WIDTH: 60px; TOP: 200px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div30" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">杨讯桥镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 330px; WIDTH: 60px; TOP: 200px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div31" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">钱清镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 380px; WIDTH: 60px; TOP: 220px; HEIGHT: 16px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div32" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">华舍街道</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 420px; WIDTH: 60px; TOP: 250px; HEIGHT: 20px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div33" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">县政府</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX: 3301; LEFT: 460px; WIDTH: 60px; TOP: 170px; HEIGHT: 30px"
+					inset="1px,1px,1px,1px" coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div34" style="FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; TEXT-ALIGN: left">齐<BR>
+						贤<BR>
+						镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX:3301;LEFT:400px;WIDTH:60px;TOP:180px;HEIGHT:20px" inset="1px,1px,1px,1px"
+					coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div35" style="FONT-SIZE:10pt;CURSOR:hand;COLOR:black;TEXT-ALIGN:left">安昌镇</DIV>
+				</v:shape>
+				<v:shape id="vml25" style="Z-INDEX:3301;LEFT:540px;WIDTH:60px;TOP:150px;HEIGHT:20px" inset="1px,1px,1px,1px"
+					coordsize="1000,680" filled="f" strokecolor="white">
+					<DIV id="Div36" style="FONT-SIZE:10pt;CURSOR:hand;COLOR:black;TEXT-ALIGN:left">马鞍镇</DIV>
+				</v:shape>
+			</v:group></div>
+	</body>
+</html>

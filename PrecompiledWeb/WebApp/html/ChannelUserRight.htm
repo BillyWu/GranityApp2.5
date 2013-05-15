@@ -1,0 +1,728 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>通道闸用户权限</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usMenu.js" type="text/javascript" charset="gb2312"></script>
+
+    <script language="javascript" src="../hmjs/sysjs/usMenu.js" type="text/javascript"
+        charset="gb2312"></script>
+
+    <script type="text/javascript" charset="gb2312">
+	    var loadedCount=0;
+	    function initWin()
+	    {
+	
+            var ob=$band("设备树");
+            ob.Asyn=true;
+            ob.XQuery();
+            ob.TreeChkBoxs=true;
+            ob.AfterXQuery = function()
+            {
+                loadedCount++;
+                //ue_expand('设备树',true);
+                ue_treeline("设备树",true);
+                if(loadedCount>2)
+                    $loading("none");
+            }
+         
+            //节点复选框事件
+            ob.Tree.WebTree.add_nodeCheckChange(hldTrnChk);
+        
+            var ob1=$band("部门信息");
+            ob1.Asyn=true;
+            ob1.XQuery();
+            ob1.AfterXQuery = function()
+            {
+                loadedCount++;
+                //ue_expand('部门信息',true);
+                ue_treeline("部门信息",true);
+                if(loadedCount>2)
+                    $loading("none");
+            }
+            //节点复选框事件
+            ob1.Tree.WebTree.add_nodeCheckChange(hldTrnChk);
+            //道闸人员权限
+            var ob1=$band("道闸人员权限");
+            ob1.Asyn=true;
+            ob1.XQuery();
+            ob1.AfterXQuery = function()
+            {
+                loadedCount++;
+                var ob1=$band("道闸人员权限");
+                ob1.Employ={};
+                var cols = ["姓名","用户编号","编号","卡型名称"];
+                var flds = "部门ID,姓名,用户编号,编号,卡型名称";
+                var root=null, len=0;
+                if(ob1 && ob1.XmlLandData.XMLDocument && ob1.XmlLandData.XMLDocument.documentElement)
+                    root=ob1.XmlLandData.XMLDocument.documentElement;
+                if(root)
+                    len = root.childNodes.length;
+                for(var i=0; i<len; i++)
+                {
+                    var cells= root.childNodes[i].childNodes;
+                    var val = {};
+                    for(var c=0,l=cells.length; c<l; c++)
+                    {
+                        var cell = cells[c];
+//                        if(flds.indexOf(cell.tagName)<0)
+//                            continue;
+                        val[cell.tagName]=cell.text;
+                    }
+                    val["行号"]=i;
+                    var deptid = val["部门ID"].toLowerCase();
+                    if(!ob1.Employ[deptid])
+                        ob1.Employ[deptid] = [];
+                    var grp = ob1.Employ[deptid];
+                    grp.push(val);
+                    if(val["权限"]) continue;
+                    if(!ob1.Employ[deptid+"-new"])
+                        ob1.Employ[deptid+"-new"] = [];
+                    var grp = ob1.Employ[deptid+"-new"];
+                    grp.push(val);
+                }
+                if(loadedCount>2)   $loading("none");
+                var trn = $band("部门信息").Tree.WebTree.SelectedNode;
+                if(!trn || !ob1.Employ[trn.ID])
+                    return;
+                var grp = ob1.Employ[trn.ID];
+                var userlist = $("ddluser");
+                for(var i=0; i<grp.length; i++)
+                {
+                    var val = grp[i];
+                    var code = val["编号"];
+                    var str =  (val["姓名"]+"("+val["用户编号"]+")"+"　　　　　　　　　　　　").substring(0,12);
+                    str += (val["编号"]+"　　　　　　　　").substring(0,8);
+                    str += val["卡型名称"];
+                    var item =new Option(str, code);
+                    item.setAttribute("文本", val["姓名"]+"("+val["用户编号"]+")");
+                    userlist.options.add( item );
+                }
+            }
+        }
+        //递归子级选择
+        function ckchild(trn, chk)
+        {
+            var nodes = trn.Nodes();
+            for (var i = 0; i < nodes.length; i++)
+            {
+                if(chk === !!nodes[i].get_checked())
+                    continue;
+                nodes[i].set_checked(chk);
+                ckchild(nodes[i], chk);
+            }
+            if(nodes.length<1)
+            {
+                var band = trn.ParentTreeView.Tree.Band;
+                var index = band.Tree.getRowIndexByTrvNode(trn);
+                if("门"!= band.getFldStrValue("类别", index))
+                    return;
+                var dcode = band.getFldStrValue("编号", index);
+                chklist(chk, dcode, trn.Text, $("doorchklist"), 70, 4);
+                if(chk)     $(dcode).setAttribute("trnid",trn.ID);
+            }
+        }
+        function chklist(chk, dcode, text, ct, width, rowsum)
+        {
+            var el=$(dcode);
+            if(chk && !el)
+            {
+                var html = ct.innerHTML;
+                html += "<input type=checkbox checked=true id="+dcode+" ><label for="+dcode+" style='width:"+width+";' >"+text+"</label>";
+                if(0===(ct.children.length+1)/(rowsum*2))
+                    html += "<br />";
+                ct.innerHTML = html;
+            }else if(!chk && el)
+            {
+                if(el.nextSibling)
+                    ct.removeChild(el.nextSibling);
+                ct.removeChild(el);
+            }
+        }
+	    ////节点复选框事件
+	    function hldTrnChk(trv, nodefun)
+	    {
+	
+            var band = trv.Tree.Band;
+            var trn = nodefun.get_node();
+            var index = trv.Tree.getRowIndexByTrvNode(trn);
+            var chk = trn.get_checked();
+            trv.beginUpdate();
+            ckchild(trn, !!chk);
+            var trnp = trn.ParentNode;
+            //递归父级选中或取消
+            while(trnp)
+            {
+                var chkp = trnp.get_checked();
+                if(chkp == chk)
+                    break;
+                if(chk)
+                {
+                    var trns = trnp.Nodes();
+                    for(var i=0; i<trns.length; i++)
+                    {
+                        if(chk == trns[i].get_checked())
+                            continue;
+                        chk = false;
+                        break;
+                    }
+                }
+                trnp.set_checked(chk);
+                trnp = trnp.ParentNode;
+            }
+            trv.endUpdate();
+        }
+        //树节点选择改变时触发
+        function Tree_onNodeSelectionChange(trn)
+        {
+            TclickDot(trn,false);
+            var band = trn.ParentTreeView.Tree.Band;
+            if("设备树"!=band.ItemName)
+            {
+                var userlist = $("ddluser");
+                userlist.options.length=0;
+                var banduser = $band("道闸人员权限");
+                if(!banduser.Employ || !banduser.Employ[trn.ID])
+                    return;
+                var grp = banduser.Employ[trn.ID];
+                for(var i=0; i<grp.length; i++)
+                {
+                    var val = grp[i];
+                    var code = val["编号"];
+                    var str =  (val["姓名"]+"("+val["用户编号"]+")"+"　　　　　　　　　　　　").substring(0,12);
+                    str += (val["编号"]+"　　　　　　　　").substring(0,8);
+                    str += val["卡型名称"];
+                    var item =new Option(str, code);
+                    item.setAttribute("文本", val["姓名"]+"("+val["用户编号"]+")");
+                    userlist.options.add( item );
+                    
+                     var isAll= document.getElementById("IsAll");
+                      if(isAll.checked){
+                     chklist(true, val["编号"], val["姓名"]+"("+val["用户编号"]+")", $("userchklist"), 100, 3);
+                     }
+                }
+                return;
+            }
+        }
+        //复选框去掉
+        function chkfun(ct)
+        {
+            if(!event.srcElement || "INPUT"!=event.srcElement.tagName)
+                return;
+            if("doorchklist"==ct.id)
+            {
+                var trnid = event.srcElement.getAttribute("trnid");
+                var trn = $band("设备树").Tree.getTrvNodeByID(trnid);
+                trn.set_checked(false);
+            }
+            chklist(false, event.srcElement.id, "", ct);
+        }
+        //选择用户
+        function usersel(elsel)
+        {
+            var el = event.srcElement;
+            if(el.selectedIndex<0) return;
+            var item = el.options[el.selectedIndex];
+            var text = item.getAttribute("文本");
+            chklist(true, item.value, text, $("userchklist"), 100, 3);
+        }
+        //选择授权门禁
+        function doorsel()
+        {
+            var el = event.srcElement;
+            if(el.selectedIndex<0) return;
+            var item = el.options[el.selectedIndex];
+            var cardnum = item.value;
+            var index = $band("道闸人员权限").getRowIndex("编号", cardnum);
+            if(index<0)  return;
+            
+            var right = $band("道闸人员权限").getFldStrValue("权限", index);
+            var band =$band("设备树");
+            var trv = band.Tree.WebTree;
+            var nodes = trv.Nodes();
+            if(!nodes || nodes.length<1)
+                return;
+            var node = nodes[0];
+	        var startNode = node;
+	        var isdown = true;
+
+            $("doorchklist").innerHTML="";
+	        trv.beginUpdate();
+	        while(node)
+	        {
+                var next = isdown? node : GetNextSibling(node);
+	            if(!isdown &&(!next || next==node))
+	                node = node.ParentNode;
+	            else
+	            {
+	                isdown=true;
+	                var nodes=next.Nodes();
+	                if(nodes && nodes.length>0)
+	                    node = nodes[0];
+	                else{
+	                    var index = band.Tree.getRowIndexByTrvNode(next);
+	                    var dcode = band.getFldStrValue("编号", index);
+	                    var chk = right.indexOf(dcode)>-1;
+	                    var val = next.get_checked();
+	                    if(!!chk !== !!val)
+	                        next.set_checked(chk);
+	                    if(chk)
+	                    {
+	                        chklist(chk, dcode, next.Text, $("doorchklist"), 70, 4);
+	                        $(dcode).setAttribute("trnid",next.ID);
+	                    }
+	                    node = GetNextSibling(next);
+	                }
+	                if(!node || next==node)
+	                {
+	                    isdown = false;
+	                    node = next.ParentNode;
+	                }
+	            }
+	            if(!node||startNode==node)
+	                break;
+	        }
+            trv.endUpdate();
+        }
+	    //执行授权,给左侧选中的门加入右侧选中的道闸人员权限门编号字符串
+	    function funright(savetype)
+	    {
+	        var doors = "";
+	        var ctdoor = $("doorchklist");
+	        for(var i=0,len=ctdoor.childNodes.length; i<len; i++)
+	        {
+	            var child = ctdoor.childNodes[i];
+	            if("INPUT"!=child.tagName || !child.checked)
+	                continue;
+	            doors += ","+child.id;
+	        }
+	        if(!doors)  return;
+	        doors = doors+",";
+	        var userlist = "";
+	        var ctdoor = $("userchklist");
+	        for(var i=0,len=ctdoor.childNodes.length; i<len; i++)
+	        {
+	            var child = ctdoor.childNodes[i];
+	            if("INPUT"!=child.tagName || !child.checked)
+	                continue;
+	            userlist += ","+child.id;
+	        }
+	        if(!userlist)  return;
+	        userlist = userlist+",";
+	        var band = $band("道闸人员权限");
+	        var drs = [];
+	        if("道闸替换授权"!=savetype)
+	            drs = doors.split(",");
+	        for(var i=0,len=band.RecordCount();  i<len; i++)
+	        {
+	            var cardnum = band.getFldStrValue("编号", i);
+	            cardnum = ","+cardnum+",";
+	            if(userlist.indexOf(cardnum)<0)
+	                continue;
+	            var right = band.getFldStrValue("权限", i);
+	            if(","!=right.substr(0,1))
+	                right = ","+right;
+	            if("道闸替换授权"==savetype)
+	            {
+	                band.setFldStrValue(i, "权限", doors);
+	                continue;
+	            }
+	            if("道闸添加授权"==savetype)
+	            {
+	                for(var d=0; d<drs.length; d++)
+	                    if(drs[d] && right.indexOf(drs[d])<0)
+	                        right+= ","+drs[d];
+	            }else if("道闸取消授权"==savetype)
+	            {
+	                for(var d=0; d<drs.length; d++)
+	                    if(drs[d] && right.indexOf(drs[d])>-1)
+	                        right = right.replace(","+drs[d],"");
+	            }
+	            band.setFldStrValue(i, "权限", right);
+	        }
+            //ue_save("成功执行授权操作！");
+            ToolUtil.setParamValue($XD(), "用户编号", userlist, "", "P", null, "T");
+            ToolUtil.setParamValue($XD(), "权限", doors, "", "P", null, "T");
+            ue_cmd(savetype);
+	    }
+        //同步设备黑白名单
+        function syndeviceUser()
+        {
+            var tag = ToolUtil.setValueTag("", "指令", "设备同步黑白名单");
+            var xmlhttp = ToolUtil.Post(tag,"hdlDownParam.ashx", callbackSyndevice);
+	        callbackSyndevice.xmlhttp = xmlhttp;
+	        $loading();
+        }
+        function callbackSyndevice()
+        {
+            if(4!=this.readyState)
+                return;
+            var txt = this.responseText;
+            var msg = ToolUtil.valueTag(txt,"提示");
+            if("true"!=ToolUtil.valueTag(txt,"成功"))
+                msg += " 同步设备名单：执行失败！";
+            else
+                msg = "成功执行设备名单同步";
+            $loading("none");
+            alert(msg);
+        }
+	    //对节点授权或撤权,更新保存权限字段
+	    function setdoors(trn, doors)
+	    {
+	        if(!trn) return;
+	        var trns = trn.Nodes();
+	        for(var i=0; i<trns.length; i++)
+	            setdoors(trns[i], doors);
+	        if( trns.length>0)
+	            return;
+            var chk = trn.get_checked();
+            var band = trn.ParentTreeView.Tree.Band;
+            var index = band.Tree.getRowIndexByTrvNode(trn);
+            if("人员"!= band.getFldStrValue("类别", index))
+                return;
+	        var right = band.getFldStrValue("权限", index);
+	        var rtdoor = right;
+	        for(var i=0; i<doors.length; i++)
+	        {
+	            if(chk && right.indexOf(doors[i])<0)
+	                right += ","+doors[i];
+	            else if(!chk && right.indexOf(doors[i])>-1)
+	                right = right.replace(doors[i], "");
+	        }
+	        if(rtdoor != right)
+	            band.setFldStrValue(index, "权限", right);
+	    }
+	    function findNode(el, band)
+	    {
+	        if(!$(el).value || !band)
+	            return;
+
+	        var txt = $(el).value;
+	        var trv = $band(band).Tree.WebTree;
+	        var node = trv.SelectedNode;
+	        var isdown = true;
+	        if(trv.SelectedNode)
+	        {
+                var nodes=trv.SelectedNode.Nodes();
+                if(nodes && nodes.length>0)
+                    node = nodes[0];
+	            else
+	                node = GetNextSibling(trv.SelectedNode);
+	        }
+	        if(!node || node == trv.SelectedNode)
+	        {
+	            //找不到后续节点则默认第一个节点或从父级开始向下查找
+	            if(!trv.SelectedNode || !trv.SelectedNode.ParentNode)
+	            {
+	                var nodes = trv.Nodes();
+	                if(!nodes || nodes.length<1)
+	                    return;
+	                node = nodes[0];
+	            }else{
+	                isdown = false;
+	                node = trv.SelectedNode.ParentNode;
+	            }
+	        }
+	        var startNode = node;
+	        while(node)
+	        {
+                var next = isdown? node : GetNextSibling(node);
+	            if(!isdown &&(!next || next==node))
+	                node = node.ParentNode;
+	            else
+	            {
+	                isdown=true;
+	                if(next && next.Text.indexOf(txt)>-1)
+	                {
+	                    next.Select();
+	                    return;
+	                }
+	                var nodes=next.Nodes();
+	                if(nodes && nodes.length>0)
+	                    node = nodes[0];
+	                else
+	                    node = GetNextSibling(next);
+	                if(!node || next==node)
+	                {
+	                    isdown = false;
+	                    node = next.ParentNode;
+	                }
+	            }
+	            if(!node||startNode==node)
+	            {
+	                isdown=true;
+	                if(!node && "部门信息"==band && getDeptByEmp(txt))
+	                    return;
+	                if(!node && confirm("已经查找到结尾，是否从开始节点继续查找？"))
+	                    node = trv.Nodes()[0];
+	                else{
+	                    if(startNode==node)
+	                        alert("已经查找完毕，没有找到节点！");
+	                    return;
+	                }
+	            }//if(!node||startNode==node)
+	        }
+	    }
+	    function getDeptByEmp(empname)
+	    {
+	        if(!empname) return;
+            var band = $band("道闸人员权限");
+            var employ = band.Employ;
+            if(!employ)  return;
+            var trv = $band("部门信息").Tree.WebTree;
+            var eluser=$("ddluser");
+            if(eluser.Employ)
+                for(var k=eluser.selectedIndex+1; k<eluser.options.length; k++)
+                {
+                    if(eluser.options[k].text.indexOf(empname)<0)
+                        continue;
+                    eluser.selectedIndex = k;
+                    eluser.options[k].selected=true;
+                    return empname;
+                }
+            if(!eluser.Employ) eluser.Employ={};
+            for(var id in employ)
+            {
+                if(eluser.Employ[id])
+                    continue;
+                eluser.Employ[id] = true;
+                var list = employ[id];
+                for(var i=0;i<list.length;i++)
+                {
+                    if(list[i]["姓名"].indexOf(empname)<0)
+                        continue;
+                    var name = list[i]["姓名"];
+                    var node = trv.FindNodeById(id);
+                    if(!node) return;
+                    trv.selectNodeById(id);
+                    for(var k=0;k<eluser.options.length;k++)
+                    {
+                        if(eluser.options[k].text.indexOf(empname)<0)
+                            continue;
+                        eluser.selectedIndex = k;
+                        eluser.options[k].selected=true;
+                        break;
+                    }
+                    return id;
+                }
+            }
+	    }
+	    function empchanged()
+	    {
+            var eluser=$("ddluser");
+            eluser.Employ=undefined;
+	    }
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');">
+    </div>
+    <fieldset style="float: left; padding: 5px; width: 30%; height: 90%;" id="Fieldset1">
+        <legend>卡用户&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="同步下载" class="txtbtnex"
+            onclick="syndeviceUser()" />
+        </legend>
+        <table align="center" cellspacing="0" bgcolor="#edebe8" bordercolorlight="white"
+            bordercolordark="#C0C0C0" style="width: 100%; height: 20px; border: 1px inset">
+            <tr>
+                <td>
+                    查找：</td>
+                <td style="width: 40%">
+                    <input id="txtfindEmp" type="text" class="xlandinput" style="width: 100%" onchange="empchanged()"/></td>
+                <td>
+                    <input type="button" value="查询" name="B4" onclick="findNode('txtfindEmp', '部门信息')"
+                        style="width: 40px" />
+                    <input type="checkbox" id="IsAll" />全选
+                </td>
+            </tr>
+        </table>
+
+        <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_部门信息Tab_trvLand ***/
+                    window.ComponentArt_Storage_etpTemplate_部门信息Tab_trvLand = null;
+                    //]]>
+        </script>
+
+        <div style="position: absolute; top: 0px; left: 0px; visibility: hidden;">
+            <img src="images/exp.gif" width="0" height="0" alt="" />
+            <img src="images/col.gif" width="0" height="0" alt="" />
+        </div>
+        <div id="etpTemplate_部门信息Tab_trvLand" class="TreeView" style="height: 38%; width: 99%;
+            overflow-y: auto;" onclick="if(window.etpTemplate_部门信息Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_部门信息Tab_trvLand);"
+            onmouseover="if(window.etpTemplate_部门信息Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_部门信息Tab_trvLand);">
+        </div>
+        <input id="etpTemplate_部门信息Tab_trvLand_Data" name="etpTemplate_部门信息Tab_trvLand_Data"
+            type="hidden" />
+        <input id="etpTemplate_部门信息Tab_trvLand_Properties" name="etpTemplate_部门信息Tab_trvLand_Properties"
+            type="hidden" />
+        <input id="etpTemplate_部门信息Tab_trvLand_SelectedNode" name="etpTemplate_部门信息Tab_trvLand_SelectedNode"
+            type="hidden" value="" />
+        <input id="etpTemplate_部门信息Tab_trvLand_ScrollData" name="etpTemplate_部门信息Tab_trvLand_ScrollData"
+            type="hidden" value="0,0" />
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    window.ComponentArt_Init_etpTemplate_部门信息Tab_trvLand = function() {
+                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_部门信息Tab_trvLand'))
+                        {setTimeout('ComponentArt_Init_etpTemplate_部门信息Tab_trvLand()', 100); return; }
+
+                    window.etpTemplate_部门信息Tab_trvLand = new ComponentArt_TreeView('etpTemplate_部门信息Tab_trvLand', ComponentArt_Storage_etpTemplate_部门信息Tab_trvLand);
+                    etpTemplate_部门信息Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$部门信息Tab$trvLand','') };
+                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_部门信息Tab_trvLand; etpTemplate_部门信息Tab_trvLand.GlobalAlias = 'trvLand'; }
+                    etpTemplate_部门信息Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:部门信息Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                    etpTemplate_部门信息Tab_trvLand.Initialize('etpTemplate_部门信息Tab_trvLand');
+
+                    window.etpTemplate_部门信息Tab_trvLand_loaded = true;
+                }
+                ComponentArt_Init_etpTemplate_部门信息Tab_trvLand();
+                var myTree = new Tree(etpTemplate_部门信息Tab_trvLand,'部门信息Tab');
+                //]]>
+        </script>
+
+        <select id="ddluser" style="height: 50%; width: 99%; overflow-y: auto; margin-top: 10;"
+            class="xlandinput" multiple="true" onclick="usersel()" ondblclick="doorsel()">
+        </select>
+        <font color="#FF0000">*</font>说明：单击添加用户；双击刷新该用户授权门禁。
+    </fieldset>
+    <fieldset style="float: left; padding: 5px; width: 40%; height: 90%;" id="Fieldset2">
+        <legend>权限分配</legend>
+        <input type="button" value="道闸替换授权" class="txtbtnex" onclick="funright('道闸替换授权')" />
+        <input type="button" value="道闸添加授权" class="txtbtnex" onclick="funright('道闸添加授权')" />
+        <input type="button" value="道闸取消授权" class="txtbtnex" onclick="funright('道闸取消授权')" />
+        <fieldset style="float: left; padding: 5px; width: 100%; height: 39%;" id="Fieldset3">
+            <legend>选择操作的用户</legend>
+            <div style="float: left; padding: 5px; width: 100%; height: 95%; overflow-y: scroll;"
+                id="userchklist" onclick="chkfun(this);">
+            </div>
+        </fieldset>
+        <fieldset style="float: left; padding: 5px; width: 100%; height: 55%;" id="Fieldset4">
+            <legend>选择操作的门</legend>
+            <div style="float: left; padding: 5px; width: 100%; height: 94%; overflow-y: scroll;"
+                id="doorchklist" onclick="chkfun(this);">
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset style="float: left; padding: 5px; width: 25%; height: 82%;" id="fdiv">
+        <legend>设备门 【<a href="#" class="linkbtn_0" onclick="ue_expand('设备树', true);">展开</a>】【<a
+            href="#" class="linkbtn_0" onclick="ue_expand('设备树',false)">收缩</a>】 </legend>
+        <table align="center" cellspacing="0" bgcolor="#edebe8" bordercolorlight="white"
+            bordercolordark="#C0C0C0" style="width: 100%; height: 20px; border: 1px inset">
+            <tr>
+                <td align="right" width="50">
+                    查找：</td>
+                <td width="140">
+                    <input id="txtfindDoor" type="text" class="xlandinput" style="width: 90%" /></td>
+                <td>
+                    <input type="button" value="查询" name="B4" onclick="findNode('txtfindDoor', '设备树')"
+                        style="width: 68px" /></td>
+            </tr>
+        </table>
+
+        <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+
+        <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_设备树Tab_trvLand ***/
+                    window.ComponentArt_Storage_etpTemplate_设备树Tab_trvLand = null;
+                    //]]>
+        </script>
+
+        <div style="position: absolute; top: 0px; left: 0px; visibility: hidden;">
+            <img src="images/exp.gif" width="0" height="0" alt="" />
+            <img src="images/col.gif" width="0" height="0" alt="" />
+        </div>
+        <div id="etpTemplate_设备树Tab_trvLand" class="TreeView" style="height: 100%; width: 100%;
+            overflow-y: auto;" onclick="if(window.etpTemplate_设备树Tab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_设备树Tab_trvLand);"
+            onmouseover="if(window.etpTemplate_设备树Tab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_设备树Tab_trvLand);">
+        </div>
+        <input id="etpTemplate_设备树Tab_trvLand_Data" name="etpTemplate_设备树Tab_trvLand_Data"
+            type="hidden" />
+        <input id="etpTemplate_设备树Tab_trvLand_Properties" name="etpTemplate_设备树Tab_trvLand_Properties"
+            type="hidden" />
+        <input id="etpTemplate_设备树Tab_trvLand_SelectedNode" name="etpTemplate_设备树Tab_trvLand_SelectedNode"
+            type="hidden" value="" />
+        <input id="etpTemplate_设备树Tab_trvLand_ScrollData" name="etpTemplate_设备树Tab_trvLand_ScrollData"
+            type="hidden" value="0,0" />
+
+        <script type="text/javascript">
+          //<![CDATA[
+                    window.ComponentArt_Init_etpTemplate_设备树Tab_trvLand = function() {
+                    if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_设备树Tab_trvLand'))
+                        {setTimeout('ComponentArt_Init_etpTemplate_设备树Tab_trvLand()', 100); return; }
+
+                    window.etpTemplate_设备树Tab_trvLand = new ComponentArt_TreeView('etpTemplate_设备树Tab_trvLand', ComponentArt_Storage_etpTemplate_设备树Tab_trvLand);
+                    etpTemplate_设备树Tab_trvLand.Postback = function() { __doPostBack('etpTemplate$设备树Tab$trvLand','') };
+                    if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_设备树Tab_trvLand; etpTemplate_设备树Tab_trvLand.GlobalAlias = 'trvLand'; }
+                    etpTemplate_设备树Tab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:设备树Tab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                    etpTemplate_设备树Tab_trvLand.Initialize('etpTemplate_设备树Tab_trvLand');
+
+                    window.etpTemplate_设备树Tab_trvLand_loaded = true;
+                }
+                ComponentArt_Init_etpTemplate_设备树Tab_trvLand();
+                var myTree = new Tree(etpTemplate_设备树Tab_trvLand,'设备树Tab');
+                //]]>
+        </script>
+
+    </fieldset>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("通道用户权限")</script>
+
+</body>
+</html>

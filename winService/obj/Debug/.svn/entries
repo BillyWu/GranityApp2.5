@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/winService/obj/Debug
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/winService/obj/Debug
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -28,14 +28,14 @@ b7a1bd86-2f50-7044-aac2-f90e8b3b5af3
 
 ResolveAssemblyReference.cache
 file
-5
+6
 
 
 
-2013-04-22T08:34:28.171875Z
-e4fe9f5206db1b8c254537cf0514cbf8
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:42:09.015625Z
+69859ff7fca5f2ae05c1ac835fba49c5
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-228680
+235700
 
 winService.csproj.GenerateResource.Cache
 file
@@ -96,14 +96,14 @@ has-props
 
 winService.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:28.265625Z
-3b80e1977b83dfc3234768f307b6c51e
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:42:09.156250Z
+27a90e18b5d49f717e1a2783e9bc7e50
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-48640
+52736
 
 Refactor
 dir
@@ -238,14 +238,14 @@ has-props
 
 winService.exe
 file
-5
+6
 
 
 
-2013-04-22T08:34:28.343750Z
-1082e3f19d5e3e4fa8938b4c3bcbc218
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:42:09.265625Z
+0478344d58fd968cc2ab25e62dbe2a5b
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 

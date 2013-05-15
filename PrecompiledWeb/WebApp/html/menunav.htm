@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+<HEAD>
+<title>欢迎</title>
+<base target="_self" />
+<script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+<link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+<link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+<link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+<link href="../hmjs/sysjs/hmstyle.css" type="text/css" rel="stylesheet" />
+<script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+<script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+<link href="../hmjs/sysjs/navstyle.css" rel="stylesheet" type="text/css" />
+<script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="../hmjs/sysjs/framefun.js" type="text/javascript" charset="gb2312"></script>
+<script>
+    function initWin()
+    {
+        if(!_initpage()) return;
+        var Item = "nav";
+        var ob = $band(Item);
+        ob.XQuery();
+        ob.gridtype = 61; ob.freecols = "名称";ob.minwidth = "70px";
+        ob.StrongGrid = true; ob.noxml=true;
+        new XGrid("dvob",ob,"in",null,1);
+    }
+    function todo(){
+        GridUtil.usOnCellRFocusHandle();
+        usGetTopFrame().IOpenItemURL("待办事宜");
+    };
+    function _initpage()
+    {
+        var win = usGetTopFrame().GetFrameByName("listbar");
+        if(!win || !win.lefttree) return;
+        var xmldata = win.lefttree.navdata;
+        var xmlgroups = xmldata.selectNodes("table[ntype='操作集组' && level='1']");
+        if(xmlgroups.length==0) return;
+        var p =xmlgroups[0].selectSingleNode("text").text;
+        var xmlgroups = xmldata.selectNodes("table[ntype='基本操作集']");
+        var s = "";
+        for(var i=0;i<xmlgroups.length;i++)
+        {
+            var titems =(!xmlgroups[i].selectSingleNode("titems"))?"":xmlgroups[i].selectSingleNode("titems").text;
+            var subtitems = (!xmlgroups[i].selectSingleNode("titems"))?"":xmlgroups[i].selectSingleNode("subtitems").text;
+            var imgs = (!xmlgroups[i].selectSingleNode("pic"))?"":xmlgroups[i].selectSingleNode("pic").text;
+            var items =(!xmlgroups[i].selectSingleNode("name"))?"":xmlgroups[i].selectSingleNode("name").text;
+            var texts =(!xmlgroups[i].selectSingleNode("text"))?"":xmlgroups[i].selectSingleNode("text").text;
+            if(titems=="") titems = texts;
+            if(imgs=="") imgs="arrow.png";
+            if(i % 2==0) var cs = "Recent";
+            else var cs = "Recent2";
+            if(xmlgroups.length==1) cs = "Recent4";
+            s = s+'<div class="'+cs+'">\
+                <h2>'+(i+1)+'、'+titems+'<br />\
+               <span> '+subtitems+'</span></h2>\
+               <img src="images/'+imgs+'"/>\
+                <p style="margin-left:80px">\
+                <font style="COLOR: #99cc00" color="#99cc00" face="Wingdings">w</font>'+texts+'<br />\
+                操作步骤：'+p+'→<a href="#"target=_self onclick="usGetTopFrame().IOpenItemURL(\''+items+'\')">'+texts+'</a><br />\
+                </p>\
+                </div>';
+        }
+        var r = false;
+        if(xmlgroups.length==1)
+        { 
+            var str = '<div class="body_resize" style="border:0">'+s+'</div>';
+            document.getElementById("dvnav").innerHTML=str;
+            return;
+        }
+        if(xmlgroups.length>1 && (xmlgroups.length % 2)!=0 && p=="办件查询")
+        {
+            s = s+'<div id="dvob" class="Recent2"></div>';
+            r=true;
+        }
+        else if(xmlgroups.length>1 && (xmlgroups.length % 2)!=0)
+        {
+            s = s+'<div class="Recent2">\
+                <h2> <br />\
+               <span> </span></h2>\
+               <img src="images/right1.png"/>\
+                <p style="margin-left:80px">\
+                </p>\
+                </div>';
+            r=false;
+        }
+        var str = '<div class="body_resize">'+s+'</div>';
+        document.getElementById("dvnav").innerHTML=str;
+        return r;
+    }
+</script>
+</HEAD>
+<body style="overflow:hidden; margin: 0px;" scroll="no">
+<div style="height: 20px; width:100%;background-image: url('images/bg-shd.png');"></div>
+<table border="0" width="100%" id="table1" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+	<tbody>
+	<tr>
+		<td align="left" style="width:25%" rowspan="3">
+		<img alt="" style="border:0;width:318;" src="../index/welcome.gif" width="318" height="72" /></td>
+		<td align="left" style="width:75%;height:30" valign="baseline" ></td>
+	</tr>
+	<tr>
+		<td align="left" valign="baseline" style="width:75%;height:15"></td>
+	</tr>
+	<tr>
+		<td align="left" valign="baseline" style="width:75%;height:10" background="../index/line.gif"></td>
+	</tr>
+</tbody>
+</table>
+<div id="dvnav" style="width:98%;height:395px;OVERFLOW-Y: auto; OVERFLOW-X: auto;margin:10px;border:0" class="tablescroll"> 
+</div>
+<script type="text/javascript" charset="gb2312">ue_initsetup("菜单导航",1)</script>
+	</body>
+</HTML>

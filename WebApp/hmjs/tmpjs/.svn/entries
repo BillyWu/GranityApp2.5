@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/WebApp/hmjs/tmpjs
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/WebApp/hmjs/tmpjs
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -604,14 +604,14 @@ has-props
 
 13908
 
-buildsys.js
+vip.js
 file
 
 
 
 
-2013-04-22T08:29:17.703125Z
-8ce521892fb28f49bc415b1d7de105c0
+2013-04-22T08:29:17.671875Z
+6df846d6b4b779d351d52d489a3e3664
 2013-04-12T05:49:58.203125Z
 1
 admin
@@ -636,41 +636,7 @@ admin
 
 
 
-4878
-
-medicine1.js
-file
-
-
-
-
-2013-04-22T08:29:17.687500Z
-c14cf08c2c7335165194046463ffcb00
-2013-04-12T05:49:58.203125Z
-1
-admin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-23150
+15559
 
 unititem.js
 file
@@ -706,14 +672,14 @@ admin
 
 14645
 
-vip.js
+medicine1.js
 file
 
 
 
 
-2013-04-22T08:29:17.671875Z
-6df846d6b4b779d351d52d489a3e3664
+2013-04-22T08:29:17.687500Z
+c14cf08c2c7335165194046463ffcb00
 2013-04-12T05:49:58.203125Z
 1
 admin
@@ -738,7 +704,41 @@ admin
 
 
 
-15559
+23150
+
+buildsys.js
+file
+
+
+
+
+2013-04-22T08:29:17.703125Z
+8ce521892fb28f49bc415b1d7de105c0
+2013-04-12T05:49:58.203125Z
+1
+admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4878
 
 tempjs.js
 file

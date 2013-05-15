@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    	<script language="javascript" type="text/javascript">
+    		window.onload=WinLoadUtil.MDTPLoad;
+    	</script>
+    </head>
+<body>
+	<table align="center" border="1" width="580" style="WORD-BREAK: break-all;BORDER-COLLAPSE: collapse" id="table1" cellspacing="1" bordercolorlight="#a2a2a3" bordercolordark="#a2a2a3">
+		<tbody>
+			<tr>
+				<td bgColor="#e8e8e8" colSpan="2" height="25" align="center">
+					<span lang="zh-cn"><font face="宋体" size="3">图片文件上传 </font></span>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" rowspan="2" width="200" bordercolor="#f0f0f0" height="24">
+					<fieldset style="border:1px solid #C0C0C0; width:180;height:70px" align="center"> 
+						<legend> 　图片： </legend> <p style="margin: 5"></p>
+						<table border="0" width="98%" id="table114" cellpadding="0" style="border-collapse: collapse" height="22">
+							<tbody>
+							<tr>
+								<td align="right" width="99%">
+								<IMG src="" id="上传图片:图片" border="2" STYLE="BORDER-LEFT-COLOR:green; BORDER-BOTTOM-COLOR:yellow; BORDER-TOP-COLOR:red; BORDER-RIGHT-COLOR:blue;width:165;height:147" class="xlandImg" alt="图片" />
+								</td>
+							</tr>
+						</tbody>
+						</table>
+					</fieldset>
+				</td>
+				<td width="380" bordercolor="#f0f0f0" height="64" valign="bottom">
+						<div id="上传图片:文件" class="xlandFile">
+							<Control class="xlandFile" catalog="FileUpLoad.ascx" itemname="上传图片" id="FileUploadCtrl" name="">选择附件：
+							<Property name="FileColumn" filenameupload="图片" filenameinput="文件" /><Property name="size" value="50" />
+							<Property name="width" value="" /><Property name="filetype" value="img" />
+							</Control>
+						</div>
+				</td>
+			</tr>
+			<tr><td>
+				<input type="button" class="gridbtn" onclick="ue_Post();" value="上传" style="width:50" />　　
+				<input type="button" class="gridbtn" onclick="document.UnitItem.CheckInParentUnit();window.close();" style="width:50" value="确定" />
+				　<div align="center"><Control class="" catalog="GridLand.ascx" itemname="上传图片" id="MasterTab" name="">MasterTab
+					<Property name="tpfile" value="" />
+						<Property name="width" value="0" /><Property name="height" value="0" /><Property name="hiddenhead" value="false" />
+						<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="true" /><Property name="enableviewstate" value="false" />
+					</Control>
+				</div>
+			</td></tr>
+	</tbody></table>
+</body>
+</html>

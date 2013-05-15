@@ -162,6 +162,16 @@ namespace Estar.WebApp
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
+            //for logging to file
+            log4net.ILog logger = log4net.LogManager.GetLogger("File");
+
+            //for emailing
+            //log4net.ILog logger = log4net.LogManager.GetLogger("EmailLog");
+
+            logger.Info("Starting page load");
+            */
+
             Login();
         }
 }

@@ -1,0 +1,1 @@
+<%@ page language="C#" autoeventwireup="true" inherits="Estar.WebApp.wfConn, App_Web_yawaynrb" %>

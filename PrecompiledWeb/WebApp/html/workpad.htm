@@ -1,0 +1,201 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title></title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../index/dbset.css" rel="stylesheet" type="text/css" />
+     <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script type="text/javascript">
+        var tband;
+        function initWin()
+        {
+            $loading();
+            tband = $band("itemtree");
+            tband.XQuery();
+            ue_treeline("itemtree",true);
+            $loading("none");
+        }			      
+        function upload()
+        {
+            var valueRtn=window.showModalDialog("UploadFile.htm",null,"dialogWidth:600px;dialogHeight:300px;center: yes;help:no; resizable:yes;status:no;");
+            if(!valueRtn){return;}
+            tband.setFldStrValue(null,"附件",base_name(valueRtn));
+            updatefields(tband);
+        }
+     
+    function base_name(pFilePath){
+        var temp_win = pFilePath.lastIndexOf("\\");
+        var temp_unix = pFilePath.lastIndexOf("/");
+        if (temp_win>0)
+        {
+            temp = temp_win;
+        }
+        else if (temp_unix>0)
+        {
+            temp = temp_unix;
+        }
+        else
+        {
+            temp = -1;    
+        }
+        file_name = pFilePath.substr(temp+1);
+        return(file_name);
+    }      
+    function updatefields(tband)
+    {
+        var colList=tband.XmlSchema.XMLDocument.selectNodes("//xs:element");
+        
+        for(var i=0;i<colList.length;i++)
+        {
+        
+            var columnName=colList[i].getAttribute("name");
+            var inputCtrlID=tband.key+":"+columnName;
+            var oinput=document.getElementById(inputCtrlID);
+            if(!oinput || !oinput.className)	continue;
+            var strvalue=tband.getFldStrValue(columnName);
+            //上传文件及图片的字段;id=bandName+":"+columnName
+            if( !oinput.dataSrc || !oinput.dataFld || ""==oinput.dataSrc || ""==oinput.dataFld)
+            {
+			    if(oinput.tagName=="DIV" || oinput.tagName=="A")
+			    {
+				    $(inputCtrlID).innerText=strvalue;
+				    $(inputCtrlID).href = "../wfimg.aspx?img="+strvalue+"&type=ImgFilePath";
+		            continue;
+				}
+	            if(oinput.className.toLowerCase()=="xlandimg" && oinput.tagName=="IMG")
+	            {
+                    if(strvalue!="")
+                    {
+                        var _src = "../wfimg.aspx?img="+strvalue+"&size="+oinput.tag;
+                        var s = (new   Date()).toString();
+                        oinput.src=_src + "?"+ s;
+                    }
+                    else 
+                    {
+                        oinput.resized=true;
+                        oinput.style.width=25;
+                        oinput.style.height=25;
+                        oinput.src="images//Floppy.gif";
+                    }
+		            continue;
+	            }
+            }
+        }                
+    }    		    
+      
+    </script>
+
+  </head>
+  <body style="overflow:hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width:100%;background-image: url('images/bg-shd.png');"></div>
+    <div style="float:left;width:35%;height:80%;text-align:right">
+    <div style="text-align:right;height:30px;padding:10">
+    <A class="linkbtn_0" href="#" onclick="TreeUtil.addNode('workpadTab',false);"><img border="0" src="Images/add.gif" />&nbsp;增加同级</A>
+    &nbsp;&nbsp;<A class="linkbtn_0" href="#" onclick="TreeUtil.addNode('workpadTab',true)" ><img border="0" src="Images/add.gif" />&nbsp;增加下级</A>
+    &nbsp;&nbsp;<A class="linkbtn_0" href="#" onclick="TreeUtil.deleteNode('workpadTab')"><img border="0" src="Images/delete.gif" />&nbsp;删除</A>
+    &nbsp;&nbsp;【<a href="#" class="linkbtn_0" onclick="ue_expand('itemtree',true)">展开</a>】【<a href="#" class="linkbtn_0" onclick="ue_expand('itemtree',false)">收缩</a>】
+    <br /><input class="xlandinput" style="WIDTH: 270px; height:20" size="15" name="" id="findtext" />
+    【<a href="#" class="linkbtn_0" onclick="ue_bandTreeSearch(findtext.value,'下一个'==this.value,'workpadTab');this.value='下一个';">查询</a>】
+    </div>
+                    <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+                    <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                      //<![CDATA[
+                                /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_workpadTab_trvLand ***/
+                                window.ComponentArt_Storage_etpTemplate_workpadTab_trvLand = null;
+                                //]]>
+                    </script>
+                    <div style="position:absolute;top:0px;left:0px;visibility:hidden;"
+                      <img src="images/exp.gif" width="0" height="0" alt="" />
+                      <img src="images/col.gif" width="0" height="0" alt="" />
+                    </div>
+                    <div id="etpTemplate_workpadTab_trvLand" class="TreeView" style="height:97%;width:90%;overflow-y:auto;" 
+                    onclick="if(window.etpTemplate_workpadTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_workpadTab_trvLand);" onmouseover="if(window.etpTemplate_workpadTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_workpadTab_trvLand);"></div>
+                    <input id="etpTemplate_workpadTab_trvLand_Data" name="etpTemplate_workpadTab_trvLand_Data" type="hidden" />
+                    <input id="etpTemplate_workpadTab_trvLand_Properties" name="etpTemplate_workpadTab_trvLand_Properties" type="hidden" />
+                    <input id="etpTemplate_workpadTab_trvLand_SelectedNode" name="etpTemplate_workpadTab_trvLand_SelectedNode" type="hidden" value="" />
+                    <input id="etpTemplate_workpadTab_trvLand_ScrollData" name="etpTemplate_workpadTab_trvLand_ScrollData" type="hidden" value="0,0" />
+                            <script type="text/javascript">
+                              //<![CDATA[
+                                        window.ComponentArt_Init_etpTemplate_workpadTab_trvLand = function() {
+                                        if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_workpadTab_trvLand'))
+	                                        {setTimeout('ComponentArt_Init_etpTemplate_workpadTab_trvLand()', 100); return; }
+
+                                        window.etpTemplate_workpadTab_trvLand = new ComponentArt_TreeView('etpTemplate_workpadTab_trvLand', ComponentArt_Storage_etpTemplate_workpadTab_trvLand);
+                                        etpTemplate_workpadTab_trvLand.Postback = function() { __doPostBack('etpTemplate$workpadTab$trvLand','') };
+                                        if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_workpadTab_trvLand; etpTemplate_workpadTab_trvLand.GlobalAlias = 'trvLand'; }
+                                        etpTemplate_workpadTab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:workpadTab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                                        etpTemplate_workpadTab_trvLand.Initialize('etpTemplate_workpadTab_trvLand');
+
+                                        window.etpTemplate_workpadTab_trvLand_loaded = true;
+                                    }
+                                    ComponentArt_Init_etpTemplate_workpadTab_trvLand();
+                                    var myTree = new Tree(etpTemplate_workpadTab_trvLand,'workpadTab');
+                                    //]]>
+                            </script>                          
+    </div> 
+   <div style="float:right;width:60%;height:95%;text-align:left">
+   <table border="1" cellspacing="0" style="width:96%;height:100%">
+    <tbody>
+      <tr>
+		<td id="tdUnitname" class="tdred" align="center" colSpan="4" height="20" style="font-weight: bold">工作日志</td></tr>
+      <tr>
+        <td style="width: 10%; height: 19px" align="right">主题：</td>
+        <td style="height: 19px; " align="left" width="90%" colspan="3">
+          <INPUT datasrc="#workpadTab" datafld="主题" class="xlandinput" style="WIDTH:100%;HEIGHT:18px" type="text" size="11"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 10%;" align="right">日志：</td>
+        <td align="left" width="90%" colspan="3"><textarea name="S1" datasrc="#workpadTab" datafld="内容" class="xlandinput"  style="width:100%;height:98%"></textarea>
+        </td>
+      </tr>
+      
+      <tr>
+        <td style="width: 10%;" align="right" height="27">作者：</td>
+        <td align="left" width="30%" height="27">
+          <INPUT datasrc="#workpadTab" datafld="作者" class="xlandinput" style="WIDTH:90%;HEIGHT:18px" type="text" size="11" name="T1"/>　</td>
+        <td align="right" width="30%" height="27">日期：</td>
+        <td align="left" width="30%" height="27">　<INPUT datasrc="#workpadTab" datafld="日期_格式" class="xlandDate" style="WIDTH:90%;HEIGHT:18px" type="text" size="11" name="T2"/></td>
+      </tr>
+      <tr>
+        <td style="width: 10%;" align="right" height="50"><IMG src="images/atchm.gif" />附件：</td>
+        <td align="left" width="30%" colspan=2><a href="#" style="font-weight: bold;color: #008000; font-size: 14pt" id="itemtree:附件" onclick="" class="xlandfile" >1234</a>
+        </td>
+        <td align="left" width="30%" height="27" colspan=2>
+          <INPUT id="Button1" title="上传附件" style="WIDTH: 60px;" onclick="upload()" type="button" value="上传" name="btnOK1"></td>
+      </tr>      
+      <tr>
+        <td style="width: 10%;" align="right" height="27">　</td>
+        <td align="right" width="90%" height="27" colspan="3">
+          　【<a href="#" class="linkbtn_0" onclick="ue_save()">保存</a>】【<a href="#" class="linkbtn_0" onclick="ms_close()">关闭</a>】
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+   </div>
+<script type="text/javascript" charset="gb2312">ue_initsetup("工作日志")</script>  </body>
+</html>

@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <title>门禁卡信息</title>
+    <base target="_self" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/hmstyle.css" type="text/css" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+
+    <link id="cssGlobe" href="../html/skin/globle.css" type="text/css" rel="stylesheet" />
+    <link href="../html/skin/skin_gold.css" rel="stylesheet" type="text/css" id="lnkSkin" />
+
+    <script type="text/javascript">
+      var mband,tband,hband;
+      function initWin()
+      {
+        mband = $band("门禁设备");if(!mband){alert("项目：门禁设备配置错误！");return;}
+        $loading();
+        mband.gridtype = 61; mband.freecols = "名称";mband.minwidth = "80px";mband.editdict=true;
+        if(!mband.Grid) var Grid = new XGrid("dvmband",mband,"in",null,1);
+        var ob = $band("门禁卡白名单");
+        ob.gridtype = 61; ob.freecols = "校验结果";ob.minwidth = "60px";ob.editdict=true;
+        new XGrid("dvdetail",ob,"in",null,1);
+        mband.XQuery();
+        $loading("none");
+      }
+      function validate()
+      {
+            var ob=$band("门禁设备");
+            var cols={"通讯类别":"通讯类别","站址":"设备地址","IP地址":"IP地址","端口":"端口","控制器类别":"设备类型"};
+            var tag="";
+            for(var k in cols)
+                tag = ToolUtil.setValueTag(tag, cols[k], ob.getFldStrValue(k));
+            tag = ToolUtil.setValueTag(tag, "指令", "读取指定权限");
+            valiCard(tag, 0);
+      }
+      function valiCard(devtag, index)
+      {
+           var tag = devtag||valiCard.tag;
+           var ob = $band("门禁卡白名单");
+           if(!tag || index>=ob.RecordCount())
+           {
+                delete valiCard.tag;
+                alert("校验完毕！");
+                return;
+           }
+           var cardnum = ob.getFldStrValue("卡号", index);
+           var doornum = ob.getFldStrValue("授权", index);
+           if(!cardnum||!doornum)
+           {
+                valiCard(tag, index+1);
+                return;
+           }
+           valiCard.tag = tag;
+           valiCard.index=index;
+           var ps = ToolUtil.setValueTag(tag, "卡号", cardnum);
+           ps = ToolUtil.setValueTag(tag, "门号", doornum);
+	       var xmlhttp = ToolUtil.Post(ps,"hdlValiCardDoor.ashx",callback);
+	       callback.xmlhttp = xmlhttp;
+      }
+      function callback()
+      {
+        if(4!=this.readyState)
+            return;
+        var msg = this.responseText;
+        if(!msg)    return;
+        var ob = $band("门禁卡白名单");
+        ob.setFldStrValue(valiCard.index, "校验结果", msg);
+        valiCard(null, valiCard.index+1);
+      }
+    </script>
+
+</head>
+<body style="overflow: hidden; margin: 0px;" scroll="no">
+    <div style="height: 20px; width: 100%; background-image: url('images/bg-shd.png');"></div>
+    <fieldset style="float: left; padding: 5px; width: 36%; height: 96%;" id="fdiv">
+        <legend>门禁设备列表&nbsp;&nbsp;<a class="linkbtn_0" href="#" onclick="validate()" ><img border="0" src="Images/inserttreenext.png" />验证白名单</a></legend>
+        <div id="dvmband" style="width: 100%; height: 96%;"></div>
+    </fieldset>
+    <fieldset style="float: right; width: 63%; height: 95%; padding-right: 8px; padding-left: 8px;
+        padding-bottom: 9px; padding-top: 8px;">
+        <legend>基本信息</legend>
+        <div id="dvdetail" style="width: 100%; height: 96%;"></div>
+    </fieldset>
+    <script type="text/javascript" charset="gb2312">ue_initsetup("门禁卡信息")</script>
+</body>
+</html>

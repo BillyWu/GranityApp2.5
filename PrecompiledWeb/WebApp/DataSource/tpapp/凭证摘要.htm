@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+        <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>    	
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>    	
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    	<script language="javascript" type="text/javascript">
+    	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;
+		    function ms_CellBtnClick(oband,colname,colvalue)
+		    {
+		        //var xmlRow=oband.XmlLandData.XMLDocument.documentElement.childNodes[oband.XmlLandData.recordset.AbsolutePosition-1];
+		        //var xmlRowData=xmlRow.cloneNode(true);
+                //xmlRowData = window.showModalDialog("Template\\DlgPo.htm",xmlRowData,"dialogHeight: 200px; dialogWidth: 400px; edge: Raised; center: Yes; help: No; resizable: No; status: No;"); 
+                //if(!xmlRowData) return; 
+		        //oband.setFldStrValue(null,"备注",xmlRowData.selectSingleNode("备注").text);
+		        //oband.setFldStrValue(null,"供应商",xmlRowData.selectSingleNode("供应商").text);
+		        //oband.setFldStrValue(null,"发票号",xmlRowData.selectSingleNode("发票号").text);
+		        var rtn = oband.setModalContent("科目查询");
+		        if(!rtn) return;
+		        oband.setFldStrValue(null,colname,rtn);
+		    }
+		    
+		    function cmdOK()
+		    {
+		    	ue_save("");
+		    	var oband=document.UnitItem.getBandByItemName("从表");
+				window.returnValue = oband.getFldStrValue("name");
+		    	try
+		    	{
+		    		ue_navrun();
+		    	}
+		    	catch(e)
+		    	{
+		    		window.close();
+		    	}
+		    }
+		    
+		    function _close()
+		    {
+		    	try
+		    	{
+		    		ue_navrun();
+		    	}
+		    	catch(e)
+		    	{
+		    		window.close();
+		    	}
+		    }
+            -->
+    	</script>
+    </head>
+<body bgcolor="buttonface" >
+<div style="font-size: 10pt;z-index:100;position: absolute; left:expression(document.body.clientWidth/2-document.getElementById('tbmain').width/2+30);top:expression(document.getElementById('tbmain').offsetTop+10);width: 60px; background-color: #D4D0C8">摘要类别</div>
+<table id="tbmain" align="center" border="1" cellspacing="0" width="640" height="368" 
+style="font-size: 10pt;table-layout:fixed;position:absolute;left:expression(document.body.clientWidth/2-this.width/2);top:expression(document.body.clientHeight/2-this.height/2)" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF">
+	<tbody>
+	<tr>
+		<td width="213" align="center" style="border-right-style: none; border-right-width: medium">
+		<table border="1" cellspacing="0" width="90%" height="335" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF">
+  <tbody>
+  <tr>
+    <td height="259" align="center" valign="bottom" style="border-bottom-style: none; border-bottom-width: medium">
+   		<Control class="" catalog="GridLand.ascx" itemname="主表" id="MasterTab" name="">MasterTab
+		<Property name="tpfile" value="ControlTemplate/EditGridSNX.htm" />
+			<Property name="width" value="180" /><Property name="height" value="220" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+		</Control>
+    </td>
+  </tr>
+  <tr>
+    <td style="border-bottom-style: none; border-bottom-width: medium; border-top-style:none; border-top-width:medium" align="center">
+    <INPUT style="WIDTH: 100px;" onclick="ue_bandadd('MasterTab');" type="button" value="增加" name="btn" /></td>
+  </tr>
+  <tr>
+    <td style="border-top-style: none; border-top-width: medium;" align="center">
+    <INPUT style="WIDTH: 100px;" onclick="ue_banddelete('MasterTab');" type="button" value="删除" name="btn" /></td>
+  </tr>
+</tbody>
+</table>
+
+</td>
+		<td align="center" style="border-left-style: none; border-left-width: medium; border-right-style: none; border-right-width: medium"><p style="margin:2"></p><div align="left">　凭证摘要：</div><p style="margin:3"></p><table border="1" cellspacing="0" width="99%" height="325" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF">
+  <tbody>
+  <tr>
+    <td height="259">
+       		<Control class="" catalog="GridLand.ascx" itemname="从表" id="DTab" name="">DTab
+		<Property name="tpfile" value="ControlTemplate/EditGridSNX.htm" />
+			<Property name="width" value="285" /><Property name="height" value="291" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+		</Control>
+    </td>
+  </tr>
+</tbody>
+</table></td>
+		<td width="126" align="center" style="border-left-style: none; border-left-width: medium">
+		<INPUT style="WIDTH: 100px;" onclick="cmdOK()" type="button" value="确定" name="btn" />
+		<p style="margin:10"></p>
+		<INPUT style="WIDTH: 100px;" onclick="_close()" type="button" value="取消" name="btn" />
+		<br /><br /><br></br><br /><br></br><br /><br /><br></br><br />
+		<INPUT style="WIDTH: 100px;" onclick="ue_bandadd('DTab');" type="button" value="增加" name="btn" />
+		<br /><br />
+		<INPUT style="WIDTH: 100px;" onclick="ue_save();" type="button" value="保存" name="btn" />
+		<br /><br />
+		<INPUT style="WIDTH: 100px;" onclick="ue_banddelete('DTab');" type="button" value="删除" name="btn" />
+		</td>
+	</tr>
+</tbody>
+</table>
+</body>
+
+</html>

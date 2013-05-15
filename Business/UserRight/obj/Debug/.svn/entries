@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/Business/UserRight/obj/Debug
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/Business/UserRight/obj/Debug
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -65,14 +65,14 @@ dir
 
 Estar.Business.UserRight.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.015625Z
-0ea26c3198e2d7f611b37fe34b0bf008
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:41:44.453125Z
+0f0992fb751d5c67e846976d748aba0d
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -102,14 +102,14 @@ dir
 
 Estar.Business.UserRight.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:06.093750Z
-2c9d1783706af6b81b68df2fa40cb4d6
-2013-04-22T08:43:47.453125Z
-5
+2013-05-14T05:41:44.578125Z
+e76709e8e5c164b8e689d3d9d9ecbe6e
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 

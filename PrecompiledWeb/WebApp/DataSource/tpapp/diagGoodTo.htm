@@ -1,0 +1,60 @@
+<HTML>
+	<HEAD>
+		<title>编辑</title>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<base target="_self">
+		<style type=text/css>
+		.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+		input
+		{
+			behavior:url(/hmjs/sysjs/common.htc);
+		};
+		select
+		{
+			behavior:url(/hmjs/sysjs/common.htc);
+		}
+		.inputDate
+		{
+			behavior:url(/hmjs/sysjs/common.htc);
+		}
+		</style>
+		<script language="javascript" src="hmjs/sysjs/ToolUtil.js"  type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js"  type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/common.js"  type="text/javascript" charset="gb2312"></script>
+		<script language="javascript">
+		
+			var band=window.dialogArguments;	
+			function cmdCancel()
+			{
+				window.close();
+			}							
+		
+			function cmdOK()
+			{
+				window.close();
+			}							
+		</script>
+	</HEAD>
+	<body bottomMargin="0" bgColor="activeborder" leftMargin="8" topMargin="8" onload="ms_iniData(band);" rightMargin="1">
+			<TABLE class=main_tab id=mainTable  style="BORDER-RIGHT: thin groove; BORDER-TOP: thin groove; FONT-SIZE: 12px; BORDER-LEFT: thin groove; BORDER-BOTTOM: thin groove; FONT-FAMILY: 宋体"
+				cellSpacing="5" cellPadding="1" width="100%" bgColor="activeborder" border="0" height="98">
+				<TR>
+					<TD style=" BORDER-BOTTOM: thin groove; "
+						bgColor="activeborder">提示：</TD>
+				</TR>
+				<TR>
+					<TD vAlign="middle" noWrap bgColor="activeborder">请确定插入数据的方式：
+					　</TD>
+				</TR>
+				<TR>
+					<TD align=center height="23">
+					<INPUT id="Button1" title="系统性增加所选择的货品" onclick="cmdOK()" type="button"
+								value="增加所选产品及配置到货品清单" name="btnOK">&nbsp;
+					<INPUT id="Button2" title="系统性增加所选择的货品" onclick="cmdOK()" type="button"
+								value="增加到" name="btnOK">&nbsp;								
+					<INPUT id="Button3"  onclick="cmdCancel()" type="button" style="width:60px" value="返回" name="btnCancel" ></TD>
+				</TR>
+			</TABLE>
+	</body>
+</HTML>

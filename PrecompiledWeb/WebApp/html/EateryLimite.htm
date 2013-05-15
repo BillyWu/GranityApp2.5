@@ -1,0 +1,216 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <title>消费限次汇总</title>
+    <base target="_self" />
+
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/hmstyle.css" type="text/css" rel="stylesheet" />
+
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/Calendarw.js" type="text/javascript" language="javascript"></script>
+    <link id="cssGlobe" href="../html/skin/globle.css" type="text/css" rel="stylesheet" />
+    <link href="../html/skin/skin_gold.css" rel="stylesheet" type="text/css" id="lnkSkin" />
+
+    <script type="text/javascript">
+      var mband,tband,hband;
+      function initWin()
+      {
+        mband = $band("消费限次汇总");if(!mband){alert("项目：消费限次汇总配置错误！");return;}
+        $loading();
+        mband.gridtype = 7; mband.freecols = "部门";mband.title = "";mband.minwidth = "60px";mband.editdict=true;
+        mband.merges="@晨餐=晨餐限次,晨餐次数,晨餐超额;@早餐=早餐限次,早餐次数,早餐超额;@午餐=午餐限次,午餐次数,午餐超额;"
+        mband.merges+="@下午茶=下午茶限次,下午茶次数,下午茶超额;@晚餐=晚餐限次,晚餐次数,晚餐超额;@夜宵=夜宵限次,夜宵次数,夜宵超额;@合计=合计限次,合计次数,合计超额";
+        if(!mband.Grid) var Grid = new XGrid("dvmband",mband,"in",null,1);
+        mband.XQuery();
+        $loading("none");
+      }
+      function initdepts()
+      {
+        var band=$band("部门列表");
+        band.XQuery();
+        var len = band.RecordCount();
+        var el = document.getElementById("depts");
+        for(var i=0; i<len; i++)
+        {
+            var code = band.getFldStrValue("部门", i);
+            var val  = band.getFldStrValue("名称", i);
+            var item =new Option(val, code);
+            el.options.add( item );            
+        }
+      }
+         
+          //日期增加函数
+         function  dateAdd(strInterval,  NumDay,  dtDate)  {  
+            var  dtTmp  =  dtDate;
+            if  (isNaN(dtTmp))  dtTmp  =  new  Date();  
+            switch  (strInterval)  {  
+             case  "s":return  new  Date(Date.parse(dtTmp)  +  (1000  *  NumDay));  
+             case  "n":return  new  Date(Date.parse(dtTmp)  +  (60000  *  NumDay));  
+             case  "h":return  new  Date(Date.parse(dtTmp)  +  (3600000  *  NumDay));  
+             case  "d":return  new  Date(Date.parse(dtTmp)  +  (86400000  *  NumDay));  
+             case  "w":return  new  Date(Date.parse(dtTmp)  +  ((86400000  *  7)  *  NumDay));  
+             case  "m":return  new  Date(dtTmp.getFullYear(),  (dtTmp.getMonth())  +  NumDay, dtTmp.getDate(),00,00,00);  
+             case  "y":return  new  Date((dtTmp.getFullYear()  +  NumDay),  dtTmp.getMonth(), dtTmp.getDate());  
+            }  
+         }   
+         
+         Date.prototype.pattern=function(fmt) {        
+            var o = {        
+            "M+" : this.getMonth()+1, //月份        
+            "d+" : this.getDate(), //日        
+            "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时        
+            "H+" : this.getHours(), //小时        
+            "m+" : this.getMinutes(), //分        
+            "s+" : this.getSeconds(), //秒        
+            "q+" : Math.floor((this.getMonth()+3)/3), //季度        
+            "S" : this.getMilliseconds() //毫秒        
+            };        
+            var week = {        
+            "0" : "\u65e5",        
+            "1" : "\u4e00",        
+            "2" : "\u4e8c",        
+            "3" : "\u4e09",        
+            "4" : "\u56db",        
+            "5" : "\u4e94",        
+            "6" : "\u516d"       
+            };        
+            if(/(y+)/.test(fmt)){        
+                fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));        
+            }        
+            if(/(E+)/.test(fmt)){        
+                fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "\u661f\u671f" : "\u5468") : "")+week[this.getDay()+""]);        
+            }        
+            for(var k in o){        
+                if(new RegExp("("+ k +")").test(fmt)){        
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));        
+                }        
+            }         
+            return fmt;        
+        }      
+
+          
+       //条件时间查询 
+       function ue_Time(isprint)
+        {
+            var xmldoc=document.UnitItem.ParamXmldoc;
+            var dt0=document.getElementById("sdt").value;
+            if(dt0=="") document.getElementById("sdt").value=new Date().formate("yyyy-MM-dd");
+            var year= dt0.substring(0,4);
+            var month= Number(dt0.substring(5,7))-Number('1');
+            var startDate= new Date(year,month,"01","00","00","00");
+            var endDate= dateAdd("m",1,startDate);     
+            endDate=dateAdd("d",-1,endDate);       
+            ToolUtil.setParamValue(xmldoc, "StartTime", startDate.pattern("yyyy-MM-dd"), "", "P", null, "C");
+            ToolUtil.setParamValue(xmldoc, "EndTime", endDate.pattern("yyyy-MM-dd"), "", "P", null, "C");
+            ueSetPage("", $band("消费限次汇总"));
+        }
+         
+        function tp_print()
+        {	
+            var dt0=document.getElementById("sdt").value;
+            if(dt0=="") document.getElementById("sdt").value=new Date().formate("yyyy-MM-dd");
+            var year= dt0.substring(0,4);
+            var month= Number(dt0.substring(5,7))-Number('1');
+            var startDate= new Date(year,month,"01","00","00","00");
+            var endDate= dateAdd("m",1,startDate);     
+            endDate=dateAdd("d",-1,endDate);
+            startDate=startDate.pattern("yyyy-MM-dd");
+            endDate=  endDate.pattern("yyyy-MM-dd"); 
+            var prn = "";
+            var name=$("findtxt").value;   
+            if(name=="")
+            {
+               name="1=1";
+            }
+            else
+            {
+               name =" a.EMPCODE like '%"+name+"%' or a.NAME like '"+name+"' or b.名称 like '%"+name+"%' or  c.名称 like '%"+name+"%' ";         
+            }
+            var ps  = "@StartTime="+ startDate +",@EndTime="+endDate+",@$filter="+name+",@条件="+startDate+" — "+endDate;
+            var src = "消费限次查询.消费限次汇总";
+            url=ue_path() + "/frmprintc.aspx?datasrc="+escape(src)+"&prn="+prn+"&pms="+ps;
+            window.open(url,"","height=100,width=100,left=0,top=0,menu=yes,status=yes,resizable=no,scrollbars=no");
+	    }
+
+    </script>
+
+</head>
+<body bgcolor="#edebe8" style="overflow: hidden; margin: 0px;" scroll="no">
+    <table border="0" width="99%" height="100%" cellpadding="0" style="border-collapse: collapse"
+        id="mainTable" align="center">
+        <tbody>
+            <tr style="height: 45px">
+                <td>
+                    <fieldset style="padding: 10; width: 99%; height: 100%; border: 1px inset">
+                        <legend style="padding: 1px;">消费限次汇总：</legend>
+                        <table align="center" cellspacing="0" bgcolor="#edebe8" bordercolorlight="white"
+                            bordercolordark="#C0C0C0" style="width: 100%; height: 30px; border: 1px inset"
+                            id="table1">
+                            <tr>
+                                <td align="right" width="79">
+                                    选择日期：</td>
+                                <td width="90">
+                                <input id="sdt"  type="text" style="padding-left:5px;" size="10" onclick="SelectDate(this)" readonly="readonly" />
+                                     </td>
+                                <td align="center" width="150">
+                                    <!--input type="text" style="width: 150px" id="findtxt" name="dbo.fun_getpy(d.name);a.卡号;dbo.fun_getpy(b.名称);b.名称;c.名称;d.name;a.用户编号" /-->
+                                    <input type="text" style="width: 150px" id="findtxt" name="a.EMPCODE;a.NAME;b.名称;c.名称" />
+                                </td>
+                                <td>
+                                    <input type="button" value="查询" name="B4" onclick="ue_Time();ue_tfilter('消费限次汇总')" style="width: 68px" />
+                                    <input type="button" value="打印" name="B3" class="standbtn" onclick="tp_print();"
+                                        style="width: 65px" />
+                                    <input type="button" value="退出" name="B3" class="standbtn" onclick="ms_close()" style="width: 63px" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <fieldset style="padding: 10; width: 99%; height: 98%; border: 1px inset">
+                        <legend style="padding: 1px;">查询清单</legend>
+                        <div id="dvmband" style="width: 100%; height: 97%">
+                        </div>
+                    </fieldset>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript" charset="gb2312">ue_initsetup("消费限次汇总")</script>
+
+</body>
+</html>

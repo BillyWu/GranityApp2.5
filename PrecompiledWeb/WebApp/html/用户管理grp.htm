@@ -1,0 +1,197 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>用户管理</title>
+    <base target="_self" />
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+     <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/dlgwin.js" type="text/javascript" charset="gb2312"></script>
+    <script type="text/javascript">
+        function initWin()
+        {
+            ToolUtil.setParamValue($XD(), "失效", 0,"integer", "B", "用户管理","C","D");
+            var ob=$band("单位树");
+            var sband=$band('用户管理');
+            ob.Asyn = true;
+            sband.Asyn = true;
+            ob.XQuery();
+            sband.gridtype = 8; sband.freecols = "部门名称";sband.minwidth = "100px";
+            sband.isPrint=true;
+            ob.AfterXQuery = function()
+            {
+                ue_treeline("单位树",true);
+                ue_expand('单位树',true);
+                sband.AfterXQuery = function(){new XGrid("GridDiv",sband,"in",null,1);            $loading("none");};
+            }
+            sband.AfterSum=function()
+            {
+                if(this.Val("失效")==-1) this.setFldStrValue(null,"公网访问","false");
+            }
+        }
+        function ResetPwd()
+        {
+            var band=$band("用户管理");
+            var strResult=band.ExecutCmd("用户密码初始化");
+            var success=ToolUtil.valueTag(strResult,"成功");
+            if("true"==success)
+            {
+                band.setFldStrValue(null,"初始密码","abc123");
+                alert("成功执行了[重置密码]操作!");
+                }else{
+                alert(ToolUtil.valueTag(strResult,"提示"));
+            }
+        }
+        function slstate()
+        {
+            if(event.srcElement.value=="") ToolUtil.delParam($XD(), "失效", "B", "用户管理","C")
+            else
+                ToolUtil.setParamValue($XD(), "失效", event.srcElement.value,"integer", "B", "用户管理","C","D");
+            $band("用户管理").XQuery(true);
+        }
+        function beforeDelete(hint)
+        {
+            return true; 
+        }
+        function strscrtable()
+        {
+            var s= '<div style="padding:30;width:99%;height:120px">选择目标部门名称：<select id="txtnode" size="1" style="WIDTH: 260;" name="D6"></select></div>'+
+            '<input type=button value="确定" onclick="runcopy();"style="width:80px">';
+            return s;
+        }
+        function _copy()
+        {
+            if(!beforeDelete("调动")) return;
+            var oband=$band("用户管理");
+            var pid = oband.Val("部门");
+            if(pid=="") return;
+            var str=strscrtable();
+            DlgWin(1,null,"调动设置 - 当前部门为："+$band("单位树").Val("名称"),"itemtree",str,480,200);
+            var xmlNodeRows = $band("单位树").XmlLandData.XMLDocument.selectNodes("//orgtreegroup")
+            us_htmlXdict("txtnode",xmlNodeRows,"部门名称","部门");
+            $("txtnode").value=oband.Val("部门");
+        }
+        function us_htmlXdict(objname,xmlrows,n,v)
+        {
+            var obj=$(objname);
+            if(!obj || !obj.options) return;
+            var ops = obj.options;
+            if(ops.options.length>0) return;
+            for(var i=0;i<xmlrows.length;i++)
+            {
+                var txt = xmlrows[i].selectSingleNode(n);
+                var value = xmlrows[i].selectSingleNode(v);
+                ops.add(new Option((txt)?txt.text:"",(value)?value.text:""));
+            }
+        }
+        function runcopy()
+        {
+            $band("用户管理").setFldStrValue(null,"部门",$("txtnode").options[$("txtnode").selectedIndex].value);
+            $band("用户管理").setFldStrValue(null,"部门名称",$("txtnode").options[$("txtnode").selectedIndex].innerText);
+            ue_save("调动成功!");
+            ShowHide(1,"none");
+        }
+        
+    </script>
+  </head>
+  <body style="overflow:hidden; margin: 0px;"scroll="no" >
+  <div style="height: 20; width:100%;background-image: url('images/bg-shd.png');"></div>
+  <div style="height: 95%; width:30%;float:left">
+    <p style="margin:5px"><img border="0" src="Images/reply.gif" />
+       <input class="xlandinput" style="WIDTH: 60; height:20" size="15" name="" id="findtext" onfocus="this.nextSibling.value='查找'" /><input class="txtbtn" id="gridfind7" style="width:44; height:22" onclick="ue_bandTreeSearch(findtext.value,'下一个'==this.value,'orgtreegroupTab');this.value='下一个';" type="button" value="查找" name="B15" />
+       【<a href="#" class="linkbtn_0" onclick="ue_expand('单位树',true)">展开</a>】【<a href="#" class="linkbtn_0" onclick="ue_expand('单位树',false)">收缩</a>】
+       </p>               <script src="../hmjs/sysjs/treeres1.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres2.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres3.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres4.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres5.js" type="text/javascript"></script>
+                          <script src="../hmjs/sysjs/treeres6.js" type="text/javascript"></script>
+                          <script type="text/javascript">
+                            //<![CDATA[
+                                /*** ComponentArt.Web.UI.TreeView 2007_2_1272_2 etpTemplate_orgtreegroupTab_trvLand ***/
+                                window.ComponentArt_Storage_etpTemplate_orgtreegroupTab_trvLand = null;
+                                //]]>
+                          </script>
+                          <div style="position:absolute;top:0px;left:0px;visibility:hidden;">
+                            <img src="images/exp.gif" width="0" height="0" alt="" />
+                            <img src="images/col.gif" width="0" height="0" alt="" />
+                          </div>
+                          <div id="etpTemplate_orgtreegroupTab_trvLand" class="TreeView" style="height:92%;width:98%;overflow:auto;" onclick="if(window.etpTemplate_orgtreegroupTab_trvLand_loaded) ComponentArt_SetKeyboardFocusedTree(this, etpTemplate_orgtreegroupTab_trvLand);" onmouseover="if(window.etpTemplate_orgtreegroupTab_trvLand_loaded) ComponentArt_SetActiveTree(etpTemplate_orgtreegroupTab_trvLand);"></div>
+                          <input id="etpTemplate_orgtreegroupTab_trvLand_Data" name="etpTemplate_orgtreegroupTab_trvLand_Data" type="hidden" />
+                          <input id="etpTemplate_orgtreegroupTab_trvLand_Properties" name="etpTemplate_orgtreegroupTab_trvLand_Properties" type="hidden" />
+                          <input id="etpTemplate_orgtreegroupTab_trvLand_SelectedNode" name="etpTemplate_orgtreegroupTab_trvLand_SelectedNode" type="hidden" value="" />
+                          <input id="etpTemplate_orgtreegroupTab_trvLand_ScrollData" name="etpTemplate_orgtreegroupTab_trvLand_ScrollData" type="hidden" value="0,0" />
+                          <script type="text/javascript">
+                            //<![CDATA[
+                                  window.ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand = function() 
+                                  {
+                                      if(!window.ComponentArt_TreeView_Kernel_Loaded || !window.ComponentArt_TreeView_Keyboard_Loaded || !window.ComponentArt_TreeView_Support_Loaded || !window.ComponentArt_Utils_Loaded || !window.ComponentArt_Keyboard_Loaded || !window.ComponentArt_DragDrop_Loaded || !document.getElementById('etpTemplate_orgtreegroupTab_trvLand'))
+	                                      {setTimeout('ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand()', 100); return; }
+                                       
+                                      window.etpTemplate_orgtreegroupTab_trvLand = new ComponentArt_TreeView('etpTemplate_orgtreegroupTab_trvLand', ComponentArt_Storage_etpTemplate_orgtreegroupTab_trvLand);
+                                      etpTemplate_orgtreegroupTab_trvLand.Postback = function() { __doPostBack('etpTemplate$orgtreegroupTab$trvLand','') };
+                                      if(!window['trvLand']) { window['trvLand'] = window.etpTemplate_orgtreegroupTab_trvLand; etpTemplate_orgtreegroupTab_trvLand.GlobalAlias = 'trvLand'; }
+                                      etpTemplate_orgtreegroupTab_trvLand.Properties = [['ApplicationPath','/HMApp'],['ClientEvents',{'NodeMouseDoubleClick':TreeUtil.onNodeDoubleClick,'NodeBeforeMove':TreeUtil.onNodeBeforeMove}],['ClientSideOnNodeSelect','TreeUtil.onNodeSelectionChange'],['ClientTemplates',[]],['CollapseSlide',2],['CollapseDuration',200],['CollapseTransition',0],['CollapseImageUrl','images/exp.gif'],['ControlId','etpTemplate:orgtreegroupTab:trvLand'],['CssClass','TreeView'],['DefaultImageHeight',0],['DefaultImageWidth',0],['MarginImageHeight',0],['MarginImageWidth',0],['DragAndDropAcrossTreesEnabled',true],['DragHoverExpandDelay',700],['Enabled',true],['EnableViewState',true],['ExpandSlide',2],['ExpandDuration',200],['ExpandTransition',0],['ExpandCollapseImageHeight',0],['ExpandCollapseImageWidth',0],['ExpandImageUrl','images/col.gif'],['ExpandSelectedPath',true],['ExpandSinglePath',true],['HoverNodeCssClass','HoverTreeNode'],['ItemSpacing',0],['LineImageHeight',0],['LineImageWidth',0],['LineImagesFolderUrl','images/lines/'],['LoadingFeedbackText','Loading...'],['MarginWidth',32],['MultipleSelectEnabled',true],['NodeCssClass','TreeNode'],['NodeLabelPadding',0],['NodeIndent',16],['SelectedNodeCssClass','SelectedTreeNode'],];
+                                      etpTemplate_orgtreegroupTab_trvLand.Initialize('etpTemplate_orgtreegroupTab_trvLand');
+                                      window.etpTemplate_orgtreegroupTab_trvLand_loaded = true;
+                                  }
+                                  ComponentArt_Init_etpTemplate_orgtreegroupTab_trvLand();
+                                  var myTree = new Tree(etpTemplate_orgtreegroupTab_trvLand,'orgtreegroupTab');
+                                  //]]>
+                          </script>
+  </div>
+  <div style="height: 95%; width:70%;float:right">
+  <table id="mainTable" border="0" cellpadding="0" style="border-collapse: collapse;width:100%;height:100%">
+<tbody>
+	<tr>
+		<td style="height:100px"><fieldset style="padding: 2px;;width:98%;height:100px"><legend>用户详细信息：
+		<INPUT class="txtbtn" onclick="ResetPwd();" type="button" value="【重置密码】" />
+		<!--<INPUT class="txtbtn" onclick="_copy();" type="button" value="【调动】" />
+		<input id="slupflag0" type="radio" value="0" checked  name="R1" onclick="slstate()"><label for="slupflag0">有效用户</label>
+		<input id="slupflag1" type="radio" value="1" name="R1" onclick="slstate()"><label for="slupflag1">无效用户</label>
+		<input id="slupflag"  type="radio" value="" name="R1" onclick="slstate()"><label for="slupflag">全部用户</label>-->
+		</legend>
+            <span class="span50fn">姓名:</span><INPUT datasrc="#高级用户管理Tab" datafld="姓名" class="xlandinput" style="WIDTH:110px" type="text" size="11"  />
+            <input title="要选择吗，点我一下..." class="txtbtn" type=button value="..."  style="margin-left:-30px;margin-top:2px;width:22px;height:16; position:absolute" onclick="Xcbo(高级用户管理Tab)"/><font color="#FF0000">*</font>
+            <span class="span40fn">编号:</span><INPUT datasrc="#高级用户管理Tab" datafld="编号" 
+            class="xlandinput" style="WIDTH:80px" type="text" size="11" /><font color="#FF0000">*</font>
+            <span class="span40fn">角色:</span><INPUT datasrc="#高级用户管理Tab" datafld="角色" class="xlandinput" style="WIDTH:16%" type="text" size="11"  />
+            <input title="要选择吗，点我一下..." class="txtbtn" type=button value="..."  style="margin-left:-30px;margin-top:2px;width:22px;height:16; position:absolute" onclick="Xcbo(高级用户管理Tab)"/><font color="#FF0000">*</font>
+            <INPUT id="net" datasrc="#高级用户管理Tab" datafld="公网访问" class="xlandradio" type="checkbox" /><label for="net">公网访问</label>
+            <br />
+            <span class="span50fn">帐号:</span><INPUT datasrc="#高级用户管理Tab" datafld="帐号" class="xlandinput" style="WIDTH:110px" type="text" size="11"  />&nbsp;<font color="#FF0000">*</font>
+            <span class="span40fn">电话:</span><INPUT datasrc="#高级用户管理Tab" datafld="电话" class="xlandinput" style="WIDTH:80px" type="text" size="11"  />
+            &nbsp<span class="span40fn">手机:</span><INPUT datasrc="#高级用户管理Tab" datafld="手机" class="xlandinput" style="WIDTH:16%" type="text" size="11"  />
+            　<INPUT id="sx" datasrc="#高级用户管理Tab" datafld="失效" class="xlandradio" type="checkbox" /><label for="sx">失效</label>
+            <hr size="1" noshade style="text-align:center;width:98%;border:1px dotted #000000" />
+            　<font color="#FF0000">*</font>说明：对于已发生销售、调拨、采购等业务单据的用户，请慎重使用删除和调动功能，可设置为失效。
+            </fieldset></td>
+	</tr>
+	<tr>
+		<td><fieldset style="padding: 5px;width:98%;height:99%"><legend>用户列表：</legend>
+		<div id="GridDiv" style="width:100%;height:97%"></div>
+			</fieldset></td>
+	</tr>			
+</tbody>
+				</table>
+  </div>
+  <script type="text/javascript" charset="gb2312">ue_initsetup("用户管理集团")</script>
+  </body>
+</html>
+

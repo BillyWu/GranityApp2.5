@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+	    <script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+	    <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>	    
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<script language="javascript" type="text/javascript">
+			window.onload=WinLoadUtil.MDTPLoad;
+		</script>
+	</head>
+
+	<body>
+	<table style="BORDER-COLLAPSE: collapse; width:732px;HEIGHT:100%" id="table1" cellSpacing="0" cellPadding="0" border="0">
+			<tbody>
+			<tr>
+				<td style="height: 24px; font-size: 10.5pt; color: #333333; font-family: 宋体, Arial" background="images/bkgray.gif" bgColor="buttonface" align="right">
+				<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table2">
+					<tbody>
+					<tr>
+<td background="images/bkgray.gif" bgColor="buttonface" height="24px" width="16">
+				</td>
+<td background="images/bkgray.gif" bgColor="buttonface" height="24px" width="216"><a href="#" class="linkbtn_0" onclick="ue_selectAll()">【全选】</a><a href="#" class="linkbtn_0" onclick="ClearSelAll()">【清除选择】</a></td>
+				<td background="images/bkgray.gif" bgColor="buttonface">
+				　<a href="#" class="linkbtn_0" onclick="document.UnitItem.wsCheckInParentUnit(null,false);">【增加】</a><a href="#" class="linkbtn_0" title="双击或按下替换按钮将替换相应物品资料" onclick="document.UnitItem.CheckInParentUnit('checkin');">【替换】</a></td>
+				<td background="images/bkgray.gif" bgColor="buttonface" width="86">
+				<a href="#" class="linkbtn_0" title="双击或按下替换按钮将替换相应物品资料" onclick="window.close();">【关闭】</a></td>
+					</tr>
+				</tbody>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td vAlign="top" align="center">
+					<font face="宋体">
+					<Control class="" catalog="GridLand.ascx" itemname="字典信息" id="instance" name="">goods
+							<Property name="tpfile" value="ControlTemplate/GridCheck.htm" />
+								<Property name="width" value="800px" /><Property name="height" value="431px" />
+								<Property name="hiddenhead" value="false" />
+								<Property name="ctrlalert" value="s_code" />
+								<Property name="hiddengrid" value="false" />
+							</Control>						
+					</font>						
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</body>
+</html>

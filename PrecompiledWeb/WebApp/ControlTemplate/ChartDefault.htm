@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="gb2312"  ?>
+<div chartElement="chartDiv" style="overflow:hidden;" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+<v:group id="test" chartElement="chart" coordsize="130,130" coordorigin="-20,-110" style="overflow:scroll;">
+		<!--画背景布-->
+		<v:rect chartElement="bgWall" style="Left:-20;Top:-110;WIDTH:130px;HEIGHT:130px;POSITION:absolute;z-index:-10;" fillcolor="white" strokecolor="black">
+		<v:shadow on="t" type="single" color="silver" offset="4pt,3pt"></v:shadow>
+		</v:rect>
+		<dd chartElement="text" style="z-index:-10;"></dd>
+		<table style="z-index:-10;" bgcolor=""><tr><td chartElement="data"></td></tr></table>
+        <div chartElement="template" style="display:none">
+            <!--画坐标线-->
+		    <v:line chartElement="axisX" chartGroup="axisX" from="0,0" to="0,0" spacing="10" style="POSITION:absolute" strokeweight="1pt">
+		        <v:stroke EndArrow="classic" />
+		    </v:line>
+		    <v:line chartElement="axisY" chartGroup="axisY" from="0,0" to="0,0" spacing="10" style="POSITION:absolute" strokeweight="1pt">
+		        <v:stroke EndArrow="classic" />
+		    </v:line>
+        	<!--刻度线 -->
+		    <v:line chartElement="measure" chartGroup="axisX" from="0,0" to="0,0" style="POSITION:absolute" strokeweight="1pt">
+		        <v:stroke dashstyle="shortdot" />
+		    </v:line>
+		    <v:line chartElement="measure" chartGroup="axisY" from="0,0" to="0,0" style="POSITION:absolute" strokeweight="1pt">
+		        <v:stroke dashstyle="shortdot" />
+		    </v:line>
+		    <v:textbox chartElement="measureT" chartGroup="axisY" style="POSITION:absolute;text-align:right;Left:-10;Top:-20;FONT-SIZE:10;"></v:textbox>
+		    <v:textbox chartElement="legendT" chartGroup="axisY" style="POSITION:absolute;text-align:left;Left:0;Top:0;FONT-SIZE:12;"></v:textbox>
+		    <v:textbox chartElement="measureT" chartGroup="axisX" style="POSITION:absolute;text-align:left;Left:0;Top:0;FONT-SIZE:10;"></v:textbox>
+		    <v:textbox chartElement="legendT" chartGroup="axisX" style="POSITION:absolute;text-align:left;Left:0;Top:0;FONT-SIZE:12;"></v:textbox>
+    		<!-- 图表样例 -->
+		    <v:rect chartElement="verticalBar" style="position:absolute;left:0;top:0;WIDTH:0;HEIGHT:0;z-index:100" fillcolor="blue"></v:rect>
+            <v:shape chartElement="verticalLine" style="position:absolute;Left:-20;Top:-110;WIDTH:130px;HEIGHT:130px;z-index:100" strokeweight="1pt" filled="f" strokecolor="red" path="">
+            </v:shape>
+            <v:shape chartElement="pipe" style="position:absolute;Left:-20;Top:-150;WIDTH:130px;HEIGHT:130px;z-index:10;"
+                    strokeweight="1pt" fillcolor="#fC0" path="" onmouseover="" onmouseout="">
+                <v:fill rotate="t" type="gradient" opacity="1" color2="fill lighten(120)" o:opacity2="1" angle="-135" focus="100%" method="linear sigma">
+                </v:fill>
+                <o:extrusion v:ext="view" type="parallel" on="t" skewamt="0" metal="true" backdepth="20" viewpointorigin="0,0" viewpoint="0,0" rotationangle="60" lightposition="-500,-500" lightposition2="500">
+                </o:extrusion>
+            </v:shape>
+            <v:shape chartElement="pipeT" style="z-index:100;left:0;width:0;position:absolute;top:0;height:0" fillcolor="black">
+                <v:path textpathok="t"/>
+                <v:textpath style="font-family: 宋体;FONT-SIZE:20;" fitpath="f" on="t" string="9.22%">
+                </v:textpath>
+                <o:extrusion v:ext="view" type="parallel" on="t" skewamt="0" metal="true" backdepth="1" viewpointorigin="0,0" viewpoint="0,0" rotationangle="60" lightposition="-500,-500" lightposition2="500">
+                </o:extrusion>
+            </v:shape>
+		</div>
+		<!-- 图例 -->
+        <v:group chartElement="legend" style="Left:220;Top:-170;WIDTH:200px;HEIGHT:300px;position:absolute;display:none;z-index:200;" coordsize="200,300">
+		    <v:rect chartElement="bgWallLegend" style="Left:0;Top:0;WIDTH:200px;HEIGHT:300px;POSITION:absolute;z-index:150;" fillcolor="white" strokecolor="black">
+		    <v:shadow on="t" type="single" color="silver" offset="4pt,3pt"></v:shadow>
+		    </v:rect>
+		    <div chartElement="legendData"></div>
+		    <div chartElement="legendTemplate" style="display:none">
+		    <v:rect chartElement="colorLegend" style="position:absolute;left:20;top:20;WIDTH:10;HEIGHT:10;z-index:200;" fillcolor="blue"></v:rect>
+		    <v:textbox chartElement="legendTxt" chartGroup="legend" style="POSITION:absolute;text-align:left;Left:40;Top:20;FONT-SIZE:12;z-index:200;">测试</v:textbox>
+		    </div>
+		</v:group>
+</v:group>
+</div>

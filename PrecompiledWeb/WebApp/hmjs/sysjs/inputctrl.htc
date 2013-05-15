@@ -1,0 +1,344 @@
+<PUBLIC:ATTACH EVENT="onkeydown" ONEVENT="usEnterTab()" />
+<PUBLIC:ATTACH EVENT="onblur" ONEVENT="usOnBlurHandle()" />
+<PUBLIC:ATTACH EVENT="onfocus" ONEVENT="usOnFocusHandle()" />
+<PUBLIC:ATTACH EVENT="onclick" ONEVENT="usOnClickHandle()" />
+<PUBLIC:ATTACH EVENT="ondblclick" ONEVENT="usOnDblClickHandle()" />
+<PUBLIC:ATTACH EVENT="onchange" ONEVENT="usOnChangeHandle()" />
+<PUBLIC:ATTACH EVENT="onpropertychange" ONEVENT="usOnPropertyChangeHandle()" />
+
+<SCRIPT language=javascript>
+//enter changed tab
+function usEnterTab()
+{
+	if(event.keyCode!=13)	return;
+	var	ls_rule=event.srcElement.name;
+	if(ls_rule.length<1)	{event.keyCode=9;return;}
+	var	lsa_rules=ls_rule.split(";");
+	if(lsa_rules[0].toLowerCase()=="last")
+		if(lsa_rules[1])
+			{usOnBlurHandle();usNextRowStart(lsa_rules[1]);return;}
+	event.keyCode=9;
+}
+function usOnFocusHandle()
+{
+	if(event.srcElement.className.toLowerCase()=="inputdate")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy-mm-dd";
+		calendar();	//showCalendar(event.srcElement.id,"y-m-d");
+	}
+	if(event.srcElement.className.toLowerCase()=="inputym")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy-mm";
+		calendar();	//showCalendar(event.srcElement.id,"y-m");
+	}
+	if(event.srcElement.className.toLowerCase()=="inputyy")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy";
+		calendar();	//showCalendar(event.srcElement.id,"y-m");
+	}	
+}
+
+function usOnDblClickHandle()
+{
+	if(event.srcElement.className.toLowerCase()=="inputdate")
+	{
+		 
+		WebCalendar.format="yyyy-mm-dd";
+		calendar();	//showCalendar(event.srcElement.id,"y-m-d");
+	}
+	if(event.srcElement.className.toLowerCase()=="inputym")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy-mm";
+		calendar();	//showCalendar(event.srcElement.id,"y-m");
+	}
+	if(event.srcElement.className.toLowerCase()=="inputyy")
+	{
+		ToolUtil.sleep(10);
+		WebCalendar.format="yyyy";
+		calendar();	//showCalendar(event.srcElement.id,"y-m");
+	}	
+}
+
+function usOnPropertyChangeHandle()
+{
+	if(event.srcElement.tagName.toLowerCase()!="input")
+		return;
+	if(event.srcElement.className.toLowerCase()!="inputfile")
+		return;
+	var ctrlID="";
+	ctrlID=event.srcElement.parentElement.id;
+	alert(ctrlID);
+	bandKey=ctrlID.substr(0,ctrlID.indexOf(":"));
+	oBand=usGetBandByKey(bandKey);
+	if(!oBand)	return;
+	grid= igtbl_getGridById(oBand.gridName);
+	if(!grid)	return;
+	var row=grid.getActiveRow();
+	if(!row)	return;
+	var columnName=ctrlID.substr(ctrlID.indexOf(":")+1);
+	cell=row.getCellFromKey(columnName);
+	if(!cell) return;
+	cell.setValue(event.srcElement.value);
+}
+
+function usOnClickHandle()
+{
+	if(event.srcElement.className.toLowerCase()=="inputbtn"){
+		var id=event.srcElement.id;
+		if(id=="") id=event.srcElement.name;
+		switch(id.toLowerCase()){
+		case "增加":
+		case "add":	ue_add("");
+					break;
+		case "增加0":
+		case "add0":	ue_add("0");
+					break;
+		case "增加1":
+		case "add1":
+		case "addsub":	ue_add("1");
+					break;
+		case "删除":
+		case "del":	ue_delete("");
+					break;
+		case "删除0":
+		case "del0":	ue_delete("0");
+					break;
+		case "删除1":
+		case "del1":	ue_delete("1");
+					break;
+		case "保存":
+		case "save":ue_save("");
+					break;
+		case "保存0":
+		case "save0":ue_save(0);
+					break;
+		case "保存1":
+		case "save1":ue_save(1);
+					break;
+					}
+	}
+}
+
+//input control onblur
+//div包个文件控件,事件源是文件控件
+function usOnBlurHandle()
+{
+    if(event.srcElement.className.toLowerCase()=="inputbtn") return; //加入判断，如果是inputbtn刚，不处理相关的操作
+	
+	var ctrlID="";
+	if(null!=event.srcElement.type && event.srcElement.type.toLowerCase()=="file")
+		ctrlID=event.srcElement.parentElement.id;
+	else
+		ctrlID=event.srcElement.id;
+	bandKey=ctrlID.substr(0,ctrlID.indexOf(":"));
+	if(bandKey=="") return;
+	oBand=usGetBandByKey(bandKey);
+	if(!oBand)	return;
+	grid= igtbl_getGridById(oBand.gridName);
+	if(!grid)	return;
+	var row=grid.getActiveRow();
+	if(!row)	return;
+	var columnName=ctrlID.substr(ctrlID.indexOf(":")+1);
+	cell=row.getCellFromKey(columnName);
+	if(!cell) return;
+	if(null==event.srcElement.value || event.srcElement.value.length<1)
+		cell.setValue(null);
+	else if(event.srcElement.tagName.toLowerCase()=="input")
+	{
+		if(event.srcElement.type.toLowerCase()=="checkbox"){
+			cell.setValue(event.srcElement.checked?"True":"False"); // GRID赋给EDITTEMPLATE
+			}
+		else 
+		{
+			var cellValue=event.srcElement.value;
+			if(event.srcElement.className.toLowerCase()=="inputdate")
+			{
+				try{
+					var arrstr=cellValue.split("-",3);
+					var ld_date=new Date(arrstr[0],arrstr[1],arrstr[2]);
+					ld_date.setMonth(ld_date.getMonth()-1);
+					cell.setValue(ld_date);
+				}
+				catch(ex){cell.setValue(event.srcElement.value);}
+			}
+			else if(event.srcElement.className.toLowerCase()=="inputym")
+			{
+				try{
+					var arrstr=cellValue.split("-",2);
+					var ld_date=new Date(arrstr[0],arrstr[1],1);
+					ld_date.setMonth(ld_date.getMonth()-1);
+					cell.setValue(ld_date);
+				}
+				catch(ex){cell.setValue(event.srcElement.value);}
+			}
+			else if(event.srcElement.className.toLowerCase()=="inputyy")
+			{
+				try{
+					var arrstr=cellValue.split("-",2);
+					var ld_date=new Date(arrstr[0],12,1);
+					ld_date.setMonth(12);
+					cell.setValue(ld_date);
+				}
+				catch(ex){cell.setValue(event.srcElement.value);}
+			}			
+			else
+				cell.setValue(event.srcElement.value);
+		}
+	}else if(event.srcElement.tagName.toLowerCase()=="select")
+		{cell.setValue(event.srcElement.value);}
+	else
+		{cell.setValue(event.srcElement.value);}
+	
+	if(columnName!=oBand.linkCol)	return;
+	var	arrGrid=usGetAllBands();
+	var	arrGrid=usGetAllBands();
+	if(arrGrid.length<2)	return;
+	var masterID=usGetMasterGridName();
+	var masterGrid=igtbl_getGridById(masterID);
+	var oBandMaster=usGetBandByKey(masterGrid.Bands[0].Key);
+	if(oBand.key==oBandMaster.key)
+	{
+		for(var i=0;i<arrGrid.length;i++)
+		{
+			if(arrGrid[i].key==oBandMaster.key)	continue;
+			var	gridDetail=igtbl_getGridById(arrGrid[i].gridName);
+			if(!gridDetail)	return;
+			for(var j=0;j<gridDetail.Rows.length;j++)
+			{
+				var row=gridDetail.Rows.getRow(j);
+				if(row.getHidden())		continue;
+				var cellDetail=row.getCellFromKey(arrGrid[i].linkCol);
+				cellDetail.setValue(cell.getValue());
+			}
+		}
+	}
+}
+
+function getselectContenthtml(oBand,filterCol,filteritem,filterdata)
+{
+	var linkcol		= filterCol.colName;
+//	var filteritem	= filterCol.filterItem;
+//	var filterdata	= filterCol.filterData;
+	var xmlDoc =new ActiveXObject("Msxml2.DOMDocument");
+	xmlDoc.async =false;
+	xmlDoc.loadXML('<ParamList></ParamList>');
+	var root=xmlDoc.documentElement;
+
+	var element		= xmlDoc.createElement("Param");
+	element.setAttribute("name",linkcol);
+	element.setAttribute("value",event.srcElement.value);
+	root.appendChild(element);
+	var topFrame=usGetTopFrame();
+	element=xmlDoc.createElement("Param");
+	element.setAttribute("name","UnitName");
+	element.setAttribute("value",topFrame.GetCurUnitName());	
+	root.appendChild(element);
+	element=xmlDoc.createElement("Param");
+	element.setAttribute("name","FilterItem");
+	element.setAttribute("value",filteritem);
+	root.appendChild(element);
+	element=xmlDoc.createElement("Param");
+	element.setAttribute("name","FilterData");
+	element.setAttribute("value",filterdata);
+	root.appendChild(element);
+	
+	//send xmldoc to frSelect.aspx
+	var xmlhttp =	new ActiveXObject("Microsoft.XMLHTTP");
+	var ls_path	=	"http://"+location.host+location.pathname;
+	ls_path=ls_path.substr(0,ls_path.lastIndexOf("/")+1);
+	try
+	{
+		xmlhttp.Open("POST", ls_path+"frSelect.aspx?filterItem="+filteritem+"&filterdata="+filterdata, false);
+		xmlhttp.Send(xmlDoc);
+	}catch(ex){
+		alert("系统已经断开,请重新登陆!");
+		window.location="default.aspx";
+	}
+	xmlDoc.loadXML(xmlhttp.responseText);
+	if(filteritem!="")
+	{
+		var ctrlID = bandKey + ":" + filteritem;
+		var selctrl=usGetCtrlByID(ctrlID);
+		for(var i=selctrl.options.length-1;i>-1;i--)
+			selctrl.options.remove(i);
+		var itemNodeList=xmlDoc.documentElement.selectNodes("//"+filterdata);
+		var dictCol=usGetDictCol(oBand,filteritem);
+		for(var i=0;i<itemNodeList.length;i++)
+		{
+			var oOption=document.createElement("OPTION");//usCreateOption();
+			selctrl.options.add(oOption);
+			oOption.innerText=itemNodeList[i].selectSingleNode(dictCol.textCol).text;
+			oOption.value=itemNodeList[i].selectSingleNode(dictCol.valueCol).text;
+		}
+	}
+	if(xmlDoc.documentElement.childNodes.length<1)
+		return;
+	for(var i=0;i<xmlDoc.documentElement.childNodes[0].childNodes.length;i++)
+	{
+	// itemNodeList[0].childNodes[2] 字段名
+		var colname = xmlDoc.documentElement.childNodes[0].childNodes[i].nodeName;
+		var value = xmlDoc.documentElement.childNodes[0].childNodes[i].text;
+		if(filteritem!="")
+		{
+			if(colname!=linkcol && colname!=filteritem && colname!="id"  && colname!="ID")
+			{
+				var oCell    = document.getElementById(bandKey+":"+colname);
+				if(!oCell) continue;
+				if(value!=null) oCell.value=value;
+			}
+		}
+		else
+		{
+			if(colname!=linkcol && colname!="id"  && colname!="ID")
+			{
+				var oCell    = document.getElementById(bandKey+":"+colname);
+				if(!oCell) continue;
+				if(value!=null) oCell.setValue(value);
+			}			
+		}
+	}
+}
+
+
+function usOnChangeHandle()
+{
+	usOnBlurHandle();
+	var ctrlID=event.srcElement.id;
+	bandKey=ctrlID.substr(0,ctrlID.indexOf(":"));
+	if(bandKey=="") return;
+	oBand=usGetBandByKey(bandKey);
+	if(!oBand)	return;
+	
+	var xmlDoc =new ActiveXObject("Msxml2.DOMDocument");
+	xmlDoc.async =false;
+	xmlDoc.loadXML('<ParamList></ParamList>');
+	var root=xmlDoc.documentElement;
+	
+	//colName,textCol,valueCol,filterItem,filterData
+	var columnName	=	event.srcElement.id.substr(event.srcElement.id.indexOf(":")+1);
+	var filterCol	=	usGetFilterCol(oBand,columnName);
+	if(!filterCol)  return;
+	if(filterCol.filterData==null || filterCol.filterData=="") return;
+	
+	if(filterCol)
+	{
+		var arrfitem = filterCol.filterItem.split(",");
+		var arrfdata = filterCol.filterData.split(",");
+		var intlength =0;
+		if(arrfitem.length > arrfdata.length) intlength=arrfdata.length;
+		else intlength=arrfitem.length;
+		
+	    for(var i=0; i<intlength; i++)
+		{
+			getselectContenthtml(oBand,filterCol,arrfitem[i],arrfdata[i]);
+		}
+		return;
+	}	
+	
+
+}
+</SCRIPT>

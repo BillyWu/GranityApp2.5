@@ -1,329 +1,145 @@
-K 25
-svn:wc:ra_dav:version-url
-V 51
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin
-END
-ComLib.dll
-K 25
-svn:wc:ra_dav:version-url
-V 62
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/ComLib.dll
 END
 Estar.Business.DataManager.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 82
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.Business.DataManager.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.Business.DataManager.pdb
 END
-DevExpress.XtraGrid.v9.1.dll
+ComLib.dll
 K 25
 svn:wc:ra_dav:version-url
-V 80
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.XtraGrid.v9.1.dll
-END
-Granity.commiServer.dll
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Granity.commiServer.dll
-END
-Estar.DataAccess.DataAccessInterface.xml
-K 25
-svn:wc:ra_dav:version-url
-V 92
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.DataAccess.DataAccessInterface.xml
-END
-Estar.Business.UserRight.xml
-K 25
-svn:wc:ra_dav:version-url
-V 80
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.Business.UserRight.xml
-END
-Estar.DataAccess.OleDbDataAccess.dll
-K 25
-svn:wc:ra_dav:version-url
-V 88
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OleDbDataAccess.dll
-END
-Estar.Business.DataManager.dll
-K 25
-svn:wc:ra_dav:version-url
-V 82
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.Business.DataManager.dll
-END
-Estar.DataAccess.DataAccessInterface.pdb
-K 25
-svn:wc:ra_dav:version-url
-V 92
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.DataAccess.DataAccessInterface.pdb
-END
-Estar.Business.UserRight.pdb
-K 25
-svn:wc:ra_dav:version-url
-V 80
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.Business.UserRight.pdb
-END
-Granity.winTools.xml
-K 25
-svn:wc:ra_dav:version-url
-V 72
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Granity.winTools.xml
-END
-Estar.DataAccess.DataAccessInterface.dll
-K 25
-svn:wc:ra_dav:version-url
-V 92
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.DataAccess.DataAccessInterface.dll
-END
-Estar.Business.UserRight.dll
-K 25
-svn:wc:ra_dav:version-url
-V 80
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.Business.UserRight.dll
-END
-DevExpress.Utils.v9.1.dll
-K 25
-svn:wc:ra_dav:version-url
-V 77
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.Utils.v9.1.dll
-END
-Granity.winTools.pdb
-K 25
-svn:wc:ra_dav:version-url
-V 72
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Granity.winTools.pdb
-END
-DevExpress.XtraGauges.v9.1.Core.dll
-K 25
-svn:wc:ra_dav:version-url
-V 87
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.XtraGauges.v9.1.Core.dll
-END
-Granity.communications.xml
-K 25
-svn:wc:ra_dav:version-url
-V 78
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Granity.communications.xml
-END
-Estar.Common.Tools.xml
-K 25
-svn:wc:ra_dav:version-url
-V 74
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.Common.Tools.xml
-END
-Granity.winTools.dll
-K 25
-svn:wc:ra_dav:version-url
-V 72
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Granity.winTools.dll
-END
-DevExpress.XtraEditors.v9.1.dll
-K 25
-svn:wc:ra_dav:version-url
-V 83
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.XtraEditors.v9.1.dll
-END
-Granity.commiServer.XML
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Granity.commiServer.XML
-END
-Granity.communications.pdb
-K 25
-svn:wc:ra_dav:version-url
-V 78
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Granity.communications.pdb
-END
-Estar.Common.Tools.pdb
-K 25
-svn:wc:ra_dav:version-url
-V 74
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.Common.Tools.pdb
-END
-Oracle.DataAccess.dll
-K 25
-svn:wc:ra_dav:version-url
-V 73
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Oracle.DataAccess.dll
-END
-Microsoft.ApplicationBlocks.ExceptionManagement.dll
-K 25
-svn:wc:ra_dav:version-url
-V 103
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Microsoft.ApplicationBlocks.ExceptionManagement.dll
-END
-Granity.CardOneCommi.xml
-K 25
-svn:wc:ra_dav:version-url
-V 76
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Granity.CardOneCommi.xml
-END
-ComponentArt.Web.UI.dll
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/ComponentArt.Web.UI.dll
-END
-Estar.DataAccess.OdpNetDataAccess.xml
-K 25
-svn:wc:ra_dav:version-url
-V 89
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OdpNetDataAccess.xml
-END
-DcClient_vc8sp1_x86_32.dll
-K 25
-svn:wc:ra_dav:version-url
-V 78
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DcClient_vc8sp1_x86_32.dll
-END
-DevExpress.XtraEditors.v9.1.Design.dll
-K 25
-svn:wc:ra_dav:version-url
-V 90
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.XtraEditors.v9.1.Design.dll
-END
-Estar.Common.WebControlTools.dll
-K 25
-svn:wc:ra_dav:version-url
-V 84
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.Common.WebControlTools.dll
-END
-Estar.Common.Tools.dll
-K 25
-svn:wc:ra_dav:version-url
-V 74
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.Common.Tools.dll
-END
-Granity.commiServer.dll.refresh
-K 25
-svn:wc:ra_dav:version-url
-V 83
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Granity.commiServer.dll.refresh
-END
-Granity.communications.dll
-K 25
-svn:wc:ra_dav:version-url
-V 78
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Granity.communications.dll
-END
-Estar.Common.WebControls.dll
-K 25
-svn:wc:ra_dav:version-url
-V 80
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.Common.WebControls.dll
+V 62
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/ComLib.dll
 END
 Estar.DataAccess.OdpNetDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 89
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OdpNetDataAccess.pdb
-END
-Estar.DataAccess.SqlClientDataAccess.xml
-K 25
-svn:wc:ra_dav:version-url
-V 92
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.DataAccess.SqlClientDataAccess.xml
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OdpNetDataAccess.pdb
 END
 Granity.CardOneCommi.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Granity.CardOneCommi.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Granity.CardOneCommi.pdb
+END
+Granity.commiServer.dll
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Granity.commiServer.dll
+END
+Estar.DataAccess.OleDbDataAccess.dll
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OleDbDataAccess.dll
 END
 Estar.DataAccess.SqlClientDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.DataAccess.SqlClientDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.DataAccess.SqlClientDataAccess.pdb
+END
+Estar.Business.DataManager.dll
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.Business.DataManager.dll
 END
 Estar.DataAccess.OdpNetDataAccess.dll
 K 25
 svn:wc:ra_dav:version-url
 V 89
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OdpNetDataAccess.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OdpNetDataAccess.dll
 END
 Granity.CardOneCommi.dll
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Granity.CardOneCommi.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Granity.CardOneCommi.dll
 END
-DevExpress.XtraTreeList.v9.1.dll
+Estar.DataAccess.DataAccessInterface.pdb
 K 25
 svn:wc:ra_dav:version-url
-V 84
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.XtraTreeList.v9.1.dll
+V 92
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.DataAccess.DataAccessInterface.pdb
+END
+Estar.Business.UserRight.pdb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.Business.UserRight.pdb
 END
 Estar.DataAccess.SqlClientDataAccess.dll
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.DataAccess.SqlClientDataAccess.dll
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.DataAccess.SqlClientDataAccess.dll
 END
-Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
+Estar.DataAccess.DataAccessInterface.dll
 K 25
 svn:wc:ra_dav:version-url
-V 114
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll
+V 92
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.DataAccess.DataAccessInterface.dll
 END
-DevExpress.XtraGauges.v9.1.Win.dll
+Estar.Business.UserRight.dll
 K 25
 svn:wc:ra_dav:version-url
-V 86
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.XtraGauges.v9.1.Win.dll
+V 80
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.Business.UserRight.dll
 END
-ComLib.xml
+Granity.winTools.pdb
 K 25
 svn:wc:ra_dav:version-url
-V 62
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/ComLib.xml
+V 72
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Granity.winTools.pdb
 END
-DevExpress.Data.v9.1.dll
+Granity.winTools.dll
 K 25
 svn:wc:ra_dav:version-url
-V 76
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.Data.v9.1.dll
+V 72
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Granity.winTools.dll
 END
-Estar.DataAccess.OleDbDataAccess.xml
+Estar.Common.Tools.pdb
 K 25
 svn:wc:ra_dav:version-url
-V 88
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OleDbDataAccess.xml
+V 74
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.Common.Tools.pdb
+END
+Granity.communications.pdb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Granity.communications.pdb
 END
 ComLib.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/ComLib.pdb
-END
-DevExpress.XtraLayout.v9.1.dll
-K 25
-svn:wc:ra_dav:version-url
-V 82
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/DevExpress.XtraLayout.v9.1.dll
-END
-Estar.Common.WebControlTools.dll.refresh
-K 25
-svn:wc:ra_dav:version-url
-V 92
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.Common.WebControlTools.dll.refresh
-END
-Estar.Business.DataManager.xml
-K 25
-svn:wc:ra_dav:version-url
-V 82
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/WebApp/Bin/Estar.Business.DataManager.xml
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/ComLib.pdb
 END
 Granity.commiServer.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 75
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Granity.commiServer.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Granity.commiServer.pdb
 END
 Estar.DataAccess.OleDbDataAccess.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OleDbDataAccess.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.DataAccess.OleDbDataAccess.pdb
+END
+Estar.Common.Tools.dll
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Estar.Common.Tools.dll
+END
+Granity.communications.dll
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/WebApp/Bin/Granity.communications.dll
 END

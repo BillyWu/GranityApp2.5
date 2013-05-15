@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="hmjs/tmpjs/zflz.js" type="text/javascript" charset="gb2312"></script>
+<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+</head>
+<body>
+
+		  <p style="MARGIN-BOTTOM: -8px"><br /></p>
+<table border="0" width="793" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align="center" height="72">
+	<tbody>
+	<tr>
+		<td align="center" style="width:15%;height:50px" >
+		<img alt="" style="border:0 none;width:80px;height:45px" src="sx_welcome.gif" />
+		</td>
+		<td align="left" style="width:85%;height:45px; font-size:10pt" >
+		<table width="673" id="table1" border="0" style="border-collapse: collapse; WORD-BREAK: break-all; left:312px; top:19px; font-size:10pt" cellspacing="1" bordercolorlight="#A2A2A3" bordercolordark="#A2A2A3" height="57">
+			<tbody>
+<tr id="filterperson">
+				<td width="42" align="right">年度：</td>
+				<td width="79">
+					<select id="syear" filter="and" exp="="  size="1" class="tselect" style="width:100%" name="" onkeydown="if(event.keyCode==13) event.keyCode=9">		
+					</select></td>
+				<td width="34" align="right">
+					期间:</td>
+				<td width="49" align="right">
+					<select id="startmonth" size="1" filter="and" exp="&gt;=" class="tselect" style="WIDTH:100%;" name="" onkeydown="if(event.keyCode==13) event.keyCode=9">
+					</select></td>
+				<td width="13">～</td>
+				<td width="47">
+					<select id="endmonth" size="1" filter="and" exp="&lt;=" class="tselect" style="WIDTH:100%;" name="" onkeydown="if(event.keyCode==13) event.keyCode=9">
+					</select></td>
+				<td width="14">
+				月</td>
+				<td width="177">
+				<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table2" style="font-size: 10pt; border-collapse:collapse">
+					<tbody>
+					<tr>
+						<td rowspan="2" align="right" >科目级别：</td>
+						<td width="22" rowspan="2" align="right"><input id="startlevel" name="级别" filter="and" exp="&gt;=" value="1"  class="tinput" style="ime-mode:disabled;width:100%" maxlength="1" onkeydown="if(event.keyCode==13)
+							event.keyCode=9" onKeyPress="if ((event.keyCode&lt;48 || event.keyCode&gt;57)) event.returnValue=false" /></td>
+						<td width="22"><button id="navprev" style="width:22px;height:11" hideFocus="" onclick="ue_upval('startlevel');"><img src="images\iup.gif" /></button></td>
+						<td width="15" rowspan="2" align="center">至</td>
+						<td width="22" rowspan="2"><input id="endlevel" name="级别" filter="and" exp="&lt;=" value="1" class="tinput" style="ime-mode:disabled;width:100%" maxlength="1" onkeydown="if(event.keyCode==13)
+							event.keyCode=9" onKeyPress="if ((event.keyCode&lt;48 || event.keyCode&gt;57)) event.returnValue=false" /></td>
+						<td width="22"><button id="navprev" style="width:22px;height:11" hideFocus="" onclick="ue_upval('endlevel');"><img src="images\iup.gif" /></button></td>
+					</tr>
+					<tr>
+						<td><button id="navprev" style="width:22;height:10" hideFocus="" onclick="ue_downval('startlevel');"><img src="images\idown.gif" /></button></td>
+						<td><button id="navprev" style="width:22px;height:11" hideFocus="" onclick="ue_downval('endlevel');"><img src="images\idown.gif" /></button></td>
+					</tr>
+				</tbody>
+				</table>
+				</td>
+				<td align="right" width="43">
+				币别：</td>
+				<td width="62">
+				<SELECT id="rmb" class="tselect" onkeydown="if(event.keyCode==13) event.keyCode=9" DataValueField="code" 
+				DataTextField="name" DataSource="execute [dbo].[proc_dict_币种]" size="1" style="WIDTH:95%;" name="">
+					</SELECT></td>
+				<td width="22"><img id="btnfind" onfocus="_filter()" border="0" src="Images/tb16.gif" width="22" height="22" onclick="_filter()" 
+					onmouseover="this.src='Images/tb16c.gif'" onmouseout="this.src='Images/tb16.gif'" /></td>
+				<td align="center" width="54">【<a href="#" onclick="_myrefresh()">复位</a>】</td>
+			</tr><tr id="filterperson">
+				<td width="42" align="right" height="25">科目：</td>
+				<td colspan="9" height="25">
+					<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse; font-size:10pt" id="table3">
+						<tbody>
+						<tr>
+							<td width="38%"><div style="position:absolute;">
+				<input style="width:160px;" class="tinput" id="ipt" 
+					onkeydown="if(event.keyCode==13) document.getElementById('ipt1').focus()" 
+					onblur="khpymNotBand('sel')" name="" size="20" />
+						</div>
+            <select style="width:180;" class="tselect" id="sel" filter="and" exp="&gt;="   name="科目编码" 
+            	onchange="_transVal('ipt')"></select><INPUT onclick="sb_click('ipt')" style="height:20px" type="button" value="…" /></td>
+							<td width="4%">～</td>
+							<td width="29%">
+							<div style="position:absolute;">
+				<input style="width:160px;" class="tinput" id="ipt1"
+				onkeydown="if(event.keyCode==13) document.getElementById('chk').focus()" onblur="khpymNotBand('sel1')" name="" /></div>
+            <select style="width:180;" class="tselect" id="sel1"  filter="and" exp="&lt;=" onchange="_transVal('ipt1')" name="科目编码"></select><INPUT onclick="sb_click('ipt1')" style="height:20px" type="button" value="…" /></td>
+							<td width="28%"><input id="chk" type="checkbox" onkeydown="if(event.keyCode==13) document.getElementById('btnfind').focus()" checked="" filter="and" name="" value="ON" />无发生额不显示</td>
+						</tr>
+					</tbody>
+					</table>
+				</td>
+				<td width="22" height="25"><img border="0" src="Images/printer0.gif" width="22" height="22" onclick="ue_print()" onmouseover="this.src='Images/printer.gif'" onmouseout="this.src='Images/printer0.gif'" /></td>
+				<td align="center" width="54" height="25">【<a href="#" onclick="_close()">返回</a>】</td>
+			</tr>			
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" id="unittitle" valign="baseline" style="filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=gray, endColorStr='#FFFFFF', gradientType='1');width:98%;height:14px" colspan="2">
+		</td>
+	</tr>
+</tbody>
+</table><p style="MARGIN-BOTTOM: -18px"></p>
+	<Control class="" catalog="GridLand.ascx" itemname="nav" id="MasterTab" name="">MasterTab
+							<Property name="tpfile" value="ControlTemplate/GridBrowser.htm" />
+							<Property name="width" value="793px" /><Property name="height" value="395px" /><Property name="hiddenhead" value="" />
+							<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+	</Control></body>
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<table class="smartGrid" cellpadding="0" cellSpacing="0" width="100%" tabType="grid">
+	<tbody>
+		<tr>
+			<td divtype="body" colspan="3">
+				<div divtype="title" align="left" style="OVERFLOW:hidden">
+					<table tabType="title" class="tabTitle" cellpadding="0" cellSpacing="0">
+						<thead>
+							<tr rowType="title">
+								<td tdType="rowcursor" class="headerCellStyle" align="center" width="40" height="22" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+									<span width="100%" height="100%" colname="">序号</span>
+								</td>
+								<td tdType="coltitle" class="headerCellStyle" align="center" colname="" datatype="" width="120" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+									<span width="100%" height="100%" colname="">列标题</span>
+								</td>
+								<td class="headerCellStyle" align="center" width="16" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+									<span width="100%" height="100%" colname="">　</span>
+								</td>
+							</tr>
+						</thead></table>
+				</div>
+				<div divtype="detail" style="OVERFLOW:scroll" onscroll="GridUtil.usOnScrollHori();">
+					<table tabType="detail" class="tabDetail" cellpadding="0" cellSpacing="0" onmousemove="GridUtil.usOnDetailMouseOverHandle();" onmouseout="GridUtil.usOnDetailMouseOutHandle();">
+						<thead>
+							<tr rowType="edit" style="DISPLAY:none">
+								<td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="select" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="select" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" />	</td>
+							</tr>
+							<tr rowType="readonly" style="DISPLAY:none">
+								<td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" align="left" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" /></td>
+								<td datatype="select" class="cellStyle" onclick="GridUtil.usOnCellRFocusHandle();" width="120"><input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="select" colname="" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" readonly="true" onfocus="GridUtil.usOnCellRFocusHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" />	</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr rowType="detail">
+								<td tdType="rowcursor" class="rowCursorStyle" align="center" width="40" onclick="GridUtil.usOnRowcursorClickHandle()"><span datafld="RowNum"></span></td>
+								<td tdType="coldata"><span width="100%" height="100%">明细数据</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<table tabType="foot" class="tabDetail" cellpadding="0" cellSpacing="0">
+						<tbody>
+							<tr rowType="foot">
+								<td tdType="rowcursor" class="headerCellStyle" align="center" width="40px" height="22px">
+									<span width="100%" height="100%">合计</span>
+								</td>
+								<td tdType="coldata" class="headerCellStyle" width="120" align="right"><span width="100%" height="100%" colname="">　</span>
+									</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+		<td>
+		<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+			<tbody>
+			<tr>
+				<td width="5%" class="lt0">
+				<div id="msviLocalToolbar30" align="center" style="width: 100%; height: 32px;border:0 none">
+		<table border="0" width="30" cellpadding="0" style="border-collapse: collapse" id="table1">
+			<tbody>
+			<tr>
+				<td class="lt0" onmouseover="mhHover('msviLocalToolbar30', 0, 'lt1')" onmouseout="mhHover('msviLocalToolbar30', 0, 'lt0')" align="center">
+				<img border="0" onclick="ue_savewidth();" src="Images/grid/width.ico" alt="保存调节后的表格宽度" />
+				</td>
+
+			</tr>
+		</tbody>
+		</table>
+		</div></td>
+				<td width="15%" class="lt0"><img border="0" title="查找" src="Images/Monochrome%20Subscriptions.ico" onmouseover="this.src='Images/Monochrome Subscriptions.ico'" onmouseout="this.src='Images/Monochrome Subscriptions.ico'" />
+		<input type="text" name="T1" size="8" onfocus="this.nextSibling.value='查找'" />
+		<input type="button" class="gridbtn" value="查找" name="B3" onclick="ue_bandsearch(this.previousSibling.value,'下一个'==this.value);this.value='下一个';" style="width: 46; height:21" />　</td>
+				<td class="lt0" id="message">　</td>
+				<td width="296" class="lt0" divtype="funarea">
+				<DIV align="center" style="width:49px; height:20px"><select name="ddlPageIndex" size="1" onchange="ue_bandcmd_nav('jump',this.value);" style="width: 40"><option value="1" selected="true">1</option></select></DIV></td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+		</tr>
+</tbody>
+</table>

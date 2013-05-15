@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>友情提示</title>
+<script language="javascript">
+	function init()
+	{
+		var oband = window.dialogArguments;
+		var obj = document.getElementById("man");
+		var ops = obj.options;
+        ops.add(new Option("",""));
+        for(var m=0;m<oband.RecordCount();m++)
+            ops.add(new Option(oband.getFldStrValue("姓名",m),oband.getFldStrValue("姓名",m)));
+
+	}
+	function cmdOK()
+	{
+		if(document.getElementById("man").value=="")
+		{
+            msg="请选择领料人?";
+            alert(msg);
+            return;
+            //var result = confirm(msg);
+            //if(!result) return;			
+		}
+		window.returnValue = document.getElementById("man").value;
+		window.close();			
+	}														
+
+</script>
+</head>
+
+<body leftMargin="0" topMargin="20" scroll="no" onload="init()" bgcolor="#D4D0C8" style="font-size: 10pt">
+
+<div align=center>
+	<img border="0" src="../Images/ask.jpg" style="position: absolute; left: 24; top: 16" ><p style="margin:5"/>
+<div>选择领料人:<select id="man" style="width:130;height:19" size="1" name="D6"></select></div>
+<p style="margin:20"/>
+	<INPUT style="WIDTH: 60px;" onclick="cmdOK()" type="button"
+							value="确定" name="btn" >　<INPUT style="WIDTH: 60px;" onclick="window.close()" type="button"
+								value="放弃" ></div>
+					
+</body>
+
+</html>

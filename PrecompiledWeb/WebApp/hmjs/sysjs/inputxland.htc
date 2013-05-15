@@ -1,0 +1,28 @@
+<PUBLIC:ATTACH EVENT="onkeydown" ONEVENT="usOnKeydownHandle()" />
+<PUBLIC:ATTACH EVENT="onfocus" ONEVENT="usOnFocusHandle()" />
+<PUBLIC:ATTACH EVENT="onblur" ONEVENT="usOnBlurHandle()" />
+<PUBLIC:ATTACH EVENT="onafterupdate" ONEVENT="usOnUpatedHandle()" />
+
+<SCRIPT language=javascript>
+
+function usOnKeydownHandle()
+{
+	GridUtil.usOnCtrlEnterTab();
+}
+
+function usOnFocusHandle()
+{
+	GridUtil.usOnCtrlFocusHandle();
+}
+
+//与控件绑定的数据岛数据更改时触发,处理对应的显示格式值
+function usOnUpatedHandle()
+{
+	GridUtil.usOnCtrlUpatedHandle();
+}
+//离开焦点后,改变单元格风格
+function usOnBlurHandle()
+{
+	GridUtil.usOnCtrlBlurHandle();
+}
+</SCRIPT>

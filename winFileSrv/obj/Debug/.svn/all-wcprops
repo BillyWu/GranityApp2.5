@@ -1,29 +1,13 @@
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winFileSrv/obj/Debug
-END
-winFileSrv.ServiceFile.resources
-K 25
-svn:wc:ra_dav:version-url
-V 94
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winFileSrv/obj/Debug/winFileSrv.ServiceFile.resources
 END
 winFileSrv.exe
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winFileSrv/obj/Debug/winFileSrv.exe
-END
-winFileSrv.csproj.GenerateResource.Cache
-K 25
-svn:wc:ra_dav:version-url
-V 102
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winFileSrv/obj/Debug/winFileSrv.csproj.GenerateResource.Cache
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winFileSrv/obj/Debug/winFileSrv.exe
 END
 winFileSrv.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winFileSrv/obj/Debug/winFileSrv.pdb
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winFileSrv/obj/Debug/winFileSrv.pdb
 END

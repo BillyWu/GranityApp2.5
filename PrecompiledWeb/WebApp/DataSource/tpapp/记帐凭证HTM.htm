@@ -1,0 +1,1022 @@
+﻿<html>
+  <head>
+    <base target="_self" />
+    <script language="javascript" src="hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <link href="hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="mstoolbar_files/css.css" type="text/css" rel="stylesheet" />
+    <style type="text/css">
+      BODY { FONT-SIZE: 10pt; COLOR: #333333; FONT-FAMILY: "宋体", "Arial" }
+      TD { FONT-SIZE: 10pt; COLOR: #333333; FONT-FAMILY: "宋体", "Arial" }
+    </style>
+  </head>
+  <body style="overflow:hidden; margin: 0px;" onload="this.focus();">
+    <script language="javascript" src="hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <div style="display:none;">
+      <XML id="xmlparam" typexml="Param">
+        <D>
+          <PL t="S">
+            <L t="D">
+              <P n="StartDate" v="2008-11-29" t="d" />
+              <P n="EndDate" v="2008-12-29" t="d" />
+              <P n="UserAccounts" v="ccf" t="s" />
+              <P n="UserName" v="程昌发" t="s" />
+              <P n="OPTUnitID" v="50" t="s" />
+              <P n="UnitCode" v="50" t="s" />
+              <P n="DWName" v="克立司帝控制系统(上海)有限公司" t="s" />
+              <P n="DWSupName" v="" t="s" />
+              <P n="DeptSaleName" v="克立司帝控制系统(上海)有限公司" t="s" />
+              <P n="DeptSupName" v="克立司帝控制系统(上海)有限公司" t="s" />
+              <P n="DeptName" v="财务部" t="s" />
+              <P n="DeptCode" v="5083" t="s" />
+              <P n="LimitDays" v="0" t="i" />
+            </L>
+          </PL>
+          <PL t="P">
+            <L t="Ts">
+              <P n="RecordCount" v="" t="s" pt="M" />
+              <P n="Command" v="TransParam" t="s" />
+              <P n="UnitName" v="记帐凭证" t="s" />
+            </L>
+          </PL>
+        </D>
+      </XML>
+    </div>
+    <div style="display:none;">
+      <XML name="记帐凭证" templatetype="HTML" id="xmlConf_xmlLandConf" typexml="ConfProperty" confpro="" tpath="DataSource/resources/Template/记帐凭证HTM.htm">
+        <UnitItem>
+          <Item name="主表" relation="M" linkcol="单据编号" dataitem="记帐凭证" columnkey="ID" />
+          <Item name="从表" relation="D" linkcol="单据编号" dataitem="凭证明细" columnkey="ID">
+            <Column name="j4" title="百" />
+            <Column name="d0" title="分" />
+            <Column name="d6" title="万" />
+            <Column name="摘要" />
+            <Column name="j7" title="十" />
+            <Column name="d3" title="十" />
+            <Column name="j3" title="十" />
+            <Column name="d9" title="千" />
+            <Column name="d1" title="角" />
+            <Column name="j6" title="万" />
+            <Column name="科目" title="会计科目" />
+            <Column name="d4" title="百" />
+            <Column name="j5" title="千" />
+            <Column name="d5" title="千" />
+            <Column name="j9" title="千" />
+            <Column name="sn" />
+            <Column name="d8" title="百" />
+            <Column name="贷方"  title="贷方金额"/>
+            <Column name="j1" title="角" />
+            <Column name="单据编号" />
+            <Column name="借方"  title="借方金额"/>
+            <Column name="j8" title="百" />
+            <Column name="j0" title="分" />
+            <Column name="j2" title="元" />
+            <Column name="d2" title="元" />
+            <Column name="d7" title="十" />
+          </Item>
+        </UnitItem>
+      </XML>
+    </div>
+
+      <div style="display:none" >
+        <input name="hlb_cmd" type="hidden" id="hlb_cmd" />
+        <input name="hlbRequestParams" type="hidden" id="hlbRequestParams" />
+      </div>
+      <div id="etpTemplate" style="border-color:Gray;border-width:1px;border-style:Solid;height:100%;width:100%;">
+        <head>
+          <script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>
+          <script language="javascript" src="hmjs/tmpjs/jzpz.js" type="text/javascript" charset="gb2312"></script>
+          <link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+          <LINK href="hmjs/sysjs/menu.css" type="text/css" rel="stylesheet" />
+          <script language="javascript" type="text/javascript">
+            <!--
+            	 window.onload=WinLoadUtil.MDTPLoad; 
+                 document.onkeydown = function()
+                  {   
+                      if(event.srcElement.tagName!=="TEXTAREA" || event.srcElement.tagName!=="INPUT")   
+                      {
+                        if(event.keyCode==8)   
+                        {   
+                            event.cancelBubble = true   
+                            event.returnValue = false;   
+                            return false;
+                        }   
+                      }   
+                  }   
+        		  	    
+            -->
+          </script>
+        </head>
+        <body>
+          <table align="center" id="toobar" border="0" cellpadding="1" cellspacing="2" width="801px" 
+            bgcolor="buttonface" onselectstart="event.returnValue=false" style="cursor:default;font-family: 宋体; font-size: 9pt; color: MenuText;  border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-top: 1px solid #FFFFFF; border-bottom: 1px solid #000000; padding:0px">
+            <tbody>
+              <tr>
+                <td width="4">
+                  <span class="handout"></span>
+                </td>
+                <td nowrap="" class="coolButton" id="btnsave" width="50" onclick="_save()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" cellspacing="0" cellpadding="0" id="table2" style="font-size: 10pt;width:100%">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\SaveHS.gif" />
+                        </td>
+                        <td>保存</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="btnsubmit" width="50" onclick="_submit(0);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table6" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\report_go.gif" width="16" height="16" />
+                        </td>
+                        <td>提交</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td1" width="50" onclick="_submit(1);" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\reply.gif" width="16" height="16" />
+                        </td>
+                        <td style="color: red">退回</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td2" width="50" onclick="ms_showBoard('contents',1)" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table12" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\printer.ico" width="16" height="16" />
+                        </td>
+                        <td>打印</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="5">
+                  <span class="handin"></span>
+                </td>
+                <td nowrap="" class="coolButton" id="btnexam" width="50" onclick="ms_showBoard('contents',2);CreateOpionTable()" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table13" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\sitemap.gif" />
+                        </td>
+                        <td>分配</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td1" width="50" onclick="usGetTopFrame().opentoolswin('calc.htm','530','360');" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\calculator.png" width="16" height="16" />
+                        </td>
+                        <td>计算</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td1" width="50" onclick="_balance();" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" title="自动平衡借、贷方向数值" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\align_bottom.png" width="16" height="16" />
+                        </td>
+                        <td>找平</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td nowrap="" class="coolButton" id="Td1" width="50" onclick="_exchange();" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center">
+                  <table border="0" width="100%" title="当前行借、贷互换" cellspacing="0" cellpadding="0" id="table8" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\twist.ico" width="16" height="16" />
+                        </td>
+                        <td>切换</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="13">
+                  <span class="handin"></span>
+                </td>
+                <td width="43%" align="right">
+                  <table border="0" cellpadding="0" style="width:206px">
+                    <tbody>
+                      <tr>
+                        <td width="16">
+                          <button id="navfirst" onclick="ue_nstart('goods');">
+                            <img src="images/MoveFirstHS.gif" />
+                          </button>
+                        </td>
+                        <td width="16">
+                          <button id="navprev" onclick="ue_nprev('goods');">
+                            <img src="images//MovePrevious.gif" />
+                          </button>
+                        </td>
+                        <td align="center">
+                          <INPUT dataFld="RowNum" dataSrc="#goods" type="text" size="5" name="姓名2" />
+                        </td>
+                        <td width="16">
+                          <button id="navnext" onclick="ue_nnext('goods');">
+                            <img src="images//MoveNextHS.gif" />
+                          </button>
+                        </td>
+                        <td width="16">
+                          <button id="navlast" onclick="ue_nlast('goods');">
+                            <img src="images//MoveLastHS.gif" />
+                          </button>
+                        </td>
+                        <td width="16">
+                          <button onclick="ns_bandadd('goods');">
+                            <img src="images//NewRecordHS.gif" />
+                          </button>
+                        </td>
+                        <td width="16">
+                          <button onclick="ms_banddel();">
+                            <img src="images//EditDelete1.gif" width="16" height="16" />
+                          </button>
+                        </td>
+                        <td width="16">
+                          <button onclick="_save();">
+                            <img src="images//saveHS.gif" />
+                          </button>
+                        </td>
+                        <td width="32"></td>
+                        <td width="64" title="从货品清单中查找"></td>
+                        <td width="64" title="从货品清单中查找"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="10">
+                  <span class="handin"></span>
+                </td>
+                <td nowrap="" class="coolButton" id="btnquit" width="52" onmouseover="this.className='button1'" onmouseout="this.className='coolButton'" onmousedown="this.className='button2'" onmouseup="this.className='button1'" align="center" onclick="winclose();">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table14" style="font-size: 10pt">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="images\door.gif" width="16" height="16" />
+                        </td>
+                        <td>退出</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="1%">　</td>
+              </tr>
+            </tbody>
+          </table>
+          <table border="1" cellspacing="0" width="800" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt;" height="382">
+            <tbody id="html">
+              <tr>
+                <th height="25" width="228" style="font-size: 10pt" colspan="2" align="left">
+                  <span style="font-weight: 400">　序　　号：</span>
+                  <INPUT dataFld="序号" dataSrc="#MasterTab" class="xlandinput" style="width:97; " type="text" size="11" name="姓名27" />
+                </th>
+                <th height="50" width="317" colspan="2" rowspan="2">记帐凭证</th>
+                <th height="25" width="239" style="font-size: 10pt" align="left" colspan="2">
+                  <span style="font-weight: 400">　　凭证字：</span>
+                  <select dataFld="凭证字" dataSrc="#MasterTab" class="xlandinput" size="1" style="WIDTH: 97;" name="D8">
+                    <option value=""></option>
+                    <option value="现收">现收</option>
+                    <option value="现付">现付</option>
+                    <option value="银收">银收</option>
+                    <option value="银付">银付</option>
+                    <option value="转">转</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th height="25" width="228" style="font-size: 10pt" colspan="2" align="left">
+                  <span style="font-weight: 400">　打印样式：</span>
+                  <INPUT id="联系人" style="width:97; " type="text" size="11" name="姓名27" />
+                </th>
+                <th height="25" width="239" style="font-size: 10pt" align="left" colspan="2">
+                  <span style="font-weight: 400">　　凭证号：</span>
+                  <INPUT dataFld="单据编号" dataSrc="#MasterTab" class="xlandinput" style="width:97; " type="text" size="11" name="姓名27" />
+                </th>
+              </tr>
+              <tr>
+                <th height="24" width="228" colspan="2" style="font-size: 10pt" align="left">
+                  <span style="font-weight: 400">　引用单号：</span>
+                  <INPUT dataFld="借方" dataSrc="#DetailDB" class="xlandinput" style="width:97; " type="text" size="11" name="姓名27" />
+                </th>
+                <th height="24" width="317" colspan="2">
+                  <span style="font-weight: 400;font-size: 10pt">　日期：</span>
+                  <INPUT dataFld="日期" dataSrc="#MasterTab" class="xlanddate" style="width:120; " type="text" size="11" name="姓名27" />
+                </th>
+                <th height="24" width="239" style="font-size: 10pt" align="left" colspan="2">
+                  <span style="font-weight: 400">　　附　件：</span>
+                  <INPUT dataFld="附件" dataSrc="#MasterTab" class="xlandinput" style="width:97; " type="text" size="11" name="姓名27" />
+                </th>
+              </tr>
+              <tr>
+                <th width="685" height="275" colspan="6" style="background-color: #FFFFFF" valign="top">
+                  <div id="etpTemplate_DetailDB_GridDiv" style="height:315px;width:792px;">
+
+                    <table class="GridWB" cellpadding="0" cellSpacing="0" style="width:100%;height:100%" tabType="grid">
+                      <tbody>
+                        <tr>
+                          <td divtype="body" colspan="4">
+                            <div divtype="title" align="left" style="OVERFLOW:hidden;width:792px" width="">
+                              <table tabType="title" class="tabTitle" cellpadding="0" cellSpacing="0">
+                                <thead>
+                                  <tr rowType="title">
+                                    <td tdType="rowcursor" class="cellwb_btn" align="center" style="width:40;table-layout:fixed" height="36" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();" onclick="us_tablepro()" rowspan="2">
+                                      <span width="100%" height="100%" colname="">序号</span>
+                                    </td>
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="摘要" datatype="xs:string" width="153" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();" rowspan="2">
+                                      <span width="100%" height="100%" colname="摘要">摘要</span>
+                                    </td>
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="科目" datatype="xs:string" width="190" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();" rowspan="2">
+                                      <span width="100%" height="100%" colname="科目">会计科目</span>
+                                    </td>
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="币种" datatype="xs:string" width="49" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      <span width="100%" height="100%" colname="币种">币种</span>
+                                    </td>
+                                    <td tdType="coltitle" class="cellwb_btn" style="border-right-style: none; border-right-width: medium" align="center" colname="汇率" datatype="xs:decimal" width="44" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      <span width="100%" height="100%" colname="汇率">汇率</span>
+                                    </td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" style="border-left-style: double;border-left-width: 3px;border-right-style: none; border-right-width: medium " align="center" 
+                                    colname="借方" datatype="xs:decimal" width="150" ondblclick="GridUtil.usOnTitClick();" 
+                                    onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();" colspan="10">
+                                      <span width="100%" height="100%" >借方金额</span></td>
+                                    <td tdType="coltitle" class="cellwb_btn" style="border-left-style: double;border-left-width: 3px; " align="center" colname="贷方" datatype="xs:decimal" width="150" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();" colspan="10">
+                                      <span width="100%" height="100%" >贷方金额</span>
+                                    </td>
+                                    <td class="cellwb_btn" style="width:15px;table-layout:fixed" align="center" onmouseup="GridUtil.usOnTitMouseUp();" 
+                                    onmousemove="GridUtil.usOnTitMouseMove();" rowspan="2">
+                                      <a href="#" title="保存调整后的表格宽度" class="linkbtn" onclick="ue_savewidth();">=</a>
+                                    </td>
+                                  </tr>
+                                  <tr rowType="title">
+                                    <td tdType="coltitle" class="cellwb_btn" style="border-right-style: none; border-right-width: medium" align="center" colname="币种" datatype="xs:string" width="93" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();" colspan="2">
+                                      <span width="100%" height="100%" colname="外币金额">外币金额</span>
+                                    </td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" style="border-left-style: double;border-left-width: 3px; " align="center" 
+                                        colname="j9" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      千</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="j8" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      百</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="j7" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      十</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="j6" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      万</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="j5" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      千</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="j4" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      百</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="j3" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      十</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" style="border-right: 1px solid red" align="center" colname="j2" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      元</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="借方" datatype="xs:decimal" width="j1" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      角</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" style="border-right-style: none; border-right-width: medium" align="center"
+                                     colname="j0" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      分</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" style="border-left-style: double;border-left-width: 3px; "
+                                     colname="d9" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      千</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="d8" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      百</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="d7" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      十</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="d6" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      万</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="d5" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      千</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="d4" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      百</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="d3" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      十</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" style="border-right: 1px solid red" align="center" colname="d2" datatype="xs:decimal" width="15" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      元</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="d1" datatype="xs:decimal" width="d1" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      角</td>
+                                    
+                                    <td tdType="coltitle" class="cellwb_btn" align="center" colname="d0" datatype="xs:decimal" width="d0" ondblclick="GridUtil.usOnTitClick();" onmouseup="GridUtil.usOnTitMouseUp();" onmousemove="GridUtil.usOnTitMouseMove();">
+                                      分</td>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                            <div divtype="detail" class="tablescroll" style="overflow-x:auto;overflow-y:scroll;height:auto;width:792px" onscroll="GridUtil.usOnScrollHori();" width="">
+                              <table tabType="detail" class="tabDetail" cellpadding="0" cellSpacing="0" onmousemove="GridUtil.usOnDetailMouseOverHandle();" onmouseout="GridUtil.usOnDetailMouseOutHandle();" datasrc="#DetailDB">
+                                <tbody>
+                                  <tr rowType="detail">
+                                    <td tdType="rowcursor" class="cellwb_btn" align="center" style="width:40;table-layout:fixed" onclick="GridUtil.usOnRowcursorClickHandle()" rowspan="2">
+                                      <span width="100%" datafld="RowNum"></span>
+                                    </td>
+                                    <td datatype="textarea" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="153" colname="摘要" rowspan="2">
+                                      <textarea style="WIDTH:86%;HEIGHT:44;TEXT-ALIGN:left;overflow:hidden;" datatype="textarea" colname="摘要" class="gridbrowse" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" cols="3" rows="3" datafld="摘要">JH</textarea>
+                                      <input type="button" optype="edit" onclick="GridUtil.usOnCellBtnClickHandle();" class="gridselbtn" style="DISPLAY:none;WIDTH:20;HEIGHT:18;z-index:1000" value="..." />
+                                    </td>
+                                    <td datatype="stringbtn" class="cellStyle" onclick="GridUtil.usOnCellClickHandle();" align="left" width="190" colname="科目" rowspan="2">
+                                      <input style="WIDTH:86%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="科目" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="科目" />
+                                      <input type="button" optype="edit" onclick="GridUtil.usOnCellBtnClickHandle();" class="gridselbtn" style="DISPLAY:none;WIDTH:20;HEIGHT:18;z-index:1000" value="..." />
+                                    </td>
+                                    <td datatype="string" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="49" colname="币种">
+                                      <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="币种" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="币种" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" style="border-right-style: none; border-right-width: medium" align="right" width="44" colname="汇率">
+                                      <input style="WIDTH:100%;HEIGHT:100%;TEXT-ALIGN:right" type="text" datatype="decimal" colname="汇率" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="汇率" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" 
+                                        style="border-left-style: double;border-left-width: 3px; " align="right" width="15" colname="j9" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j9" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j9" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle"  onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j8" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j8" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j8" />                                      
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j7" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j7" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j7" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j6" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j6" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j6" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j5" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j5" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();"
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j5" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" 
+                                            onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j4" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j4" 
+                                            class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j4" />                                                                            
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j3" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j3" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();"  
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j3" />                                      
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" style="border-right: 1px solid red" 
+                                        onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j2" rowspan="2">
+                                      <input id="j2" style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j2" 
+                                      class="gridbrowse" 
+                                      onkeydown="pzOnCellKeyEvent()" 
+                                      onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                      onfocus="psOnCellFocusHandle();" 
+                                      onblur="GridUtil.usOnCellBlurHandle();" 
+                                      onchange="return GridUtil.usOnCellChangeHandle();" 
+                                      ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="j2" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j1" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j1" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent()" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="GridUtil.usOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j1" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" style="border-right-style: none; border-right-width: medium" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="j0" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="j0" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="GridUtil.usOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="j0" />
+                                     </td>
+
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" 
+                                        style="border-left-style: double;border-left-width: 3px; " align="right" width="15" colname="d9" rowspan="2">
+                                          <input id="Text7"  style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d9" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d9" />
+                                    </td>                                    
+                                     <td datatype="decimal" class="cellStyle"  onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15"
+                                     colname="d8" rowspan="2">
+                                         <input id="Text6"  style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d8" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d8" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="d7" rowspan="2">
+                                          <input id="Text5"  style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d7" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d7" />                                      
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="d6" rowspan="2">
+                                           <input id="Text4"  style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d6" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d6" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="d5" rowspan="2">
+                                          <input id="Text3"  style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d5" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d5" />                                      
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="d4" rowspan="2">
+                                          <input id="Text2"  style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d4" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d4" />                                      
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="d3" rowspan="2">
+                                          <input id="Text1"  style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d3" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d3" />                                      
+                                     </td>
+                                     <td datatype="decimal" class="cellStyle" style="border-right: 1px solid red" 
+                                        onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="d2" rowspan="2">
+                                          <input id="d2"  style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d2" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="psOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d2" />
+                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="d1" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d1" class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="GridUtil.usOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d1" />                                    </td>
+                                    <td datatype="decimal" class="cellStyle" onclick="GridUtil.usOnCellFocusHandle();" align="right" width="15" colname="d0" rowspan="2">
+                                          <input style="WIDTH:100%;height:20;TEXT-ALIGN:right" type="text" datatype="decimal" maxlength="1" colname="d0" 
+                                            class="gridbrowse" 
+                                            onkeydown="pzOnCellKeyEvent();" 
+                                            onafterupdate="GridUtil.usOnCellUpdatedHandle();" 
+                                            onfocus="GridUtil.usOnCellFocusHandle();" 
+                                            onblur="GridUtil.usOnCellBlurHandle();" 
+                                            onchange="return GridUtil.usOnCellChangeHandle();" 
+                                            ondblclick="GridUtil.usOnCellDbClickHandle();" 
+                                            datafld="d0" />
+                                    </td>
+
+                                  </tr>
+                                  <tr rowType="detail">
+                                    <td datatype="string" class="cellStyle" style="border-right-style: none; border-right-width: medium" onclick="GridUtil.usOnCellFocusHandle();" align="left" width="93" colname="币种" colspan="2">
+                                     <input style="WIDTH:80%;HEIGHT:100%;TEXT-ALIGN:left" type="text" datatype="string" colname="外币金额" class="gridbrowse" onkeydown="GridUtil.usOnCellEnterTab();" onafterupdate="GridUtil.usOnCellUpdatedHandle();" onfocus="GridUtil.usOnCellFocusHandle();" onblur="GridUtil.usOnCellBlurHandle();" onchange="return GridUtil.usOnCellChangeHandle();" ondblclick="GridUtil.usOnCellDbClickHandle();" datafld="外币金额" /></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <table id="specialdisplay" tabType="foot" class="tabDetail" cellpadding="0" cellSpacing="0">
+                                <tbody>
+                                  <tr rowType="foot">
+                                    <td tdType="rowcursor" class="cellwb_btn" width="40px" height="32px">
+                                  　<img border="0" src="Images/coins_add.png" /></td>
+                                    <td tdType="coldata" class="cellwb_btn" style="border-right-style: none; border-right-width: medium" width="436" align="center" colname="摘要" datatype="string">
+                                      　合　　　　　　　计：</td>
+                                    <td tdType="coldata" class="cellwb_btn" style="border-left-style: double;border-left-width: 3px; " width="15" align="right" colname="j9" datatype="decimal" formate="####.00" formatfld="j9">
+                                      <span width="100%" height="100%" colname="j9" datafld="j9">　</span>
+                                    </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="j8" rowspan="2">
+                                        <span width="100%" height="100%" colname="j8" datafld="j8">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="j7" rowspan="2">
+                                        <span width="100%" height="100%" colname="j7" datafld="j7">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="j6" rowspan="2">
+                                        <span width="100%" height="100%" colname="j6" datafld="j6">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="j5" rowspan="2">
+                                        <span width="100%" height="100%" colname="j5" datafld="j5">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="j4" rowspan="2">
+                                        <span width="100%" height="100%" colname="j4" datafld="j4">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="j3" rowspan="2">
+                                        <span width="100%" height="100%" colname="j3" datafld="j3">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" style="border-right: 1px solid red" align="right" width="15" colname="j2" rowspan="2">
+                                        <span width="100%" height="100%" colname="j2" datafld="j2">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="j1" rowspan="2">
+                                        <span width="100%" height="100%" colname="j1" datafld="j1">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" style="border-right-style: none; border-right-width: medium" align="right" width="15" colname="j0" rowspan="2">
+                                        <span width="100%" height="100%" colname="j0" datafld="j0">　</span>
+                                     </td>
+                                    <td tdType="coldata" class="cellwb_btn" style="border-left-style: double;border-left-width: 3px; " width="15" align="right" colname="d9" 
+                                    datatype="decimal" formatfld="d9">
+                                      <span width="100%" height="100%" colname="d9" datafld="d9">　</span>
+                                    </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="d8" rowspan="2">
+                                        <span width="100%" height="100%" colname="d8" datafld="d8">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="d7" rowspan="2">
+                                        <span width="100%" height="100%" colname="d7" datafld="d7">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="d6" rowspan="2">
+                                        <span width="100%" height="100%" colname="d6" datafld="d6">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="d5" rowspan="2">
+                                        <span width="100%" height="100%" colname="d5" datafld="d5">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="d4" rowspan="2">
+                                        <span width="100%" height="100%" colname="d4" datafld="d4">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="d3" rowspan="2">
+                                        <span width="100%" height="100%" colname="d3" datafld="d3">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" style="border-right: 1px solid red" align="right" width="15" colname="d2" rowspan="2">
+                                        <span width="100%" height="100%" colname="d2" datafld="d2">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="d1" rowspan="2">
+                                        <span width="100%" height="100%" colname="d1" datafld="d1">　</span>
+                                     </td>
+                                    <td datatype="decimal" class="cellwb_btn" align="right" width="15" colname="d0" rowspan="2">
+                                        <span width="100%" height="100%" colname="d0" datafld="d0">　</span>
+                                     </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table1" divtype="funarea">
+                              <tbody>
+                                <tr>
+                                  <td width="80" class="lt0a">
+                                    <table divtype="editarea" border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="tblctrledit" bgcolor="#FBFAFA">
+                                      <tbody>
+                                        <tr>
+                                          <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 0, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 0, 'lt0b')">
+                                            <img border="0" onclick="ue_bandadd();" title="增加记录" src="Images/grid/addgrid.gif" onmouseover="this.src='Images/grid/addgrid_down.gif'" onmouseout="this.border='0';this.src='Images/grid/addgrid.gif'" width="22" height="22" />
+                                          </td>
+                                          <td>
+                                            <span class="ltsep">|</span>
+                                          </td>
+                                          <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 2, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 2, 'lt0b')" width="22">
+                                            <img border="0" onclick="ue_banddelete();" title="删除所选择的记录" src="Images/grid/deletegrid.gif" onmouseover="this.src='Images/grid/deletegrid_down.gif'" onmouseout="this.src='Images/grid/deletegrid.gif';border='0'" width="22" height="22" />
+                                          </td>
+                                          <td width="8">
+                                            <span class="ltsep">|</span>
+                                          </td>
+                                          <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 4, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 4, 'lt0b')" align="center">
+                                            <img title="在当前位置插入记录行" border="0" onclick="ue_bandinsert();" src="Images/grid/insertgrid.gif" onmouseover="this.src='Images/grid/insertgrid_down.gif'" onmouseout="this.src='Images/grid/insertgrid.gif'" width="22" height="23" />
+                                          </td>
+                                          <td>
+                                            <span class="ltsep">|</span>
+                                          </td>
+                                          <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 6, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 6, 'lt0b')" align="center" width="16">
+                                            <img border="0" onclick="ue_replace();" src="./Images/replace.ico" alt="替换记录内容" />
+                                          </td>
+                                          <td width="8">
+                                            <span class="ltsep">|</span>
+                                          </td>
+                                          <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 8, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 8, 'lt0b')" align="center">
+                                            <A class="linkbtn_0" title="上移" href="#" onclick="ue_move(null,1);">
+                                              <FONT face="webdings">5</FONT>
+                                            </A>
+                                          </td>
+                                          <td>
+                                            <span class="ltsep">|</span>
+                                          </td>
+                                          <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 10, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 10, 'lt0b')" align="center" width="26">
+                                            <A class="linkbtn_0" title="下移" href="#" onclick="ue_move(null,-1);">
+                                              <FONT face="webdings">6</FONT>
+                                            </A>
+                                          </td>
+                                          <td>
+                                            <span class="ltsep">|</span>
+                                          </td>
+                                          <td class="lt0b" onmouseover="mhHover('msviLocalToolbar', 16, 'lt1')" onmouseout="mhHover('msviLocalToolbar', 16, 'lt0b')" align="center" width="26">
+                                            <img border="0" onclick="ue_print();" src="Images/printer0.gif" onmouseover="this.src='Images/printer.gif'" onmouseout="this.border='0';this.src='Images/printer0.gif'" alt="打印" />
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                  <td class="lt0a" name="message" style="font-size: 9pt; font-family: 宋体; color: #FF0000;"></td>
+                                  <td width="337" class="lt0a" divtype="funarea">
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div style="display:none;">
+                    <XML id="DetailDB_dict" typexml="Dict" itemname="从表">
+                      <Dict></Dict>
+                    </XML>
+                  </div>
+                  <XML id="DetailDB_Schema" typexml="Schema" ctrlAlert="s_code" ctrlchanged="etpTemplate_DetailDB_hlbChanged" ctrlschema="etpTemplate_DetailDB_hlbWidth" ctrlstate="etpTemplate_DetailDB_hlbState" ctrlhlbcmd="etpTemplate_DetailDB_hlb_cmd" ctrlbtcommand="bt_PostBack" name="从表" relation="D" linkcol="单据编号" columnkey="ID">
+                    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+                      <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" minOccurs="0" />
+                      <xs:element name="单据编号" type="xs:string" minOccurs="0" visible="1" />
+                      <xs:element name="摘要" type="xs:string" minOccurs="0" width="69" datastyle="textarea" />
+                      <xs:element name="科目" type="xs:string" minOccurs="0" width="107" datastyle="stringbtn" title="会计科目" />
+                      <xs:element name="币种" type="xs:string" minOccurs="0" width="87" />
+                      <xs:element name="汇率" type="xs:decimal" minOccurs="0" width="44" />
+                      <xs:element name="外币金额" type="xs:decimal" minOccurs="0" width="76" />
+                      <xs:element name="借方" type="xs:decimal" minOccurs="0" format="####.00" expression="_getpzval('j')" calcol="1" footer="sum" formatfld="借方_格式" />
+                      <xs:element name="j9" type="xs:string" minOccurs="0" width="18" title="千" />
+                      <xs:element name="j8" type="xs:string" minOccurs="0" width="17" title="百" />
+                      <xs:element name="j7" type="xs:string" minOccurs="0" width="20" title="十" />
+                      <xs:element name="j6" type="xs:string" minOccurs="0" width="20" title="万" />
+                      <xs:element name="j5" type="xs:string" minOccurs="0" width="15" title="千" />
+                      <xs:element name="j4" type="xs:string" minOccurs="0" width="19" title="百" />
+                      <xs:element name="j3" type="xs:string" minOccurs="0" width="17" title="十" />
+                      <xs:element name="j2" type="xs:string" minOccurs="0" width="17" title="元" />
+                      <xs:element name="j1" type="xs:string" minOccurs="0" width="13" title="角" />
+                      <xs:element name="j0" type="xs:string" minOccurs="0" width="21" title="分" />
+                      <xs:element name="d9" type="xs:string" minOccurs="0" width="18" title="千" />
+                      <xs:element name="d8" type="xs:string" minOccurs="0" width="17" title="百" />
+                      <xs:element name="d7" type="xs:string" minOccurs="0" width="17" title="十" />
+                      <xs:element name="d6" type="xs:string" minOccurs="0" width="18" title="万" />
+                      <xs:element name="d5" type="xs:string" minOccurs="0" width="18" title="千" />
+                      <xs:element name="d4" type="xs:string" minOccurs="0" width="18" title="百" />
+                      <xs:element name="d3" type="xs:string" minOccurs="0" width="15" title="十" />
+                      <xs:element name="d2" type="xs:string" minOccurs="0" width="15" title="元" />
+                      <xs:element name="d1" type="xs:string" minOccurs="0" width="20" title="角" />
+                      <xs:element name="d0" type="xs:string" minOccurs="0" width="19" title="分" />
+                      <xs:element name="贷方" type="xs:decimal" minOccurs="0" format="####.00" expression="_getpzval('d')" calcol="1" visible="1" footer="sum" formatfld="贷方_格式" />
+                      <xs:element name="sn" type="xs:int" minOccurs="0" visible="1" />
+                      <xs:element name="RowNum" type="xs:int" minOccurs="0" visible="1" />
+                    </xs:schema>
+                  </XML>
+                  <div style="display:none;">
+                    <XML id="DetailDB" itemname="从表" typexml="Data">
+                        <etpTemplate_DetailDB_xmlland>
+                        <凭证明细 state="init">
+                          <ID />
+                          <单据编号 />
+                          <摘要 />
+                          <科目 />
+                          <币种 />
+                          <汇率 />
+                          <外币金额 />
+                          <借方 />
+                          <借方_格式 />
+                          <j9 />
+                          <j8 />
+                          <j7 />
+                          <j6 />
+                          <j5 />
+                          <j4 />
+                          <j3 />
+                          <j2 />
+                          <j1 />
+                          <j0 />
+                          <d9 />
+                          <d8 />
+                          <d7 />
+                          <d6 />
+                          <d5 />
+                          <d4 />
+                          <d3 />
+                          <d2 />
+                          <d1 />
+                          <d0 />
+                          <贷方 />
+                          <贷方_格式 />
+                          <sn />
+                          <RowNum />
+                        </凭证明细>
+                      </etpTemplate_DetailDB_xmlland>
+                    </XML>
+                  </div>
+                  <div style="display:none;">
+                    <XML id="DetailDB_Sum" typexml="Count" itemname="从表">
+                      <DataSet>
+                        <DataTableCount>
+                          <TotalPage>1</TotalPage>
+                          <PageIndex>1</PageIndex>
+                          <PageSize>10</PageSize>
+                          <RecordCount>0</RecordCount>
+                        </DataTableCount>
+                      </DataSet>
+                    </XML>
+                  </div>
+                  <div style="display:none;">
+                    <XML id="DetailDB_Delete" typexml="Delete" itemname="从表">
+                      <etpTemplate_DetailDB_xmlland></etpTemplate_DetailDB_xmlland>
+                    </XML>
+                  </div>
+                  <div id="etpTemplate_DetailDB_DivForm" style="display: none">
+                    <input name="etpTemplate:DetailDB:hlbChanged" type="hidden" id="etpTemplate_DetailDB_hlbChanged" />
+                    <input name="etpTemplate:DetailDB:hlbWidth" type="hidden" id="etpTemplate_DetailDB_hlbWidth" />
+                    <input name="etpTemplate:DetailDB:hlbState" type="hidden" id="etpTemplate_DetailDB_hlbState" />
+                    <input name="etpTemplate:DetailDB:hlb_cmd" type="hidden" id="etpTemplate_DetailDB_hlb_cmd" />
+                  </div>
+                  <script language="javascript"> var myGrid=new Grid('DetailDB',document.getElementById('etpTemplate_DetailDB_GridDiv'),'',true);</script>
+                </th>
+              </tr>
+            </tbody>
+            <tbody id="xhtml"></tbody>
+            <tfoot>
+              <tr>
+                <td width="91" height="23">
+                  <p style="text-align: right">制单：</p>
+                </td>
+                <td width="132" height="23">　</td>
+                <td width="100" height="23">
+                  <p style="text-align: right">审核：</p>
+                </td>
+                <td width="213" height="23">　</td>
+                <td width="53" height="23">
+                  <p style="text-align: right">登帐：</p>
+                </td>
+                <td width="184" height="23">　</td>
+              </tr>
+            </tfoot>
+          </table>
+          <div style="display:none;">
+            <XML id="MasterTab_dict" typexml="Dict" itemname="主表">
+              <Dict></Dict>
+            </XML>
+          </div>
+          <XML id="MasterTab_Schema" typexml="Schema" ctrlAlert="s_code" ctrlchanged="etpTemplate_MasterTab_hlbChanged" ctrlschema="etpTemplate_MasterTab_hlbWidth" ctrlstate="etpTemplate_MasterTab_hlbState" ctrlhlbcmd="etpTemplate_MasterTab_hlb_cmd" ctrlbtcommand="bt_PostBack" name="主表" relation="M" linkcol="单据编号" columnkey="ID">
+            <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" minOccurs="0" />
+              <xs:element name="凭证字" type="xs:string" minOccurs="0" />
+              <xs:element name="单据编号" type="xs:string" minOccurs="0" />
+              <xs:element name="日期" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="附件" type="xs:string" minOccurs="0" />
+              <xs:element name="制单" type="xs:string" minOccurs="0" />
+              <xs:element name="审核" type="xs:string" minOccurs="0" />
+              <xs:element name="登帐" type="xs:string" minOccurs="0" />
+              <xs:element name="引用单号" type="xs:string" minOccurs="0" />
+              <xs:element name="备注" type="xs:string" minOccurs="0" />
+              <xs:element name="sn" type="xs:int" minOccurs="0" />
+              <xs:element name="RowNum" type="xs:int" minOccurs="0" visible="1" />
+            </xs:schema>
+          </XML>
+          <div style="display:none;">
+            <XML id="MasterTab" itemname="主表" typexml="Data">
+              <etpTemplate_MasterTab_xmlland>
+                <记帐凭证>
+                  <ID>2a66a075-810f-4b3b-a5c4-5fddd5601a4f</ID>
+                  <凭证字>1001</凭证字>
+                  <单据编号>1</单据编号>
+                  <日期>2008-12-29</日期>
+                  <附件>2</附件>
+                  <制单></制单>
+                  <审核></审核>
+                  <登帐></登帐>
+                  <引用单号></引用单号>
+                  <备注></备注>
+                  <sn>1</sn>
+                  <RowNum>1</RowNum>
+                </记帐凭证>
+              </etpTemplate_MasterTab_xmlland>
+            </XML>
+          </div>
+          <div style="display:none;">
+            <XML id="MasterTab_Sum" typexml="Count" itemname="主表">
+              <DataSet>
+                <DataTableCount>
+                  <TotalPage>1</TotalPage>
+                  <PageIndex>1</PageIndex>
+                  <PageSize>10</PageSize>
+                  <RecordCount>1</RecordCount>
+                </DataTableCount>
+              </DataSet>
+            </XML>
+          </div>
+          <div style="display:none;">
+            <XML id="MasterTab_Delete" typexml="Delete" itemname="主表">
+              <etpTemplate_MasterTab_xmlland></etpTemplate_MasterTab_xmlland>
+            </XML>
+          </div>
+          <div id="etpTemplate_MasterTab_DivForm" style="display: none">
+            <input name="etpTemplate:MasterTab:hlbChanged" type="hidden" id="etpTemplate_MasterTab_hlbChanged" />
+            <input name="etpTemplate:MasterTab:hlbWidth" type="hidden" id="etpTemplate_MasterTab_hlbWidth" />
+            <input name="etpTemplate:MasterTab:hlbState" type="hidden" id="etpTemplate_MasterTab_hlbState" />
+            <input name="etpTemplate:MasterTab:hlb_cmd" type="hidden" id="etpTemplate_MasterTab_hlb_cmd" />
+          </div>
+
+        </body>
+      </div>
+  </body>
+</html>

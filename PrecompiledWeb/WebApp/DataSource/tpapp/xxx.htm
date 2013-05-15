@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+	<head>
+    	<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    	<script language="javascript" src="hmjs/sysjs/usBandAdv.js" type="text/javascript" charset="gb2312"></script>    	
+    	<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    	<script language="javascript" type="text/javascript">
+    	<!--
+    		window.onload=WinLoadUtil.MDTPLoad;
+		    function ms_CellBtnClick(oband,colname,colvalue)
+		    {
+		        //var xmlRow=oband.XmlLandData.XMLDocument.documentElement.childNodes[oband.XmlLandData.recordset.AbsolutePosition-1];
+		        //var xmlRowData=xmlRow.cloneNode(true);
+                //xmlRowData = window.showModalDialog("Template\\DlgPo.htm",xmlRowData,"dialogHeight: 200px; dialogWidth: 400px; edge: Raised; center: Yes; help: No; resizable: No; status: No;"); 
+                //if(!xmlRowData) return; 
+		        //oband.setFldStrValue(null,"备注",xmlRowData.selectSingleNode("备注").text);
+		        //oband.setFldStrValue(null,"供应商",xmlRowData.selectSingleNode("供应商").text);
+		        //oband.setFldStrValue(null,"发票号",xmlRowData.selectSingleNode("发票号").text);
+		        var rtn = oband.setModalContent("科目查询");
+		        if(!rtn) return;
+		        oband.setFldStrValue(null,colname,rtn);
+		        
+		    }
+            -->
+    	</script>
+    </head>
+	<body>
+		<Control class="" catalog="GridLand.ascx" itemname="现金流量表" id="MasterTab" name="">MasterTab
+		<Property name="tpfile" value="ControlTemplate/GridDefault_scroll.htm" />
+			<Property name="width" value="100%" /><Property name="height" value="100" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+		</Control>
+		<Control class="" catalog="GridLand.ascx" itemname="nav" id="pzTab" name="">pzTab
+		<Property name="tpfile" value="ControlTemplate/GridDefault.htm" />
+			<Property name="width" value="100%" /><Property name="height" value="100" /><Property name="hiddenhead" value="false" />
+			<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+		</Control>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title></title>
+    <base target="_self" />
+    <script language="javascript" src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
+    <link href="../hmjs/sysjs/calendar.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+    <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" src="../hmjs/sysjs/GridUtilXSLT.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usXmlLandCal.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usValidation.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usAjax.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usGridLandBx.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+    <script language="javascript" src="../hmjs/sysjs/htminit.js" type="text/javascript" charset="gb2312"></script>
+    <script src="../hmjs/sysjs/process.js" type="text/javascript" charset="gb2312"></script>
+
+    <script language="javascript" type="text/javascript">
+      function initWin()
+      {
+        var mband=$band("字典信息");
+        mband.minwidth = "80px";
+        mband.freecols = "name";
+        mband.gridtype = 8;
+        //mband.title = "系统配置表";
+        mband.Asyn=true;
+        mband.hasGrid=true;
+        var Grid = new XGrid("dvgrid",mband,"in");
+        mband.XQuery();
+        mband.AfterXQuery = function()
+        {
+            $loading("none");
+        }
+      }
+      function findText(oTextArea, oInput)
+      {
+            if (initArea != oTextArea) 
+            {
+                rng = oTextArea.createTextRange();
+                initArea = oTextArea;
+            }
+            if (oInput.value == "") return; //定义一个变量，作为moveStart()函数的偏移量，即开始点跳过选择文本      
+            var num = 0;      
+            if (document.selection)
+                num = document.selection.createRange().text.length; //每次调用函数，结束点都为末尾，而开始点是跳过选择文本后的新开始点      
+            rng.moveStart("character", num);      
+            rng.moveEnd("character", oTextArea.value.length);      
+            find = rng.findText(oInput.value); //搜索到后选择文本　　      
+            if (find) rng.select(); 　　      
+            if (rng.text != oInput.value){alert("搜索完毕");      }
+     }
+     var rng = "";var initArea = "";
+    </script>
+  </head>
+  <body style="overflow:hidden; margin: 0px;" scroll="no" bgcolor="#edebe8">
+    <table cellspacing="0" bgcolor="#edebe8" bordercolorlight="#C0C0C0" bordercolordark="white" border="1" style="width:100%;height:100%" >
+		<tr>
+			<td style="width:20%" rowspan="2"><div id="dvgrid" style="width:100%;height:100%"></div></td>
+			<td style="width:80%;height:30px">
+			<div style="width:50%;float:left">配置内容：　　　　
+			<input type="text" id="html_search" /><input type="button" value="查找" onclick="findText($('htmlcode'),$('html_search'),-1)" /> </div><div style="width:50%;float:right;text-align:right">
+			<input type="button" style="width:60px" value="保存" onclick="ue_save()" /></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:80%">
+			<textarea id="htmlcode" style="width:100%;height:100%;background-color:#FBFAFA; font-size:10pt; font-weight:bold" datasrc="#MasterTab" datafld="sysstr" class="xlandinput" name="x" rows="1" cols="20" ></textarea></td>
+		</tr>
+	</table>
+    <script language="javascript" type="text/javascript" charset="gb2312">ue_initsetup("系统配置表")</script>
+  </body>
+</html>

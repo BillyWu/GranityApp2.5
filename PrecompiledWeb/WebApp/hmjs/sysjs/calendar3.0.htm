@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=gb2312'>
+    <style>
+      *{font-size: 12px; font-family: 宋体}
+      .code{font-weight: bold; color: #0000D0}
+      legend{font-weight: bold; color: #D00000}
+      fieldset{padding: 8 5 10 5}
+    </style>
+    <title>Web Calendar 网页日历</title>
+  </head>
+<body>
+  <script language="JavaScript" src="calendar30.js"></script>
+
+  <div align=center><b style="font-size: 24px">Web Calendar ver 3.0 网页日历</b></div><form name=form1>
+
+  <fieldset><legend>版本描述</legend><pre style="margin: 0">
+  <b>Web Calendar ver 3.0 是综合 JavaScript DHTML HTML CSS 的产品，且封装在 WebCalendar 实例中，调用与设置都非常方便</b>
+  <b>Web Calendar ver 3.0 新加的功能：</b><br>
+    1．对日历控件的对象式编程
+    2．对不同浏览器的兼容
+    3．对日历控件的样式颜色设置
+    4．对是否返回时分秒的设置
+    5．对年份下拉框的年跨度值的设置
+    6．增加了用方向键快捷键选择年月
+    7．增加了日历对网页空间的自适应显示
+    8．对日历日期显示机制的全新设计
+
+    Web Calendar ver 3.0  Author: meizz(梅花雪疏影横斜)  mail: meizz@hzcnc.com
+    Web Calendar ver 2.0  Author: walkingpoison(水晶龙)  mail: wayx@kali.com.cn  http://expert.csdn.net/Expert/TopicView1.asp?id=1264734
+    Web Calendar ver 1.0  Author: meizz(梅花雪疏影横斜)  mail: meizz@hzcnc.com   http://expert.csdn.net/Expert/TopicView1.asp?id=1080595
+
+    在此我要特别感谢 walkingpoison(水晶龙) 和 emu(ston) 的大力支持，再次感谢！！</pre></fieldset>
+
+  <fieldset><legend>调用日历的代码示例</legend>
+
+  <b>Web Calendar 的第一种调用方法：</b>
+  <input onfocus="calendar()"><br><br>代码：<span class=code>&lt;input onfocus="calendar()"&gt;</span><br><br>
+
+  <b>Web Calendar 的第二种调用方法：</b>
+  <input name="txt" onfocus="calendar()"><input type=button value=calendar onclick="calendar(document.form1.txt)"><br><br>
+  代码：<span class=code>&lt;input name="txt" onfocus="calendar()"&gt;&lt;input type=button
+  value=calendar onclick="calendar(document.form1.txt)"&gt;</span></fieldset>
+  <fieldset><legend>对日历控件的定制</legend>
+  <table border=1 cellpadding=3 cellspacing=0>
+    <tr><td><input value=50 onchange="WebCalendar.yearFall = parseInt(this.value, 10)"></td><td nowrap>定义年下拉框的年跨值（两倍）</td>
+        <td><input value="yyyy-mm-dd" onchange="WebCalendar.format = this.value"></td><td nowrap>定义返回的日期格式（可以用数字，分隔符 - /）</td></tr>
+    <tr><td><input type=checkbox onclick="WebCalendar.timeShow = this.checked"></td><td>定义是否返回时分秒</td>
+        <td><input type=checkbox onclick="WebCalendar.drag = this.checked" checked></td><td>定义控件是否能被拖动</td></tr>
+    <tr><td><input value="#0000D0" onchange="WebCalendar.darkColor  = this.value; this.style.backgroundColor = this.value"
+    style="background-color: #0000D0; color: #FFFFFF"></td><td>控件的暗色</td>
+        <td><input value="#FFFFFF" onchange="WebCalendar.lightColor = this.value; this.style.backgroundColor = this.value"
+    style="background-color: #FFFFFF"></td><td>控件的亮色</td></tr>
+    <tr><td><input value="#E6E6FA" onchange="WebCalendar.btnBgColor = this.value; this.style.backgroundColor = this.value"
+    style="background-color: #E6E6FA"></td><td>控件的按钮背景色</td>
+        <td><input value="#000080" onchange="WebCalendar.wordColor  = this.value; this.style.backgroundColor = this.value"
+    style="background-color: #000080; color: #FFFFFF"></td><td>控件的文字颜色</td></tr>
+    <tr><td><input value="#DCDCDC" onchange="WebCalendar.wordDark   = this.value; this.style.backgroundColor = this.value"
+    style="background-color: #DCDCDC"></td><td>控件的暗文字颜色</td>
+        <td><input value="#F5F5FA" onchange="WebCalendar.dayBgColor = this.value; this.style.backgroundColor = this.value"
+    style="background-color: #F5F5FA"></td><td>日期数字背景色</td></tr>
+    <tr><td><input value="#FF0000" onchange="WebCalendar.todayColor = this.value; this.style.backgroundColor = this.value"
+    style="background-color: #FF0000"></td><td>今天在日历上的标示背景色</td>
+        <td><input value="#D4D0C8" onchange="WebCalendar.DarkBorder = this.value; this.style.backgroundColor = this.value"
+    style="background-color: #D4D0C8"></td><td>日期显示的立体表达色</td></tr>
+  </table>
+  </fieldset><br>
+
+  <fieldset><legend>标准调用示例</legend><pre style="margin: 0px">
+  &lt;script language="JavaScript" src="calendar.js"&gt;&lt;/script&gt;
+  
+  注：下面这段日历定制的 JavaScript 代码你可以一个都不定义，使用其默认值
+  &lt;script language="JavaScript"&gt;&lt;!--
+    WebCalendar.yearFall   = 50;           //定义年下拉框的年差值
+    WebCalendar.format     = "yyyy-mm-dd" | "2003-06-07"; //回传日期的格式
+    WebCalendar.timeShow   = false | true; //是否返回时间
+    WebCalendar.drag       = true  | false;//是否允许拖动
+    WebCalendar.darkColor  = "#0000D0";    //控件的暗色
+    WebCalendar.lightColor = "#FFFFFF";    //控件的亮色
+    WebCalendar.btnBgColor = "#FFFFF5";    //控件的按钮背景色
+    WebCalendar.wordColor  = "#000080";    //控件的文字颜色
+    WebCalendar.wordDark   = "#DCDCDC";    //控件的暗文字颜色
+    WebCalendar.dayBgColor = "#E6E6FA";    //日期数字背景色
+    WebCalendar.todayColor = "#FF0000";    //今天在日历上的标示背景色
+    WebCalendar.DarkBorder = "#D4D0C8";    //日期显示的立体表达色
+  //--&gt;&lt;/script&gt;
+
+  &lt;input onfocus="calendar()"&gt;
+  </pre>
+  </fieldset><br>
+  
+  <fieldset><legend>Web Calendar 里的自定义函数名及其说明</legend>
+  <table border=1 cellpadding=3 cellspacing=0><colgroup><col style="font-weight: bold"><col></colgroup>
+    <tr><th>函数名           </th><th>函数的用途说明（在主页面里自定义函数时请不要与以下的函数名冲突）</th></tr>
+    <tr><td>calendar()      </td><td>用户的主调函数</td></tr>
+    <tr><td>writeIframe()   </td><td>对iframe进行初始化</td></tr>
+    <tr><td>WebCalendar()   </td><td>初始化日历的设置</td></tr>
+    <tr><td>funMonthSelect()</td><td>月份的下拉框</td></tr>
+    <tr><td>funYearSelect() </td><td>年份的下拉框</td></tr>
+    <tr><td>prevM()         </td><td>往前翻月份</td></tr>
+    <tr><td>nextM()         </td><td>往后翻月份</td></tr>
+    <tr><td>prevY()         </td><td>往前翻 Year</td></tr>
+    <tr><td>nextY()         </td><td>往后翻 Year</td></tr>
+    <tr><td>hiddenSelect()　 </td><td>隐藏年份与月份的下拉框</td></tr>
+    <tr><td>hiddenCalendar()</td><td>隐藏日历控件</td></tr>
+    <tr><td>appendZero(n)   </td><td>日期自动补零程序</td></tr>
+    <tr><td>dayMouseOver()  </td><td>日历里日期的 onmouseover 事件</td></tr>
+    <tr><td>dayMouseOut()   </td><td>日历里日期的 onmouseout &nbsp;事件</td></tr>
+    <tr><td>writeCalendar() </td><td>对日历显示数据的核心处理程序</td></tr>
+    <tr><td>returnDate()    </td><td>根据日期格式等返回用户选定的日期</td></tr>
+    <tr><td>document.onclick()</td><td nowrap><b class=code>if(WebCalendar.eventSrc != window.event.srcElement) hiddenCalendar();</b><br>
+    若你要使用主网页的 document.onclick() 事件时，请加上上面这句代码（这句代码日历控件里已存在），<br>
+    这句代码是当你点击日历以外的地方时日历自动关闭，若不使用 document.onclick() 事件就不需要再定义了．</td></tr>
+    <tr><td>全局变量　WebCalendar</td><td>日历控件的实例，你可以通过它对日历进行定制</td></tr>
+  </table></fieldset></form>
+</body>
+</html>

@@ -67,7 +67,8 @@
             window.open(url,"","height=100,width=100,left=0,top=0,menu=yes,status=yes,resizable=no,scrollbars=no");
 	    }
 	    //读取指定权限
-	   function readwhiteOne()
+	   var readdatadevice = null;
+       function readwhiteOne()
 	    {
 	   
 	        var ob = $band("权限查询");
@@ -112,13 +113,13 @@
                                     检索：</td>
                                 <td align="center" width="450">
                                     <!--input type="text" style="width: 150px" id="findtxt" name="dbo.fun_getpy(d.name);a.卡号;dbo.fun_getpy(b.名称);b.名称;c.名称;d.name;a.用户编号" /-->
-                                    <input type="text" style="width: 98%" id="findtxt" name="emp.DEPARTMENT;emp.NAME;emp.EMPCODE;d.卡号;d.卡型名称;dbo.fnStrReplace(权限,@door)" />
+                                    <input type="text" style="width: 98%" id="findtxt" name="emp.DEPARTMENT;emp.NAME;emp.EMPCODE;d.卡号;d.卡型名称;dbo.fnStrReplace(d.权限,@door)" />
                                 </td>
                                 <td>
                                     <input type="button" value="查询" name="B4" onclick="ue_tfilter('权限查询')" style="width: 68px" />
                                     <input type="button" value="打印" name="B3" class="standbtn" onclick="tp_print();"
                                         style="width: 65px" />
-                                    <input type="button" value="读取" name="B3" class="standbtn" onclick="readwhiteOne" style="width: 63px" />
+                                    <!--<input type="button" value="读取" name="B3" class="standbtn" onclick="readwhiteOne" style="width: 63px" />-->
                                     <input type="button" value="退出" name="B3" class="standbtn" onclick="ms_close()" style="width: 63px" />
                                 </td>
                             </tr>

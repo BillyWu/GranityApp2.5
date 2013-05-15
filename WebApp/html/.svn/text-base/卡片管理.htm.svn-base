@@ -7,6 +7,16 @@
     <link href="../hmjs/sysjs/css.css" type="text/css" rel="stylesheet" />
     <link href="../hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
 
+<!--    <script type="text/javascript" src="../hmjs/log4javascript.js"></script>
+	<script type="text/javascript">
+		// <![CDATA[
+		var log = log4javascript.getLogger("main");
+		var appender = new log4javascript.PopUpAppender();			
+		log.addAppender(appender);
+		
+		// ]]>
+	</script>-->
+		    
     <script src="../hmjs/sysjs/Calendar30.js" type="text/javascript" charset="gb2312"></script>
 
     <script src="../hmjs/sysjs/combox.js" type="text/javascript" charset="gb2312"></script>
@@ -158,6 +168,8 @@
                 setCardNumNew();
             else
                 findCardInfo();
+
+                
         }
         //刷新卡片余额
         function readMoney() 
@@ -223,10 +235,18 @@
         function findCardInfo()
         {
            debugger;
-            var cardid = cardcmd.cardID;//"892667";//
+            var cardid = cardcmd.cardID;
             if(!cardid) return;
             var cardnum = cardcmd.cardNUM;
-            if(!cardnum || "0"==cardnum)
+            //Billy
+//            log.debug("cardid=", cardid);
+//            log.debug("cardnum=", cardnum);
+            if(!cardnum || "0"==cardnum || ""==cardnum)
+            {
+              cardnum = cardid;
+            }
+            
+            if(!cardnum || "0"==cardnum || ""==cardnum)
             {
                 alert("此卡未发行！");
                 return;
@@ -246,9 +266,32 @@
                 index = band.getRowIndex("卡号", cardnum);
             }
             if(index>-1)
+            {
                 band.setCurrentRow(index);
+            }
             else
-                alert("没有此卡信息：卡片序列号["+cardid+"],卡号["+cardnum+"]");
+            {
+                //Billy
+                var band = $band("用户选择");
+                var index = band.getRowIndex("卡片序列号", cardnum);
+                if(index<0)
+                {
+                    band.Asyn=false;
+                    ueSetPage("卡片序列号='"+cardnum+"'",band);
+                    band.QueryRefresh("Add","","","X");
+                    band.Asyn=true;
+                    index = band.getRowIndex("卡片序列号", cardnum);
+                }
+                if(index>-1)
+                {
+                    band.setCurrentRow(index);
+                }
+                else
+                
+                {
+                    alert("没有此卡信息：卡片序列号["+cardid+"],卡号["+cardnum+"]");
+                }
+            }
         }
         //充值和延期
         function addMoney(op)
@@ -403,6 +446,10 @@
                 return false;
             var cardserno = band.getFldStrValue("新卡片序列号");
             var cardnum = band.getFldStrValue("新卡号");
+//            log.debug("新卡片序列号=", cardserno);
+//            log.debug("新卡号=", cardnum);
+//            log.debug("cardcmd.cardID=", cardcmd.cardID);
+//            log.debug("cardcmd.IsCardIC=", cardcmd.IsCardIC);
             if (!cardserno || !cardnum || !cardcmd.cardID)
             {
                 var msg = (!cardserno || !cardcmd.cardID) ? "请在发行器上放新卡片！" : "请填写新卡号！";
@@ -412,6 +459,7 @@
             if (!cardcmd.IsCardIC)
             {
                 var msg = ue_cmd("换卡", "selectcard");
+//                log.info("msg=", msg);
                 if ("true" != ToolUtil.valueTag(msg, "成功"))
                     return msg;
                 band.setFldStrValue(null, "卡号", cardnum);
@@ -491,6 +539,7 @@
                 {
                     cardcmd.ClearData(1);
                     cardcmd.ClearData(0);
+//                    log.debug('cardcmd.cardID=', cardcmd.cardID);
                 }
             }
             //设置当前正在更换状态

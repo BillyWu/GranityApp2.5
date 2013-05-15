@@ -1,47 +1,19 @@
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winService/obj/Debug
 END
 ResolveAssemblyReference.cache
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winService/obj/Debug/ResolveAssemblyReference.cache
-END
-winService.csproj.GenerateResource.Cache
-K 25
-svn:wc:ra_dav:version-url
-V 102
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winService/obj/Debug/winService.csproj.GenerateResource.Cache
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winService/obj/Debug/ResolveAssemblyReference.cache
 END
 winService.pdb
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winService/obj/Debug/winService.pdb
-END
-winService.Service.resources
-K 25
-svn:wc:ra_dav:version-url
-V 90
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winService/obj/Debug/winService.Service.resources
-END
-winService.Form1.resources
-K 25
-svn:wc:ra_dav:version-url
-V 88
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winService/obj/Debug/winService.Form1.resources
-END
-winService.Properties.Resources.resources
-K 25
-svn:wc:ra_dav:version-url
-V 103
-/svn/GranityApp/!svn/ver/1/GranityApp2.5/winService/obj/Debug/winService.Properties.Resources.resources
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winService/obj/Debug/winService.pdb
 END
 winService.exe
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/GranityApp/!svn/ver/5/GranityApp2.5/winService/obj/Debug/winService.exe
+/svn/GranityApp/!svn/ver/6/GranityApp2.5/winService/obj/Debug/winService.exe
 END

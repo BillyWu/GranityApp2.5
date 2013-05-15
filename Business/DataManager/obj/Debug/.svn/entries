@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/Business/DataManager/obj/Debug
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/Business/DataManager/obj/Debug
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -28,14 +28,14 @@ b7a1bd86-2f50-7044-aac2-f90e8b3b5af3
 
 Estar.Business.DataManager.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.671875Z
-aed00e3bee633ab30855d266026b5acf
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:25.022101Z
+7f4cfb64a6f13de6a12bb1e4e080b796
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -58,18 +58,18 @@ has-props
 
 
 
-38400
+36352
 
 ResolveAssemblyReference.cache
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.546875Z
-8465ab8c31457ddbfbb93136de5953e9
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.897101Z
+52e71716ba471ee3bfd1ca3004b4c205
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -92,21 +92,21 @@ has-props
 
 
 
-80517
+40989
 
 Refactor
 dir
 
 Estar.Business.DataManager.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.765625Z
-00aeaf80a5073dc3468e04bdc5cac015
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:25.100226Z
+01293dfb169b11381e58fd213451c61b
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 

@@ -1,0 +1,195 @@
+BODY {
+	background-color: buttonface;
+	border: none;	
+
+	/*SCROLLBAR-FACE-COLOR: #EBEEF7; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #7B92D5; 
+	SCROLLBAR-SHADOW-COLOR: #EBEEF7; 
+	SCROLLBAR-3DLIGHT-COLOR: #EBEEF7; 
+	SCROLLBAR-ARROW-COLOR: #7B92D5; 
+	SCROLLBAR-TRACK-COLOR: #DBE2F9; 
+	SCROLLBAR-DARKSHADOW-COLOR: #7B92D5; 
+	SCROLLBAR-BASE-COLOR: #EBEEF7 */
+}
+A:active {
+	COLOR: #1f2d9a
+}
+A:visited {
+	COLOR: #1f2d9a
+}
+A:link {
+	COLOR: #1f2d9a
+}
+A:hover {
+	COLOR: #1f2d9a
+}
+.focusLine{
+	CURSOR:DEFAULT;
+	BACKGROUND: #DFFFFF; 
+}
+.normalLine{
+	CURSOR:DEFAULT;
+	BACKGROUND: #FFFFFF; 
+}
+TD{
+	FONT-SIZE: 12px;
+}
+INPUT,SELECT{
+    BORDER-BOTTOM-WIDTH: 2px;
+    BORDER-LEFT-WIDTH: 1px;
+    BORDER-RIGHT-WIDTH: 1px;
+    BORDER-TOP-WIDTH: 1px;
+    FONT-SIZE: 12px;
+    HEIGHT: 18px;
+}
+FIELDSET {
+	border: 1px solid #C0C0C0;
+}
+
+LEGEND {
+	font-size:9pt;
+}
+.MainButton{
+	height: 23px;COLOR:Blue;
+}
+v\:* { Behavior: url(#default#VML) }
+
+div.tableContainer { 
+clear: both; 
+border: 1px solid; 
+height: 100%; 
+overflow: auto; 
+width: 100%; 
+} 
+
+thead.fixedHeader tr { 
+position: relative; 
+top: expression(document.getElementById("tableContainer").scrollTop) 
+} 
+
+thead.fixedHeader2 tr { 
+position: relative; 
+top: expression(document.getElementById("tableContainer2").scrollTop) 
+} 
+
+thead.fixedHeader th { 
+background: #C96; 
+border-left: 1px solid; 
+border-right: 1px solid; 
+border-top: 1px solid; 
+font-weight: normal; 
+padding: 4px 3px; 
+text-align: center 
+} 
+
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td { 
+	background: #C4D6FC; 
+	border-bottom: 1px solid; 
+	border-left: 1px solid; 
+	border-right: 1px solid; 
+	border-top: 1px solid; 
+	padding: 2px 3px 
+} 
+.Select{
+	behavior:url(/_CommitSys/Common/htc/select.htc);
+}
+.toolbox{
+	BACKGROUND: buttonface;
+	BORDER-BOTTOM: gray 1px solid;
+	BORDER-LEFT: #eeeeee 1px solid; 
+	BORDER-RIGHT: gray 1px solid; 
+	BORDER-TOP: #eeeeee 1px solid; 
+	MARGIN: 0pt; 
+	PADDING-BOTTOM: 0pt; 
+	PADDING-LEFT: 0pt;
+	PADDING-RIGHT: 0pt;
+	PADDING-TOP: 0pt;
+	POSITION:absolute;
+}
+.bon1{
+	border-bottom:1 solid white;
+	border-right:1 solid white;
+	border-left:1 solid #555555;
+	border-top:1 solid #555555;
+	background-color:#dddddd;
+	width:24;
+	height:24;
+}
+.bon2{
+	border-bottom:0 solid;
+	border-right:0 solid;
+	border-left:0 solid;
+	border-top:0 solid;
+	width:24;
+	height:24;
+}
+.bon3{
+	border-bottom:1 solid #aaaaaa;
+	border-right:1 solid #aaaaaa;
+	border-left:1 solid white;
+	border-top:1 solid white;
+	background-color:#f0e5d1;
+	color:purple;
+	width:30;
+	height:30;
+}
+
+.normalBtn{
+	BACKGROUND-COLOR: buttonface; 
+	BORDER-BOTTOM:0 SOLID;
+	BORDER-RIGHT:0 SOLID;
+	BORDER-LEFT:0 SOLID;
+	BORDER-TOP:0 SOLID;
+	width:22;
+	height:22;
+}
+.focusBtn{
+	BACKGROUND-COLOR: #ccccff; 
+	BORDER-TOP: #000000 1px solid;
+	BORDER-BOTTOM: #000000 1px solid; 
+	BORDER-RIGHT: #000000 1 solid;
+	BORDER-LEFT: #000000 1 solid;
+	width:22;
+	height:22;
+}
+
+.toolui{
+	position:absolute;
+	z-index:10000;
+}
+
+table.gridstyle{
+	
+	overflow:hidden;
+	border-collapse:separate;
+}
+
+table.gridstyle tr.hdr td,th{
+	font-family:arial;
+	font-size:12px;
+	background-Color:#D4D0C8;
+	border: 1px solid;
+	border-color : white Gray Gray white;
+	text-align: left;
+	margin:0px;
+	padding:3px 0px 3px 0px ;
+	font-weight:normal;
+    -moz-user-select:none;
+    overflow:hidden;
+}
+
+
+table.gridstyle tr.obj td {
+	border: 1px solid;
+	border-color : white Gray Gray white;
+	font-family:Arial;
+	font-size:12px;
+    -moz-user-select:none;
+    overflow:hidden;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+.cButton{
+	background-image:url(/_CommitSys/Images/Icons/button.gif);
+	BORDER-RIGHT: darkgray 1px solid; BORDER-TOP: darkgray 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: darkgray 1px solid; CURSOR: hand; BORDER-BOTTOM: darkgray 1px solid; FONT-FAMILY: verdana; HEIGHT: 22px; BACKGROUND-COLOR: white
+}

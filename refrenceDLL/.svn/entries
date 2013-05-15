@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/refrenceDLL
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/refrenceDLL
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -502,40 +502,6 @@ has-props
 
 1933312
 
-DcClient_vc8sp1_x86_32.dll
-file
-
-
-
-
-2013-04-22T08:29:00.671875Z
-84deca77c5a29ce967e990d05c7bdbf0
-2013-04-12T05:49:58.203125Z
-1
-admin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-114688
-
 VideoDll.dll
 file
 
@@ -570,14 +536,14 @@ has-props
 
 24576
 
-DevExpress.XtraEditors.v9.1.Design.dll
+DcClient_vc8sp1_x86_32.dll
 file
 
 
 
 
-2013-04-22T08:29:00.703125Z
-bae09c7c8b10de2ac3d9ae4a82bc790a
+2013-04-22T08:29:00.671875Z
+84deca77c5a29ce967e990d05c7bdbf0
 2013-04-12T05:49:58.203125Z
 1
 admin
@@ -602,7 +568,7 @@ has-props
 
 
 
-217600
+114688
 
 Estar.Common.WebControlTools.dll
 file
@@ -637,6 +603,40 @@ has-props
 
 
 45056
+
+DevExpress.XtraEditors.v9.1.Design.dll
+file
+
+
+
+
+2013-04-22T08:29:00.703125Z
+bae09c7c8b10de2ac3d9ae4a82bc790a
+2013-04-12T05:49:58.203125Z
+1
+admin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+217600
 
 Estar.Common.WebControls.dll
 file
@@ -944,40 +944,6 @@ has-props
 
 233472
 
-Client.ocx
-file
-
-
-
-
-2013-04-22T08:29:01.609375Z
-0b4337485acf545a5cf866f8a43c68bd
-2013-04-12T05:49:58.203125Z
-1
-admin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-53248
-
 DevExpress.Data.v9.1.dll
 file
 
@@ -1011,6 +977,40 @@ has-props
 
 
 793600
+
+Client.ocx
+file
+
+
+
+
+2013-04-22T08:29:01.609375Z
+0b4337485acf545a5cf866f8a43c68bd
+2013-04-12T05:49:58.203125Z
+1
+admin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+53248
 
 Mix.dll
 file

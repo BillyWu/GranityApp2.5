@@ -1,0 +1,85 @@
+<HTML>
+	<HEAD>
+		<title>编辑</title>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<base target="_self">
+		<style type=text/css>
+		.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+		input
+		{
+			behavior:url(/hmjs/sysjs/common.htc);
+		};
+		select
+		{
+			behavior:url(/hmjs/sysjs/common.htc);
+		}
+		.inputDate
+		{
+			behavior:url(/hmjs/sysjs/common.htc);
+		}
+		</style>
+		<script language="javascript" src="hmjs/sysjs/ToolUtil.js"  type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js"  type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/common.js"  type="text/javascript" charset="gb2312"></script>
+		<script language="javascript">
+		
+			var band=window.dialogArguments;	
+			function cmdCancel()
+			{
+				var _blbupdate = band.UnitItem.IsModify();
+				if(_blbupdate)
+				{
+					var result = confirm(" 数据已改变，是否进行保存?  ");
+					if(result) ms_save();
+				}
+				window.returnValue=band.XmlLandData.recordset.AbsolutePosition;
+				window.close();
+			}							
+		
+			function cmdOK()
+			{
+				var obj1=document.getElementById("执行标准");
+				var obj2=document.getElementById("名称");
+				if(obj1.value=="") {alert("您必须选择一个客户销售类型！");return}
+				if(obj2.value=="" || obj2.value=="新节点") 
+				{
+					obj2.innerText=obj1.options[obj1.selectedIndex].text;
+					band.setFldStrValue(null,"名称",obj1.options[obj1.selectedIndex].text);
+				}				
+				ms_save();
+				window.returnValue=band.XmlLandData.recordset.AbsolutePosition;
+				//window.close();
+			}							
+		</script>
+	</HEAD>
+	<body bottomMargin="0" bgColor="activeborder" leftMargin="8" topMargin="8" onload="ms_iniData(band);" rightMargin="1">
+			<TABLE class=main_tab id=mainTable  style="BORDER-RIGHT: thin groove; BORDER-TOP: thin groove; FONT-SIZE: 12px; BORDER-LEFT: thin groove; BORDER-BOTTOM: thin groove; FONT-FAMILY: 宋体"
+				cellSpacing="5" cellPadding="1" width="100%" bgColor="activeborder" border="0">
+				<TR>
+					<TD style=" BORDER-BOTTOM: thin groove; "
+						align="center" bgColor="activeborder" colSpan="2">客户类型选择</TD>
+				</TR>
+				<TR>
+					<TD vAlign="middle" noWrap align="right" bgColor="activeborder">
+					标题：</TD>
+					<TD style="HEIGHT: 28px" width="83%">
+					<input class="xlandinput" id="名称" style="WIDTH: 100%" size="18" name="审批事项" /></TD>
+				</TR>
+				<TR>
+					<TD vAlign="middle" noWrap align="right" bgColor="activeborder">
+					选择一个客户类型：</TD>
+					<TD style="HEIGHT: 28px" width="83%">
+					<SELECT class="xlandselect" id="执行标准" style="width:98%; height:30" size="1" DataSource="字典_客户类型" DataTextField="名称" DataValueField="代码" name="D1"></SELECT><font color="#FF0000">*</font></TD>
+				</TR>
+				<TR>
+					<TD style="WIDTH: 13%"><INPUT id="hlb_gridname" style="WIDTH: 88px; HEIGHT: 22px" type="hidden" size="9"></TD>
+					<TD align="right"><FONT face="宋体">
+					<INPUT id="Button1" title="确定" style="WIDTH: 64px; HEIGHT: 24px" onclick="cmdOK()" type="button"
+								value="确定" name="btnOK" runat="server">&nbsp;<INPUT id="Button2" style="WIDTH: 66px; HEIGHT: 24px" onclick="cmdCancel()" type="button"
+								value="返回" name="btnCancel" runat="server">&nbsp; </FONT>
+					</TD>
+				</TR>
+			</TABLE>
+	</body>
+</HTML>

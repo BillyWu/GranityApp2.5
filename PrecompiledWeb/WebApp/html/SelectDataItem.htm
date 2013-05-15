@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+	    <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>
+	    <script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+	    <script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+	    <script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+	    <script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+	    <script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+	    <script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>    
+		<link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" />
+	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+		<script language="javascript" type="text/javascript">
+		<!--
+//			document.editsrc.source.wrap='hard'
+			window.onload=WinLoadUtil.MDTPLoad;
+            var banddst=window.dialogArguments;				
+			function initWin()
+			{
+			    var band	=	document.UnitItem.getBandByItemName("itemtree");
+   			    changepro("");
+		        var oldfld  = "";
+		        var xdict = banddst.getFldStrValue("tmp")
+		        switch(xdict)
+		        {
+		        	case "1":
+			        	oldfld = "countdataitem";
+			        	break;	
+		        	default:
+			        	oldfld = "dataitem";
+			        	break;				        	
+		        }
+				ue_bandTreeSearch(banddst.getFldStrValue(oldfld),null,'treeland')   			    
+			    band.AfterCellEditChanged=function()
+			    {
+			        if(this.Event.colName=="ntype")
+			            changepro(band.getFldStrValue("ntype"));        
+			    }
+			}
+			function Tree_onNodeSelectionChange(node)
+			{
+				var band	=	node.ParentTreeView.Tree.Band;
+				var ntype 	= 	band.getFldStrValue("ntype");
+				changepro(ntype);
+			}
+			function changepro(type)
+			{
+				switch(type)
+				{
+					case "SQLText":
+						document.getElementById("tabSql").style.display="";
+						document.getElementById("trSay").style.display="none";
+						document.getElementById("slname").style.display="";
+						document.getElementById("txtname").style.display="none";						
+						break;
+					default:
+						document.getElementById("tabSql").style.display="none";
+						document.getElementById("trSay").style.display="";
+						document.getElementById("slname").style.display="none";
+						document.getElementById("txtname").style.display="";						
+				}
+			}
+			
+			function ts_importDate(srcitem,destitem)
+			{
+				if(document.getElementById("tablename").value=="") {alert("请选择一个数据库表名称！");return}
+				var band=document.UnitItem.getBandByItemName(destitem);	
+				var xmldoc=document.UnitItem.ParamXmldoc;
+				var tablename = document.getElementById("tablename").value;
+				ToolUtil.setParamValue(xmldoc, "tablename", document.getElementById("dataname").value + ".dbo." +tablename, "", "s", band.ItemName, "D",""); 
+				document.UnitItem.getBandByItemName(destitem).setModalContent(srcitem);
+			}
+					
+			function ts_genSQL()
+			{
+				 mband=getband("itemtree");
+				 if(mband.getFldStrValue("ntype")!="SQLText") {alert("只能对脚本属性进行操作！");return}
+				if(document.getElementById("tablename").value=="") {alert("请选择一个数据库表名称！");return}
+				var xmldoc=document.UnitItem.ParamXmldoc;
+				var tablename = "dbo." + document.getElementById("tablename").value;
+				ToolUtil.setParamValue(xmldoc, "tablename", document.getElementById("dataname").value + "." + tablename, "s", "P", "", "Ts","");
+				oband=getband("useTableStructs");
+				oband.Query();
+				var str = "";var strp = "";var stru = "";
+				var rc = oband.RecordCount();
+				if(rc==0) return;
+				for(var i=0;i<rc;i++)
+				{
+					str = str +","+oband.getFldStrValue("name",i);
+					strp = strp +",@"+oband.getFldStrValue("name",i);
+					if(oband.getFldStrValue("name",i)=="ID") continue;
+					stru =stru+","+ oband.getFldStrValue("name",i)+"=@"+oband.getFldStrValue("name",i);
+				}
+				str = str.substring(1,str.length);
+				strp = strp.substring(1,strp.length);
+				stru = stru.substring(1,stru.length);
+				switch(mband.getFldStrValue("name"))
+				{
+					case "select":
+						mband.setFldStrValue(null,"sqltext", "select "+str+" from "+ tablename+" where (1>0) and (2>0)");
+						break;
+					case "insert":
+					    var sql="insert into "+tablename+"("+str+")values("+strp+")";
+					    mband.setFldStrValue(null,"sqltext",sql);
+						break;
+					case "update":
+					    var sql="update "+tablename+" set "+stru+ " where ID=@ID";
+					    mband.setFldStrValue(null,"sqltext",sql);
+						break;
+					case "delete":
+					    mband.setFldStrValue(null,"sqltext","delete from "+tablename+" where ID=@ID");
+						break;
+				}				
+			}
+			function us_htmldict(item,objname)
+			{
+				var tbl=event.srcElement.value;
+				
+			    var band	=	document.UnitItem.Bands[2];
+			    //document.UnitItem.getBandByItemName(item);
+			    var obj=document.getElementById(objname);
+			    //DataValueField="name" DataTextField="name" DataSource="dict_TableName"
+			    obj.DataSource = obj.DataSource.replace("''","");
+			    var xmlhttp = QueryDict(obj.DataSource+" '"+tbl+"'");
+			    var xmldict = xmlhttp.responseXML.xml;
+			    band.XmlDict.XMLDocument.loadXML(xmldict);
+			    if(band.XmlDict.xml=="") return;    
+//			    execute_x0020__x005B_hmsys_x005D_._x005B_dbo_x005D_._x005B_select_tableName_x005D__x0020__x0027_HMERP_x0027_
+				//execute hmsys.dbo.select_tableName
+			    var _xpath = (obj.DataSource+" '"+tbl+"'").replaceAll(" ","_x0020_").replaceAll(":","_x003A_").replaceAll("'","_x0027_").replaceAll("\\[","_x005B_");
+			    _xpath = _xpath.replaceAll("\\]","_x005D_");
+			    
+			    var texts = band.XmlDict.XMLDocument.selectNodes("//"+ _xpath +"//" + obj.DataTextField);
+			    var vals  = band.XmlDict.XMLDocument.selectNodes("//"+ _xpath +"//" + obj.DataValueField);    
+			    var ops = obj.options;
+			    obj.options.length=0;
+			    ops.add(new Option("",""));
+			    for(var m=0;m<vals.length;m++)
+			        ops.add(new Option(texts[m].text,vals[m].text));
+			}
+			-->
+		</script>
+	</head>
+
+	<body>
+	<table align="center" style="WIDTH: 100%; BORDER-COLLAPSE: collapse; HEIGHT: 100%" bgcolor="buttonface" id="table10" cellSpacing="0" cellPadding="0" border="1">
+	<tbody>
+	<tr>
+		<td style="color: #333333; font-family: 宋体, Arial; height: 23px" vAlign="middle" bgColor="gray" colSpan="3" rowSpan="1">
+		 <font color="white"><strong>　功能单元设置</strong></font>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+		 <INPUT id="Button1" title="确定" style="WIDTH: 50px;" onclick="window.close()" type="button" value="关闭" name="btnOK" /></td>
+	</tr>
+	<tr>
+		<td style="color: #333333; font-family: 宋体, Arial" vAlign="top" align="left" width="18%">
+		<table style="BORDER-COLLAPSE: collapse; HEIGHT: 413px" id="table11" height="415" cellSpacing="0" cellPadding="0" width="195" border="0">
+			<tbody>
+			<tr>
+				<td style="width: 25px; color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" background="html/images/\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='html/images/treeadd-over.gif'" onmouseover="this.src='html/images/treeadd-over.gif'" onmouseout="this.src='html/images/treeadd.gif'" onmousedown="this.src='html/images/treeadd-down.gif'" onclick="TreeUtil.addNode('treeland',false)" height="24" alt="增加同级节点" src="html/images//treeadd.gif" width="22" border="0" /> 
+				</font> 
+				</td>
+				<td style="width: 22px; color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" background="html/images/\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='html/images/treeadds-over.gif'" onmouseover="this.src='html/images/treeadds-over.gif'" onmouseout="this.src='html/images/treeadds.gif'" onmousedown="this.src='html/images/treeadds-down.gif'" onclick="TreeUtil.addNode('treeland',true)" height="24" alt="增加下级节点" src="html/images//treeadds.gif" width="22" border="0" /> 
+				</font> 
+				</td>
+				<td style="width: 26px; color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" background="html/images/\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img onmouseup="this.src='html/images/del-over.gif'" onmouseover="this.src='html/images/del-over.gif'" onmouseout="this.src='html/images/del.gif'" onmousedown="this.src='html/images/del-down.gif'" onclick="TreeUtil.deleteNode('treeland')" height="24" alt="删除当前节点" src="html/images//del.gif" width="23" border="0" /> 
+				</font> 
+				</td>
+				<td style="color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" align="left" width="50" background="html/images/\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				<font face="宋体" size="2">
+				<img id="downnode" onmouseup="this.src='html/images/down-over.gif'" onmouseover="this.src='html/images/down-over.gif'" onmouseout="this.src='html/images/down.gif'" onmousedown="this.src='html/images/down-down.gif'" onclick="TreeUtil.moveDown('treeland')" height="24" src="html/images//down.gif" width="22" border="0" />
+				<img id="upnode" onmouseup="this.src='html/images/up-over.gif'" onmouseover="this.src='html/images/up-over.gif'" onmouseout="this.src='html/images/up.gif'" onmousedown="this.src='html/images/up-down.gif'" onclick="TreeUtil.moveUp('treeland')" height="24" src="html/images//up.gif" width="20" border="0" /> 
+				</font> 
+				</td>
+				<td style="color: #333333; font-family: 宋体, Arial; height: 24px" vAlign="middle" align="left" width="72" background="html/images/\bkgray-s.gif" bgColor="buttonface" rowSpan="1">
+				【<a href="#" onclick="ue_save()">保存</a>】</td>
+			</tr>
+			<tr>
+				<td vAlign="top" colSpan="5" align="center">
+				<Control class="" catalog="TreeLand.ascx" itemname="itemtree" id="treeland" name="">treeland<Property name="tpfile" value="" />
+					                                                <Property name="width" value="98%" /><Property name="height" value="441" />
+					                                                <Property name="ctrlalert" value="s_code" />
+					                                                <Property name="trvfld" idfld="ID" pidfld="PID" txtfld="name" orderfld="serial" />
+				                                                </Control>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+		<td bgcolor="buttonface" style="width: 81%; color: #333333; font-family: 宋体, Arial" vAlign="top" align="left" colSpan="2">
+		<table style="WIDTH: 100%; BORDER-COLLAPSE: collapse; border:1" id="table13" cellPadding="0" border="0">
+			<tbody>
+			<tr>
+				<td style="color: #333333; font-family: 宋体, Arial; height: 24px" background="html/images//bkgray-s.gif" align="center">
+						<font face="宋体" size="2">属性</font></td>
+			</tr>
+			<tr>
+				<td style="color: #333333; font-family: 宋体, Arial" vAlign="top">
+				 
+				<table style="HEIGHT: 100%;width:100%" id="table14" cellSpacing="0" cellPadding="0" align="center" border="0">
+					<tbody>
+					<tr>
+						<td vAlign="top" align="center" style="color: #333333; font-family: 宋体, Arial">
+							<table style="WIDTH: 100%; HEIGHT: 48px; font-family:宋体; font-size:10pt" id="table15" border="1" cellspacing="0" bordercolorlight="#333333" bordercolordark="#EEEEEE">
+								<tbody>
+								<tr bgcolor="buttonface">
+									<td style="width: 8%; height: 23px; color: #333333; font-family: 宋体, Arial" align="right">
+									名称：</td>
+									<td style="height: 23px; color: #333333; font-family: 宋体, Arial" align="left" width="56%">
+					<INPUT id="txtname" datasrc="#treeland" datafld="name" class="xlandinput" style="width:100%" type="text" size="11" name="姓名" /><select id="slname" dataFld="name" dataSrc="#treeland" class="xlandselect" size="1" style="display:none;WIDTH: 100%;" name="D6">
+                                        <option value=""></option>
+                                        <option value="select">select</option>
+                                        <option value="insert">insert</option>
+                                        <option value="update">update</option>
+                                        <option value="delete">delete</option>
+                                    </select></td>
+									<td style="height: 23px; color: #333333; font-family: 宋体, Arial" align="right" width="10%">
+									性质：</td>
+									<td style="height: 23px; color: #333333; font-family: 宋体, Arial" align="right" width="21%">
+									 <select dataFld="ntype" dataSrc="#treeland" class="xlandselect" size="1" style="WIDTH: 100%; height:19" name="D6">
+                                        <option value=""></option>
+                                        <option value="DataAccess">数据源</option>
+                                        <option value="DataItem">数据项</option>
+                                        <option value="SQLText">查询设计内容</option>
+                                    </select></td>
+								</tr>
+								<tr bgcolor="buttonface">
+									<td style="width: 8%; height: 23px; color: #333333; font-family: 宋体, Arial" align="right">
+									说明：</td>
+									<td style="height: 23px; color: #333333; font-family: 宋体, Arial" align="left" colspan="3">
+					<INPUT datasrc="#treeland" datafld="memo" class="xlandinput" style="width:100%" type="text" size="11" name="姓名3" /></td>
+								</tr>
+								<tr id="trSay" bgcolor="buttonface">
+									<td style="height: 390px; color: #333333; font-family: 宋体, Arial" colspan="4" valign="top">
+									  <br /><br />
+									　使用说明：<p style="margin:10">　　　请在左侧树形结构定义数据源元素</p>
+									　　　　　　　　数据源　┓<p style="margin:-1"></p>　　　　　　　　　　　　┗　数据项　┓
+									<p style="margin:-1"></p>　　　　　　　　　　　　　　　　　　┗　查询内容设计
+									<p style="margin:10"></p>　　　　　　　　　　　　　　　　　　　　　　　┗　select：查询数据
+									<p style="margin:10"></p>　　　　　　　　　　　　　　　　　　　　　　　　　insert：增加数据
+									<p style="margin:10"></p>　　　　　　　　　　　　　　　　　　　　　　　　　update：修改数据
+									<p style="margin:10"></p>　　　　　　　　　　　　　　　　　　　　　　　　　delete：删除数据									
+									</td>
+								</tr>
+							</tbody>
+							</table>
+<table style="WIDTH: 100%; HEIGHT: 257px; font-family:宋体; font-size:10pt;display:none" id="tabSQL" border="1" cellspacing="0" bordercolorlight="#333333" bordercolordark="#EEEEEE">
+								<tbody>
+								<tr bgcolor="buttonface">
+									<td style="height: 22px; color: #333333; font-family: 宋体, Arial" align="right" colspan="2">
+									<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table16" style="font-size: 10pt">
+										<tbody>
+										<tr>
+											<td width="85" align="right">选择数据库：</td>
+											<td>
+									 			<SELECT style="width:80" id="dataname" DataValueField="name" DataTextField="name" DataSource="execute dbo.select_database" 
+									 				name="D7" onchange="us_htmldict('edit','tablename');"></SELECT></td>
+											<td>
+											<SELECT style="width:190;" id="tablename" DataValueField="name" DataTextField="name" 
+											DataSource="execute dbo.select_tableName ''"></SELECT></td>
+											<td width="80" align="center">【<a href="#" onclick="ts_importDate('TableStructs','Parameters')">提取参数</a>】</td>
+											<td width="100" align="center">【<a href="#" class="linkbtn_0" onclick="ts_genSQL()">产生SQL脚本</a>】</td>
+										</tr>
+									</tbody>
+									</table>
+									</td>
+								</tr>
+								<tr id="trSql" bgcolor="buttonface">
+									<td style="width: 7%; color: #333333; font-family: 宋体, Arial" align="center" height="177">
+									查<p>询</p>
+									<p>设</p>
+									<p>计</p></td>
+									<td style="color: #333333; font-family: 宋体, Arial" align="left" width="92%" height="177">
+									<textarea datasrc="#treeland" datafld="sqltext" class="xlandinput" style="word-break:break-all;width:100%;height:100%"></textarea></td>
+								</tr>
+								<tr id="trGrid" bgcolor="buttonface">
+									<td style="color: #333333; font-family: 宋体, Arial" align="center" colspan="2">
+									<Control class="" catalog="GridLand.ascx" itemname="Parameters" id="Parameters" name="">ControlTest
+				<Property name="tpfile" value="ControlTemplate/GridEdit.htm"></Property> 
+				<Property name="width" value="520px"></Property>
+				<Property name="height" value="130px"></Property>
+				<Property name="hiddenhead" value="false"></Property>
+				<Property name="ctrlalert" value="s_code"></Property>
+				<Property name="hiddengrid" value="false"></Property>
+			</Control></td>
+								</tr>
+							</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+				
+				</td>
+			</tr>
+			<tr>
+				<td style="color: #333333; "></td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+</tbody>
+</table>
+<Control class="" catalog="GridLand.ascx" itemname="useTableStructs" id="TableStructs" name="">useTableStructs
+				<Property name="tpfile" value=""></Property> 
+				<Property name="width" value="0"></Property>
+				<Property name="height" value="0"></Property>
+				<Property name="hiddenhead" value="false"></Property>
+				<Property name="ctrlalert" value="s_code"></Property>
+				<Property name="hiddengrid" value="true"></Property>
+			</Control>
+	</body>
+</html>

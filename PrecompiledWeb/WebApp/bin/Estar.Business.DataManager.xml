@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Estar.Business.DataManager</name>
+    </assembly>
+    <members>
+        <member name="T:Estar.Business.DataManager.QueryDataRes">
+            <summary>
+            Xml格式定义数据访问:以数据集名称和参数方式访问数据
+            </summary>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.#ctor">
+            <summary>
+            创建数据访问资源,默认以ODPNet方式访和当前页面dataitem.xml访问数据,数据库连接配置在WebConfig
+            </summary>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.#ctor(System.String)">
+            <summary>
+            创建数据访问资源,指定数据资源文件,使用默认数据源连接
+            </summary>
+            <param name="xmlfile">数据资源文件</param>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.#ctor(Estar.Common.Tools.DataAccRes)">
+            <summary>
+            创建数据访问资源,依据资源定义
+            </summary>
+            <param name="DataRes"></param>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.SetItem(System.String)">
+            <summary>
+            设置访问数据项目
+            根据数据资源文件初始化数据构架及查询和更新规则
+            </summary>
+            <param name="item">数据项目名称</param>
+            <returns>返回是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.Open">
+            <summary>
+            启动数据库连接
+            </summary>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.BeginTransaction">
+            <summary>
+            启动数据库连接并开始事务
+            </summary>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.Commit">
+            <summary>
+            提交次此事务,并关闭数据库连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.RollbackAndClose">
+            <summary>
+            回滚次此事务,并关闭数据库连接,没有事务直接关闭
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.Close">
+            <summary>
+            关闭数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteScalar(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            根据项目名称和参数列表获取单个结果
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="parameters">查询参数列表</param>
+            <returns>返回结果</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.getTable(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            查询数据
+            </summary>
+            <param name="item">查询的数据项目</param>
+            <param name="paramlist">查询的参数列表</param>
+            <returns>返回数据集,失败返回null</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.GetDataTableBySql(System.String)">
+            <summary>
+            根据指定的SQL语句查询数据表
+            </summary>
+            <param name="strSQL">SQL语句</param>
+            <returns>返回DataTable的数据集</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.FillDataSet(System.String,Estar.Common.Tools.NameObjectList,System.Data.DataSet)">
+            <summary>
+            根据项目名称和参数列表填充数据集
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="parameters">查询参数列表</param>
+            <param name="ds">数据集</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.FillDataSet(System.String,Estar.Common.Tools.NameObjectList[],System.Data.DataSet)">
+            <summary>
+            根据项目名称和参数列表填充数据集
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="paramList">查询参数列表</param>
+            <param name="ds">数据集</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.Update(System.String,System.Data.DataTable)">
+            <summary>
+            利用DataTable更新数据
+            </summary>
+            <param name="item">更新的数据项目</param>
+            <param name="tab">更新的数据集</param>
+            <returns>是否更新成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteInsert(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数按照"insert"项提交数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteUpdate(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数按照"update"项更新数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteDelete(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数按照"delete"项来删除数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteInsert(System.String,Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数数组按照"insert"项批量提交数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteUpdate(System.String,Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数数组按照"update"项批量更新数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteDelete(System.String,Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数按照"delete"项来删除数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteNonQuery(System.String,Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            利用参数数组分别按照新增,更新,删除的类别来更新数据;保证事务的一致性
+            在执行更新时,按照删除,更新,新增的顺序执行,以避免并发冲突问题
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="paramsIns">提交的新增参数</param>
+            <param name="paramsUpt">提交的更新参数</param>
+            <param name="paramsDel">提交的删除参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteNonQuery(System.String,Estar.Common.Tools.NameObjectList[],Estar.Common.Tools.NameObjectList[],Estar.Common.Tools.NameObjectList[])">
+            <summary>
+            利用参数数组分别按照新增,更新,删除的类别来更新数据;保证事务的一致性
+            在执行更新时,按照删除,更新,新增的顺序执行,以避免并发冲突问题
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="paramsListIns">提交的新增参数数组</param>
+            <param name="paramsListUpt">提交的更新参数数组</param>
+            <param name="paramsListDel">提交的删除参数数组</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteNonQuery(System.String,Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数数组分别按照新增,更新,删除的类别来更新数据;保证事务的一致性
+            在执行更新时,按照删除,更新,新增的顺序执行,以避免并发冲突问题
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="paramsIns">提交的新增参数</param>
+            <param name="paramsUpt">提交的更新参数</param>
+            <param name="paramsDel">提交的删除参数</param>
+            <param name="strParams">附加字符串数组参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteNonQuery(System.String,Estar.Common.Tools.NameObjectList[],Estar.Common.Tools.NameObjectList[],Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数数组分别按照新增,更新,删除的类别来更新数据;保证事务的一致性
+            在执行更新时,按照删除,更新,新增的顺序执行,以避免并发冲突问题
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="paramsListIns">提交的新增参数数组</param>
+            <param name="paramsListUpt">提交的更新参数数组</param>
+            <param name="paramsListDel">提交的删除参数数组</param>
+            <param name="strParams">附加字符串数组参数</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.WriteSingleStream(System.String,Estar.Common.Tools.NameObjectList)">
+            <summary>
+            更新大字段内容,一次只能更新一条记录,大字段使用stream类型传递
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="paramlist">字段参数列表,大字段使用stream类型传递</param>
+            <returns>更新是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.NewGuid(Estar.Common.Tools.DataAccessType)">
+            <summary>
+            产生一个全局唯一标识符
+            </summary>
+            <returns>返回全局唯一标识符</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.NewGuid">
+            <summary>
+            产生一个全局唯一标识符
+            </summary>
+            <returns>返回全局唯一标识符</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.SetItem(System.String,System.String[])">
+            <summary>
+            设置访问数据项目
+            根据数据资源文件初始化数据构架及查询和更新规则
+            </summary>
+            <param name="item">数据项目名称</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>返回是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.getTable(System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            查询数据
+            </summary>
+            <param name="item">查询的数据项目</param>
+            <param name="paramlist">查询的参数列表</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>返回数据集,失败返回null</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.FillDataSet(System.String,Estar.Common.Tools.NameObjectList,System.String[],System.Data.DataSet)">
+            <summary>
+            根据项目名称和参数列表填充数据集
+            </summary>
+            <param name="item">要填充的数据集Table名称</param>
+            <param name="parameters">参数列表</param>
+            <param name="strParams">字符串参数列表</param>
+            <param name="ds">要填充的数据集</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteInsert(System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数按照"insert"项提交数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteUpdate(System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数按照"update"项更新数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteDelete(System.String,Estar.Common.Tools.NameObjectList,System.String[])">
+            <summary>
+            利用参数按照"delete"项来删除数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameters">提交的参数</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteInsert(System.String,Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数数组按照"insert"项批量提交数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteUpdate(System.String,Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数数组按照"update"项批量更新数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.ExecuteDelete(System.String,Estar.Common.Tools.NameObjectList[],System.String[])">
+            <summary>
+            利用参数按照"delete"项来删除数据
+            </summary>
+            <param name="item">要提交的数据项目</param>
+            <param name="parameterslist">提交的参数数组</param>
+            <param name="strParams">约定??num为自定义变量，通过传递的定符串替代之</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.QueryDataRes.CreateQuerySys">
+            <summary>
+            产生一个系统查询对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.DataRes">
+            <summary>
+            改变数据访问资源,访问组件随之改变
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.SelParamList">
+            <summary>
+            读取当前访问的数据源项目select参数列表
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.InsParamList">
+            <summary>
+            读取当前访问的数据源项目insert参数列表
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.UptParamList">
+            <summary>
+            读取当前访问的数据源项目update参数列表
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.DelParamList">
+            <summary>
+            读取当前访问的数据源项目delete参数列表
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.SelCommand">
+            <summary>
+            读取当前访问的select命令
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.InsCommand">
+            <summary>
+            读取当前访问的insert命令
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.UptCommand">
+            <summary>
+            读取当前访问的update命令
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.DelCommand">
+            <summary>
+            读取当前访问的delete命令
+            </summary>
+        </member>
+        <member name="P:Estar.Business.DataManager.QueryDataRes.QuerySys">
+            <summary>
+            读取系统查询对象
+            </summary>
+        </member>
+        <member name="T:Estar.Business.DataManager.CodeBuilder">
+            <summary>
+            单据编号,条形码的生成
+            </summary>
+        </member>
+        <member name="M:Estar.Business.DataManager.CodeBuilder.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Estar.Business.DataManager.CodeBuilder.GetBillSn(System.String,System.String)">
+            <summary>
+            根据单据类别和部门生成编号
+            </summary>
+            <param name="billType">单据类型</param>
+            <param name="deptCode">部门</param>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.CodeBuilder.GetRegionCode">
+            <summary>
+            返回一个4位随机码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.CodeBuilder.GenerateValidateImg(System.String)">
+            <summary>
+             结合前两个方法,写的校验码彩色图片生成,含有噪音线,噪音点
+            </summary>
+            <param name="strcode">校验码</param>
+            <returns>返回生成图片</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.CodeBuilder.GenerateCharCode">
+            <summary>
+            生成一个随机数字或字母
+            </summary>
+            <returns>返回字符串</returns>
+        </member>
+        <member name="M:Estar.Business.DataManager.CodeBuilder.GenerateCNCode">
+            <summary>
+            生成一个随机汉字码
+            </summary>
+            <returns>返回汉字字符串</returns>
+        </member>
+    </members>
+</doc>

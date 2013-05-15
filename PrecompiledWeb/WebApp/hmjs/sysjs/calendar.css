@@ -1,0 +1,235 @@
+/* The main calendar widget.  DIV containing a table. */
+
+.calendar		/*下拉的颜色*/
+{
+	border-right: #000 2px solid;
+	border-top: #fff 2px solid;
+	font-size: 11px;
+	background: #ffffff;
+	border-left: #fff 2px solid;
+	cursor: default;
+	color: #0066ff;
+	border-bottom: #000 2px solid;
+	font-family: tahoma,verdana,sans-serif;
+	z-index:10005;
+}
+
+.calendar table	/*背景色*/
+{
+	border-right: #fff 1px solid;
+	border-top: #000 1px solid;
+	font-size: 11px;
+	background: ghostwhite;
+	border-left: #000 1px solid;
+	cursor: default;
+	color: #000;
+	border-bottom: #fff 1px solid;
+	font-family: tahoma,verdana,sans-serif;
+}
+
+/* Header part -- contains navigation buttons and day names. */
+
+.calendar .button { /* "<<", "<", ">", ">>" buttons have this class */
+  text-align: center;
+  padding: 1px;
+  border-top: 1px solid #fff;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #fff;
+}
+
+.calendar thead .title	/*今天的颜色*/
+{
+	border-right: #000 1px solid;
+	padding-right: 1px;
+	border-top: #000 1px solid;
+	padding-left: 1px;
+	font-weight: bold;
+	background: snow;
+	padding-bottom: 1px;
+	border-left: #000 1px solid;
+	color: black;
+	padding-top: 1px;
+	border-bottom: #000 1px solid;
+	text-align: center;
+}
+
+.calendar thead .headrow { /* Row <TR> containing navigation buttons */
+}
+
+.calendar thead .daynames { /* Row <TR> containing the day names */
+}
+
+.calendar thead .name
+{
+	padding-right: 2px;
+	padding-left: 2px;
+	background: aliceblue;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	border-bottom: #000 1px solid;
+	text-align: center;
+}
+
+.calendar thead .weekend { /* How a weekend day name shows in header */
+  color: #f00;
+}
+
+.calendar thead .hilite
+{
+	border-right: #000 2px solid;
+	padding-right: 0px;
+	border-top: #fff 2px solid;
+	padding-left: 0px;
+	background: #cccc99;
+	padding-bottom: 0px;
+	border-left: #fff 2px solid;
+	padding-top: 0px;
+	border-bottom: #000 2px solid;
+}
+
+.calendar thead .active
+{
+	border-right: #fff 1px solid;
+	padding-right: 0px;
+	border-top: #000 1px solid;
+	padding-left: 2px;
+	background: skyblue;
+	padding-bottom: 0px;
+	border-left: #000 1px solid;
+	color: green;
+	padding-top: 2px;
+	border-bottom: #fff 1px solid;
+}
+
+/* The body part -- contains all the days in month. */
+
+.calendar tbody .day { /* Cells <TD> containing month days dates */
+  width: 2em;
+  text-align: right;
+  padding: 2px 4px 2px 2px;
+}
+
+.calendar tbody .hilite { /* Hovered cells <TD> */
+  padding: 1px 3px 1px 1px;
+  border-top: 1px solid #fff;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #fff;
+}
+
+.calendar tbody .active { /* Active (pressed) cells <TD> */
+  padding: 2px 2px 0px 2px;
+  border-top: 1px solid #000;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #000;
+}
+
+.calendar tbody .selected { /* Cell showing selected date */
+  font-weight: bold;
+  border-top: 1px solid #000;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #000;
+  padding: 2px 2px 0px 2px;
+  background: #e4e0d8;
+}
+
+.calendar tbody .weekend { /* Cells showing weekend days */
+  color: #f00;
+}
+
+.calendar tbody .today { /* Cell showing today date */
+  font-weight: bold;
+  color: #00f;
+}
+
+.calendar tbody .emptycell { /* Empty cells (the best is to hide them) */
+  visibility: hidden;
+}
+
+.calendar tbody .emptyrow { /* Empty row (some months need less than 6 rows) */
+  display: none;
+}
+
+/* The footer part -- status bar and "Close" button */
+
+.calendar tfoot .footrow { /* The <TR> in footer (only one right now) */
+}
+
+.calendar tfoot .ttip /*最后的底色"选择日期"*/
+{
+	border-right: #000 1px solid;
+	padding-right: 1px;
+	border-top: #000 1px solid;
+	padding-left: 1px;
+	background: aliceblue;
+	padding-bottom: 1px;
+	border-left: #000 1px solid;
+	color: black;
+	padding-top: 1px;
+	border-bottom: #000 1px solid;
+	text-align: center;
+}
+
+.calendar tfoot .hilite
+{
+	border-right: #000 1px solid;
+	padding-right: 1px;
+	border-top: #fff 1px solid;
+	padding-left: 1px;
+	background: wheat;
+	padding-bottom: 1px;
+	border-left: #fff 1px solid;
+	padding-top: 1px;
+	border-bottom: #000 1px solid;
+}
+
+.calendar tfoot .active { /* Active (pressed) style for buttons in footer */
+  padding: 2px 0px 0px 2px;
+  border-top: 1px solid #000;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #000;
+}
+
+/* Combo boxes (menus that display months/years for direct selection) */
+
+.combo
+{
+	border-right: #000 1px solid;
+	padding-right: 1px;
+	border-top: #fff 1px solid;
+	display: none;
+	padding-left: 1px;
+	font-size: smaller;
+	background: antiquewhite;
+	left: 0px;
+	padding-bottom: 1px;
+	border-left: #fff 1px solid;
+	width: 4em;
+	cursor: default;
+	padding-top: 1px;
+	border-bottom: #000 1px solid;
+	position: absolute;
+	top: 0px;
+}
+
+.combo .label {
+  text-align: center;
+  padding: 1px;
+}
+
+.combo .hilite
+{
+	border-right: #fff 1px solid;
+	padding-right: 0px;
+	border-top: #000 1px solid;
+	padding-left: 0px;
+	background: antiquewhite;
+	padding-bottom: 0px;
+	border-left: #000 1px solid;
+	padding-top: 0px;
+	border-bottom: #fff 1px solid;
+}

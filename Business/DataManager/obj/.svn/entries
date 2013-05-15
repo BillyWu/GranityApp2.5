@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/Business/DataManager/obj
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/Business/DataManager/obj
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -34,14 +34,14 @@ dir
 
 DataManager.csproj.FileListAbsolute.txt
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.859375Z
-6c812c9073568f18024ada2afb218b36
-2013-04-22T08:43:47.453125Z
-5
+2013-05-15T06:17:19.125000Z
+05afb10df497eefb41d50852ba796e9a
+2013-05-15T09:20:53.074125Z
+6
 WBin
 
 
@@ -64,5 +64,5 @@ WBin
 
 
 
-5211
+5123
 

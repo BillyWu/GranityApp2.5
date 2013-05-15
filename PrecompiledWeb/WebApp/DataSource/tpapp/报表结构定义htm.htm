@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+		<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" />
+	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+		<style type="text/css">
+		.sec1 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.sec2 {BORDER-RIGHT: gray 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.sec3 {BORDER-RIGHT: gray 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; COLOR: #000000; BACKGROUND-COLOR: #d4d0c8;}
+		.secx {BORDER-RIGHT: gray 0 solid; BORDER-TOP: #ffffff 0px solid;FONT-SIZE: 12px; BORDER-LEFT: #ffffff 0px solid; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #eeeeee;}
+		.main_tab {BORDER-RIGHT: gray 1px solid; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #d4d0c8;}
+		</style>
+		<script language="javascript" type="text/javascript">
+		<!--
+			window.onload=WinLoadUtil.MDTPLoad;
+		-->	
+		</script>
+	</head>
+
+	<body>
+	
+				                    <table border="1" cellspacing="0" width="100%" height="100%" bgcolor="buttonface" bordercolorlight="#333333" bordercolordark="#EFEFEF" style="font-size: 10pt">
+										<tr>
+											<td width="99%" height="18" colspan="2">
+											　编码：<INPUT id="scode" datasrc="#treeland" datafld="编码" class="xlandinput" style="width:80px" type="text" size="11" name="姓名5" />
+											名称：<INPUT id="scode" datasrc="#treeland" datafld="名称" class="xlandinput" style="width:200px" type="text" size="11" name="姓名5" />
+											科目：<INPUT id="scode" datasrc="#treeland" datafld="科目" class="xlandinput" style="width:80px" type="text" size="11" name="姓名5" />
+											行次：<INPUT id="scode" datasrc="#treeland" datafld="行次" class="xlandinput" style="width:40px" type="text" size="11" name="姓名5" />
+											类型：<INPUT id="scode" datasrc="#treeland" datafld="属性" class="xlandinput" style="width:40px" type="text" size="11" name="姓名5" />
+											方向：<INPUT id="scode" datasrc="#treeland" datafld="方向" class="xlandinput" style="width:40px" type="text" size="11" name="姓名5" />
+											</td>
+										</tr>
+										<tr>
+											<td width="40%" height="317">
+<Control class="" catalog="TreeLand.ascx" itemname="报表结构" id="treeland" name="">treeland<Property name="tpfile" value="" />
+					                                                <Property name="width" value="100%" /><Property name="height" value="100%" />
+					                                                <Property name="ctrlalert" value="s_code" />
+					                                                <Property name="trvfld" idfld="ID" pidfld="PID" txtfld="名称" orderfld="行次" />
+				                                                </Control>											
+											</td>
+											<td width="59%" height="317"><Control class="" catalog="GridLand.ascx" itemname="报表结构" id="DTab" name="">DTab
+											<Property name="tpfile" value="ControlTemplate/EditGridSNX.htm" />
+												<Property name="width" value="500px" /><Property name="height" value="440px" /><Property name="hiddenhead" value="false" />
+												<Property name="ctrlalert" value="s_code" /><Property name="hiddengrid" value="false" />
+											</Control></td>
+										</tr>
+										<tr height="18">
+											<td colspan="2">
+												<table border="0" cellpadding="0" style="width:100%; font-size:10pt" height="18" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>【<a href="#" class="linkbtn_0" onclick="ue_treeline('报表结构',true)">连线</a>】</td>
+															<td>【<a href="#" class="linkbtn_0" onclick="ue_expand('报表结构',false);">合并</a>】</td>
+															<td>【<a href="#" class="linkbtn_0" onclick="ue_expand('报表结构',true);">展开</a>】</td>
+															<td>【<a href="#" class="linkbtn_0" onclick="TreeUtil.addNode('treeland',false)">增加同级科目</a>】</td>
+															<td>【<a href="#" class="linkbtn_0" onclick="TreeUtil.addNode('treeland',true)">增加下级科目</a>】</td>
+															<td>【<a href="#" class="linkbtn_0" onclick="_deleteNode('treeland')">删除</a>】</td>
+															<td>【<a href="#" class="linkbtn_0" onclick="ue_save()">保存</a>】</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</table></body>
+</html>

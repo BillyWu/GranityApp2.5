@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+ <Author>用户21</Author>
+ <LastAuthor>用户21</LastAuthor>
+ <Created>2009-01-31T18:39:47</Created>
+ <Company>www.ftpdown.com</Company>
+ </DocumentProperties>
+<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+ <WindowWidth>15480</WindowWidth>
+ <WindowHeight>8600</WindowHeight>
+ <ProtectStructure>False</ProtectStructure>
+ <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+<Styles>
+ <Style ss:ID="s1" ss:Name="千位分隔[0]">
+  <NumberFormat ss:Format="_ * #,##0_ ;_ * -#,##0_ ;_ * &quot;-&quot;_ ;_ @_ "/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s5" ss:Name="货币">
+  <NumberFormat ss:Format="_ &quot;￥&quot;* #,##0.00_ ;_ &quot;￥&quot;* -#,##0.00_ ;_ &quot;￥&quot;* &quot;-&quot;??_ ;_ @_ "/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s2" ss:Name="百分比">
+  <NumberFormat ss:Format="0%"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s3" ss:Name="货币[0]">
+  <NumberFormat ss:Format="_ &quot;￥&quot;* #,##0_ ;_ &quot;￥&quot;* -#,##0_ ;_ &quot;￥&quot;* &quot;-&quot;_ ;_ @_ "/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s4" ss:Name="千位分隔">
+  <NumberFormat ss:Format="_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="Default" ss:Name="Normal">
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s6"/>
+ <Style ss:ID="s7">
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s8">
+  <Alignment ss:Horizontal="Center"/>
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="16"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s9">
+  <Alignment ss:Horizontal="Right"/>
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s10">
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s11">
+  <Alignment ss:Horizontal="Center"/>
+  <Borders>
+   <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  <Interior ss:Color="#FFFFCC" ss:Pattern="Solid"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s12">
+  <Alignment ss:Horizontal="Center"/>
+  <Borders>
+   <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  <Interior ss:Color="#FFFFCC" ss:Pattern="Gray0625" ss:PatternColor="#FFFFCC"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s13">
+  <Alignment ss:Horizontal="Center"/>
+  <Borders>
+   <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  <NumberFormat ss:Format="Short Date"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s14">
+  <Alignment ss:Horizontal="Left"/>
+  <Borders>
+   <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+   <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="9"/>
+  <NumberFormat ss:Format="Short Date"/>
+  <Protection/>
+  </Style>
+ <Style ss:ID="s15">
+  <Alignment ss:Horizontal="Center"/>
+  <Font ss:FontName="宋体" x:CharSet="134" ss:Size="16"/>
+  <Protection/>
+  </Style>
+ </Styles>
+<Worksheet ss:Name="Sheet1">
+ <Table ss:ExpandedColumnCount="256" ss:ExpandedRowCount="6" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+  <Column ss:AutoFitWidth="0" ss:Width="3.75"/>
+  <Column ss:AutoFitWidth="0" ss:Width="27"/>
+  <Column ss:AutoFitWidth="0" ss:Width="73.5"/>
+  <Column ss:AutoFitWidth="0" ss:Width="84"/>
+  <Column ss:AutoFitWidth="0" ss:Width="89.25"/>
+  <Column ss:AutoFitWidth="0" ss:Width="246"/>
+  <Row ss:StyleID="s7" ss:AutoFitHeight="0" ss:Height="8.25">
+   <Cell ss:StyleID="s7"><Data ss:Type="String">&lt;明细&gt;5,2,5,10;&lt;区域&gt;A2:F14;</Data></Cell>
+   </Row>
+  <Row ss:StyleID="s7" ss:AutoFitHeight="0" ss:Height="16.5">
+   <Cell ss:StyleID="s15" ss:MergeAcross="5"><Data ss:Type="String">刷卡记录</Data></Cell>
+   </Row>
+  <Row ss:StyleID="s7" ss:AutoFitHeight="0" ss:Height="15">
+   <Cell ss:Index="2" ss:StyleID="s9"><Data ss:Type="String">单位:</Data></Cell>
+   <Cell ss:StyleID="s10"/>
+   <Cell ss:StyleID="s10"/>
+   <Cell ss:StyleID="s10"/>
+   <Cell ss:StyleID="s10"/>
+   </Row>
+  <Row ss:StyleID="s7" ss:AutoFitHeight="0" ss:Height="19.5">
+   <Cell ss:Index="2" ss:StyleID="s11"><Data ss:Type="String">序号</Data></Cell>
+   <Cell ss:StyleID="s12"><Data ss:Type="String">姓名</Data></Cell>
+   <Cell ss:StyleID="s12"><Data ss:Type="String">卡号</Data></Cell>
+   <Cell ss:StyleID="s12"><Data ss:Type="String">日期</Data></Cell>
+   <Cell ss:StyleID="s12"><Data ss:Type="String">刷卡状态</Data></Cell>
+   </Row>
+  <Row ss:StyleID="s7" ss:AutoFitHeight="0" ss:Height="20.25">
+   <Cell ss:Index="2" ss:StyleID="s11"><Data ss:Type="String">序号</Data></Cell>
+   <Cell ss:StyleID="s13"><Data ss:Type="String">姓名</Data></Cell>
+   <Cell ss:StyleID="s13"><Data ss:Type="String">卡号</Data></Cell>
+   <Cell ss:StyleID="s13"><Data ss:Type="String">日期</Data></Cell>
+   <Cell ss:StyleID="s14"><Data ss:Type="String">刷卡状态</Data></Cell>
+   </Row>
+  <Row ss:StyleID="s7" ss:AutoFitHeight="0">
+   <Cell ss:Index="3" ss:StyleID="s9"><Data ss:Type="String">制表:</Data></Cell>
+   <Cell ss:StyleID="s10"/>
+   <Cell ss:StyleID="s10"/>
+   <Cell ss:StyleID="s10"/>
+   </Row>
+  </Table>
+ <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+  <PageSetup>
+   <Header x:Margin="0.511805555555556"/>
+   <Footer x:Margin="0.511805555555556"/>
+   <PageMargins x:Left="0.354166666666667" x:Right="0.354166666666667" x:Top="0.590277777777778" x:Bottom="0.590277777777778"/>
+   </PageSetup>
+  <Print>
+   <BlackAndWhite/>
+   <HorizontalResolution>600</HorizontalResolution>
+   <VerticalResolution>600</VerticalResolution>
+   </Print>
+  <Selected/>
+  <PageBreakZoom>100</PageBreakZoom>
+  <DoNotDisplayGridlines/>
+  <ProtectObjects>False</ProtectObjects>
+  <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+<Worksheet ss:Name="Sheet2">
+ <Table ss:ExpandedColumnCount="256" ss:ExpandedRowCount="1" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"/>
+ <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+  <PageSetup>
+   <Header x:Margin="0.511805555555556"/>
+   <Footer x:Margin="0.511805555555556"/>
+   </PageSetup>
+  <Print>
+   <HorizontalResolution>1200</HorizontalResolution>
+   <VerticalResolution>1200</VerticalResolution>
+   </Print>
+  <PageBreakZoom>100</PageBreakZoom>
+  <ProtectObjects>False</ProtectObjects>
+  <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+<Worksheet ss:Name="Sheet3">
+ <Table ss:ExpandedColumnCount="256" ss:ExpandedRowCount="1" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"/>
+ <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+  <PageSetup>
+   <Header x:Margin="0.511805555555556"/>
+   <Footer x:Margin="0.511805555555556"/>
+   </PageSetup>
+  <Print>
+   <HorizontalResolution>1200</HorizontalResolution>
+   <VerticalResolution>1200</VerticalResolution>
+   </Print>
+  <PageBreakZoom>100</PageBreakZoom>
+  <ProtectObjects>False</ProtectObjects>
+  <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

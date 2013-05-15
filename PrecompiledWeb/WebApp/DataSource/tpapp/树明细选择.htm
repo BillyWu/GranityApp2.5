@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<html>
+	<head>
+	    <script language="javascript" src="hmjs/sysjs/WinSingle.js" type="text/javascript" charset="gb2312"></script>
+	    <script language="javascript" src="hmjs/sysjs/ToolUtil.js" type="text/javascript" charset="gb2312"></script>	    
+		<script language="javascript" src="hmjs/sysjs/winLoadUtil.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/GridUtilBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usCommonBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usUnitBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usBandBase.js" type="text/javascript" charset="gb2312"></script>
+		<script language="javascript" src="hmjs/sysjs/usTreeLand.js" type="text/javascript" charset="gb2312"></script>
+		<link href="hmjs/sysjs/inputctrl.css" type="text/css" charset="gb2312" rel="stylesheet" />
+		<link href="hmjs/sysjs/css.css" type="text/css" charset="gb2312" rel="stylesheet" />
+	    <link href="hmjs/sysjs/treeStyle.css" type="text/css" rel="stylesheet" />
+		<script language="javascript" type="text/javascript">
+		<!--
+			window.onload=WinLoadUtil.MDTPLoad;
+			function initWin()
+			{
+				var bandOpener = window.dialogArguments;
+				if(!bandOpener.Tree) return;
+				osNode = bandOpener.Tree.WebTree.SelectedNode;
+			}
+			function ws_clearlocation()
+			{
+				var oband = document.UnitItem.getBandByItemName("明细");
+				var xmldoc=oband.UnitItem.ParamXmldoc;
+				document.getElementById("textlocation").value="";
+				ToolUtil.setParamValue(xmldoc, "islocation", "0", "s", "P", "", "Ts","");
+				ToolUtil.delParam(xmldoc, "Filter", "P", oband.ItemName, "C");				
+				return false;
+			}
+			
+			function _import(ischild)
+			{
+			    //ue_import('明细','import',ischild,'名称',true,strsql);
+			    var oband=window.dialogArguments;
+			    var node;
+			    if(ischild)
+			    {
+				    node = oband.Tree.WebTree.SelectedNode;
+				    if(node) var sid = node.ID;
+				    else 
+				        {
+				            var obandm = oband.getBandM();
+				            var sid = obandm.getFldStrValue(obandm.linkColM);
+				        }
+				}
+				else
+				{
+				    if(oband.Tree.WebTree.SelectedNode)
+				        node = oband.Tree.WebTree.SelectedNode.ParentNode;
+				    if(node) var sid = node.ID;
+				    else 
+				        {
+				            var obandm = oband.getBandM();
+				            var sid = obandm.getFldStrValue(obandm.linkColM);
+				        }
+				}
+				var oband = document.UnitItem.getBandByItemName("明细");
+				var xmlRows = oband.XmlLandData.XMLDocument.selectNodes("/*/*[@selected='-1' or @selected='1' or @selected='true']");
+				if(!xmlRows || xmlRows.length==0) return;
+				var _bms = "";
+				//选项中只有编码，需通过编码找到goodsbom中下属的集合
+                for(var i=0;i<xmlRows.length;i++)
+                {
+                    _bms = _bms + ",''"+xmlRows[i].selectSingleNode("编码").text+"''";
+                }
+                _bms = _bms.substring(1,_bms.length);
+                
+				//sid为目的父节点
+				var oband=window.dialogArguments;
+				var strsql="EXECUTE [dbo].[select_copyed_goodsbomByBm] '"+_bms+"','"+sid+"'";
+				xmlRows = ws_xmlajax(strsql);
+				if(!xmlRows) return;
+				//var str="";
+				for(var i=0;i<xmlRows.length;i++)
+				{
+				    oband.NewRecord();
+				    //str = str + " or '"+xmlRows[i].selectSingleNode("ID").text+"'"
+				    oband.setRowValue(xmlRows[i]);
+				}
+				//str = str.substring(4,str.length);
+				var xmlRows = oband.XmlLandData.XMLDocument.documentElement.selectNodes('*['+oband.Tree.PIDField+'/text()[.="'+sid+'"]]');
+				//var xmlRows = oband.XmlLandData.XMLDocument.documentElement.selectNodes('*['+oband.Tree.IDField+'/text()[.='+str+']]');
+				// 应该用oband的新增xmlRows做为建树的数据源
+				var nodeFirst = node;
+                for(var i=0;i<xmlRows.length;i++)
+                {
+                    if(!nodeFirst)
+                        nodeFirst = oband.Tree.bindTree(xmlRows[i]);
+                    else
+                        oband.Tree.bindTree(xmlRows[i]);
+                }
+                oband.Tree.WebTree.Render();				
+				return;
+			}
+			
+			function ws_xmlajax(strsql)
+			{
+			    var xmlhttp = CreateHTTP();
+                var ls_path=getpath();
+                ls_path=ls_path.substr(0,ls_path.lastIndexOf("/")+1);
+                
+                xmlhttp.open("POST",ls_path+"XMLSQL.aspx?strsql="+strsql,false);
+                var xmldata;
+                xmlhttp.onreadystatechange=function()
+                {
+	                if(xmlhttp.readyState==4 && xmlhttp.status==200)
+	                {
+                        xmlhttp.responseXML.createProcessingInstruction("xml"," version=\"1.0\" encoding=\"gb2312\"");
+                        xmldata = xmlhttp.responseXML.documentElement;
+                    }
+                };
+	            xmlhttp.send();
+	            if(xmldata)
+	                return xmldata.selectNodes("Table");
+	            else return null;
+			}
+			-->
+		</script>
+	</head>
+
+	<body>
+	<table style="BORDER-COLLAPSE: collapse; width:732px;HEIGHT:100%" id="table1" cellSpacing="0" cellPadding="0" border="0">
+			<tbody>
+			<tr>
+				<td style="height: 24px; " background="images/bkgray.gif" bgColor="buttonface" align="right" colspan="2">
+				<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table2">
+					<tbody>
+					<tr>
+<td style="width: 96px; " background="images/bkgray.gif" bgColor="buttonface" align="right">
+				<font face="宋体">检索字：</font></td>
+				<td background="images/bkgray.gif" bgColor="buttonface" align="left" width="406">
+				<input class="xlandinput" style="WIDTH: 320; height:20" size="15" name="编码;名称;型号" id="textlocation" />
+				<input class="gridbtn" id="gridfind7" style="width:44; height:22" onclick="ws_location('明细');" type="button" value="查找" name="B15" /></td>
+				<td align="right" background="images/bkgray.gif" bgColor="buttonface" width="86">
+				【<a id="addbtns" href="#" onclick="_import(false)">同级+</a>】
+				</td>
+				<td background="images/bkgray.gif" bgColor="buttonface">
+				【<a id="addbsubtns" href="#" onclick="_import(true)">下级+</a>】</td>
+				<td align="center" background="images/bkgray.gif" bgColor="buttonface">
+				【<a id="repbtn" href="#" title="双击或按下替换按钮将替换相应物品资料"  onclick="_import('checkin');">替换</a>】</td>
+					</tr>
+				</tbody>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td vAlign="top" style="width:191px" align="center">
+				<Control class="" catalog="TreeLand.ascx" itemname="字典信息" id="treeland" name="">treeland<Property name="tpfile" value="" />
+					                                                <Property name="width" value="100%" /><Property name="height" value="426" />
+					                                                <Property name="ctrlalert" value="s_code" />
+					                                                <Property name="trvfld" idfld="codes" pidfld="pcodes" txtfld="分类" orderfld="编码" />
+				                                                </Control>
+				</td>
+				<td width="541">
+					<font face="宋体">
+					<Control class="" catalog="GridLand.ascx" itemname="明细" id="goods" name="">goods
+							<Property name="tpfile" value="ControlTemplate/GridCheck.htm" />
+								<Property name="width" value="600px" /><Property name="height" value="375px" />
+								<Property name="hiddenhead" value="false" />
+								<Property name="ctrlalert" value="s_code" />
+								<Property name="hiddengrid" value="false" />
+							</Control>						
+					</font>						
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</body>
+</html>

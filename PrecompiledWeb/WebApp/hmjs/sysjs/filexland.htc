@@ -1,0 +1,56 @@
+<PUBLIC:ATTACH EVENT="onkeydown" ONEVENT="usOnKeydownHandle()" />
+<PUBLIC:ATTACH EVENT="onblur" ONEVENT="usOnBlurHandle()" />
+<PUBLIC:ATTACH EVENT="onfocus" ONEVENT="usOnFocusHandle()" />
+<PUBLIC:ATTACH EVENT="onafterupdate" ONEVENT="usOnUpatedHandle()" />
+<PUBLIC:ATTACH EVENT="onpropertychange" ONEVENT="usOnUpatedHandle()" />
+
+<SCRIPT language=javascript>
+//enter changed tab
+function usOnKeydownHandle()
+{
+	GridUtil.usOnCellEnterTab();
+}
+function usOnFocusHandle()
+{
+	ctrlID=event.srcElement.parentElement.id;
+	bandKey=ctrlID.substr(0,ctrlID.indexOf(":"));
+	myUnit=event.srcElement.ownerDocument.UnitItem;
+	myUnit.setActiveBand(bandKey);
+	var band=myUnit.getBandByItemName(bandKey);
+	if(!band || !band.XmlSchema || !band.XmlSchema.XMLDocument)
+		return;
+	if(band.Grid && "function"==typeof(usSetGridNameActivate))
+		usSetGridNameActivate(band.Grid.Name);
+}
+
+//与控件绑定的数据岛数据更改时触发,处理对应的显示格式值
+function usOnUpatedHandle()
+{
+	ctrlID=event.srcElement.parentElement.id;
+	bandKey=ctrlID.substr(0,ctrlID.indexOf(":"));
+	var columnName=ctrlID.substr(ctrlID.indexOf(":")+1);
+	myUnit=event.srcElement.ownerDocument.UnitItem;
+	myUnit.setActiveBand(bandKey);
+	var band=myUnit.getBandByItemName(bandKey);
+	if(!band || !band.XmlSchema || !band.XmlSchema.XMLDocument)
+		return;
+	var indexRow=band.XmlLandData.recordset.AbsolutePosition-1;
+	band.setFldStrValue(indexRow,columnName,event.srcElement.value);
+	band.CalXmlLand.Calculate();
+}
+//离开焦点后,改变单元格风格
+function usOnBlurHandle()
+{
+	ctrlID=event.srcElement.parentElement.id;
+	bandKey=ctrlID.substr(0,ctrlID.indexOf(":"));
+	var columnName=ctrlID.substr(ctrlID.indexOf(":")+1);
+	myUnit=event.srcElement.ownerDocument.UnitItem;
+	myUnit.setActiveBand(bandKey);
+	var band=myUnit.getBandByItemName(bandKey);
+	if(!band || !band.XmlSchema || !band.XmlSchema.XMLDocument)
+		return;
+	var indexRow=band.XmlLandData.recordset.AbsolutePosition-1;
+	band.setFldStrValue(indexRow,columnName,event.srcElement.value);
+}
+
+</SCRIPT>

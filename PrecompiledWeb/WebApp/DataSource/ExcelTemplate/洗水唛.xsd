@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/Xsmprint.xsd" elementFormDefault="qualified"
+            xmlns="http://tempuri.org/Xsmprint.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" >
+  <xs:element name="洗水唛信息">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="款号" type="xs:string" />
+        <xs:element name="洗水唛信息" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="洗水唛打印">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="款号" type="xs:string" />
+        <xs:element name="描述" type="xs:string" />
+        <xs:element name="图片" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="r1" msdata:parent="洗水唛信息" msdata:child="洗水唛打印" msdata:parentkey="款号" msdata:childkey="款号" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

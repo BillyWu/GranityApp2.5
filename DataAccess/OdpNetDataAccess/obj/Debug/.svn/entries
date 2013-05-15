@@ -2,8 +2,8 @@
 
 dir
 4
-https://192.168.4.5/svn/GranityApp/GranityApp2.5/DataAccess/OdpNetDataAccess/obj/Debug
-https://192.168.4.5/svn/GranityApp
+https://192.168.1.133/svn/GranityApp/GranityApp2.5/DataAccess/OdpNetDataAccess/obj/Debug
+https://192.168.1.133/svn/GranityApp
 
 
 
@@ -28,14 +28,14 @@ b7a1bd86-2f50-7044-aac2-f90e8b3b5af3
 
 Estar.DataAccess.OdpNetDataAccess.pdb
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.328125Z
-cde1133a67d431142d340b096f5b59da
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.037726Z
+174053cec66523eb36f323515623360a
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 
@@ -65,14 +65,14 @@ dir
 
 Estar.DataAccess.OdpNetDataAccess.dll
 file
-5
+6
 
 
 
-2013-04-22T08:34:05.421875Z
-ce41930cd58d6c972b58dac13610c294
-2013-04-22T08:43:47.453125Z
-5
+2013-05-13T07:20:24.131476Z
+a927aa156d96084f505c1756a9d248c1
+2013-05-15T09:20:53.074125Z
+6
 WBin
 has-props
 

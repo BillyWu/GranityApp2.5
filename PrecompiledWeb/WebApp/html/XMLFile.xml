@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<D>
+  <PL t="P" n="门禁树">
+    <L t="Ts">
+      <P n="RecordCount" v="" t="s" pt="M"/>
+      <P n="Command" v="TransParam" t="s"/>
+      <P n="UnitName" v="门禁权限" t="s"/>
+    </L>
+    <L t="C">
+      <P n="RecordCount" v="20" t="s" pt="M"/>
+      <P n="UnitName" v="门禁权限" t="s"/>
+    </L>
+    <L t="T">
+      <P n="Command" v="Save" t="s"/>
+      <P n="DataSrcFile" v="门禁权限" t="s"/>
+      <P n="DictSrcFile" v="" t="s"/>
+      <P n="workdataitems" v="门禁树,门禁用户树" t="s"/>
+    </L>
+  </PL>
+  <PL t="S">
+    <L t="D">
+      <P n="StartDate" v="2011-04-17" t="d"/>
+      <P n="EndDate" v="2011-05-17" t="d"/>
+      <P n="UserAccounts" v="10001" t="s"/>
+      <P n="UserSn" v="" t="s"/>
+      <P n="UserName" v="leo" t="s"/>
+      <P n="Company" v="" t="s"/>
+      <P n="OPTUnitID" v="1" t="s"/>
+      <P n="UnitCode" v="1" t="s"/>
+      <P n="DWName" v="克立司帝" t="s"/>
+      <P n="DWSupName" v="" t="s"/>
+      <P n="DeptSaleName" v="南方停车场" t="s"/>
+      <P n="DeptSupName" v="南方停车场" t="s"/>
+      <P n="DeptName" v="二期" t="s"/>
+      <P n="DeptCode" v="1001" t="s"/>
+      <P n="Rights" v="" t="s"/>
+      <P n="syspath" v="http://localhost/WebApp/" t="s"/>
+      <P n="LimitDays" v="0" t="i"/>
+    </L>
+  </PL>
+  <PL t="B" n="门禁用户树">
+    <L t="C">
+      <P n="FirstRow" v="0" t="s" pt="M"/>
+      <P n="LastRow" v="10" t="s" pt="M"/>
+      <P n="RecordCount" v="20" t="s" pt="M"/>
+    </L>
+    <L t="D">
+      <P n="Command" v="Save" t="s"/>
+      <门禁用户树 keyvalue="f7244f89-197c-48e4-af7a-275cdfe5129d" state="modify">
+        <ID>f7244f89-197c-48e4-af7a-275cdfe5129d</ID>
+        <PID>7360fad0-9ee7-4d36-8f2b-66caf2859395</PID>
+        <名称>t4(351)</名称>
+        <编号>351</编号>
+        <类别>人员</类别>
+        <level>3</level>
+        <RowNum>3</RowNum>
+        <权限>,Door00252,Door00249</权限>
+      </门禁用户树>
+    </L>
+  </PL>
+  <PL t="B" n="门禁树">
+    <L t="C">
+      <P n="FirstRow" v="0" t="s" pt="M"/>
+      <P n="LastRow" v="10" t="s" pt="M"/>
+      <P n="RecordCount" v="20" t="s" pt="M"/>
+    </L>
+    <L t="D">
+      <P n="Command" v="Save" t="s"/>
+    </L>
+  </PL>
+</D>

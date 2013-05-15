@@ -1,0 +1,1 @@
+﻿<%@ page language="C#" autoeventwireup="true" inherits="xmldataset, App_Web_yawaynrb" %>
